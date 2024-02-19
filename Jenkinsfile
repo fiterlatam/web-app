@@ -71,8 +71,8 @@ pipeline {
             def lineToReplace = sh(script: "grep mifos mifos/deployment.frontend.yaml | awk '{print \$2}'", returnStdout: true).trim()
 						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' mifos/deployment.frontend.yaml"
             withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
-              sh "git add docker-compose.yaml"
-              sh "git commit -m \"docker-compose file updated ${IMAGE} #1\""
+              sh "git add mifos/deployment.frontend.yaml"
+              sh "git commit -m \"mifos/deployment.frontend.yaml file updated ${IMAGE} #1\""
               sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/kubernetes-manifests.git main"
             }
           }
