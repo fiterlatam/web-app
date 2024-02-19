@@ -69,7 +69,7 @@ pipeline {
           dir('kubernetes-manifests') {
             git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: K8S_MANIFESTS_CODE_REPOSITORY
             def lineToReplace = sh(script: "grep mifos mifos/deployment.frontend.yaml | awk '{print \$2}'", returnStdout: true).trim()
-						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' mifos/deployment.frontend.yaml
+						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' mifos/deployment.frontend.yaml"
             withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
               sh "git add docker-compose.yaml"
               sh "git commit -m \"docker-compose file updated ${IMAGE} #1\""
