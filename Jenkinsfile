@@ -77,6 +77,7 @@ pipeline {
               sh "git commit -m \"mifos/deployment.frontend.yaml file updated ${IMAGE} #1\""
               sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/kubernetes-manifests.git main"
             }
+            sh "cp mifos/deployment.frontend.yaml /opt/playbooks/manager"
           }
 
           K8S_CLUSTER = "managerdev"
