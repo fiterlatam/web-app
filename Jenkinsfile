@@ -87,6 +87,23 @@ pipeline {
             sh "sudo ./generate-playbook.sh ${K8S_CLUSTER}"
             sh "cp deploy-mifos-frontend-deployment-playbook.yaml /opt/playbooks/manager"
           }
+
+          sshPublisher(
+						publishers: [
+							sshPublisherDesc(
+								configName: 'Jenkins', transfers: [
+									sshTransfer(
+										cleanRemote: false,
+										execCommand: 'ansible-playbook /opt/playbooks/manager/deploy-mifos-frontend-deployment-playbook.yaml',
+										execTimeout: 120000,
+									)
+								],
+								usePromotionTimestamp: false,
+								useWorkspaceInPromotion: false,
+								verbose: false
+							)
+						]
+					)
         }
       }
     }
