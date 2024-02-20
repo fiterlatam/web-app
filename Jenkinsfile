@@ -79,6 +79,8 @@ pipeline {
             }
           }
 
+          K8S_CLUSTER = "managerdev"
+
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
             sh "sudo ./generate-playbook.sh ${K8S_CLUSTER}"
