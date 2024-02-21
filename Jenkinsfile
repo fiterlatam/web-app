@@ -16,7 +16,8 @@ pipeline {
     CODE_REPOSITORY = "http://10.66.154.26/core/mifos.git"
     K8S_MANIFESTS_CODE_REPOSITORY = "http://10.66.154.26/core/kubernetes-manifests.git"
     CERTS_REPOSITORY = "http://10.66.154.26/primes/primes-certs.git"
-    K8S_CLUSTER = ""
+    PLAYBOOK_NAME = "deploy-core-mifos-playbook.yaml"
+    PLAYBOOKS_LOCATION = "/opt/playbooks/manager"
 	}
 
   stages {
@@ -70,22 +71,22 @@ pipeline {
         script {
           dir('kubernetes-manifests') {
             git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: K8S_MANIFESTS_CODE_REPOSITORY
-            def lineToReplace = sh(script: "grep mifos mifos/deployment.frontend.yaml | awk '{print \$2}'", returnStdout: true).trim()
-						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' mifos/deployment.frontend.yaml"
+            def lineToReplace = sh(script: "grep mifos: docker-compose.yaml | awk '{print \$2}'", returnStdout: true).trim()
+						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' docker-compose.yaml"
+            sh "cp docker-compose.yaml ../"
             withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
-              sh "git add mifos/deployment.frontend.yaml"
-              sh "git commit -m \"mifos/deployment.frontend.yaml file updated ${IMAGE} #1\""
-              sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/kubernetes-manifests.git main"
+              sh "git add docker-compose.yaml"
+              sh "git commit -m \"docker-compose file updated ${IMAGE} #1\""
+              sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
             }
-            sh "cp mifos/deployment.frontend.yaml /opt/playbooks/manager"
           }
 
-          K8S_CLUSTER = "managerdev"
+          sh "cp docker-compose.yaml ${PLAYBOOKS_LOCATION}"
 
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
-            sh "sudo ./generate-playbook.sh ${K8S_CLUSTER}"
-            sh "cp deploy-mifos-frontend-deployment-playbook.yaml /opt/playbooks/manager"
+            sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME}"
+            sh "cp ${PLAYBOOK_NAME} ${PLAYBOOKS_LOCATION}"
           }
 
           sshPublisher(
@@ -94,7 +95,7 @@ pipeline {
 								configName: 'Jenkins', transfers: [
 									sshTransfer(
 										cleanRemote: false,
-										execCommand: 'ansible-playbook /opt/playbooks/manager/deploy-mifos-frontend-deployment-playbook.yaml',
+										execCommand: "ansible-playbook ${PLAYBOOKS_LOCATION}/${PLAYBOOK_NAME}",
 										execTimeout: 120000,
 									)
 								],

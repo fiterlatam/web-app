@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "---
-- name: 'Continuos delivery os Mifos deployment'
-  hosts: managerdev
+- name: 'Continuos deployment to Mifos service'
+  hosts: managerdevdb
   become: yes
   become_method: runas
   become_flags: logon_type=new_credentials logon_flags=netcredentials_only
@@ -9,12 +9,14 @@ echo "---
     ansible_become_user: 'ansible'
     ansible_become_pass: '4Ns1BL3-4DM1N**'
   tasks:
-    - name: Copy mifos/deployment.frontend.yaml file to set up the Mifos deployment
+    - name: Copy docker-compose file to set up the Mifos service
       copy:
-        src: ./deployment.frontend.yaml
+        src: ./docker-compose.yaml
         dest: /home/ansible
 
-    - name: Apply the mifos/deployment.frontend.yaml k8s manifest
-      shell: 'kubectl apply -f deployment.frontend.yaml'
+    - name: Start up the mifos service
+      shell: 'docker compose -f docker-compose.yaml up -d sm_loadbalancer'
 
-" > deploy-mifos-frontend-deployment-playbook.yaml
+    - name: Delete the old image
+      shell: docker rmi $1
+" > $2
