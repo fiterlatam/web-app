@@ -25,9 +25,7 @@ pipeline {
     stage('Continuos Integration (CI)') {
       steps {
         script {
-          def slackResponse = slackSend(channel: "integrations-ci-cd", message: "Incio de integración continua del servicio de Mifos")
-          slackSend(channel: slackResponse.threadId, message: "Que es esto #1")
-
+          slackSend(channel: "integrations-ci-cd", color: "good", message: "Incio de integración continua del servicio de Mifos")
           git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: CODE_REPOSITORY
           sh "git rev-parse --short HEAD > .git/commit_id"
           COMMIT_ID = readFile('.git/commit_id').trim()
@@ -83,14 +81,13 @@ pipeline {
               sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
             }
           }
-
-          sh "cp docker-compose.yaml ${PLAYBOOKS_LOCATION}"
-
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
             sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME}"
             sh "cp ${PLAYBOOK_NAME} ${PLAYBOOKS_LOCATION}"
           }
+
+          sh "cp docker-compose.yaml ${PLAYBOOKS_LOCATION}"
 
           sshPublisher(
 						publishers: [
