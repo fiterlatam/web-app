@@ -25,6 +25,9 @@ pipeline {
     stage('Continuos Integration (CI)') {
       steps {
         script {
+          def slackResponse = slackSend(channel: "integrations-ci-cd", message: "Incio de integración continua del servicio de Mifos")
+          slackSend(channel: slackResponse.threadId, message: "Que es esto #1")
+
           git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: CODE_REPOSITORY
           sh "git rev-parse --short HEAD > .git/commit_id"
           COMMIT_ID = readFile('.git/commit_id').trim()
