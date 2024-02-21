@@ -76,6 +76,7 @@ pipeline {
       steps {
         script {
           slackSend(channel: "integrations-ci-cd", color: "good", message: "Incio del proceso de Entrega Continua (CD) de la imagen de Mifos para el commit ${COMMIT_ID}")
+
           dir('compose') {
             git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: COMPOSE_REPOSITORY
             def lineToReplace = sh(script: "grep mifos: docker-compose.yaml | awk '{print \$2}'", returnStdout: true).trim()
@@ -87,6 +88,7 @@ pipeline {
               sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
             }
           }
+
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
             sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME}"
@@ -102,7 +104,7 @@ pipeline {
 									sshTransfer(
 										cleanRemote: false,
 										execCommand: "ansible-playbook ${PLAYBOOKS_LOCATION}/${PLAYBOOK_NAME}",
-										execTimeout: 120000,
+										execTimeout: 240000,
 									)
 								],
 								usePromotionTimestamp: false,
@@ -111,6 +113,8 @@ pipeline {
 							)
 						]
 					)
+
+          slackSend(channel: "integrations-ci-cd", color: "good", message: "Proceso de Entrega Continua (CD) de la imagen de Mifos para el commit ${COMMIT_ID} finalizado correctamente")
         }
       }
     }
