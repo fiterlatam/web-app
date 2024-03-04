@@ -14,7 +14,6 @@ import { RecurringDepositProductAccountingStepComponent } from '../recurring-dep
 /** Custom Services */
 import { ProductsService } from 'app/products/products.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Accounting } from 'app/core/utils/accounting';
 
 @Component({
   selector: 'mifosx-edit-recurring-deposit-product',
@@ -32,7 +31,7 @@ export class EditRecurringDepositProductComponent implements OnInit {
   @ViewChild(RecurringDepositProductAccountingStepComponent, { static: true }) recurringDepositProductAccountingStep: RecurringDepositProductAccountingStepComponent;
 
   recurringDepositProductsTemplate: any;
-  accountingRuleData: string[] = [];
+  accountingRuleData = ['None', 'Cash'];
 
   /**
    * @param {ActivatedRoute} route Activated Route.
@@ -44,12 +43,10 @@ export class EditRecurringDepositProductComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private router: Router,
-              private settingsService: SettingsService,
-              private accounting: Accounting) {
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { recurringDepositProductAndTemplate: any }) => {
       this.recurringDepositProductsTemplate = data.recurringDepositProductAndTemplate;
     });
-    this.accountingRuleData = this.accounting.getAccountingRulesForSavings();
   }
 
   ngOnInit() {

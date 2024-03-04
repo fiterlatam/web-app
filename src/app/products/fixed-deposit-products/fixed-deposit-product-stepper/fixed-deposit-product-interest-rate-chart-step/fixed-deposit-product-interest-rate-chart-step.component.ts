@@ -111,7 +111,6 @@ export class FixedDepositProductInterestRateChartStepComponent implements OnInit
       this.chartsDetail[i].chartSlabs.forEach((chartSlabDetail: any, j: number) => {
 
         const chartSlabInfo = this.formBuilder.group({
-          id: [chartSlabDetail.id],
           amountRangeFrom: [chartSlabDetail.amountRangeFrom || ''],
           amountRangeTo: [chartSlabDetail.amountRangeTo || ''],
           annualInterestRate: [chartSlabDetail.annualInterestRate, Validators.required],
@@ -156,9 +155,6 @@ export class FixedDepositProductInterestRateChartStepComponent implements OnInit
         description: chartData.description,
         chartSlabs: this.getChartSlabsData(chartData)
       };
-      if (chartData.id) {
-        chart['id'] = chartData.id;
-      }
       this.chartsDetail.push(chart);
     });
     this.fixedDepositProductInterestRateChartForm.patchValue({
@@ -187,9 +183,6 @@ export class FixedDepositProductInterestRateChartStepComponent implements OnInit
         toPeriod: eachChartSlabData.toPeriod,
         incentives: this.getIncentivesData(chartSlabData)
       };
-      if (eachChartSlabData.id) {
-        chartSlab['id'] = eachChartSlabData.id;
-      }
       chartSlabs.push(chartSlab);
     });
     return chartSlabs;
@@ -232,7 +225,6 @@ export class FixedDepositProductInterestRateChartStepComponent implements OnInit
 
   createChartForm(): UntypedFormGroup {
     return this.formBuilder.group({
-      'id': [null],
       'name': [''],
       'description': [''],
       'fromDate': ['', Validators.required],
@@ -389,9 +381,6 @@ export class FixedDepositProductInterestRateChartStepComponent implements OnInit
       chart.endDate = this.dateUtils.formatDate(chart.endDate, dateFormat) || '';
       if (chart.endDate === '') {
         delete chart.endDate;
-      }
-      if (chart.id === null) {
-        delete chart.id;
       }
     }
     return fixedDepositProductInterestRateChart;

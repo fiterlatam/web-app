@@ -28,8 +28,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   /** True if sidenav is in collapsed state. */
   @Input() sidenavCollapsed: boolean;
-  /** Tooltip position */
-  tooltipPosition = 'after';
+
   /** Username of authenticated user. */
   username: string;
   /** Array of all user activities */

@@ -1,9 +1,5 @@
 @import "assets/styles/helper";
 
-.container {
-  width: 100%;
-}
-
 .tab-container {
   padding: 1%;
   margin: 1%;
@@ -15,8 +11,25 @@
   color: $status-approved;
 }
 
+table {
+  width: 100%;
+}
+
 .mat-elevation-z1 {
   margin: 1em 0 1.5em 0;
+}
+
+h2, h3, h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+span {
+  margin: 0.5em 0;
+}
+
+.margin-t {
+  margin-top: 1em;
 }
 
 .interestCarts {
