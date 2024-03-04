@@ -19,6 +19,8 @@ pipeline {
     PLAYBOOK_NAME = "deploy-core-mifos-playbook.yaml"
     PLAYBOOKS_LOCATION = "/opt/playbooks/manager"
     SLACK_MESSAGE_PREFIX = "[CORE-Mifos]: "
+    DOCKER_COMPOSE_FILENAME = ""
+    DOCKER_COMPOSE_SERVICE_NAME = ""
 	}
 
   stages {
@@ -38,6 +40,13 @@ pipeline {
 					def previousCommit = env.GIT_PREVIOUS_COMMIT
 					def shortPreviousCommit = previousCommit.substring(0, 7)
 					PREVIOUS_IMAGE = "${REGISTRY_URL}/${SERVICE_NAME}:${shortPreviousCommit}"
+
+          dir('scripts') {
+            sh "sudo chmod +x get-docker-compose-service-name.sh"
+            sh "sudo chmod +x get-docker-compose-file-name.sh"
+            DOCKER_COMPOSE_SERVICE_NAME=sh(script: './get-docker-compose-service-name.sh', returnStdout: true).trim()
+            DOCKER_COMPOSE_FILENAME=sh(script: './get-docker-compose-file-name.sh', returnStdout: true).trim()
+          }
         }
       }
     }
@@ -80,23 +89,23 @@ pipeline {
 
           dir('compose') {
             git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: COMPOSE_REPOSITORY
-            def lineToReplace = sh(script: "grep mifos: docker-compose.yaml | awk '{print \$2}'", returnStdout: true).trim()
-						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' docker-compose.yaml"
-            sh "cp docker-compose.yaml ../"
+            def lineToReplace = sh(script: "grep mifos: ${DOCKER_COMPOSE_FILENAME} | awk '{print \$2}'", returnStdout: true).trim()
+						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' ${DOCKER_COMPOSE_FILENAME}"
+            sh "cp ${DOCKER_COMPOSE_FILENAME} ../"
             withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
-              sh "git add docker-compose.yaml"
-              sh "git commit -m \"docker-compose file updated ${IMAGE} #1\""
+              sh "git add ${DOCKER_COMPOSE_FILENAME}"
+              sh "git commit -m \" ${DOCKER_COMPOSE_FILENAME} file updated ${IMAGE} #1\""
               sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
             }
           }
 
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
-            sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME}"
+            sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME} ${DOCKER_COMPOSE_FILENAME} ${DOCKER_COMPOSE_SERVICE_NAME}"
             sh "cp ${PLAYBOOK_NAME} ${PLAYBOOKS_LOCATION}"
           }
 
-          sh "cp docker-compose.yaml ${PLAYBOOKS_LOCATION}"
+          sh "cp ${DOCKER_COMPOSE_FILENAME} ${PLAYBOOKS_LOCATION}"
 
           sshPublisher(
 						publishers: [

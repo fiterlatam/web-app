@@ -11,11 +11,11 @@ echo "---
   tasks:
     - name: Copy docker-compose file to set up the Mifos service
       copy:
-        src: ./docker-compose.yaml
+        src: ./$3
         dest: /home/ansible
 
     - name: Start up the mifos service
-      shell: 'docker compose -f docker-compose.yaml up -d sm_loadbalancer'
+      shell: 'docker compose -f $3 up -d $4'
 
     - name: Delete the old image
       shell: docker rmi $1
