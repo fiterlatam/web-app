@@ -136,10 +136,6 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
       });
 
-      if (this.loansAccountTermsData.isLoanProductLinkedToFloatingRate) {
-        this.loansAccountTermsForm.removeControl('interestRatePerPeriod');
-      }
-
       this.multiDisburseLoan = this.loansAccountTermsData.multiDisburseLoan;
       if (this.loansAccountTermsData.disbursementDetails) {
         this.disbursementDataSource = this.loansAccountTermsData.disbursementDetails;

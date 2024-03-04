@@ -14,7 +14,6 @@ import { FixedDepositProductAccountingStepComponent } from '../fixed-deposit-pro
 /** Custom Services */
 import { ProductsService } from 'app/products/products.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Accounting } from 'app/core/utils/accounting';
 
 @Component({
   selector: 'mifosx-edit-fixed-deposit-product',
@@ -32,7 +31,7 @@ export class EditFixedDepositProductComponent implements OnInit {
   @ViewChild(FixedDepositProductAccountingStepComponent, { static: true }) fixedDepositProductAccountingStep: FixedDepositProductAccountingStepComponent;
 
   fixedDepositProductsTemplate: any;
-  accountingRuleData: string[] = [];
+  accountingRuleData = ['None', 'Cash'];
 
   /**
    * @param {ActivatedRoute} route Activated Route.
@@ -44,12 +43,10 @@ export class EditFixedDepositProductComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private router: Router,
-              private settingsService: SettingsService,
-              private accounting: Accounting) {
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { fixedDepositProductAndTemplate: any }) => {
       this.fixedDepositProductsTemplate = data.fixedDepositProductAndTemplate;
     });
-    this.accountingRuleData = this.accounting.getAccountingRulesForSavings();
   }
 
   ngOnInit() {

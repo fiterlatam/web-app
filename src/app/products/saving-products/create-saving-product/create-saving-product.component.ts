@@ -13,7 +13,6 @@ import { SavingProductAccountingStepComponent } from '../saving-product-stepper/
 /** Custom Services */
 import { ProductsService } from 'app/products/products.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Accounting } from 'app/core/utils/accounting';
 
 @Component({
   selector: 'mifosx-create-saving-product',
@@ -30,7 +29,7 @@ export class CreateSavingProductComponent implements OnInit {
   @ViewChild(SavingProductAccountingStepComponent, { static: true }) savingProductAccountingStep: SavingProductAccountingStepComponent;
 
   savingProductsTemplate: any;
-  accountingRuleData: string[] = [];
+  accountingRuleData = ['None', 'Cash'];
 
   /**
    * @param {ActivatedRoute} route Activated Route.
@@ -42,12 +41,10 @@ export class CreateSavingProductComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private router: Router,
-              private settingsService: SettingsService,
-              private accounting: Accounting) {
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { savingProductsTemplate: any }) => {
       this.savingProductsTemplate = data.savingProductsTemplate;
     });
-    this.accountingRuleData = this.accounting.getAccountingRulesForSavings();
   }
 
   ngOnInit() {
