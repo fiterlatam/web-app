@@ -42,8 +42,8 @@ pipeline {
 					PREVIOUS_IMAGE = "${REGISTRY_URL}/${SERVICE_NAME}:${shortPreviousCommit}"
 
           dir('scripts') {
-            sh "sudo chmod +x get-docker-compose-service-name.sh"
-            sh "sudo chmod +x get-docker-compose-file-name.sh"
+            sh "sudo chmod +x get-docker-compose-service-name.sh ${env.BRANCH_NAME}"
+            sh "sudo chmod +x get-docker-compose-file-name.sh ${env.BRANCH_NAME}"
             DOCKER_COMPOSE_SERVICE_NAME=sh(script: './get-docker-compose-service-name.sh', returnStdout: true).trim()
             DOCKER_COMPOSE_FILENAME=sh(script: './get-docker-compose-file-name.sh', returnStdout: true).trim()
           }
