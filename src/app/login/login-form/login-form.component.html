@@ -27,15 +27,14 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-checkbox fxFlexAlign="center" formControlName="remember" class="m-t-10">{{'labels.inputs.Remember me' | translate}}</mat-checkbox>
-
   <button mat-raised-button color="primary" fxFlexAlign="center" class="login-button" [disabled]="!loginForm.valid">
     {{'labels.buttons.Login' | translate}}
     <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
   </button>
-
-  <button type="button" mat-button fxFlexAlign="center" class="login-button" (click)="forgotPassword()" [disabled]="loading">
-    {{'labels.links.Forgot Password?' | translate}}
-  </button>
+ 
+  <div fxLayout="row" fxLayoutAlign="center center" class="forgot-password">
+    <mat-checkbox fxFlexAlign="center" formControlName="remember" class="m-t-10">{{'labels.inputs.Remember me' | translate}}</mat-checkbox>
+    <a (click)="loading ? $event.preventDefault() : forgotPassword()" class="m-t-10 m-l-10" fxFlex="1 1 auto" fxFlexAlign="end">{{'labels.links.Forgot Password?' | translate}}</a>
+  </div>
 
 </form>
