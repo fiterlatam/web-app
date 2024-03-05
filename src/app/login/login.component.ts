@@ -58,6 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/'], { replaceUrl: true });
       }
     });
+
+    console.log('Environment:', this.environment);
   }
 
   /**
