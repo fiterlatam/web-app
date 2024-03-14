@@ -43,6 +43,12 @@ import { DatePipe, LocationStrategy } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+/** Sumas Custom Routing Module - Custom modules must preceed the AppRoutingModule */
+import { ClientsalliesModule } from './clientsallies/clientsallies.module';
+
+
+
 /**
  * App Module
  *
@@ -90,7 +96,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollectionsModule,
     TasksModule,
     ConfigurationWizardModule,
-    AppRoutingModule
+
+    // ###########################################################################
+    // Sumas custom modueles MUST BE PRECEDED BY AppRoutingModule
+    ClientsalliesModule,
+
+
+    // /Sumas custom modueles MUST BE PRECEDED BY AppRoutingModule
+    // ###########################################################################
+
+    AppRoutingModule,
+
   ],
   declarations: [WebAppComponent, NotFoundComponent],
   providers: [DatePipe],

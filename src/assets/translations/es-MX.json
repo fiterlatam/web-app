@@ -272,7 +272,10 @@
     },
     "labels": {
         "breadcrumbs": {
-            "Home": "Inicio"
+            "Home": "Inicio",
+            "client.allies": "Aliado",
+            "client.allies.create": "Crear Aliado",
+            "client.allies.edit": "Editar Aliado"
         },
         "buttons": {
             "Accept Transfer": "Aceptar transferencia",
@@ -2061,7 +2064,25 @@
             },
             "task-management component": "componente de gestión de tareas",
             "to": "a",
-            "valid": "válido"
+            "valid": "válido",
+            "companyName": "Razón social",
+            "nit": "NIT",
+            "nitDigit": "Dígito de verificación",
+            "address": "Dirección",
+            "department": "Departamento",
+            "city": "Ciudad",
+            "liquidationFrequency": "Frecuencia liquidación",
+            "applyCupoMaxSell": "Aplica cupo máximo de ventas",
+            "cupoMaxSell": "Cupo máximo de ventas",
+            "settledComission": "Comisión pactada",
+            "buyEnabled": "Habilitado para compras",
+            "collectionEnabled": "Habilitado para recaudos",
+            "bankEntity": "Entidad bancaria",
+            "accountType": "Tipo cuenta bancaria",
+            "accountNumber": "Número de cuenta",
+            "taxProfile": "Perfil tributario",
+            "state": "Estado",
+            "pointOfSell": "Puntos de venta"
         },
         "links": {
             "Community": "Comunidad",
@@ -2176,11 +2197,13 @@
             "Withdrawal": "Retiro",
             "Withdrawn by client": "Retirado por el cliente",
             "Write Off": "Cancelar crédito",
-            "XBRL": "XBRL"
+            "XBRL": "XBRL",
+            "clients.allies": "Aliados"
         },
         "placeholders": {
             "Add new server": "Agregar nuevo servidor",
-            "Search Activity": "Actividad de búsqueda"
+            "Search Activity": "Actividad de búsqueda",
+            "client.allies.search": "Procura por Razón Social o NIT"
         },
         "status": {
             "Active": "Activo",
@@ -2775,7 +2798,10 @@
             "undefined": "No definido",
             "withhold tax for this account": "retener impuestos para esta cuenta",
             "Journal Entries": "Entradas de diario",
-            "“Maker-Checker” principle requires every tasks": "El principio \"Maker-Checker\" requiere que dos personas completen cada tarea para reducir la posibilidad de errores y uso indebido. Una persona inicia el proceso y la segunda lo completa."
+            "“Maker-Checker” principle requires every tasks": "El principio \"Maker-Checker\" requiere que dos personas completen cada tarea para reducir la posibilidad de errores y uso indebido. Una persona inicia el proceso y la segunda lo completa.",
+            "allies": "Aliados",
+            "allies.create": "Crear Aliado",
+            "allies.edit": "Editar Aliado"            
         },
         "titles": {
             "Dashboard": "Tableros",
