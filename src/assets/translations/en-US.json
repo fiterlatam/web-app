@@ -272,7 +272,10 @@
     },
     "labels": {
         "breadcrumbs": {
-            "Home": "Home"
+            "Home": "Home",
+            "client.allies": "Allies",
+            "client.allies.create": "Create Ally",
+            "client.allies.edit": "Update Ally"
         },
         "buttons": {
             "Accept Transfer": "Accept Transfer",
@@ -2060,7 +2063,25 @@
             },
             "task-management component": "task-management component",
             "to": "to",
-            "valid": "valid"
+            "valid": "valid",
+            "companyName": "Company Name",
+            "nit": "NIT",
+            "nitDigit": "Digit",
+            "address": "Address",
+            "department": "Department",
+            "city": "City",
+            "liquidationFrequency": "Liquidation Frequency",
+            "applyCupoMaxSell": "Apply Cupo Max. Sell",
+            "cupoMaxSell": "Cupo Max. Sell",
+            "settledComission": "Settled Comission",
+            "buyEnabled": "Buy Enabled",
+            "collectionEnabled": "Collection Enabled",
+            "bankEntity": "Bank Entity",
+            "accountType": "Account Type",
+            "accountNumber": "Account Number",
+            "taxProfile": "Tax Profile",
+            "state": "State",
+            "pointOfSell": "Points Of Sell"
         },
         "links": {
             "Community": "Community",
@@ -2175,11 +2196,13 @@
             "Withdrawal": "Withdrawal",
             "Withdrawn by client": "Withdrawn by client",
             "Write Off": "Write Off",
-            "XBRL": "XBRL"
+            "XBRL": "XBRL",
+            "clients.allies": "Allies"
         },
         "placeholders": {
             "Add new server": "Add new server",
-            "Search Activity": "Search Activity"
+            "Search Activity": "Search Activity",
+            "client.allies.search": "Search by Name or NIT"
         },
         "status": {
             "Active": "Active",
@@ -2775,7 +2798,10 @@
             "undefined": "undefined",
             "withhold tax for this account": "withhold tax for this account",
             "Journal Entries": "Journal Entries",
-            "“Maker-Checker” principle requires every tasks": "The “Maker-Checker” principle requires every tasks to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it."
+            "“Maker-Checker” principle requires every tasks": "The “Maker-Checker” principle requires every tasks to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it.",
+            "allies": "Allies",
+            "allies.create": "Create Ally",
+            "allies.edit": "Edit Ally"
         },
         "titles": {
             "Dashboard": "Dashboard",
