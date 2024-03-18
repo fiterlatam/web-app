@@ -1,13 +1,13 @@
 <nav class="breadcrumb-wrapper">
   <ul class="breadcrumb">
-    <span #breadcrumb class="breadcrumb-title">{{ getTranslate(breadcrumbs[breadcrumbs.length-1].label) }}</span>
+    <span #breadcrumb class="breadcrumb-title">{{ getTranslate(breadcrumbs[breadcrumbs.length-1].label) | formatDisplayName}}</span>
     <span *ngIf="breadcrumbs.length-1 !== 0" class="separator">
       <li *ngFor="let breadcrumb of breadcrumbs; let last = last" class="breadcrumb-label">
         <span *ngIf="!last" class="breadcrumb-link">
-          <a *ngIf="breadcrumb.url" [routerLink]="breadcrumb.url">{{ getTranslate(breadcrumb.label) }}</a>
-          <span *ngIf="!breadcrumb.url">{{ getTranslate(breadcrumb.label) }}</span>
+          <a *ngIf="breadcrumb.url" [routerLink]="breadcrumb.url">{{ getTranslate(breadcrumb.label)}}</a>
+          <span *ngIf="!breadcrumb.url">{{ getTranslate(breadcrumb.label)}}</span>
         </span>
-        <span *ngIf="last">{{ getTranslate(breadcrumb.label) }}</span>
+        <span *ngIf="last">{{ getTranslate(breadcrumb.label) | formatDisplayName}}</span>
       </li>
     </span>
   </ul>

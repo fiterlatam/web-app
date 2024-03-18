@@ -34,6 +34,7 @@ import { SidenavComponent } from './shell/sidenav/sidenav.component';
 import { ToolbarComponent } from './shell/toolbar/toolbar.component';
 import { BreadcrumbComponent } from './shell/breadcrumb/breadcrumb.component';
 import { ContentComponent } from './shell/content/content.component';
+import {PipesModule} from "../pipes/pipes.module";
 
 
 /**
@@ -42,12 +43,13 @@ import { ContentComponent } from './shell/content/content.component';
  * Main app shell components and singleton services should be here.
  */
 @NgModule({
-  imports: [
-    SharedModule,
-    HttpClientModule,
-    TranslateModule,
-    RouterModule
-  ],
+    imports: [
+        SharedModule,
+        HttpClientModule,
+        TranslateModule,
+        RouterModule,
+        PipesModule
+    ],
   declarations: [
     ShellComponent,
     SidenavComponent,

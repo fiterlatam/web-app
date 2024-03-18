@@ -877,7 +877,9 @@
             "Withhold Tax": "Withhold Tax",
             "Working Days": "Working Days",
             "You have created": "You have created",
-            "successfully select option": "successfully. Please select from the options below to proceed furthur."
+            "successfully select option": "successfully. Please select from the options below to proceed furthur.",
+            "edit": "Edit",
+            "for": "for"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",

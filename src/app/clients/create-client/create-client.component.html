@@ -50,7 +50,7 @@
 
     <mat-step *ngFor="let datatable of datatables">
 
-      <ng-template matStepLabel>{{datatable.registeredTableName}}</ng-template>
+      <ng-template matStepLabel>{{datatable.registeredTableName | formatDisplayName}}</ng-template>
 
       <mifosx-client-datatable-step [datatableData]="datatable" #dtclient></mifosx-client-datatable-step>
 

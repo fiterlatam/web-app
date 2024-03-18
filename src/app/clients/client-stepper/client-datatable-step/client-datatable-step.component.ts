@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Datatables } from 'app/core/utils/datatables';
 import { SettingsService } from 'app/settings/settings.service';
+import * as _ from "lodash";
+import {FormfieldBase} from "../../../shared/form-dialog/formfield/model/formfield-base";
 
 @Component({
   selector: 'mifosx-client-datatable-step',
@@ -15,6 +17,7 @@ export class ClientDatatableStepComponent implements OnInit {
   datatableForm: UntypedFormGroup;
 
   datatableInputs: any = [];
+  datatableInputsCopy: any[];
 
   constructor(private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
@@ -36,6 +39,7 @@ export class ClientDatatableStepComponent implements OnInit {
       }
     });
     this.datatableForm = this.formBuilder.group(inputItems);
+    this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
   }
 
   getInputName(datatableInput: any): string {
@@ -77,6 +81,17 @@ export class ClientDatatableStepComponent implements OnInit {
       registeredTableName: this.datatableData.registeredTableName,
       data: data
     };
+  }
+  filterCityBySelectedDepartmento(event: any) {
+    if (event.source.ngControl.name == 'Departamento') {
+      const departmentoId: number = this.datatableForm.value.Departamento;
+      for (let i in this.datatableInputsCopy) {
+        if ('Ciudad_cd_Ciudad' == this.datatableInputsCopy[i].columnName) {
+          const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
+          this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
+        }
+      }
+    }
   }
 
 }

@@ -97,6 +97,7 @@ export class ClientGeneralStepComponent implements OnInit {
     this.officeOptions = this.clientTemplate.officeOptions;
     this.staffOptions = this.clientTemplate.staffOptions;
     this.legalFormOptions = this.clientTemplate.clientLegalFormOptions;
+    console.log(this.legalFormOptions);
     this.clientTypeOptions = this.clientTemplate.clientTypeOptions;
     this.clientClassificationTypeOptions = this.clientTemplate.clientClassificationOptions;
     this.businessLineOptions = this.clientTemplate.clientNonPersonMainBusinessLineOptions;
@@ -131,7 +132,7 @@ export class ClientGeneralStepComponent implements OnInit {
         }));
       }
     });
-    this.createClientForm.get('legalFormId').patchValue(1);
+    this.createClientForm.get('legalFormId').patchValue(2);
     this.createClientForm.get('active').valueChanges.subscribe((active: boolean) => {
       if (active) {
         this.createClientForm.addControl('activationDate', new UntypedFormControl('', Validators.required));

@@ -6,6 +6,7 @@ export class FormfieldBase {
   value: any;
   required: boolean;
   order: number;
+  options: any;
 
   constructor(options: {
               controlType?: string,
