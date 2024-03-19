@@ -7,7 +7,7 @@
 
         <mat-label>{{getInputName(datatableInput)}}</mat-label>
 
-        <mat-select *ngIf="isDropdown(datatableInput.columnDisplayType)" formControlName="{{datatableInput.controlName}}">
+        <mat-select *ngIf="isDropdown(datatableInput.columnDisplayType)" formControlName="{{datatableInput.controlName}}" (selectionChange)="filterCityBySelectedDepartmento($event)">
           <mat-option *ngFor="let code of datatableInput.columnValues" [value]="code.id">
             {{ code.value }}
           </mat-option>

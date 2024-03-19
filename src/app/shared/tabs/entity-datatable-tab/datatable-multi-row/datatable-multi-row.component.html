@@ -2,7 +2,7 @@
 
   <div fxLayout="row" fxLayoutAlign="start">
     <div class="m-b-10">
-      <h3>{{datatableName}}</h3>
+      <h3>{{datatableName | formatDisplayName}}</h3>
     </div>
     <div class="action-button m-b-7" fxLayoutGap="10px">
       <span *mifosxHasPermission="'CREATE_' + datatableName">

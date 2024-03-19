@@ -1,5 +1,5 @@
 <div class="tab-container mat-typography">
-  <h3>{{datatableName}}</h3>
+  <h3>{{datatableName | formatDisplayName}}</h3>
   <div fxLayout="row" fxLayoutAlign="flex-end" class="m-b-20">
     <button mat-raised-button color="primary" (click)="add()" *ngIf="!dataObject.data[0]">
       <fa-icon icon="plus" class="m-r-10"></fa-icon>{{ 'labels.buttons.Add' | translate }}
@@ -31,6 +31,9 @@
         </span>
         <span *ngSwitchCase="'INTEGER'">
           {{dataObject.data[0].row[i]}}
+        </span>
+        <span *ngSwitchCase="'CODELOOKUP'">
+          {{resolveColumnValue(columnHeader.columnValues, dataObject.data[0].row[i])}}
         </span>
         <span *ngSwitchCase="'DECIMAL'">
           {{dataObject.data[0].row[i] | formatNumber}}

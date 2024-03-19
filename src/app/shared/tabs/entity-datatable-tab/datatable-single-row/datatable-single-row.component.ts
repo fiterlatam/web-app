@@ -86,7 +86,10 @@ export class DatatableSingleRowComponent implements OnInit {
       return formfield;
     });
     const data = {
-      title: 'Edit ' + this.datatableName + ' for ' + this.entityType,
+      title:  {
+        datatableName: this.datatableName,
+        entityType: this.entityType
+      },
       formfields: formfields,
       layout: {addButtonText: 'Save'}
     };
@@ -128,10 +131,24 @@ export class DatatableSingleRowComponent implements OnInit {
     }
     return 'table-data';
   }
+  resolveColumnValue(columnValues: [], idValue: number):string{
+    let returnValue = String(idValue);
+    if(columnValues && columnValues.length > 0){
+      columnValues.forEach((columValue: any) => {
+        if(columValue.id == idValue){
+          returnValue = columValue.value;
+        }
+      });
+    }
+    return returnValue;
+  }
 
   getColumnType(columnDisplayType: string, columnType: string) {
     switch (columnDisplayType) {
       case 'DATE': {
+        return columnDisplayType;
+      }
+      case 'CODELOOKUP': {
         return columnDisplayType;
       }
       case 'DATETIME': {

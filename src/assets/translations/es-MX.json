@@ -878,7 +878,9 @@
             "Withhold Tax": "Retener el impuesto",
             "Working Days": "Días laborables",
             "You have created": "tu has creado",
-            "successfully select option": "exitosamente. Seleccione una de las opciones siguientes para continuar."
+            "successfully select option": "exitosamente. Seleccione una de las opciones siguientes para continuar.",
+            "edit": "Editar",
+            "for": "para"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2801,7 +2803,7 @@
             "“Maker-Checker” principle requires every tasks": "El principio \"Maker-Checker\" requiere que dos personas completen cada tarea para reducir la posibilidad de errores y uso indebido. Una persona inicia el proceso y la segunda lo completa.",
             "allies": "Aliados",
             "allies.create": "Crear Aliado",
-            "allies.edit": "Editar Aliado"            
+            "allies.edit": "Editar Aliado"
         },
         "titles": {
             "Dashboard": "Tableros",
