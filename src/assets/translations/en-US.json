@@ -272,10 +272,7 @@
     },
     "labels": {
         "breadcrumbs": {
-            "Home": "Home",
-            "client.allies": "Allies",
-            "client.allies.create": "Create Ally",
-            "client.allies.edit": "Update Ally"
+            "Home": "Home"
         },
         "buttons": {
             "Accept Transfer": "Accept Transfer",
@@ -539,7 +536,8 @@
             "numeral": "numeral",
             "required": "required",
             "required and cannot be negative": "required and cannot be negative",
-            "should": "should"
+            "should": "should",
+            "till 4 characters": "till 4 characters"
         },
         "heading": {
             "Account Linked Financial": "List of accounts linked to different financial activities. To know more click:",
@@ -2083,7 +2081,12 @@
             "accountNumber": "Account Number",
             "taxProfile": "Tax Profile",
             "state": "State",
-            "pointOfSell": "Points Of Sell"
+            "pointOfSell": "Points Of Sales",
+            "code": "Code",
+            "brand": "Brand",
+            "category": "Category",
+            "segment": "Segment",
+            "type": "Type"
         },
         "links": {
             "Community": "Community",
@@ -2204,7 +2207,8 @@
         "placeholders": {
             "Add new server": "Add new server",
             "Search Activity": "Search Activity",
-            "client.allies.search": "Search by Name or NIT"
+            "client.allies.search": "Search by Name or NIT",
+            "clientallypointofsales.search": "Search by Name or Code"            
         },
         "status": {
             "Active": "Active",
@@ -2801,9 +2805,12 @@
             "withhold tax for this account": "withhold tax for this account",
             "Journal Entries": "Journal Entries",
             "“Maker-Checker” principle requires every tasks": "The “Maker-Checker” principle requires every tasks to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it.",
-            "allies": "Allies",
-            "allies.create": "Create Ally",
-            "allies.edit": "Edit Ally"
+            "client.allies": "Allies",
+            "client.allies.create": "Create Ally",
+            "client.allies.edit": "Edit Ally",
+            "client.allies.point.of.sales": "Points of Sales",
+            "client.allies.point.of.sales.create": "Create Point of Sale",
+            "client.allies.point.of.sales.edit": "Edit Point of Sale"            
         },
         "titles": {
             "Dashboard": "Dashboard",

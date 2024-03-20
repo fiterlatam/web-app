@@ -13,24 +13,27 @@ import { merge } from 'rxjs';
 import { tap, startWith, map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 
 /** Custom Services */
-import { ClientsalliesService } from './clientsallies.service';
+import { ClientAllyPointOfSalesService } from './clientallypointofsales.service';
 
 @Component({
-  selector: 'mifosx-clientsallies',
-  templateUrl: './clientsallies.component.html',
-  styleUrls: ['./clientsallies.component.scss']
+  selector: 'mifosx-clientallypointofsales',
+  templateUrl: './clientallypointofsales.component.html',
+  styleUrls: ['./clientallypointofsales.component.scss']
 })
 
-export class ClientsalliesComponent implements OnInit {
+export class ClientAllyPointOfSalesComponent implements OnInit {
   apiData: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  displayedColumns =  ['companyName', 'nit', 'departmentCodeValueDescription', 'cityCodeValueDescription', 'nrPointOfSell', 'stateCodeValueDescription'];
+  displayedColumns =  ['name', 'code','departmentCodeValueDescription', 'cityCodeValueDescription', 'brandCodeValueDescription', 'stateCodeValueDescription'];
 
   name = new UntypedFormControl();
 
   reloaded = false;
 
+  parentId = "1";
+
+  parentDescriptionAsTitle = "";
 
   @ViewChild('instructionsTable', { static: true }) instructionTableRef: MatTable<Element>;
   /** Paginator for centers table. */
@@ -40,19 +43,19 @@ export class ClientsalliesComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private clientsalliesService: ClientsalliesService) {
-
-//    this.loadClientallies("");
+              private ClientAllyPointOfSalesService: ClientAllyPointOfSalesService) {
   }
 
 
   ngOnInit(): void {
+    this.parentId = this.route.snapshot.params["parentId"];
+
+    this.getDefaultValuesFromParent();
     this.loadClientallies("");
   }
 
 
   ngAfterViewInit() {
-
     this.name.valueChanges
       .pipe(
         debounceTime(500),
@@ -66,12 +69,12 @@ export class ClientsalliesComponent implements OnInit {
 
 
   loadClientallies(filterValue: String) {
-
     this.reloaded = false;
 
     console.log("loadClientallies " + filterValue);
-    this.clientsalliesService.getClientsallies(filterValue).subscribe(( apiResponseBody: any ) => {
+    this.ClientAllyPointOfSalesService.getClientAllyPointOfSales(this.parentId, filterValue).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
+      console.clear();
       console.log(apiResponseBody);
       console.log(this.apiData);
       this.dataSource = new MatTableDataSource(this.apiData);
@@ -90,14 +93,25 @@ export class ClientsalliesComponent implements OnInit {
   }
 
   
-  deleteEntity(parentId: any) {
-        event.stopPropagation();
+  deleteEntity(event: any) {
+        alert('222');
 
-        this.router.navigate(['/clientally/' + parentId + '/pointofsales']);
+        event.stopPropagation();
   }
 
 
   changeShowClosedGroups() {
     console.log("changeShowClosedGroups ");
-  }   
+  }  
+
+
+  getDefaultValuesFromParent() {
+    this.ClientAllyPointOfSalesService.getDefaultValuesFromParent(this.parentId).subscribe(( apiResponseBody: any ) => {
+      this.apiData = apiResponseBody;
+
+      this.parentDescriptionAsTitle = this.apiData.companyName + " - NIT: " + this.apiData.nit;
+ 
+    });      
+  }
+
 }
