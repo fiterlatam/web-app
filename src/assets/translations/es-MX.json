@@ -272,10 +272,7 @@
     },
     "labels": {
         "breadcrumbs": {
-            "Home": "Inicio",
-            "client.allies": "Aliado",
-            "client.allies.create": "Crear Aliado",
-            "client.allies.edit": "Editar Aliado"
+            "Home": "Inicio"
         },
         "buttons": {
             "Accept Transfer": "Aceptar transferencia",
@@ -539,7 +536,8 @@
             "numeral": "número",
             "required": "requerido",
             "required and cannot be negative": "requerido y no puede ser negativo",
-            "should": "debería"
+            "should": "debería",
+            "till 4 characters": "hasta 4 caracteres"
         },
         "heading": {
             "Account Linked Financial": "Listado de cuentas vinculadas a diferentes actividades financieras. Para saber más haga clic en:",
@@ -2084,7 +2082,12 @@
             "accountNumber": "Número de cuenta",
             "taxProfile": "Perfil tributario",
             "state": "Estado",
-            "pointOfSell": "Puntos de venta"
+            "pointOfSell": "Puntos de venta",
+            "code": "Código",
+            "brand": "Marca",
+            "category": "Categoria",
+            "segment": "Segmento",
+            "type": "Tipo"
         },
         "links": {
             "Community": "Comunidad",
@@ -2205,7 +2208,8 @@
         "placeholders": {
             "Add new server": "Agregar nuevo servidor",
             "Search Activity": "Actividad de búsqueda",
-            "client.allies.search": "Procura por Razón Social o NIT"
+            "client.allies.search": "Procura por Razón Social o NIT",
+            "clientallypointofsales.search": "Procura por Nombre o Código"
         },
         "status": {
             "Active": "Activo",
@@ -2801,9 +2805,12 @@
             "withhold tax for this account": "retener impuestos para esta cuenta",
             "Journal Entries": "Entradas de diario",
             "“Maker-Checker” principle requires every tasks": "El principio \"Maker-Checker\" requiere que dos personas completen cada tarea para reducir la posibilidad de errores y uso indebido. Una persona inicia el proceso y la segunda lo completa.",
-            "allies": "Aliados",
-            "allies.create": "Crear Aliado",
-            "allies.edit": "Editar Aliado"
+            "client.allies": "Aliados",
+            "client.allies.create": "Crear Aliado",
+            "client.allies.edit": "Editar Aliado",
+            "client.allies.point.of.sales": "Puntos de Ventas",
+            "client.allies.point.of.sales.create": "Crear Punto de Venta",
+            "client.allies.point.of.sales.edit": "Editar Punto de Venta"
         },
         "titles": {
             "Dashboard": "Tableros",

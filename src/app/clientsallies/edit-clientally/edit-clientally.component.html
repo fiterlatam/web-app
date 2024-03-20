@@ -89,13 +89,13 @@
               </mat-error>
           </mat-form-field>
 
-          <mat-checkbox labelPosition="before" formControlName="applyCupoMaxSell" fxFlex="100%">
+          <mat-checkbox labelPosition="before" formControlName="applyCupoMaxSell" fxFlex="100%" (change)="enableOrDisaabkeCupoMaxSellField($event.selected)">
               {{"labels.inputs.applyCupoMaxSell" | translate }}
           </mat-checkbox>
 
           <mat-form-field fxFlex="25%">
               <mat-label>{{"labels.inputs.cupoMaxSell" | translate }}</mat-label>
-              <input matInput formControlName="cupoMaxSell">
+              <input  [disabled]="!applyCupoMaxSellChkBox" matInput formControlName="cupoMaxSell">
               <mat-error *ngIf="groupForm.controls.cupoMaxSell.hasError('required')">
               {{"labels.inputs.cupoMaxSell" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>

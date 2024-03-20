@@ -29,6 +29,8 @@ export class EditClientallyComponent implements OnInit {
 
   groupForm: UntypedFormGroup;
 
+  applyCupoMaxSellChkBox = false;
+
   // Template data
   departmentsList: any;
   citiesList: any;
@@ -65,6 +67,8 @@ export class EditClientallyComponent implements OnInit {
       this.loadClientalliesTemplate("ngOnInit");
       this.loadCitiesByDepartment(apiResponseBody.departmentCodeValueId);
       this.patchValues();
+
+      this.applyCupoMaxSellChkBox = apiResponseBody.applyCupoMaxSell;
     });  
   }
 
@@ -108,7 +112,6 @@ export class EditClientallyComponent implements OnInit {
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
       'cupoMaxSell': [''],
-//      'settledComission': ['', [Validators.required, Validators.pattern('^\d{1,2}(\.\d{1,2})?$')]],
       'settledComission': ['', [Validators.required]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
@@ -117,11 +120,7 @@ export class EditClientallyComponent implements OnInit {
       'accountNumber': [''],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
-      /*
-      'submittedOnDate': [this.settingsService.businessDate, Validators.required],
-      */
     });
-//    this.buildDependencies();
   }
 
 
@@ -157,16 +156,7 @@ export class EditClientallyComponent implements OnInit {
     const groupFormData = this.groupForm.value;
     const locale = this.settingsService.language.code;
     const dateFormat = this.settingsService.dateFormat;
-    /*
-    const submittedOnDate: Date = this.groupForm.value.submittedOnDate;
-    const activationDate: Date = this.groupForm.value.activationDate;
-    if (groupFormData.submittedOnDate instanceof Date) {
-      groupFormData.submittedOnDate = this.dateUtils.formatDate(submittedOnDate, dateFormat);
-    }
-    if (groupFormData.activationDate instanceof Date) {
-      groupFormData.activationDate = this.dateUtils.formatDate(activationDate, dateFormat);
-    }
-    */
+
     const data = {
       ...groupFormData,
       dateFormat,
@@ -183,26 +173,8 @@ export class EditClientallyComponent implements OnInit {
     this.loadCitiesByDepartment(id);
   }
 
+  enableOrDisaabkeCupoMaxSellField(selected: boolean) {
+//    this.applyCupoMaxSellChkBox = selected;
+//    alert(this.applyCupoMaxSellChkBox);
+  }
 }
-
-/*
-
-export class EditClientallyComponent implements OnInit {
-  
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private clientsalliesService: ClientsalliesService) {
-  
-      console.log("constructor");
-    }
-  
-  
-    ngOnInit(): void {
-
-      console.log("ngOnInit");
-    }
-  
-
-}
-
-*/

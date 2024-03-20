@@ -12,7 +12,7 @@ const routes: Routes = [
   Route.withShell([
     {
       path: 'clientsallies',
-      data: { title: 'allies', breadcrumb: 'Allies' },
+      data: { title: 'client.allies', breadcrumb: 'client.allies' },
       component: ClientsalliesComponent,
       /*
       children: [
@@ -30,12 +30,12 @@ const routes: Routes = [
     },
     {
       path: 'clientsallies/create',
-      data: { title: 'allies', breadcrumb: 'allies.create' },
+      data: { title: 'client.allies', breadcrumb: 'client.allies.create' },
       component: CreateClientallyComponent,
     },            
     {
       path: 'clientsallies/:id',
-      data: { title: 'allies', breadcrumb: 'allies.edit' },
+      data: { title: 'client.allies', breadcrumb: 'client.allies.edit' },
       component: EditClientallyComponent,
     },
 
