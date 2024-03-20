@@ -94,7 +94,11 @@ export class Datatables {
 
   public getInputName(datatableInput: any): string {
     if (datatableInput.columnName && datatableInput.columnName.includes('_cd_')) {
-      return datatableInput.columnName.split('_cd_')[0];
+      const columnNames = datatableInput.columnName.split('_cd_');
+      if(columnNames && columnNames.length > 1){
+        return columnNames[1];
+      }
+      return columnNames[0];
     }
     return datatableInput.columnName;
   }
@@ -153,7 +157,13 @@ export class Datatables {
 
   public getName(columnName: any): string {
     if (columnName && columnName.includes('_cd_')) {
-      return columnName.split('_cd_')[0];
+      const columnNames = columnName.split('_cd_');
+      if(columnNames && columnNames.length > 1){
+        return columnNames[1];
+      }else {
+        return columnNames[0];
+      }
+
     }
     return columnName;
   }
