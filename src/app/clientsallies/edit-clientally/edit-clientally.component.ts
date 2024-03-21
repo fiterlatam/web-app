@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef} from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -29,8 +29,6 @@ export class EditClientallyComponent implements OnInit {
 
   groupForm: UntypedFormGroup;
 
-  applyCupoMaxSellChkBox = false;
-
   // Template data
   departmentsList: any;
   citiesList: any;
@@ -54,6 +52,8 @@ export class EditClientallyComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.el.nativeElement.applyCupoMaxSell = true;
+
     this.entityId = this.route.snapshot.params["id"];
 
     console.log("ngOnInit");
@@ -67,8 +67,6 @@ export class EditClientallyComponent implements OnInit {
       this.loadClientalliesTemplate("ngOnInit");
       this.loadCitiesByDepartment(apiResponseBody.departmentCodeValueId);
       this.patchValues();
-
-      this.applyCupoMaxSellChkBox = apiResponseBody.applyCupoMaxSell;
     });  
   }
 
@@ -93,6 +91,9 @@ export class EditClientallyComponent implements OnInit {
       'taxProfileCodeValueId': this.apiData.taxProfileCodeValueId,
       'stateCodeValueId': this.apiData.stateCodeValueId,
       });  
+
+      this.enableOrDisableCupoMaxSellField(this.apiData.applyCupoMaxSell);
+
   }  
 
   patchCity() {
@@ -111,7 +112,7 @@ export class EditClientallyComponent implements OnInit {
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
-      'cupoMaxSell': [''],
+      'cupoMaxSell':  [{value: ''}, Validators.required],
       'settledComission': ['', [Validators.required]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
@@ -173,8 +174,12 @@ export class EditClientallyComponent implements OnInit {
     this.loadCitiesByDepartment(id);
   }
 
-  enableOrDisaabkeCupoMaxSellField(selected: boolean) {
-//    this.applyCupoMaxSellChkBox = selected;
-//    alert(this.applyCupoMaxSellChkBox);
+  enableOrDisableCupoMaxSellField(selected: boolean) {
+    if(selected) {
+      this.groupForm.get("cupoMaxSell").enable();
+    } else {
+      this.groupForm.get("cupoMaxSell").patchValue("");
+      this.groupForm.get("cupoMaxSell").disable();  
+    }
   }
 }
