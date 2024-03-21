@@ -90,7 +90,7 @@
 
       <mat-form-field fxFlex="48%">
         <mat-label>{{"labels.inputs.Constitution" | translate}}</mat-label>
-        <mat-select formControlName="constitutionId" required>
+        <mat-select formControlName="constitutionId">
           <mat-option *ngFor="let constitution of constitutionOptions" [value]="constitution.id">
             {{ constitution.name }}
           </mat-option>
