@@ -89,8 +89,8 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-checkbox labelPosition="after" formControlName="applyCupoMaxSell" fxFlex="100%">
-                {{"labels.inputs.applyCupoMaxSell" | translate }}
+            <mat-checkbox labelPosition="after" formControlName="applyCupoMaxSell" fxFlex="100%" (change)="enableOrDisableCupoMaxSellField($event.checked)">
+              {{"labels.inputs.applyCupoMaxSell" | translate }}
             </mat-checkbox>
 
             <mat-form-field fxFlex="25%">

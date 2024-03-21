@@ -77,6 +77,9 @@ export class CreateClientallyComponent implements OnInit {
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });
+
+    this.enableOrDisableCupoMaxSellField(false);
+
   }
 
 
@@ -124,4 +127,14 @@ export class CreateClientallyComponent implements OnInit {
   reloadCitiesByDepartment(id: any) {
     this.loadCitiesByDepartment(id);
   }
+
+
+  enableOrDisableCupoMaxSellField(selected: boolean) {
+    if(selected) {
+      this.groupForm.get("cupoMaxSell").enable();
+    } else {
+      this.groupForm.get("cupoMaxSell").patchValue("");
+      this.groupForm.get("cupoMaxSell").disable();  
+    }
+  }  
 }

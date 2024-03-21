@@ -12,17 +12,17 @@ const routes: Routes = [
   Route.withShell([
     {
       path: 'clientally/:parentId/pointofsales',
-      data: { title: 'client.allies.point.of.sales', breadcrumb: 'client.allies.point.of.sales' },
+      data: { title: 'Puntos de Ventas', breadcrumb: 'client.allies.point.of.sales' },
       component: ClientAllyPointOfSalesComponent,
     },
     {
       path: 'clientally/:parentId/pointofsales/create',
-      data: { title: 'client.allies.point.of.sales', breadcrumb: 'client.allies.point.of.sales.create' },
+      data: { title: 'Puntos de Ventas', breadcrumb: 'client.allies.point.of.sales.create' },
       component: CreateClientAllyPointOfSalesComponent,
     },            
     {
       path: 'clientally/:parentId/pointofsales/:id',
-      data: { title: 'client.allies.point.of.sales', breadcrumb: 'client.allies.point.of.sales.edit' },
+      data: { title: 'Puntos de Ventas', breadcrumb: 'client.allies.point.of.sales.edit' },
       component: EditClientAllyPointOfSalesComponent,
     },
   ])
