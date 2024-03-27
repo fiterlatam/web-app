@@ -118,7 +118,7 @@ export class RunReportComponent implements OnInit {
     this.paramData.forEach(
       (param: ReportParameter) => {
         if (!param.parentParameterName) { // Non Child Parameter
-          this.reportForm.addControl(param.name, new UntypedFormControl('', Validators.required));
+          this.reportForm.addControl(param.name, param.mandatoryParameter ? new UntypedFormControl('', Validators.required) :  new UntypedFormControl(''));
           if (param.displayType === 'select') {
             this.fetchSelectOptions(param, param.name);
           }
@@ -184,7 +184,7 @@ export class RunReportComponent implements OnInit {
           if (child.displayType === 'none') {
             this.reportForm.addControl(child.name, new UntypedFormControl(child.defaultVal));
           } else {
-            this.reportForm.addControl(child.name, new UntypedFormControl('', Validators.required));
+            this.reportForm.addControl(child.name, child.mandatoryParameter ? new UntypedFormControl('', Validators.required) :  new UntypedFormControl(''));
           }
           if (child.displayType === 'select') {
             const inputstring = `${child.name}?${param.inputName}=${option.id}`;
@@ -204,7 +204,7 @@ export class RunReportComponent implements OnInit {
     this.reportsService.getSelectOptions(inputstring).subscribe((options: SelectOption[]) => {
       param.selectOptions = options;
       if (param.selectAll === 'Y') {
-        param.selectOptions.push({id: '-1', name: 'All'});
+        param.selectOptions.unshift({id: '-1', name: 'Todos'});
       }
     });
   }
@@ -337,5 +337,4 @@ export class RunReportComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'report');
     XLSX.writeFile(wb, fileName);
   }
-
 }

@@ -20,6 +20,7 @@ export class ChangePasswordDialogComponent implements OnInit {
   /**
    * @param {MatDialogRef} dialogRef Component reference to dialog.
    * @param {any} data Provides any data.
+   * @param formBuilder
    */
   constructor(public dialogRef: MatDialogRef<ChangePasswordDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,

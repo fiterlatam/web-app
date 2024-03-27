@@ -50,7 +50,7 @@
   </div>
 
   <div class="back-button" *ngIf="!hideOutput">
-    <button type="button" color="primary" mat-raised-button [routerLink]="['../..']">
+    <button type="button" color="primary" mat-raised-button (click)="isCollapsedChange.emit(false)">
       <fa-icon icon="arrow-left" class="m-r-10"></fa-icon>{{"labels.buttons.Back" | translate}}</button>
   </div>
 

@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, Input, ViewChild, OnChanges } from '@angular/core';
+import {Component, Input, ViewChild, OnChanges, Output, EventEmitter} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DecimalPipe } from '@angular/common';
@@ -41,6 +41,8 @@ export class TableAndSmsComponent implements OnChanges {
   csvData: any;
   notExistsReportData = false;
   toBeExportedToRepo = false;
+  @Input() isCollapsed: boolean;
+  @Output() isCollapsedChange = new EventEmitter<boolean>();
 
   /** Paginator for run-report table. */
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -184,5 +186,4 @@ export class TableAndSmsComponent implements OnChanges {
   isDecimal(index: number) {
     return this.columnTypes[index] === 'DECIMAL';
   }
-
 }

@@ -10,6 +10,7 @@ export class ReportParameter {
     selectOne: any;
     selectAll: any;
     parentParameterName: string;
+    mandatoryParameter: boolean;
     inputName: string;
     selectOptions: any[] = [];
     childParameters: any[] = [];
@@ -25,6 +26,7 @@ export class ReportParameter {
         this.selectOne = options[6];
         this.selectAll = options[7];
         this.parentParameterName = options[8];
+        this.mandatoryParameter = options[9];
         this.inputName = `R_${options[1]}`;
     }
 
