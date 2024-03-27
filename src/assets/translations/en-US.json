@@ -877,7 +877,10 @@
             "You have created": "You have created",
             "successfully select option": "successfully. Please select from the options below to proceed furthur.",
             "edit": "Edit",
-            "for": "for"
+            "for": "for",
+            "Deactivate User": "Deactivate User",
+            "Activate User": "Activate User",
+            "Reactivate User": "Reactivate User"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2086,7 +2089,10 @@
             "brand": "Brand",
             "category": "Category",
             "segment": "Segment",
-            "type": "Type"
+            "type": "Type",
+            "Temporary Deactivation": "Is Temporary Deactivation?",
+            "Deactivation From Date": "Deactivation From Date",
+            "Deactivation To Date": "Desactivación hasta la fecha"
         },
         "links": {
             "Community": "Community",
@@ -2208,7 +2214,7 @@
             "Add new server": "Add new server",
             "Search Activity": "Search Activity",
             "client.allies.search": "Search by Name or NIT",
-            "clientallypointofsales.search": "Search by Name or Code"            
+            "clientallypointofsales.search": "Search by Name or Code"
         },
         "status": {
             "Active": "Active",
@@ -2250,7 +2256,8 @@
             "Are you sure you want to Approve Loan": "Are you sure you want to Approve Loan",
             "Are you sure you want to Disburse Loan": "Are you sure you want to Disburse Loan",
             "Are you sure you want to": "Are you sure you want to ",
-            "the Reschedule Loan": " the Reschedule Loan"
+            "the Reschedule Loan": " the Reschedule Loan",
+            "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
         },
         "text": {
             "A": "A",
@@ -2810,7 +2817,8 @@
             "client.allies.edit": "Edit Ally",
             "client.allies.point.of.sales": "Points of Sales",
             "client.allies.point.of.sales.create": "Create Point of Sale",
-            "client.allies.point.of.sales.edit": "Edit Point of Sale"            
+            "client.allies.point.of.sales.edit": "Edit Point of Sale",
+            "Audit": "Audit"
         },
         "titles": {
             "Dashboard": "Dashboard",
@@ -3006,6 +3014,14 @@
         "Withdraw": "Withdraw",
         "Yes": "Yes",
         "loan product will be active and available to clients": "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created.",
-        "loan product will become inactive and unavailable to clients": "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive."
-    }
+        "loan product will become inactive and unavailable to clients": "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive.",
+        "Deactivation From Date": "The starting date on which the user will be blocked from accessing the platform",
+        "Deactivation To Date": "The end date on which the user will be blocked from accessing the platform"
+    },
+  "appUserStatus": {
+      "invalid": "Invalid",
+      "active": "Active",
+      "inactive.temporary": "Inactive (Temporary)",
+      "inactive.permanent": "Inactive (Permanent) "
+  }
 }

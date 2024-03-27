@@ -878,7 +878,10 @@
             "You have created": "tu has creado",
             "successfully select option": "exitosamente. Seleccione una de las opciones siguientes para continuar.",
             "edit": "Editar",
-            "for": "para"
+            "for": "para",
+            "Deactivate User": "Desactivar usuario",
+            "Activate User": "Activar usuario",
+            "Reactivate User": "Reactivar usuario"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2087,7 +2090,10 @@
             "brand": "Marca",
             "category": "Categoria",
             "segment": "Segmento",
-            "type": "Tipo"
+            "type": "Tipo",
+            "Temporary Deactivation": "¿Es la desactivación temporal?",
+            "Deactivation From Date": "Desactivación desde la fecha",
+            "Deactivation To Date": "Desactivación hasta la fecha"
         },
         "links": {
             "Community": "Comunidad",
@@ -2251,7 +2257,8 @@
             "Are you sure you want to Approve Loan": "¿Estás seguro de que deseas aprobar el préstamo?",
             "Are you sure you want to Disburse Loan": "¿Estás seguro de que deseas desembolsar el préstamo?",
             "Are you sure you want to": "¿Estás seguro de que deseas",
-            "the Reschedule Loan": "la Replanificación del Préstamo"
+            "the Reschedule Loan": "la Replanificación del Préstamo",
+            "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
         },
         "text": {
             "A": "A",
@@ -2810,7 +2817,8 @@
             "client.allies.edit": "Editar Aliado",
             "client.allies.point.of.sales": "Puntos de Ventas",
             "client.allies.point.of.sales.create": "Crear Punto de Venta",
-            "client.allies.point.of.sales.edit": "Editar Punto de Venta"
+            "client.allies.point.of.sales.edit": "Editar Punto de Venta",
+            "Audit": "Auditoría"
         },
         "titles": {
             "Dashboard": "Tableros",
@@ -3006,6 +3014,14 @@
         "Withdraw": "Retirar",
         "Yes": "Sí",
         "loan product will be active and available to clients": "La fecha en que el producto de Crédito estará activo y disponible para los clientes. Si está en blanco, el producto de Crédito estará activo tan pronto como se cree.",
-        "loan product will become inactive and unavailable to clients": "La fecha en que el producto de Crédito quedará inactivo y no estará disponible para los clientes. Si está en blanco, el producto de carga nunca quedará inactivo."
-    }
+        "loan product will become inactive and unavailable to clients": "La fecha en que el producto de Crédito quedará inactivo y no estará disponible para los clientes. Si está en blanco, el producto de carga nunca quedará inactivo.",
+        "Deactivation From Date": "La fecha de inicio en la que se bloqueará el acceso del usuario a la plataforma",
+        "Deactivation To Date": "La fecha de finalización en la que se bloqueará el acceso del usuario a la plataforma."
+    },
+  "appUserStatus": {
+    "invalid": "Inválido",
+    "active": "Activo",
+    "inactive.temporary": "Inactivo (temporal)",
+    "inactive.permanent": "Inactivo (definitivo) "
+  }
 }

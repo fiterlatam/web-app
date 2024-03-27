@@ -3,6 +3,18 @@
     <fa-icon icon="edit" class="m-r-10"></fa-icon>
     {{'labels.buttons.Edit' | translate}}
   </button>
+  <div *mifosxHasPermission="'DEACTIVATE_USER'">
+    <button *ngIf="isActive()" mat-raised-button color="primary" (click)="deactivateUser()">
+      <fa-icon icon="edit" class="m-r-10"></fa-icon>
+      {{'labels.buttons.Deactivate' | translate}}
+    </button>
+  </div>
+  <div *mifosxHasPermission="'REACTIVATE_USER'">
+    <button *ngIf="!isActive()" mat-raised-button color="primary" (click)="reactivateUser()">
+      <fa-icon icon="edit" class="m-r-10"></fa-icon>
+      {{'labels.buttons.Activate' | translate}}
+    </button>
+  </div>
   <button mat-raised-button color="warn" (click)="delete()">
     <fa-icon icon="trash" class="m-r-10"></fa-icon>
     {{'labels.buttons.Delete' | translate}}
@@ -60,6 +72,14 @@
 
         <div fxFlex="50%">
           {{ userData.officeName }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Status' | translate}}
+        </div>
+
+        <div fxFlex="50%">
+          {{ userData.status.code | translate }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">

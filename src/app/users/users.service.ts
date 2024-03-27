@@ -68,6 +68,24 @@ export class UsersService {
   }
 
   /**
+   * Change User Password
+   * @param userId User Id of users
+   * @param password New Password of the user
+   * @returns {Observable<any>}
+   */
+  deactivateUser(userId: string, deactivateUserObj: any) {
+    return this.http.post(`/users/${userId}?command=deactivate`, deactivateUserObj);
+  }
+
+  /**
+   *Reactivate back a blocked user
+   * @param userId
+   */
+  reactivateUser(userId: string) {
+    return this.http.post(`/users/${userId}?command=reactivate`, {});
+  }
+
+  /**
    * @param {string} userId user ID of user.
    * @returns {Observable<any>}
    */
