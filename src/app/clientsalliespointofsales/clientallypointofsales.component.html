@@ -15,6 +15,12 @@
       </button>      
     </div>
     <div class="action-button" fxLayoutGap="1" >
+      <button mat-raised-button color="default" *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'" [routerLink]="['/organization/bulk-import/Points Of Sales']">
+        <fa-icon icon="upload" class="m-r-10"></fa-icon>
+        {{'labels.buttons.Import Points Of Sales' | translate }}
+      </button>
+    </div>        
+    <div class="action-button" fxLayoutGap="1" >
       <button type="button" mat-raised-button [routerLink]="['/clientsallies']">{{"labels.buttons.Cancel" | translate }}</button>
     </div>    
   </div>

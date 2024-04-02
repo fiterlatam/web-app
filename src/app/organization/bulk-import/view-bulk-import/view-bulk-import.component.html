@@ -4,7 +4,7 @@
 
     <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
 
-      <h3><strong>{{bulkImport.name}} {{ 'labels.heading.Template' | translate }}</strong></h3>
+      <h3><strong>{{bulkImport.name | translate}} {{ 'labels.heading.Template' | translate }}</strong></h3>
 
       <form [formGroup]="bulkImportForm">
 
@@ -56,7 +56,7 @@
 
     <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
 
-      <h3><strong>{{bulkImport.name}}</strong></h3>
+      <h3><strong>{{bulkImport.name | translate}}</strong></h3>
 
       <h4>{{'labels.heading.Select Excel File' | translate }}</h4>
 
