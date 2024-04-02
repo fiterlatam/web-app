@@ -15,7 +15,7 @@ import { EditClientallyComponent } from './edit-clientally/edit-clientally.compo
   declarations: [
     ClientsalliesComponent,
     CreateClientallyComponent,
-    EditClientallyComponent, 
+    EditClientallyComponent,
   ],
   imports: [
     SharedModule,

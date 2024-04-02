@@ -38,7 +38,6 @@ export class LoanProductAccountingStepComponent implements OnInit {
               public dialog: MatDialog) {
     this.createLoanProductAccountingForm();
     this.setConditionalControls();
-    console.log(this.loanProductAccountingForm);
   }
 
   ngOnInit() {
@@ -99,8 +98,6 @@ export class LoanProductAccountingStepComponent implements OnInit {
           this.formBuilder.array((this.loanProductsTemplate.penaltyToIncomeAccountMappings || []).map((penaltyIncome: any) =>
           ({ chargeId: penaltyIncome.charge.id, incomeAccountId: penaltyIncome.incomeAccount.id }))));
     }
-
-    console.log(this.loanProductAccountingForm);
   }
 
   createLoanProductAccountingForm() {
@@ -114,7 +111,6 @@ export class LoanProductAccountingStepComponent implements OnInit {
       .subscribe((accountingRule: any) => {
         if (accountingRule >= 2 && accountingRule <= 4) {
           this.loanProductAccountingForm.addControl('fundSourceAccountId', new UntypedFormControl('', Validators.required));
-          console.log(this.loanProductAccountingForm);
           this.loanProductAccountingForm.addControl('loanPortfolioAccountId', new UntypedFormControl('', Validators.required));
           this.loanProductAccountingForm.addControl('transfersInSuspenseAccountId', new UntypedFormControl('', Validators.required));
           this.loanProductAccountingForm.addControl('interestOnLoanAccountId', new UntypedFormControl('', Validators.required));

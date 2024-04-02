@@ -1,17 +1,29 @@
 <mat-card class="container">
 
-    <div fxLayout="row" fxLayoutAlign="start right" fxLayoutGap="50" >
+    <div fxLayout="row" fxLayoutAlign="start right" fxLayoutGap="5" >
       <div class="search-box"  fxFlex="100%">
         <mat-form-field fxFlex="30%">
           <input matInput placeholder="{{ 'labels.placeholders.client.allies.search' | translate }}" [formControl]="name" (keydown.enter)="loadClientallies($event.value)">
         </mat-form-field>
         <!--mat-checkbox #showClosedGroups labelPosition="after" (change)="changeShowClosedGroups()">{{"labels.inputs.Show Closed Groups"  |translate}}</mat-checkbox-->
       </div>
-      <div class="action-button" fxLayoutGap="25px" >
+      <div class="action-button" fxLayoutGap="1" >
         <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CLIENTALLY'">
           <fa-icon icon="plus" class="m-r-10"></fa-icon>{{"labels.buttons.Create"  |translate}}
         </button>
       </div>
+      <div class="action-button" fxLayoutGap="1" >
+        <button mat-raised-button color="default" *mifosxHasPermission="'CREATE_CLIENTALLY'" [routerLink]="['/organization/bulk-import/Clients Allies']">
+          <fa-icon icon="upload" class="m-r-10"></fa-icon>
+          {{'labels.buttons.Import Allies' | translate }}
+        </button>
+      </div>      
+      <div class="action-button" fxLayoutGap="1" >
+        <button mat-raised-button color="default" *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'" [routerLink]="['/organization/bulk-import/Points Of Sales']">
+          <fa-icon icon="upload" class="m-r-10"></fa-icon>
+          {{'labels.buttons.Import Points Of Sales' | translate }}
+        </button>
+      </div>      
     </div>
   
     <table mat-table [dataSource]="dataSource" #instructionsTable matSort *ngIf="reloaded">

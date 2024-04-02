@@ -496,7 +496,9 @@
             "Waive Charge": "Renunciar al cargo",
             "Week": "Semana",
             "Withdraw": "Retirar",
-            "Yes": "Sí"
+            "Yes": "Sí",
+            "Import Allies": "Importar Aliados",
+            "Import Points Of Sales": "Importar Puntos de Ventas"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -881,7 +883,9 @@
             "for": "para",
             "Deactivate User": "Desactivar usuario",
             "Activate User": "Activar usuario",
-            "Reactivate User": "Reactivar usuario"
+            "Reactivate User": "Reactivar usuario",
+            "Clients Allies": "Aliados",
+            "Points of Sales": "Puntos De Ventas"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",

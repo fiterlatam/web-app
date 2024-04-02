@@ -126,4 +126,22 @@ export const BulkImports = [
       permission: 'READ_CLIENT',
       formFields: 1
     },
+
+// ###################################################################    
+// Custom Imports here...
+    {
+      name: 'Clients Allies',
+      entityType: 'clients.allies',
+      urlSuffix: '/clientsallies',
+      permission: 'CREATE_CLIENTALLY',
+      formFields: 0
+    },
+    {
+      name: 'Points Of Sales',
+      entityType: 'clients.allies.points.of.sales',
+      urlSuffix: '/clientally/0/pointofsales',
+      permission: 'CREATE_CLIENTALLYPOINTOFSALES',
+      formFields: 0
+    },
+
   ];

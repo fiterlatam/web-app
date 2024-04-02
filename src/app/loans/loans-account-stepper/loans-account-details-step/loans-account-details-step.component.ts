@@ -76,6 +76,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
           'productId': this.loansAccountTemplate.loanProductId,
           'submittedOnDate': this.loansAccountTemplate.timeline.submittedOnDate && new Date(this.loansAccountTemplate.timeline.submittedOnDate),
           'loanOfficerId': this.loansAccountTemplate.loanOfficerId,
+          'loanAssignorId': this.loansAccountTemplate.loanAssignorData.id,
           'loanPurposeId': this.loansAccountTemplate.loanPurposeId,
           'fundId': this.loansAccountTemplate.fundId,
           'expectedDisbursementDate': this.loansAccountTemplate.timeline.expectedDisbursementDate && new Date(this.loansAccountTemplate.timeline.expectedDisbursementDate),
