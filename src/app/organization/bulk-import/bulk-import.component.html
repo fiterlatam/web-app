@@ -88,6 +88,21 @@
             <h4 matLine>{{'labels.heading.Clients' | translate }}</h4>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['Clients Allies']" *mifosxHasPermission="'READ_OFFICE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="home" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{'labels.heading.Clients Allies' | translate }}</h4>
+          </mat-list-item>
+
+          <mat-list-item [routerLink]="['Points Of Sales']" *mifosxHasPermission="'READ_OFFICE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="sitemap" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{'labels.heading.Points of Sales' | translate }}</h4>
+          </mat-list-item>
+
+
           <mat-list-item [routerLink]="['Centers']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
               <fa-icon icon="users" size="sm"></fa-icon>

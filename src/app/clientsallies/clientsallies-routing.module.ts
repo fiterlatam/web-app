@@ -14,19 +14,6 @@ const routes: Routes = [
       path: 'clientsallies',
       data: { title: 'Aliados', breadcrumb: 'client.allies' },
       component: ClientsalliesComponent,
-      /*
-      children: [
-        {
-          path: 'create',
-          data: { title: 'Create Clients Allies', breadcrumb: 'Create Clients Allies' },
-          component: CreateClientallyComponent,
-        },   
-        {
-          path: ':action',
-          data: { title: 'Update Clients Allies', breadcrumb: 'Update Clients Allies' },
-          component: EditClientallyComponent,
-        },           
-      ] */
     },
     {
       path: 'clientsallies/create',
@@ -37,8 +24,7 @@ const routes: Routes = [
       path: 'clientsallies/:id',
       data: { title: 'Aliados', breadcrumb: 'client.allies.edit' },
       component: EditClientallyComponent,
-    },
-
+    },            
   ])
 ];
 
