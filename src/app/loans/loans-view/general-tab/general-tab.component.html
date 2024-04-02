@@ -81,7 +81,7 @@
     <table mat-table [dataSource]="detailsDataSource">
 
       <ng-container matColumnDef="Key">
-        <td mat-cell *matCellDef="let ele"> {{ ele.key }} </td>
+        <td mat-cell *matCellDef="let ele"> {{ 'labels.inputs.' + ele.key | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="Value">
@@ -100,6 +100,14 @@
             <span *ngIf="!loanDetails.loanOfficerName"> {{"labels.inputs.Unassigned" | translate}} </span>
             <span *ngIf="loanDetails.loanOfficerName"> {{loanDetails.loanOfficerName}} &nbsp;
               <span *ngIf="loanDetails.loanOfficerName">
+              </span>
+            </span>
+          </ng-container>
+
+          <ng-container *ngIf="ele.key === 'Loan Assignor'">
+            <span *ngIf="!loanDetails.loanAssignorData"> {{"labels.inputs.Unassigned" | translate}} </span>
+            <span *ngIf="loanDetails.loanAssignorData"> {{loanDetails.loanAssignorData.displayName + ' (' + loanDetails.loanAssignorData.nit  + ')'}} &nbsp;
+              <span *ngIf="loanDetails.loanAssignorData">
               </span>
             </span>
           </ng-container>
@@ -133,7 +141,7 @@
     <table mat-table [dataSource]="detailsDataSource">
 
       <ng-container matColumnDef="Key">
-        <td mat-cell *matCellDef="let ele"> {{ ele.key }} </td>
+        <td mat-cell *matCellDef="let ele"> {{ 'labels.inputs.' + ele.key | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="Value">
@@ -147,6 +155,14 @@
             <span *ngIf="!loanDetails.loanOfficerName"> {{"labels.inputs.Unassigned" | translate}} </span>
             <span *ngIf="loanDetails.loanOfficerName"> {{loanDetails.loanOfficerName}} &nbsp;
               <span *ngIf="loanDetails.loanOfficerName">
+              </span>
+            </span>
+          </ng-container>
+
+          <ng-container *ngIf="ele.key === 'Loan Assignor'">
+            <span *ngIf="!loanDetails.loanAssignorData"> {{"labels.inputs.Unassigned" | translate}} </span>
+            <span *ngIf="loanDetails.loanAssignorData"> {{loanDetails.loanAssignorData.displayName + ' (' + loanDetails.loanAssignorData.nit  + ')'}} &nbsp;
+              <span *ngIf="loanDetails.loanAssignorData">
               </span>
             </span>
           </ng-container>

@@ -2093,7 +2093,8 @@
             "type": "Tipo",
             "Temporary Deactivation": "¿Es la desactivación temporal?",
             "Deactivation From Date": "Desactivación desde la fecha",
-            "Deactivation To Date": "Desactivación hasta la fecha"
+            "Deactivation To Date": "Desactivación hasta la fecha",
+            "Loan Assignor": "Cedente del préstamo"
         },
         "links": {
             "Community": "Comunidad",

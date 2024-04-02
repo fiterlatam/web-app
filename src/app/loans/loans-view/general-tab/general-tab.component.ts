@@ -128,6 +128,9 @@ export class GeneralTabComponent implements OnInit {
         'key': 'Loan Officer'
       },
       {
+        'key': 'Loan Assignor'
+      },
+      {
         'key': 'Currency'
       },
       {
@@ -160,6 +163,9 @@ export class GeneralTabComponent implements OnInit {
       },
       {
         'key': 'Loan Officer'
+      },
+      {
+        'key': 'Loan Assignor'
       },
       {
         'key': 'External Id'
