@@ -496,9 +496,7 @@
             "Waive Charge": "Waive Charge",
             "Week": "Week",
             "Withdraw": "Withdraw",
-            "Yes": "Yes",
-            "Import Allies": "Import Allies",
-            "Import Points Of Sales": "Import Points Of Sales"
+            "Yes": "Yes"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -2094,9 +2092,7 @@
             "type": "Type",
             "Temporary Deactivation": "Is Temporary Deactivation?",
             "Deactivation From Date": "Deactivation From Date",
-            "Deactivation To Date": "Desactivación hasta la fecha",
-            "Clients Allies": "Clients Allies",
-            "Points of Sales": "Points of Sales"
+            "Deactivation To Date": "Desactivación hasta la fecha"
         },
         "links": {
             "Community": "Community",

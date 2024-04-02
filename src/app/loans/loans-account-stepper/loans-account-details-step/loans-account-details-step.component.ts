@@ -30,6 +30,8 @@ export class LoansAccountDetailsStepComponent implements OnInit {
   productData: any;
   /** Loan Officer Data */
   loanOfficerOptions: any;
+  /** Loan Assignor Data */
+  loanAssignorOptions: any;
   /** Loan Purpose Options */
   loanPurposeOptions: any;
   /** Fund Options */
@@ -51,7 +53,9 @@ export class LoansAccountDetailsStepComponent implements OnInit {
    * Sets loans account details form.
    * @param {FormBuilder} formBuilder Form Builder.
    * @param {LoansService} loansService Loans Service.
+   * @param route
    * @param {SettingsService} settingsService SettingsService
+   * @param commons
    */
   constructor(private formBuilder: UntypedFormBuilder,
     private loansService: LoansService,
@@ -72,6 +76,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
           'productId': this.loansAccountTemplate.loanProductId,
           'submittedOnDate': this.loansAccountTemplate.timeline.submittedOnDate && new Date(this.loansAccountTemplate.timeline.submittedOnDate),
           'loanOfficerId': this.loansAccountTemplate.loanOfficerId,
+          'loanAssignorId': this.loansAccountTemplate.loanAssignorData.id,
           'loanPurposeId': this.loansAccountTemplate.loanPurposeId,
           'fundId': this.loansAccountTemplate.fundId,
           'expectedDisbursementDate': this.loansAccountTemplate.timeline.expectedDisbursementDate && new Date(this.loansAccountTemplate.timeline.expectedDisbursementDate),
@@ -89,6 +94,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
       'productId': ['', Validators.required],
       'loanOfficerId': [''],
       'loanPurposeId': [''],
+      'loanAssignorId': [''],
       'fundId': [''],
       'submittedOnDate': [this.settingsService.businessDate, Validators.required],
       'expectedDisbursementDate': ['', Validators.required],
@@ -103,12 +109,13 @@ export class LoansAccountDetailsStepComponent implements OnInit {
    */
   buildDependencies() {
     const entityId = (this.loansAccountTemplate.clientId) ? this.loansAccountTemplate.clientId : this.loansAccountTemplate.group.id;
-    const isGroup = (this.loansAccountTemplate.clientId) ? false : true;
+    const isGroup = (!this.loansAccountTemplate.clientId);
     this.loansAccountDetailsForm.get('productId').valueChanges.subscribe((productId: string) => {
       this.loansService.getLoansAccountTemplateResource(entityId, isGroup, productId).subscribe((response: any) => {
         this.loansAccountProductTemplate.emit(response);
         this.loanOfficerOptions = response.loanOfficerOptions;
         this.loanPurposeOptions = response.loanPurposeOptions;
+        this.loanAssignorOptions = response.loanAssignorOptions;
         this.fundOptions = response.fundOptions;
         this.accountLinkingOptions = response.accountLinkingOptions;
         this.loanProductSelected = true;

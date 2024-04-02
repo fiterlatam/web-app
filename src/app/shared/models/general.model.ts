@@ -22,6 +22,16 @@ export interface GLAccount {
   usage:                  OptionData;
 }
 
+export interface LoanAssignor {
+  id:               number;
+  displayName:      string;
+  nit:              string;
+  email:            string;
+  mobileNumber:     string;
+  officeName:       string;
+  submittedOnDate:  string;
+}
+
 export interface AccountingMapping {
   id:     number;
   name:   string;

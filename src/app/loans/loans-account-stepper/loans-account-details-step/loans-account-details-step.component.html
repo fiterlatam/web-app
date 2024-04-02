@@ -31,6 +31,15 @@
       </mat-select>
     </mat-form-field>
 
+    <mifosx-loan-assignor-selector
+                                fxFlex="48%"
+                                *ngIf="loanProductSelected"
+                                [inputFormControl]="loansAccountDetailsForm.controls.loanAssignorId"
+                                [loanAssignorOptions]="loanAssignorOptions"
+                                [required]="false"
+                                [inputLabel]="'Loan Assignor'">
+    </mifosx-loan-assignor-selector>
+
     <mat-form-field fxFlex="48%">
       <mat-label>{{"labels.inputs.Loan Purpose" | translate}}</mat-label>
       <mat-select formControlName="loanPurposeId" matTooltip="{{ 'tooltips.Provides an indication' | translate}}">

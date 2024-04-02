@@ -13,6 +13,12 @@
       fxFlex="60%">{{ loansAccount.loanOfficerId | find:loansAccountProductTemplate.loanOfficerOptions:'id':'displayName'}}</span>
   </div>
 
+  <div fxFlexFill *ngIf="loansAccount.loanAssignorId">
+    <span fxFlex="40%">{{"labels.inputs.Loan Assignor" | translate}}:</span>
+    <span
+      fxFlex="60%">{{ loansAccount.loanAssignorId | find:loansAccountProductTemplate.loanAssignorOptions:'id':'displayName'}}</span>
+  </div>
+
   <div fxFlexFill *ngIf="loansAccount.loanPurposeId">
     <span fxFlex="40%">{{"labels.inputs.Loan purpose" | translate}}:</span>
     <span
