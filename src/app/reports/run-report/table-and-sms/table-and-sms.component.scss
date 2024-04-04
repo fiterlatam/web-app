@@ -18,3 +18,17 @@
   max-height: 2%;
   margin-bottom: 2%;
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.truncate:hover {
+  overflow: visible;
+  white-space: unset;
+  text-overflow: unset;
+  max-width: unset;
+}
