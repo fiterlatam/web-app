@@ -2208,7 +2208,8 @@
             "Withdrawn by client": "Withdrawn by client",
             "Write Off": "Write Off",
             "XBRL": "XBRL",
-            "clients.allies": "Allies"
+            "clients.allies": "Allies",
+            "Generate Disbursement Report": "Generate Disbursement Report"
         },
         "placeholders": {
             "Add new server": "Add new server",
