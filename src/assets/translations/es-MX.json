@@ -2214,7 +2214,8 @@
             "Withdrawn by client": "Retirado por el cliente",
             "Write Off": "Cancelar crédito",
             "XBRL": "XBRL",
-            "clients.allies": "Aliados"
+            "clients.allies": "Aliados",
+            "Generate Disbursement Report": "Generar reporte de desembolso"
         },
         "placeholders": {
             "Add new server": "Agregar nuevo servidor",

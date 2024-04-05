@@ -193,6 +193,10 @@ export class LoansAccountButtonConfiguration {
           {
             name: 'Sell Loan',
             taskPermissionName: 'SALE_LOAN',
+          },
+          {
+            name: 'Generate Disbursement Report',
+            taskPermissionName: 'READ_LOAN',
           }
         ];
         this.optionPaymentArray = [

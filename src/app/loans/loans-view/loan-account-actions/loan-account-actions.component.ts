@@ -44,6 +44,7 @@ export class LoanAccountActionsComponent {
             'Charge-Off': boolean,
             'Undo Charge-Off': boolean,
             'Sell Loan': boolean,
+            'Generate Disbursement Report': boolean,
             'Buy Back Loan': boolean,
             'Re-Ageing': boolean
          } = {
@@ -78,6 +79,7 @@ export class LoanAccountActionsComponent {
               'Charge-Off': false,
               'Undo Charge-Off': false,
               'Sell Loan': false,
+              'Generate Disbursement Report': false,
               'Buy Back Loan': false,
               'Re-Ageing': false
           };

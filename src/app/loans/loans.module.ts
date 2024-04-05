@@ -82,6 +82,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LoanDelinquencyActionDialogComponent } from './custom-dialog/loan-delinquency-action-dialog/loan-delinquency-action-dialog.component';
 import { LoanReagingComponent } from './loans-view/loan-account-actions/loan-reaging/loan-reaging.component';
 import {LoanAssignorSelectorComponent} from "./loan-assignor-selector/loan-assignor-selector.component";
+import {
+  GenerateDisbursementReportComponent
+} from "./loans-view/loan-account-actions/generate-disbursement-report/generate-disbursement-report.component";
 
 /**
  * Loans Module
@@ -130,6 +133,7 @@ import {LoanAssignorSelectorComponent} from "./loan-assignor-selector/loan-assig
     LoansAccountAddCollateralDialogComponent,
     RecoveryRepaymentComponent,
     ViewGuarantorsComponent,
+    GenerateDisbursementReportComponent,
     CreateGuarantorComponent,
     LoansAccountViewGuarantorDetailsDialogComponent,
     RejectLoanComponent,

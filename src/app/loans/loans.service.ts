@@ -199,6 +199,15 @@ export class LoansService {
     return this.http.delete(`/loans/${loanId}/notes/${noteId}`);
   }
 
+
+  /**
+   * Generate Loan Disbursement Report PDF
+   * @param loanId Loan ID
+   */
+  generateLoanDisbursementReportPDF(loanId: string) {
+    return this.http.get(`/loans/${loanId}/disbursement-report`,  { responseType: 'blob'});
+  }
+
   /**
    * Used For: Close Action, Prepay Loan Action
    * Returns the response of the action
