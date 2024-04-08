@@ -35,7 +35,8 @@
   <button mat-raised-button color="warn" [disabled]="!deactivateUserForm.valid"
           [mat-dialog-close]="{temporaryDeactivation:deactivateUserForm.get('temporaryDeactivation').value,
           deactivatedFromDate:deactivateUserForm.get('deactivatedFromDate').value,
-          deactivatedToDate:deactivateUserForm.get('deactivatedToDate').value
+          deactivatedToDate:deactivateUserForm.get('deactivatedToDate').value,
+          confirm: true
           }">
     {{ 'labels.buttons.Confirm' | translate }}
   </button>

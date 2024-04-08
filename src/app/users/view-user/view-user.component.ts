@@ -104,6 +104,7 @@ export class ViewUserComponent implements OnInit {
       height: '270px'
     });
     deactivateUserDialogRef.afterClosed().subscribe((response: any) => {
+      if (response.confirm) {
         const deactivationType = response.temporaryDeactivation ? "TEMPORARY" : "PERMANENT";
         let deactivatedFromDate = response.deactivatedFromDate;
         let deactivatedToDate = response.deactivatedToDate;
@@ -115,6 +116,7 @@ export class ViewUserComponent implements OnInit {
         this.usersService.deactivateUser(this.userData.id, data).subscribe(() => {
           this.router.navigate(['/appusers']);
         });
+      }
     });
   }
 
