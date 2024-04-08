@@ -1253,7 +1253,7 @@
             "End time": "Hora de finalización",
             "Enforce Minimum Balance": "Hacer cumplir el saldo mínimo",
             "Entity": "Entidad",
-            "Entity Name": "Nombre de la entidad",
+            "Entity Name": "Razón social",
             "Entity SubType": "Subtipo de entidad",
             "Entity Type": "Tipo de entidad",
             "Entry ID": "Id de entrada",
@@ -1574,7 +1574,7 @@
             "Minimum days between disbursal and first repayment date": "Días mínimos entre el desembolso y la primera fecha de amortización",
             "Mobile": "Móvil",
             "Mobile Banking App": "Aplicación de banca móvil",
-            "Mobile No": "No móviles",
+            "Mobile No": "Celular",
             "Mobile Number": "Número de teléfono móvil",
             "Mobile Number for SMS": "Número de móvil para SMS",
             "Monday": "Lunes",
@@ -3029,5 +3029,9 @@
     "active": "Activo",
     "inactive.temporary": "Inactivo (temporal)",
     "inactive.permanent": "Inactivo (definitivo) "
+  },
+  "legalFormType": {
+    "person": "Persona",
+    "entity": "Entidad"
   }
 }
