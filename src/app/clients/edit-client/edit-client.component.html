@@ -24,7 +24,7 @@
             <mat-label>{{"labels.inputs.Legal Form" | translate}}</mat-label>
             <mat-select formControlName="legalFormId">
               <mat-option *ngFor="let legalForm of legalFormOptions" [value]="legalForm.id">
-                {{ legalForm.value }}
+                {{ legalForm.code | translate }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -44,7 +44,7 @@
           </mat-form-field>
 
           <mat-form-field *ngIf="editClientForm.contains('fullname')" fxFlex="48%">
-            <mat-label>{{ legalFormId === 1 ? 'Name' : 'Entity Name' }}</mat-label>
+            <mat-label>{{ legalFormId === 1 ? "labels.inputs.Name" : "labels.inputs.Entity Name" | translate }}</mat-label>
             <input matInput required formControlName="fullname">
             <mat-error *ngIf="editClientForm.controls.fullname.hasError('required')">
               {{"labels.inputs.Client name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>

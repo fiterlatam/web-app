@@ -97,7 +97,6 @@ export class ClientGeneralStepComponent implements OnInit {
     this.officeOptions = this.clientTemplate.officeOptions;
     this.staffOptions = this.clientTemplate.staffOptions;
     this.legalFormOptions = this.clientTemplate.clientLegalFormOptions;
-    console.log(this.legalFormOptions);
     this.clientTypeOptions = this.clientTemplate.clientTypeOptions;
     this.clientClassificationTypeOptions = this.clientTemplate.clientClassificationOptions;
     this.businessLineOptions = this.clientTemplate.clientNonPersonMainBusinessLineOptions;
@@ -179,7 +178,7 @@ export class ClientGeneralStepComponent implements OnInit {
     if (generalDetails.clientNonPersonDetails && generalDetails.clientNonPersonDetails.incorpValidityTillDate) {
       generalDetails.clientNonPersonDetails = {
         ...generalDetails.clientNonPersonDetails,
-        incorpValidityTillDate: this.dateUtils.formatDate(generalDetails.dateOfBirth, dateFormat),
+        incorpValidityTillDate:  generalDetails.dateOfBirth,
         dateFormat,
         locale
       };

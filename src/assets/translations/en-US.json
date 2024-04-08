@@ -1248,7 +1248,7 @@
             "End time": "End time",
             "Enforce Minimum Balance": "Enforce Minimum Balance",
             "Entity": "Entity",
-            "Entity Name": "Entity Name",
+            "Entity Name": "Company Name",
             "Entity SubType": "Entity SubType",
             "Entity Type": "Entity Type",
             "Entry ID": "Entry ID",
@@ -3024,5 +3024,9 @@
       "active": "Active",
       "inactive.temporary": "Inactive (Temporary)",
       "inactive.permanent": "Inactive (Permanent) "
+  },
+  "legalFormType": {
+    "person": "Person",
+    "entity": "Entity"
   }
 }
