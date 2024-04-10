@@ -1,0 +1,27 @@
+export class FormfieldBase {
+
+  controlType: string;
+  controlName: string;
+  label: string;
+  value: any;
+  required: boolean;
+  order: number;
+  options: any;
+
+  constructor(options: {
+              controlType?: string,
+              controlName?: string,
+              label?: string,
+              value?: any,
+              required?: boolean,
+              order?: number
+    } = {}) {
+      this.controlType = options.controlType || '';
+      this.controlName = options.controlName || '';
+      this.label = options.label || '';
+      this.value = options.value === undefined ? '' : options.value;
+      this.required = !!options.required;
+      this.order = options.order === undefined ? 1 : options.order;
+  }
+
+}

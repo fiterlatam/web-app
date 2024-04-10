@@ -1,0 +1,98 @@
+<mat-card class="container">
+
+  <b>{{parentDescriptionAsTitle}}</b>
+
+  <div fxLayout="row" fxLayoutAlign="start right" fxLayoutGap="5" >
+    <div class="search-box"  fxFlex="100%">
+      <mat-form-field fxFlex="30%">
+        <input matInput placeholder="{{ 'labels.placeholders.clientallypointofsales.search' | translate }}" [formControl]="name" (keydown.enter)="loadClientallies($event.value)">
+      </mat-form-field>
+      <!--mat-checkbox #showClosedGroups labelPosition="after" (change)="changeShowClosedGroups()">{{"labels.inputs.Show Closed Groups"  |translate}}</mat-checkbox-->
+    </div>
+    <div class="action-button" fxLayoutGap="1" >
+      <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'">
+        <fa-icon icon="plus" class="m-r-10"></fa-icon>{{"labels.buttons.Create"  |translate}}
+      </button>      
+    </div>
+    <div class="action-button" fxLayoutGap="1" >
+      <button mat-raised-button color="default" *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'" [routerLink]="['/organization/bulk-import/Points Of Sales']">
+        <fa-icon icon="upload" class="m-r-10"></fa-icon>
+        {{'labels.buttons.Import Points Of Sales' | translate }}
+      </button>
+    </div>        
+    <div class="action-button" fxLayoutGap="1" >
+      <button type="button" mat-raised-button [routerLink]="['/clientsallies']">{{"labels.buttons.Cancel" | translate }}</button>
+    </div>    
+  </div>
+
+  <table mat-table [dataSource]="dataSource" #instructionsTable matSort *ngIf="reloaded">
+
+    <ng-container matColumnDef="name"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.name"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.name }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="code"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.code"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.code }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="brandCodeValueDescription"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.brand"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.brandCodeValueDescription }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="departmentCodeValueDescription"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.department"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.departmentCodeValueDescription }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cityCodeValueDescription"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.city"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.cityCodeValueDescription }} </td>
+    </ng-container>
+
+    <!--ng-container matColumnDef="categoryCodeValueId"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.categoryCodeValueId"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.categoryCodeValueId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="segmentCodeValueId"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.segmentCodeValueId"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.segmentCodeValueId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="typeCodeValueId"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.typeCodeValueId"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.typeCodeValueId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="settledComission"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.settledComission"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.settledComission }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buyEnabled"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.buyEnabled"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.buyEnabled }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="collectionEnabled"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.collectionEnabled"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.collectionEnabled }} </td>
+    </ng-container-->
+
+    <ng-container matColumnDef="stateCodeValueDescription"> 
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.state"  |translate}} </th>
+      <td mat-cell *matCellDef="let apiData"> {{ apiData.stateCodeValueDescription }} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="[row.id]" class="select-row"></tr>
+
+  </table>
+
+  <mat-paginator [length]="(apiData == null ? 0 : apiData.length)" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+
+</mat-card>

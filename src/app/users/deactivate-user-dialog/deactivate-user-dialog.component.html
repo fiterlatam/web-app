@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>{{ 'labels.heading.Deactivate User' | translate }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="deactivateUserForm">
+    <div fxLayout="column">
+      <mat-checkbox fxFlex="96%" labelPosition="before" formControlName="temporaryDeactivation">
+        {{"labels.inputs.Temporary Deactivation" | translate}}
+      </mat-checkbox>
+      <div fxFlex="98%" fxLayoutGap="2%" fxLayout="row wrap" fxLayout.lt-md="column" *ngIf="deactivateUserForm.value.temporaryDeactivation">
+        <mat-form-field fxFlex="48%" (click)="fromPicker.open()">
+          <mat-label>{{"labels.inputs.Deactivation From Date" | translate}}</mat-label>
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fromPicker" matTooltip="{{ 'tooltips.Deactivation From Date' | translate}}"
+                 formControlName="deactivatedFromDate">
+          <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromPicker></mat-datepicker>
+          <mat-error *ngIf="deactivateUserForm.controls.deactivatedFromDate?.hasError('required')">
+            {{"labels.inputs.Deactivation From Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="48%" (click)="toPicker.open()">
+          <mat-label>{{"labels.inputs.Deactivation To Date" | translate}}</mat-label>
+          <input matInput [min]="deactivateUserForm.value.deactivatedFromDate" [max]="maxDate" [matDatepicker]="toPicker" matTooltip="{{ 'tooltips.Deactivation To Date' | translate}}"
+                 formControlName="deactivatedToDate">
+          <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+          <mat-datepicker #toPicker></mat-datepicker>
+          <mat-error *ngIf="deactivateUserForm.controls.deactivatedToDate?.hasError('required')">
+            {{"labels.inputs.Deactivation To Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions align="center">
+  <button mat-raised-button mat-dialog-close>{{ 'labels.buttons.Cancel' | translate }}</button>
+  <button mat-raised-button color="warn" [disabled]="!deactivateUserForm.valid"
+          [mat-dialog-close]="{temporaryDeactivation:deactivateUserForm.get('temporaryDeactivation').value,
+          deactivatedFromDate:deactivateUserForm.get('deactivatedFromDate').value,
+          deactivatedToDate:deactivateUserForm.get('deactivatedToDate').value,
+          confirm: true
+          }">
+    {{ 'labels.buttons.Confirm' | translate }}
+  </button>
+</mat-dialog-actions>
