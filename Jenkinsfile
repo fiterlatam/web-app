@@ -1,5 +1,5 @@
 pipeline {
-
+  
   agent any;
 
   options {
@@ -28,7 +28,8 @@ pipeline {
     stage('Continuos Integration (CI)') {
       steps {
         script {
-          git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: CODE_REPOSITORY
+          /* Validar que la rama sea env.BRANCH_NAME */
+          git branch: env.BRANCH_NAME, credentialsId: 'jenkins_gitlab_integration', url: CODE_REPOSITORY
           sh "git rev-parse --short HEAD > .git/commit_id"
           COMMIT_ID = readFile('.git/commit_id').trim()
           IMAGE = "${REGISTRY_URL}/${SERVICE_NAME}:${COMMIT_ID}"
@@ -60,7 +61,7 @@ pipeline {
 				}
 			}
     }
-
+    
     stage('Publish') {
 			steps {
 				script {
@@ -86,39 +87,42 @@ pipeline {
       steps {
         script {
           slackSend(channel: "integrations-ci-cd", color: "good", message: "${SLACK_MESSAGE_PREFIX} Incio del proceso de Entrega Continua (CD) de la imagen de Mifos para el commit ${COMMIT_ID}")
-
+          
           dir('compose') {
             git branch: 'main', credentialsId: 'jenkins_gitlab_integration', url: COMPOSE_REPOSITORY
             def lineToReplace = sh(script: "grep mifos: ${DOCKER_COMPOSE_FILENAME} | awk '{print \$2}'", returnStdout: true).trim()
 						sh "sed -i 's_${lineToReplace}_${IMAGE}_g' ${DOCKER_COMPOSE_FILENAME}"
             sh "cp ${DOCKER_COMPOSE_FILENAME} ../"
-            withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
-              sh "git add ${DOCKER_COMPOSE_FILENAME}"
-              sh "git commit -m \" ${DOCKER_COMPOSE_FILENAME} file updated ${IMAGE} #1\""
-              sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
+            
+            if(env.BRANCH_NAME == 'main') {
+              withCredentials([string(credentialsId: 'gitlab_jenkins_access_token', variable: 'SECRET')]) {
+                sh "git add ${DOCKER_COMPOSE_FILENAME}"
+                sh "git commit -m \" ${DOCKER_COMPOSE_FILENAME} file updated ${IMAGE} #1\""
+                sh "git push http://amgoez:Angel%20Goez1@10.66.154.26/core/compose.git main"
+              }
             }
           }
 
           dir('scripts') {
             sh "sudo chmod +x generate-playbook.sh"
             sh "sudo ./generate-playbook.sh ${PREVIOUS_IMAGE} ${PLAYBOOK_NAME} ${DOCKER_COMPOSE_FILENAME} ${DOCKER_COMPOSE_SERVICE_NAME}"
-            sh "cp ${PLAYBOOK_NAME} ${PLAYBOOKS_LOCATION}"
+            sh "sudo cp ${PLAYBOOK_NAME} ${PLAYBOOKS_LOCATION}"
           }
-
-          sh "cp ${DOCKER_COMPOSE_FILENAME} ${PLAYBOOKS_LOCATION}"
+          
+          sh "sudo cp ${DOCKER_COMPOSE_FILENAME} ${PLAYBOOKS_LOCATION}"
 
           sshPublisher(
 						publishers: [
 							sshPublisherDesc(
 								configName: 'Jenkins', transfers: [
 									sshTransfer(
-										cleanRemote: false,
-										execCommand: "ansible-playbook ${PLAYBOOKS_LOCATION}/${PLAYBOOK_NAME}",
-										execTimeout: 240000,
+										cleanRemote: false, 
+										execCommand: "ansible-playbook ${PLAYBOOKS_LOCATION}/${PLAYBOOK_NAME}", 
+										execTimeout: 240000, 
 									)
-								],
-								usePromotionTimestamp: false,
-								useWorkspaceInPromotion: false,
+								], 
+								usePromotionTimestamp: false, 
+								useWorkspaceInPromotion: false, 
 								verbose: false
 							)
 						]

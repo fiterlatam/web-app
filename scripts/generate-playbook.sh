@@ -19,4 +19,5 @@ echo "---
 
     - name: Delete the old image
       shell: docker rmi $1
+      ignore_errors: true
 " > $2
