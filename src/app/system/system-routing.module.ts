@@ -88,6 +88,8 @@ import { EditConfigurationComponent } from './configurations/global-configuratio
 import { ManageJobsComponent } from './manage-jobs/manage-jobs.component';
 import { ManageExternalEventsComponent } from './manage-external-events/manage-external-events.component';
 import { ManageExternalEventsResolver } from './manage-external-events/manage-external-events.resolver';
+import { ManageBlockingReasonsComponent } from './manage-blocking-reasons/manage-blocking-reasons.component';
+import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/create-manage-blocking-reasons/create-manage-blocking-reasons.component';
 
 const routes: Routes = [
   Route.withShell([
@@ -594,6 +596,21 @@ const routes: Routes = [
               }
             }
           ]
+        },
+        {
+          path: 'manage-blocking-reasons',
+          data: { title: 'Manage Blocking Reasons', breadcrumb: 'Manage Blocking Reasons' },
+          children: [
+            {
+              path: '',
+              component: ManageBlockingReasonsComponent
+            },
+            {
+              path: 'create',
+              component: CreateManageBlockingReasonsComponent,
+              data: { title: 'Create Blocking Reason', breadcrumb: 'Create' }
+            }
+        ]
         }
       ]
     }

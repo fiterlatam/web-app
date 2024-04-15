@@ -498,7 +498,8 @@
             "Withdraw": "Retirar",
             "Yes": "Sí",
             "Import Allies": "Importar Aliados",
-            "Import Points Of Sales": "Importar Puntos de Ventas"
+            "Import Points Of Sales": "Importar Puntos de Ventas",
+            "Create Blocking Reason": "Razón de bloqueo"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -885,7 +886,8 @@
             "Activate User": "Activar usuario",
             "Reactivate User": "Reactivar usuario",
             "Clients Allies": "Aliados",
-            "Points of Sales": "Puntos De Ventas"
+            "Points of Sales": "Puntos De Ventas",
+            "manage.blocking.reasons": "Administrar motivos de bloqueo"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2098,7 +2100,8 @@
             "Temporary Deactivation": "¿Es la desactivación temporal?",
             "Deactivation From Date": "Desactivación desde la fecha",
             "Deactivation To Date": "Desactivación hasta la fecha",
-            "Loan Assignor": "Cedente del préstamo"
+            "Loan Assignor": "Cedente del préstamo",
+            "Create Blocking Reason": "Razón de bloqueo"
         },
         "links": {
             "Community": "Comunidad",
@@ -2824,7 +2827,8 @@
             "client.allies.point.of.sales": "Puntos de Ventas",
             "client.allies.point.of.sales.create": "Crear Punto de Venta",
             "client.allies.point.of.sales.edit": "Editar Punto de Venta",
-            "Audit": "Auditoría"
+            "Audit": "Auditoría",
+            "manage.blocking.reasons": "Administrar motivos de bloqueo"
         },
         "titles": {
             "Dashboard": "Tableros",

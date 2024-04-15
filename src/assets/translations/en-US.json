@@ -496,7 +496,8 @@
             "Waive Charge": "Waive Charge",
             "Week": "Week",
             "Withdraw": "Withdraw",
-            "Yes": "Yes"
+            "Yes": "Yes",
+            "Create Blocking Reason": "Blocking Reason"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -880,7 +881,8 @@
             "for": "for",
             "Deactivate User": "Deactivate User",
             "Activate User": "Activate User",
-            "Reactivate User": "Reactivate User"
+            "Reactivate User": "Reactivate User",
+            "manage.blocking.reasons": "Manage Blocking Reasons"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2092,7 +2094,8 @@
             "type": "Type",
             "Temporary Deactivation": "Is Temporary Deactivation?",
             "Deactivation From Date": "Deactivation From Date",
-            "Deactivation To Date": "Desactivación hasta la fecha"
+            "Deactivation To Date": "Desactivación hasta la fecha",
+            "Create Blocking Reason": "Blocking Reason"
         },
         "links": {
             "Community": "Community",
@@ -2819,7 +2822,8 @@
             "client.allies.point.of.sales": "Points of Sales",
             "client.allies.point.of.sales.create": "Create Point of Sale",
             "client.allies.point.of.sales.edit": "Edit Point of Sale",
-            "Audit": "Audit"
+            "Audit": "Audit",
+            "manage.blocking.reasons": "Manage Blocking Reasons"
         },
         "titles": {
             "Dashboard": "Dashboard",
