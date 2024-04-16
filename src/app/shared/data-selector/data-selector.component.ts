@@ -67,6 +67,14 @@ export class DataSelectorComponent implements OnInit, OnChanges, OnDestroy, Cont
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.dataOptions) {
+      if (this.inputLabel === 'Categoria') {
+        const sortOrder = ['CLIENTE GCO', 'PROVEEDOR GCO', 'TERCERO', 'INMOBILIARIO', 'OTRA'];
+        this.dataOptions = this.dataOptions.sort((a, b) => {
+          return (
+            sortOrder.indexOf(a.value) - sortOrder.indexOf(b.value)
+          );
+        });
+      }
       this.dataOption.next(this.dataOptions.slice());
     }
   }
