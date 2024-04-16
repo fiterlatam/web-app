@@ -10,7 +10,7 @@
 
           <mat-form-field fxFlex="100%">
             <mat-label>{{"labels.inputs.companyName" | translate }}</mat-label>
-            <input matInput required formControlName="companyName">
+            <input  [maxlength]="40" [minLength]="3" matInput required formControlName="companyName">
             <mat-error *ngIf="groupForm.controls.companyName.hasError('required')">
               {{"labels.inputs.companyName" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
             </mat-error>
@@ -21,7 +21,7 @@
 
           <mat-form-field fxFlex="48%">
               <mat-label>{{"labels.inputs.nit" | translate }}</mat-label>
-              <input matInput required formControlName="nit">
+              <input [maxlength]="15" [minLength]="15" matInput required formControlName="nit">
               <mat-error *ngIf="groupForm.controls.nit.hasError('required')">
                 {{"labels.inputs.nit" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
@@ -32,7 +32,7 @@
 
           <mat-form-field>
               <mat-label>{{"labels.inputs.nitDigit" | translate }}</mat-label>
-              <input matInput required formControlName="nitDigit">
+              <input [maxlength]="4" matInput required formControlName="nitDigit">
               <mat-error *ngIf="groupForm.controls.nitDigit.hasError('required')">
                 {{"labels.inputs.nitDigit" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
@@ -43,14 +43,14 @@
 
           <mat-form-field fxFlex="100%">
               <mat-label>{{"labels.inputs.address" | translate }}</mat-label>
-              <input matInput required formControlName="address">
+              <input [maxlength]="40" matInput required formControlName="address">
               <mat-error *ngIf="groupForm.controls.address.hasError('required')">
               {{"labels.inputs.address" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
               <mat-error *ngIf="groupForm.controls.address.hasError('pattern')">
               {{"labels.inputs.address" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
               </mat-error>
-          </mat-form-field>            
+          </mat-form-field>
 
           <mat-form-field fxFlex="48%">
             <mat-label>{{"labels.inputs.department" | translate }}</mat-label>
@@ -102,7 +102,7 @@
               <mat-error *ngIf="groupForm.controls.cupoMaxSell.hasError('pattern')">
               {{"labels.inputs.cupoMaxSell" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
               </mat-error>
-          </mat-form-field>   
+          </mat-form-field>
 
           <mat-form-field fxFlex="25%">
               <mat-label>{{"labels.inputs.settledComission" | translate }}</mat-label>
@@ -113,7 +113,7 @@
               <mat-error *ngIf="groupForm.controls.settledComission.hasError('pattern')">
               {{"labels.inputs.settledComission" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
               </mat-error>
-          </mat-form-field>   
+          </mat-form-field>
 
           <mat-checkbox labelPosition="before" formControlName="buyEnabled" fxFlex="100%">
               {{"labels.inputs.buyEnabled" | translate }}
@@ -121,7 +121,7 @@
 
           <mat-checkbox labelPosition="before" formControlName="collectionEnabled" fxFlex="100%">
               {{"labels.inputs.collectionEnabled" | translate }}
-          </mat-checkbox>            
+          </mat-checkbox>
 
           <mat-form-field fxFlex="20%">
               <mat-label>{{"labels.inputs.bankEntity" | translate }}</mat-label>
@@ -156,7 +156,7 @@
               <mat-error *ngIf="groupForm.controls.accountNumber.hasError('pattern')">
               {{"labels.inputs.accountNumber" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
               </mat-error>
-          </mat-form-field>               
+          </mat-form-field>
 
           <mat-form-field fxFlex="20%">
               <mat-label>{{"labels.inputs.taxProfile" | translate }}</mat-label>
@@ -180,7 +180,7 @@
               <mat-error *ngIf="groupForm.controls.stateCodeValueId.hasError('required')">
                 {{"labels.inputs.state" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
-          </mat-form-field>            
+          </mat-form-field>
 
 
           <!--mat-form-field>

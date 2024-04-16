@@ -1,9 +1,9 @@
 /** Angular Imports */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 /**
  * Clients service.
@@ -23,19 +23,16 @@ export class ClientsalliesService {
    */
 
   getClientsallies(sqlSearch: any): Observable<any> {
-    console.log("clientsallies service called");
-    console.log(sqlSearch);
-    const httpParams = new HttpParams()
-                            .set('sqlSearch', sqlSearch);
-
-    let data = this.http.get('/clientsallies', { params: httpParams })
-    console.log(data);
-    return data;
+    let httpParams = new HttpParams();
+    if (sqlSearch) {
+      httpParams = httpParams.set('sqlSearch', sqlSearch);
+    }
+    return this.http.get('/clientsallies', {params: httpParams});
   }
 
   getClientsallies2(sqlSearch: any): Observable<any> {
     console.log("clientsallies service called");
-    
+
     const httpParams = new HttpParams();
     httpParams.set('sqlSearch', sqlSearch);
 
@@ -47,7 +44,7 @@ export class ClientsalliesService {
   createClientsallies(formData: any): Observable<any> {
     console.log("createClientsallies service called");
     const httpParams = new HttpParams();
-    let data = this.http.post('/clientsallies', formData); 
+    let data = this.http.post('/clientsallies', formData);
     console.log(data);
     return data;
   }

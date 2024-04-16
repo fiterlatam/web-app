@@ -41,8 +41,6 @@ export class ClientsalliesComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private clientsalliesService: ClientsalliesService) {
-
-//    this.loadClientallies("");
   }
 
 
@@ -66,30 +64,23 @@ export class ClientsalliesComponent implements OnInit {
 
 
   loadClientallies(filterValue: String) {
-
     this.reloaded = false;
-
-    console.log("loadClientallies " + filterValue);
-    this.clientsalliesService.getClientsallies(filterValue).subscribe(( apiResponseBody: any ) => {
+    this.clientsalliesService.getClientsallies(filterValue).subscribe(( apiResponseBody: any ) => {;
       this.apiData = apiResponseBody;
-      console.log(apiResponseBody);
-      console.log(this.apiData);
       this.dataSource = new MatTableDataSource(this.apiData);
       this.dataSource.data = apiResponseBody;
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-      this.instructionTableRef.renderRows();
-
+      if (this.instructionTableRef){
+        this.instructionTableRef.renderRows();
+      }
       this.reloaded = true;
 
-    });  
-
+    });
     this.reloaded = true;
   }
-
-  
   deleteEntity(parentId: any) {
         event.stopPropagation();
 
@@ -99,5 +90,5 @@ export class ClientsalliesComponent implements OnInit {
 
   changeShowClosedGroups() {
     console.log("changeShowClosedGroups ");
-  }   
+  }
 }

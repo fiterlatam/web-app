@@ -88,6 +88,7 @@ export class ClientGeneralStepComponent implements OnInit {
       'dateOfBirth': [''],
       'clientTypeId': [''],
       'clientClassificationId': [''],
+      'fullname': ['', [Validators.maxLength(40), Validators.minLength(3)]],
       'submittedOnDate': [this.settingsService.businessDate, Validators.required]
     });
   }

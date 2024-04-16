@@ -67,7 +67,7 @@ export class EditClientallyComponent implements OnInit {
       this.loadClientalliesTemplate("ngOnInit");
       this.loadCitiesByDepartment(apiResponseBody.departmentCodeValueId);
       this.patchValues();
-    });  
+    });
   }
 
 
@@ -90,35 +90,35 @@ export class EditClientallyComponent implements OnInit {
       'accountNumber': this.apiData.accountNumber,
       'taxProfileCodeValueId': this.apiData.taxProfileCodeValueId,
       'stateCodeValueId': this.apiData.stateCodeValueId,
-      });  
+      });
 
       this.enableOrDisableCupoMaxSellField(this.apiData.applyCupoMaxSell);
 
-  }  
+  }
 
   patchCity() {
     this.groupForm.patchValue({
       'cityCodeValueId': this.apiData.cityCodeValueId,
-      });  
-  }    
+      });
+  }
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
       'companyName': ['', [Validators.required]],
-      'nit': ['', [Validators.required]],
+      'nit': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(15)]],
       'nitDigit': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      'address': ['', [Validators.required]],
+      'address': ['', [Validators.required, Validators.maxLength(40)]],
       'departmentCodeValueId': ['', [Validators.required]],
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
-      'cupoMaxSell':  [{value: ''}, Validators.required],
-      'settledComission': ['', [Validators.required]],
+      'cupoMaxSell':  [{value: ''}, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      'settledComission': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
       'accountTypeCodeValueId': [''],
-      'accountNumber': [''],
+      'accountNumber': ['', [Validators.pattern('^[0-9]+$')]],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });
@@ -138,7 +138,7 @@ export class EditClientallyComponent implements OnInit {
       this.taxProfilesList = apiResponseBody.taxProfilesList;
       this.statesList = apiResponseBody.statesList;
 
-    });  
+    });
   }
 
   loadCitiesByDepartment(id: any) {
@@ -148,7 +148,7 @@ export class EditClientallyComponent implements OnInit {
 
       this.patchCity();
 
-    });  
+    });
   }
 
 
@@ -166,7 +166,7 @@ export class EditClientallyComponent implements OnInit {
 
     this.clientsalliesService.editClientsallies(data, this.entityId).subscribe((response: any) => {
       this.router.navigate(['../clientsallies']);
-    });    
+    });
 
   }
 
@@ -179,7 +179,7 @@ export class EditClientallyComponent implements OnInit {
       this.groupForm.get("cupoMaxSell").enable();
     } else {
       this.groupForm.get("cupoMaxSell").patchValue("");
-      this.groupForm.get("cupoMaxSell").disable();  
+      this.groupForm.get("cupoMaxSell").disable();
     }
   }
 }

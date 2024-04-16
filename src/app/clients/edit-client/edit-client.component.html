@@ -45,7 +45,7 @@
 
           <mat-form-field *ngIf="editClientForm.contains('fullname')" fxFlex="48%">
             <mat-label>{{ legalFormId === 1 ? "labels.inputs.Name" : "labels.inputs.Entity Name" | translate }}</mat-label>
-            <input matInput required formControlName="fullname">
+            <input [maxlength]="40" [minLength]="3" matInput required formControlName="fullname">
             <mat-error *ngIf="editClientForm.controls.fullname.hasError('required')">
               {{"labels.inputs.Client name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
             </mat-error>
