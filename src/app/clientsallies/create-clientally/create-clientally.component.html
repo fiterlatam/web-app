@@ -1,16 +1,16 @@
 <div class="container">
 
     <mat-card>
-  
+
       <form [formGroup]="groupForm">
-  
+
         <mat-card-content>
-  
+
           <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
-  
+
             <mat-form-field fxFlex="100%">
               <mat-label>{{"labels.inputs.companyName" | translate }}</mat-label>
-              <input matInput required formControlName="companyName">
+              <input [maxlength]="40" [minLength]="3" matInput required formControlName="companyName">
               <mat-error *ngIf="groupForm.controls.companyName.hasError('required')">
                 {{"labels.inputs.companyName" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
@@ -18,10 +18,10 @@
                 {{"labels.inputs.companyName" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
               </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field fxFlex="48%">
                 <mat-label>{{"labels.inputs.nit" | translate }}</mat-label>
-                <input matInput required formControlName="nit">
+                <input [maxlength]="15" [minLength]="15" matInput required formControlName="nit">
                 <mat-error *ngIf="groupForm.controls.nit.hasError('required')">
                   {{"labels.inputs.nit" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
@@ -32,7 +32,7 @@
 
             <mat-form-field>
                 <mat-label>{{"labels.inputs.nitDigit" | translate }}</mat-label>
-                <input matInput required formControlName="nitDigit">
+                <input  [maxlength]="4" matInput required formControlName="nitDigit">
                 <mat-error *ngIf="groupForm.controls.nitDigit.hasError('required')">
                   {{"labels.inputs.nitDigit" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
@@ -43,14 +43,14 @@
 
             <mat-form-field fxFlex="100%">
                 <mat-label>{{"labels.inputs.address" | translate }}</mat-label>
-                <input matInput required formControlName="address">
+                <input  [maxlength]="40" matInput required formControlName="address">
                 <mat-error *ngIf="groupForm.controls.address.hasError('required')">
                 {{"labels.inputs.address" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
                 <mat-error *ngIf="groupForm.controls.address.hasError('pattern')">
                 {{"labels.inputs.address" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                 </mat-error>
-            </mat-form-field>            
+            </mat-form-field>
 
             <mat-form-field fxFlex="48%">
               <mat-label>{{"labels.inputs.department" | translate }}</mat-label>
@@ -63,7 +63,7 @@
                 {{"labels.inputs.department" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field fxFlex="38%">
                 <mat-label>{{"labels.inputs.city" | translate }}</mat-label>
                 <mat-select required formControlName="cityCodeValueId">
@@ -102,7 +102,7 @@
                 <mat-error *ngIf="groupForm.controls.cupoMaxSell.hasError('pattern')">
                 {{"labels.inputs.cupoMaxSell" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                 </mat-error>
-            </mat-form-field>   
+            </mat-form-field>
 
             <mat-form-field fxFlex="25%">
                 <mat-label>{{"labels.inputs.settledComission" | translate }}</mat-label>
@@ -113,7 +113,7 @@
                 <mat-error *ngIf="groupForm.controls.settledComission.hasError('pattern')">
                 {{"labels.inputs.settledComission" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                 </mat-error>
-            </mat-form-field>   
+            </mat-form-field>
 
             <mat-checkbox labelPosition="after" formControlName="buyEnabled" fxFlex="100%">
                 {{"labels.inputs.buyEnabled" | translate }}
@@ -121,7 +121,7 @@
 
             <mat-checkbox labelPosition="after" formControlName="collectionEnabled" fxFlex="100%">
                 {{"labels.inputs.collectionEnabled" | translate }}
-            </mat-checkbox>            
+            </mat-checkbox>
 
             <mat-form-field fxFlex="20%">
                 <mat-label>{{"labels.inputs.bankEntity" | translate }}</mat-label>
@@ -156,7 +156,7 @@
                 <mat-error *ngIf="groupForm.controls.accountNumber.hasError('pattern')">
                 {{"labels.inputs.accountNumber" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                 </mat-error>
-            </mat-form-field>               
+            </mat-form-field>
 
             <mat-form-field fxFlex="20%">
                 <mat-label>{{"labels.inputs.taxProfile" | translate }}</mat-label>
@@ -180,7 +180,7 @@
                 <mat-error *ngIf="groupForm.controls.stateCodeValueId.hasError('required')">
                   {{"labels.inputs.state" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
-            </mat-form-field>            
+            </mat-form-field>
 
 
             <!--mat-form-field>
@@ -191,7 +191,7 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-  
+
             <mat-form-field (click)="submittedOnDatePicker.open()">
               <mat-label>{{"labels.inputs.Submitted On" | translate }}</mat-label>
               <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="submittedOnDatePicker" required formControlName="submittedOnDate">
@@ -201,11 +201,11 @@
                 {{"labels.inputs.Submission Date" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
             </mat-form-field>
-  
+
             <mat-checkbox labelPosition="before" formControlName="active">
               {{"labels.inputs.Active" | translate }}
             </mat-checkbox>
-  
+
             <mat-form-field *ngIf="groupForm.controls.active.value" (click)="activationDatePicker.open()">
               <mat-label>{{"labels.inputs.Activation Date" | translate }}</mat-label>
               <input matInput [min]="groupForm.value.submittedOnDate" [max]="maxDate" [matDatepicker]="activationDatePicker" required formControlName="activationDate">
@@ -215,27 +215,27 @@
                 {{"labels.inputs.Activation Date" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label>{{"labels.inputs.External id" | translate }}</mat-label>
               <input matInput formControlName="externalId">
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label>{{"labels.inputs.Add Clients" | translate }}</mat-label>
               <input matInput [formControl]="clientChoice" [matAutocomplete]="clientsAutocomplete">
             </mat-form-field-->
-  
+
           </div>
-  
+
           <!--mat-autocomplete autoActiveFirstOption #clientsAutocomplete="matAutocomplete" [displayWith]="displayClient">
             <mat-option *ngFor="let client of clientsData" [value]="client">
               {{ client.displayName }}
             </mat-option>
           </mat-autocomplete>
-  
+
           <div fxLayout="row">
-  
+
             <div class="mat-table" *ngIf="clientChoice.value">
               <div class="mat-header-row">
                 <div class="mat-header-cell">{{"labels.inputs.Client Details" | translate }}</div>
@@ -256,7 +256,7 @@
                 <div class="mat-cell">{{clientChoice.value.officeName}}</div>
               </div>
             </div>
-  
+
             <mat-nav-list *ngIf="clientMembers.length">
               <h3 matSubheader>{{"labels.heading.Selected Clients" | translate }}</h3>
               <div mat-list-item *ngFor="let client of clientMembers index as i">
@@ -266,19 +266,18 @@
                 </button>
               </div>
             </mat-nav-list>
-  
+
           </div-->
-  
+
         </mat-card-content>
-  
+
         <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
           <button type="button" mat-raised-button [routerLink]="['../']">{{"labels.buttons.Cancel" | translate }}</button>
           <button mat-raised-button color="primary" [disabled]="!groupForm.valid" (click)="submit()">{{"labels.buttons.Submit" | translate }}</button>
         </mat-card-actions>
-  
+
       </form>
-  
+
     </mat-card>
-  
+
   </div>
-  

@@ -113,7 +113,8 @@ export class EditClientComponent implements OnInit {
       'clientTypeId': [''],
       'clientClassificationId': [''],
       'submittedOnDate': ['', Validators.required],
-      'activationDate': ['']
+      'activationDate': [''],
+      'fullname': ['', [Validators.maxLength(40), Validators.minLength(3)]],
     });
   }
 

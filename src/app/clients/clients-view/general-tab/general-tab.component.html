@@ -126,7 +126,7 @@
 
     <ng-container matColumnDef="Original Loan">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Original Loan" | translate}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.originalLoan}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.originalLoan | formatNumber}} </td>
     </ng-container>
     <ng-container matColumnDef="Loan Balance">
       <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Loan Balance" | translate}} </th>

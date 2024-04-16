@@ -1,29 +1,31 @@
 <div [formGroup]="form" fxFlexFill>
 
-  <div *ngIf="formfield.controlType==='input' || formfield.controlType==='select'" fxFlexFill>
-
+  <div *ngIf="formfield.controlType==='input'" fxFlexFill>
     <mat-form-field fxFlexFill>
 
       <mat-label>{{ formfield.label | formatDisplayName }}</mat-label>
 
       <input *ngIf="formfield.controlType==='input'" [type]="formfield.type" matInput
         [formControlName]="formfield.controlName" [required]="formfield.required">
-
-      <mat-select *ngIf="formfield.controlType==='select'" [formControlName]="formfield.controlName"
-        [required]="formfield.required" (selectionChange)="filterCityBySelectedDepartmento($event)">
-        <mat-option *ngFor="let option of formfield.options.data" [value]="option[formfield.options.value]">
-          {{ option[formfield.options.label] }}
-        </mat-option>
-      </mat-select>
-
       <mat-error *ngIf="form.controls[formfield.controlName].hasError('required')">
         {{ formfield.label }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
       </mat-error>
 
     </mat-form-field>
-
   </div>
-
+  <div *ngIf="formfield.controlType==='select'" fxFlexFill>
+    <mifosx-data-selector
+      *ngIf="formfield.controlType==='select'"
+      [inputFormControl]="form.controls[formfield.controlName]"
+      [dataOptions]="formfield.options.data"
+      [required]="formfield.required"
+      [inputLabel]="formfield.label "
+      [inputFormControlName]="formfield.controlName"
+      [datatableForm]="form"
+      (onSelectionChangeEvent)="onSelectionChange($event)"
+    >
+    </mifosx-data-selector>
+  </div>
   <mat-form-field fxFlexFill *ngIf="formfield.controlType==='datepicker'" (click)="datePicker.open()">
     <mat-label>{{ formfield.label }}</mat-label>
     <input matInput [matDatepicker]="datePicker" [min]="formfield.minDate" [max]="formfield.maxDate"

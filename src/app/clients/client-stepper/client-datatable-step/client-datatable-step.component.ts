@@ -27,6 +27,10 @@ export class ClientDatatableStepComponent implements OnInit {
     this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
     const inputItems: any = {};
     this.datatableInputs.forEach((input: any) => {
+      if  (this.isString(input.columnDisplayType)) {
+        const columnLength = input.columnLength ? input.columnLength : 255;
+        inputItems[input.controlName] = new UntypedFormControl('', [Validators.required, Validators.maxLength(columnLength)]);
+      }
       input.controlName = this.getInputName(input);
       if (!input.isColumnNullable) {
         if (this.isNumeric(input.columnDisplayType)) {
@@ -36,6 +40,10 @@ export class ClientDatatableStepComponent implements OnInit {
         }
       } else {
         inputItems[input.controlName] = new UntypedFormControl('');
+      }
+      if  (this.isString(input.columnDisplayType)) {
+        const columnLength = input.columnLength ? input.columnLength : 255;
+        inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
       }
     });
     this.datatableForm = this.formBuilder.group(inputItems);
@@ -82,16 +90,37 @@ export class ClientDatatableStepComponent implements OnInit {
       data: data
     };
   }
-  filterCityBySelectedDepartmento(event: any) {
-    if (event.source.ngControl.name == 'Departamento') {
-      const departmentoId: number = this.datatableForm.value.Departamento;
-      for (let i in this.datatableInputsCopy) {
-        if ('Ciudad_cd_Ciudad' == this.datatableInputsCopy[i].columnName) {
-          const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
-          this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
+
+  isCamposClienteEmpresas() {
+    return this.datatableData.registeredTableName === 'campos_cliente_empresas';
+  }
+
+  onSelectionChange(event: any) {
+    if (this.isCamposClienteEmpresas()) {
+      if (event.source.ngControl.name === 'Departamento') {
+        const departmentoId: number = this.datatableForm.value.Departamento;
+        for (const i in this.datatableInputsCopy) {
+          if ('Ciudad_cd_Ciudad' === this.datatableInputsCopy[i].columnName) {
+            const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
+            this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
+          }
+        }
+      }
+      if (event.source.ngControl.name === 'Negocio') {
+        const negocio = this.datatableForm.value.Negocio;
+        for (const i in this.datatableInputsCopy) {
+          if ('Negocio_cd_Negocio' === this.datatableInputs[i].columnName) {
+            const columOptions: any[] = this.datatableInputs[i].columnValues;
+            const columnValues  = columOptions ? columOptions.filter(opt => opt.id === negocio && opt.value === 'CONFIRMING') : [];
+            if (columnValues && columnValues.length > 0) {
+              this.datatableForm.get('NIT confirming').setValidators([Validators.required]);
+            } else {
+                this.datatableForm.get('NIT confirming').clearValidators();
+            }
+            this.datatableForm.get('NIT confirming').updateValueAndValidity();
+          }
         }
       }
     }
   }
-
 }

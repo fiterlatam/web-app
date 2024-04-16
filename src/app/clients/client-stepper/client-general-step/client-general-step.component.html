@@ -34,7 +34,7 @@
 
     <mat-form-field *ngIf="createClientForm.contains('fullname')" fxFlex="48%">
       <mat-label>{{ createClientForm.value.legalFormId === 1 ? "labels.inputs.Name" : "labels.inputs.Entity Name" | translate}}</mat-label>
-      <input matInput required formControlName="fullname">
+      <input [maxlength]="40" [minLength]="3" matInput required formControlName="fullname">
       <mat-error *ngIf="createClientForm.controls.fullname.hasError('required')">
         {{"labels.inputs.Client name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
       </mat-error>
@@ -88,7 +88,7 @@
     <div fxFlex="100%" fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" formGroupName="clientNonPersonDetails"
       *ngIf="createClientForm.contains('clientNonPersonDetails')">
 
-      <mat-form-field fxFlex="48%">
+      <mat-form-field fxFlex="48%" *ngIf="showOptionalFields">
         <mat-label>{{"labels.inputs.Constitution" | translate}}</mat-label>
         <mat-select formControlName="constitutionId">
           <mat-option *ngFor="let constitution of constitutionOptions" [value]="constitution.id">
@@ -106,14 +106,14 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field fxFlex="48%" (click)="incorpValidityTillDateDatePicker.open()">
+      <mat-form-field fxFlex="48%" (click)="incorpValidityTillDateDatePicker.open()" *ngIf="showOptionalFields">
         <mat-label>{{"labels.inputs.Incorporation Validity Till Date" | translate}}</mat-label>
         <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="incorpValidityTillDateDatePicker" formControlName="incorpValidityTillDate">
         <mat-datepicker-toggle matSuffix [for]="incorpValidityTillDateDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #incorpValidityTillDateDatePicker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field fxFlex="48%">
+      <mat-form-field fxFlex="48%" *ngIf="showOptionalFields">
         <mat-label>{{"labels.inputs.Incorporation Number" | translate}}</mat-label>
         <input matInput formControlName="incorpNumber">
       </mat-form-field>
@@ -151,7 +151,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%">
+    <mat-form-field fxFlex="48%" *ngIf="showOptionalFields">
       <mat-label>{{"labels.inputs.Client Type" | translate}}</mat-label>
       <mat-select formControlName="clientTypeId">
         <mat-option *ngFor="let clientType of clientTypeOptions" [value]="clientType.id">
@@ -160,7 +160,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%">
+    <mat-form-field fxFlex="48%" *ngIf="showOptionalFields">
       <mat-label>{{"labels.inputs.Client Classification" | translate}}</mat-label>
       <mat-select formControlName="clientClassificationId">
         <mat-option *ngFor="let clientClassification of clientClassificationTypeOptions" [value]="clientClassification.id">

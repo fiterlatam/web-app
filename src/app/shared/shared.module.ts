@@ -46,6 +46,7 @@ import { StepperButtonsComponent } from './steppers/stepper-buttons/stepper-butt
 import { GlAccountSelectorComponent } from './accounting/gl-account-selector/gl-account-selector.component';
 import { GlAccountDisplayComponent } from './accounting/gl-account-display/gl-account-display.component';
 import { ViewSavingsAccountingDetailsComponent } from './accounting/view-savings-accounting-details/view-savings-accounting-details.component';
+import {DataSelectorComponent} from './data-selector/data-selector.component';
 
 /**
  * Shared Module
@@ -98,7 +99,8 @@ import { ViewSavingsAccountingDetailsComponent } from './accounting/view-savings
     StepperButtonsComponent,
     GlAccountSelectorComponent,
     GlAccountDisplayComponent,
-    ViewSavingsAccountingDetailsComponent
+    ViewSavingsAccountingDetailsComponent,
+    DataSelectorComponent
   ],
   exports: [
     FileUploadComponent,
@@ -130,6 +132,7 @@ import { ViewSavingsAccountingDetailsComponent } from './accounting/view-savings
     GlAccountSelectorComponent,
     GlAccountDisplayComponent,
     ViewSavingsAccountingDetailsComponent,
+    DataSelectorComponent,
   ]
 })
 export class SharedModule { }
