@@ -32,6 +32,13 @@ export interface LoanAssignor {
   submittedOnDate:  string;
 }
 
+export interface DatOption {
+  id:               number;
+  value:             string;
+  code:             string;
+  description:      string;
+}
+
 export interface AccountingMapping {
   id:     number;
   name:   string;

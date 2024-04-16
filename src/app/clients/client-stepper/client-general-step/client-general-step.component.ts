@@ -47,6 +47,7 @@ export class ClientGeneralStepComponent implements OnInit {
   genderOptions: any;
   /** Saving Product Options */
   savingProductOptions: any;
+  showOptionalFields: boolean;
 
   /**
    * @param {FormBuilder} formBuilder Form Builder
@@ -65,6 +66,7 @@ export class ClientGeneralStepComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.setOptions();
     this.buildDependencies();
+    this.showOptionalFields = false;
   }
 
   /**

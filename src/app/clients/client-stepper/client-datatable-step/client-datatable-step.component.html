@@ -3,16 +3,8 @@
   <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
     <div *ngFor="let datatableInput of datatableInputs" fxFlex="48%">
-      <mat-form-field fxFlex="100%" *ngIf="!isBoolean(datatableInput.columnDisplayType)">
-
+      <mat-form-field fxFlex="100%" *ngIf="!isBoolean(datatableInput.columnDisplayType) && !isDropdown(datatableInput.columnDisplayType)">
         <mat-label>{{getInputName(datatableInput)}}</mat-label>
-
-        <mat-select *ngIf="isDropdown(datatableInput.columnDisplayType)" formControlName="{{datatableInput.controlName}}" (selectionChange)="filterCityBySelectedDepartmento($event)">
-          <mat-option *ngFor="let code of datatableInput.columnValues" [value]="code.id">
-            {{ code.value }}
-          </mat-option>
-        </mat-select>
-
         <input matInput type="number" *ngIf="isNumeric(datatableInput.columnDisplayType)"
         formControlName="{{datatableInput.controlName}}">
 
@@ -28,6 +20,18 @@
           <mat-datepicker #datePicker></mat-datepicker>
         </span>
       </mat-form-field>
+      <mifosx-data-selector
+        fxFlex="48%"
+        *ngIf="isDropdown(datatableInput.columnDisplayType)"
+        [inputFormControl]="datatableForm.controls[datatableInput.controlName]"
+        [dataOptions]="datatableInput.columnValues"
+        [required]="false"
+        [inputLabel]="getInputName(datatableInput)"
+        [inputFormControlName]="datatableInput.controlName"
+        [datatableForm]="datatableForm"
+        (onSelectionChangeEvent)="onSelectionChange($event)"
+      >
+      </mifosx-data-selector>
 
       <mat-checkbox *ngIf="isBoolean(datatableInput.columnDisplayType)" formControlName="{{datatableInput.controlName}}"
         labelPosition="before" class="margin-v">
@@ -47,5 +51,4 @@
       <fa-icon icon="arrow-right" class="m-l-10"></fa-icon>
     </button>
   </div>
-
 </form>
