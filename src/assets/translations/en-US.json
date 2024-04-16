@@ -2095,7 +2095,10 @@
             "Temporary Deactivation": "Is Temporary Deactivation?",
             "Deactivation From Date": "Deactivation From Date",
             "Deactivation To Date": "Desactivación hasta la fecha",
-            "Create Blocking Reason": "Blocking Reason"
+            "Create Blocking Reason": "Blocking Reason",
+            "Client Level": "Client Level",
+            "Credit Level": "Credit Level",
+            "Name Of Reason": "Name Of Reason"
         },
         "links": {
             "Community": "Community",

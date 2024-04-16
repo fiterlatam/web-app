@@ -739,4 +739,15 @@ export class SystemService {
     const emptyData = {};
     return this.http.post(`/loans/catch-up`, emptyData);
   }
+    
+  getBlockingReasonSettingsTemplate(): Observable<any> {
+    return this.http.get('/blockSettings/template');
+  }
+    /**
+   * @param {any} role BlockingReasonSettings Created.
+   * @returns {Observable<any>}
+   */
+    createBlockingReasonSettings(role: any): Observable<any> {
+      return this.http.post('/createBlockingReasonSettings', role);
+    }
 }

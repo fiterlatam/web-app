@@ -2101,7 +2101,10 @@
             "Deactivation From Date": "Desactivación desde la fecha",
             "Deactivation To Date": "Desactivación hasta la fecha",
             "Loan Assignor": "Cedente del préstamo",
-            "Create Blocking Reason": "Razón de bloqueo"
+            "Create Blocking Reason": "Razón de bloqueo",
+            "Client Level": "nivel cliente",
+            "Credit Level": "nivel créditos",
+            "Name Of Reason": "Nombre del motivo"
         },
         "links": {
             "Community": "Comunidad",

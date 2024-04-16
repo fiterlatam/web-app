@@ -11,30 +11,39 @@ import { SystemService } from '../../system.service';
 export class CreateManageBlockingReasonsComponent implements OnInit {
 
   
-  roleForm: UntypedFormGroup;
+  blockingReasonForm: UntypedFormGroup;
+  blockingReasonTemplateData: any;
 
  
   constructor(private formBuilder: UntypedFormBuilder,
               private systemService: SystemService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+    this.route.data.subscribe((data: { manageBlockingReasonTemplateResolver: any }) => {
+      this.blockingReasonTemplateData = data.manageBlockingReasonTemplateResolver;
+    });
+    }
 
 
   ngOnInit() {
-    this.createRoleForm();
+    this.createBlockingReasonForm();
   }
 
 
-  createRoleForm() {
-    this.roleForm = this.formBuilder.group({
-      'name': ['', Validators.required],
-      'description': ['', Validators.required]
+  createBlockingReasonForm() {
+    this.blockingReasonForm = this.formBuilder.group({
+      level: ['client'],
+      'creditLevel': ['', Validators.required],
+      'customerLevel': ['', Validators.required],
+      'description': '',
+      'nameOfReason': ['', Validators.required],
+      'priority': ['', Validators.required],
     });
   }
 
 
   submit() {
-    this.systemService.createRole(this.roleForm.value)
+    this.systemService.createBlockingReasonSettings(this.blockingReasonForm.value)
       .subscribe((response: any) => {
         this.router.navigate(['../'], { relativeTo: this.route });
     });

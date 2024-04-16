@@ -2,26 +2,48 @@
 
     <mat-card>
   
-      <form [formGroup]="roleForm" (ngSubmit)="submit()">
+      <form [formGroup]="blockingReasonForm" (ngSubmit)="submit()">
   
         <mat-card-content>
   
           <div fxLayout="column">
-  
+            
+            <mat-radio-group formControlName="level">
+              <mat-radio-button value="client">{{'labels.inputs.Client Level' | translate}}</mat-radio-button>
+              <mat-radio-button value="credit">{{'labels.inputs.Credit Level' | translate}}</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'client'">
+              <mat-label>{{'labels.inputs.Client Level' | translate}}</mat-label>
+              <mat-select required formControlName="customerLevel">
+                <mat-option *ngFor="let customerLevel of blockingReasonTemplateData.customerLevelOptions" [value]="customerLevel.id">
+                  {{ customerLevel.name }}
+                </mat-option>
+              </mat-select>             
+            </mat-form-field>
+
+            <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'credit'">
+              <mat-label>{{'labels.inputs.Credit Level' | translate}}</mat-label>
+              <mat-select required formControlName="creditLevel">
+                <mat-option *ngFor="let creditLevel of blockingReasonTemplateData.creditLevelOptions" [value]="creditLevel.id">
+                  {{ creditLevel.name }}
+                </mat-option>
+              </mat-select>             
+            </mat-form-field>
+
             <mat-form-field>
-              <mat-label>Name</mat-label>
-              <input matInput required formControlName="name">
-              <mat-error *ngIf="roleForm.controls.name.hasError('required')">
-                Role Name is <strong>required</strong>
-              </mat-error>
+              <mat-label>{{"labels.inputs.Name Of Reason" | translate}}</mat-label>
+              <input matInput required formControlName="nameOfReason">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Priority" | translate}}</mat-label>
+              <input matInput required formControlName="priority">
             </mat-form-field>
   
             <mat-form-field>
               <mat-label>Description</mat-label>
-              <textarea matInput required formControlName="description"></textarea>
-              <mat-error *ngIf="roleForm.controls.description.hasError('required')">
-                Role Description is <strong>required</strong>
-              </mat-error>
+              <textarea matInput formControlName="description"></textarea>
             </mat-form-field>
   
           </div>
@@ -30,7 +52,7 @@
   
           <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
             <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
-            <button mat-raised-button color="primary" [disabled]="!roleForm.valid">Submit</button>
+            <button mat-raised-button color="primary" [disabled]="!blockingReasonForm.valid">Submit</button>
           </mat-card-actions>
   
         </form>

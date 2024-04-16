@@ -6,11 +6,11 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
-import { SystemService } from '../system.service';
+import { SystemService } from '../../system.service';
 
 
 @Injectable()
-export class ManageBlockingReasonsResolver implements Resolve<Object> {
+export class ManageBlockingReasonsTemplateResolver implements Resolve<Object> {
 
 
   constructor(private systemService: SystemService) {}
