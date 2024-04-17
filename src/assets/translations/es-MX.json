@@ -1563,6 +1563,7 @@
             "Minimum Balance": "Balance minimo",
             "Minimum Balance For Interest Calculation": "Saldo mínimo para el cálculo de intereses",
             "Minimum Charge Cap": "Límite de carga mínima",
+            "Maximum Charge Cap": "Límite de carga máxima",
             "Minimum Deposit Term": "Plazo mínimo de depósito",
             "Minimum Deposit Term Frequency": "Frecuencia mínima del plazo de depósito",
             "Minimum Deposit Term Frequency Type": "Tipo de frecuencia del plazo mínimo de depósito",
@@ -3033,5 +3034,61 @@
   "legalFormType": {
     "person": "Persona",
     "entity": "Entidad"
+  },
+  "chargeCalculationType" : {
+    "invalid": "Inválido",
+    "flat": "Plano",
+    "percent.of.amount": "% de monto",
+    "percent.of.amount.and.interest": "% de monto + intereses",
+    "percent.of.interest": "% de interés",
+    "percent.of.principal": "% de crédito",
+    "percent.of.principal.and.interest": "% de crédito + Interest",
+    "percent.of.disbursement.amount": "% del monto desembolsado",
+    "percent.of.outstanding.principal.amount": "% saldo de capital",
+    "percent.of.outstanding.interest.amount": "% saldo de interés",
+    "percent.of.outstanding.principal.and.interest.amount": "% saldo de capital + interest",
+    "percent.of.principal.term": "crédito * % de plazo crédito",
+    "percent.of.guarantee.term": "crédito * % del plazo aval"
+  },
+  "chargeAppliesTo": {
+    "loan": "Crédito",
+    "savings": "Ahorros",
+    "client": "Cliente",
+    "shares": "Acciones"
+  },
+  "chargepaymentmode": {
+    "regular": "Regular",
+    "accounttransfer": "Transferencia de cuenta"
+  },
+  "chargeTimeType": {
+    "savingsNoActivityFee ": "Ahorros sin tarifa de actividad",
+    "sharesredeem": "Canjear acciones",
+    "sharespurchase": "Compra de Acciones",
+    "activación": "activación de cuenta compartida",
+    "tranchedisbursement": "Desembolso del tramo",
+    "weeklyFee": "Tarifa Semanal",
+    "overdraftFee": "Tarifa por sobregiro",
+    "overdueInstallment": "Tarifas vencidas",
+    "instalmentFee": "Cuota de pago a plazos",
+    "monthlyFee": "Tarifa Mensual",
+    "annualFee": "Tarifa Anual",
+    "withdrawalFee": "Tarifa de retiro",
+    " SavingsActivation": "Ahorro de activación",
+    "specifiedDueDate": "Fecha de vencimiento especificada",
+    "disbursement": "Desembolso"
+  },
+  "frequencyperiodFrequencyType":{
+    "days": "Días",
+    "weeks": "Semanas",
+    "months": "Meses",
+    "years": "Años",
+    "invalid": "Inválido"
+  },
+  "periodFrequencyType": {
+    "days": "Días",
+    "weeks": "Semanas",
+    "months": "Meses",
+    "years": "Años",
+    "invalid": "Inválido"
   }
 }
