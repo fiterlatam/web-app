@@ -29,17 +29,6 @@ export class CreateManageBlockingReasonsComponent implements OnInit {
     this.createBlockingReasonForm();
   }
 
-
-  // createBlockingReasonForm() {
-  //   this.blockingReasonForm = this.formBuilder.group({
-  //     level: ['client'],
-  //     'creditLevel': [''],
-  //     'customerLevel': [''],
-  //     'description': '',
-  //     'nameOfReason': ['', Validators.required],
-  //     'priority': ['', Validators.required],
-  //   });
-  // }
   createBlockingReasonForm() {
     this.blockingReasonForm = this.formBuilder.group({
       level: ['client'],
