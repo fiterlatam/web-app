@@ -15,7 +15,7 @@
 
             <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'client'">
               <mat-label>{{'labels.inputs.Client Level' | translate}}</mat-label>
-              <mat-select required formControlName="customerLevel">
+              <mat-select [required]="blockingReasonForm.get('level').value === 'client'" formControlName="customerLevel">
                 <mat-option *ngFor="let customerLevel of blockingReasonTemplateData.customerLevelOptions" [value]="customerLevel.id">
                   {{ customerLevel.name }}
                 </mat-option>
@@ -24,7 +24,7 @@
 
             <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'credit'">
               <mat-label>{{'labels.inputs.Credit Level' | translate}}</mat-label>
-              <mat-select required formControlName="creditLevel">
+              <mat-select [required]="blockingReasonForm.get('level').value === 'credit'" formControlName="creditLevel">
                 <mat-option *ngFor="let creditLevel of blockingReasonTemplateData.creditLevelOptions" [value]="creditLevel.id">
                   {{ creditLevel.name }}
                 </mat-option>
@@ -38,7 +38,7 @@
 
             <mat-form-field>
               <mat-label>{{"labels.inputs.Priority" | translate}}</mat-label>
-              <input matInput required formControlName="priority">
+              <input matInput type="number" required formControlName="priority" min="1" max="100">
             </mat-form-field>
   
             <mat-form-field>

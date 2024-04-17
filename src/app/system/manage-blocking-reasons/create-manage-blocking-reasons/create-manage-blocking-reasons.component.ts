@@ -30,14 +30,37 @@ export class CreateManageBlockingReasonsComponent implements OnInit {
   }
 
 
+  // createBlockingReasonForm() {
+  //   this.blockingReasonForm = this.formBuilder.group({
+  //     level: ['client'],
+  //     'creditLevel': [''],
+  //     'customerLevel': [''],
+  //     'description': '',
+  //     'nameOfReason': ['', Validators.required],
+  //     'priority': ['', Validators.required],
+  //   });
+  // }
   createBlockingReasonForm() {
     this.blockingReasonForm = this.formBuilder.group({
       level: ['client'],
-      'creditLevel': ['', Validators.required],
-      'customerLevel': ['', Validators.required],
+      'creditLevel': [''],
+      'customerLevel': [''],
       'description': '',
       'nameOfReason': ['', Validators.required],
       'priority': ['', Validators.required],
+    });
+  
+    this.blockingReasonForm.get('level').valueChanges.subscribe(value => {
+      if (value === 'credit') {
+       this.blockingReasonForm.get('creditLevel').setValidators(Validators.required);
+        this.blockingReasonForm.get('customerLevel').clearValidators();
+      } else {
+        this.blockingReasonForm.get('customerLevel').setValidators(Validators.required);
+        this.blockingReasonForm.get('creditLevel').clearValidators();
+      }
+  
+      this.blockingReasonForm.get('creditLevel').updateValueAndValidity();
+      this.blockingReasonForm.get('customerLevel').updateValueAndValidity();
     });
   }
 

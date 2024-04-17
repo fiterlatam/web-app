@@ -748,6 +748,6 @@ export class SystemService {
    * @returns {Observable<any>}
    */
     createBlockingReasonSettings(role: any): Observable<any> {
-      return this.http.post('/createBlockingReasonSettings', role);
+      return this.http.post('/blockSettings/createBlockingReasonSettings', role);
     }
 }
