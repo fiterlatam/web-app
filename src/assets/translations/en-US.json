@@ -1558,6 +1558,7 @@
             "Minimum Balance": "Minimum Balance",
             "Minimum Balance For Interest Calculation": "Minimum Balance For Interest Calculation",
             "Minimum Charge Cap": "Minimum Charge Cap",
+            "Maximum Charge Cap": "Minimum Charge Cap",
             "Minimum Deposit Term": "Minimum Deposit Term",
             "Minimum Deposit Term Frequency": "Minimum Deposit Term Frequency",
             "Minimum Deposit Term Frequency Type": "Minimum Deposit Term Frequency Type",
@@ -3028,5 +3029,61 @@
   "legalFormType": {
     "person": "Person",
     "entity": "Entity"
+  },
+  "chargeCalculationType" : {
+      "invalid": "Invalid",
+      "flat": "Flat",
+      "percent.of.amount": "% of Amount",
+      "percent.of.amount.and.interest": "% of Amount + Interest",
+      "percent.of.principal": "% of Principal",
+      "percent.of.principal.and.interest": "% of Principal + Interest",
+      "percent.of.interest": "% of Interest",
+      "percent.of.disbursement.amount": "% of Disbursement Amount",
+      "percent.of.outstanding.principal.amount": "% of Outstanding Principal",
+      "percent.of.outstanding.interest.amount": "% of Outstanding Interest",
+      "percent.of.outstanding.principal.and.interest.amount": "% of Outstanding Principal + Interest",
+      "percent.of.principal.term": "Principal * % of Principal Term",
+      "percent.of.guarantee.term": "Principal * % of Guarantee Term"
+  },
+  "chargeAppliesTo": {
+    "loan": "Loan",
+    "savings": "Savings",
+    "client": "Client",
+    "shares": "Shares"
+  },
+  "chargepaymentmode": {
+    "regular": "Regular",
+    "accounttransfer": "Account Transfer"
+  },
+  "chargeTimeType": {
+    "savingsNoActivityFee": "Savings No Activity Fee",
+    "sharesredeem": "Shares Redeem",
+    "sharespurchase": "Shares Purchase",
+    "activation": "hare Account Activate",
+    "tranchedisbursement": "Tranche Disbursement",
+    "weeklyFee": "Weekly Fee",
+    "overdraftFee": "Overdraft Fee",
+    "overdueInstallment": "Overdue Fees",
+    "instalmentFee": "Instalment Fee",
+    "monthlyFee": "Monthly Fee",
+    "annualFee": "Annual Fee",
+    "withdrawalFee": "Withdrawal Fee",
+    "savingsActivation": "Saving Activation",
+    "specifiedDueDate": "Specified Due Date",
+    "disbursement": "Disbursement"
+  },
+  "frequencyperiodFrequencyType":{
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "years": "Years",
+    "invalid": "Invalid"
+  },
+  "periodFrequencyType": {
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "years": "Years",
+    "invalid": "Invalid"
   }
 }

@@ -27,17 +27,17 @@
 
       <ng-container matColumnDef="chargeAppliesTo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Applies To </th>
-        <td mat-cell *matCellDef="let charge"> {{ charge.chargeAppliesTo.value }} </td>
+        <td mat-cell *matCellDef="let charge"> {{ charge.chargeAppliesTo.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="chargeTimeType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-        <td mat-cell *matCellDef="let charge"> {{ charge.chargeTimeType.value }} </td>
+        <td mat-cell *matCellDef="let charge"> {{ charge.chargeTimeType.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="chargeCalculationType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Calculation </th>
-        <td mat-cell *matCellDef="let charge"> {{ charge.chargeCalculationType.value }} </td>
+        <td mat-cell *matCellDef="let charge"> {{ charge.chargeCalculationType.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
