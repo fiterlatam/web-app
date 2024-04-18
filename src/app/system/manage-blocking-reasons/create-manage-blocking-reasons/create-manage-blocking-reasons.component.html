@@ -1,0 +1,63 @@
+<div class="container">
+
+    <mat-card>
+  
+      <form [formGroup]="blockingReasonForm" (ngSubmit)="submit()">
+  
+        <mat-card-content>
+  
+          <div fxLayout="column">
+            
+            <mat-radio-group formControlName="level">
+              <mat-radio-button value="CLIENT">{{'labels.inputs.Client Level' | translate}}</mat-radio-button>
+              <mat-radio-button value="CREDIT">{{'labels.inputs.Credit Level' | translate}}</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'CLIENT'">
+              <mat-label>{{'labels.inputs.Client Level' | translate}}</mat-label>
+              <mat-select [required]="blockingReasonForm.get('level').value === 'CLIENT'" formControlName="customerLevel">
+                <mat-option *ngFor="let customerLevel of blockingReasonTemplateData.customerLevelOptions" [value]="customerLevel.id">
+                  {{ customerLevel.name }}
+                </mat-option>
+              </mat-select>             
+            </mat-form-field>
+
+            <mat-form-field *ngIf="blockingReasonForm.get('level').value === 'CREDIT'">
+              <mat-label>{{'labels.inputs.Credit Level' | translate}}</mat-label>
+              <mat-select [required]="blockingReasonForm.get('level').value === 'CREDIT'" formControlName="creditLevel">
+                <mat-option *ngFor="let creditLevel of blockingReasonTemplateData.creditLevelOptions" [value]="creditLevel.id">
+                  {{ creditLevel.name }}
+                </mat-option>
+              </mat-select>             
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Name Of Reason" | translate}}</mat-label>
+              <input matInput required formControlName="nameOfReason">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Priority" | translate}}</mat-label>
+              <input matInput type="number" required formControlName="priority" min="1" max="100">
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+  
+          </div>
+  
+          </mat-card-content>
+  
+          <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+            <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
+            <button mat-raised-button color="primary" [disabled]="!blockingReasonForm.valid">Submit</button>
+          </mat-card-actions>
+  
+        </form>
+  
+      </mat-card>
+  
+  </div>
+  
