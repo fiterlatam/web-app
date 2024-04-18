@@ -27,10 +27,6 @@ export class ClientDatatableStepComponent implements OnInit {
     this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
     const inputItems: any = {};
     this.datatableInputs.forEach((input: any) => {
-      if  (this.isString(input.columnDisplayType)) {
-        const columnLength = input.columnLength ? input.columnLength : 255;
-        inputItems[input.controlName] = new UntypedFormControl('', [Validators.required, Validators.maxLength(columnLength)]);
-      }
       input.controlName = this.getInputName(input);
       if (!input.isColumnNullable) {
         if (this.isNumeric(input.columnDisplayType)) {
