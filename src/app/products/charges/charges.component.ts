@@ -25,7 +25,7 @@ export class ChargesComponent implements OnInit, AfterViewInit {
   /** Charge data. */
   chargeData: any;
   /** Columns to be displayed in charges table. */
-  displayedColumns: string[] = ['name', 'chargeAppliesTo', 'chargeTimeType', 'chargeCalculationType', 'amount', 'penalty', 'active'];
+  displayedColumns: string[] = ['name', 'chargeAppliesTo', 'chargeTimeType', 'chargeCalculationType', 'amount', 'graceOnChargePeriodAmount','penalty', 'active'];
   /** Data source for charges table. */
   dataSource: MatTableDataSource<any>;
 

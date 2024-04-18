@@ -60,7 +60,7 @@ export class KeyboardShortcutsConfiguration {
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: false,
-                key: 'c',
+                key: 'k',
                 route: 'clients/create'
             },
             // Create Group - ctrl + g
@@ -87,7 +87,7 @@ export class KeyboardShortcutsConfiguration {
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: false,
-                key: 'f',
+                key: 'p',
                 route: 'accounting/journal-entries/frequent-postings'
             },
             // Closure Entries - ctrl + e

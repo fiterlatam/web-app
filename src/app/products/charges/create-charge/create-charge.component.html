@@ -58,6 +58,37 @@
               </mat-error>
             </mat-form-field>
 
+            <div fxFlex="48%" ngClass.gt-md="entries-wrapper" *ngIf="chargeForm.controls.chargeAppliesTo.value === 1" >
+            </div>
+
+            <div fxFlex="48%" ngClass.gt-md="entries-wrapper" *ngIf="chargeForm.controls.chargeAppliesTo.value === 1" >
+              <mat-label>Charge Calculation Type Filter<br></mat-label>
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterAmount" class="entries" (change)="enableOrDisableCupoMaxSellField('amount', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.amount" | translate}}
+              </mat-checkbox>
+              &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterInterest" class="entries" (change)="enableOrDisableCupoMaxSellField('interest', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.interest" | translate}}
+              </mat-checkbox>
+              &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterOutstandingAmount" class="entries" (change)="enableOrDisableCupoMaxSellField('outstanding.amount', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.outstanding.amount" | translate}}
+              </mat-checkbox>
+              <br>
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterInsurance" class="entries" (change)="enableOrDisableCupoMaxSellField('insurance', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.insurance" | translate}}
+              </mat-checkbox>
+              &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterAval" class="entries" (change)="enableOrDisableCupoMaxSellField('aval', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.aval" | translate}}
+              </mat-checkbox>
+              &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterHonorarios" class="entries" (change)="enableOrDisableCupoMaxSellField('honorarios', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.fee" | translate}}
+              </mat-checkbox>
+
+            </div>
+
             <mat-form-field fxFlex="48%">
               <mat-label>{{ "labels.inputs.Charge Calculation Type" | translate }}</mat-label>
               <mat-select required formControlName="chargeCalculationType">
@@ -161,6 +192,19 @@
                 {{ "labels.inputs.Amount" | translate }} must be <strong>a positive number</strong>
               </mat-error>
             </mat-form-field>
+
+            <mat-form-field fxFlex="48%"
+            *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+              <mat-label>Charge Grace Period Amount</mat-label>
+              <input  type="number" matInput formControlName="graceOnChargePeriodAmount" value="0" required/>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="48%"
+              *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+              <mat-label>Charge Grace Period Frequency</mat-label>
+              <input matInput formControlName="graceOnChargePeriodEnum" value="Days" readonly/>
+            </mat-form-field>
+
             <!--
    * minCap and maxCap only allowed for loan ,shares and savings entitites
    * In Loan case: Only for the "charge calculation type" set as "%amount", "% loan amount+interest", "%interest",and"%disbursement amount".
