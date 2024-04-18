@@ -31,7 +31,7 @@ export class CreateManageBlockingReasonsComponent implements OnInit {
 
   createBlockingReasonForm() {
     this.blockingReasonForm = this.formBuilder.group({
-      level: ['client'],
+      level: ['CLIENT'],
       'creditLevel': [''],
       'customerLevel': [''],
       'description': '',
@@ -40,7 +40,7 @@ export class CreateManageBlockingReasonsComponent implements OnInit {
     });
   
     this.blockingReasonForm.get('level').valueChanges.subscribe(value => {
-      if (value === 'credit') {
+      if (value === 'CREDIT') {
        this.blockingReasonForm.get('creditLevel').setValidators(Validators.required);
         this.blockingReasonForm.get('customerLevel').clearValidators();
       } else {
