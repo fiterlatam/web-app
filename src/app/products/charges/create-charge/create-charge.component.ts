@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../products.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
+import { ArrayType } from '@angular/compiler';
 
 /**
  * Create charge component.
@@ -25,7 +26,21 @@ export class CreateChargeComponent implements OnInit {
   /** Charge time type data. */
   chargeTimeTypeData: any;
   /** Charge calculation type data. */
-  chargeCalculationTypeData: any = '';
+  chargeCalculationTypeData: any = [];
+
+  /** Charge calculation type data. */
+  originalChargeCalculationTypeData: any = []; 
+
+  chargeCalculationTypeFilter: any;
+  chargeCalculationTypeFilterAmount: boolean = false;
+  chargeCalculationTypeFilterInterest: boolean = false;
+  chargeCalculationTypeFilterOutstandingAmount: boolean = false;
+  chargeCalculationTypeFilterInsurance: boolean = false;
+  chargeCalculationTypeFilterAval: boolean = false;
+  chargeCalculationTypeFilterHonorarios: boolean = false;
+
+  
+
   /** Income and liability account data */
   incomeAndLiabilityAccountData: any;
   /** Minimum due date allowed. */
@@ -87,7 +102,14 @@ export class CreateChargeComponent implements OnInit {
       'penalty': [false],
       'taxGroupId': [''],
       'minCap': [''],
-      'maxCap': ['']
+      'maxCap': [''],
+      'graceOnChargePeriodAmount': ['0'],
+      'chargeCalculationTypeFilterAmount': [false],
+      'chargeCalculationTypeFilterInterest': [false],
+      'chargeCalculationTypeFilterOutstandingAmount': [false],
+      'chargeCalculationTypeFilterInsurance': [false],
+      'chargeCalculationTypeFilterAval': [false],
+      'chargeCalculationTypeFilterHonorarios': [false],
     });
   }
 
@@ -115,6 +137,8 @@ export class CreateChargeComponent implements OnInit {
           break;
       }
     });
+
+    this.originalChargeCalculationTypeData = this.chargesTemplateData.loanChargeCalculationTypeOptions;
   }
 
   /**
@@ -144,10 +168,31 @@ export class CreateChargeComponent implements OnInit {
   setConditionalControls() {
     this.chargeForm.get('chargeAppliesTo').valueChanges.subscribe((chargeAppliesTo) => {
       this.chargeForm.get('penalty').enable();
+
+      this.chargeForm.removeControl('graceOnChargePeriodAmount');
+      this.chargeForm.removeControl('graceOnChargePeriodEnum');
+
+      this.chargeForm.removeControl('chargeCalculationTypeFilterAmount');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterInterest');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingAmount');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterInsurance');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterAval');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterHonorarios');
+
       switch (chargeAppliesTo) {
         case 1: // Loan
           this.chargeForm.addControl('chargePaymentMode', new UntypedFormControl('', Validators.required));
           this.chargeForm.removeControl('incomeAccountId');
+
+          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', Validators.required));
+          this.chargeForm.addControl('graceOnChargePeriodEnum', new UntypedFormControl('days', Validators.required));
+          this.chargeForm.addControl('chargeCalculationTypeFilterAmount', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterInterest', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingAmount', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterInsurance', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterAval', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterHonorarios', new UntypedFormControl(false));
+
           break;
         case 2: // Savings
           this.chargeForm.removeControl('chargePaymentMode');
@@ -239,9 +284,69 @@ export class CreateChargeComponent implements OnInit {
     if (!data.maxCap) {
       delete data.maxCap;
     }
+
+    delete data.chargeCalculationTypeFilterAmount;
+    delete data.chargeCalculationTypeFilterInterest;
+    delete data.chargeCalculationTypeFilterOutstandingAmount;
+    delete data.chargeCalculationTypeFilterInsurance;
+    delete data.chargeCalculationTypeFilterAval;
+    delete data.chargeCalculationTypeFilterHonorarios;
+
     this.productsService.createCharge(data).subscribe((response: any) => {
       this.router.navigate(['../'], { relativeTo: this.route });
     });
   }
 
+  enableOrDisableCupoMaxSellField(itemName: String, selected: boolean) {
+    this.chargeCalculationTypeData = [];
+    let lookForWordsArray: any = [];
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterAmount) {
+      lookForWordsArray.push('amount');      
+    }
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterInterest) {
+      lookForWordsArray.push('interest');
+    }
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterOutstandingAmount) {
+      lookForWordsArray.push('outstanding_amount');
+    }
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterInsurance) {
+      lookForWordsArray.push('insurance');
+    }
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterAval) {
+      lookForWordsArray.push('aval');
+    }
+    
+    if(this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
+      lookForWordsArray.push('honorarios');
+    }    
+
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
+      this.lookForKeyOnCode(lookForWordsArray, index);
+    } 
+
+    // IOf nothing selected, restore the list
+    if(lookForWordsArray.length == 0) {
+      for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
+        this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
+      } 
+    }
+  }  
+
+
+  lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
+    let currCode = this.originalChargeCalculationTypeData[index].code;
+
+    for (let i = 0; i <= lookForWordsArray.length-1; i++) {
+      if(currCode.toString().indexOf("."+ lookForWordsArray[i]) == -1) {
+        return;
+      }
+    }
+
+    this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
+  }
 }

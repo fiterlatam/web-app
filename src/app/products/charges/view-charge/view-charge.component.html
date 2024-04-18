@@ -97,6 +97,14 @@
           {{ chargeData.chargePaymentMode.code | translate }}
         </div>
 
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.chargeAppliesTo.value == 'Loan'">
+          {{ "labels.inputs.graceOnChargePeriodAmount" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.chargeAppliesTo.value == 'Loan'">
+          {{ chargeData.graceOnChargePeriodAmount  }} day(s)
+        </div>
+
         <div fxFlex="50%" class="mat-body-strong">
           {{ "labels.inputs.Is Active" | translate }}
         </div>
