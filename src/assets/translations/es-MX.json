@@ -2768,6 +2768,7 @@
             "View Adhoc Query": "Ver consulta ad hoc",
             "View Amazon S3 Configuration": "Ver la configuración de Amazon S3",
             "View Audit": "Ver auditoría",
+            "Create Blocking Reason":"Crear motivo de bloqueo",
             "View Bulk Import": "Ver importación masiva",
             "View Charges": "Ver cargos",
             "View Checker Inbox Component": "Ver el componente de la bandeja de entrada de Checker",

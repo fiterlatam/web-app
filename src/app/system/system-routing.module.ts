@@ -91,6 +91,7 @@ import { ManageExternalEventsResolver } from './manage-external-events/manage-ex
 import { ManageBlockingReasonsComponent } from './manage-blocking-reasons/manage-blocking-reasons.component';
 import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/create-manage-blocking-reasons/create-manage-blocking-reasons.component';
 import { ManageBlockingReasonsTemplateResolver } from './manage-blocking-reasons/create-manage-blocking-reasons/manage-blocking-reasons-template.resolver';
+import { ManageBlockingReasonsResolver } from './manage-blocking-reasons/manage-blocking-reasons.resolver';
 
 const routes: Routes = [
   Route.withShell([
@@ -604,7 +605,10 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              component: ManageBlockingReasonsComponent
+              component: ManageBlockingReasonsComponent,
+              resolve: {
+                manageBlockingReasonsResolver: ManageBlockingReasonsResolver
+              }
             },
             {
               path: 'create',
@@ -656,7 +660,8 @@ const routes: Routes = [
     EntityToEntityMappingResolver,
     MakerCheckerTasksResolver,
     ViewHistorySchedulerJobsResolver,
-    ManageBlockingReasonsTemplateResolver
+    ManageBlockingReasonsTemplateResolver,
+    ManageBlockingReasonsResolver
   ]
 })
 export class SystemRoutingModule { }

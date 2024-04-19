@@ -750,4 +750,8 @@ export class SystemService {
     createBlockingReasonSettings(role: any): Observable<any> {
       return this.http.post('/blockSettings/createBlockingReasonSettings', role);
     }
+
+    retrieveAllBlockingReasons(): Observable<any> {
+      return this.http.get('/blockSettings/retrieveAllBlockingReasons');
+    }
 }

@@ -2763,6 +2763,8 @@
             "View Adhoc Query": "View Adhoc Query",
             "View Amazon S3 Configuration": "View Amazon S3 Configuration",
             "View Audit": "View Audit",
+            "Create Blocking Reason":"Create Blocking Reason",
+            "Create":"Create",
             "View Bulk Import": "View Bulk Import",
             "View Charges": "View Charges",
             "View Checker Inbox Component": "View Checker Inbox Component",
