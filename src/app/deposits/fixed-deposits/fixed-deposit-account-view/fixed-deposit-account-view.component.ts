@@ -16,6 +16,7 @@ import { FixedDepositsButtonsConfiguration } from './fixed-deposits-buttons.conf
 import { FixedDepositsService } from '../fixed-deposits.service';
 import { SavingsService } from 'app/savings/savings.service';
 import { Currency } from 'app/shared/models/general.model';
+import {SettingsService} from '../../../settings/settings.service';
 
 /**
  * Fixed Deposits Account View Component
@@ -37,16 +38,21 @@ export class FixedDepositAccountViewComponent implements OnInit {
   entityType: string;
   currency: Currency;
   showTransactions = false;
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /**
    * Fetches fixed deposits account data from `resolve`
    * @param {ActivatedRoute} route Activated Route
+   * @param settingsService
    * @param {Router} router Router
    * @param {FixedDepositsService} fixedDepositsService Fixed Deposits Service
    * @param {SavingsService} savingsService Savings Service
    * @param {MatDialog} dialog Mat Dialog
    */
   constructor(private route: ActivatedRoute,
+              private settingsService: SettingsService,
               private router: Router,
               private fixedDepositsService: FixedDepositsService,
               private savingsService: SavingsService,
@@ -68,6 +74,9 @@ export class FixedDepositAccountViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.setConditionalButtons();
   }
 

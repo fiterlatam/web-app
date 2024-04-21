@@ -15,6 +15,7 @@ import { SavingsService } from '../savings.service';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { Currency } from 'app/shared/models/general.model';
 import { TranslateService } from '@ngx-translate/core';
+import {SettingsService} from '../../settings/settings.service';
 
 /**
  * Savings Account View Component
@@ -37,14 +38,21 @@ export class SavingsAccountViewComponent implements OnInit {
 
   isActive = false;
   currency: Currency;
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /**
    * Fetches savings account data from `resolve`
    * @param {ActivatedRoute} route Activated Route
+   * @param settingsService
    * @param {Router} router Router
    * @param {SavingsService} savingsService Savings Service
+   * @param translateService
+   * @param dialog
    */
   constructor(private route: ActivatedRoute,
+    private settingsService: SettingsService,
     private router: Router,
     private savingsService: SavingsService,
     private translateService: TranslateService,
@@ -64,6 +72,9 @@ export class SavingsAccountViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.setConditionalButtons();
   }
 

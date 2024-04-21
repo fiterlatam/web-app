@@ -90,23 +90,23 @@
         <tbody>
           <tr>
             <td>{{"labels.inputs.Principal Amount" | translate }}</td>
-            <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+            <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':format:locale}}</td>
           </tr>
           <tr>
             <td>{{"labels.inputs.Maturity Amount" | translate }}</td>
-            <td class="r-amount">{{fixedDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+            <td class="r-amount">{{fixedDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':format:locale}}</td>
           </tr>
           <tr *ngIf="fixedDepositsAccountData.summary.totalDeposits">
             <td>{{"labels.inputs.Total Deposits" | translate }}</td>
-            <td class="r-amount">{{fixedDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+            <td class="r-amount">{{fixedDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':format:locale}}</td>
           </tr>
           <tr *ngIf="fixedDepositsAccountData.summary.totalWithdrawals">
             <td>{{"labels.inputs.Total Withdrawals" | translate }}</td>
-            <td class="r-amount">{{fixedDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+            <td class="r-amount">{{fixedDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':format:locale}}</td>
           </tr>
           <tr *ngIf="fixedDepositsAccountData.summary.totalInterestEarned >= 0">
             <td>{{"labels.inputs.Total Interest Earned" | translate }}</td>
-            <td class="r-amount">{{fixedDepositsAccountData.summary.totalInterestEarned | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+            <td class="r-amount">{{fixedDepositsAccountData.summary.totalInterestEarned | currency:currency.code:'symbol-narrow':format:locale}}</td>
           </tr>
         </tbody>
       </table>
@@ -119,11 +119,11 @@
           <tbody>
             <tr>
               <td>{{"labels.inputs.Principal Amount" | translate }}</td>
-              <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+              <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':format:locale}}</td>
             </tr>
             <tr>
               <td>{{"labels.inputs.Maturity Amount" | translate }}</td>
-              <td class="r-amount">{{fixedDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+              <td class="r-amount">{{fixedDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':format:locale}}</td>
             </tr>
           </tbody>
         </table>

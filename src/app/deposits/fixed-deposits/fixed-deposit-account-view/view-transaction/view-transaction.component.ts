@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { UndoTransactionDialogComponent } from 'app/savings/savings-account-view/custom-dialogs/undo-transaction-dialog/undo-transaction-dialog.component';
@@ -15,11 +15,15 @@ import { SettingsService } from 'app/settings/settings.service';
   templateUrl: './view-transaction.component.html',
   styleUrls: ['./view-transaction.component.scss']
 })
-export class ViewTransactionComponent {
+export class ViewTransactionComponent implements OnInit {
   accountId: string;
   transactionId: string;
   /** Transaction data. */
   transactionData: any;
+
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /**
    */
@@ -33,6 +37,12 @@ export class ViewTransactionComponent {
       this.accountId = this.route.parent.snapshot.params['fixedDepositAccountId'];
       this.transactionData = data.fixedDepositsAccountTransaction;
     });
+  }
+
+  ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
   }
 
   transactionColor(): string {

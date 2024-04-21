@@ -36,11 +36,11 @@
               <tbody>
                 <tr>
                   <td>{{"labels.inputs.Current Balance" | translate }}</td>
-                  <td class="r-amount">{{fixedDepositsAccountData.summary.accountBalance | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+                  <td class="r-amount">{{fixedDepositsAccountData.summary.accountBalance | currency:currency.code:'symbol-narrow':format:locale}}</td>
                 </tr>
                 <tr>
                   <td>{{"labels.inputs.Deposit Amount" | translate }}</td>
-                  <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+                  <td class="r-amount">{{fixedDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':format:locale}}</td>
                 </tr>
               </tbody>
             </table>
