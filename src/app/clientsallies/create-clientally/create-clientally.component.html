@@ -161,7 +161,7 @@
 
             <mat-form-field fxFlex="40%">
                 <mat-label>{{"labels.inputs.accountNumber" | translate }}</mat-label>
-                <input [maxlength]="13" matInput formControlName="accountNumber" mifosxFormatInteger>
+                <input [maxlength]="20" matInput formControlName="accountNumber">
                 <mat-error *ngIf="groupForm.controls.accountNumber.hasError('required')">
                 {{"labels.inputs.accountNumber" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
