@@ -38,6 +38,7 @@ export class CreateChargeComponent implements OnInit {
   chargeCalculationTypeFilterInsurance: boolean = false;
   chargeCalculationTypeFilterAval: boolean = false;
   chargeCalculationTypeFilterHonorarios: boolean = false;
+  chargeCalculationTypeFilterTerm: boolean = false;
 
   
 
@@ -110,6 +111,7 @@ export class CreateChargeComponent implements OnInit {
       'chargeCalculationTypeFilterInsurance': [false],
       'chargeCalculationTypeFilterAval': [false],
       'chargeCalculationTypeFilterHonorarios': [false],
+      'chargeCalculationTypeFilterTerm': [false],
     });
   }
 
@@ -178,6 +180,7 @@ export class CreateChargeComponent implements OnInit {
       this.chargeForm.removeControl('chargeCalculationTypeFilterInsurance');
       this.chargeForm.removeControl('chargeCalculationTypeFilterAval');
       this.chargeForm.removeControl('chargeCalculationTypeFilterHonorarios');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterTerm');
 
       switch (chargeAppliesTo) {
         case 1: // Loan
@@ -192,6 +195,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargeCalculationTypeFilterInsurance', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterAval', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterHonorarios', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterTerm', new UntypedFormControl(false));
 
           break;
         case 2: // Savings
@@ -291,6 +295,7 @@ export class CreateChargeComponent implements OnInit {
     delete data.chargeCalculationTypeFilterInsurance;
     delete data.chargeCalculationTypeFilterAval;
     delete data.chargeCalculationTypeFilterHonorarios;
+    delete data.chargeCalculationTypeFilterTerm;
 
     this.productsService.createCharge(data).subscribe((response: any) => {
       this.router.navigate(['../'], { relativeTo: this.route });
@@ -310,7 +315,7 @@ export class CreateChargeComponent implements OnInit {
     }
 
     if(this.chargeForm.value.chargeCalculationTypeFilterOutstandingAmount) {
-      lookForWordsArray.push('outstanding_amount');
+      lookForWordsArray.push('outstanding');
     }
 
     if(this.chargeForm.value.chargeCalculationTypeFilterInsurance) {
@@ -323,6 +328,10 @@ export class CreateChargeComponent implements OnInit {
     
     if(this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
       lookForWordsArray.push('honorarios');
+    }    
+
+    if(this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
+      lookForWordsArray.push('term');
     }    
 
     for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
