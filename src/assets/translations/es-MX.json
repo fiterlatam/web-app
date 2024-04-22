@@ -272,7 +272,8 @@
         "validation.msg.savingsproduct.shortName.exceeds.max.length": "El nombre corto no puede tener más de {{params[0].value}} caracteres.",
         "validation.msg.savingsproduct.withdrawalFeeAmount.cannot.be.blank": "El monto de la tarifa de retiro es obligatorio.",
         "validation.msg.savingsproduct.withdrawalFeeAmount.not.zero.or.greater": "El monto de la tarifa de retiro debe ser mayor o igual a cero, si se proporciona.",
-        "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "El tipo de período de tarifa de retiro es obligatorio."
+        "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "El tipo de período de tarifa de retiro es obligatorio.",
+        "validation.msg.clientallypointofsales.code.duplicate.code": "El Codigo ya existe."
     },
     "labels": {
         "breadcrumbs": {
@@ -2240,8 +2241,8 @@
         "placeholders": {
             "Add new server": "Agregar nuevo servidor",
             "Search Activity": "Actividad de búsqueda",
-            "client.allies.search": "Procura por Razón Social o NIT",
-            "clientallypointofsales.search": "Procura por Nombre o Código"
+            "client.allies.search": "Busca por Razón Social o NIT",
+            "clientallypointofsales.search": "Busca por Nombre o Código"
         },
         "status": {
             "Active": "Activo",
