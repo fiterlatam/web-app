@@ -2114,6 +2114,7 @@
             "chargeCalculationType.insurance": "Insurance",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Fees",
+            "chargeCalculationType.term": "Term",            
             "graceOnChargePeriodAmount": "Grace Period"
         },
         "links": {

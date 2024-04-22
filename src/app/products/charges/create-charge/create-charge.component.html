@@ -86,7 +86,10 @@
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterHonorarios" class="entries" (change)="enableOrDisableCupoMaxSellField('honorarios', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.fee" | translate}}
               </mat-checkbox>
-
+              &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterTerm" class="entries" (change)="enableOrDisableCupoMaxSellField('term', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.term" | translate}}
+              </mat-checkbox>
             </div>
 
             <mat-form-field fxFlex="48%">
