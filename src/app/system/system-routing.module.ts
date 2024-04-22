@@ -92,6 +92,9 @@ import { ManageBlockingReasonsComponent } from './manage-blocking-reasons/manage
 import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/create-manage-blocking-reasons/create-manage-blocking-reasons.component';
 import { ManageBlockingReasonsTemplateResolver } from './manage-blocking-reasons/create-manage-blocking-reasons/manage-blocking-reasons-template.resolver';
 import { ManageBlockingReasonsResolver } from './manage-blocking-reasons/manage-blocking-reasons.resolver';
+import { ViewManageBlockingReasonsComponentResolverService } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons-component-resolver.service';
+import { ViewManageBlockingReasonsComponent } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons.component';
+import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/edit-manage-blocking-reasons/edit-manage-blocking-reasons.component';
 
 const routes: Routes = [
   Route.withShell([
@@ -617,7 +620,29 @@ const routes: Routes = [
               resolve: {
                 manageBlockingReasonTemplateResolver: ManageBlockingReasonsTemplateResolver
               }
+            },
+            {
+              path: ':id',
+              data: { title: 'View Blocking Reason Setting', routeParamBreadcrumb: 'id' },
+          children: [
+            {
+              path: '',
+              component: ViewManageBlockingReasonsComponent,
+              resolve: {
+                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
+              }
+            },
+            {
+              path: 'edit',
+              component: EditManageBlockingReasonsComponent,
+              data: { title: 'Edit Blocking Reason Settings', breadcrumb: 'Edit', routeParamBreadcrumb: false },
+              resolve: {
+                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService,
+                manageBlockingReasonTemplateResolver: ManageBlockingReasonsTemplateResolver
+              }
             }
+        ]
+        }  
         ]
         }
       ]
@@ -661,7 +686,10 @@ const routes: Routes = [
     MakerCheckerTasksResolver,
     ViewHistorySchedulerJobsResolver,
     ManageBlockingReasonsTemplateResolver,
-    ManageBlockingReasonsResolver
+    ManageBlockingReasonsResolver,
+    ViewManageBlockingReasonsComponentResolverService,
+    ViewManageBlockingReasonsComponent,
+    EditManageBlockingReasonsComponent
   ]
 })
 export class SystemRoutingModule { }

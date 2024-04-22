@@ -19,35 +19,35 @@
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Id' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.id }} </td>
       </ng-container>
       <ng-container matColumnDef="priority">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Priority' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.priority }} </td>
       </ng-container>
       <ng-container matColumnDef="level">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Block Level </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Block Level' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.level }} </td>
       </ng-container>
       <ng-container matColumnDef="customerLevel">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Level </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Client Level' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.customerLevel.name }} </td>
       </ng-container>
       <ng-container matColumnDef="creditLevel">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Credit Level </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Credit Level' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.creditLevel.name }} </td>
       </ng-container>
       <ng-container matColumnDef="nameOfReason">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name Of Reason </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Name Of Reason' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.nameOfReason }} </td>
       </ng-container>
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Description' | translate}}  </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.description }} </td>
       </ng-container>
       <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Created On' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.createdDate | dateFormat}} </td>
       </ng-container>
 

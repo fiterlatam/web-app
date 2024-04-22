@@ -76,6 +76,8 @@ import { CustomParametersPopoverComponent } from './manage-jobs/scheduler-jobs/c
 import { CustomParametersTableComponent } from './manage-jobs/scheduler-jobs/custom-parameters-popover/custom-parameters-table/custom-parameters-table.component';
 import { ManageBlockingReasonsComponent } from './manage-blocking-reasons/manage-blocking-reasons.component';
 import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/create-manage-blocking-reasons/create-manage-blocking-reasons.component';
+import { ViewManageBlockingReasonsComponent } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons.component';
+import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/edit-manage-blocking-reasons/edit-manage-blocking-reasons.component';
 
 @NgModule({
   imports: [
@@ -151,7 +153,9 @@ import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/
     CustomParametersPopoverComponent,
     CustomParametersTableComponent,
     ManageBlockingReasonsComponent,
-    CreateManageBlockingReasonsComponent
+    CreateManageBlockingReasonsComponent,
+    ViewManageBlockingReasonsComponent,
+    EditManageBlockingReasonsComponent
   ],
 })
 export class SystemModule { }

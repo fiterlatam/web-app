@@ -2110,7 +2110,8 @@
             "chargeCalculationType.insurance": "Insurance",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Fees",
-            "graceOnChargePeriodAmount": "Grace Period"
+            "graceOnChargePeriodAmount": "Grace Period",
+            "Block Level": "Block Level"
         },
         "links": {
             "Community": "Community",

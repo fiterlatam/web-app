@@ -35,8 +35,6 @@ export class ManageBlockingReasonsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.blockingReasonSettings);
     this.dataSource.paginator = this.paginator;    
     this.dataSource.sort = this.sort;
-    console.log(this.blockingReasonSettings.length);
-    console.log(this.blockingReasonSettings);
   }
 
   applyFilter(filterValue: string) {

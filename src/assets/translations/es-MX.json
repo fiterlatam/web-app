@@ -2116,7 +2116,8 @@
             "chargeCalculationType.insurance": "Seguro",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Honorários",
-            "graceOnChargePeriodAmount": "Periodo de Gracia"
+            "graceOnChargePeriodAmount": "Periodo de Gracia",
+            "Block Level": "Nivel de bloque"
         },
         "links": {
             "Community": "Comunidad",
