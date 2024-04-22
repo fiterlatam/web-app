@@ -57,12 +57,12 @@
                 <tbody>
                   <tr>
                     <td>{{"labels.inputs.Current Balance" | translate }}</td>
-                    <td class="r-amount">{{loanDetailsData.summary.totalOutstanding | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+                    <td class="r-amount">{{loanDetailsData.summary.totalOutstanding | currency:currency.code:'symbol-narrow':format:locale}}</td>
                   </tr>
                   <tr *ngIf="loanDisplayArrearsDelinquency < 2">
                     <td>{{"labels.inputs.Arrears By" | translate }}</td>
                     <td class="r-amount" *ngIf="loanDetailsData.summary.totalOverdue >= 0">
-                      {{loanDetailsData.summary.totalOverdue | currency:currency.code:'symbol-narrow':'1.2-2'}}
+                      {{loanDetailsData.summary.totalOverdue | currency:currency.code:'symbol-narrow':format:locale}}
                     </td>
                     <td *ngIf="!(loanDetailsData.summary.totalOverdue>=0)">{{"labels.inputs.Not Provided" | translate}}</td>
                   </tr>
@@ -72,7 +72,7 @@
                   </tr>
                   <tr *ngIf="loanDetailsData.totalOverpaid && loanDetailsData.totalOverpaid > 0">
                     <td>{{"labels.inputs.Overpaid By" | translate }}</td>
-                    <td class="r-amount">{{loanDetailsData.totalOverpaid | currency:currency.code:'symbol-narrow':'1.2-2'}} </td>
+                    <td class="r-amount">{{loanDetailsData.totalOverpaid | currency:currency.code:'symbol-narrow':format:locale}} </td>
                   </tr>
                 </tbody>
               </table>

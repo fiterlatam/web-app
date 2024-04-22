@@ -43,6 +43,9 @@ export class ChargesTabComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   useDueDate = true;
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /** Paginator for charges table. */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -68,6 +71,9 @@ export class ChargesTabComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.systemService.getConfigurationByName('charge-accrual-date').subscribe((config: GlobalConfiguration) => {
       this.useDueDate = (config.stringValue === 'due-date');
     });

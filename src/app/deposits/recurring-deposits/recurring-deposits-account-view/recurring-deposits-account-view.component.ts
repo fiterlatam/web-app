@@ -15,6 +15,7 @@ import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.co
 import { RecurringDepositConfirmationDialogComponent } from './custom-dialogs/recurring-deposit-confirmation-dialog/recurring-deposit-confirmation-dialog.component';
 import { Currency } from 'app/shared/models/general.model';
 import { TranslateService } from '@ngx-translate/core';
+import {SettingsService} from '../../../settings/settings.service';
 
 
 /**
@@ -40,13 +41,21 @@ export class RecurringDepositsAccountViewComponent implements OnInit {
   entityType: string;
   currency: Currency;
   showTransactions = false;
+  locale: string;
+  format: string;
+  decimalPlace: string;
   /**
    * Fetches recurringDeposits account data from `resolve`
    * @param {ActivatedRoute} route Activated Route
+   * @param settingsService
    * @param {Router} router Router
    * @param {RecurringDepositsService} recurringDepositsService RecurringDeposits Service
+   * @param savingsService
+   * @param dialog
+   * @param translateService
    */
   constructor(private route: ActivatedRoute,
+              private settingsService: SettingsService,
               private router: Router,
               private recurringDepositsService: RecurringDepositsService,
               private savingsService: SavingsService,
@@ -71,6 +80,9 @@ export class RecurringDepositsAccountViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.setConditionalButtons();
   }
 

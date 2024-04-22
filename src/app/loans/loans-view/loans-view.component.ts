@@ -17,6 +17,7 @@ import { Currency } from 'app/shared/models/general.model';
 import { DelinquencyPausePeriod } from '../models/loan-account.model';
 import { TranslateService } from '@ngx-translate/core';
 import { LoanTransaction } from 'app/products/loan-products/models/loan-account.model';
+import {SettingsService} from '../../settings/settings.service';
 
 @Component({
   selector: 'mifosx-loans-view',
@@ -49,8 +50,12 @@ export class LoansViewComponent implements OnInit {
   loanStatus: LoanStatus;
   currency: Currency;
   loanReAged = false;
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   constructor(private route: ActivatedRoute,
+    private settingsService: SettingsService,
     private router: Router,
     public loansService: LoansService,
     private translateService: TranslateService,
@@ -72,6 +77,9 @@ export class LoansViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.recalculateInterest = this.loanDetailsData.recalculateInterest || true;
     this.status = this.loanDetailsData.status.value;
     if (this.loanDetailsData.status.active && this.loanDetailsData.multiDisburseLoan) {

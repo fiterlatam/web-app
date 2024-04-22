@@ -37,6 +37,7 @@ export interface DatOption {
   value:             string;
   code:             string;
   description:      string;
+  score:            string;
 }
 
 export interface AccountingMapping {

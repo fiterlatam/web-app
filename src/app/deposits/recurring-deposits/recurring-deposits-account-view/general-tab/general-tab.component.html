@@ -71,41 +71,41 @@
         <tr>
           <td>{{"labels.inputs.Principal Amount" | translate }}</td>
           <td class="r-amount">
-            <span>{{recurringDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span>{{recurringDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
           <td>{{"labels.inputs.Maturity Amount" | translate }}</td>
           <td class="r-amount">
-            <span>{{recurringDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span>{{recurringDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
           <td>{{"labels.inputs.Recurring Deposit Amount" | translate }}</td>
           <td class="r-amount">
-            <span>{{recurringDepositsAccountData?.mandatoryRecommendedDepositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span>{{recurringDepositsAccountData?.mandatoryRecommendedDepositAmount | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
           <td>{{"labels.inputs.Deposits till Date" | translate }}</td>
           <td class="r-amount"><span
-              *ngIf="recurringDepositsAccountData.summary.totalDeposits">{{recurringDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="recurringDepositsAccountData.summary.totalDeposits">{{recurringDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':format:locale}}</span>
             <span
-              *ngIf="!recurringDepositsAccountData.summary.totalDeposits">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="!recurringDepositsAccountData.summary.totalDeposits">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
           <td>{{"labels.inputs.Withdrwals till Date" | translate }}</td>
           <td class="r-amount"><span
-              *ngIf="recurringDepositsAccountData.summary.totalWithdrawals">{{recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="recurringDepositsAccountData.summary.totalWithdrawals">{{recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':format:locale}}</span>
             <span
-              *ngIf="!recurringDepositsAccountData.summary.totalWithdrawals">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="!recurringDepositsAccountData.summary.totalWithdrawals">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
 
         <tr *ngIf="recurringDepositsAccountData.summary.totalInterestEarned >= 0">
           <td>{{"labels.inputs.Interest Earned" | translate }}</td>
-          <td class="r-amount"><span>{{recurringDepositsAccountData.summary.totalInterestEarned | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+          <td class="r-amount"><span>{{recurringDepositsAccountData.summary.totalInterestEarned | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
 
@@ -150,18 +150,18 @@
         <tr>
           <td>{{"labels.inputs.Total Deposits" | translate }}</td>
           <td class="r-amount">
-            <span *ngIf="recurringDepositsAccountData.summary.totalDeposits">{{ recurringDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
-            <span *ngIf="!recurringDepositsAccountData.summary.totalDeposits">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span *ngIf="recurringDepositsAccountData.summary.totalDeposits">{{ recurringDepositsAccountData.summary.totalDeposits | currency:currency.code:'symbol-narrow':format:locale}}</span>
+            <span *ngIf="!recurringDepositsAccountData.summary.totalDeposits">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr >
           <td> {{"labels.inputs.Actual Available Balance" | translate }}</td>
-          <td class="r-amount">{{ recurringDepositsAccountData.summary.accountBalance | currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+          <td class="r-amount">{{ recurringDepositsAccountData.summary.accountBalance | currency:currency.code:'symbol-narrow':format:locale}}</td>
         </tr>
         <tr>
           <td> {{"labels.inputs.Recurring Deposit Amount" | translate }}</td>
           <td class="r-amount">
-            {{ recurringDepositsAccountData.mandatoryRecommendedDepositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}
+            {{ recurringDepositsAccountData.mandatoryRecommendedDepositAmount | currency:currency.code:'symbol-narrow':format:locale}}
           </td>
         </tr>
         <tr *ngIf="recurringDepositsAccountData.summary.totalInterestEarned">
@@ -171,7 +171,7 @@
         <tr *ngIf="recurringDepositsAccountData.summary.totalWithdrawals">
           <td> {{"labels.inputs.Total Withdrawls" | translate }} </td>
           <td class="r-amount">
-            <span>{{ recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span>{{ recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr *ngIf="recurringDepositsAccountData.minBalanceForInterestCalculation">
@@ -191,9 +191,9 @@
         <tr>
           <td>{{"labels.inputs.Principal Amount" | translate }}</td>
           <td class="r-amount"><span
-              *ngIf="recurringDepositsAccountData.depositAmount">{{ recurringDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="recurringDepositsAccountData.depositAmount">{{ recurringDepositsAccountData.depositAmount | currency:currency.code:'symbol-narrow':format:locale}}</span>
             <span
-              *ngIf="!recurringDepositsAccountData.depositAmount">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="!recurringDepositsAccountData.depositAmount">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
@@ -205,16 +205,16 @@
         <tr *ngIf="recurringDepositsAccountData.maturityDate">
           <td>{{"labels.inputs.Maturity Amount" | translate }}</td>
           <td>
-            <span>{{ recurringDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+            <span>{{ recurringDepositsAccountData.maturityAmount | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr>
           <td>{{"labels.inputs.Total Withdrawls" | translate }} </td>
           <td class="r-amount">
             <span
-              *ngIf="recurringDepositsAccountData.summary.totalWithdrawals">{{ recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="recurringDepositsAccountData.summary.totalWithdrawals">{{ recurringDepositsAccountData.summary.totalWithdrawals | currency:currency.code:'symbol-narrow':format:locale}}</span>
             <span
-              *ngIf="!recurringDepositsAccountData.summary.totalWithdrawals">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="!recurringDepositsAccountData.summary.totalWithdrawals">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
         <tr *ngIf="recurringDepositsAccountData.timeline.closedOnDate">
@@ -233,9 +233,9 @@
           <td> {{"labels.inputs.Interests Posted" | translate }} </td>
           <td class="r-amount">
             <span
-              *ngIf="recurringDepositsAccountData.summary.totalInterestPosted">{{recurringDepositsAccountData.summary.totalInterestPosted | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="recurringDepositsAccountData.summary.totalInterestPosted">{{recurringDepositsAccountData.summary.totalInterestPosted | currency:currency.code:'symbol-narrow':format:locale}}</span>
             <span
-              *ngIf="!recurringDepositsAccountData.summary.totalInterestPosted">{{ 0 | currency:currency.code:'symbol-narrow':'1.2-2'}}</span>
+              *ngIf="!recurringDepositsAccountData.summary.totalInterestPosted">{{ 0 | currency:currency.code:'symbol-narrow':format:locale}}</span>
           </td>
         </tr>
       </tbody>

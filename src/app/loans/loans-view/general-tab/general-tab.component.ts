@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import {SettingsService} from '../../../settings/settings.service';
 
 @Component({
   selector: 'mifosx-general-tab',
@@ -11,6 +12,9 @@ export class GeneralTabComponent implements OnInit {
 
   /** Currency Code */
   currencyCode: string;
+  locale: string;
+  format: string;
+  decimalPlace: string;
   loanDetails: any;
   status: any;
   loanSummaryColumns: string[] = ['Empty', 'Original', 'Paid', 'Waived', 'Written Off', 'Outstanding', 'Over Due'];
@@ -34,7 +38,8 @@ export class GeneralTabComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   detailsDataSource: MatTableDataSource<any>;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              private settingsService: SettingsService) {
     this.route.parent.data.subscribe((data: { loanDetailsData: any, }) => {
       this.loanDetails = data.loanDetailsData;
       this.currencyCode = this.loanDetails.currency.code;
@@ -50,6 +55,9 @@ export class GeneralTabComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.status = this.loanDetails.value;
     if (this.loanDetails.summary) {
       this.setloanSummaryTableData();

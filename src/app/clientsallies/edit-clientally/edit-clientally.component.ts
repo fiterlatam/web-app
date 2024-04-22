@@ -1,20 +1,12 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef} from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-
-/** rxjs Imports */
-import { merge } from 'rxjs';
-import { tap, startWith, map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 /** Custom Services */
 import { ClientsalliesService } from '../clientsallies.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Dates } from 'app/core/utils/dates';
+import {DecimalPipe} from '@angular/common';
 
 @Component({
   selector: 'mifosx-edit-clientally',
@@ -41,12 +33,12 @@ export class EditClientallyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
       private router: Router,
+      private decimalPipe: DecimalPipe,
       private clientsalliesService: ClientsalliesService,
-      private dateUtils: Dates,
       private settingsService: SettingsService,
       private formBuilder: UntypedFormBuilder) {
 
-    console.log("constructor");
+    console.log('constructor');
   }
 
 
@@ -54,17 +46,17 @@ export class EditClientallyComponent implements OnInit {
 
     // this.el.nativeElement.applyCupoMaxSell = true;
 
-    this.entityId = this.route.snapshot.params["id"];
+    this.entityId = this.route.snapshot.params['id'];
 
-    console.log("ngOnInit");
+    console.log('ngOnInit');
     this.createGroupForm();
 
     this.clientsalliesService.getClientallyById(this.entityId).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-      console.log("id: " + this.entityId);
+      console.log('id: ' + this.entityId);
       console.log(apiResponseBody);
 
-      this.loadClientalliesTemplate("ngOnInit");
+      this.loadClientalliesTemplate('ngOnInit');
       this.loadCitiesByDepartment(apiResponseBody.departmentCodeValueId);
       this.patchValues();
     });
@@ -72,6 +64,24 @@ export class EditClientallyComponent implements OnInit {
 
 
   patchValues() {
+    const locale = this.settingsService.language.code;
+    const format = `1.${0}-${0}`;
+    let accountNumber = this.apiData.accountNumber;
+    if (accountNumber) {
+      const inputVal = accountNumber.toString().replace(/\D/g, '');
+      accountNumber = this.decimalPipe.transform(inputVal, format, locale);
+    }
+    let cupoMaxSell = this.apiData.cupoMaxSell;
+    if (cupoMaxSell) {
+      const inputVal = cupoMaxSell.toString().replace(/\D/g, '');
+      cupoMaxSell = this.decimalPipe.transform(inputVal, format, locale);
+    }
+    let settledComission = this.apiData.settledComission;
+    if (settledComission) {
+      const decimals = this.settingsService.decimals;
+      const decimalFormat = `1.${decimals}-${decimals}`;
+      settledComission = this.decimalPipe.transform(settledComission, decimalFormat, locale);
+    }
     this.groupForm.patchValue({
       'companyName': this.apiData.companyName,
       'nit': this.apiData.nit,
@@ -81,13 +91,13 @@ export class EditClientallyComponent implements OnInit {
       'cityCodeValueId': this.apiData.cityCodeValueId,
       'liquidationFrequencyCodeValueId': this.apiData.liquidationFrequencyCodeValueId,
       'applyCupoMaxSell': this.apiData.applyCupoMaxSell,
-      'cupoMaxSell': this.apiData.cupoMaxSell,
-      'settledComission': this.apiData.settledComission,
+      'cupoMaxSell': cupoMaxSell,
+      'settledComission': settledComission,
       'buyEnabled': this.apiData.buyEnabled,
       'collectionEnabled': this.apiData.collectionEnabled,
       'bankEntityCodeValueId': this.apiData.bankEntityCodeValueId,
       'accountTypeCodeValueId': this.apiData.accountTypeCodeValueId,
-      'accountNumber': this.apiData.accountNumber,
+      'accountNumber': accountNumber,
       'taxProfileCodeValueId': this.apiData.taxProfileCodeValueId,
       'stateCodeValueId': this.apiData.stateCodeValueId,
       });
@@ -104,7 +114,7 @@ export class EditClientallyComponent implements OnInit {
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
-      'companyName': ['', [Validators.required]],
+      'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
       'nit': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(15)]],
       'nitDigit': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       'address': ['', [Validators.required, Validators.maxLength(40)]],
@@ -112,13 +122,13 @@ export class EditClientallyComponent implements OnInit {
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
-      'cupoMaxSell':  [{value: ''}, [Validators.required, Validators.pattern('^[0-9]+$')]],
-      'settledComission': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      'cupoMaxSell': [{value: ''}, [Validators.pattern('^[0-9,\\.]+$'),  Validators.min(1), Validators.max(2147483647)]],
+      'settledComission': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.1), Validators.maxLength(5), Validators.max(99.99)]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
       'accountTypeCodeValueId': [''],
-      'accountNumber': ['', [Validators.pattern('^[0-9]+$')]],
+      'accountNumber': ['', [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(1), Validators.max(2147483647)]],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });
@@ -126,7 +136,7 @@ export class EditClientallyComponent implements OnInit {
 
 
   loadClientalliesTemplate(requestFrom: String) {
-    console.log("clientsallies " + requestFrom);
+    console.log('clientsallies ' + requestFrom);
 
     this.clientsalliesService.getTemplate().subscribe(( apiResponseBody: any ) => {
       console.log(apiResponseBody);
@@ -157,7 +167,18 @@ export class EditClientallyComponent implements OnInit {
     const groupFormData = this.groupForm.value;
     const locale = this.settingsService.language.code;
     const dateFormat = this.settingsService.dateFormat;
-
+    if (typeof groupFormData.accountNumber === 'string') {
+      groupFormData.accountNumber = groupFormData.accountNumber.replace(/\D/g, '');
+      this.groupForm.get('accountNumber').patchValue(groupFormData.accountNumber);
+    }
+    if (typeof groupFormData.cupoMaxSell === 'string') {
+      groupFormData.cupoMaxSell = groupFormData.cupoMaxSell.replace(/\D/g, '');
+      this.groupForm.get('cupoMaxSell').patchValue(groupFormData.cupoMaxSell);
+    }
+    this.groupForm.updateValueAndValidity();
+    if (this.groupForm.invalid) {
+       return;
+    }
     const data = {
       ...groupFormData,
       dateFormat,
@@ -175,11 +196,11 @@ export class EditClientallyComponent implements OnInit {
   }
 
   enableOrDisableCupoMaxSellField(selected: boolean) {
-    if(selected) {
-      this.groupForm.get("cupoMaxSell").enable();
+    if (selected) {
+      this.groupForm.get('cupoMaxSell').enable();
     } else {
-      this.groupForm.get("cupoMaxSell").patchValue("");
-      this.groupForm.get("cupoMaxSell").disable();
+      this.groupForm.get('cupoMaxSell').patchValue('');
+      this.groupForm.get('cupoMaxSell').disable();
     }
   }
 }
