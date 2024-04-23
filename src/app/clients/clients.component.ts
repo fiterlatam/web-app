@@ -33,6 +33,8 @@ export class ClientsComponent implements OnInit {
   sortAttribute = '';
   sortDirection = '';
 
+  showClosedAccountsChecked = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -58,10 +60,14 @@ export class ClientsComponent implements OnInit {
     this.clientService.searchByText(this.filterText, this.currentPage, this.pageSize, this.sortAttribute, this.sortDirection)
     .subscribe((data: any) => {
       this.dataSource.data = data.content;
-
       this.totalRows = data.totalElements;
-
       this.existsClientsToFilter = (data.numberOfElements > 0);
+
+      if(!this.showClosedAccountsChecked) {
+        this.dataSource.data = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
+        this.totalRows = this.dataSource.data.length;
+        this.existsClientsToFilter = (this.totalRows > 0);
+      }
       this.notExistsClientsToFilter = !this.existsClientsToFilter;
       this.isLoading = false;
     }, (error: any) => {
@@ -90,5 +96,9 @@ export class ClientsComponent implements OnInit {
   private resetPaginator() {
     this.currentPage = 0;
     this.paginator.firstPage();
+  }
+
+  onChangeShowClosedAccount(event:any) {
+    this.getClients();
   }
 }

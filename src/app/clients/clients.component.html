@@ -6,7 +6,7 @@
       </mat-form-field>
     </div>
     <div class="filter-box" *ngIf="existsClientsToFilter">
-      <mat-checkbox #showClosedAccounts labelPosition="after" class="m-r-10">{{"labels.inputs.Show Closed Accounts" | translate}}
+      <mat-checkbox #showClosedAccounts labelPosition="after" class="m-r-10" [(ngModel)]="showClosedAccountsChecked" (change)="onChangeShowClosedAccount($event)">{{"labels.inputs.Show Closed Accounts" | translate}}
       </mat-checkbox>
     </div>
     <div class="action-button" fxLayoutGap="25px">
