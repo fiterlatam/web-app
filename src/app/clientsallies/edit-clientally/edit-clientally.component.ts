@@ -115,7 +115,7 @@ export class EditClientallyComponent implements OnInit {
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
       'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
-      'nit': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(15)]],
+      'nit': ['', [Validators.required, Validators.maxLength(20), Validators.minLength(1)]],
       'nitDigit': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       'address': ['', [Validators.required, Validators.maxLength(40)]],
       'departmentCodeValueId': ['', [Validators.required]],
