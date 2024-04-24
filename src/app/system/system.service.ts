@@ -747,7 +747,18 @@ export class SystemService {
    * @param {any} role BlockingReasonSettings Created.
    * @returns {Observable<any>}
    */
-    createBlockingReasonSettings(role: any): Observable<any> {
-      return this.http.post('/blockSettings/createBlockingReasonSettings', role);
-    }
+  createBlockingReasonSettings(role: any): Observable<any> {
+    return this.http.post('/blockSettings/createBlockingReasonSettings', role);
+  }
+
+  retrieveAllBlockingReasons(): Observable<any> {
+    return this.http.get('/blockSettings/retrieveAllBlockingReasons');
+  }
+
+  getBlockingReason(blockingReasonId: string): Observable<any> {
+    return this.http.get(`/blockSettings/getBlockingReasonsById/${blockingReasonId}`);
+  }
+  updateBlockReasonSetting(id: string, blockSettingsChanges: any): Observable<any> {
+    return this.http.put(`/blockSettings/${id}`, blockSettingsChanges);
+  }
 }

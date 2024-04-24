@@ -17,7 +17,7 @@ export class ManageBlockingReasonsResolver implements Resolve<Object> {
 
 
   resolve(): Observable<any> {
-    return this.systemService.getBlockingReasonSettingsTemplate();
+    return this.systemService.retrieveAllBlockingReasons();
   }
 
 }

@@ -11,41 +11,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManageBlockingReasonsComponent implements OnInit {
 
+  blockingReasonSettings: any;
 
-   blockReasonSettingsData: any;
+  displayedColumns: string[] = ['id','priority','level','customerLevel','creditLevel','nameOfReason','description','createdDate'];
 
-   displayedColumns: string[] = ['accountType'];
+  dataSource: MatTableDataSource<any>;
 
-   dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  constructor(private route: ActivatedRoute) {
+    this.route.data.subscribe((data: { manageBlockingReasonsResolver: any }) => {
+      this.blockingReasonSettings = data.manageBlockingReasonsResolver;
+    });
+  }
 
-   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  ngOnInit() {
+    this.setBlockingReasonSettings();
+  }
 
+  setBlockingReasonSettings() {
+    this.dataSource = new MatTableDataSource(this.blockingReasonSettings);
+    this.dataSource.paginator = this.paginator;    
+    this.dataSource.sort = this.sort;
+  }
 
-   constructor(private route: ActivatedRoute) {
-     this.route.data.subscribe((data: { blockReasonSettings: any }) => {
-       this.blockReasonSettingsData = data.blockReasonSettings;
-     });
-   }
-
-   ngOnInit() {
-     this.setBlockingReasonSettings();
-   }
-
-   setBlockingReasonSettings() {
-     this.dataSource = new MatTableDataSource(this.blockReasonSettingsData);
-     this.dataSource.paginator = this.paginator;
-     this.dataSource.sortingDataAccessor = (blockReasonSettings: any, property: any) => {
-       return blockReasonSettings.accountType.value;
-     };
-     this.dataSource.sort = this.sort;
-     this.dataSource.filterPredicate = (data: any, filter: string) => data.accountType.value.toLowerCase().indexOf(filter) !== -1;
-   }
-
-   applyFilter(filterValue: string) {
-     this.dataSource.filter = filterValue.toLowerCase().trim();
-   }
-
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.toLowerCase().trim();
+  }
 }
