@@ -56,6 +56,10 @@ export class ClientsViewComponent implements OnInit {
     return (this.clientViewData.status.value === 'Active');
   }
 
+  isNotClosed(): boolean {
+    return (this.clientViewData.status.value !== 'Closed');
+  }
+
   /**
    * Performs action button/option action.
    * @param {string} name action name.

@@ -79,8 +79,8 @@
           </mat-icon>
           <span>{{"labels.buttons.Applications" | translate}}</span>
         </button>
-
-        <button mat-menu-item [matMenuTriggerFor]="Actions">
+        
+        <button *ngIf="isNotClosed()" mat-menu-item [matMenuTriggerFor]="Actions">
           <mat-icon matListIcon>
             <fa-icon icon="tasks" size="sm"></fa-icon>
           </mat-icon>
