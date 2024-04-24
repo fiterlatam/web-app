@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {SettingsService} from '../../../settings/settings.service';
 
 @Component({
   selector: 'mifosx-repayment-schedule-tab',
@@ -26,11 +27,17 @@ export class RepaymentScheduleTabComponent implements OnInit {
   /** Form functions event */
   @Output() editPeriod = new EventEmitter();
 
+  locale: string;
+  format: string;
+  decimalPlace: string;
+
   /**
    * Retrieves the loans with associations data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
+   * @param settingsService
    */
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              private settingsService: SettingsService) {
     this.route.parent.data.subscribe((data: { loanDetailsData: any }) => {
       if (data.loanDetailsData) {
         this.currencyCode = data.loanDetailsData.currency.code;
@@ -40,6 +47,9 @@ export class RepaymentScheduleTabComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     if (this.repaymentScheduleDetails == null) {
       this.repaymentScheduleDetails = this.loanDetailsDataRepaymentSchedule;
     }

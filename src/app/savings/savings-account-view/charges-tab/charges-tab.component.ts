@@ -52,6 +52,9 @@ export class ChargesTabComponent implements OnInit {
     'outstanding',
     'actions'
   ];
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /** Charges Table Reference */
   @ViewChild('chargesTable', { static: true }) chargesTableRef: MatTable<Element>;
@@ -78,6 +81,9 @@ export class ChargesTabComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     const activeCharges = this.chargesData ? this.chargesData.filter(charge => charge.isActive) : [];
     this.dataSource = new MatTableDataSource(activeCharges);
   }

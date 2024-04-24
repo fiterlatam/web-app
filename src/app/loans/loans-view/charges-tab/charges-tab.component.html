@@ -44,25 +44,25 @@
     <ng-container matColumnDef="due">
       <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Due" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let charge">  {{ charge.amount |
-        currency:charge.currency.code:'symbol-narrow':'1.2-2' }} </td>
+        currency:charge.currency.code:'symbol-narrow':format:locale }} </td>
     </ng-container>
 
     <ng-container matColumnDef="paid">
       <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Paid" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let charge"> {{ charge.amountPaid |
-        currency:charge.currency.code:'symbol-narrow':'1.2-2' }} </td>
+        currency:charge.currency.code:'symbol-narrow':format:locale }} </td>
     </ng-container>
 
     <ng-container matColumnDef="waived">
       <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Waived" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let charge"> {{ charge.amountWaived |
-        currency:charge.currency.code:'symbol-narrow':'1.2-2' }} </td>
+        currency:charge.currency.code:'symbol-narrow':format:locale }} </td>
     </ng-container>
 
     <ng-container matColumnDef="outstanding">
       <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Outstanding" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let charge"> {{charge.amountOutstanding |
-        currency:charge.currency.code:'symbol-narrow':'1.2-2' }} </td>
+        currency:charge.currency.code:'symbol-narrow':format:locale}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

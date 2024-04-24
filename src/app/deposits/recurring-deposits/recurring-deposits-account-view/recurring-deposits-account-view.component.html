@@ -39,12 +39,12 @@
                 <tr>
                   <td>{{"labels.inputs.Current Balance" | translate }}</td>
                   <td class="r-amount">{{recurringDepositsAccountData.summary.accountBalance |
-                    currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+                    currency:currency.code:'symbol-narrow':format:locale}}</td>
                 </tr>
                 <tr>
                   <td>{{"labels.inputs.Deposit Amount" | translate }}</td>
                   <td class="r-amount">{{recurringDepositsAccountData.depositAmount |
-                    currency:currency.code:'symbol-narrow':'1.2-2'}}</td>
+                    currency:currency.code:'symbol-narrow':format:locale}}</td>
                 </tr>
                 <tr>
                   <td>{{"labels.inputs.Deposit Period" | translate }}</td>

@@ -31,6 +31,8 @@ export class LoanDelinquencyTagsTabComponent implements OnInit {
 
   locale: string;
   dateFormat: string;
+  format: string;
+  decimalPlace: string;
 
   constructor(private route: ActivatedRoute,
     private loansServices: LoansService,
@@ -59,6 +61,8 @@ export class LoanDelinquencyTagsTabComponent implements OnInit {
 
   ngOnInit(): void {
     this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
     this.dateFormat = this.settingsService.dateFormat;
     this.currentLoanDelinquencyAction = null;
     this.validateDelinquencyActions();

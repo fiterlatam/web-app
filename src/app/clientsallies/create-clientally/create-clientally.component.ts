@@ -1,20 +1,11 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-
-/** rxjs Imports */
-import { merge } from 'rxjs';
-import { tap, startWith, map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 /** Custom Services */
 import { ClientsalliesService } from '../clientsallies.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Dates } from 'app/core/utils/dates';
 
 @Component({
   selector: 'mifosx-create-clientally',
@@ -24,9 +15,6 @@ import { Dates } from 'app/core/utils/dates';
 
 
 export class CreateClientallyComponent implements OnInit {
-
-  apiData: any;
-
   groupForm: UntypedFormGroup;
 
   // Template data
@@ -37,25 +25,20 @@ export class CreateClientallyComponent implements OnInit {
   accountTypesList: any;
   taxProfilesList: any;
   statesList: any;
+  dataValue = 1234567890;
 
 
   constructor(private route: ActivatedRoute,
-      private router: Router,
-      private clientsalliesService: ClientsalliesService,
-      private dateUtils: Dates,
-      private settingsService: SettingsService,
-      private formBuilder: UntypedFormBuilder) {
-
-    console.log("constructor");
+              private router: Router,
+              private clientsalliesService: ClientsalliesService,
+              private settingsService: SettingsService,
+              private formBuilder: UntypedFormBuilder) {
   }
-
 
   ngOnInit(): void {
-    console.log("ngOnInit");
     this.createGroupForm();
-    this.loadClientalliesTemplate("ngOnInit");
+    this.loadClientalliesTemplate('ngOnInit');
   }
-
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
@@ -67,29 +50,22 @@ export class CreateClientallyComponent implements OnInit {
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
-      'cupoMaxSell': ['', [Validators.pattern('^[0-9]+$')]],
-      'settledComission': ['', [Validators.pattern('^[0-9]+$')]],
+      'cupoMaxSell': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.min(1), Validators.max(2147483647)]],
+      'settledComission': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.1), Validators.maxLength(5), Validators.max(99.99)]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
       'accountTypeCodeValueId': [''],
-      'accountNumber': ['', [Validators.pattern('^[0-9]+$')]],
+      'accountNumber': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.maxLength(20)]],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });
     this.groupForm.updateValueAndValidity();
-
     this.enableOrDisableCupoMaxSellField(false);
-
   }
 
-
   loadClientalliesTemplate(requestFrom: String) {
-    console.log("clientsallies " + requestFrom);
-
     this.clientsalliesService.getTemplate().subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
-
       this.departmentsList = apiResponseBody.departmentsList;
       this.liquidationFrequencyList = apiResponseBody.liquidationFrequencyList;
       this.bankEntitiesList = apiResponseBody.bankEntitiesList;
@@ -101,7 +77,7 @@ export class CreateClientallyComponent implements OnInit {
   }
 
   loadCitiesByDepartment(id: any) {
-    console.log("loadCitiesByDepartment called with id:" + id);
+    console.log('loadCitiesByDepartment called with id:' + id);
     this.clientsalliesService.getCitiesByDepartment(id).subscribe(( apiResponseBody: any ) => {
       console.log(apiResponseBody);
       this.citiesList = apiResponseBody.citiesList;
@@ -113,6 +89,18 @@ export class CreateClientallyComponent implements OnInit {
     const groupFormData = this.groupForm.value;
     const locale = this.settingsService.language.code;
     const dateFormat = this.settingsService.dateFormat;
+    if (typeof groupFormData.accountNumber === 'string') {
+      groupFormData.accountNumber = groupFormData.accountNumber.replace(/\D/g, '');
+      this.groupForm.get('accountNumber').patchValue(groupFormData.accountNumber);
+    }
+    if (typeof groupFormData.cupoMaxSell === 'string') {
+      groupFormData.cupoMaxSell = groupFormData.cupoMaxSell.replace(/\D/g, '');
+      this.groupForm.get('cupoMaxSell').patchValue(groupFormData.cupoMaxSell);
+    }
+    this.groupForm.updateValueAndValidity();
+    if (this.groupForm.invalid) {
+      return;
+    }
     const data = {
       ...groupFormData,
       dateFormat,
@@ -124,18 +112,18 @@ export class CreateClientallyComponent implements OnInit {
     });
   }
 
-
   reloadCitiesByDepartment(id: any) {
     this.loadCitiesByDepartment(id);
   }
 
-
   enableOrDisableCupoMaxSellField(selected: boolean) {
-    if(selected) {
-      this.groupForm.get("cupoMaxSell").enable();
+    if (selected) {
+      this.groupForm.get('cupoMaxSell').enable();
+      this.groupForm.get('cupoMaxSell').addValidators(Validators.required);
+      this.groupForm.get('cupoMaxSell').updateValueAndValidity();
     } else {
-      this.groupForm.get("cupoMaxSell").patchValue("");
-      this.groupForm.get("cupoMaxSell").disable();
+      this.groupForm.get('cupoMaxSell').patchValue('');
+      this.groupForm.get('cupoMaxSell').disable();
     }
   }
 }

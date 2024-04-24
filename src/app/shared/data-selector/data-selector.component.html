@@ -24,7 +24,7 @@
         </ngx-mat-select-search>
       </mat-option>
       <mat-option *ngFor="let dataOpt of dataOption | async" [value]="dataOpt.id">
-        {{dataOpt.value}}
+        {{dataOpt.value}} - {{dataOpt.score}}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Currency } from 'app/shared/models/general.model';
+import {SettingsService} from '../../../settings/settings.service';
 
 @Component({
   selector: 'mifosx-general-tab',
@@ -14,8 +15,12 @@ export class GeneralTabComponent implements OnInit {
 
   savingsAccountData: any;
   currency: Currency;
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   constructor(private route: ActivatedRoute,
+    private settingsService: SettingsService,
     private router: Router) {
     this.route.parent.parent.data.subscribe((data: { savingsAccountData: any }) => {
       this.savingsAccountData = data.savingsAccountData;
@@ -34,6 +39,9 @@ export class GeneralTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
   }
 
 }

@@ -53,7 +53,7 @@
         </div>
 
         <div fxFlex="50%">
-          {{ transactionData.amount | currency:transactionData.currency.code:'symbol-narrow':'1.2-2' }}
+          {{ transactionData.amount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
         </div>
 
         <div fxFlex="50%" *ngIf="transactionData.note" class="mat-body-strong">

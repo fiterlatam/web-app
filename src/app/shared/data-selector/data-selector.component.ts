@@ -91,7 +91,8 @@ export class DataSelectorComponent implements OnInit, OnChanges, OnDestroy, Cont
           this.dataOption.next(this.dataOptions.slice());
       } else {
         this.dataOption.next(this.dataOptions.filter((option: DatOption) => {
-          return option.value.toLowerCase().indexOf(search) >= 0;
+          const score = option.score ? option.score.toString() : '';
+          return (option.value.toLowerCase().indexOf(search) >= 0 || score.toLowerCase().indexOf(search) >= 0);
         }));
       }
     }

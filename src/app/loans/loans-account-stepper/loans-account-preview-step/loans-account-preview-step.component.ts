@@ -1,5 +1,6 @@
 /** Angular Imports */
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import {SettingsService} from '../../../settings/settings.service';
 
 /**
  * Create Loans Account Preview Step
@@ -24,9 +25,16 @@ export class LoansAccountPreviewStepComponent implements OnInit {
   chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'date'];
   /** Overdue Charges Displayed Columns */
   overdueChargesDisplayedColumns: string[] = ['name', 'type', 'amount', 'collectedon'];
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
-  constructor() { }
+  constructor(private settingsService: SettingsService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+  }
 
 }
