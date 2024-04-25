@@ -273,7 +273,8 @@
         "validation.msg.savingsproduct.withdrawalFeeAmount.cannot.be.blank": "Withdrawal fee amount is mandatory.",
         "validation.msg.savingsproduct.withdrawalFeeAmount.not.zero.or.greater": "Withdrawal fee amount must be greater than or equal to zero if provided.",
         "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "Withdrawal fee period type is mandatory.",
-        "validation.msg.clientallypointofsales.code.duplicated.code": "This Code already exists."
+        "validation.msg.clientallypointofsales.code.duplicated.code": "This Code already exists.",
+        "error.msg.block.reason.is.already.assigned.to.level":"Block Reason  [ {{params[0].value}} ] is already assigned to client level blockLevelType.client"
     },
     "labels": {
         "breadcrumbs": {

@@ -738,11 +738,7 @@ export class SystemService {
   runCOBCatchUp() {
     const emptyData = {};
     return this.http.post(`/loans/catch-up`, emptyData);
-  }
-    
-  getBlockingReasonSettingsTemplate(): Observable<any> {
-    return this.http.get('/blockSettings/template');
-  }
+  }    
     /**
    * @param {any} role BlockingReasonSettings Created.
    * @returns {Observable<any>}

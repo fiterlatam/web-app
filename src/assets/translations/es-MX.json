@@ -273,7 +273,8 @@
         "validation.msg.savingsproduct.withdrawalFeeAmount.cannot.be.blank": "El monto de la tarifa de retiro es obligatorio.",
         "validation.msg.savingsproduct.withdrawalFeeAmount.not.zero.or.greater": "El monto de la tarifa de retiro debe ser mayor o igual a cero, si se proporciona.",
         "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "El tipo de período de tarifa de retiro es obligatorio.",
-        "validation.msg.clientallypointofsales.code.duplicated.code": "El Codigo ya existe."
+        "validation.msg.clientallypointofsales.code.duplicated.code": "El Codigo ya existe.",
+        "error.msg.block.reason.is.already.assigned.to.level":"El motivo del bloqueo [ {{params[0].value}} ] ya está asignado al nivel de cliente blockLevelType.client ."
     },
     "labels": {
         "breadcrumbs": {
