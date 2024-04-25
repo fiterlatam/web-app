@@ -504,7 +504,9 @@
             "Yes": "Sí",
             "Import Allies": "Importar Aliados",
             "Import Points Of Sales": "Importar Puntos de Ventas",
-            "Create Blocking Reason": "Razón de bloqueo"
+            "Create Blocking Reason": "Razón de bloqueo",
+            "Block": "Bloquear",
+            "UndoBlock": "Deshacer bloque"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -2121,7 +2123,10 @@
             "chargeCalculationType.fee": "Honorários",
             "chargeCalculationType.term": "Plazo",
             "graceOnChargePeriodAmount": "Periodo de Gracia",
-            "Block Level": "Nivel de bloque"
+            "Block Level": "Nivel de bloque",
+            "Blocked On Date": "Bloqueado en fecha",
+            "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
+            "Blocking Reason": "Razón del bloqueo"
         },
         "links": {
             "Community": "Comunidad",

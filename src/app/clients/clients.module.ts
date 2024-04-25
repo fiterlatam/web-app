@@ -57,6 +57,8 @@ import { CaptureImageDialogComponent } from './clients-view/custom-dialogs/captu
 import { CreateSelfServiceUserComponent } from './clients-view/client-actions/create-self-service-user/create-self-service-user.component';
 import { AddClientCollateralComponent } from './clients-view/client-actions/add-client-collateral/add-client-collateral.component';
 import { ClientDatatableStepComponent } from './client-stepper/client-datatable-step/client-datatable-step.component';
+import {BlockClientComponent} from './clients-view/client-actions/block-client/block-client.component';
+import {UndoBlockClientComponent} from './clients-view/client-actions/undo-block-client/undo-block-client.component';
 
 
 /**
@@ -90,6 +92,8 @@ import { ClientDatatableStepComponent } from './client-stepper/client-datatable-
     ClientAssignStaffComponent,
     UnassignStaffDialogComponent,
     CloseClientComponent,
+    BlockClientComponent,
+    UndoBlockClientComponent,
     ViewSurveyComponent,
     RejectClientComponent,
     ActivateClientComponent,

@@ -31,6 +31,7 @@ export class StatusLookupPipe implements PipeTransform {
       'loanProduct.inActive': 'status-inactive',
       'clientStatusType.pending': 'status-pending',
       'clientStatusType.closed': 'status-closed',
+      'clientStatusType.blocked': 'status-block',
       'clientStatusType.rejected': 'status-rejected', // write
       'clientStatusType.withdraw': 'status-withdraw', // write
       'clientStatusType.active': 'status-active',

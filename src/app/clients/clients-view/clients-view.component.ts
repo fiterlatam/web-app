@@ -68,6 +68,8 @@ export class ClientsViewComponent implements OnInit {
     switch (name) {
       case 'Assign Staff':
       case 'Close':
+      case 'Block':
+      case 'UndoBlock':
       case 'Survey':
       case 'Reject':
       case 'Activate':

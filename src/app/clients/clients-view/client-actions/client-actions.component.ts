@@ -16,6 +16,8 @@ export class ClientActionsComponent {
   actions: {
     'Assign Staff': boolean
     'Close': boolean
+    'Block': boolean
+    'UndoBlock': boolean
     'Reject': boolean
     'Survey': boolean
     'Withdraw': boolean
@@ -34,6 +36,8 @@ export class ClientActionsComponent {
   } = {
     'Assign Staff': false,
     'Close': false,
+    'Block': false,
+    'UndoBlock': false,
     'Reject': false,
     'Survey': false,
     'Withdraw': false,

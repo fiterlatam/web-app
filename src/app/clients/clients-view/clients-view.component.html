@@ -79,7 +79,7 @@
           </mat-icon>
           <span>{{"labels.buttons.Applications" | translate}}</span>
         </button>
-        
+
         <button *ngIf="isNotClosed()" mat-menu-item [matMenuTriggerFor]="Actions">
           <mat-icon matListIcon>
             <fa-icon icon="tasks" size="sm"></fa-icon>
@@ -141,6 +141,12 @@
             (click)="doAction('Accept Transfer')">{{"labels.buttons.Accept Transfer" | translate}}</button></span>
         <span *ngIf="clientViewData.status.value === 'Transfer in progress'"><button mat-menu-item
             (click)="doAction('Reject Transfer')">{{"labels.buttons.Reject transfer" | translate}}</button></span>
+        <span *ngIf="clientViewData.status.value === 'Active'">
+          <button mat-menu-item (click)="doAction('Block')" *mifosxHasPermission="'BLOCK_CLIENT'" >{{"labels.buttons.Block" | translate}}</button>
+        </span>
+        <span *ngIf="clientViewData.status.value === 'Blocked'">
+          <button mat-menu-item (click)="doAction('UndoBlock')" *mifosxHasPermission="'UNDOBLOCK_CLIENT'" >{{"labels.buttons.UndoBlock" | translate}}</button>
+        </span>
       </mat-menu>
 
       <mat-menu #More="matMenu">
