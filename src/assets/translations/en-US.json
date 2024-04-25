@@ -502,7 +502,9 @@
             "Week": "Week",
             "Withdraw": "Withdraw",
             "Yes": "Yes",
-            "Create Blocking Reason": "Blocking Reason"
+            "Create Blocking Reason": "Blocking Reason",
+            "Block": "Block",
+            "UndoBlock": "Undo Block"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -2116,7 +2118,10 @@
             "chargeCalculationType.fee": "Fees",
             "chargeCalculationType.term": "Term",
             "graceOnChargePeriodAmount": "Grace Period",
-            "Block Level": "Block Level"
+            "Block Level": "Block Level",
+            "Blocked On Date": "Blocked On Date",
+            "Undo Blocked On Date": "Undo Blocked On Date",
+            "Blocking Reason": "Blocking Reason"
         },
         "links": {
             "Community": "Community",

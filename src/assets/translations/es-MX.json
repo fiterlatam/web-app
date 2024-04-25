@@ -504,7 +504,9 @@
             "Yes": "Sí",
             "Import Allies": "Importar Aliados",
             "Import Points Of Sales": "Importar Puntos de Ventas",
-            "Create Blocking Reason": "Razón de bloqueo"
+            "Create Blocking Reason": "Razón de bloqueo",
+            "Block": "Bloquear",
+            "UndoBlock": "Deshacer bloque"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -1262,7 +1264,7 @@
             "End time": "Hora de finalización",
             "Enforce Minimum Balance": "Hacer cumplir el saldo mínimo",
             "Entity": "Entidad",
-            "Entity Name": "Razón social",
+            "Entity Name": "Razón Social / Nombre",
             "Entity SubType": "Subtipo de entidad",
             "Entity Type": "Tipo de entidad",
             "Entry ID": "Id de entrada",
@@ -2082,7 +2084,7 @@
             "task-management component": "componente de gestión de tareas",
             "to": "a",
             "valid": "válido",
-            "companyName": "Razón social",
+            "companyName": "Razón Social / Nombre",
             "nit": "NIT",
             "nitDigit": "Dígito de verificación",
             "address": "Dirección",
@@ -2121,7 +2123,10 @@
             "chargeCalculationType.fee": "Honorários",
             "chargeCalculationType.term": "Plazo",
             "graceOnChargePeriodAmount": "Periodo de Gracia",
-            "Block Level": "Nivel de bloque"
+            "Block Level": "Nivel de bloque",
+            "Blocked On Date": "Bloqueado en fecha",
+            "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
+            "Blocking Reason": "Razón del bloqueo"
         },
         "links": {
             "Community": "Comunidad",
