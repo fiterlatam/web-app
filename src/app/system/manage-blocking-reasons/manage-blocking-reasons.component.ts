@@ -13,7 +13,7 @@ export class ManageBlockingReasonsComponent implements OnInit {
 
   blockingReasonSettings: any;
 
-  displayedColumns: string[] = ['id','priority','level','customerLevel','creditLevel','nameOfReason','description','createdDate'];
+  displayedColumns: string[] = ['id','priority','level','nameOfReason','description','createdDate'];
 
   dataSource: MatTableDataSource<any>;
 

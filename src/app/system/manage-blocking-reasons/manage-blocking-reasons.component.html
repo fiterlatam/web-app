@@ -29,15 +29,7 @@
       <ng-container matColumnDef="level">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Block Level' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.level }} </td>
-      </ng-container>
-      <ng-container matColumnDef="customerLevel">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Client Level' | translate}} </th>
-        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.customerLevel.name }} </td>
-      </ng-container>
-      <ng-container matColumnDef="creditLevel">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Credit Level' | translate}} </th>
-        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.creditLevel.name }} </td>
-      </ng-container>
+      </ng-container>     
       <ng-container matColumnDef="nameOfReason">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Name Of Reason' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.nameOfReason }} </td>

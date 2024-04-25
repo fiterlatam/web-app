@@ -35,22 +35,6 @@
           <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.priority">
             {{ viewBlockingReasonItemData.priority }}
           </div>
-  
-          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.customerLevel?.id">
-            {{'labels.inputs.Client Level' | translate}}
-          </div>
-  
-          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.customerLevel?.id">
-            {{ viewBlockingReasonItemData.customerLevel.name }}
-          </div>
-          
-          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.creditLevel?.id">
-            {{'labels.inputs.Credit Level' | translate}}
-          </div>
-          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.creditLevel?.id">
-            {{ viewBlockingReasonItemData.creditLevel.name }}
-          </div>
-
 
           <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.nameOfReason">
             {{'labels.inputs.Name Of Reason' | translate}}

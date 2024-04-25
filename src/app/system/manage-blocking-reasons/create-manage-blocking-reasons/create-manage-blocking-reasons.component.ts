@@ -32,24 +32,9 @@ export class CreateManageBlockingReasonsComponent implements OnInit {
   createBlockingReasonForm() {
     this.blockingReasonForm = this.formBuilder.group({
       level: ['CLIENT'],
-      'creditLevel': [''],
-      'customerLevel': [''],
       'description': '',
       'nameOfReason': ['', Validators.required],
       'priority': ['', Validators.required],
-    });
-  
-    this.blockingReasonForm.get('level').valueChanges.subscribe(value => {
-      if (value === 'CREDIT') {
-       this.blockingReasonForm.get('creditLevel').setValidators(Validators.required);
-        this.blockingReasonForm.get('customerLevel').clearValidators();
-      } else {
-        this.blockingReasonForm.get('customerLevel').setValidators(Validators.required);
-        this.blockingReasonForm.get('creditLevel').clearValidators();
-      }
-  
-      this.blockingReasonForm.get('creditLevel').updateValueAndValidity();
-      this.blockingReasonForm.get('customerLevel').updateValueAndValidity();
     });
   }
 
