@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Injectable } from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 /** rxjs Imports */
@@ -12,6 +12,7 @@ import { environment } from 'environments/environment';
 /** Custom Services */
 import { Logger } from '../logger/logger.service';
 import { AlertService } from '../alert/alert.service';
+import {TranslateService} from '@ngx-translate/core';
 
 /** Initialize Logger */
 const log = new Logger('ErrorHandlerInterceptor');
@@ -24,8 +25,20 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
   /**
    * @param {AlertService} alertService Alert Service.
+   * @param translateService
    */
-  constructor(private alertService: AlertService) {  }
+
+  private _translateService: TranslateService;
+
+  constructor(private alertService: AlertService,
+              private injector: Injector) { }
+
+  private get translateService(): TranslateService {
+    if (!this._translateService) {
+      this._translateService = this.injector.get(TranslateService);
+    }
+    return this._translateService;
+  }
 
   /**
    * Intercepts a Http request and adds a default error handler.
@@ -42,7 +55,14 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     let errorMessage = (response.error.developerMessage || response.message);
     if (response.error.errors) {
       if (response.error.errors[0]) {
-        errorMessage = response.error.errors[0].defaultUserMessage || response.error.errors[0].developerMessage;
+        errorMessage = response.error.errors[0].userMessageGlobalisationCode || response.error.errors[0].defaultUserMessage || response.error.errors[0].developerMessage;
+        const params = response.error.errors[0].args || [];
+        errorMessage = this.translateService.instant('errors.' + errorMessage);
+        if (params && params.length > 0) {
+          for (let i = 0; i < params.length; i++) {
+            errorMessage = errorMessage.replace('{{params[' + i + '].value}}', params[i].value);
+          }
+        }
       }
     }
 
