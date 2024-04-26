@@ -637,8 +637,7 @@ const routes: Routes = [
               component: EditManageBlockingReasonsComponent,
               data: { title: 'Edit Blocking Reason Settings', breadcrumb: 'Edit', routeParamBreadcrumb: false },
               resolve: {
-                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService,
-                manageBlockingReasonTemplateResolver: ManageBlockingReasonsTemplateResolver
+                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
               }
             }
         ]

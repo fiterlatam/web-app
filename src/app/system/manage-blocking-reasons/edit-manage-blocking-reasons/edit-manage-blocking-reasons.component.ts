@@ -21,47 +21,37 @@ export class EditManageBlockingReasonsComponent implements OnInit {
               private formBuilder: UntypedFormBuilder,
               private systemService: SystemService,
               private router: Router) {
-    this.route.data.subscribe((data: { viewBlockingReasonItem: any, manageBlockingReasonTemplateResolver: any }) => {
+    this.route.data.subscribe((data: { viewBlockingReasonItem: any}) => {
       this.blockingReasonSettingsData = data.viewBlockingReasonItem;
-      this.blockingReasonSettingsTemplateData = data.manageBlockingReasonTemplateResolver;
     });
   }
 
   ngOnInit() {
     this.createBlockingReasonForm();
+    this.blockingReasonForm.patchValue({
+      'priority': this.blockingReasonSettingsData.priority,
+      'nameOfReason': this.blockingReasonSettingsData.nameOfReason,
+      'description': this.blockingReasonSettingsData.description
+    });
+    if (this.blockingReasonSettingsData && this.blockingReasonSettingsData.level) {
+      this.blockingReasonForm.get('level').setValue(this.blockingReasonSettingsData.level);
+    }
   }
 
   createBlockingReasonForm() {
     this.blockingReasonForm = this.formBuilder.group({
-      level: ['CLIENT'],
-      'creditLevel': [''],
-      'customerLevel': [''],
+      level: ['',Validators.required],
       'description': '',
       'nameOfReason': ['', Validators.required],
       'priority': ['', Validators.required],
-    });
-  
-    this.blockingReasonForm.get('level').valueChanges.subscribe(value => {
-      if (value === 'CREDIT') {
-       this.blockingReasonForm.get('creditLevel').setValidators(Validators.required);
-        this.blockingReasonForm.get('customerLevel').clearValidators();
-      } else {
-        this.blockingReasonForm.get('customerLevel').setValidators(Validators.required);
-        this.blockingReasonForm.get('creditLevel').clearValidators();
-      }
-  
-      this.blockingReasonForm.get('creditLevel').updateValueAndValidity();
-      this.blockingReasonForm.get('customerLevel').updateValueAndValidity();
     });
   }
 
   
   submit() {
-    const accountNumberPreferenceValue = this.blockingReasonForm.value;
-    if (accountNumberPreferenceValue.prefixType === '') {
-      accountNumberPreferenceValue.prefixType = undefined;
-    }
-    this.systemService.updateBlockReasonSetting(this.blockingReasonSettingsData.id, accountNumberPreferenceValue)
+    const blockingReasonFormValue = this.blockingReasonForm.value;
+    
+    this.systemService.updateBlockReasonSetting(this.blockingReasonSettingsData.id, blockingReasonFormValue)
       .subscribe((response: any) => {
         this.router.navigate(['../'], { relativeTo: this.route });
       });

@@ -277,7 +277,6 @@
         "error.msg.block.reason.is.already.assigned.to.level":"Block Reason  [ {{params[0].value}} ] is already assigned to client level blockLevelType.client",
         "error.msg.client.block.loan.non-closed": "Client cannot be blocked because of non-closed loans.",
         "error.msg.client.block.date.cannot.before.client.activation.date": "Client blocked on date {{params[0].value}} cannot be before client activation date {{params[1].value}}"
-    },
     "labels": {
         "breadcrumbs": {
             "Home": "Home"
