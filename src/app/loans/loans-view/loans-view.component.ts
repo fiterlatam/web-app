@@ -52,7 +52,7 @@ export class LoansViewComponent implements OnInit {
   loanReAged = false;
   locale: string;
   format: string;
-  decimalPlace: string;
+  decimalPlaces: string;
 
   constructor(private route: ActivatedRoute,
     private settingsService: SettingsService,
@@ -78,8 +78,11 @@ export class LoansViewComponent implements OnInit {
 
   ngOnInit() {
     this.locale = this.settingsService.language.code;
-    this.decimalPlace = this.settingsService.decimals;
-    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+    this.decimalPlaces = this.settingsService.decimals;
+    if (this.currency.decimalPlaces != null) {
+      this.decimalPlaces = this.currency.decimalPlaces.toString();
+    }
+    this.format = `1.${this.decimalPlaces}-${ this.decimalPlaces}`;
     this.recalculateInterest = this.loanDetailsData.recalculateInterest || true;
     this.status = this.loanDetailsData.status.value;
     if (this.loanDetailsData.status.active && this.loanDetailsData.multiDisburseLoan) {

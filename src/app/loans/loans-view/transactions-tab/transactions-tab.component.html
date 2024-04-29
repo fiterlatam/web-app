@@ -46,37 +46,37 @@
     <ng-container matColumnDef="amount">
       <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Amount" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.amount | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.amount | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="principal">
       <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Breakdown" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.principalPortion | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.principalPortion | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="interest">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.interestPortion | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.interestPortion | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="fee">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.feeChargesPortion | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.feeChargesPortion | formatNumber: [decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="penalties">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.penaltyChargesPortion | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.penaltyChargesPortion | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="loanBalance">
       <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Loan Balance" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.outstandingLoanBalance | formatNumber }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.outstandingLoanBalance | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

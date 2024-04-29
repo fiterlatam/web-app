@@ -33,6 +33,10 @@ export class TransactionsTabComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  /** Currency details */
+  currencyCode: string;
+  decimalPlaces: string;
+
   /**
    * Retrieves the loans with associations data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
@@ -48,6 +52,8 @@ export class TransactionsTabComponent implements OnInit {
       this.transactions = data.loanDetailsData.transactions;
       this.tempTransaction = data.loanDetailsData.transactions;
       this.status = data.loanDetailsData.status.value;
+      this.currencyCode =  data.loanDetailsData.currency.code;
+      this.decimalPlaces = ( data.loanDetailsData.currency.decimalPlaces != null) ?  data.loanDetailsData.currency.decimalPlaces : this.settingsService.decimals;
     });
   }
 

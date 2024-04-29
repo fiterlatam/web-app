@@ -10,7 +10,7 @@
               <b>{{"labels.inputs.Number of Repayments" | translate}} :</b>
             </td>
             <td fxFlex="25%" class="left">
-              {{loanDetails?.numberOfRepayments | formatNumber}}
+              {{loanDetails?.numberOfRepayments | formatNumber:[decimalPlaces] }}
             </td>
             <td fxFlex="25%">
               <b>{{"labels.inputs.Maturity Date" | translate}} :</b>
@@ -124,7 +124,7 @@
           </ng-container>
 
           <ng-container *ngIf="ele.key === 'Proposed Amount' || ele.key === 'Approved Amount' || ele.key === 'Disburse Amount'">
-            {{ ele.value | formatNumber }}
+            {{ ele.value | formatNumber:[decimalPlaces] }}
           </ng-container>
         </td>
       </ng-container>
