@@ -14,7 +14,7 @@ export class GeneralTabComponent implements OnInit {
   currencyCode: string;
   locale: string;
   format: string;
-  decimalPlace: string;
+  decimalPlaces: string;
   loanDetails: any;
   status: any;
   loanSummaryColumns: string[] = ['Empty', 'Original', 'Paid', 'Waived', 'Written Off', 'Outstanding', 'Over Due'];
@@ -43,6 +43,7 @@ export class GeneralTabComponent implements OnInit {
     this.route.parent.data.subscribe((data: { loanDetailsData: any, }) => {
       this.loanDetails = data.loanDetailsData;
       this.currencyCode = this.loanDetails.currency.code;
+      this.decimalPlaces = (this.loanDetails.currency.decimalPlaces != null) ? this.loanDetails.currency.decimalPlaces : this.settingsService.decimals;
       if (this.loanDetails.transactions) {
         this.loanDetails.transactions.some((transaction: any) => {
           if (transaction.type.code === 'loanTransactionType.chargeback') {
@@ -56,8 +57,7 @@ export class GeneralTabComponent implements OnInit {
 
   ngOnInit() {
     this.locale = this.settingsService.language.code;
-    this.decimalPlace = this.settingsService.decimals;
-    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+    this.format = `1.${this.decimalPlaces}-${ this.decimalPlaces}`;
     this.status = this.loanDetails.value;
     if (this.loanDetails.summary) {
       this.setloanSummaryTableData();

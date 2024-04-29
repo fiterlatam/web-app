@@ -29,7 +29,7 @@ export class RepaymentScheduleTabComponent implements OnInit {
 
   locale: string;
   format: string;
-  decimalPlace: string;
+  decimalPlaces: string;
 
   /**
    * Retrieves the loans with associations data from `resolve`.
@@ -41,6 +41,7 @@ export class RepaymentScheduleTabComponent implements OnInit {
     this.route.parent.data.subscribe((data: { loanDetailsData: any }) => {
       if (data.loanDetailsData) {
         this.currencyCode = data.loanDetailsData.currency.code;
+        this.decimalPlaces = data.loanDetailsData.currency.decimalPlaces;
       }
       this.loanDetailsDataRepaymentSchedule = data.loanDetailsData ? data.loanDetailsData.repaymentSchedule : [];
     });
@@ -48,8 +49,10 @@ export class RepaymentScheduleTabComponent implements OnInit {
 
   ngOnInit() {
     this.locale = this.settingsService.language.code;
-    this.decimalPlace = this.settingsService.decimals;
-    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+    if (this.decimalPlaces == null) {
+      this.decimalPlaces = this.settingsService.decimals;
+    }
+    this.format = `1.${this.decimalPlaces}-${ this.decimalPlaces}`;
     if (this.repaymentScheduleDetails == null) {
       this.repaymentScheduleDetails = this.loanDetailsDataRepaymentSchedule;
     }
