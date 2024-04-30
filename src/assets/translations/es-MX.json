@@ -276,7 +276,12 @@
         "validation.msg.clientallypointofsales.code.duplicated.code": "El Codigo ya existe.",
         "error.msg.block.reason.is.already.assigned.to.level":"El motivo del bloqueo [ {{params[0].value}} ] ya está asignado al nivel de cliente blockLevelType.client .",
         "error.msg.client.block.loan.non-closed": "El cliente no puede ser bloqueado porque tiene créditos sin cerrar",
-        "error.msg.client.block.date.cannot.before.client.activation.date": "El cliente bloqueado en la fecha {{params[0].value}} no puede ser anterior a la fecha de activación del cliente {{params[1].value}}"
+        "error.msg.client.block.date.cannot.before.client.activation.date": "El cliente bloqueado en la fecha {{params[0].value}} no puede ser anterior a la fecha de activación del cliente {{params[1].value}}",
+        "validation.msg.customchargetypemap.term.is.greater.than.max": "El numero de la Cuota no puede ser major que maxima configurada para el producto Su+ Pay",
+        "error.msg.cannot.delete.not.last.active.record": "No se puede eliminar un registro no activo",
+        "error.msg.cannot.delete.record.with.from.date.in.the.past": "No se puede eliminar una tasa de cargo con fecha pasada",
+        "error.msg.cannot.update.not.last.active.record": "No se puede actualizar un registro no activo",
+        "error.msg.cannot.update.record.with.from.date.in.the.past": "No se puede actualizar una tasa de cargo con fecha pasada"
     },
     "labels": {
         "breadcrumbs": {
@@ -509,7 +514,8 @@
             "Import Points Of Sales": "Importar Puntos de Ventas",
             "Create Blocking Reason": "Razón de bloqueo",
             "Block": "Bloquear",
-            "UndoBlock": "Deshacer bloque"
+            "UndoBlock": "Deshacer bloque",
+            "reset": "Resetear"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -899,7 +905,10 @@
             "Reactivate User": "Reactivar usuario",
             "Clients Allies": "Aliados",
             "Points of Sales": "Puntos De Ventas",
-            "manage.blocking.reasons": "Administrar motivos de bloqueo"
+            "manage.blocking.reasons": "Administrar motivos de bloqueo",
+            "Customchargetypemap": "Mapeo de Cargos Personalizados",
+            "custom.charge.type.aval": "Mapeo de Cargos Personalizados",
+            "Delete Custom Charge": "Eliminar Cargo Personalizado"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2129,7 +2138,17 @@
             "Block Level": "Nivel de bloque",
             "Blocked On Date": "Bloqueado en fecha",
             "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
-            "Blocking Reason": "Razón del bloqueo"
+            "Blocking Reason": "Razón del bloqueo",
+            "customChargeEntityid": "Cargo",
+            "term": "Cuota",
+            "percentage": "Porcentaje",
+            "validFrom": "Valido desde",
+            "validTo": "Valido hasta",
+            "active": "Activo",
+            "actions": "Acciones",
+            "custom.charge.entity": "Cargo",
+            "custom.charge.type": "Tipo de Cargo"
+
         },
         "links": {
             "Community": "Comunidad",
@@ -2246,7 +2265,8 @@
             "Write Off": "Cancelar crédito",
             "XBRL": "XBRL",
             "clients.allies": "Aliados",
-            "Generate Disbursement Report": "Generar reporte de desembolso"
+            "Generate Disbursement Report": "Generar reporte de desembolso",
+            "Customchargetypemap": "Mapeo de Cargos Personalizados"
         },
         "placeholders": {
             "Add new server": "Agregar nuevo servidor",
@@ -2857,12 +2877,16 @@
             "client.allies.point.of.sales.create": "Crear Punto de Venta",
             "client.allies.point.of.sales.edit": "Editar Punto de Venta",
             "Audit": "Auditoría",
-            "manage.blocking.reasons": "Administrar motivos de bloqueo"
+            "manage.blocking.reasons": "Administrar motivos de bloqueo",
+            "custom.charge.type.aval.description": "Definir Mapeo de Cargos para productos crediticios",
+            "custom.charge.type.mapping": "Mapeo de Cargos Personalizados",
+            "Are you sure you want to delete this?": "¿Estás seguro de que quieres eliminar esto?"
         },
         "titles": {
             "Dashboard": "Tableros",
             "Home": "Inicio",
-            "Login": "Acceso"
+            "Login": "Acceso",
+            "Customchargetypemap": "Mapeo de Cargos Personalizados"
         }
     },
     "languages": {
@@ -3183,5 +3207,14 @@
     "months": "Meses",
     "years": "Años",
     "invalid": "Inválido"
+  },
+  "custom.charge.entity": {
+    "aval": "Aval",
+    "insurance": "Honorarios"
+  },
+  "custom.charge.type": {
+    "vip": "VIP",
+    "commerce": "Comércio",
+    "product": "Producto"
   }
 }

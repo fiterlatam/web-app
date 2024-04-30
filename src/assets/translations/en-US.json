@@ -276,7 +276,12 @@
       "validation.msg.clientallypointofsales.code.duplicated.code": "This Code already exists.",
       "error.msg.block.reason.is.already.assigned.to.level": "Block Reason  [ {{params[0].value}} ] is already assigned to client level blockLevelType.client",
       "error.msg.client.block.loan.non-closed": "Client cannot be blocked because of non-closed loans.",
-      "error.msg.client.block.date.cannot.before.client.activation.date": "Client blocked on date {{params[0].value}} cannot be before client activation date {{params[1].value}}"
+      "error.msg.client.block.date.cannot.before.client.activation.date": "Client blocked on date {{params[0].value}} cannot be before client activation date {{params[1].value}}",
+      "validation.msg.customchargetypemap.term.is.greater.than.max": "The term number cannot be bigger than the maximum configured value for Su+ Pay Product",
+      "error.msg.cannot.delete.not.last.active.record": "Cannot delete a non-active record",
+      "error.msg.cannot.delete.record.with.from.date.in.the.past": "You cannot delete a charge rate that is past dated",
+      "error.msg.cannot.update.not.last.active.record": "Cannot update a non-active record",
+      "error.msg.cannot.update.record.with.from.date.in.the.past": "You cannot update a charge rate that is past dated"
     },
     "labels": {
         "breadcrumbs": {
@@ -507,7 +512,8 @@
             "Yes": "Yes",
             "Create Blocking Reason": "Blocking Reason",
             "Block": "Block",
-            "UndoBlock": "Undo Block"
+            "UndoBlock": "Undo Block",
+            "reset": "Reset"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -894,7 +900,10 @@
             "Deactivate User": "Deactivate User",
             "Activate User": "Activate User",
             "Reactivate User": "Reactivate User",
-            "manage.blocking.reasons": "Manage Blocking Reasons"
+            "manage.blocking.reasons": "Manage Blocking Reasons",
+            "Customchargetypemap": "Custom Charge Type Map",
+            "custom.charge.type.aval": "Charge Type Map",
+            "Delete Custom Charge": "Delete Custom Charge"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2124,7 +2133,16 @@
             "Block Level": "Block Level",
             "Blocked On Date": "Blocked On Date",
             "Undo Blocked On Date": "Undo Blocked On Date",
-            "Blocking Reason": "Blocking Reason"
+            "Blocking Reason": "Blocking Reason",
+            "customChargeEntityid": "Cargo",
+            "term": "Installment Nr.",
+            "percentage": "Percentage",
+            "validFrom": "Valid From",
+            "validTo": "Valid To",
+            "active": "Active",
+            "actions": "Actions",
+            "custom.charge.entity": "Charge",
+            "custom.charge.type": "Charge Type"
         },
         "links": {
             "Community": "Community",
@@ -2241,7 +2259,8 @@
             "Write Off": "Write Off",
             "XBRL": "XBRL",
             "clients.allies": "Allies",
-            "Generate Disbursement Report": "Generate Disbursement Report"
+            "Generate Disbursement Report": "Generate Disbursement Report",
+            "Customchargetypemap": "Custom Charge Type Map"
         },
         "placeholders": {
             "Add new server": "Add new server",
@@ -2854,7 +2873,10 @@
             "client.allies.point.of.sales.create": "Create Point of Sale",
             "client.allies.point.of.sales.edit": "Edit Point of Sale",
             "Audit": "Audit",
-            "manage.blocking.reasons": "Manage Blocking Reasons"
+            "manage.blocking.reasons": "Manage Blocking Reasons",
+            "custom.charge.type.aval.description": "Define Charge Mapping for credit products",
+            "custom.charge.type.mapping": "Custom Charge Type Mapping",
+            "Are you sure you want to delete this?": "Are you sure you want to delete this?"
         },
         "titles": {
             "Dashboard": "Dashboard",
@@ -3180,5 +3202,14 @@
     "months": "Months",
     "years": "Years",
     "invalid": "Invalid"
+  },
+  "custom.charge.entity": {
+    "aval": "Aval",
+    "insurance": "Honorarios"
+  },
+  "custom.charge.type": {
+    "vip": "VIP",
+    "commerce": "Commerce",
+    "product": "Product"
   }
 }

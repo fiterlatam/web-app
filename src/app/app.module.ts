@@ -47,7 +47,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 /** Sumas Custom Routing Module - Custom modules must preceed the AppRoutingModule */
 import { ClientsalliesModule } from './clientsallies/clientsallies.module';
 import { ClientAllyPointOfSalesModule } from './clientsalliespointofsales/clientallypointofsales.module';
-
+import { CustomChargeTypeMapModule } from './products/customcharges/customchargetypemap.module';
 
 
 /**
@@ -102,7 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // Sumas custom modueles MUST BE PRECEDED BY AppRoutingModule
     ClientsalliesModule,
     ClientAllyPointOfSalesModule,
-    
+    CustomChargeTypeMapModule,
 
     // /Sumas custom modueles MUST BE PRECEDED BY AppRoutingModule
     // ###########################################################################
