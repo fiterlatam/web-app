@@ -403,4 +403,8 @@ export class ClientsService {
     }
     return this.http.post(`/v2/clients/search`, request);
   }
+
+  getClientBlockingReason(clientId: string) {
+    return this.http.get(`/clients/${clientId}/clientblockingreason`);
+  }
 }
