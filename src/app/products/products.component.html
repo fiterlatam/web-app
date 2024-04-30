@@ -116,6 +116,14 @@
             <p matLine>{{ 'labels.text.Define floating rates for loan products' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['customchargetypemap']" *mifosxHasPermission="'READ_FLOATINGRATE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="chart-line" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.custom.charge.type.aval' | translate }}</h4>
+            <p matLine>{{ 'labels.text.custom.charge.type.aval.description' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>
