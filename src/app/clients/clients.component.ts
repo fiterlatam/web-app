@@ -4,10 +4,12 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 /** Custom Services */
 import { environment } from 'environments/environment';
 import { ClientsService } from './clients.service';
+import { ClientBlockingReasonDialogComponent } from './client-blocking-reason-dialog/client-blocking-reason-dialog.component';
 
 @Component({
   selector: 'mifosx-clients',
@@ -38,7 +40,7 @@ export class ClientsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private clientService: ClientsService) { }
+  constructor(private clientService: ClientsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     if (environment.preloadClients) {
@@ -100,5 +102,18 @@ export class ClientsComponent implements OnInit {
 
   onChangeShowClosedAccount(event:any) {
     this.getClients();
+  }
+
+  showClientBlockingReasonDialog(clientId: string, statusId: string, displayName: string) {
+    if(statusId == '900') {
+      this.dialog.open(ClientBlockingReasonDialogComponent, {
+        data: {
+          clientId,
+          statusId,
+          displayName
+        },
+        width: '50rem'
+      });
+    }
   }
 }
