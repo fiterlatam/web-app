@@ -281,7 +281,8 @@
       "error.msg.cannot.delete.not.last.active.record": "Cannot delete a non-active record",
       "error.msg.cannot.delete.record.with.from.date.in.the.past": "You cannot delete a charge rate that is past dated",
       "error.msg.cannot.update.not.last.active.record": "Cannot update a non-active record",
-      "error.msg.cannot.update.record.with.from.date.in.the.past": "You cannot update a charge rate that is past dated"
+      "error.msg.cannot.update.record.with.from.date.in.the.past": "You cannot update a charge rate that is past dated",
+      "error.msg.applied.on.date.cannot.be.in.the.future": "Applied on date [ {{params[0].value}} ] cannot be in the future"
     },
     "labels": {
         "breadcrumbs": {
@@ -903,7 +904,8 @@
             "manage.blocking.reasons": "Manage Blocking Reasons",
             "Customchargetypemap": "Custom Charge Type Map",
             "custom.charge.type.aval": "Charge Type Map",
-            "Delete Custom Charge": "Delete Custom Charge"
+            "Delete Custom Charge": "Delete Custom Charge",
+            "Maximum legal rate parameterization":  "Maximum legal rate parameterization"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2142,7 +2144,14 @@
             "active": "Active",
             "actions": "Actions",
             "custom.charge.entity": "Charge",
-            "custom.charge.type": "Charge Type"
+            "custom.charge.type": "Charge Type",
+            "To change the EA rate to nominal": "To change the EA rate to nominal",
+            "EA Rate": "EA Rate",
+            "Enter EA Rate": "Enter EA Rate",
+            "Annual Nominal Rate": "Annual Nominal Rate",
+            "Monthly Nominal Rate": "Monthly Nominal Rate",
+            "Daily Nominal Rate": "Daily Nominal Rate",
+            "Applied On Date": "Applied On Date"
         },
         "links": {
             "Community": "Community",
@@ -2876,7 +2885,8 @@
             "manage.blocking.reasons": "Manage Blocking Reasons",
             "custom.charge.type.aval.description": "Define Charge Mapping for credit products",
             "custom.charge.type.mapping": "Custom Charge Type Mapping",
-            "Are you sure you want to delete this?": "Are you sure you want to delete this?"
+            "Are you sure you want to delete this?": "Are you sure you want to delete this?",
+            "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans"
         },
         "titles": {
             "Dashboard": "Dashboard",

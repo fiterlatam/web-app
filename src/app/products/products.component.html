@@ -64,6 +64,14 @@
             <p matLine>{{ 'labels.text.Define delinquency day ranges and bucket set for loan products' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['maximum-credit-rates']" *mifosxHasPermission="'READ_MAXIMUM_CREDIT_RATE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="money-bill-alt" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Maximum legal rate parameterization' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Define Maximum legal rate parameterization for system loans' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>
