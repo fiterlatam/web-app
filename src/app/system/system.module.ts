@@ -78,6 +78,7 @@ import { ManageBlockingReasonsComponent } from './manage-blocking-reasons/manage
 import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/create-manage-blocking-reasons/create-manage-blocking-reasons.component';
 import { ViewManageBlockingReasonsComponent } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons.component';
 import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/edit-manage-blocking-reasons/edit-manage-blocking-reasons.component';
+import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.component';
 
 @NgModule({
   imports: [
@@ -155,7 +156,8 @@ import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/ed
     ManageBlockingReasonsComponent,
     CreateManageBlockingReasonsComponent,
     ViewManageBlockingReasonsComponent,
-    EditManageBlockingReasonsComponent
+    EditManageBlockingReasonsComponent,
+    BlockByControlListsComponent
   ],
 })
 export class SystemModule { }

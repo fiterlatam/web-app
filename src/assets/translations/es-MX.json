@@ -514,8 +514,9 @@
             "Import Points Of Sales": "Importar Puntos de Ventas",
             "Create Blocking Reason": "Razón de bloqueo",
             "Block": "Bloquear",
-            "UndoBlock": "Deshacer bloque",
-            "reset": "Resetear"
+            "UndoBlock": "Desbloquear",
+            "reset": "Resetear",
+            "blocking by control lists": "Bloqueo por listas de control"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -905,10 +906,12 @@
             "Reactivate User": "Reactivar usuario",
             "Clients Allies": "Aliados",
             "Points of Sales": "Puntos De Ventas",
-            "manage.blocking.reasons": "Administrar motivos de bloqueo",
             "Customchargetypemap": "Mapeo de Cargos Personalizados",
             "custom.charge.type.aval": "Mapeo de Cargos Personalizados",
-            "Delete Custom Charge": "Eliminar Cargo Personalizado"
+            "Delete Custom Charge": "Eliminar Cargo Personalizado",
+            "Manage Blocking Reasons": "Administrar motivos de bloqueo",
+            "Block By Control Lists": "Bloquear por listas de control",
+            "Upload Block List": "Subir lista de bloqueo"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2877,10 +2880,11 @@
             "client.allies.point.of.sales.create": "Crear Punto de Venta",
             "client.allies.point.of.sales.edit": "Editar Punto de Venta",
             "Audit": "Auditoría",
-            "manage.blocking.reasons": "Administrar motivos de bloqueo",
             "custom.charge.type.aval.description": "Definir Mapeo de Cargos para productos crediticios",
             "custom.charge.type.mapping": "Mapeo de Cargos Personalizados",
-            "Are you sure you want to delete this?": "¿Estás seguro de que quieres eliminar esto?"
+            "Are you sure you want to delete this?": "¿Estás seguro de que quieres eliminar esto?",
+            "Manage Blocking Reasons": "Administrar motivos de bloqueo",
+            "Block By Control Lists": "Bloquear por listas de control"
         },
         "titles": {
             "Dashboard": "Tableros",
