@@ -754,8 +754,16 @@ export class SystemService {
   getBlockingReason(blockingReasonId: string): Observable<any> {
     return this.http.get(`/blockSettings/getBlockingReasonsById/${blockingReasonId}`);
   }
-  updateBlockReasonSetting(id: string, blockSettingsChanges: any): Observable<any> {
-    return this.http.put(`/blockSettings/${id}`, blockSettingsChanges);
+
+  /**
+   * Enable, disable or update the block reason setting
+   * @param blockingReasonId
+   * @returns observable object
+   */
+  updateBlockReasonSetting(id: string,command: string, blockSettingsChanges: any): Observable<any> {
+    const httpParams = new HttpParams().set('command', command);
+    let options = { params: httpParams };
+    return this.http.put(`/blockSettings/${id}`, blockSettingsChanges, options);
   }
 
   /**

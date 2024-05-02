@@ -51,7 +51,7 @@ export class EditManageBlockingReasonsComponent implements OnInit {
   submit() {
     const blockingReasonFormValue = this.blockingReasonForm.value;
     
-    this.systemService.updateBlockReasonSetting(this.blockingReasonSettingsData.id, blockingReasonFormValue)
+    this.systemService.updateBlockReasonSetting(this.blockingReasonSettingsData.id, null, blockingReasonFormValue)
       .subscribe((response: any) => {
         this.router.navigate(['../'], { relativeTo: this.route });
       });
