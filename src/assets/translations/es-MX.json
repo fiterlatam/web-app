@@ -281,7 +281,8 @@
         "error.msg.cannot.delete.not.last.active.record": "No se puede eliminar un registro no activo",
         "error.msg.cannot.delete.record.with.from.date.in.the.past": "No se puede eliminar una tasa de cargo con fecha pasada",
         "error.msg.cannot.update.not.last.active.record": "No se puede actualizar un registro no activo",
-        "error.msg.cannot.update.record.with.from.date.in.the.past": "No se puede actualizar una tasa de cargo con fecha pasada"
+        "error.msg.cannot.update.record.with.from.date.in.the.past": "No se puede actualizar una tasa de cargo con fecha pasada",
+        "error.msg.applied.on.date.cannot.be.in.the.future": "Aplicado en la fecha [ {{params[0].value}} ] no puede ser en el futuro"
     },
     "labels": {
         "breadcrumbs": {
@@ -911,7 +912,8 @@
             "Delete Custom Charge": "Eliminar Cargo Personalizado",
             "Manage Blocking Reasons": "Administrar motivos de bloqueo",
             "Block By Control Lists": "Bloquear por listas de control",
-            "Upload Block List": "Subir lista de bloqueo"
+            "Upload Block List": "Subir lista de bloqueo",
+            "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2150,8 +2152,14 @@
             "active": "Activo",
             "actions": "Acciones",
             "custom.charge.entity": "Cargo",
-            "custom.charge.type": "Tipo de Cargo"
-
+            "custom.charge.type": "Tipo de Cargo",
+            "To change the EA rate to nominal": "Para cambiar la tasa EA a nominal",
+            "EA Rate": "Tasa EA",
+            "Enter EA Rate": "Ingresa Tasa EA",
+            "Annual Nominal Rate": "Tasa Nominal Anual",
+            "Monthly Nominal Rate": "Tasa Nominal Mensual",
+            "Daily Nominal Rate": "Tasa Nominal Diaria",
+            "Applied On Date": "Aplicado en la fecha"
         },
         "links": {
             "Community": "Comunidad",
@@ -2884,7 +2892,8 @@
             "custom.charge.type.mapping": "Mapeo de Cargos Personalizados",
             "Are you sure you want to delete this?": "¿Estás seguro de que quieres eliminar esto?",
             "Manage Blocking Reasons": "Administrar motivos de bloqueo",
-            "Block By Control Lists": "Bloquear por listas de control"
+            "Block By Control Lists": "Bloquear por listas de control",
+            "Define Maximum legal rate parameterization for system loans": "Definir parametrización de tasa máxima legal para todos los créditos del sistema"
         },
         "titles": {
             "Dashboard": "Tableros",

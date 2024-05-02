@@ -1,0 +1,42 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_MAXIMUM_CREDIT_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.Edit' | translate}}
+  </button>
+</div>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <h2>{{'labels.inputs.To change the EA rate to nominal' | translate}}</h2>
+      <div fxLayout="row wrap" class="content">
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.EA Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.eaRate | formatNumber:[2]}}%
+        </div>
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Annual Nominal Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.annualNominalRate | formatNumber:[2] }}%
+        </div>
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Monthly Nominal Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.monthlyNominalRate | formatNumber:[3] }}%
+        </div>
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Daily Nominal Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.dailyNominalRate | formatNumber:[3] }}%
+        </div>
+      </div>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <button type="button" color="primary" mat-raised-button [routerLink]="['../']">Back</button>
+    </div>
+  </mat-card>
+</div>

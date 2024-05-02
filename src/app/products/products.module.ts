@@ -120,6 +120,10 @@ import { LoanProductPaymentStrategyStepComponent } from './loan-products/loan-pr
 import { ViewAdvancePaymenyAllocationComponent } from './loan-products/view-loan-product/shared/view-advance-paymeny-allocation/view-advance-paymeny-allocation.component';
 import { AdvancePaymentAllocationTabComponent } from './loan-products/loan-product-stepper/loan-product-payment-strategy-step/advance-payment-allocation-tab/advance-payment-allocation-tab.component';
 import { LoanProductSummaryComponent } from './loan-products/common/loan-product-summary/loan-product-summary.component';
+import {
+  EditMaximumCreditRateComponent
+} from './maximum-credit-rate/edit-maximum-credit-rate/edit-maximum-credit-rate.component';
+import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum-credit-rate.component';
 
 /**
  * Products Module
@@ -247,7 +251,9 @@ import { LoanProductSummaryComponent } from './loan-products/common/loan-product
         ShareProductDatatableTabComponent,
         ViewAdvancePaymenyAllocationComponent,
         AdvancePaymentAllocationTabComponent,
-        LoanProductSummaryComponent
+        LoanProductSummaryComponent,
+        ViewMaximumCreditRateComponent,
+        EditMaximumCreditRateComponent
     ]
 })
 export class ProductsModule { }

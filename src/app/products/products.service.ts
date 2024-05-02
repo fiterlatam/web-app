@@ -258,6 +258,14 @@ export class ProductsService {
     return this.http.put(`/taxes/component/${taxComponentId}`, taxComponent);
   }
 
+  /*
+ * @param {any} maximumCreditRate maximumCreditRate payload.
+ * @returns {Observable<any>}
+ */
+  updateMaximumCreditRate(maximumCreditRate: any): Observable<any> {
+    return this.http.put('/loanproducts/maximumCreditRate', maximumCreditRate);
+  }
+
   /**
    * @returns {Observable<any>} Tax Groups data
    */
@@ -590,6 +598,13 @@ export class ProductsService {
   deleteDatatableContent(productId: string, datatableName: string) {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
     return this.http.delete(`/datatables/${datatableName}/${productId}`, { params: httpParams });
+  }
+
+  /**
+   * @returns {Observable<any>} Maximum Credit Rate data.
+   */
+  getMaximumCreditRate(): Observable<any> {
+    return this.http.get('/loanproducts/maximumCreditRate');
   }
 
 }

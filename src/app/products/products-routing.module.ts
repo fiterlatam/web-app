@@ -1,6 +1,7 @@
 /** Angular Imports */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 /** Routing Imports */
 import { Route } from '../core/route/route.service';
@@ -126,6 +127,11 @@ import { ShareProductDatatableTabComponent } from './share-products/view-share-p
 import { ShareProductDatatablesResolver } from './share-products/share-product-datatables.resolver';
 import { ShareProductDatatableResolver } from './share-products/share-product-datatable.resolver';
 import { GlobalConfigurationsResolver } from 'app/system/configurations/global-configurations-tab/global-configurations.resolver';
+import {MaximumCreditRateResolver} from './maximum-credit-rate/maximum-credit-rate.resolver';
+import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum-credit-rate.component';
+import {
+  EditMaximumCreditRateComponent
+} from './maximum-credit-rate/edit-maximum-credit-rate/edit-maximum-credit-rate.component';
 
 /** Products Routes */
 const routes: Routes = [
@@ -736,6 +742,27 @@ const routes: Routes = [
           ]
         },
         {
+          path: 'maximum-credit-rates',
+          data: { title: 'Maximum legal rate parameterization', breadcrumb: 'Maximum legal rate parameterization' },
+          children: [
+            {
+              path: '',
+              component: ViewMaximumCreditRateComponent,
+              resolve: {
+                maximumCreditRate: MaximumCreditRateResolver
+              }
+            },
+            {
+              path: 'edit',
+              component: EditMaximumCreditRateComponent,
+              data: { title: 'Edit Maximum Credit Rate', breadcrumb: 'Edit', routeParamBreadcrumb: false },
+              resolve: {
+                maximumCreditRate: MaximumCreditRateResolver
+              }
+            }
+          ]
+        },
+        {
           path: 'floating-rates',
           data: { title: 'Floating Rates', breadcrumb: 'Floating Rates' },
           children: [
@@ -927,7 +954,8 @@ const routes: Routes = [
     CollateralsResolver,
     CollateralTemplateResolver,
     DelinquencyRangeComponentsResolver,
-    DelinquencyBucketComponentsResolver
+    DelinquencyBucketComponentsResolver,
+    MaximumCreditRateResolver
   ]
 })
 export class ProductsRoutingModule { }
