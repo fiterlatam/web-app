@@ -95,6 +95,8 @@ import { ManageBlockingReasonsResolver } from './manage-blocking-reasons/manage-
 import { ViewManageBlockingReasonsComponentResolverService } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons-component-resolver.service';
 import { ViewManageBlockingReasonsComponent } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons.component';
 import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/edit-manage-blocking-reasons/edit-manage-blocking-reasons.component';
+import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.component';
+import { BlockByControlListsResolver } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.resolver';
 
 const routes: Routes = [
   Route.withShell([
@@ -608,9 +610,19 @@ const routes: Routes = [
           children: [
             {
               path: '',
+              pathMatch: 'full',
               component: ManageBlockingReasonsComponent,
               resolve: {
                 manageBlockingReasonsResolver: ManageBlockingReasonsResolver
+              },
+  
+            },
+            {
+              path: 'block-by-control-lists',
+              component: BlockByControlListsComponent,
+              data: { title: 'Block By Control Lists', breadcrumb: 'Block By Control Lists', routeParamBreadcrumb: false },
+              resolve: {
+                imports: BlockByControlListsResolver
               }
             },
             {
@@ -624,25 +636,25 @@ const routes: Routes = [
             {
               path: ':id',
               data: { title: 'View Blocking Reason Setting', routeParamBreadcrumb: 'id' },
-          children: [
-            {
-              path: '',
-              component: ViewManageBlockingReasonsComponent,
-              resolve: {
-                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
-              }
-            },
-            {
-              path: 'edit',
-              component: EditManageBlockingReasonsComponent,
-              data: { title: 'Edit Blocking Reason Settings', breadcrumb: 'Edit', routeParamBreadcrumb: false },
-              resolve: {
-                viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
-              }
-            }
-        ]
-        }  
-        ]
+              children: [
+                {
+                  path: '',
+                  component: ViewManageBlockingReasonsComponent,
+                  resolve: {
+                    viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
+                  }
+                },
+                {
+                  path: 'edit',
+                  component: EditManageBlockingReasonsComponent,
+                  data: { title: 'Edit Blocking Reason Settings', breadcrumb: 'Edit', routeParamBreadcrumb: false },
+                  resolve: {
+                    viewBlockingReasonItem: ViewManageBlockingReasonsComponentResolverService
+                  }
+                },
+              ]
+            }  
+          ]
         }
       ]
     }
@@ -688,7 +700,8 @@ const routes: Routes = [
     ManageBlockingReasonsResolver,
     ViewManageBlockingReasonsComponentResolverService,
     ViewManageBlockingReasonsComponent,
-    EditManageBlockingReasonsComponent
+    EditManageBlockingReasonsComponent,
+    BlockByControlListsResolver,
   ]
 })
 export class SystemRoutingModule { }

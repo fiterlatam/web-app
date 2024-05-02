@@ -1,4 +1,9 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+  <button color="primary" mat-raised-button [routerLink]="['block-by-control-lists']">
+    <fa-icon icon="upload" class="m-r-10"></fa-icon>
+    {{ 'labels.buttons.blocking by control lists' | translate }}
+  </button>
+
   <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_BLOCKREASONSETTINGS'">
     <fa-icon icon="plus" class="m-r-10"></fa-icon>
     {{'labels.buttons.Create Blocking Reason' | translate}}

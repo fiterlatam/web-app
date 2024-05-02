@@ -757,4 +757,19 @@ export class SystemService {
   updateBlockReasonSetting(id: string, blockSettingsChanges: any): Observable<any> {
     return this.http.put(`/blockSettings/${id}`, blockSettingsChanges);
   }
+
+  /**
+   * Gets the document to be used as template for block by control list
+   * @param id Id of document to download
+   * @returns 
+   */
+  getImportDocument(id: string): Observable<any> {
+  
+    const httpParams = new HttpParams()
+    .set('importDocumentId', id)
+    .set('tenantIdentifier', 'default');
+    
+    return this.http.get('/imports/downloadOutputTemplate', { params: httpParams, responseType: 'arraybuffer', observe: 'response' });
+  }
+  
 }
