@@ -17,9 +17,17 @@ export class ManageBlockingReasonsComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
 
+  dataSourceDisabled: MatTableDataSource<any>;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+
+  @ViewChild(MatPaginator, { static: true }) paginatorDisabled: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sortDisabled: MatSort;
+
+
 
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: { manageBlockingReasonsResolver: any }) => {
@@ -32,12 +40,17 @@ export class ManageBlockingReasonsComponent implements OnInit {
   }
 
   setBlockingReasonSettings() {
-    this.dataSource = new MatTableDataSource(this.blockingReasonSettings);
+    this.dataSource = new MatTableDataSource(this.blockingReasonSettings.filter((item: { isEnabled: boolean; }) => item.isEnabled));
     this.dataSource.paginator = this.paginator;    
     this.dataSource.sort = this.sort;
+
+    this.dataSourceDisabled = new MatTableDataSource(this.blockingReasonSettings.filter((item: { isEnabled: boolean; }) => !item.isEnabled));
+    this.dataSourceDisabled.paginator = this.paginatorDisabled;
+    this.dataSourceDisabled.sort = this.sortDisabled;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.toLowerCase().trim();
+    this.dataSourceDisabled.filter = filterValue.toLowerCase().trim();
   }
 }

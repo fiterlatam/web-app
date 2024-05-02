@@ -903,7 +903,9 @@
             "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
             "Manage Blocking Reasons": "Manage Blocking Reasons",
             "Block By Control Lists": "Block by control lists",
-            "Upload Block List": "Upload Block List"
+            "Upload Block List": "Upload Block List",
+            "Disabled List": "Disabled List",
+            "Enabled List": "Enabled List"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2885,6 +2887,8 @@
             "Are you sure you want to delete this?": "Are you sure you want to delete this?",
             "Manage Blocking Reasons": "Manage Blocking Reasons",
             "Block By Control Lists": "Block By Control Lists",
+            "CLIENT": "CLIENT",
+            "CREDIT": "CREDIT",
             "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans"
         },
         "titles": {

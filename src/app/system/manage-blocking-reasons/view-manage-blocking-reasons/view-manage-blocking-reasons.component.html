@@ -5,9 +5,10 @@
       {{'labels.buttons.Edit' | translate}}
     </button>
   
-    <button mat-raised-button color="warn" (click)="delete()" *mifosxHasPermission="'DELETE_BLOCKINGREASONSETTINGS'">
-      <fa-icon icon="trash" class="m-r-10"></fa-icon>
-      {{'labels.buttons.Delete' | translate}}
+    <button mat-raised-button [color]="viewBlockingReasonItemData.isEnabled ? 'warn' : 'success'" *mifosxHasPermission="(viewBlockingReasonItemData.isEnabled  ? 'DISABLE_BLOCKINGREASONSETTINGS' : 'ENABLE_BLOCKINGREASONSETTINGS')"
+       (click)="openDialog()">
+      <fa-icon [icon]="viewBlockingReasonItemData.isEnabled ? 'trash' : 'check'" class="m-r-10"></fa-icon>
+      {{(viewBlockingReasonItemData.isEnabled ? 'labels.buttons.Disable' : 'labels.buttons.Enable') | translate}}
     </button>
   
   </div>
@@ -25,7 +26,7 @@
           </div>
   
           <div fxFlex="50%">
-            {{ viewBlockingReasonItemData.level }}
+            {{ ('labels.text.'+viewBlockingReasonItemData.level) | translate }}
           </div>
 
           <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.priority">
