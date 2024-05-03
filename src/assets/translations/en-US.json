@@ -23,7 +23,7 @@
         "error.msg.product.savings.duplicate.short.name": "Savings product with short name {{params[0].value}} already exists.",
         "error.msg.savingsproduct.unknown.data.integrity.issue": "An unexpected problem occurred when creating/updating the savings product. Error logged on server.",
         "error.msg.block.level.not.supported.exception": "The Block Level with name {{params[0].value}}  is not supported",
-        "error.msg.priority.is.already.assigned.to.client.level": "Priority {{params[0].value}} is already assigned to client level",
+        "error.msg.priority.is.already.assigned.to.client.level": "Error: The assigned priority [ {{params[0].value}} ] is already being used for the selected level",
         "error.msg.customer.level.id.already.exist": "Customer Level  {{params[0].value}} already exists",
         "error.msg.credit.level.id.already.exist": "Credit Level  {{params[0].value}} already exists",
         "validation.msg.charge.amount.cannot.be.blank": "Amount cannot be blank.",
@@ -905,7 +905,8 @@
             "Block By Control Lists": "Block by control lists",
             "Upload Block List": "Upload Block List",
             "Disabled List": "Disabled List",
-            "Enabled List": "Enabled List"
+            "Enabled List": "Enabled List",
+            "Result": "Result"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",

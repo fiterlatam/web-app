@@ -20,22 +20,6 @@
               {{"labels.inputs.EA Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
             </mat-error>
           </mat-form-field>
-
-          <mat-form-field>
-            <mat-label> {{'labels.inputs.Annual Nominal Rate' | translate }}</mat-label>
-            <input matInput required formControlName="annualNominalRate">
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>{{'labels.inputs.Monthly Nominal Rate' | translate }}</mat-label>
-            <input matInput formControlName="monthlyNominalRate">
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>{{'labels.inputs.Daily Nominal Rate' | translate }}</mat-label>
-            <input matInput formControlName="dailyNominalRate" mifosxFormatDecimal>
-          </mat-form-field>
-
           <mat-form-field (click)="appliedOnDatePicker.open()">
             <mat-label>{{'labels.inputs.Applied On Date' | translate }}</mat-label>
             <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="appliedOnDatePicker" required formControlName="appliedOnDate">
@@ -45,18 +29,27 @@
               {{'labels.inputs.Applied On Date' | translate }} is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-
         </div>
-
+        <h2>{{'labels.heading.Result' | translate}}</h2>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label> {{'labels.inputs.Annual Nominal Rate' | translate }}</mat-label>
+            <input matInput required formControlName="annualNominalRate">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.Monthly Nominal Rate' | translate }}</mat-label>
+            <input matInput formControlName="monthlyNominalRate">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.Daily Nominal Rate' | translate }}</mat-label>
+            <input matInput formControlName="dailyNominalRate" mifosxFormatDecimal>
+          </mat-form-field>
+        </div>
       </mat-card-content>
-
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
         <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
         <button mat-raised-button color="primary" [disabled]="!maximumCreditRateForm.valid" *mifosxHasPermission="'UPDATE_MAXIMUM_CREDIT_RATE'">{{'labels.buttons.Submit' | translate}}</button>
       </mat-card-actions>
-
     </form>
-
   </mat-card>
-
 </div>
