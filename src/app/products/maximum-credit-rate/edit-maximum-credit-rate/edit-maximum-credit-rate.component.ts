@@ -70,8 +70,8 @@ export class EditMaximumCreditRateComponent implements OnInit {
     this.maximumCreditRateForm = this.formBuilder.group({
       'eaRate': [this.decimalPipe.transform(this.maximumCreditRateData.eaRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.01), Validators.maxLength(5), Validators.max(100)]],
       'annualNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.annualNominalRate, '1.2-2', locale), disabled: true}],
-      'monthlyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.monthlyNominalRate, '1.2-2', locale), disabled: true}],
-      'dailyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.dailyNominalRate, '1.2-2', locale), disabled: true }],
+      'monthlyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.monthlyNominalRate, '1.3-3', locale), disabled: true}],
+      'dailyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.dailyNominalRate, '1.3-3', locale), disabled: true }],
       'appliedOnDate': [{ value: this.maximumCreditRateData.appliedOnDate && new Date(this.maximumCreditRateData.appliedOnDate), disabled: false}]
     });
   }

@@ -23,7 +23,7 @@
         "error.msg.product.savings.duplicate.short.name": "El producto de ahorro con nombre corto {{params[0].value}} ya existe.",
         "error.msg.savingsproduct.unknown.data.integrity.issue": "Ocurrió un problema inesperado al crear/actualizar el producto de ahorro. Error al iniciar sesión en el servidor.",
         "error.msg.block.level.not.supported.exception": "El nivel de bloque con nombre {{params[0].value}} no es compatible",
-        "error.msg.priority.is.already.assigned.to.client.level": "La prioridad {{params[0].value}} ya está asignada al nivel de cliente",
+        "error.msg.priority.is.already.assigned.to.client.level": "Error: La prioridad asignada [ {{params[0].value}} ] ya esta siendo usada para el nivel seleccionado.",
         "error.msg.customer.level.id.already.exist": "El nivel de cliente {{params[0].value}} ya existe",
         "error.msg.credit.level.id.already.exist": "Credit Level  {{params[0].value}} already exists",
         "validation.msg.charge.amount.cannot.be.blank": "El monto no puede estar en blanco.",
@@ -915,7 +915,8 @@
             "Upload Block List": "Subir lista de bloqueo",
             "Disabled List": "Lista Deshabilitada",
             "Enabled List": "Lista Habilitada",
-            "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima"
+            "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
+            "Result": "Resultado"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",

@@ -16,6 +16,16 @@
           {{ maximumCreditRateData.eaRate | formatNumber:[2]}}%
         </div>
         <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Applied On Date' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.appliedOnDate | dateFormat}}
+        </div>
+      </div>
+      <br/>
+      <h2>{{'labels.heading.Result' | translate}}</h2>
+      <div fxLayout="row wrap" class="content">
+        <div fxFlex="50%" class="mat-body-strong">
           {{'labels.inputs.Annual Nominal Rate' | translate }}
         </div>
         <div fxFlex="50%">
