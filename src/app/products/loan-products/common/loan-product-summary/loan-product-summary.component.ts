@@ -206,6 +206,11 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
         futureInstallmentAllocationRules: this.loanProductsTemplate.advancedPaymentAllocationFutureInstallmentAllocationRules
       };
     }
+
+    if (!this.loanProduct.repaymentReschedulingType.id) {
+      this.loanProduct.repaymentReschedulingType = this.optionDataLookUp(this.loanProduct.repaymentReschedulingType,
+        this.loanProductsTemplate.repaymentReschedulingTypeOptions);
+    }
   }
 
   optionDataLookUp(itemId: any, optionsData: any[]): OptionData {
