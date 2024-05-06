@@ -79,6 +79,8 @@ import { CreateManageBlockingReasonsComponent } from './manage-blocking-reasons/
 import { ViewManageBlockingReasonsComponent } from './manage-blocking-reasons/view-manage-blocking-reasons/view-manage-blocking-reasons.component';
 import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/edit-manage-blocking-reasons/edit-manage-blocking-reasons.component';
 import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.component';
+import { EditCustomChargeHonorarioComponent } from './external-services/customchargehonorario/edit-customchargehonorario/edit-customchargehonorario.component';
+import { CustomChargeHonorarioComponent } from './external-services/customchargehonorario/customchargehonorario.component';
 
 @NgModule({
   imports: [
@@ -157,7 +159,9 @@ import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by
     CreateManageBlockingReasonsComponent,
     ViewManageBlockingReasonsComponent,
     EditManageBlockingReasonsComponent,
-    BlockByControlListsComponent
+    BlockByControlListsComponent,
+    CustomChargeHonorarioComponent,
+    EditCustomChargeHonorarioComponent
   ],
 })
 export class SystemModule { }

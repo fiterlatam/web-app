@@ -919,7 +919,8 @@
             "Enabled List": "Lista Habilitada",
             "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
             "Result": "Resultado",
-            "Client InActivity": "Cliente Inactivo"
+            "Client InActivity": "Cliente Inactivo",
+            "Custom Charge Honorario": "Servicio del Cargo Personalizado Honorario"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2904,7 +2905,8 @@
             "Block By Control Lists": "Bloquear por listas de control",
             "CLIENT": "CLIENTE",
             "CREDIT": "CRÉDITO",
-            "Define Maximum legal rate parameterization for system loans": "Definir parametrización de tasa máxima legal para todos los créditos del sistema"
+            "Define Maximum legal rate parameterization for system loans": "Definir parametrización de tasa máxima legal para todos los créditos del sistema",
+            "Custom Charge Honorario Description": "Administrar detalles del Proveedor de Servicios de Cargo Honorario"
         },
         "titles": {
             "Dashboard": "Tableros",

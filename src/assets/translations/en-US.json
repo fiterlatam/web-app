@@ -909,7 +909,8 @@
             "Disabled List": "Disabled List",
             "Enabled List": "Enabled List",
             "Result": "Result",
-            "Client InActivity": "Cliente InActivity"
+            "Client InActivity": "Cliente InActivity",
+            "Custom Charge Honorario": "Custom Charge Honorario Provider"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2896,7 +2897,8 @@
             "Block By Control Lists": "Block By Control Lists",
             "CLIENT": "CLIENT",
             "CREDIT": "CREDIT",
-            "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans"
+            "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans",
+            "Custom Charge Honorario Description": "Manage Charge Honorario Service Procider details"
         },
         "titles": {
             "Dashboard": "Dashboard",

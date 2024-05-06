@@ -33,7 +33,7 @@ export class ManageSchedulerJobsComponent implements OnInit, AfterViewInit {
   /** Scheduler data */
   schedulerData: any;
   /** Columns to be displayed in manage scheduler jobs table. */
-  displayedColumns: string[] = ['select', 'displayName', 'active', 'nextRunTime', 'previousRunTime', 'previousRunStatus', 'currentlyRunning', 'errorLog'];
+  displayedColumns: string[] = ['select', 'id', 'displayName', 'active', 'nextRunTime', 'previousRunTime', 'previousRunStatus', 'currentlyRunning', 'errorLog'];
   /** Data source for manage scheduler jobs table. */
   dataSource: MatTableDataSource<any>;
   /** Initialize Selection */
