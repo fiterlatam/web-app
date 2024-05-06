@@ -119,6 +119,12 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'repaymentReschedulingType': this.loanProductsTemplate.repaymentReschedulingType ? this.loanProductsTemplate.repaymentReschedulingType.id : this.loanProductsTemplate.repaymentReschedulingTypeConfig
     });
 
+    if (this.loanProductsTemplate.maxClientInactivityPeriod) {
+      this.loanProductSettingsForm.patchValue({
+        'maxClientInactivityPeriod': this.loanProductsTemplate.maxClientInactivityPeriod,
+      });
+    }
+
     this.isAdvancedTransactionProcessingStrategy = LoanProducts.isAdvancedPaymentAllocationStrategy(transactionProcessingStrategyCode);
     if (this.isAdvancedTransactionProcessingStrategy) {
       this.loanProductSettingsForm.addControl('loanScheduleProcessingType', new UntypedFormControl(
@@ -250,7 +256,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'loanScheduleType': [LoanProducts.LOAN_SCHEDULE_TYPE_CUMULATIVE, Validators.required],
       'allowAccrualPostingInArrears': [false],
       'repaymentReschedulingType': [''],
-      'maxClientInactivityPeriod': ['']
+      'maxClientInactivityPeriod': [''],
     });
   }
 
