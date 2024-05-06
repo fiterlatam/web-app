@@ -368,6 +368,11 @@
     </span>
   </div>
 
+  <div fxFlexFill *ngIf="loanProduct.repaymentReschedulingType.value">
+    <span fxFlex="47%">Payment due on non working days:</span>
+    <span fxFlex="53%">{{ loanProduct.repaymentReschedulingType.value | titlecase }}</span>
+  </div>
+
   <h3 class="mat-h3" fxFlexFill>Down Payments</h3>
 
   <mat-divider [inset]="true"></mat-divider>

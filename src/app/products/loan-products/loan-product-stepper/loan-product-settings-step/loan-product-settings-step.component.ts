@@ -42,6 +42,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
   loanScheduleProcessingTypeData: OptionData[] = [];
   isAdvancedTransactionProcessingStrategy = false;
   advancedTransactionProcessingStrategyDisabled = true;
+  repaymentReschedulingTypeData: OptionData[] = [];
 
   /** Values to Days for Repayments */
   defaultConfigValues: GlobalConfiguration[] = [];
@@ -79,6 +80,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.delinquencyBucketData = this.loanProductsTemplate.delinquencyBucketOptions;
     this.loanScheduleTypeData = this.loanProductsTemplate.loanScheduleTypeOptions;
     this.loanScheduleProcessingTypeData = this.loanProductsTemplate.loanScheduleProcessingTypeOptions;
+    this.repaymentReschedulingTypeData = this.loanProductsTemplate.repaymentReschedulingTypeOptions;
 
     const transactionProcessingStrategyCode: string = this.loanProductsTemplate.transactionProcessingStrategyCode || this.transactionProcessingStrategyData[0].code;
     this.loanProductSettingsForm.patchValue({
@@ -113,7 +115,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'enableInstallmentLevelDelinquency': this.loanProductsTemplate.enableInstallmentLevelDelinquency,
       'loanScheduleType': this.loanProductsTemplate.loanScheduleType.code,
       'useDueForRepaymentsConfigurations': this.loanProductsTemplate.useDueForRepaymentsConfigurations,
-      'allowAccrualPostingInArrears': this.loanProductsTemplate.allowAccrualPostingInArrears
+      'allowAccrualPostingInArrears': this.loanProductsTemplate.allowAccrualPostingInArrears,
+      'repaymentReschedulingType': this.loanProductsTemplate.repaymentReschedulingType ? this.loanProductsTemplate.repaymentReschedulingType.id : this.loanProductsTemplate.repaymentReschedulingTypeConfig
     });
 
     this.isAdvancedTransactionProcessingStrategy = LoanProducts.isAdvancedPaymentAllocationStrategy(transactionProcessingStrategyCode);
@@ -245,7 +248,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'dueDaysForRepaymentEvent': [''],
       'overDueDaysForRepaymentEvent': [''],
       'loanScheduleType': [LoanProducts.LOAN_SCHEDULE_TYPE_CUMULATIVE, Validators.required],
-      'allowAccrualPostingInArrears': [false]
+      'allowAccrualPostingInArrears': [false],
+      'repaymentReschedulingType': ['']
     });
   }
 

@@ -55,7 +55,7 @@ export interface LoanProduct {
   isArrearsBasedOnOriginalSchedule?:                         boolean;
   isCompoundingToBePostedAsTransaction?:                     boolean;
   recalculationRestFrequencyInterval?:                       number;
-
+  repaymentReschedulingType?:                                OptionData;
   canDefineInstallmentAmount:                                boolean;
   graceOnArrearsAgeing?:                                     number;
   overdueDaysForNPA?:                                        number;
