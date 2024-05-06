@@ -609,6 +609,14 @@
     <span  fxFlex="53%">{{ loanProduct.overDueDaysForRepaymentEvent | number }}</span>
   </div>
 
+  <h3 class="mat-h3" fxFlexFill>{{ "labels.heading.Client InActivity" | translate }}</h3>
+
+  <div fxFlexFill>
+    <span fxFlex="47%">{{ "labels.inputs.products.loan.Months before being considered inactive" | translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.maxClientInactivityPeriod | number }}</span>
+  </div>
+
+
   <h3 class="mat-h3" fxFlexFill>Configurable Terms and Settings</h3>
 
   <mat-divider [inset]="true"></mat-divider>

@@ -249,7 +249,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'overDueDaysForRepaymentEvent': [''],
       'loanScheduleType': [LoanProducts.LOAN_SCHEDULE_TYPE_CUMULATIVE, Validators.required],
       'allowAccrualPostingInArrears': [false],
-      'repaymentReschedulingType': ['']
+      'repaymentReschedulingType': [''],
+      'maxClientInactivityPeriod': ['']
     });
   }
 

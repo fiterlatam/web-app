@@ -505,6 +505,20 @@
 
     <mat-divider fxFlex="98%"></mat-divider>
 
+    <h3 fxFlex="100%" class="mat-h3">{{ "labels.heading.Client InActivity" | translate }} <i class="fas fa-question"
+      matTooltip="Loan settings to lead to change in client status"></i></h3>
+
+    <div fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+
+      <mat-form-field fxFlex="48%">
+        <mat-label>{{ "labels.inputs.products.loan.Months before being considered inactive" | translate }}</mat-label>
+        <input type="number" matInput matTooltip="{{ 'tooltips.Months To Client InActive' | translate}}"
+         formControlName="maxClientInactivityPeriod">
+      </mat-form-field>
+    </div>
+
+    <mat-divider fxFlex="98%"></mat-divider>
+
     <h3 fxFlex="23%" class="mat-h3">Configurable Terms and Settings</h3>
 
     <mat-checkbox fxFlex="73%" labelPosition="before" formControlName="allowAttributeConfiguration" class="margin-b">

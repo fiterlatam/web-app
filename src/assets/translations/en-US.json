@@ -906,7 +906,8 @@
             "Upload Block List": "Upload Block List",
             "Disabled List": "Disabled List",
             "Enabled List": "Enabled List",
-            "Result": "Result"
+            "Result": "Result",
+            "Client InActivity": "Cliente InActivity"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2088,7 +2089,8 @@
                     "amortizationType": {
                         "Equal installments": "Equal installments",
                         "Equal principal payments": "Equal principal payments"
-                    }
+                    },
+                    "Months before being considered inactive": "Months before being considered inactive"
                 }
             },
             "task-management component": "task-management component",
@@ -3088,7 +3090,9 @@
         "loan product will be active and available to clients": "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created.",
         "loan product will become inactive and unavailable to clients": "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive.",
         "Deactivation From Date": "The starting date on which the user will be blocked from accessing the platform",
-        "Deactivation To Date": "The end date on which the user will be blocked from accessing the platform"
+        "Deactivation To Date": "The end date on which the user will be blocked from accessing the platform",
+        "Months To Client InActive": "The number of months during which a client will be set to inactive when the client has not performed any activity on the product",
+        "Loan settings to lead to change in client status": "Loan settings that lead to setting client as inactive"
     },
   "appUserStatus": {
       "invalid": "Invalid",
