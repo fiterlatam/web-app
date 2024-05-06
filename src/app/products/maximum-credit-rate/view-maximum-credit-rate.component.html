@@ -16,6 +16,18 @@
           {{ maximumCreditRateData.eaRate | formatNumber:[2]}}%
         </div>
         <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Current Interest Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.currentInterestRate | formatNumber:[3]}}%
+        </div>
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Overdue Interest Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ maximumCreditRateData.overdueInterestRate | formatNumber:[3]}}%
+        </div>
+        <div fxFlex="50%" class="mat-body-strong">
           {{'labels.inputs.Applied On Date' | translate }}
         </div>
         <div fxFlex="50%">

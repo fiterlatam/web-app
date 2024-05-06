@@ -277,7 +277,9 @@
         "error.msg.block.reason.is.already.assigned.to.level":"Block Reason  [ {{params[0].value}} ] is already assigned to client level blockLevelType.client",
         "error.msg.client.block.loan.non-closed": "Client cannot be blocked because of non-closed loans.",
         "error.msg.client.block.date.cannot.before.client.activation.date": "Client blocked on date {{params[0].value}} cannot be before client activation date {{params[1].value}}",
-        "error.msg.applied.on.date.cannot.be.in.the.future": "Applied on date [ {{params[0].value}} ] cannot be in the future"
+        "error.msg.applied.on.date.cannot.be.in.the.future": "Applied on date [ {{params[0].value}} ] cannot be in the future",
+        "error.msg.overdue.interest.rate.greater.than.monthly.nominal.rate": "Overdue interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]",
+        "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "Current interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]"
     },
         "labels": {
         "breadcrumbs": {
@@ -2152,7 +2154,9 @@
             "Annual Nominal Rate": "Annual Nominal Rate",
             "Monthly Nominal Rate": "Monthly Nominal Rate",
             "Daily Nominal Rate": "Daily Nominal Rate",
-            "Applied On Date": "Applied On Date"
+            "Applied On Date": "Applied On Date",
+            "Current Interest Rate":  "Current Interest Rate",
+            "Overdue Interest Rate":  "Overdue Interest Rate"
         },
         "links": {
             "Community": "Community",
