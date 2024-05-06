@@ -16,7 +16,7 @@ export class ViewManageBlockingReasonsComponent implements OnInit {
 
   viewBlockingReasonItemData: any;
 
- 
+
   constructor(private route: ActivatedRoute,
               private systemService: SystemService,
               private router: Router,
@@ -30,9 +30,9 @@ export class ViewManageBlockingReasonsComponent implements OnInit {
   }
 
   openDialog() {
-    if(this.viewBlockingReasonItemData.isEnabled){
+    if (this.viewBlockingReasonItemData.isEnabled) {
       this.openDisableDialog();
-    }else {
+    } else {
       this.openEnableDialog();
     }
   }
@@ -44,7 +44,7 @@ export class ViewManageBlockingReasonsComponent implements OnInit {
 
     disableReasonDialog.afterClosed().subscribe((response: any) => {
       if (response.disable) {
-        this.systemService.updateBlockReasonSetting(this.viewBlockingReasonItemData.id,"disable" ,null)
+        this.systemService.updateBlockReasonSetting(this.viewBlockingReasonItemData.id, 'disable' , null)
           .subscribe(() => {
             this.router.navigate(['/system/manage-blocking-reasons']);
           });
@@ -58,8 +58,8 @@ export class ViewManageBlockingReasonsComponent implements OnInit {
     );
 
     enableReasonDialog.afterClosed().subscribe((response: any) => {
-      if (response.enable) {
-        this.systemService.updateBlockReasonSetting(this.viewBlockingReasonItemData.id,"enable",null)
+      if (response != null && response.enable) {
+        this.systemService.updateBlockReasonSetting(this.viewBlockingReasonItemData.id, 'enable', null)
           .subscribe(() => {
             this.router.navigate(['/system/manage-blocking-reasons']);
           });

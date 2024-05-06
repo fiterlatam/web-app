@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'mifosx-manage-blocking-reasons',
@@ -13,7 +14,7 @@ export class ManageBlockingReasonsComponent implements OnInit {
 
   blockingReasonSettings: any;
 
-  displayedColumns: string[] = ['id','priority','level','nameOfReason','description','createdDate'];
+  displayedColumns: string[] = ['id', 'priority', 'level', 'nameOfReason', 'description', 'createdDate'];
 
   dataSource: MatTableDataSource<any>;
 
@@ -29,7 +30,8 @@ export class ManageBlockingReasonsComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+            private translateService: TranslateService) {
     this.route.data.subscribe((data: { manageBlockingReasonsResolver: any }) => {
       this.blockingReasonSettings = data.manageBlockingReasonsResolver;
     });
@@ -40,10 +42,12 @@ export class ManageBlockingReasonsComponent implements OnInit {
   }
 
   setBlockingReasonSettings() {
+    for (const blockingReasonSetting of this.blockingReasonSettings) {
+      blockingReasonSetting.level = this.translateService.instant('labels.text.' + blockingReasonSetting?.level);
+    }
     this.dataSource = new MatTableDataSource(this.blockingReasonSettings.filter((item: { isEnabled: boolean; }) => item.isEnabled));
-    this.dataSource.paginator = this.paginator;    
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
     this.dataSourceDisabled = new MatTableDataSource(this.blockingReasonSettings.filter((item: { isEnabled: boolean; }) => !item.isEnabled));
     this.dataSourceDisabled.paginator = this.paginatorDisabled;
     this.dataSourceDisabled.sort = this.sortDisabled;

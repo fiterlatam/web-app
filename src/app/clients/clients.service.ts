@@ -295,8 +295,11 @@ export class ClientsService {
     return this.http.post(`/clients/${clientId}`, data, { params: httpParams });
   }
 
-  getClientCommandTemplate(command: string): Observable<any> {
-    const httpParams = new HttpParams().set('commandParam', command);
+  getClientCommandTemplate(command: string,  clientId?: string): Observable<any> {
+    let httpParams = new HttpParams().set('commandParam', command);
+    if (clientId) {
+      httpParams = httpParams.set('clientId', clientId);
+    }
     return this.http.get(`/clients/template`, { params: httpParams });
   }
 

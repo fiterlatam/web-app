@@ -141,7 +141,7 @@
             (click)="doAction('Accept Transfer')">{{"labels.buttons.Accept Transfer" | translate}}</button></span>
         <span *ngIf="clientViewData.status.value === 'Transfer in progress'"><button mat-menu-item
             (click)="doAction('Reject Transfer')">{{"labels.buttons.Reject transfer" | translate}}</button></span>
-        <span *ngIf="clientViewData.status.value === 'Active'">
+        <span *ngIf="clientViewData.status.value === 'Active' || clientViewData.status.value === 'Blocked'">
           <button mat-menu-item (click)="doAction('Block')" *mifosxHasPermission="'BLOCK_CLIENT'" >{{"labels.buttons.Block" | translate}}</button>
         </span>
         <span *ngIf="clientViewData.status.value === 'Blocked'">

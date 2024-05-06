@@ -1,7 +1,7 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
   <button color="primary" mat-raised-button [routerLink]="['block-by-control-lists']">
     <fa-icon icon="upload" class="m-r-10"></fa-icon>
-    {{ 'labels.buttons.blocking by control lists' | translate }}
+    {{ 'labels.buttons.Block By Control Lists' | translate }}
   </button>
 
   <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_BLOCKREASONSETTINGS'">
@@ -38,8 +38,8 @@
       </ng-container>
       <ng-container matColumnDef="level">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Block Level' | translate}} </th>
-        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ ('labels.text.'+blockingReasonSettings?.level) | translate }} </td>
-      </ng-container>     
+        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.level}} </td>
+      </ng-container>
       <ng-container matColumnDef="nameOfReason">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Name Of Reason' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.nameOfReason }} </td>
@@ -81,8 +81,8 @@
       </ng-container>
       <ng-container matColumnDef="level">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Block Level' | translate}} </th>
-        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ ('labels.text.'+blockingReasonSettings?.level) | translate }} </td>
-      </ng-container>     
+        <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.level }} </td>
+      </ng-container>
       <ng-container matColumnDef="nameOfReason">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'labels.inputs.Name Of Reason' | translate}} </th>
         <td mat-cell *matCellDef="let blockingReasonSettings"> {{ blockingReasonSettings?.nameOfReason }} </td>
