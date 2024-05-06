@@ -12,6 +12,19 @@
               {{"labels.inputs.Undo Blocked On Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
             </mat-error>
           </mat-form-field>
+
+          <mat-form-field fxFlex="48%">
+            <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
+            <mat-select formControlName="blockingReasonId">
+              <mat-option *ngFor="let reason of blockingReasonsDataOptions" [value]="reason.id">
+                {{ reason.priority }} - {{ reason.nameOfReason }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="undoBlockClientForm.controls.blockingReasonId.hasError('required')">
+              {{"labels.inputs.Blocking Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
           <mat-form-field fxFlex="48%">
             <mat-label>{{"labels.inputs.Comments" | translate}}</mat-label>
             <input matInput formControlName="undoBlockingComment" maxlength="255" required>

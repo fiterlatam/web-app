@@ -517,7 +517,7 @@
             "Block": "Bloquear",
             "UndoBlock": "Desbloquear",
             "reset": "Resetear",
-            "blocking by control lists": "Bloqueo por listas de control"
+            "Block By Control Lists": "Bloqueo por listas de control"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",

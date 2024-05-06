@@ -22,11 +22,11 @@
             <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
             <mat-select formControlName="blockingReasonId">
               <mat-option *ngFor="let reason of blockingData" [value]="reason.id">
-                {{ reason.nameOfReason }}
+                {{ reason.priority }} - {{ reason.nameOfReason }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="blockClientForm.controls.blockingReasonId.hasError('required')">
-              {{"labels.inputs.Closure Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              {{"labels.inputs.Blocking Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
             </mat-error>
           </mat-form-field>
 

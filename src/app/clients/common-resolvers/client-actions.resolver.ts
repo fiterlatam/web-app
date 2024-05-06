@@ -39,6 +39,8 @@ export class ClientActionsResolver implements Resolve<Object> {
         return this.clientsService.getClientCommandTemplate('close');
       case 'Block':
         return this.clientsService.getClientCommandTemplate('block');
+      case 'UndoBlock':
+        return this.clientsService.getClientCommandTemplate('undoBlock', clientId);
       case 'Reject':
         return this.clientsService.getClientCommandTemplate('reject');
       case 'Withdraw':

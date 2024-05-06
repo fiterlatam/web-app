@@ -18,7 +18,7 @@ export class BlockByControlListsComponent implements OnInit {
     dataSource = new MatTableDataSource();
 
     template: File;
-  
+
     urlSuffix: string = '/blockSettings';
 
     importsData: any;
@@ -44,9 +44,9 @@ export class BlockByControlListsComponent implements OnInit {
   /** Imports table reference */
   @ViewChild('importsTable', { static: true }) importsTableRef: MatTable<Element>;
 
-  constructor(private route: ActivatedRoute, private fb: 
-    UntypedFormBuilder,private organizationService: OrganizationService, 
-    private dateUtils: Dates,) { 
+  constructor(private route: ActivatedRoute, private fb:
+    UntypedFormBuilder, private organizationService: OrganizationService,
+    private dateUtils: Dates ) {
 
     this.route.data.subscribe( (data: any) => {
       this.importsData = data.imports;
@@ -58,15 +58,14 @@ export class BlockByControlListsComponent implements OnInit {
       blockedReason: [''],
       blockByControlLists: ['']
     });
-    console.log(this.importsData)
   }
 
   ngOnInit(): void {
     this.setImports();
   }
 
-  refreshDocuments(){
-    this.organizationService.getImports("clientblock").subscribe( (res: any) => {
+  refreshDocuments() {
+    this.organizationService.getImports('clientblock').subscribe( (res: any) => {
       this.importsData = res;
       this.setImports();
     });
@@ -80,7 +79,7 @@ export class BlockByControlListsComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
-  
+
   onFileSelect($event: any) {
     if ($event.target.files.length > 0) {
       this.template = $event.target.files[0];
@@ -107,7 +106,7 @@ export class BlockByControlListsComponent implements OnInit {
     /** Only for Client Bulk Imports */
     this.organizationService.uploadImportDocument(this.template, this.urlSuffix, legalFormType).subscribe(() => {});
   }
-  
+
 
   /**
  * Download import document.

@@ -25,7 +25,8 @@ export class UndoBlockClientComponent implements OnInit {
   /** Undo Block Client form. */
   undoBlockClientForm: UntypedFormGroup;
   /** Client Data */
-  undoBlockingData: any;
+  // undoBlockingData: any;
+  blockingReasonsDataOptions: any;
   /** Client Id */
   clientId: any;
 
@@ -46,9 +47,12 @@ export class UndoBlockClientComponent implements OnInit {
       this.route.data.subscribe((data: {
         clientViewData: any,
         clientActionData: any }) => {
-        this.undoBlockingData = data.clientViewData;
-        this.minDate = new Date(this.undoBlockingData.blockedOnDate);
-    });
+        const undoBlockingData = data.clientViewData;
+        this.minDate = new Date(undoBlockingData.blockedOnDate);
+        if (data.clientActionData.blockingReasonsDataOptions) {
+          this.blockingReasonsDataOptions = data.clientActionData.blockingReasonsDataOptions;
+        }
+      });
     this.clientId = this.route.parent.snapshot.params['clientId'];
   }
 
@@ -63,6 +67,7 @@ export class UndoBlockClientComponent implements OnInit {
   createUndoBlockClientForm() {
     this.undoBlockClientForm = this.formBuilder.group({
       'undoBlockedOnDate': ['', Validators.required],
+      'blockingReasonId': ['', Validators.required],
       'undoBlockingComment': ['', [Validators.required, Validators.maxLength(255)]]
     });
   }

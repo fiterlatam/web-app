@@ -615,7 +615,6 @@ const routes: Routes = [
               resolve: {
                 manageBlockingReasonsResolver: ManageBlockingReasonsResolver
               },
-  
             },
             {
               path: 'block-by-control-lists',
@@ -653,7 +652,7 @@ const routes: Routes = [
                   }
                 },
               ]
-            }  
+            }
           ]
         }
       ]

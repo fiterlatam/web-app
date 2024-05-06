@@ -45,8 +45,9 @@ export class BlockClientComponent implements OnInit {
               private settingsService: SettingsService) {
       this.route.data.subscribe((data: { clientActionData: any }) => {
         if (data.clientActionData.blockingReasonsDataOptions) {
-          const blockingData = data.clientActionData.blockingReasonsDataOptions;
+          let blockingData = data.clientActionData.blockingReasonsDataOptions;
           blockingData.sort((a: { priority: number; }, b: { priority: number; }) => a.priority - b.priority);
+          blockingData = blockingData.filter((item: { isEnabled: boolean; }) => item.isEnabled);
           this.blockingData = blockingData;
         }
     });
