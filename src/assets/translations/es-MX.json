@@ -2103,7 +2103,8 @@
                         "Equal installments": "Cuotas iguales",
                         "Equal principal payments": "Pagos iguales de principal"
                     },
-                    "Months before being considered inactive": "Meses antes de considerarse inactivo"
+                    "Months before being considered inactive": "Meses antes de considerarse inactivo",
+                    "Amount for NPA": "Monto para ser considerado en mora"
                 }
             },
             "task-management component": "componente de gestión de tareas",
@@ -3107,7 +3108,8 @@
         "Deactivation From Date": "La fecha de inicio en la que se bloqueará el acceso del usuario a la plataforma",
         "Deactivation To Date": "La fecha de finalización en la que se bloqueará el acceso del usuario a la plataforma.",
         "Months To Client InActive": "El número de meses durante los cuales un cliente estará inactivo cuando el cliente no haya realizado ninguna actividad en el producto.",
-        "Loan settings to lead to change in client status": "Configuraciones de préstamo que llevan a establecer al cliente como inactivo"
+        "Loan settings to lead to change in client status": "Configuraciones de préstamo que llevan a establecer al cliente como inactivo",
+        "Amount for NPA": "El monto en mora que se considerará antes de que el préstamo se traslade a las áreas. Si el incumplimiento es menor que el monto $$ designado aquí, el préstamo permanecerá ACTIVO."
     },
   "appUserStatus": {
     "invalid": "Inválido",

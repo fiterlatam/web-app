@@ -368,7 +368,7 @@
     </span>
   </div>
 
-  <div fxFlexFill *ngIf="loanProduct.repaymentReschedulingType.value">
+  <div fxFlexFill *ngIf="loanProduct.repaymentReschedulingType && loanProduct.repaymentReschedulingType.value">
     <span fxFlex="47%">Payment due on non working days:</span>
     <span fxFlex="53%">{{ loanProduct.repaymentReschedulingType.value | titlecase }}</span>
   </div>
@@ -454,7 +454,7 @@
     <span fxFlex="47%">Maximum number of days a loan may be overdue before becoming a NPA (non performing asset):</span>
     <span  fxFlex="53%">{{ loanProduct.overdueDaysForNPA }}</span>
   </div>
-
+  
   <div fxFlexFill>
     <span fxFlex="47%">Account moves out of NPA only after all arrears have been cleared:</span>
     <span  fxFlex="53%">{{ loanProduct.accountMovesOutOfNPAOnlyOnArrearsCompletion | yesNo }}</span>

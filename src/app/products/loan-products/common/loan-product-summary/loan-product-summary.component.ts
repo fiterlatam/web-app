@@ -207,7 +207,7 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
       };
     }
 
-    if (!this.loanProduct.repaymentReschedulingType.id) {
+    if (this.loanProduct.repaymentReschedulingType && !this.loanProduct.repaymentReschedulingType.id) {
       this.loanProduct.repaymentReschedulingType = this.optionDataLookUp(this.loanProduct.repaymentReschedulingType,
         this.loanProductsTemplate.repaymentReschedulingTypeOptions);
     }

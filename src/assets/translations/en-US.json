@@ -2093,7 +2093,8 @@
                         "Equal installments": "Equal installments",
                         "Equal principal payments": "Equal principal payments"
                     },
-                    "Months before being considered inactive": "Months before being considered inactive"
+                    "Months before being considered inactive": "Months before being considered inactive",
+                    "Amount for NPA": "Amount to be considered in arrears"
                 }
             },
             "task-management component": "task-management component",
@@ -3098,7 +3099,8 @@
         "Deactivation From Date": "The starting date on which the user will be blocked from accessing the platform",
         "Deactivation To Date": "The end date on which the user will be blocked from accessing the platform",
         "Months To Client InActive": "The number of months during which a client will be set to inactive when the client has not performed any activity on the product",
-        "Loan settings to lead to change in client status": "Loan settings that lead to setting client as inactive"
+        "Loan settings to lead to change in client status": "Loan settings that lead to setting client as inactive",
+        "Amount for NPA": "The amount in default that will be considered before loan is moved into arears. If default is less than the $$ amount designated here, the loan will stay ACTIVE."
     },
   "appUserStatus": {
       "invalid": "Invalid",
