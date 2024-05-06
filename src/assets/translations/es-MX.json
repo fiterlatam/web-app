@@ -282,7 +282,9 @@
         "error.msg.cannot.delete.record.with.from.date.in.the.past": "No se puede eliminar una tasa de cargo con fecha pasada",
         "error.msg.cannot.update.not.last.active.record": "No se puede actualizar un registro no activo",
         "error.msg.cannot.update.record.with.from.date.in.the.past": "No se puede actualizar una tasa de cargo con fecha pasada",
-        "error.msg.applied.on.date.cannot.be.in.the.future": "Aplicado en la fecha [ {{params[0].value}} ] no puede ser en el futuro"
+        "error.msg.applied.on.date.cannot.be.in.the.future": "Aplicado en la fecha [ {{params[0].value}} ] no puede ser en el futuro",
+        "error.msg.overdue.interest.rate.greater.than.monthly.nominal.rate": "La tasa de interés vencida [ {{params[0].value}} ] no puede ser mayor que la tasa de interés nominal mensual [ {{params[1].value}} ]",
+        "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "La tasa de interés actual [ {{params[0].value}} ] no puede ser mayor que la tasa de interés nominal mensual [ {{params[1].value}} ]"
     },
     "labels": {
         "breadcrumbs": {
@@ -2164,7 +2166,9 @@
             "Annual Nominal Rate": "Tasa Nominal Anual",
             "Monthly Nominal Rate": "Tasa Nominal Mensual",
             "Daily Nominal Rate": "Tasa Nominal Diaria",
-            "Applied On Date": "Aplicado en la fecha"
+            "Applied On Date": "Aplicado en la fecha",
+            "Current Interest Rate":  "Tasa de Interés corriente",
+            "Overdue Interest Rate":  "Tasa de mora"
         },
         "links": {
             "Community": "Comunidad",
