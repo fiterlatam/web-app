@@ -98,6 +98,10 @@ import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/ed
 import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.component';
 import { BlockByControlListsResolver } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.resolver';
 
+import { CustomChargeHonorarioConfigurationResolver } from './external-services/customchargehonorario/customchargehonorario.resolver';
+import { CustomChargeHonorarioComponent } from './external-services/customchargehonorario/customchargehonorario.component';
+import { EditCustomChargeHonorarioComponent } from './external-services/customchargehonorario/edit-customchargehonorario/edit-customchargehonorario.component';
+
 const routes: Routes = [
   Route.withShell([
     {
@@ -198,6 +202,27 @@ const routes: Routes = [
                 }
               ]
             },
+            {
+              path: 'customchargehonorario',
+              data: { title: 'View Custom Charge Honorarios Provider Configuration', breadcrumb: 'Custom Charge Honorario Provider' },
+              children: [
+                {
+                  path: '',
+                  component: CustomChargeHonorarioComponent,
+                  resolve: {
+                    customChargeHonorarioConfiguration: CustomChargeHonorarioConfigurationResolver
+                  }
+                },
+                {
+                  path: 'edit',
+                  component: EditCustomChargeHonorarioComponent,
+                  data: { title: 'Edit Custom Charge Honorarios Provider Configuration', breadcrumb: 'Edit' },
+                  resolve: {
+                    customChargeHonorarioConfiguration: CustomChargeHonorarioConfigurationResolver
+                  }
+                }
+              ]
+            },            
             {
               path: 'email',
               data: { title: 'View Email Configuration', breadcrumb: 'Email' },
@@ -701,6 +726,7 @@ const routes: Routes = [
     ViewManageBlockingReasonsComponent,
     EditManageBlockingReasonsComponent,
     BlockByControlListsResolver,
+    CustomChargeHonorarioConfigurationResolver
   ]
 })
 export class SystemRoutingModule { }
