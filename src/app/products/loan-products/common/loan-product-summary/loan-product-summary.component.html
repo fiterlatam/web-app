@@ -454,7 +454,12 @@
     <span fxFlex="47%">Maximum number of days a loan may be overdue before becoming a NPA (non performing asset):</span>
     <span  fxFlex="53%">{{ loanProduct.overdueDaysForNPA }}</span>
   </div>
-  
+
+  <div fxFlexFill *ngIf="loanProduct.overdueAmountForArrearsConsideration">
+    <span fxFlex="47%">{{ "labels.inputs.products.loan.Amount for NPA" | translate}}:</span>
+    <span  fxFlex="53%">{{ loanProduct.overdueAmountForArrearsConsideration | number }}</span>
+  </div>
+
   <div fxFlexFill>
     <span fxFlex="47%">Account moves out of NPA only after all arrears have been cleared:</span>
     <span  fxFlex="53%">{{ loanProduct.accountMovesOutOfNPAOnlyOnArrearsCompletion | yesNo }}</span>

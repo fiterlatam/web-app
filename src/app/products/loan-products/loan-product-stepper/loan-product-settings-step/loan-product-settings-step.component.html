@@ -238,6 +238,15 @@
       <input type="number" matInput formControlName="overdueDaysForNPA">
     </mat-form-field>
 
+
+    <h4 fxFlex="48%" class="mat-h4">{{ "labels.inputs.products.loan.Amount for NPA" | translate}} <i class="fas fa-question"
+      matTooltip="{{ 'tooltips.Amount for NPA' | translate }}"></i></h4>
+
+    <mat-form-field fxFlex="48%">
+      <mat-label>{{ "labels.inputs.products.loan.Amount for NPA" | translate}}</mat-label>
+      <input type="number" matInput formControlName="overdueAmountForArrearsConsideration">
+    </mat-form-field>
+
     <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="accountMovesOutOfNPAOnlyOnArrearsCompletion" class="margin-v">
       Account moves out of NPA only after all arrears have been cleared?
     </mat-checkbox>
