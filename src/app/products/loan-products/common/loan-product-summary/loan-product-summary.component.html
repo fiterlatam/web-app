@@ -373,6 +373,11 @@
     <span fxFlex="53%">{{ loanProduct.repaymentReschedulingType.value | titlecase }}</span>
   </div>
 
+  <div fxFlexFill>
+    <span fxFlex="47%">Extend term for monthly repayments:</span>
+    <span fxFlex="53%">{{ loanProduct.extendTermForMonthlyRepayments | yesNo }}</span>
+  </div>
+
   <h3 class="mat-h3" fxFlexFill>Down Payments</h3>
 
   <mat-divider [inset]="true"></mat-divider>

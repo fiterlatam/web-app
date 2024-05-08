@@ -116,7 +116,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'loanScheduleType': this.loanProductsTemplate.loanScheduleType.code,
       'useDueForRepaymentsConfigurations': this.loanProductsTemplate.useDueForRepaymentsConfigurations,
       'allowAccrualPostingInArrears': this.loanProductsTemplate.allowAccrualPostingInArrears,
-      'repaymentReschedulingType': this.loanProductsTemplate.repaymentReschedulingType ? this.loanProductsTemplate.repaymentReschedulingType.id : this.loanProductsTemplate.repaymentReschedulingTypeConfig
+      'repaymentReschedulingType': this.loanProductsTemplate.repaymentReschedulingType ? this.loanProductsTemplate.repaymentReschedulingType.id : this.loanProductsTemplate.repaymentReschedulingTypeConfig,
+      'extendTermForMonthlyRepayments': this.loanProductsTemplate.extendTermForMonthlyRepayments
     });
 
     if (this.loanProductsTemplate.maxClientInactivityPeriod) {
@@ -265,6 +266,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'repaymentReschedulingType': [''],
       'maxClientInactivityPeriod': [''],
       'overdueAmountForArrearsConsideration': [''],
+      'extendTermForMonthlyRepayments': [false],
     });
   }
 

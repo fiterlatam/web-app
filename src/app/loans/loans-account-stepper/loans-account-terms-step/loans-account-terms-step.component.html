@@ -165,7 +165,7 @@
       <mat-label>{{"labels.inputs.Amortization" | translate}}</mat-label>
       <mat-select required matTooltip="{{ 'tooltips.The Amortization value' | translate}}" formControlName="amortizationType">
         <mat-option *ngFor="let amortizationType of amortizationTypeData" [value]="amortizationType.id">
-          {{ amortizationType.value }}
+          {{ "labels.inputs.products.loan.amortizationType." + amortizationType.value | translate }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="loansAccountTermsForm.controls.amortizationType.hasError('required')">

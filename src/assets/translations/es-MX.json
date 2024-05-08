@@ -2100,8 +2100,9 @@
                     "Amortization": "Amortización",
                     "Is Equal Amortization?": "¿Es igual la amortización?",
                     "amortizationType": {
-                        "Equal installments": "Cuotas iguales",
-                        "Equal principal payments": "Pagos iguales de principal"
+                        "Equal installments": "Pagos de cuotas iguales - Sistema Frances",
+                        "Equal principal payments": "Pagos de capital iguales - Sistema Aleman",
+                        "Capital at end": "Capital al final - Sistema Americano"
                     },
                     "Months before being considered inactive": "Meses antes de considerarse inactivo",
                     "Amount for NPA": "Monto para ser considerado en mora"
