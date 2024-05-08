@@ -125,6 +125,13 @@ export class LoanProductSettingsStepComponent implements OnInit {
       });
     }
 
+    if (this.loanProductsTemplate.overdueAmountForArrearsConsideration) {
+      this.loanProductSettingsForm.patchValue({
+        'overdueAmountForArrearsConsideration': this.loanProductsTemplate.overdueAmountForArrearsConsideration,
+      });
+    }
+
+
     this.isAdvancedTransactionProcessingStrategy = LoanProducts.isAdvancedPaymentAllocationStrategy(transactionProcessingStrategyCode);
     if (this.isAdvancedTransactionProcessingStrategy) {
       this.loanProductSettingsForm.addControl('loanScheduleProcessingType', new UntypedFormControl(
@@ -257,6 +264,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'allowAccrualPostingInArrears': [false],
       'repaymentReschedulingType': [''],
       'maxClientInactivityPeriod': [''],
+      'overdueAmountForArrearsConsideration': [''],
     });
   }
 
