@@ -284,7 +284,10 @@
         "error.msg.cannot.update.record.with.from.date.in.the.past": "No se puede actualizar una tasa de cargo con fecha pasada",
         "error.msg.applied.on.date.cannot.be.in.the.future": "Aplicado en la fecha [ {{params[0].value}} ] no puede ser en el futuro",
         "error.msg.overdue.interest.rate.greater.than.monthly.nominal.rate": "La tasa de interés vencida [ {{params[0].value}} ] no puede ser mayor que la tasa de interés nominal mensual [ {{params[1].value}} ]",
-        "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "La tasa de interés actual [ {{params[0].value}} ] no puede ser mayor que la tasa de interés nominal mensual [ {{params[1].value}} ]"
+        "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "La tasa de interés actual [ {{params[0].value}} ] no puede ser mayor que la tasa de interés nominal mensual [ {{params[1].value}} ]",
+        "error.msg.loanproduct.max.nominal.interest.rate.per.period": "La tasa de interés nominal máxima por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}",
+        "error.msg.loanproduct.min.nominal.interest.rate.per.period": "La tasa de interés nominal mínima por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}",
+        "error.msg.loanproduct.nominal.interest.rate.per.period": "La tasa de interés nominal por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}"
     },
     "labels": {
         "breadcrumbs": {
