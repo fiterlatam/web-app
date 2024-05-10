@@ -280,6 +280,7 @@
         "error.msg.applied.on.date.cannot.be.in.the.future": "Applied on date [ {{params[0].value}} ] cannot be in the future",
         "error.msg.overdue.interest.rate.greater.than.monthly.nominal.rate": "Overdue interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]",
         "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "Current interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]",
+        "error.msg.client.credit.blocked": "Credit operation blocked because of a credit check.",
         "error.msg.loanproduct.max.nominal.interest.rate.per.period": "Maximum nominal interest rate per period [ {{params[0].value}} ] cannot be greater than the maximum legal rate {{params[1].value}}",
         "error.msg.loanproduct.min.nominal.interest.rate.per.period": "Minimum nominal interest rate per period [ {{params[0].value}} ] cannot be greater than the maximum legal rate {{params[1].value}}",
         "error.msg.loanproduct.nominal.interest.rate.per.period": "Nominal interest rate per period [ {{params[0].value}} ] cannot be greater than the maximum legal rate {{params[1].value}}"

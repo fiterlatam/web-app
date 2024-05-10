@@ -2,11 +2,23 @@
 
   <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="start center">
 
-    <mat-form-field fxFlex="72%">
+    <mat-form-field fxFlex="46%">
       <mat-label>Product Name</mat-label>
       <input matInput formControlName="name" matTooltip="The product name is a unique identifier for the lending product." required>
       <mat-error>
         Product Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="24%">
+      <mat-label>Product Type</mat-label>
+      <mat-select formControlName="productType" required>
+        <mat-option *ngFor="let productType of productTypeData" [value]="productType.id">
+          {{ productType.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Product type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 

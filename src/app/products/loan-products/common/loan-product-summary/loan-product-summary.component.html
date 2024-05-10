@@ -9,6 +9,11 @@
     <span  fxFlex="53%"><b>{{ loanProduct.name }}</b></span>
   </div>
 
+  <div fxFlexFill *ngIf="loanProduct.productType && loanProduct.productType.name">
+    <span fxFlex="47%">Product Type:</span>
+    <span  fxFlex="53%">{{ loanProduct.productType.name }}</span>
+  </div>
+
   <div fxFlexFill>
     <span fxFlex="47%">Short Name:</span>
     <span  fxFlex="53%">{{ loanProduct.shortName }}</span>
