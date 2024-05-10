@@ -19,6 +19,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
   loanProductDetailsForm: UntypedFormGroup;
 
   fundData: any;
+  productTypeData: any;
 
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 10));
@@ -37,6 +38,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
 
   ngOnInit() {
     this.fundData = this.loanProductsTemplate.fundOptions;
+    this.productTypeData = this.loanProductsTemplate.productTypeOptions;
 
     this.loanProductDetailsForm.patchValue({
       'name': this.loanProductsTemplate.name,
@@ -45,7 +47,8 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'fundId': this.loanProductsTemplate.fundId,
       'startDate': this.loanProductsTemplate.startDate && new Date(this.loanProductsTemplate.startDate),
       'closeDate': this.loanProductsTemplate.closeDate && new Date(this.loanProductsTemplate.closeDate),
-      'includeInBorrowerCycle': this.loanProductsTemplate.includeInBorrowerCycle
+      'includeInBorrowerCycle': this.loanProductsTemplate.includeInBorrowerCycle,
+      'productType': this.loanProductsTemplate.productType.id
     });
   }
 
@@ -57,7 +60,8 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'fundId': [''],
       'startDate': [''],
       'closeDate': [''],
-      'includeInBorrowerCycle': [false]
+      'includeInBorrowerCycle': [false],
+      'productType': ['',Validators.required]
     });
   }
 
