@@ -8,8 +8,11 @@
         <input matInput type="number" *ngIf="isNumeric(datatableInput.columnDisplayType)"
         formControlName="{{datatableInput.controlName}}">
 
-        <input matInput *ngIf="isString(datatableInput.columnDisplayType)"
+        <input matInput *ngIf="isString(datatableInput.columnDisplayType) "
         formControlName="{{datatableInput.controlName}}">
+        <mat-error *ngIf="isString(datatableInput.columnDisplayType) && datatableForm.controls[datatableInput.controlName].hasError('maxlength')">
+           {{datatableInput.controlName}} <strong> no puede tener más de </strong> {{datatableInput.columnLength}} caracteres
+        </mat-error>
 
         <textarea matInput *ngIf="isText(datatableInput.columnDisplayType)"
         formControlName="{{datatableInput.controlName}}"></textarea>

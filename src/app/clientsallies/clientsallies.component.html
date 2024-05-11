@@ -17,17 +17,17 @@
           <fa-icon icon="upload" class="m-r-10"></fa-icon>
           {{'labels.buttons.Import Allies' | translate }}
         </button>
-      </div>      
+      </div>
       <div class="action-button" fxLayoutGap="1" >
         <button mat-raised-button color="default" *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'" [routerLink]="['/organization/bulk-import/Points Of Sales']">
           <fa-icon icon="upload" class="m-r-10"></fa-icon>
           {{'labels.buttons.Import Points Of Sales' | translate }}
         </button>
-      </div>      
+      </div>
     </div>
-  
+
     <table mat-table [dataSource]="dataSource" #instructionsTable matSort *ngIf="reloaded">
-  
+
       <ng-container matColumnDef="companyName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.companyName"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.companyName }} </td>
@@ -42,7 +42,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.department"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.departmentCodeValueDescription }} </td>
       </ng-container>
-      
+
       <ng-container matColumnDef="cityCodeValueDescription">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.city"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.cityCodeValueDescription }} </td>
@@ -50,7 +50,7 @@
 
       <ng-container matColumnDef="nrPointOfSell">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.pointOfSell"  |translate}} </th>
-        <td mat-cell *matCellDef="let apiData"> 
+        <td mat-cell *matCellDef="let apiData">
             <div class="action-button" fxLayoutGap="25px">
                 <button mat-raised-button color="danger" (click) = "deleteEntity(apiData.id)"  *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'">
                   <i class="fa fa-sitemap" aria-hidden="true"></i> ({{ apiData.pointOfSalesCounter }})
@@ -66,10 +66,9 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="[row.id]" class="select-row"></tr>
-  
+
     </table>
-  
+
     <mat-paginator [length]="(apiData == null ? 0 : apiData.length)" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
-  
+
   </mat-card>
-  

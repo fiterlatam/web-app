@@ -24,6 +24,7 @@ export class DatatableSingleRowComponent implements OnInit {
   /**
    * @param {ActivatedRoute} route Activated Route.
    * @param {Dates} dateUtils Date Utils.
+   * @param dialog
    * @param {SystemService} systemService System Service.
    * @param {SettingsService} settingsService Settings Service
    * @param {Datatables} datatables Datatable utils
@@ -131,11 +132,11 @@ export class DatatableSingleRowComponent implements OnInit {
     }
     return 'table-data';
   }
-  resolveColumnValue(columnValues: [], idValue: number):string{
+  resolveColumnValue(columnValues: [], idValue: number): string {
     let returnValue = String(idValue);
-    if(columnValues && columnValues.length > 0){
+    if (columnValues && columnValues.length > 0) {
       columnValues.forEach((columValue: any) => {
-        if(columValue.id == idValue){
+        if (columValue.id === idValue) {
           returnValue = columValue.value;
         }
       });

@@ -2,13 +2,14 @@
 
   <div *ngIf="formfield.controlType==='input'" fxFlexFill>
     <mat-form-field fxFlexFill>
-
       <mat-label>{{ formfield.label | formatDisplayName }}</mat-label>
-
-      <input *ngIf="formfield.controlType==='input'" [type]="formfield.type" matInput
-        [formControlName]="formfield.controlName" [required]="formfield.required">
+      <input *ngIf="formfield.controlType==='input'" [type]="formfield['type']" matInput
+             [formControlName]="formfield.controlName" [required]="formfield.required">
       <mat-error *ngIf="form.controls[formfield.controlName].hasError('required')">
         {{ formfield.label }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+      </mat-error>
+      <mat-error *ngIf="formfield.controlType==='input' && form.controls[formfield.controlName].hasError('maxlength')">
+        {{formfield.controlName}} <strong> no puede tener más de </strong> {{formfield.controlLength}} caracteres
       </mat-error>
 
     </mat-form-field>

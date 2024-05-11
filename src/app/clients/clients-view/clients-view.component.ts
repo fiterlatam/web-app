@@ -40,6 +40,11 @@ export class ClientsViewComponent implements OnInit {
     }) => {
       this.clientViewData = data.clientViewData;
       this.clientDatatables = data.clientDatatables;
+      const legalFormId = this.clientViewData.legalForm.id;
+      const entitySubType = legalFormId === 1 ? 'Person' : 'Entity';
+      this.clientDatatables = this.clientDatatables.filter((datatable: any) => {
+        return datatable.entitySubType === entitySubType;
+      });
       this.clientTemplateData = data.clientTemplateData;
     });
   }

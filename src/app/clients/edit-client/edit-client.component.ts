@@ -78,6 +78,7 @@ export class EditClientComponent implements OnInit {
       'legalFormId': this.clientDataAndTemplate.legalForm && this.clientDataAndTemplate.legalForm.id,
       'accountNo': this.clientDataAndTemplate.accountNo,
       'externalId': this.clientDataAndTemplate.externalId,
+      'fullname': this.clientDataAndTemplate.fullname,
       'genderId': this.clientDataAndTemplate.gender && this.clientDataAndTemplate.gender.id,
       'isStaff': this.clientDataAndTemplate.isStaff,
       'active': this.clientDataAndTemplate.active,
@@ -106,10 +107,10 @@ export class EditClientComponent implements OnInit {
       'active': [false],
       'accountNo': [{ value: '', disabled: true }],
       'externalId': [''],
-      'genderId': [''],
-      'mobileNo': [''],
+      'genderId': ['', Validators.required],
+      'mobileNo': ['', [Validators.pattern('^[0-9]*$'), Validators.maxLength(30)]],
       'emailAddress': ['', Validators.email],
-      'dateOfBirth': [''],
+      'dateOfBirth': ['', Validators.required],
       'clientTypeId': [''],
       'clientClassificationId': [''],
       'submittedOnDate': ['', Validators.required],
@@ -140,13 +141,16 @@ export class EditClientComponent implements OnInit {
       if (legalFormId === 1) {
         this.editClientForm.removeControl('fullname');
         this.editClientForm.removeControl('clientNonPersonDetails');
-        this.editClientForm.addControl('firstname', new UntypedFormControl(this.clientDataAndTemplate.firstname, Validators.required));
-        this.editClientForm.addControl('middlename', new UntypedFormControl(this.clientDataAndTemplate.middlename));
-        this.editClientForm.addControl('lastname', new UntypedFormControl(this.clientDataAndTemplate.lastname, Validators.required));
+        this.editClientForm.addControl('firstname', new UntypedFormControl(this.clientDataAndTemplate.firstname, [Validators.maxLength(20), Validators.required]));
+        this.editClientForm.addControl('middlename', new UntypedFormControl(this.clientDataAndTemplate.middlename, [Validators.maxLength(20)]));
+        this.editClientForm.addControl('lastname', new UntypedFormControl(this.clientDataAndTemplate.lastname, [Validators.maxLength(20), Validators.required]));
+        this.editClientForm.addControl('lastname2', new UntypedFormControl(this.clientDataAndTemplate.lastname2, [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.editClientForm.removeControl('firstname');
         this.editClientForm.removeControl('middlename');
         this.editClientForm.removeControl('lastname');
+        this.editClientForm.removeControl('lastname2');
+        this.editClientForm.removeControl('genderId');
         this.editClientForm.addControl('fullname', new UntypedFormControl(this.clientDataAndTemplate.fullname, Validators.required));
         this.editClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({
           'constitutionId': [this.clientDataAndTemplate.clientNonPersonDetails.constitution && this.clientDataAndTemplate.clientNonPersonDetails.constitution.id, Validators.required],

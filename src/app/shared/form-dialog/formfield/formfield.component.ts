@@ -20,6 +20,7 @@ export class FormfieldComponent implements OnInit {
   constructor() {
   }
   ngOnInit() {
+    console.log(this.formfield);
     this.formfieldsCopy = _.cloneDeep(this.formfields);
   }
 

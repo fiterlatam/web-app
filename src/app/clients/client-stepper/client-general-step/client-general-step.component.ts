@@ -82,10 +82,10 @@ export class ClientGeneralStepComponent implements OnInit {
       'addSavings': [false],
       'accountNo': [''],
       'externalId': [''],
-      'genderId': [''],
-      'mobileNo': [''],
+      'genderId': ['', Validators.required],
+      'mobileNo': ['', [Validators.pattern('^[0-9]*$'), Validators.maxLength(30)]],
       'emailAddress': ['', Validators.email],
-      'dateOfBirth': [''],
+      'dateOfBirth': ['', Validators.required],
       'clientTypeId': [''],
       'clientClassificationId': [''],
       'fullname': ['', [Validators.maxLength(40), Validators.minLength(3)]],
@@ -117,13 +117,16 @@ export class ClientGeneralStepComponent implements OnInit {
       if (legalFormId === 1) {
         this.createClientForm.removeControl('fullname');
         this.createClientForm.removeControl('clientNonPersonDetails');
-        this.createClientForm.addControl('firstname', new UntypedFormControl('', [Validators.required, Validators.pattern('(^[A-z]).*')]));
-        this.createClientForm.addControl('middlename', new UntypedFormControl('', Validators.pattern('(^[A-z]).*')));
-        this.createClientForm.addControl('lastname', new UntypedFormControl('', [Validators.required, Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('firstname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('middlename', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('lastname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('lastname2', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.createClientForm.removeControl('firstname');
         this.createClientForm.removeControl('middlename');
         this.createClientForm.removeControl('lastname');
+        this.createClientForm.removeControl('lastname2');
+        this.createClientForm.removeControl('genderId');
         this.createClientForm.addControl('fullname', new UntypedFormControl('', [Validators.required, Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({
           'constitutionId': [''],
