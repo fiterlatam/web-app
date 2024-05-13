@@ -916,7 +916,8 @@
             "Enabled List": "Enabled List",
             "Result": "Result",
             "Client InActivity": "Cliente InActivity",
-            "Custom Charge Honorario": "Custom Charge Honorario Provider"
+            "Custom Charge Honorario": "Custom Charge Honorario Provider",
+            "state": "State"  
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
@@ -2170,7 +2171,8 @@
             "Daily Nominal Rate": "Daily Nominal Rate",
             "Applied On Date": "Applied On Date",
             "Current Interest Rate":  "Current Interest Rate",
-            "Overdue Interest Rate":  "Overdue Interest Rate"
+            "Overdue Interest Rate":  "Overdue Interest Rate",
+            "Block Status": "Block Status"
         },
         "links": {
             "Community": "Community",

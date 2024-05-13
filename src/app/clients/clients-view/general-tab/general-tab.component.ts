@@ -16,9 +16,9 @@ import { ClientsService } from 'app/clients/clients.service';
 export class GeneralTabComponent {
 
   /** Open Loan Accounts Columns */
-  openLoansColumns: string[] = ['Account No', 'Loan Account', 'Original Loan', 'Loan Balance', 'Amount Paid', 'Type', 'Actions'];
+  openLoansColumns: string[] = ['Account No', 'Loan Account', 'Block Status','Original Loan', 'Loan Balance', 'Amount Paid', 'Type', 'Actions'];
   /** Closed Loan Accounts Columns */
-  closedLoansColumns: string[] = ['Account No', 'Loan Account', 'Original Loan', 'Loan Balance', 'Amount Paid', 'Type', 'Closed Date'];
+  closedLoansColumns: string[] = ['Account No', 'Loan Account','Block Status', 'Original Loan', 'Loan Balance', 'Amount Paid', 'Type', 'Closed Date'];
   /** Open Savings Accounts Columns */
   openSavingsColumns: string[] = ['Account No', 'Saving Account', 'Last Active', 'Balance', 'Actions'];
   /** Closed Savings Accounts Columns */

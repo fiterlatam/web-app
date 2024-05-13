@@ -926,7 +926,8 @@
             "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
             "Result": "Resultado",
             "Client InActivity": "Cliente Inactivo",
-            "Custom Charge Honorario": "Servicio del Cargo Personalizado Honorario"
+            "Custom Charge Honorario": "Servicio del Cargo Personalizado Honorario",
+            "state": "Estado"
         },
         "inputs": {
             "ACCOUNTING": "CONTABILIDAD",
@@ -2180,7 +2181,8 @@
             "Daily Nominal Rate": "Tasa Nominal Diaria",
             "Applied On Date": "Aplicado en la fecha",
             "Current Interest Rate":  "Tasa de Interés corriente",
-            "Overdue Interest Rate":  "Tasa de mora"
+            "Overdue Interest Rate":  "Tasa de mora",
+            "Block Status": "Estado del bloque"
         },
         "links": {
             "Community": "Comunidad",
