@@ -53,22 +53,42 @@
 
           <mat-form-field *ngIf="editClientForm.contains('firstname')" fxFlex="48%">
             <mat-label>{{"labels.inputs.First Name" | translate}}</mat-label>
-            <input matInput required formControlName="firstname">
+            <input maxlength="20" matInput required formControlName="firstname">
             <mat-error *ngIf="editClientForm.controls.firstname.hasError('required')">
               {{"labels.inputs.Client first name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+            <mat-error *ngIf="editClientForm.controls.firstname.hasError('maxlength')">
+              {{"labels.inputs.First Name" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.20 characters long' | translate }}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field *ngIf="editClientForm.contains('middlename')" fxFlex="48%">
             <mat-label>{{"labels.inputs.Middle Name" | translate}}</mat-label>
-            <input matInput formControlName="middlename">
+            <input maxlength="20" matInput formControlName="middlename">
+            <mat-error *ngIf="editClientForm.controls.middlename.hasError('maxlength')">
+              {{"labels.inputs.Middle Name" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.20 characters long' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field *ngIf="editClientForm.contains('lastname')" fxFlex="48%">
-            <mat-label>{{"labels.inputs.Last Name" | translate}}</mat-label>
-            <input matInput required formControlName="lastname">
+            <mat-label>{{"labels.inputs.Last Name One" | translate}}</mat-label>
+            <input maxlength="20" matInput required formControlName="lastname">
+            <mat-error *ngIf="editClientForm.controls.lastname.hasError('maxlength')">
+              {{"labels.inputs.Last Name One" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.20 characters long' | translate }}
+            </mat-error>
             <mat-error *ngIf="editClientForm.controls.lastname.hasError('required')">
-              {{"labels.inputs.Client last name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              {{"labels.inputs.Last Name One" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="editClientForm.contains('lastname2')" fxFlex="48%">
+            <mat-label>{{"labels.inputs.Last Name Two" | translate}}</mat-label>
+            <input maxlength="20" matInput formControlName="lastname2">
+            <mat-error *ngIf="editClientForm.controls.lastname2.hasError('maxlength')">
+              {{"labels.inputs.Last Name One" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.50 characters long' | translate }}
+            </mat-error>
+            <mat-error *ngIf="editClientForm.controls.lastname2.hasError('pattern')">
+              {{"labels.inputs.Last Name Two" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.commons.begin with a special character or number" | translate}}
             </mat-error>
           </mat-form-field>
 
@@ -138,7 +158,13 @@
 
           <mat-form-field fxFlex="48%">
             <mat-label>{{"labels.inputs.Mobile No" | translate}}</mat-label>
-            <input matInput type="number" formControlName="mobileNo">
+            <input maxlength="30" matInput formControlName="mobileNo">
+            <mat-error *ngIf="editClientForm.controls.mobileNo.hasError('pattern')">
+              {{"labels.inputs.Mobile No" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.commons.begin with a special character or number" | translate}}
+            </mat-error>
+            <mat-error *ngIf="editClientForm.controls.mobileNo.hasError('maxlength')">
+              {{"labels.inputs.Mobile No" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.30 characters long' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">
@@ -179,8 +205,8 @@
 
           <mat-form-field fxFlex="48%" (click)="activatedOnDatePicker.open()">
             <mat-label>{{"labels.inputs.Activated On" | translate}}</mat-label>
-            <input matInput [min]="editClientForm.value.submittedOnDate" [max]="maxDate" [matDatepicker]="activatedOnDatePicker"
-              formControlName="activationDate">
+            <input matInput [min]="editClientForm.value['submittedOnDate']" [max]="maxDate" [matDatepicker]="activatedOnDatePicker"
+                   formControlName="activationDate">
             <mat-datepicker-toggle matSuffix [for]="activatedOnDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #activatedOnDatePicker></mat-datepicker>
           </mat-form-field>

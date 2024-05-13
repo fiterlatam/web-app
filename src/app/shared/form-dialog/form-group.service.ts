@@ -14,7 +14,11 @@ export class FormGroupService {
     const group: any = {};
 
     formfields.forEach(formfield => {
-      group[formfield.controlName] = formfield.required ? new UntypedFormControl(formfield.value, Validators.required) : new UntypedFormControl(formfield.value);
+      if (formfield.required) {
+        group[formfield.controlName] = new UntypedFormControl(formfield.value, [Validators.required, Validators.maxLength(formfield.controlLength)]);
+      } else {
+        group[formfield.controlName] = new UntypedFormControl(formfield.value, Validators.maxLength(formfield.controlLength));
+      }
     });
 
     return new UntypedFormGroup(group);

@@ -84,7 +84,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
       return;
     }
     const locale = this.settingsService.language.code;
-    let annualNominalRate = this.calculateNominalInterestRate(eaRate, 1).toString();
+    let annualNominalRate = (12 * this.calculateNominalInterestRate(eaRate, 12)).toString();
     annualNominalRate = this.decimalPipe.transform(annualNominalRate, '1.2-2', locale);
     let monthlyNominalRate =  this.calculateNominalInterestRate(eaRate, 12).toString();
     monthlyNominalRate = this.decimalPipe.transform(monthlyNominalRate, '1.3-3', locale);

@@ -6,6 +6,7 @@ export class FormfieldBase {
   value: any;
   required: boolean;
   order: number;
+  controlLength: number;
   options: any;
 
   constructor(options: {
@@ -14,7 +15,8 @@ export class FormfieldBase {
               label?: string,
               value?: any,
               required?: boolean,
-              order?: number
+              order?: number,
+              controlLength?: number
     } = {}) {
       this.controlType = options.controlType || '';
       this.controlName = options.controlName || '';
@@ -22,6 +24,7 @@ export class FormfieldBase {
       this.value = options.value === undefined ? '' : options.value;
       this.required = !!options.required;
       this.order = options.order === undefined ? 1 : options.order;
+      this.controlLength =  options.controlLength || 255;
   }
 
 }

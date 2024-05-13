@@ -65,7 +65,7 @@ export class ClientsalliesComponent implements OnInit {
 
   loadClientallies(filterValue: String) {
     this.reloaded = false;
-    this.clientsalliesService.getClientsallies(filterValue).subscribe(( apiResponseBody: any ) => {;
+    this.clientsalliesService.getClientsallies(filterValue).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
       this.dataSource = new MatTableDataSource(this.apiData);
       this.dataSource.data = apiResponseBody;
