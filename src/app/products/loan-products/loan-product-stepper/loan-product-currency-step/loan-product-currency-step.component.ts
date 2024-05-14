@@ -23,7 +23,7 @@ export class LoanProductCurrencyStepComponent implements OnInit {
     this.currencyData = this.loanProductsTemplate.currencyOptions;
     this.loanProductCurrencyForm.patchValue({
       'currencyCode': this.loanProductsTemplate.currency.code || this.currencyData[0].code,
-      'digitsAfterDecimal': this.loanProductsTemplate.currency.decimalPlaces ? this.loanProductsTemplate.currency.decimalPlaces : 2,
+      'digitsAfterDecimal': (this.loanProductsTemplate.currency.decimalPlaces !== null) ? this.loanProductsTemplate.currency.decimalPlaces : 2,
       'inMultiplesOf': this.loanProductsTemplate.currency.inMultiplesOf,
       'installmentAmountInMultiplesOf': this.loanProductsTemplate.installmentAmountInMultiplesOf
     });
