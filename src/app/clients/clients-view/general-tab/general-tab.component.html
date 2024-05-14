@@ -1,5 +1,41 @@
 <div class="tab-container mat-typography">
 
+  <h3>{{"labels.inputs.Client Details" | translate}}</h3>
+  <div fxLayout="row wrap" fxLayoutGap="32px" fxLayout.lt-md="column" class="performance-history-container">
+    <div fxFlexFill *ngIf="clientViewData.dateOfBirth">
+      <span fxFlex="40%">{{ clientViewData?.legalForm?.id === 1 ? 'Date of Birth' : 'Incorporation Date' }}</span>
+      <span fxFlex="60%">{{ clientViewData.dateOfBirth | dateFormat }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.mobileNo">
+      <span fxFlex="40%">{{"labels.inputs.Mobile No" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.mobileNo }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.gender">
+      <span fxFlex="40%">{{"labels.inputs.Gender" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.gender.name }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.emailAddress">
+      <span fxFlex="40%">{{"labels.inputs.Email Address" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.emailAddress }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.clientType">
+      <span fxFlex="40%">{{"labels.inputs.Client Type" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.clientType.name }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.clientClassification">
+      <span fxFlex="40%">{{"labels.inputs.Client Classification" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.clientClassification.name }}</span>
+    </div>
+    <div fxFlexFill *ngIf="clientViewData.timeline?.submittedOnDate">
+      <span fxFlex="40%">{{"labels.inputs.Submitted On Date" | translate}}</span>
+      <span fxFlex="60%">{{ clientViewData.timeline.submittedOnDate | dateFormat }}</span>
+    </div>
+    <div fxFlexFill>
+      <span fxFlex="40%">{{"labels.inputs.Active" | translate}}?</span>
+      <span fxFlex="60%">{{ clientViewData.active | yesNo }}</span>
+    </div>
+  </div>
+
   <h3>{{"labels.heading.Performance History" | translate}}</h3>
   <div fxLayout="row" fxLayoutGap="32px" class="performance-history-container">
     <table>

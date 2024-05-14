@@ -59,7 +59,10 @@
                 <a>{{group.name}}</a>&nbsp;
               </span>
             </span>
-            <br />
+            <span>
+              <b>{{ "labels.inputs." + clientViewData.legalForm.value | translate }}</b><br />
+              <b>{{ this.clientLegalForm?.name }}</b> : {{ this.clientLegalForm?.value }}
+            </span>
           </p>
         </mat-card-subtitle>
 

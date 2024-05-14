@@ -46,6 +46,8 @@ export class GeneralTabComponent {
   clientSummary: any;
   /** Collaterals Data */
   collaterals: any;
+  /** Client Detail Data */
+  clientViewData:any;
 
   /** Show Closed Loan Accounts */
   showClosedLoanAccounts = false;
@@ -80,7 +82,8 @@ export class GeneralTabComponent {
       this.collaterals = data.clientCollateralData;
       this.clientSummary = data.clientSummary ? data.clientSummary[0] : [];
       this.clientid = this.route.parent.snapshot.params['clientId'];
-  });
+      this.clientViewData = this.route.parent.snapshot.data.clientViewData;
+    });
   }
 
   /**

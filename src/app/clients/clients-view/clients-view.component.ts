@@ -15,6 +15,7 @@ import { CaptureImageDialogComponent } from './custom-dialogs/capture-image-dial
 
 /** Custom Services */
 import { ClientsService } from '../clients.service';
+import { isEmpty } from 'lodash';
 
 @Component({
   selector: 'mifosx-clients-view',
@@ -27,6 +28,8 @@ export class ClientsViewComponent implements OnInit {
   clientDatatables: any;
   clientImage: any;
   clientTemplateData: any;
+  clientLegalForm: any; 
+  registeredTableName:any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -46,7 +49,14 @@ export class ClientsViewComponent implements OnInit {
         return datatable.entitySubType === entitySubType;
       });
       this.clientTemplateData = data.clientTemplateData;
+      if (this.clientViewData.legalForm.value === "Entity") {
+        this.registeredTableName = this.clientDatatables[0].registeredTableName;
+      } else {
+        this.registeredTableName = this.clientDatatables[1].registeredTableName;
+      }
     });
+
+    this.getLegalFormDatatables(this.clientViewData.id, this.registeredTableName, this.clientViewData.legalForm);
   }
 
   ngOnInit() {
@@ -135,6 +145,21 @@ export class ClientsViewComponent implements OnInit {
     const url: string = this.router.url;
     this.router.navigateByUrl(`/clients`, {skipLocationChange: true})
       .then(() => this.router.navigate([url]));
+  }
+  /**
+   * Get Detail Client Legal Form
+   */
+  private getLegalFormDatatables(clientId: string, legalForm: string, typeForm: string) {
+    let clientIdentityId: string = "-";
+    let clientType:string="-";
+    this.clientsService.getClientDatatable(clientId, legalForm).subscribe((data: any) => {
+     
+      if(!isEmpty(data)){
+        clientType=data.columnHeaders[1].columnName;
+        clientIdentityId = data.data[0].row[1];
+      }
+      this.clientLegalForm = { name: clientType, value: clientIdentityId };
+    });
   }
 
   /**
