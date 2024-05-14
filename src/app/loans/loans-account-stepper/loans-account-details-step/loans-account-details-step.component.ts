@@ -71,12 +71,12 @@ export class LoansAccountDetailsStepComponent implements OnInit {
     this.buildDependencies();
     if (this.loansAccountTemplate) {
       this.productData = this.loansAccountTemplate.productOptions.sort(this.commons.dynamicSort('name'));
-      if (this.loansAccountTemplate.loanProductId) {
+      if (this.loansAccountTemplate.loanProductId != null) {
         this.loansAccountDetailsForm.patchValue({
           'productId': this.loansAccountTemplate.loanProductId,
           'submittedOnDate': this.loansAccountTemplate.timeline.submittedOnDate && new Date(this.loansAccountTemplate.timeline.submittedOnDate),
           'loanOfficerId': this.loansAccountTemplate.loanOfficerId,
-          'loanAssignorId': this.loansAccountTemplate.loanAssignorData.id,
+          'loanAssignorId': (this.loansAccountTemplate.loanAssignorData != null) ? this.loansAccountTemplate.loanAssignorData.id : null,
           'loanPurposeId': this.loansAccountTemplate.loanPurposeId,
           'fundId': this.loansAccountTemplate.fundId,
           'expectedDisbursementDate': this.loansAccountTemplate.timeline.expectedDisbursementDate && new Date(this.loansAccountTemplate.timeline.expectedDisbursementDate),

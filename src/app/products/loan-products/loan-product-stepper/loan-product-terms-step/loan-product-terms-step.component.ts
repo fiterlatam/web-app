@@ -43,7 +43,14 @@ export class LoanProductTermsStepComponent implements OnInit {
     this.repaymentFrequencyTypeData = this.loanProductsTemplate.repaymentFrequencyTypeOptions;
     this.repaymentStartDateTypeOptions = this.loanProductsTemplate.repaymentStartDateTypeOptions;
     this.overAppliedCalculationTypeData = [{id: 'percentage', value: 'Percentage'}, {id: 'flat', value: 'Fixed Amount'}];
-
+    let minInterestRatePerPeriod = this.loanProductsTemplate.minInterestRatePerPeriod;
+    let interestRatePerPeriod = this.loanProductsTemplate.interestRatePerPeriod;
+    let maxInterestRatePerPeriod = this.loanProductsTemplate.maxInterestRatePerPeriod;
+    if (this.loanProductsTemplate['maximumCreditRateConfiguration'] != null) {
+        minInterestRatePerPeriod = this.loanProductsTemplate['maximumCreditRateConfiguration'].monthlyNominalRate;
+        interestRatePerPeriod = this.loanProductsTemplate['maximumCreditRateConfiguration'].monthlyNominalRate;
+        maxInterestRatePerPeriod = this.loanProductsTemplate['maximumCreditRateConfiguration'].monthlyNominalRate;
+    }
     this.loanProductTermsForm.patchValue({
       'minPrincipal': this.loanProductsTemplate.minPrincipal,
       'principal': this.loanProductsTemplate.principal,
@@ -52,9 +59,9 @@ export class LoanProductTermsStepComponent implements OnInit {
       'numberOfRepayments': this.loanProductsTemplate.numberOfRepayments,
       'maxNumberOfRepayments': this.loanProductsTemplate.maxNumberOfRepayments,
       'isLinkedToFloatingInterestRates': this.loanProductsTemplate.isLinkedToFloatingInterestRates,
-      'minInterestRatePerPeriod': this.loanProductsTemplate.maximumCreditRateConfiguration.monthlyNominalRate,
-      'interestRatePerPeriod': this.loanProductsTemplate.maximumCreditRateConfiguration.monthlyNominalRate,
-      'maxInterestRatePerPeriod': this.loanProductsTemplate.maximumCreditRateConfiguration.monthlyNominalRate,
+      'minInterestRatePerPeriod': minInterestRatePerPeriod,
+      'interestRatePerPeriod': interestRatePerPeriod,
+      'maxInterestRatePerPeriod': maxInterestRatePerPeriod,
       'interestRateFrequencyType': this.loanProductsTemplate.interestRateFrequencyType.id,
       'floatingRatesId': this.loanProductsTemplate.floatingRateId,
       'interestRateDifferential': this.loanProductsTemplate.interestRateDifferential,

@@ -61,7 +61,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'startDate': [''],
       'closeDate': [''],
       'includeInBorrowerCycle': [false],
-      'productType': ['',Validators.required]
+      'productType': ['', Validators.required]
     });
   }
 
