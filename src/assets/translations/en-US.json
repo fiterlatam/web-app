@@ -278,8 +278,8 @@
         "error.msg.client.block.loan.non-closed": "Client cannot be blocked because of non-closed loans.",
         "error.msg.client.block.date.cannot.before.client.activation.date": "Client blocked on date {{params[0].value}} cannot be before client activation date {{params[1].value}}",
         "error.msg.applied.on.date.cannot.be.in.the.future": "Applied on date [ {{params[0].value}} ] cannot be in the future",
-        "error.msg.overdue.interest.rate.greater.than.monthly.nominal.rate": "Overdue interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]",
-        "error.msg.current.interest.rate.greater.than.monthly.nominal.rate": "Current interest rate [ {{params[0].value}} ] cannot be greater than monthly nominal interest rate [ {{params[1].value}} ]",
+        "error.msg.overdue.interest.rate.greater.than.monthly.annual.rate": "Overdue interest rate [ {{params[0].value}} ] cannot be greater than annual nominal interest rate [ {{params[1].value}} ]",
+        "error.msg.current.interest.rate.greater.than.annual.nominal.rate": "Current interest rate [ {{params[0].value}} ] cannot be greater than annual nominal interest rate [ {{params[1].value}} ]",
         "error.msg.client.credit.blocked": "Credit operation blocked because of a credit check.",
         "error.msg.loanproduct.max.nominal.interest.rate.per.period": "Maximum nominal interest rate per period [ {{params[0].value}} ] cannot be greater than the maximum legal rate {{params[1].value}}",
         "error.msg.loanproduct.min.nominal.interest.rate.per.period": "Minimum nominal interest rate per period [ {{params[0].value}} ] cannot be greater than the maximum legal rate {{params[1].value}}",
@@ -917,7 +917,7 @@
             "Result": "Result",
             "Client InActivity": "Cliente InActivity",
             "Custom Charge Honorario": "Custom Charge Honorario Provider",
-            "state": "State"  
+            "state": "State"
         },
         "inputs": {
             "ACCOUNTING": "ACCOUNTING",
