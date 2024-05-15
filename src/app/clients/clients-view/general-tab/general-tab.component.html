@@ -162,9 +162,13 @@
 
     <ng-container matColumnDef="Block Status">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Block Status" | translate}} </th>
-      <td mat-cell *matCellDef="let element"> <i class="fa fa-stop"
-        [ngClass]="(element.blockStatus ? 'status-block':'status-deleted')"></i>
-        {{(element.blockStatus ? element.blockStatus['nameOfReason']:'labels.text.N/A') | translate}}
+      <td mat-cell *matCellDef="let element"> 
+        <div  (click)="showLoanBlockingReasons($event,element.id,element.accountNo,element.blockStatus? true : false)">
+          <i class="fa fa-stop"
+          [ngClass]="(element.blockStatus ? 'status-block':'status-deleted')" ></i>
+          {{(element.blockStatus ? element.blockStatus['nameOfReason']:'labels.text.N/A') | translate}}
+        </div>
+
       </td>
     </ng-container>
 
@@ -239,9 +243,11 @@
 
     <ng-container matColumnDef="Block Status">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Block Status" | translate}} </th>
-      <td mat-cell *matCellDef="let element"> <i class="fa fa-stop"
-        [ngClass]="(element.blockStatus ? 'status-block':'status-deleted')"></i>
+      <td mat-cell *matCellDef="let element"> <div  (click)="showLoanBlockingReasons($event,element.id,element.accountNo,element.blockStatus? true : false)">
+        <i class="fa fa-stop"
+        [ngClass]="(element.blockStatus ? 'status-block':'status-deleted')" ></i>
         {{(element.blockStatus ? element.blockStatus['nameOfReason']:'labels.text.N/A') | translate}}
+      </div>
       </td>
     </ng-container>
 

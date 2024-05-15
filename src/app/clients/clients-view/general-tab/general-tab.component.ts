@@ -1,9 +1,11 @@
 /** Angular Imports */
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 
 /** Custom Services. */
 import { ClientsService } from 'app/clients/clients.service';
+import { BlockingReasonDialogComponent } from 'app/shared/blocking-reason-dialog/blocking-reason-dialog.component';
 
 /**
  * General Tab component.
@@ -71,7 +73,8 @@ export class GeneralTabComponent {
   constructor(
     private route: ActivatedRoute,
     private clientService: ClientsService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.route.data.subscribe((data: { clientAccountsData: any, clientChargesData: any, clientSummary: any, clientCollateralData: any }) => {
       this.clientAccountData = data.clientAccountsData;
@@ -164,6 +167,28 @@ export class GeneralTabComponent {
       return 'labels.buttons.View Active Accounts';
     } else {
       return 'labels.buttons.View Closed Accounts';
+    }
+  }
+
+  /**
+   * Shows the loan blocking reasons dialog.
+   * 
+   * @param loanId - The ID of the loan.
+   * @param displayName - The display name of the loan.
+   * @param showDialog - A boolean indicating whether to show the dialog or not.
+   */
+  showLoanBlockingReasons($event: Event,loanId: any,displayName: any,showDialog: boolean){
+    if(showDialog){
+      $event.stopPropagation();
+
+      this.dialog.open(BlockingReasonDialogComponent, {
+        data: {
+          loanId,
+          displayName
+        },
+        width: '50rem'
+      });
+
     }
   }
 

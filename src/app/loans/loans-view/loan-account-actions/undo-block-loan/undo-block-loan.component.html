@@ -1,0 +1,61 @@
+<div class="container">
+    <mat-card>
+      <form [formGroup]="unblockForm" (ngSubmit)="submit()">
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-form-field (click)="undoBlockClientDatePicker.open()">
+              <mat-label>{{"labels.inputs.Undo Blocked On Date" | translate}}</mat-label>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="undoBlockClientDatePicker" required formControlName="undoBlockedOnDate">
+              <mat-datepicker-toggle matSuffix [for]="undoBlockClientDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #undoBlockClientDatePicker></mat-datepicker>
+              <mat-error *ngIf="unblockForm.controls.undoBlockedOnDate.hasError('required')">
+                {{"labels.inputs.Undo Blocked On Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Add your buttons here -->
+            <div fxLayout="row" fxLayoutAlign="start center" class="action-container" *ngIf="loanBlocksToDelete && !checkboxValue">
+                <div class="action-list" *ngFor="let block of loanBlocksToDelete">
+                  <span>
+                    <i>
+                      <mat-icon matListIcon (click)="removeFromDeleteList(block)">
+                        <fa-icon icon="remove" size="sm"></fa-icon>
+                      </mat-icon>
+                    </i>
+                    {{ block.blockReasonSetting.priority }} - {{ block.blockReasonSetting.nameOfReason }}
+                  </span>
+                </div>
+              </div>       
+  
+            <mat-form-field fxFlex="48%">
+              <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
+              <mat-select formControlName="blockingReasonId"  [disabled]="checkboxValue">
+                <mat-option *ngFor="let reason of loanBlocks" [value]="reason.id" (click)="addToDeleteList(reason)">
+                  {{ reason.blockReasonSetting.priority }} - {{ reason.blockReasonSetting.nameOfReason }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="unblockForm.controls.blockingReasonId.hasError('required')">
+                {{"labels.inputs.Blocking Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-checkbox formControlName="deleteAllAvailable" >{{"labels.inputs.Delete All Available" | translate}}</mat-checkbox>
+
+  
+            <mat-form-field fxFlex="48%">
+              <mat-label>{{"labels.inputs.Comments" | translate}}</mat-label>
+              <input matInput formControlName="undoBlockingComment" maxlength="255" required>
+              <mat-error *ngIf="unblockForm.controls.undoBlockingComment.hasError('required')">
+                {{"labels.inputs.Comments" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+          <button type="button" mat-raised-button [routerLink]="['../../']">{{"labels.buttons.Cancel" | translate}}</button>
+          <button mat-raised-button color="warn" [disabled]="(!unblockForm.valid || loanBlocksToDelete.length === 0)">{{"labels.buttons.Confirm" | translate}}</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  

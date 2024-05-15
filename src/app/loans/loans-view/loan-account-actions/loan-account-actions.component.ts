@@ -46,7 +46,8 @@ export class LoanAccountActionsComponent {
             'Sell Loan': boolean,
             'Generate Disbursement Report': boolean,
             'Buy Back Loan': boolean,
-            'Re-Ageing': boolean
+            'Re-Ageing': boolean,
+            'Unblock': boolean
          } = {
               'Close': false,
               'Undo Approval': false,
@@ -81,7 +82,8 @@ export class LoanAccountActionsComponent {
               'Sell Loan': false,
               'Generate Disbursement Report': false,
               'Buy Back Loan': false,
-              'Re-Ageing': false
+              'Re-Ageing': false,
+              'Unblock': false
           };
 
   actionButtonData: any;

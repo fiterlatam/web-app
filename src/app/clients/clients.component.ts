@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 /** Custom Services */
 import { environment } from 'environments/environment';
 import { ClientsService } from './clients.service';
-import { ClientBlockingReasonDialogComponent } from './client-blocking-reason-dialog/client-blocking-reason-dialog.component';
+import { BlockingReasonDialogComponent } from 'app/shared/blocking-reason-dialog/blocking-reason-dialog.component';
 
 @Component({
   selector: 'mifosx-clients',
@@ -106,7 +106,7 @@ export class ClientsComponent implements OnInit {
 
   showClientBlockingReasonDialog(clientId: string, statusId: string, displayName: string) {
     if(statusId == '900') {
-      this.dialog.open(ClientBlockingReasonDialogComponent, {
+      this.dialog.open(BlockingReasonDialogComponent, {
         data: {
           clientId,
           statusId,

@@ -100,6 +100,15 @@
       </div>
 
       <mat-menu #accountMenu="matMenu">
+        <ng-container *ngIf="loanDetailsData.blockStatus">
+          <button mat-menu-item (click)="loanAction('Unblock')" *mifosxHasPermission="'DELETE_BLOCK_DATA'">
+            <mat-icon matListIcon>
+              <fa-icon icon="lock-open" size="sm"></fa-icon>
+            </mat-icon>
+            <span>{{"labels.menus.Unblock Account" | translate}}</span>
+          </button>
+        </ng-container>
+
         <ng-container *ngFor="let item of buttonConfig.singleButtons">
           <button mat-menu-item *mifosxHasPermission="item.taskPermissionName" (click)="loanAction(item.name)">
             <mat-icon matListIcon>

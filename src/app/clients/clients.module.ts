@@ -59,7 +59,6 @@ import { AddClientCollateralComponent } from './clients-view/client-actions/add-
 import { ClientDatatableStepComponent } from './client-stepper/client-datatable-step/client-datatable-step.component';
 import {BlockClientComponent} from './clients-view/client-actions/block-client/block-client.component';
 import {UndoBlockClientComponent} from './clients-view/client-actions/undo-block-client/undo-block-client.component';
-import { ClientBlockingReasonDialogComponent } from './client-blocking-reason-dialog/client-blocking-reason-dialog.component';
 
 
 /**
@@ -125,8 +124,7 @@ import { ClientBlockingReasonDialogComponent } from './client-blocking-reason-di
     CaptureImageDialogComponent,
     CreateSelfServiceUserComponent,
     AddClientCollateralComponent,
-    ClientDatatableStepComponent,
-    ClientBlockingReasonDialogComponent
+    ClientDatatableStepComponent
   ],
   providers: [ ]
 
