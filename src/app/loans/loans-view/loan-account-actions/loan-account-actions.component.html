@@ -30,3 +30,4 @@
 <mifosx-asset-transfer-loan *ngIf="actions['Sell Loan'] || actions['Buy Back Loan']"></mifosx-asset-transfer-loan>
 <mifosx-generate-disbursement-report *ngIf="actions['Generate Disbursement Report']"></mifosx-generate-disbursement-report>
 <mifosx-loan-reaging [dataObject]="actionButtonData" *ngIf="actions['Re-Ageing']"></mifosx-loan-reaging>
+<mifosx-undo-block-loan [dataObject]="actionsButtonData" *ngIf="actions['Unblock']"></mifosx-undo-block-loan>

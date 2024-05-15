@@ -523,7 +523,8 @@
             "Block": "Bloquear",
             "UndoBlock": "Desbloquear",
             "reset": "Resetear",
-            "Block By Control Lists": "Bloqueo por listas de control"
+            "Block By Control Lists": "Bloqueo por listas de control",
+            "Unblock": "Desatascar"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -2186,7 +2187,8 @@
             "Applied On Date": "Aplicado en la fecha",
             "Current Interest Rate":  "Tasa de Interés corriente",
             "Overdue Interest Rate":  "Tasa de mora",
-            "Block Status": "Estado del bloque"
+            "Block Status": "Estado del bloque",
+            "Delete All Available": "Eliminar todos los disponibles"
         },
         "links": {
             "Community": "Comunidad",

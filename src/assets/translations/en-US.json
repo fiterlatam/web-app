@@ -516,7 +516,8 @@
             "Block": "Block",
             "UndoBlock": "Undo Block",
             "reset": "Reset",
-            "Block By Control Lists": "Block by control lists"
+            "Block By Control Lists": "Block by control lists",
+            "Unblock": "Unblock"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -2172,7 +2173,8 @@
             "Applied On Date": "Applied On Date",
             "Current Interest Rate":  "Current Interest Rate",
             "Overdue Interest Rate":  "Overdue Interest Rate",
-            "Block Status": "Block Status"
+            "Block Status": "Block Status",
+            "Delete All Available": "Delete All Available"
         },
         "links": {
             "Community": "Community",

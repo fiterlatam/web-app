@@ -85,6 +85,7 @@ import {LoanAssignorSelectorComponent} from "./loan-assignor-selector/loan-assig
 import {
   GenerateDisbursementReportComponent
 } from "./loans-view/loan-account-actions/generate-disbursement-report/generate-disbursement-report.component";
+import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-block-loan/undo-block-loan.component';
 
 /**
  * Loans Module
@@ -171,7 +172,8 @@ import {
     ExternalAssetTransferComponent,
     LoanDelinquencyActionDialogComponent,
     LoanReagingComponent,
-    LoanAssignorSelectorComponent
+    LoanAssignorSelectorComponent,
+    UndoBlockLoanComponent
   ],
   providers: [ ],
 })

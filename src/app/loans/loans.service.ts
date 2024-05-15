@@ -624,4 +624,19 @@ export class LoansService {
     return loansAccountData;
   }
 
+
+
+  /**
+   * Retrieves the blocking reasons for a specific loan.
+   * @param loanId - The ID of the loan.
+   * @returns A Promise that resolves to the blocking reasons for the loan.
+   */
+  getLoanBlockingReasons(loanId: string) {
+    return this.http.get(`/loans/${loanId}/loanblockingreasons`);
+  }
+
+  unblockLoan(loanId: String, data: any): Observable<any> {
+    return this.http.put(`/loans/${loanId}/loanblockingreasons`, data);
+  }
+
 }

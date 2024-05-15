@@ -47,6 +47,7 @@ import { GlAccountSelectorComponent } from './accounting/gl-account-selector/gl-
 import { GlAccountDisplayComponent } from './accounting/gl-account-display/gl-account-display.component';
 import { ViewSavingsAccountingDetailsComponent } from './accounting/view-savings-accounting-details/view-savings-accounting-details.component';
 import {DataSelectorComponent} from './data-selector/data-selector.component';
+import { BlockingReasonDialogComponent } from './blocking-reason-dialog/blocking-reason-dialog.component';
 
 /**
  * Shared Module
@@ -100,7 +101,8 @@ import {DataSelectorComponent} from './data-selector/data-selector.component';
     GlAccountSelectorComponent,
     GlAccountDisplayComponent,
     ViewSavingsAccountingDetailsComponent,
-    DataSelectorComponent
+    DataSelectorComponent,
+    BlockingReasonDialogComponent
   ],
   exports: [
     FileUploadComponent,
@@ -133,6 +135,7 @@ import {DataSelectorComponent} from './data-selector/data-selector.component';
     GlAccountDisplayComponent,
     ViewSavingsAccountingDetailsComponent,
     DataSelectorComponent,
+    BlockingReasonDialogComponent
   ]
 })
 export class SharedModule { }
