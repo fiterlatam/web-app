@@ -81,6 +81,7 @@ import { EditManageBlockingReasonsComponent } from './manage-blocking-reasons/ed
 import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by-control-lists/block-by-control-lists.component';
 import { EditCustomChargeHonorarioComponent } from './external-services/customchargehonorario/edit-customchargehonorario/edit-customchargehonorario.component';
 import { CustomChargeHonorarioComponent } from './external-services/customchargehonorario/customchargehonorario.component';
+import { UnblockClientsComponent } from './manage-blocking-reasons/unblock-clients/unblock-clients.component';
 
 @NgModule({
   imports: [
@@ -161,7 +162,8 @@ import { CustomChargeHonorarioComponent } from './external-services/customcharge
     EditManageBlockingReasonsComponent,
     BlockByControlListsComponent,
     CustomChargeHonorarioComponent,
-    EditCustomChargeHonorarioComponent
+    EditCustomChargeHonorarioComponent,
+    UnblockClientsComponent
   ],
 })
 export class SystemModule { }

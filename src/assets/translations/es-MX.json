@@ -524,7 +524,8 @@
             "UndoBlock": "Desbloquear",
             "reset": "Resetear",
             "Block By Control Lists": "Bloqueo por listas de control",
-            "Unblock": "Desatascar"
+            "Unblock": "Desatascar",
+            "Unblock Massively": "Desbloqueo masivo"
         },
         "commons": {
             "50 characters long": "50 caracteres de largo",
@@ -2925,7 +2926,8 @@
             "CLIENT": "CLIENTE",
             "CREDIT": "CRÉDITO",
             "Define Maximum legal rate parameterization for system loans": "Definir parametrización de tasa máxima legal para todos los créditos del sistema",
-            "Custom Charge Honorario Description": "Administrar detalles del Proveedor de Servicios de Cargo Honorario"
+            "Custom Charge Honorario Description": "Administrar detalles del Proveedor de Servicios de Cargo Honorario",
+            "Unblock Massively": "Desbloqueo masivo"
         },
         "titles": {
             "Dashboard": "Tableros",

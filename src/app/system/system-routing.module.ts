@@ -46,6 +46,7 @@ import { ViewAuditComponent } from './audit-trails/view-audit/view-audit.compone
 import { ViewRoleComponent } from './roles-and-permissions/view-role/view-role.component';
 import { EditRoleComponent } from './roles-and-permissions/edit-role/edit-role.component';
 import { EntityToEntityMappingComponent } from './entity-to-entity-mapping/entity-to-entity-mapping.component';
+import { UnblockClientsComponent } from './manage-blocking-reasons/unblock-clients/unblock-clients.component';
 
 /** Custom Resolvers */
 import { CodesResolver } from './codes/codes.resolver';
@@ -655,6 +656,14 @@ const routes: Routes = [
               data: { title: 'Create Blocking Reason', breadcrumb: 'Create' },
               resolve: {
                 manageBlockingReasonTemplateResolver: ManageBlockingReasonsTemplateResolver
+              }
+            },
+            {
+              path: 'unblock-clients',
+              component: UnblockClientsComponent,
+              data: { title: 'Unblock Clients', breadcrumb: 'Unblock Massively'},
+              resolve: {
+                manageBlockingReasonsResolver: ManageBlockingReasonsResolver
               }
             },
             {

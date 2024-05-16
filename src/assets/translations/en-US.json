@@ -517,7 +517,8 @@
             "UndoBlock": "Undo Block",
             "reset": "Reset",
             "Block By Control Lists": "Block by control lists",
-            "Unblock": "Unblock"
+            "Unblock": "Unblock",
+            "Unblock Massively": "Unblock massively"
         },
         "commons": {
             "50 characters long": "50 characters long",
@@ -2913,7 +2914,8 @@
             "CLIENT": "CLIENT",
             "CREDIT": "CREDIT",
             "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans",
-            "Custom Charge Honorario Description": "Manage Charge Honorario Service Procider details"
+            "Custom Charge Honorario Description": "Manage Charge Honorario Service Procider details",
+            "Unblock Massively": "Unblock massively"
         },
         "titles": {
             "Dashboard": "Dashboard",
