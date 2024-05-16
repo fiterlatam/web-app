@@ -49,14 +49,8 @@ export class ClientsViewComponent implements OnInit {
         return datatable.entitySubType === entitySubType;
       });
       this.clientTemplateData = data.clientTemplateData;
-      if (this.clientViewData.legalForm.value === "Entity") {
-        this.registeredTableName = this.clientDatatables[0].registeredTableName;
-      } else {
-        this.registeredTableName = this.clientDatatables[1].registeredTableName;
-      }
+      this.registeredTableName = this.clientDatatables[0].registeredTableName;
     });
-
-    this.getLegalFormDatatables(this.clientViewData.id, this.registeredTableName, this.clientViewData.legalForm);
   }
 
   ngOnInit() {
@@ -65,6 +59,7 @@ export class ClientsViewComponent implements OnInit {
         this.clientImage = this._sanitizer.bypassSecurityTrustResourceUrl(base64Image);
       }, (error: any) => {}
     );
+    this.getLegalFormDatatables(this.clientViewData.id, this.registeredTableName);
   }
 
   isActive(): boolean {
@@ -149,13 +144,12 @@ export class ClientsViewComponent implements OnInit {
   /**
    * Get Detail Client Legal Form
    */
-  private getLegalFormDatatables(clientId: string, legalForm: string, typeForm: string) {
+  private getLegalFormDatatables(clientId: string, registeredTableName: string) {
     let clientIdentityId: string = "-";
-    let clientType:string="-";
-    this.clientsService.getClientDatatable(clientId, legalForm).subscribe((data: any) => {
-     
+    let clientType: string = "-";
+    this.clientsService.getClientDatatable(clientId, registeredTableName).subscribe((data: any) => {
       if(!isEmpty(data)){
-        clientType=data.columnHeaders[1].columnName;
+        clientType = data.columnHeaders[1].columnName;
         clientIdentityId = data.data[0].row[1];
       }
       this.clientLegalForm = { name: clientType, value: clientIdentityId };

@@ -9,6 +9,11 @@
     {{'labels.buttons.Create Blocking Reason' | translate}}
   </button>
 
+  <button mat-raised-button color="primary" [routerLink]="['unblock-clients']" *mifosxHasPermission="'UNDOBLOCK_CLIENT'">
+    <fa-icon icon="user" class="m-r-10"></fa-icon>
+    {{'labels.buttons.Unblock Massively' | translate}}
+  </button>
+
 </div>
 
 <div class="container">

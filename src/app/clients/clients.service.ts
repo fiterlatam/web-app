@@ -410,4 +410,12 @@ export class ClientsService {
   getClientBlockingReason(clientId: string) {
     return this.http.get(`/clients/${clientId}/clientblockingreason`);
   }
+
+  getAllClientsWithBlockingReason(blockingReasonId: string) {
+    return this.http.get(`/clients/clientblockingreason/${blockingReasonId}`);
+  }
+
+  unblockClientWithBlockingReason(formData: any) {
+    return this.http.post(`/clients/clientblockingreason/unblock`, formData);
+  }
 }
