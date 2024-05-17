@@ -100,6 +100,7 @@ export class ViewCodeComponent implements OnInit {
     return this.formBuilder.group({
       'name': [{ value: codeValue ? codeValue.name : '', disabled: true }, Validators.required],
       'description': [{ value: codeValue ? codeValue.description : '', disabled: true }],
+      'score': [{ value: codeValue ? codeValue.score : null, disabled: true }],
       'position': [{ value: codeValue ? codeValue.position : 0, disabled: true }, Validators.required],
       'isActive': [{ value: codeValue ? codeValue.active : false, disabled: true }]
     });
@@ -133,7 +134,7 @@ export class ViewCodeComponent implements OnInit {
    * @param {number} index Index of the row.
    */
   updateCodeValue(index: number) {
-    const updatedCodeValue: { name: string, description: string, position: number, isActive: boolean } = this.codeValues.at(index).value;
+    const updatedCodeValue: { name: string, description: string, position: number, score: number, isActive: boolean } = this.codeValues.at(index).value;
     this.systemService.updateCodeValue(this.codeData.id, this.codeValuesData[index].id, updatedCodeValue)
       .subscribe((response: any) => {
         this.codeValues.at(index).disable();
@@ -166,6 +167,7 @@ export class ViewCodeComponent implements OnInit {
   disableRow(index: number) {
     this.codeValues.at(index).get('name').setValue(this.codeValuesData[index].name);
     this.codeValues.at(index).get('description').setValue(this.codeValuesData[index].description);
+    this.codeValues.at(index).get('score').setValue(this.codeValuesData[index].score);
     this.codeValues.at(index).get('position').setValue(this.codeValuesData[index].position);
     this.codeValues.at(index).get('isActive').setValue(this.codeValuesData[index].isActive);
     this.codeValues.at(index).disable();
@@ -178,7 +180,7 @@ export class ViewCodeComponent implements OnInit {
    * @param {number} index Index of the row.
    */
   addCodeValue(index: number) {
-    const newCodeValue: { name: string, description: string, position: string, isActive: boolean } = this.codeValues.at(index).value;
+    const newCodeValue: { name: string, description: string, position: string, score: number, isActive: boolean } = this.codeValues.at(index).value;
     this.systemService.createCodeValue(this.codeData.id, newCodeValue)
       .subscribe((response: any) => {
         this.codeValues.at(index).disable();
@@ -188,6 +190,7 @@ export class ViewCodeComponent implements OnInit {
           name: this.codeValues.at(index).get('name').value,
           description: this.codeValues.at(index).get('description').value,
           position: this.codeValues.at(index).get('position').value,
+          score: this.codeValues.at(index).get('score').value,
           isActive: this.codeValues.at(index).get('isActive').value
         });
         this.codeValues.at(index).markAsPristine();
