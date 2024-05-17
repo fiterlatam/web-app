@@ -221,6 +221,13 @@
           <i class="fa fa-exchange"></i>
         </button>
         </span>
+        <span>
+          <button class="account-action-button" mat-raised-button color="primary" matTooltip="{{ 'tooltips.Block' | translate}}"
+            matTooltipPosition="above" *mifosxHasPermission="'BLOCK_LOAN'"
+            (click)="routeEdit($event); routeToBlockLoanGuarantee(element.id)">
+            <i class="fa fa-lock"></i>
+          </button>
+          </span>
       </td>
     </ng-container>
 

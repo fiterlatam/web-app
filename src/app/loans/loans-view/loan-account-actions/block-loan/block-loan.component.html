@@ -1,0 +1,45 @@
+<div class="container">
+    <mat-card>
+      <form [formGroup]="blockForm" (ngSubmit)="submit()">
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-form-field (click)="blockDatePicker.open()">
+              <mat-label>{{"labels.inputs.Blocked On Date" | translate}}</mat-label>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="blockDatePicker" required formControlName="blockDate">
+              <mat-datepicker-toggle matSuffix [for]="blockDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #blockDatePicker></mat-datepicker>
+              <mat-error *ngIf="blockForm.controls.blockDate.hasError('required')">
+                {{"labels.inputs.Blocked On Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+
+         
+            <mat-form-field fxFlex="48%">
+              <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
+              <mat-select formControlName="blockingReasonId"  disabled>
+                <mat-option *ngFor="let reason of blockSetting" [value]="reason.id">
+                  {{ reason.nameOfReason }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="blockForm.controls.blockingReasonId.hasError('required')">
+                {{"labels.inputs.Blocking Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="48%">
+              <mat-label>{{"labels.inputs.Comments" | translate}}</mat-label>
+              <input matInput formControlName="blockComment" maxlength="255" required>
+              <mat-error *ngIf="blockForm.controls.blockComment.hasError('required')">
+                {{"labels.inputs.Comments" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+          <button type="button" mat-raised-button [routerLink]="['../../']">{{"labels.buttons.Cancel" | translate}}</button>
+          <button mat-raised-button color="warn" [disabled]="(!blockForm.valid)">{{"labels.buttons.Confirm" | translate}}</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  

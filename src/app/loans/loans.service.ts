@@ -639,4 +639,18 @@ export class LoansService {
     return this.http.put(`/loans/${loanId}/loanblockingreasons`, data);
   }
 
+
+  /**
+   * Retrieves the block guarantee template.
+   * @returns An observable that emits the block guarantee template.
+   */
+  getBlockGuarnateeTemplate(): Observable<any> {
+    return this.http.get(`/loans/block-guarantee/template`);
+  }
+
+  blockLoanAccount(loanId:any, data: any): Observable<any> {
+    return this.http.post(`/loans/${loanId}/loanblockingreasons`, data);
+
+  }
+
 }

@@ -288,7 +288,11 @@
         "error.msg.client.credit.blocked": "Operación de crédito bloqueada por bloqueo de crédito",
         "error.msg.loanproduct.max.nominal.interest.rate.per.period": "La tasa de interés nominal máxima por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}",
         "error.msg.loanproduct.min.nominal.interest.rate.per.period": "La tasa de interés nominal mínima por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}",
-        "error.msg.loanproduct.nominal.interest.rate.per.period": "La tasa de interés nominal por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}"
+        "error.msg.loanproduct.nominal.interest.rate.per.period": "La tasa de interés nominal por período [ {{params[0].value}} ] no puede ser mayor que la tasa máxima legal {{params[1].value}}",
+        "error.msg.loan.blocking.reason.already.exists": "La cuenta de préstamo ya ha sido bloqueada con esta configuración",
+        "error.msg.client.blocking.reason.already.exists": "La cuenta del cliente ya ha sido bloqueada con la configuración",
+        "error.msg.block.reason.not.found": "El motivo de bloqueo no se encuentra",
+        "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "La fecha de desbloqueo del cliente no puede ser anterior a la fecha de bloqueo"
       },
     "labels": {
         "breadcrumbs": {
@@ -3129,7 +3133,8 @@
         "Deactivation To Date": "La fecha de finalización en la que se bloqueará el acceso del usuario a la plataforma.",
         "Months To Client InActive": "El número de meses durante los cuales un cliente estará inactivo cuando el cliente no haya realizado ninguna actividad en el producto.",
         "Loan settings to lead to change in client status": "Configuraciones de préstamo que llevan a establecer al cliente como inactivo",
-        "Amount for NPA": "El monto en mora que se considerará antes de que el préstamo se traslade a las áreas. Si el incumplimiento es menor que el monto $$ designado aquí, el préstamo permanecerá ACTIVO."
+        "Amount for NPA": "El monto en mora que se considerará antes de que el préstamo se traslade a las áreas. Si el incumplimiento es menor que el monto $$ designado aquí, el préstamo permanecerá ACTIVO.",
+        "Block": "Bloquear"
     },
   "appUserStatus": {
     "invalid": "Inválido",
