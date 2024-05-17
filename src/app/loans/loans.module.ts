@@ -86,6 +86,7 @@ import {
   GenerateDisbursementReportComponent
 } from "./loans-view/loan-account-actions/generate-disbursement-report/generate-disbursement-report.component";
 import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-block-loan/undo-block-loan.component';
+import { BlockLoanComponent } from './loans-view/loan-account-actions/block-loan/block-loan.component';
 
 /**
  * Loans Module
@@ -173,7 +174,8 @@ import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-b
     LoanDelinquencyActionDialogComponent,
     LoanReagingComponent,
     LoanAssignorSelectorComponent,
-    UndoBlockLoanComponent
+    UndoBlockLoanComponent,
+    BlockLoanComponent
   ],
   providers: [ ],
 })

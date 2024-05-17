@@ -74,9 +74,11 @@ export class LoanActionButtonResolver implements Resolve<Object> {
       return this.loansService.getLoanActionTemplate(loanId, 'charge-off');
     } else if (loanActionButton == 'Unblock') {
       return this.loansService.getLoanBlockingReasons(loanId);
+    }else if (loanActionButton == 'Block Loan') {
+      return this.loansService.getBlockGuarnateeTemplate();
     }else {
       return undefined;
     }
   }
 
-}
+}3
