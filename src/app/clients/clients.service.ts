@@ -415,7 +415,15 @@ export class ClientsService {
     return this.http.get(`/clients/clientblockingreason/${blockingReasonId}`);
   }
 
+  getAllLoansWithBloackingReason(blockingReasonId: string) {
+    return this.http.get(`/loans/loanblockingreason/${blockingReasonId}`);
+  }
+
   unblockClientWithBlockingReason(formData: any) {
     return this.http.post(`/clients/clientblockingreason/unblock`, formData);
+  }
+
+  unblockLoanWithBlockingReason(formData: any) {
+    return this.http.post(`/loans/loanblockingreason/unblock`, formData);
   }
 }
