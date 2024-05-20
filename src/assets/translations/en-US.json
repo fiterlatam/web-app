@@ -287,7 +287,9 @@
         "error.msg.loan.blocking.reason.already.exists": "Loan account has already been blocked with this setting",
         "error.msg.client.blocking.reason.already.exists": "Client account has already been blocked with setting",
         "error.msg.block.reason.not.found": "Block setting could not be found",
-        "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "Client unblock date cannot be before the block date"
+        "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "Client unblock date cannot be before the block date",
+        "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "The parameter `percentageValue` amount [ {{params[0].value}} ] must be between [ {{params[1].value}} ] and 1[ {{params[2].value}} ].",
+        "error.msg.loan.cupo.limit.exceeded": "Cupo limit of [ {{params[0].value}} ] is exceeded"
     },
     "labels": {
         "breadcrumbs": {
@@ -915,6 +917,7 @@
             "custom.charge.type.aval": "Charge Type Map",
             "Delete Custom Charge": "Delete Custom Charge",
             "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
+            "Advance Quota Parameterization":  "Advance Quota Parameterization",
             "Manage Blocking Reasons": "Manage Blocking Reasons",
             "Block By Control Lists": "Block by control lists",
             "Upload Block List": "Upload Block List",
@@ -2179,7 +2182,8 @@
             "Current Interest Rate":  "Current Interest Rate",
             "Overdue Interest Rate":  "Overdue Interest Rate",
             "Block Status": "Block Status",
-            "Delete All Available": "Delete All Available"
+            "Delete All Available": "Delete All Available",
+            "Advance Quota Configuration": "Advance Quota Configuration"
         },
         "links": {
             "Community": "Community",
@@ -2918,8 +2922,11 @@
             "CLIENT": "CLIENT",
             "CREDIT": "CREDIT",
             "Define Maximum legal rate parameterization for system loans": "Define Maximum legal rate parameterization for system loans",
+            "Define Advance Quota Parameterization for credits": "Define Advance Quota Parameterization for credits",
             "Custom Charge Honorario Description": "Manage Charge Honorario Service Procider details",
-            "Unblock Massively": "Unblock massively"
+            "Unblock Massively": "Unblock massively",
+            "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
+            "Advance Quota Parameterization":  "Advance Quota Parameterization"
         },
         "titles": {
             "Dashboard": "Dashboard",

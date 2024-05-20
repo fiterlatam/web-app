@@ -13,7 +13,7 @@ import {DecimalPipe} from '@angular/common';
  * Edit tax component.
  */
 @Component({
-  selector: 'mifosx-edit-tax-component',
+  selector: 'mifosx-edit-maximum-credit-rate',
   templateUrl: './edit-maximum-credit-rate.component.html',
   styleUrls: ['./edit-maximum-credit-rate.component.scss']
 })
@@ -23,9 +23,9 @@ export class EditMaximumCreditRateComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   /** Maximum start date allowed. */
   maxDate = new Date();
-  /** Tax Component form. */
+  /** Maximum legal rate form. */
   maximumCreditRateForm: UntypedFormGroup;
-  /** Tax Component data. */
+  /** Maximum legal rate data. */
   maximumCreditRateData: any;
 
   /**
@@ -45,10 +45,6 @@ export class EditMaximumCreditRateComponent implements OnInit {
               private dateUtils: Dates,
               private decimalPipe: DecimalPipe,
               private settingsService: SettingsService) {
-      this.route.data.subscribe((data: { taxComponent: any }) => {
-      this.maximumCreditRateData = data.taxComponent;
-    });
-
     this.route.data.subscribe((data: { maximumCreditRate: any }) => {
       this.maximumCreditRateData = data.maximumCreditRate;
     });

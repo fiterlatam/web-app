@@ -132,6 +132,9 @@ import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum
 import {
   EditMaximumCreditRateComponent
 } from './maximum-credit-rate/edit-maximum-credit-rate/edit-maximum-credit-rate.component';
+import {AdvanceQuotaComponent} from './advance-quota/advance-quota.component';
+import {AdvanceQuotaResolver} from './advance-quota/advance-quota.resolver';
+import {EditAdvanceQuotaComponent} from './advance-quota/edit-advance-quota/edit-advance-quota.component';
 
 /** Products Routes */
 const routes: Routes = [
@@ -763,6 +766,27 @@ const routes: Routes = [
           ]
         },
         {
+          path: 'advance-quota',
+          data: { title: 'Advance Quota Parameterization', breadcrumb: 'Advance Quota Parameterization' },
+          children: [
+            {
+              path: '',
+              component: AdvanceQuotaComponent,
+              resolve: {
+                advanceQuotaConfiguration: AdvanceQuotaResolver
+              }
+            },
+            {
+              path: 'edit',
+              component: EditAdvanceQuotaComponent,
+              data: { title: 'Edit Advance Quota Parameterization', breadcrumb: 'Edit', routeParamBreadcrumb: false },
+              resolve: {
+                advanceQuotaConfiguration: AdvanceQuotaResolver
+              }
+            }
+          ]
+        },
+        {
           path: 'floating-rates',
           data: { title: 'Floating Rates', breadcrumb: 'Floating Rates' },
           children: [
@@ -955,7 +979,8 @@ const routes: Routes = [
     CollateralTemplateResolver,
     DelinquencyRangeComponentsResolver,
     DelinquencyBucketComponentsResolver,
-    MaximumCreditRateResolver
+    MaximumCreditRateResolver,
+    AdvanceQuotaResolver
   ]
 })
 export class ProductsRoutingModule { }
