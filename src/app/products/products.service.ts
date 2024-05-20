@@ -266,6 +266,10 @@ export class ProductsService {
     return this.http.put('/loanproducts/maximumCreditRate', maximumCreditRate);
   }
 
+  updateAdvanceQuotaConfiguration(advanceQuotaConfiguration: any): Observable<any> {
+    return this.http.put('/loanproducts/advanceQuotaConfiguration', advanceQuotaConfiguration);
+  }
+
   /**
    * @returns {Observable<any>} Tax Groups data
    */
@@ -605,6 +609,10 @@ export class ProductsService {
    */
   getMaximumCreditRate(): Observable<any> {
     return this.http.get('/loanproducts/maximumCreditRate');
+  }
+
+  getAdvanceQuotaConfiguration(): Observable<any> {
+    return this.http.get('/loanproducts/advanceQuotaConfiguration');
   }
 
 }

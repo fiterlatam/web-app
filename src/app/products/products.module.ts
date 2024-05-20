@@ -124,6 +124,8 @@ import {
   EditMaximumCreditRateComponent
 } from './maximum-credit-rate/edit-maximum-credit-rate/edit-maximum-credit-rate.component';
 import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum-credit-rate.component';
+import {EditAdvanceQuotaComponent} from './advance-quota/edit-advance-quota/edit-advance-quota.component';
+import {AdvanceQuotaComponent} from './advance-quota/advance-quota.component';
 
 /**
  * Products Module
@@ -253,7 +255,9 @@ import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum
         AdvancePaymentAllocationTabComponent,
         LoanProductSummaryComponent,
         ViewMaximumCreditRateComponent,
-        EditMaximumCreditRateComponent
+        EditMaximumCreditRateComponent,
+        AdvanceQuotaComponent,
+        EditAdvanceQuotaComponent
     ]
 })
 export class ProductsModule { }

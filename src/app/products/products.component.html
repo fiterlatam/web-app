@@ -132,6 +132,14 @@
             <p matLine>{{ 'labels.text.custom.charge.type.aval.description' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['advance-quota']" *mifosxHasPermission="'READ_ADVANCE_QUOTA'">
+            <mat-icon matListIcon>
+              <fa-icon icon="money-bill-alt" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Advance Quota Parameterization' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Define Advance Quota Parameterization for credits' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>

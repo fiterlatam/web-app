@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditMaximumCreditRateComponent } from './edit-maximum-credit-rate.component';
 
-describe('EditTaxComponentComponent', () => {
+describe('EditMaximumCreditRateComponent', () => {
   let component: EditMaximumCreditRateComponent;
   let fixture: ComponentFixture<EditMaximumCreditRateComponent>;
 

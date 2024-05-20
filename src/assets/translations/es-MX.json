@@ -292,7 +292,9 @@
         "error.msg.loan.blocking.reason.already.exists": "La cuenta de préstamo ya ha sido bloqueada con esta configuración",
         "error.msg.client.blocking.reason.already.exists": "La cuenta del cliente ya ha sido bloqueada con la configuración",
         "error.msg.block.reason.not.found": "El motivo de bloqueo no se encuentra",
-        "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "La fecha de desbloqueo del cliente no puede ser anterior a la fecha de bloqueo"
+        "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "La fecha de desbloqueo del cliente no puede ser anterior a la fecha de bloqueo",
+        "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "La cantidad del parámetro `percentageValue` [ {{params[0].value}} ] debe estar entre [ {{params[1].value}} ] y 1[ {{params[2].value}} ].",
+        "error.msg.loan.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]"
       },
     "labels": {
         "breadcrumbs": {
@@ -930,6 +932,7 @@
             "Disabled List": "Lista Deshabilitada",
             "Enabled List": "Lista Habilitada",
             "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
+            "Advance Quota Parameterization": "Parametrización de la Cupo Avance",
             "Result": "Resultado",
             "Client InActivity": "Cliente Inactivo",
             "Custom Charge Honorario": "Servicio del Cargo Personalizado Honorario",
@@ -2193,7 +2196,8 @@
             "Current Interest Rate":  "Tasa de Interés corriente",
             "Overdue Interest Rate":  "Tasa de mora",
             "Block Status": "Estado del bloque",
-            "Delete All Available": "Eliminar todos los disponibles"
+            "Delete All Available": "Eliminar todos los disponibles",
+            "Advance Quota Configuration": "Configuración Cupo Avance"
         },
         "links": {
             "Community": "Comunidad",
@@ -2930,8 +2934,11 @@
             "CLIENT": "CLIENTE",
             "CREDIT": "CRÉDITO",
             "Define Maximum legal rate parameterization for system loans": "Definir parametrización de tasa máxima legal para todos los créditos del sistema",
+            "Define Advance Quota Parameterization for credits": "Definir Parametrización de Cupo Avance para créditos",
             "Custom Charge Honorario Description": "Administrar detalles del Proveedor de Servicios de Cargo Honorario",
-            "Unblock Massively": "Desbloqueo masivo"
+            "Unblock Massively": "Desbloqueo masivo",
+            "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
+            "Advance Quota Parameterization": "Parametrización de la Cupo Avance"
         },
         "titles": {
             "Dashboard": "Tableros",
