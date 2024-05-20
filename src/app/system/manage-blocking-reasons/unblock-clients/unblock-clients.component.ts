@@ -42,18 +42,20 @@ export class UnblockClientsComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.createForm();
     this.selection.changed.subscribe(() => {
-      this.unblockClientsForm.patchValue({ clientId: this.selection.selected.map((item: any) => item.clientId) });
+      this.unblockClientsForm.patchValue({ clientId: this.selection.selected.map(
+        (item: any) => this.unblockClientsForm.value.blockingReasonLevel == "CLIENT" ? item.clientId : item.loanId) 
+      });
     });
   }
 
-  isAllClientSelected() {
+  isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
   toggleAllRows() {
-    if (this.isAllClientSelected()) {
+    if (this.isAllSelected()) {
       this.selection.clear();
       return;
     }
@@ -62,7 +64,7 @@ export class UnblockClientsComponent implements OnInit {
 
   checkboxLabel(row?: any): string {
     if (!row) {
-      return `${this.isAllClientSelected() ? 'deselect' : 'select'} all`;
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
@@ -84,6 +86,7 @@ export class UnblockClientsComponent implements OnInit {
   }
 
   fetchClientsWithBlockingReason(blockingReasonId: string) {
+    this.displayedColumns = ['select', 'displayName', 'blockName', 'blockDate'];
     this.selection.clear();
     this.isLoading = true;
     this.clientsService.getAllClientsWithBlockingReason(blockingReasonId)
@@ -96,6 +99,27 @@ export class UnblockClientsComponent implements OnInit {
 
   }
 
+  fetchLoansWithBlockingReason(blockingReasonId: string) {
+    this.displayedColumns = ['loanSelect', 'loanId', 'loanBlockReason', 'loanBlockDate', 'loanBlockComment'];
+    this.selection.clear();
+    this.isLoading = true;
+    this.clientsService.getAllLoansWithBloackingReason(blockingReasonId)
+      .subscribe((data: any) => {
+        this.dataSource.data = data;
+        this.isLoading = false;
+      }, (error: any) => {
+        this.isLoading = false;
+      })
+  }
+
+  fetchDataWithBlockingReason(blockingReasonId: string) {
+    if (this.unblockClientsForm.value.blockingReasonLevel == "CLIENT") {
+      this.fetchClientsWithBlockingReason(blockingReasonId);
+    } else {
+      this.fetchLoansWithBlockingReason(blockingReasonId);
+    }
+  }
+
   submit() {
     const dateFormat = this.settingsService.dateFormat;
     const locale = this.settingsService.language.code;
@@ -104,13 +128,28 @@ export class UnblockClientsComponent implements OnInit {
       this.unblockClientsForm.patchValue({ unblockDate: this.dateUtils.formatDate(unblockDate, dateFormat) });
     }
 
-    const formData = {
-      ...this.unblockClientsForm.value,
-      dateFormat,
-      locale
+    if (this.unblockClientsForm.value.blockingReasonLevel == "CLIENT") {
+      const formData = {
+        ...this.unblockClientsForm.value,
+        dateFormat,
+        locale
+      };
+      this.clientsService.unblockClientWithBlockingReason(formData).subscribe((response: any) => {
+        this.router.navigate(['../'], { relativeTo: this.route });
+      });
+    } else {
+      const formData = {
+        ...this.unblockClientsForm.value,
+        dateFormat,
+        locale
+      };
+      formData.loanId = formData.clientId;
+      delete formData.clientId;
+      this.clientsService.unblockLoanWithBlockingReason(formData).subscribe((response: any) => {
+        this.router.navigate(['../'], { relativeTo: this.route });
+      });
     }
-    this.clientsService.unblockClientWithBlockingReason(formData).subscribe((response: any) => {
-      this.router.navigate(['../'], { relativeTo: this.route });
-    });
+
+    
   }
 }
