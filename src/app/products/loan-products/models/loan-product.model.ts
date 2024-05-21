@@ -7,6 +7,7 @@ export interface LoanProduct {
   name:                                                      string;
   shortName:                                                 string;
   includeInBorrowerCycle:                                    boolean;
+  advance:                                                   boolean;
   useBorrowerCycle:                                          boolean;
   status:                                                    string;
   currency:                                                  Currency;

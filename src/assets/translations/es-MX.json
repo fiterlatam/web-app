@@ -294,7 +294,9 @@
         "error.msg.block.reason.not.found": "El motivo de bloqueo no se encuentra",
         "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "La fecha de desbloqueo del cliente no puede ser anterior a la fecha de bloqueo",
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "La cantidad del parámetro `percentageValue` [ {{params[0].value}} ] debe estar entre [ {{params[1].value}} ] y 1[ {{params[2].value}} ].",
-        "error.msg.loan.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]"
+        "error.msg.loan.maximum.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]",
+        "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Se superó el límite máximo de avance de Cupo de [ {{params[0].value}} ]",
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]"
       },
     "labels": {
         "breadcrumbs": {
@@ -939,6 +941,9 @@
             "state": "Estado"
         },
         "inputs": {
+            "Close Date": "Fecha de cierre",
+            "Short Name": "Nombre corto",
+            "Is Advance": "¿Es avance?",
             "ACCOUNTING": "CONTABILIDAD",
             "ADDRESS": "DOMICILIO",
             "Above Changes are Effective from": "Los cambios anteriores son efectivos desde",
@@ -1786,6 +1791,7 @@
             "Priority": "Prioridad",
             "Product": "Producto",
             "Product Name": "nombre del producto",
+            "Product Type": "tipo de producto",
             "Products": "Productos",
             "Profession": "Profesión",
             "Proposed Amount": "Monto propuesto",
@@ -2964,6 +2970,14 @@
     },
     "not_found_subtitle": "Vaya... Parece que esta página no existe.",
     "tooltips": {
+        "The description is used to provide additional information regarding the purpose and characteristics of the loan product": "La descripción se utiliza para proporcionar información adicional sobre el propósito y las características del producto de Crédito.",
+        "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive": "La fecha en que el producto de Crédito se volverá inactivo y no estará disponible para los clientes. Si está en blanco, el producto de Crédito nunca se volverá inactivo.",
+        "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created": "La fecha en que el producto de Crédito estará activo y disponible para los clientes. Si está en blanco, el producto de Crédito estará activo tan pronto como se cree.",
+        "A borrower loan counter (cycle) is used for tracking how many time the client has taken this particular product": "Se utiliza un contador (ciclo) de Créditos del prestatario para rastrear cuántas veces el cliente ha tomado este producto en particular.",
+        "Loan products may be assigned to a fund set up by your financial institution. If available, the fund field can be used for tracking and reporting on groups of loans": "Los productos crediticios pueden asignarse a un fondo creado por su institución financiera. Si está disponible, el campo de fondo se puede utilizar para realizar un seguimiento e informar sobre grupos de Créditos.",
+        "The short name is a unique identifier for the lending product": "El nombre corto es un identificador único para el producto crediticio.",
+        "The product name is a unique identifier for the lending product": "El nombre del producto es un identificador único para el producto crediticio.",
+        "This will indicate that transactions with this product will be part of an advance and not a purchase": "Esto indicará que las transacciones con este producto serán parte de un anticipo y no de una compra.",
         "A borrower loan counter (cycle)": "Se utiliza un contador (ciclo) de Créditos del prestatario para rastrear cuántas veces el cliente ha tomado este producto en particular.",
         "A loan is in arrears once the number of days": "Un Crédito está en mora una vez que se excede el número de días ingresados ​​en este campo. Si este campo está en blanco, el Crédito estará en mora el día después de que no se realice un pago programado.",
         "A period of time during which a fixed deposit account": "Un período de tiempo durante el cual una cuenta de Depósito Fijo basada en este producto de Depósito Fijo quedará bloqueada después de su apertura.",
