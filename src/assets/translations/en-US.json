@@ -289,7 +289,9 @@
         "error.msg.block.reason.not.found": "Block setting could not be found",
         "error.msg.client.undoBlock.date.cannot.before.client.blockedOnDate.date": "Client unblock date cannot be before the block date",
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "The parameter `percentageValue` amount [ {{params[0].value}} ] must be between [ {{params[1].value}} ] and 1[ {{params[2].value}} ].",
-        "error.msg.loan.cupo.limit.exceeded": "Cupo limit of [ {{params[0].value}} ] is exceeded"
+        "error.msg.loan.maximum.cupo.limit.exceeded": "Cupo limit of [ {{params[0].value}} ] is exceeded",
+        "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Maximum advance Cupo limit of [ {{params[0].value}} ] is exceeded",
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded"
     },
     "labels": {
         "breadcrumbs": {
@@ -929,6 +931,8 @@
             "state": "State"
         },
         "inputs": {
+            "Close Date": "Close Date",
+            "Is Advance": "Is Advance?",
             "ACCOUNTING": "ACCOUNTING",
             "ADDRESS": "ADDRESS",
             "Above Changes are Effective from": "Above Changes are Effective from",
@@ -1776,6 +1780,8 @@
             "Priority": "Priority",
             "Product": "Product",
             "Product Name": "Product Name",
+            "Short Name": "Short Name",
+            "Product Type": "Product Type",
             "Products": "Products",
             "Profession": "Profession",
             "Proposed Amount": "Proposed Amount",
@@ -2951,6 +2957,14 @@
     },
     "not_found_subtitle": "Oops.. Looks like this page doesn't exist.",
     "tooltips": {
+        "The description is used to provide additional information regarding the purpose and characteristics of the loan product": "The description is used to provide additional information regarding the purpose and characteristics of the loan product.",
+        "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive": "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive.",
+        "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created": "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created.",
+        "This will indicate that transactions with this product will be part of an advance and not a purchase": "This will indicate that transactions with this product will be part of an advance and not a purchase.",
+        "A borrower loan counter (cycle) is used for tracking how many time the client has taken this particular product": "A borrower loan counter (cycle) is used for tracking how many time the client has taken this particular product.",
+        "Loan products may be assigned to a fund set up by your financial institution. If available, the fund field can be used for tracking and reporting on groups of loans": "Loan products may be assigned to a fund set up by your financial institution. If available, the fund field can be used for tracking and reporting on groups of loans.",
+        "The short name is a unique identifier for the lending product": "The short name is a unique identifier for the lending product.",
+        "The product name is a unique identifier for the lending product": "The product name is a unique identifier for the lending product.",
         "A borrower loan counter (cycle)": "A borrower loan counter (cycle) is used for tracking how many time the client has taken this particular product.",
         "A loan is in arrears once the number of days": "A loan is in arrears once the number of days entered into this field is exceeded. If this field is blank, the loan will be in arrears the day after a scheduled payment is missed.",
         "A period of time during which a fixed deposit account": "A period of time during which a fixed deposit account based on this fixed deposit product will be locked-in after it is opened.",

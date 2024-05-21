@@ -39,7 +39,6 @@ export class LoanProductDetailsStepComponent implements OnInit {
   ngOnInit() {
     this.fundData = this.loanProductsTemplate.fundOptions;
     this.productTypeData = this.loanProductsTemplate.productTypeOptions;
-
     this.loanProductDetailsForm.patchValue({
       'name': this.loanProductsTemplate.name,
       'shortName': this.loanProductsTemplate.shortName,
@@ -48,6 +47,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'startDate': this.loanProductsTemplate.startDate && new Date(this.loanProductsTemplate.startDate),
       'closeDate': this.loanProductsTemplate.closeDate && new Date(this.loanProductsTemplate.closeDate),
       'includeInBorrowerCycle': this.loanProductsTemplate.includeInBorrowerCycle,
+      'advance': this.loanProductsTemplate.advance,
       'productType': this.loanProductsTemplate.productType.id
     });
   }
@@ -61,6 +61,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'startDate': [''],
       'closeDate': [''],
       'includeInBorrowerCycle': [false],
+      'advance': [false],
       'productType': ['', Validators.required]
     });
   }

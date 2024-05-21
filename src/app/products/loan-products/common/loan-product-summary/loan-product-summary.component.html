@@ -29,6 +29,12 @@
     <span  fxFlex="53%">{{ loanProduct.includeInBorrowerCycle | yesNo }}</span>
   </div>
 
+  <div fxFlexFill>
+    <span fxFlex="47%">{{'labels.inputs.Is Advance' | translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.advance | yesNo }}</span>
+  </div>
+
+
   <div fxFlexFill *ngIf="loanProduct.startDate">
     <span fxFlex="47%">Start Date:</span>
     <span  fxFlex="53%">{{ loanProduct.startDate | dateFormat }}</span>
