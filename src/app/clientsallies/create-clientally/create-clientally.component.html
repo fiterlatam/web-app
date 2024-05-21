@@ -112,7 +112,7 @@
 
             <mat-form-field fxFlex="25%">
                 <mat-label>{{"labels.inputs.settledComission" | translate }}</mat-label>
-                <input  min="0.01" max="99.99"   [maxLength]="5" matInput required formControlName="settledComission">
+                <input  min="0.00" max="99.99"   [maxLength]="5" matInput required formControlName="settledComission">
                 <mat-error *ngIf="groupForm.controls.settledComission.hasError('required')">
                 {{"labels.inputs.settledComission" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>
