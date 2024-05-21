@@ -2938,7 +2938,8 @@
             "Custom Charge Honorario Description": "Administrar detalles del Proveedor de Servicios de Cargo Honorario",
             "Unblock Massively": "Desbloqueo masivo",
             "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
-            "Advance Quota Parameterization": "Parametrización de la Cupo Avance"
+            "Advance Quota Parameterization": "Parametrización de la Cupo Avance",
+            "Enable extended": "Habilitar plazo extendido para pagos mensuales"
         },
         "titles": {
             "Dashboard": "Tableros",
@@ -3221,5 +3222,11 @@
     "vip": "VIP",
     "commerce": "Comércio",
     "product": "Producto"
+  },
+  "repaymentReschedulingType":{
+    "same day": "Mismo día",
+    "move to next working day": "Mover al día siguiente laborable",
+    "move to next repayment meeting day": "Mover al día siguiente de la reunión de pagos",
+    "move to previous working day": "Mover al día anterior laborable"
   }
 }
