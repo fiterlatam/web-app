@@ -2926,7 +2926,8 @@
             "Custom Charge Honorario Description": "Manage Charge Honorario Service Procider details",
             "Unblock Massively": "Unblock massively",
             "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
-            "Advance Quota Parameterization":  "Advance Quota Parameterization"
+            "Advance Quota Parameterization":  "Advance Quota Parameterization",
+            "Enable extended": "Enable extended term for monthly repayments"
         },
         "titles": {
             "Dashboard": "Dashboard",
@@ -3265,5 +3266,11 @@
     "vip": "VIP",
     "commerce": "Commerce",
     "product": "Product"
+  },
+  "repaymentReschedulingType":{
+    "same day": "Same day",
+    "move to next working day": "Move to next working day",
+    "move to next repayment meeting day": "Move to next repayment meeting day",
+    "move to previous working day": "Move to previous working day"
   }
 }

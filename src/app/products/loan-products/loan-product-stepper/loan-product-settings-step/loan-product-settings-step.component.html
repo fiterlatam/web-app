@@ -89,13 +89,13 @@
       <mat-label>Payment due on non working days</mat-label>
       <mat-select formControlName="repaymentReschedulingType">
         <mat-option *ngFor="let repaymentReschedulingType of repaymentReschedulingTypeData" [value]="repaymentReschedulingType.id">
-          {{ repaymentReschedulingType.value | titlecase }}
+          {{ "repaymentReschedulingType."+repaymentReschedulingType.value | translate  }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="extendTermForMonthlyRepayments" class="margin-v">
-      Enable extended term for monthly repayments
+      {{"labels.text.Enable extended" |translate}}
     </mat-checkbox>
 
     <h3 fxFlex="96%" class="mat-h3">Loan Tranche Details</h3>
