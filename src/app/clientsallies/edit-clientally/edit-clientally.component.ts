@@ -123,7 +123,7 @@ export class EditClientallyComponent implements OnInit {
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
       'applyCupoMaxSell': [false],
       'cupoMaxSell': [{value: ''}, [Validators.pattern('^[0-9,\\.]+$'),  Validators.min(1), Validators.max(2147483647)]],
-      'settledComission': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.1), Validators.maxLength(5), Validators.max(99.99)]],
+      'settledComission': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(99.99)]],
       'buyEnabled': [false],
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
