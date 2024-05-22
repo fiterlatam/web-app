@@ -296,7 +296,9 @@
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "La cantidad del parámetro `percentageValue` [ {{params[0].value}} ] debe estar entre [ {{params[1].value}} ] y 1[ {{params[2].value}} ].",
         "error.msg.loan.maximum.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]",
         "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Se superó el límite máximo de avance de Cupo de [ {{params[0].value}} ]",
-        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]"
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]",
+        "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "El producto seleccionado está configurado para no aceptar Creación ni Desembolso de Préstamo",
+        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento"
       },
     "labels": {
         "breadcrumbs": {
@@ -2203,7 +2205,11 @@
             "Overdue Interest Rate":  "Tasa de mora",
             "Block Status": "Estado del bloque",
             "Delete All Available": "Eliminar todos los disponibles",
-            "Advance Quota Configuration": "Configuración Cupo Avance"
+            "Advance Quota Configuration": "Configuración Cupo Avance",
+            "Channel": "Canal",
+            "Channel Name": "Nombre Canal",
+            "Sub Channel":  "Sub Canal"   ,
+            "Sub Channel Name":  "Nombre Sub Canal"        
         },
         "links": {
             "Community": "Comunidad",

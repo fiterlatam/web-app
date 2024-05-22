@@ -1,9 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
 import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 import { CodeName, OptionData } from 'app/shared/models/option-data.model';
+import { SubChannelLoanProductInterface, ChannelInterface, SubChannelInterface } from 'app/loans/models/loan-account.model';
+import { ProductsService } from 'app/products/products.service';
 
 
 @Component({
@@ -22,6 +28,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
   @Output() advancePaymentStrategy = new EventEmitter<string>();
 
   loanProductSettingsForm: UntypedFormGroup;
+
+  customCollectionsSubChannelForm: UntypedFormGroup;
 
   amortizationTypeData: any;
   interestTypeData: any;
@@ -47,8 +55,17 @@ export class LoanProductSettingsStepComponent implements OnInit {
   /** Values to Days for Repayments */
   defaultConfigValues: GlobalConfiguration[] = [];
 
-  constructor(private formBuilder: UntypedFormBuilder) {
+  apiData: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
+  displayedColumns =  ['channelName', 'subChannelName', 'actions'];
+
+  constructor(private formBuilder: UntypedFormBuilder, 
+    private route: ActivatedRoute,
+    private router: Router,    
+    private productsService: ProductsService) {
     this.createLoanProductSettingsForm();
+//    this.createCustomCollectionsSubChannelForm();
     this.setConditionalControls();
   }
 
@@ -81,6 +98,16 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.loanScheduleTypeData = this.loanProductsTemplate.loanScheduleTypeOptions;
     this.loanScheduleProcessingTypeData = this.loanProductsTemplate.loanScheduleProcessingTypeOptions;
     this.repaymentReschedulingTypeData = this.loanProductsTemplate.repaymentReschedulingTypeOptions;
+
+    this.apiData = this.loanProductsTemplate.customCollectionsSubChannelList;
+    this.dataSource = new MatTableDataSource(this.apiData);
+    this.dataSource.data = this.apiData;
+
+    this.SubChannelInterfaceArray = this.apiData;
+
+//    this.dataSource.paginator = this.paginator;
+//    this.dataSource.sort = this.sort;
+
 
     const transactionProcessingStrategyCode: string = this.loanProductsTemplate.transactionProcessingStrategyCode || this.transactionProcessingStrategyData[0].code;
     this.loanProductSettingsForm.patchValue({
@@ -117,7 +144,14 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'useDueForRepaymentsConfigurations': this.loanProductsTemplate.useDueForRepaymentsConfigurations,
       'allowAccrualPostingInArrears': this.loanProductsTemplate.allowAccrualPostingInArrears,
       'repaymentReschedulingType': this.loanProductsTemplate.repaymentReschedulingType ? this.loanProductsTemplate.repaymentReschedulingType.id : this.loanProductsTemplate.repaymentReschedulingTypeConfig,
-      'extendTermForMonthlyRepayments': this.loanProductsTemplate.extendTermForMonthlyRepayments
+      'extendTermForMonthlyRepayments': this.loanProductsTemplate.extendTermForMonthlyRepayments,
+      'customAllowCreateOrDisburse': (this.loanProductsTemplate.customAllowCreateOrDisburse == null ? true : this.loanProductsTemplate.customAllowCreateOrDisburse),
+      'customAllowCollections': (this.loanProductsTemplate.customAllowCollections == null ? true : this.loanProductsTemplate.customAllowCollections),
+      'customAllowDebitNote': (this.loanProductsTemplate.customAllowDebitNote == null ? true : this.loanProductsTemplate.customAllowDebitNote),
+      'customAllowCreditNote': (this.loanProductsTemplate.customAllowCreditNote == null ? true : this.loanProductsTemplate.customAllowCreditNote),
+      'customAllowForgiveness': (this.loanProductsTemplate.customAllowForgiveness == null ? true : this.loanProductsTemplate.customAllowForgiveness),
+      'customAllowReversalCancellation': (this.loanProductsTemplate.customAllowReversalCancellation == null ? true : this.loanProductsTemplate.customAllowReversalCancellation),
+      'subChannelLoanProductMapper': (this.apiData),
     });
 
     if (this.loanProductsTemplate.maxClientInactivityPeriod) {
@@ -217,6 +251,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
         }
       });
     }
+
+    this.loadChannelsForCombobox()
   }
 
   createLoanProductSettingsForm() {
@@ -267,6 +303,16 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'maxClientInactivityPeriod': [''],
       'overdueAmountForArrearsConsideration': [''],
       'extendTermForMonthlyRepayments': [false],
+      'customAllowCreateOrDisburse': [false],
+      'customAllowCollections': [false],
+      'customAllowDebitNote': [false],
+      'customAllowCreditNote': [false],
+      'customAllowForgiveness': [false],
+      'customAllowReversalCancellation': [false],
+      'channelId': [false],
+      'subChannelId': [false],
+      'subChannelLoanProductMapper': [],
+      
     });
   }
 
@@ -539,5 +585,95 @@ export class LoanProductSettingsStepComponent implements OnInit {
     }
     return productSettings;
   }
+
+  get getSubChannelLoanProductMapping() {
+    return this.apiData;
+  }
+
+  // #############################################################
+  filteredChannel: ChannelInterface | undefined;
+  filteredSubChannel: SubChannelInterface | undefined;
+  SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
+  channelsList: any[] = [];
+  subChannelsList: any[] = [];
+  channelId: any;
+  subChannelId: any;
+  currentInMemoryId: number = 0;
+  showCollectionDetails = true;
+  apiDataClone: SubChannelLoanProductInterface[] = [];
+
+  
+  loadChannelsForCombobox() {
+      this.productsService.getChannels()
+        .subscribe((response: any) => {
+          this.channelsList = response;
+          this.SubChannelInterfaceArray = this.apiData;
+        });
+  }
+
+  loadSubChannelsForCombobox(channelId: any) {
+    this.channelId = channelId;
+    this.productsService.getSubChannels(channelId)
+    .subscribe((response: any) => {
+      this.subChannelsList = response;
+      this.SubChannelInterfaceArray = this.apiData;
+    });
+  }
+
+  setSubChannelVariable(subChannelId: any) {
+    this.subChannelId = subChannelId;
+
+    // Check if this item already exists and if so, disable submit button
+    this.apiDataClone = this.apiData.filter((apiData: { channelId: number; }) => apiData.channelId == this.channelId);
+    this.apiDataClone = this.apiDataClone.filter((apiDataClone: { subChannelId: number; }) => apiDataClone.subChannelId == this.subChannelId);
+
+  }
+
+  addLoadSubChannel() {
+    this.filteredChannel = this.channelsList.find(channel => channel.id === this.channelId);
+    this.filteredSubChannel = this.subChannelsList.find(subChannel => subChannel.id === this.subChannelId);
+
+    this.currentInMemoryId--;
+
+    // Call lthe service and reset comboboxes and variables
+    const newItem: SubChannelLoanProductInterface = {
+      id: this.currentInMemoryId,
+      channelId: this.channelId,
+      channelName: this.filteredChannel.name,
+      subChannelId: this.subChannelId,
+      subChannelName: this.filteredSubChannel.name,
+      loanProductId: this.loanProductsTemplate.id
+    };
+    
+    this.addItem(newItem);
+
+    this.loanProductSettingsForm.get("channelId").patchValue(null);
+    this.loanProductSettingsForm.get("subChannelId").patchValue(null);
+    this.channelId = null;
+    this.subChannelId = null;
+
+  }
+
+  addItem(newItem: SubChannelLoanProductInterface) {
+    if(this.apiData == undefined) {
+      this.apiData = [];
+    }
+
+    this.apiData.push(newItem);
+    this.dataSource = new MatTableDataSource(this.apiData);
+    this.dataSource.data = this.apiData;    
+  }
+
+  deleteItem(id: number) {
+    this.apiData = this.apiData.filter((apiData: { id: number; }) => apiData.id !== id);
+    this.dataSource = new MatTableDataSource(this.apiData);
+    this.dataSource.data = this.apiData;    
+  }
+
+  setCustomAllowCollections(checked: any) {
+    this.showCollectionDetails = checked;
+  }
+
+// #############################################################
 
 }

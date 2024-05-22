@@ -666,6 +666,27 @@
     <span  fxFlex="53%">{{ loanProduct.allowAttributeOverrides.graceOnArrearsAgeing | yesNo }}</span>
   </div>
 
+  <br>
+  <h3 class="mat-h3" fxFlexFill>Configurable Allowed Usages</h3>
+
+  <mat-divider [inset]="true"></mat-divider>
+
+  <div fxFlexFill fxLayout="row wrap" fxLayout.lt-md="column">
+    <span fxFlex="47%">Allow Buy/Advances:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowCreateOrDisburse | yesNo }}</span>
+    <span fxFlex="47%">Allow Debit Note:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowDebitNote | yesNo }}</span>
+    <span fxFlex="47%">Allow Credit Note:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowCreditNote | yesNo }}</span>
+    <span fxFlex="47%">Allow Forgiveness:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowForgiveness | yesNo }}</span>
+    <span fxFlex="47%">Allow Reversals / Cancelations:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowReversalCancellation | yesNo }}</span>
+    <span fxFlex="47%">Allow Collections:</span>
+    <span  fxFlex="53%">{{ loanProduct.customAllowCollections | yesNo }}</span>    
+  </div>
+
+
   <div fxFlexFill *ngIf="loanProduct.charges.length" fxLayout="row wrap" fxLayout.lt-md="column">
 
     <h3 class="mat-h3" fxFlexFill>Charges</h3>
