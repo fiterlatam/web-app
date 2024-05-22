@@ -71,7 +71,7 @@ export class LoanProductTermsStepComponent implements OnInit {
       'defaultDifferentialLendingRate': this.loanProductsTemplate.defaultDifferentialLendingRate,
       'maxDifferentialLendingRate': this.loanProductsTemplate.maxDifferentialLendingRate,
       'useBorrowerCycle': this.loanProductsTemplate.useBorrowerCycle,
-      'repaymentEvery': this.loanProductsTemplate.repaymentEvery,
+      'repaymentEvery': (this.loanProductsTemplate.repaymentEvery == null ? 1 : this.loanProductsTemplate.repaymentEvery),
       'repaymentFrequencyType': this.loanProductsTemplate.repaymentFrequencyType.id,
       'minimumDaysBetweenDisbursalAndFirstRepayment': this.loanProductsTemplate.minimumDaysBetweenDisbursalAndFirstRepayment,
       'repaymentStartDateType': this.loanProductsTemplate.repaymentStartDateType.id || 1
@@ -107,7 +107,7 @@ export class LoanProductTermsStepComponent implements OnInit {
       'interestRatePerPeriod': ['', Validators.required],
       'maxInterestRatePerPeriod': [''],
       'interestRateFrequencyType': ['', Validators.required],
-      'repaymentEvery': ['', Validators.required],
+      'repaymentEvery': ['1', Validators.required],
       'repaymentFrequencyType': ['', Validators.required],
       'minimumDaysBetweenDisbursalAndFirstRepayment': [''],
       'repaymentStartDateType': [1]

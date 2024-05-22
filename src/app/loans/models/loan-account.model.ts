@@ -49,3 +49,29 @@ export interface DelinquencyPausePeriod {
   pausePeriodStart: number[];
   pausePeriodEnd:   number[];
 }
+
+
+export interface SubChannelLoanProductInterface {
+  id:             number;
+  channelId:      number;
+  channelName:    string;
+  subChannelId:   number;
+  subChannelName: string;
+  loanProductId:  number;
+}
+
+export interface ChannelInterface {
+  id: number;
+  hash: string;
+  name: string;
+  description: string;
+  active: boolean;
+}
+
+export interface SubChannelInterface {
+  id: number;
+  channelId: number;
+  name: string;
+  description: string;
+  active: boolean;
+}

@@ -14,6 +14,7 @@ import { LoanProductAccountingStepComponent } from '../loan-product-stepper/loan
 import { ProductsService } from 'app/products/products.service';
 import { LoanProducts } from '../loan-products';
 import { AdvancedPaymentAllocation, AdvancedPaymentStrategy, PaymentAllocation } from '../loan-product-stepper/loan-product-payment-strategy-step/payment-allocation-model';
+import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
 
 @Component({
   selector: 'mifosx-create-loan-product',
@@ -38,6 +39,8 @@ export class CreateLoanProductComponent implements OnInit {
   creditAllocation: PaymentAllocation[] = [];
   advancedPaymentAllocations: AdvancedPaymentAllocation[] = [];
   advancedCreditAllocations: AdvancedPaymentAllocation[] = [];
+
+  SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
 
    /**
     * @param {ActivatedRoute} route Activated Route.
@@ -96,6 +99,10 @@ export class CreateLoanProductComponent implements OnInit {
     this.creditAllocation = paymentAllocation;
   }
 
+  setSubChannelInterfaceArray(subChannelLoanProductInterface: SubChannelLoanProductInterface[]): void {
+    this.SubChannelInterfaceArray = subChannelLoanProductInterface;
+  }  
+
   get loanProductSettingsForm() {
     return this.loanProductSettingsStep.loanProductSettingsForm;
   }
@@ -137,6 +144,13 @@ export class CreateLoanProductComponent implements OnInit {
       loanProduct['overDueDaysForRepaymentEvent'] = null;
     }
     delete loanProduct['useDueForRepaymentsConfigurations'];
+
+    loanProduct['subChannelLoanProductMapper'] = this.loanProductSettingsStep.getSubChannelLoanProductMapping;
+
+    console.log(loanProduct['SubChannelLoanProductMapper']);
+
+    delete loanProduct['channelId'];
+    delete loanProduct['subChannelId'];
 
     this.productsService.createLoanProduct(loanProduct)
       .subscribe((response: any) => {

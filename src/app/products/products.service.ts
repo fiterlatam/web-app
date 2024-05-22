@@ -615,4 +615,12 @@ export class ProductsService {
     return this.http.get('/loanproducts/advanceQuotaConfiguration');
   }
 
+
+  getChannels(): Observable<any> {
+    return this.http.get('/channels');
+  }
+
+  getSubChannels(channelId: number): Observable<any> {
+    return this.http.get(`/channels/${channelId}/subchannels`);
+  }
 }

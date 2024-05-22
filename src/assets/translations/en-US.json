@@ -291,7 +291,9 @@
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "The parameter `percentageValue` amount [ {{params[0].value}} ] must be between [ {{params[1].value}} ] and 1[ {{params[2].value}} ].",
         "error.msg.loan.maximum.cupo.limit.exceeded": "Cupo limit of [ {{params[0].value}} ] is exceeded",
         "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Maximum advance Cupo limit of [ {{params[0].value}} ] is exceeded",
-        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded"
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded",
+        "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "The selected product is configured to do not allow Loan Creation nor Disbursement",
+        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "The selected product is configured to do not allow Loan´s Transaction reversal nor Cancellation"
     },
     "labels": {
         "breadcrumbs": {
@@ -2189,7 +2191,11 @@
             "Overdue Interest Rate":  "Overdue Interest Rate",
             "Block Status": "Block Status",
             "Delete All Available": "Delete All Available",
-            "Advance Quota Configuration": "Advance Quota Configuration"
+            "Advance Quota Configuration": "Advance Quota Configuration",
+            "Channel": "Channel",
+            "Channel Name": "Channel Name",
+            "Sub Channel":  "Sub Channel"   ,
+            "Sub Channel Name":  "Sub Channel Name"   
         },
         "links": {
             "Community": "Community",
