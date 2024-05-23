@@ -1644,6 +1644,7 @@
             "Next Meeting on": "Next Meeting on",
             "Next Repayment Date": "Next Repayment Date",
             "Next Run": "Next Run",
+            "Loan Cupo Balance": "Loan Cupo Balance",
             "No. Of Loan Cycles": "No. Of Loan Cycles",
             "No. of Active Loans": "No. of Active Loans",
             "No. of Active Savings": "No. of Active Savings",
@@ -2195,7 +2196,7 @@
             "Channel": "Channel",
             "Channel Name": "Channel Name",
             "Sub Channel":  "Sub Channel"   ,
-            "Sub Channel Name":  "Sub Channel Name"   
+            "Sub Channel Name":  "Sub Channel Name"
         },
         "links": {
             "Community": "Community",

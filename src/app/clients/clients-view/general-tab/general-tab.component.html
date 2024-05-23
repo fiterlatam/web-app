@@ -43,6 +43,7 @@
         <tr>
           <td>
             <p>
+              {{"labels.inputs.Loan Cupo Balance" | translate}} : {{clientViewData?.cupoBalance | formatNumber:[2] }} <br />
               {{"labels.inputs.No. Of Loan Cycles" | translate}} :{{clientSummary?.loanCycle}} <br />
               {{"labels.inputs.No. of Active Loans" | translate}} :{{clientSummary?.activeLoans}} <br />
               {{"labels.inputs.Last Loan Amount" | translate}} :{{clientSummary?.lastLoanAmount | formatNumber}} <br />
@@ -162,7 +163,7 @@
 
     <ng-container matColumnDef="Block Status">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Block Status" | translate}} </th>
-      <td mat-cell *matCellDef="let element"> 
+      <td mat-cell *matCellDef="let element">
         <div  (click)="showLoanBlockingReasons($event,element.id,element.accountNo,element.blockStatus? true : false)">
           <i class="fa fa-stop"
           [ngClass]="(element.blockStatus ? 'status-block':'status-deleted')" ></i>

@@ -121,12 +121,12 @@ export class ClientGeneralStepComponent implements OnInit {
         this.createClientForm.addControl('firstname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('middlename', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('lastname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
-        this.createClientForm.addControl('lastname2', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('secondLastname', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.createClientForm.removeControl('firstname');
         this.createClientForm.removeControl('middlename');
         this.createClientForm.removeControl('lastname');
-        this.createClientForm.removeControl('lastname2');
+        this.createClientForm.removeControl('secondLastname');
         this.createClientForm.removeControl('genderId');
         this.createClientForm.addControl('fullname', new UntypedFormControl('', [Validators.required, Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({

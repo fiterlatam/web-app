@@ -49,7 +49,7 @@ export class GeneralTabComponent {
   /** Collaterals Data */
   collaterals: any;
   /** Client Detail Data */
-  clientViewData:any;
+  clientViewData: any;
 
   /** Show Closed Loan Accounts */
   showClosedLoanAccounts = false;
@@ -171,7 +171,7 @@ export class GeneralTabComponent {
     this.router.navigate(['../', 'loans-accounts', loanId, 'actions', 'Block Loan'], { relativeTo: this.route, queryParams: queryParams });
   }
 
-    
+
   viewAccountsLabel(closed: boolean): string {
     if (closed) {
       return 'labels.buttons.View Active Accounts';
@@ -182,7 +182,7 @@ export class GeneralTabComponent {
 
   /**
    * Shows the loan blocking reasons dialog.
-   * 
+   *
    * @param loanId - The ID of the loan.
    * @param displayName - The display name of the loan.
    * @param showDialog - A boolean indicating whether to show the dialog or not.
