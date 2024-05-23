@@ -144,12 +144,12 @@ export class EditClientComponent implements OnInit {
         this.editClientForm.addControl('firstname', new UntypedFormControl(this.clientDataAndTemplate.firstname, [Validators.maxLength(20), Validators.required]));
         this.editClientForm.addControl('middlename', new UntypedFormControl(this.clientDataAndTemplate.middlename, [Validators.maxLength(20)]));
         this.editClientForm.addControl('lastname', new UntypedFormControl(this.clientDataAndTemplate.lastname, [Validators.maxLength(20), Validators.required]));
-        this.editClientForm.addControl('lastname2', new UntypedFormControl(this.clientDataAndTemplate.lastname2, [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.editClientForm.addControl('secondLastname', new UntypedFormControl(this.clientDataAndTemplate.secondLastname, [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.editClientForm.removeControl('firstname');
         this.editClientForm.removeControl('middlename');
         this.editClientForm.removeControl('lastname');
-        this.editClientForm.removeControl('lastname2');
+        this.editClientForm.removeControl('secondLastname');
         this.editClientForm.removeControl('genderId');
         this.editClientForm.addControl('fullname', new UntypedFormControl(this.clientDataAndTemplate.fullname, Validators.required));
         this.editClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({

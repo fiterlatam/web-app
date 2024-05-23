@@ -81,13 +81,13 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field *ngIf="editClientForm.contains('lastname2')" fxFlex="48%">
+          <mat-form-field *ngIf="editClientForm.contains('secondLastname')" fxFlex="48%">
             <mat-label>{{"labels.inputs.Last Name Two" | translate}}</mat-label>
-            <input maxlength="20" matInput formControlName="lastname2">
-            <mat-error *ngIf="editClientForm.controls.lastname2.hasError('maxlength')">
+            <input maxlength="20" matInput formControlName="secondLastname">
+            <mat-error *ngIf="editClientForm.controls.secondLastname.hasError('maxlength')">
               {{"labels.inputs.Last Name One" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.50 characters long' | translate }}
             </mat-error>
-            <mat-error *ngIf="editClientForm.controls.lastname2.hasError('pattern')">
+            <mat-error *ngIf="editClientForm.controls.secondLastname.hasError('pattern')">
               {{"labels.inputs.Last Name Two" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.commons.begin with a special character or number" | translate}}
             </mat-error>
           </mat-form-field>

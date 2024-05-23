@@ -1656,6 +1656,7 @@
             "Next Repayment Date": "Próxima fecha de pago",
             "Next Run": "Siguiente ejecución",
             "No. Of Loan Cycles": "No. de ciclos de Crédito",
+            "Loan Cupo Balance": "Saldo de Crédito Cupo",
             "No. of Active Loans": "No. de Créditos Activos",
             "No. of Active Savings": "No. de Ahorros Activos",
             "No. of Days in Year": "No. de días en el año",
@@ -2209,7 +2210,7 @@
             "Channel": "Canal",
             "Channel Name": "Nombre Canal",
             "Sub Channel":  "Sub Canal"   ,
-            "Sub Channel Name":  "Nombre Sub Canal"        
+            "Sub Channel Name":  "Nombre Sub Canal"
         },
         "links": {
             "Community": "Comunidad",
