@@ -2182,7 +2182,7 @@
             "chargeCalculationType.term": "Otro Cargo",
             "graceOnChargePeriodAmount": "Periodo de Gracia",
             "Parent Charge": "Cargo asociado",
-            "Block Level": "Nivel de bloque",
+            "Block Level": "Nivel de bloqueo",
             "Blocked On Date": "Bloqueado en fecha",
             "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
             "Blocking Reason": "Razón del bloqueo",
