@@ -21,7 +21,7 @@ export class UnblockClientsComponent implements OnInit {
   blockingReasons: any;
   filteredBlockingReasons: any;
   blockingReasonsLevels: String[] = ["CLIENT", "CREDIT"];
-  displayedColumns: string[] = ['select', 'displayName', 'blockName', 'blockDate'];
+  displayedColumns: string[] = ['select', 'clientId', 'legalForm', 'displayName', 'blockName', 'blockDate'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   selection = new SelectionModel<any>(true, []);
   isLoading: boolean = false;
@@ -48,6 +48,23 @@ export class UnblockClientsComponent implements OnInit {
     });
   }
 
+  filterPredicate = (data: any, filter: string) => {
+      if (this.unblockClientsForm.value.blockingReasonLevel == "CLIENT") {
+        if (data.cedula) {
+          return data.cedula.toLowerCase().includes(filter);
+        }
+        if (data.nit) {
+          return data.nit.toLowerCase().includes(filter);
+        }
+        return false;
+      } else {
+        if(data.loanId) {
+          return data.loanId.toString().toLowerCase().includes(filter);
+        }
+        return false;
+      }
+    };
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -59,7 +76,7 @@ export class UnblockClientsComponent implements OnInit {
       this.selection.clear();
       return;
     }
-    this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.dataSource.filteredData);
   }
 
   checkboxLabel(row?: any): string {
@@ -85,8 +102,12 @@ export class UnblockClientsComponent implements OnInit {
     this.filteredBlockingReasons = this.blockingReasons.filter((reason: any) => reason.level == level);
   }
 
+  filterTableData(filterText: string) {
+    this.dataSource.filter = filterText.trim().toLowerCase();
+  }
+
   fetchClientsWithBlockingReason(blockingReasonId: string) {
-    this.displayedColumns = ['select', 'displayName', 'blockName', 'blockDate'];
+    this.displayedColumns = ['select', 'clientId', 'legalForm', 'displayName', 'blockName', 'blockDate'];
     this.selection.clear();
     this.isLoading = true;
     this.clientsService.getAllClientsWithBlockingReason(blockingReasonId)
@@ -118,6 +139,8 @@ export class UnblockClientsComponent implements OnInit {
     } else {
       this.fetchLoansWithBlockingReason(blockingReasonId);
     }
+    this.dataSource.filterPredicate = this.filterPredicate;
+    this.dataSource.filter = '';
   }
 
   submit() {
