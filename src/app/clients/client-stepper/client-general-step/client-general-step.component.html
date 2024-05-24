@@ -23,7 +23,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%">
+    <mat-form-field fxFlex="48%" *ngIf="false">
       <mat-label>{{"labels.inputs.Staff" | translate}}</mat-label>
       <mat-select formControlName="staffId">
         <mat-option *ngFor="let staff of staffOptions" [value]="staff.id">
@@ -177,7 +177,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%" *ngIf="showOptionalFields">
+    <mat-form-field fxFlex="48%" *ngIf="false">
       <mat-label>{{"labels.inputs.Client Type" | translate}}</mat-label>
       <mat-select formControlName="clientTypeId">
         <mat-option *ngFor="let clientType of clientTypeOptions" [value]="clientType.id">

@@ -153,11 +153,11 @@ export class EditClientComponent implements OnInit {
         this.editClientForm.removeControl('genderId');
         this.editClientForm.addControl('fullname', new UntypedFormControl(this.clientDataAndTemplate.fullname, Validators.required));
         this.editClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({
-          'constitutionId': [this.clientDataAndTemplate.clientNonPersonDetails.constitution && this.clientDataAndTemplate.clientNonPersonDetails.constitution.id, Validators.required],
-          'incorpValidityTillDate': [this.clientDataAndTemplate.clientNonPersonDetails.incorpValidityTillDate && new Date(this.clientDataAndTemplate.clientNonPersonDetails.incorpValidityTillDate)],
-          'incorpNumber': [this.clientDataAndTemplate.clientNonPersonDetails.incorpNumber],
-          'mainBusinessLineId': [this.clientDataAndTemplate.clientNonPersonDetails.mainBusinessLine && this.clientDataAndTemplate.clientNonPersonDetails.mainBusinessLine.id],
-          'remarks': [this.clientDataAndTemplate.clientNonPersonDetails.remarks]
+          'constitutionId': [this.clientDataAndTemplate.clientNonPersonDetails?.constitution && this.clientDataAndTemplate.clientNonPersonDetails.constitution.id, Validators.required],
+          'incorpValidityTillDate': [this.clientDataAndTemplate.clientNonPersonDetails?.incorpValidityTillDate && new Date(this.clientDataAndTemplate.clientNonPersonDetails.incorpValidityTillDate)],
+          'incorpNumber': [this.clientDataAndTemplate.clientNonPersonDetails?.incorpNumber],
+          'mainBusinessLineId': [this.clientDataAndTemplate.clientNonPersonDetails?.mainBusinessLine && this.clientDataAndTemplate.clientNonPersonDetails.mainBusinessLine.id],
+          'remarks': [this.clientDataAndTemplate.clientNonPersonDetails?.remarks]
         }));
       }
     });
