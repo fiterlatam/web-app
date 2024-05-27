@@ -932,7 +932,8 @@
             "Result": "Result",
             "Client InActivity": "Cliente InActivity",
             "Custom Charge Honorario": "Custom Charge Honorario Provider",
-            "state": "State"
+            "state": "State",
+            "Manage System Channels": "Manage System Channels"
         },
         "inputs": {
             "Close Date": "Close Date",
@@ -2195,6 +2196,9 @@
             "Block Status": "Block Status",
             "Delete All Available": "Delete All Available",
             "Advance Quota Configuration": "Advance Quota Configuration",
+            "description": "Description",
+            "hash": "Hash Code",
+            "Sub Channels": "Sub Channels",
             "Channel": "Channel",
             "Channel Name": "Channel Name",
             "Sub Channel":  "Sub Channel"   ,
@@ -2322,7 +2326,9 @@
             "Add new server": "Add new server",
             "Search Activity": "Search Activity",
             "client.allies.search": "Search by Name or NIT",
-            "clientallypointofsales.search": "Search by Name or Code"
+            "clientallypointofsales.search": "Search by Name or Code",
+            "channel.search": "Search by Name or Description",
+            "subchannel.search": "Search by Name or Description"
         },
         "status": {
             "Active": "Active",
@@ -2368,6 +2374,12 @@
             "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
         },
         "text": {
+            "channel": "Channel",
+            "channel.create": "Create Channel",
+            "channel.edit": "Edit Channel",
+            "subchannel": "Sub Channel",
+            "subchannel.create": "Create Sub Channel",
+            "subchannel.edit": "Edit Sub Channel",            
             "A": "A",
             "Ability to manage holidays for individual offices": "The ability to manage holidays for individual offices is a very useful tool for an organization spanning multiple locations.Use this option to customize holidays for each office of your organization.",
             "Account Detail": "Account Detail",
@@ -2942,7 +2954,8 @@
             "Unblock Massively": "Unblock massively",
             "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
             "Advance Quota Parameterization":  "Advance Quota Parameterization",
-            "Enable extended": "Enable extended term for monthly repayments"
+            "Enable extended": "Enable extended term for monthly repayments",
+            "Manage System Channels": "Manage System Channels and its Sub Channels"
         },
         "titles": {
             "Dashboard": "Dashboard",
