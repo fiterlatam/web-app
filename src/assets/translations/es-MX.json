@@ -3,6 +3,7 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.unknown.data.integrity.issue": "Se produjo un problema inesperado al realizar la solicitud. Error al iniciar sesión en el servidor.",
         "Email not valid": "Correo electrónico no válido",
         "Filling Details": "Haga clic para comenzar a completar los detalles. * Los campos de marca son necesarios. Para más detalles haga clic en:",
         "Password is required": "se requiere contraseña",
@@ -297,6 +298,7 @@
         "error.msg.loan.maximum.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]",
         "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Se superó el límite máximo de avance de Cupo de [ {{params[0].value}} ]",
         "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]",
+        "error.msg.advance.quota.client.advances.exceeded.the.percentage": "La reducción de la cuota de anticipo no se puede realizar ya que los siguientes ID de clientes {{params[0].value}} tienen avances superiores a este porcentaje",
         "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "El producto seleccionado está configurado para no aceptar Creación ni Desembolso de Préstamo",
         "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento"
       },
