@@ -152,8 +152,15 @@
             <p matLine>{{'labels.text.Manage Blocking Reasons' | translate}}</p>
           </mat-list-item>
 
-        </mat-nav-list>
+          <mat-list-item [routerLink]="['manage-system-channels']">
+            <mat-icon matListIcon>
+              <fa-icon icon="pen-to-square" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{'labels.heading.Manage System Channels' | translate}}</h4>
+            <p matLine>{{'labels.text.Manage System Channels' | translate}}</p>
+          </mat-list-item>
 
+        </mat-nav-list>
 
       </div>
 

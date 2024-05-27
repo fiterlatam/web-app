@@ -48,6 +48,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ClientsalliesModule } from './clientsallies/clientsallies.module';
 import { ClientAllyPointOfSalesModule } from './clientsalliespointofsales/clientallypointofsales.module';
 import { CustomChargeTypeMapModule } from './products/customcharges/customchargetypemap.module';
+import { ChannelModule } from './system/manage-channels/channel.module';
+import { SubChannelModule } from './system/manage-channels/manage-subchannels/subchannel.module';
 
 
 /**
@@ -103,7 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ClientsalliesModule,
     ClientAllyPointOfSalesModule,
     CustomChargeTypeMapModule,
-
+    ChannelModule,
+    SubChannelModule,
     // /Sumas custom modueles MUST BE PRECEDED BY AppRoutingModule
     // ###########################################################################
 

@@ -296,9 +296,7 @@
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "La cantidad del parámetro `percentageValue` [ {{params[0].value}} ] debe estar entre [ {{params[1].value}} ] y 1[ {{params[2].value}} ].",
         "error.msg.loan.maximum.cupo.limit.exceeded": "Se superó el límite de cupo de [ {{params[0].value}} ]",
         "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Se superó el límite máximo de avance de Cupo de [ {{params[0].value}} ]",
-        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]",
-        "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "El producto seleccionado está configurado para no aceptar Creación ni Desembolso de Préstamo",
-        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento"
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Se superó el límite máximo de Cupo de compra de [ {{params[0].value}} ]"
       },
     "labels": {
         "breadcrumbs": {
@@ -538,6 +536,9 @@
             "Unblock Massively": "Desbloqueo masivo"
         },
         "commons": {
+            "have more than 100 chars": "tener mas que 100 caracteres de largo",
+            "have more than 1000 chars": "tener mas que 1000 caracteres de largo",
+            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",
             "50 characters long": "50 caracteres de largo",
             "20 characters long": "20 caracteres de largo",
             "30 characters long": "30 caracteres de largo",
@@ -940,7 +941,8 @@
             "Result": "Resultado",
             "Client InActivity": "Cliente Inactivo",
             "Custom Charge Honorario": "Servicio del Cargo Personalizado Honorario",
-            "state": "Estado"
+            "state": "Estado",
+            "Manage System Channels": "Administrar Canales del Sistema"
         },
         "inputs": {
             "Close Date": "Fecha de cierre",
@@ -1656,7 +1658,6 @@
             "Next Repayment Date": "Próxima fecha de pago",
             "Next Run": "Siguiente ejecución",
             "No. Of Loan Cycles": "No. de ciclos de Crédito",
-            "Loan Cupo Balance": "Saldo de Crédito Cupo",
             "No. of Active Loans": "No. de Créditos Activos",
             "No. of Active Savings": "No. de Ahorros Activos",
             "No. of Days in Year": "No. de días en el año",
@@ -2182,7 +2183,7 @@
             "chargeCalculationType.term": "Otro Cargo",
             "graceOnChargePeriodAmount": "Periodo de Gracia",
             "Parent Charge": "Cargo asociado",
-            "Block Level": "Nivel de bloqueo",
+            "Block Level": "Nivel de bloque",
             "Blocked On Date": "Bloqueado en fecha",
             "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
             "Blocking Reason": "Razón del bloqueo",
@@ -2207,10 +2208,9 @@
             "Block Status": "Estado del bloque",
             "Delete All Available": "Eliminar todos los disponibles",
             "Advance Quota Configuration": "Configuración Cupo Avance",
-            "Channel": "Canal",
-            "Channel Name": "Nombre Canal",
-            "Sub Channel":  "Sub Canal"   ,
-            "Sub Channel Name":  "Nombre Sub Canal"
+            "description": "Descripción",
+            "hash": "Código Hash",
+            "Sub Channels": "Sub Canales"
         },
         "links": {
             "Community": "Comunidad",
@@ -2334,7 +2334,9 @@
             "Add new server": "Agregar nuevo servidor",
             "Search Activity": "Actividad de búsqueda",
             "client.allies.search": "Busca por Razón Social o NIT",
-            "clientallypointofsales.search": "Busca por Nombre o Código"
+            "clientallypointofsales.search": "Busca por Nombre o Código",
+            "channel.search": "Busca por Nombre, Hash o Descripción",
+            "subchannel.search": "Busca por Nombre o Descripción"
         },
         "status": {
             "Active": "Activo",
@@ -2380,6 +2382,12 @@
             "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
         },
         "text": {
+            "channel": "Canales",
+            "channel.create": "Crear Canal",
+            "channel.edit": "Editar Canal",
+            "subchannel": "Sub Canales",
+            "subchannel.create": "Crear Sub Canal",
+            "subchannel.edit": "Editar Sub Canal",                        
             "A": "A",
             "Ability to manage holidays for individual offices": "La capacidad de gestionar días festivos para oficinas individuales es una herramienta muy útil para una organización que abarca varias ubicaciones. Utilice esta opción para personalizar los días festivos para cada oficina de su organización.",
             "Account Detail": "Detalle de cuenta",
@@ -2952,7 +2960,8 @@
             "Unblock Massively": "Desbloqueo masivo",
             "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
             "Advance Quota Parameterization": "Parametrización de la Cupo Avance",
-            "Enable extended": "Habilitar plazo extendido para pagos mensuales"
+            "Enable extended": "Habilitar plazo extendido para pagos mensuales",
+            "Manage System Channels": "Administrar los Canales del Sistema y sus Sub Canales"
         },
         "titles": {
             "Dashboard": "Tableros",

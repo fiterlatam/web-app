@@ -291,9 +291,7 @@
         "validation.msg.advanceQuota.percentageValue.amount.is.not.within.min.max.range": "The parameter `percentageValue` amount [ {{params[0].value}} ] must be between [ {{params[1].value}} ] and 1[ {{params[2].value}} ].",
         "error.msg.loan.maximum.cupo.limit.exceeded": "Cupo limit of [ {{params[0].value}} ] is exceeded",
         "error.msg.loan.maximum.advance.cupo.limit.exceeded": "Maximum advance Cupo limit of [ {{params[0].value}} ] is exceeded",
-        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded",
-        "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "The selected product is configured to do not allow Loan Creation nor Disbursement",
-        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "The selected product is configured to do not allow Loan´s Transaction reversal nor Cancellation"
+        "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded"
     },
     "labels": {
         "breadcrumbs": {
@@ -930,7 +928,8 @@
             "Result": "Result",
             "Client InActivity": "Cliente InActivity",
             "Custom Charge Honorario": "Custom Charge Honorario Provider",
-            "state": "State"
+            "state": "State",
+            "Manage System Channels": "Manage System Channels"
         },
         "inputs": {
             "Close Date": "Close Date",
@@ -1644,7 +1643,6 @@
             "Next Meeting on": "Next Meeting on",
             "Next Repayment Date": "Next Repayment Date",
             "Next Run": "Next Run",
-            "Loan Cupo Balance": "Loan Cupo Balance",
             "No. Of Loan Cycles": "No. Of Loan Cycles",
             "No. of Active Loans": "No. of Active Loans",
             "No. of Active Savings": "No. of Active Savings",
@@ -2193,10 +2191,9 @@
             "Block Status": "Block Status",
             "Delete All Available": "Delete All Available",
             "Advance Quota Configuration": "Advance Quota Configuration",
-            "Channel": "Channel",
-            "Channel Name": "Channel Name",
-            "Sub Channel":  "Sub Channel"   ,
-            "Sub Channel Name":  "Sub Channel Name"
+            "description": "Description",
+            "hash": "Hash Code",
+            "Sub Channels": "Sub Channels"
         },
         "links": {
             "Community": "Community",
@@ -2320,7 +2317,9 @@
             "Add new server": "Add new server",
             "Search Activity": "Search Activity",
             "client.allies.search": "Search by Name or NIT",
-            "clientallypointofsales.search": "Search by Name or Code"
+            "clientallypointofsales.search": "Search by Name or Code",
+            "channel.search": "Search by Name or Description",
+            "subchannel.search": "Search by Name or Description"
         },
         "status": {
             "Active": "Active",
@@ -2366,6 +2365,12 @@
             "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
         },
         "text": {
+            "channel": "Channel",
+            "channel.create": "Create Channel",
+            "channel.edit": "Edit Channel",
+            "subchannel": "Sub Channel",
+            "subchannel.create": "Create Sub Channel",
+            "subchannel.edit": "Edit Sub Channel",            
             "A": "A",
             "Ability to manage holidays for individual offices": "The ability to manage holidays for individual offices is a very useful tool for an organization spanning multiple locations.Use this option to customize holidays for each office of your organization.",
             "Account Detail": "Account Detail",
@@ -2940,7 +2945,8 @@
             "Unblock Massively": "Unblock massively",
             "Maximum legal rate parameterization":  "Maximum legal rate parameterization",
             "Advance Quota Parameterization":  "Advance Quota Parameterization",
-            "Enable extended": "Enable extended term for monthly repayments"
+            "Enable extended": "Enable extended term for monthly repayments",
+            "Manage System Channels": "Manage System Channels and its Sub Channels"
         },
         "titles": {
             "Dashboard": "Dashboard",
