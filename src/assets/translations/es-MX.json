@@ -540,6 +540,9 @@
             "Unblock Massively": "Desbloqueo masivo"
         },
         "commons": {
+            "have more than 100 chars": "tener mas que 100 caracteres de largo",
+            "have more than 1000 chars": "tener mas que 1000 caracteres de largo",
+            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",          
             "50 characters long": "50 caracteres de largo",
             "20 characters long": "20 caracteres de largo",
             "30 characters long": "30 caracteres de largo",
@@ -585,6 +588,7 @@
             "till 4 characters": "hasta 4 caracteres"
         },
         "heading": {
+            "Manage System Channels": "Administrar Canales del Sistema",          
             "Account Linked Financial": "Listado de cuentas vinculadas a diferentes actividades financieras. Para saber más haga clic en:",
             "Account Name": "Nombre de la cuenta",
             "Account Number Preferences": "Preferencias de número de cuenta",
@@ -2212,7 +2216,9 @@
             "Channel": "Canal",
             "Channel Name": "Nombre Canal",
             "Sub Channel":  "Sub Canal"   ,
-            "Sub Channel Name":  "Nombre Sub Canal"
+            "Sub Channel Name":  "Nombre Sub Canal",
+            "description": "Descripción",
+            "hash": "Código Hash"            
         },
         "links": {
             "Community": "Comunidad",
@@ -2336,7 +2342,9 @@
             "Add new server": "Agregar nuevo servidor",
             "Search Activity": "Actividad de búsqueda",
             "client.allies.search": "Busca por Razón Social o NIT",
-            "clientallypointofsales.search": "Busca por Nombre o Código"
+            "clientallypointofsales.search": "Busca por Nombre o Código",
+            "channel.search": "Busca por Nombre, Hash o Descripción",
+            "subchannel.search": "Busca por Nombre o Descripción"
         },
         "status": {
             "Active": "Activo",
@@ -2382,6 +2390,13 @@
             "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
         },
         "text": {
+            "Manage System Channels": "Administrar los Canales del Sistema y sus Sub Canales",
+            "channel": "Canales",
+            "channel.create": "Crear Canal",
+            "channel.edit": "Editar Canal",
+            "subchannel": "Sub Canales",
+            "subchannel.create": "Crear Sub Canal",
+            "subchannel.edit": "Editar Sub Canal",              
             "A": "A",
             "Ability to manage holidays for individual offices": "La capacidad de gestionar días festivos para oficinas individuales es una herramienta muy útil para una organización que abarca varias ubicaciones. Utilice esta opción para personalizar los días festivos para cada oficina de su organización.",
             "Account Detail": "Detalle de cuenta",
