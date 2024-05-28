@@ -64,11 +64,14 @@ export class RunReportComponent implements OnInit {
 
   isProcessing = false;
 
+  defaultSelectOptions: any = {};
+
   /**
    * Fetches report specifications from route params and retrieves report parameters data from `resolve`.
    * @param {ActivatedRoute} route ActivatedRoute.
    * @param {ReportsService} reportsService ReportsService
    * @param {SettingsService} settingsService Settings Service
+   * @param alertService
    * @param {Dates} dateUtils Date Utils
    */
   constructor(private route: ActivatedRoute,
@@ -205,6 +208,9 @@ export class RunReportComponent implements OnInit {
       param.selectOptions = options;
       if (param.selectAll === 'Y') {
         param.selectOptions.unshift({id: '-1', name: 'Todos'});
+      }
+      if (param.selectOptions.length > 0) {
+        this.defaultSelectOptions[param.name] = param.selectOptions[0];
       }
     });
   }
