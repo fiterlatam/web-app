@@ -3258,7 +3258,7 @@
   },
   "custom.charge.type": {
     "vip": "VIP",
-    "commerce": "Comércio",
+    "commerce": "Comercio",
     "product": "Producto"
   },
   "repaymentReschedulingType":{

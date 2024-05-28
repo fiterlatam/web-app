@@ -401,7 +401,8 @@ export class CreateChargeComponent implements OnInit {
       lookForWordsArray.push('percentofanothercharge');
       isFilterApplied = true;
       this.showAnotherChargeCombobox = true;
-      this.chargeForm.get('parentChargeId').setValidators([Validators.required]);
+      this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false, Validators.required));
+
     } else {
       
       this.chargeForm.removeControl('parentChargeId');
