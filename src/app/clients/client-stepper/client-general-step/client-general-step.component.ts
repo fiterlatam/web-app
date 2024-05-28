@@ -66,7 +66,7 @@ export class ClientGeneralStepComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.setOptions();
     this.buildDependencies();
-    this.showOptionalFields = true;
+    this.showOptionalFields = false;
   }
 
   /**
