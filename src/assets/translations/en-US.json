@@ -3,6 +3,8 @@
     "Logged in as": "Logged in as",
     "Remember me": "Remember me",
     "errors": {
+        "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "Provided interest rate [ {{params[0].value}} ] cannot be higher than the maximum legal interest rate of [ {{params[1].value}} ]",
+        "error.msg.interest.rate.not.found": "Interest Rate with ID {{params[0].value}} not found.",
         "error.unknown.data.integrity.issue": "An unexpected problem occurred when performing the request. Error logged on server.",
         "Email not valid": "Email not valid",
         "Filling Details": "Click to start filling the details. * mark fields are necessary. For more details click:",
@@ -302,6 +304,7 @@
             "Home": "Home"
         },
         "buttons": {
+            "Add Rate": "Add Rate",
             "Accept Transfer": "Accept Transfer",
             "Actions": "Actions",
             "Activate": "Activate",
@@ -578,6 +581,7 @@
             "till 4 characters": "till 4 characters"
         },
         "heading": {
+            "Interest Rate Management": "Interest Rate Management",
             "Account Linked Financial": "List of accounts linked to different financial activities. To know more click:",
             "Account Name": "Account Name",
             "Account Number Preferences": "Account Number Preferences",
@@ -936,6 +940,7 @@
             "Manage System Channels": "Manage System Channels"
         },
         "inputs": {
+            "Current Rate": "Current Interest Rate",
             "Close Date": "Close Date",
             "Is Advance": "Is Advance?",
             "ACCOUNTING": "ACCOUNTING",
@@ -2374,12 +2379,13 @@
             "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
         },
         "text": {
+            "Interest Rate Management": "Define Interest Rate Management for Credits",
             "channel": "Channel",
             "channel.create": "Create Channel",
             "channel.edit": "Edit Channel",
             "subchannel": "Sub Channel",
             "subchannel.create": "Create Sub Channel",
-            "subchannel.edit": "Edit Sub Channel",            
+            "subchannel.edit": "Edit Sub Channel",
             "A": "A",
             "Ability to manage holidays for individual offices": "The ability to manage holidays for individual offices is a very useful tool for an organization spanning multiple locations.Use this option to customize holidays for each office of your organization.",
             "Account Detail": "Account Detail",

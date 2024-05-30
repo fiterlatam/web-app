@@ -623,4 +623,30 @@ export class ProductsService {
   getSubChannels(channelId: number): Observable<any> {
     return this.http.get(`/channels/${channelId}/subchannels`);
   }
+
+  getInterestRate(interestRateId: string): Observable<any> {
+    return this.http.get(`/interestRates/${interestRateId}`);
+  }
+
+  getInterestRates(): Observable<any> {
+    return this.http.get('/interestRates');
+  }
+  createInterestRate(interestRate: any): Observable<any> {
+    return this.http.post('/interestRates', interestRate);
+  }
+  updateInterestRate(interateRateId: string, interestRate: any): Observable<any> {
+    return this.http.put(`/interestRates/${interateRateId}`, interestRate);
+  }
+
+  getInterestRateHistory(interestRateId: string, limit?: number, offset?: number): Observable<any> {
+    let httpParams = new HttpParams()
+      .set('orderBy', 'mirh.appliedon_date')
+      .set('sortOrder', 'DESC');
+    if (limit != null && offset != null) {
+      httpParams = httpParams
+        .set('limit', limit)
+        .set('offset', offset);
+    }
+    return this.http.get(`/interestRates/${interestRateId}/history`, { params: httpParams });
+  }
 }

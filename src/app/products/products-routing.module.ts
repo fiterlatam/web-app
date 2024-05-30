@@ -135,6 +135,15 @@ import {
 import {AdvanceQuotaComponent} from './advance-quota/advance-quota.component';
 import {AdvanceQuotaResolver} from './advance-quota/advance-quota.resolver';
 import {EditAdvanceQuotaComponent} from './advance-quota/edit-advance-quota/edit-advance-quota.component';
+import {InterestRatesComponent} from './interest-rates/interest-rates.component';
+import {InterestRatesResolver} from './interest-rates/interest-rates.resolver';
+import {InterestRateResolver} from './interest-rates/interest-rate.resolver';
+import {ViewInterestRateComponent} from './interest-rates/view-interest-rate/view-interest-rate.component';
+import {EditInterestRateComponent} from './interest-rates/edit-interest-rate/edit-interest-rate.component';
+import {CreateInterestRateComponent} from './interest-rates/create-interest-rate/create-interest-rate.component';
+import {InterestRateTemplateResolver} from './interest-rates/interest-rate-template.resolver';
+import {InterestRateHistoryComponent} from './interest-rates/interest-rate-history/interest-rate-history.component';
+import {InterestRateHistoryResolver} from './interest-rates/interest-rate-history/interest-rate-history.resolver';
 
 /** Products Routes */
 const routes: Routes = [
@@ -829,6 +838,59 @@ const routes: Routes = [
           ]
         },
         {
+          path: 'interest-rates',
+          data: { title: 'Interest Rates', breadcrumb: 'Interest Rates' },
+          children: [
+            {
+              path: '',
+              component: InterestRatesComponent,
+              resolve: {
+                interestRates: InterestRatesResolver
+              }
+            },
+            {
+              path: 'create',
+              component: CreateInterestRateComponent,
+              data: { title: 'Create Interest Rate', breadcrumb: 'Create' },
+              resolve: {
+                interestRateTemplate: InterestRateTemplateResolver
+              }
+            },
+            {
+              path: ':id',
+              data: { title: 'View Interest Rate', routeParamBreadcrumb: 'id' },
+              resolve: {
+                interestRate: InterestRateResolver
+              },
+              children: [
+                {
+                  path: '',
+                  component: ViewInterestRateComponent,
+                  resolve: {
+                    interestRate: InterestRateResolver
+                  },
+                },
+                {
+                  path: 'edit',
+                  component: EditInterestRateComponent,
+                  data: { title: 'Edit Interest Rate', breadcrumb: 'Edit', routeParamBreadcrumb: false },
+                  resolve: {
+                    interestRate: InterestRateResolver
+                  }
+                },
+                {
+                  path: 'view-history',
+                  component: InterestRateHistoryComponent,
+                  data: { title: 'View History', breadcrumb: 'View History', routeParamBreadcrumb: false },
+                  resolve: {
+                    interestRateHistory: InterestRateHistoryResolver
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
           path: 'charges',
           data: { title: 'Charges', breadcrumb: 'Charges' },
           children: [
@@ -980,7 +1042,10 @@ const routes: Routes = [
     DelinquencyRangeComponentsResolver,
     DelinquencyBucketComponentsResolver,
     MaximumCreditRateResolver,
-    AdvanceQuotaResolver
+    AdvanceQuotaResolver,
+    InterestRatesResolver,
+    InterestRateResolver,
+    InterestRateHistoryResolver
   ]
 })
 export class ProductsRoutingModule { }

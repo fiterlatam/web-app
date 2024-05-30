@@ -3,6 +3,8 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "La tasa de interés proporcionada [ {{params[0].value}} ] no puede ser superior a la tasa de interés legal máxima de [ {{params[1].value}} ]",
+        "error.msg.interest.rate.not.found": "Tasa de interés con ID {{params [0] .value}} no encontrado.",
         "error.unknown.data.integrity.issue": "Se produjo un problema inesperado al realizar la solicitud. Error al iniciar sesión en el servidor.",
         "Email not valid": "Correo electrónico no válido",
         "Filling Details": "Haga clic para comenzar a completar los detalles. * Los campos de marca son necesarios. Para más detalles haga clic en:",
@@ -307,6 +309,7 @@
             "Home": "Inicio"
         },
         "buttons": {
+            "Add Rate": "Agregar tasa",
             "Accept Transfer": "Aceptar transferencia",
             "Actions": "Acciones",
             "Activate": "Activar",
@@ -542,7 +545,7 @@
         "commons": {
             "have more than 100 chars": "tener mas que 100 caracteres de largo",
             "have more than 1000 chars": "tener mas que 1000 caracteres de largo",
-            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",          
+            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",
             "50 characters long": "50 caracteres de largo",
             "20 characters long": "20 caracteres de largo",
             "30 characters long": "30 caracteres de largo",
@@ -588,7 +591,8 @@
             "till 4 characters": "hasta 4 caracteres"
         },
         "heading": {
-            "Manage System Channels": "Administrar Canales del Sistema",          
+            "Interest Rate Management": "Gestión de Tasas de Interés",
+            "Manage System Channels": "Administrar Canales del Sistema",
             "Account Linked Financial": "Listado de cuentas vinculadas a diferentes actividades financieras. Para saber más haga clic en:",
             "Account Name": "Nombre de la cuenta",
             "Account Number Preferences": "Preferencias de número de cuenta",
@@ -949,6 +953,7 @@
             "state": "Estado"
         },
         "inputs": {
+            "Current Rate": "Tasa de interés vigente",
             "Close Date": "Fecha de cierre",
             "Short Name": "Nombre corto",
             "Is Advance": "¿Es avance?",
@@ -2218,7 +2223,7 @@
             "Sub Channel":  "Sub Canal"   ,
             "Sub Channel Name":  "Nombre Sub Canal",
             "description": "Descripción",
-            "hash": "Código Hash"            
+            "hash": "Código Hash"
         },
         "links": {
             "Community": "Comunidad",
@@ -2390,13 +2395,15 @@
             "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
         },
         "text": {
+            "Interest Rates": "Tasas de interés",
+            "Interest Rate Management": "Definir Gestión de Tasas de Interés para Créditos",
             "Manage System Channels": "Administrar los Canales del Sistema y sus Sub Canales",
             "channel": "Canales",
             "channel.create": "Crear Canal",
             "channel.edit": "Editar Canal",
             "subchannel": "Sub Canales",
             "subchannel.create": "Crear Sub Canal",
-            "subchannel.edit": "Editar Sub Canal",              
+            "subchannel.edit": "Editar Sub Canal",
             "A": "A",
             "Ability to manage holidays for individual offices": "La capacidad de gestionar días festivos para oficinas individuales es una herramienta muy útil para una organización que abarca varias ubicaciones. Utilice esta opción para personalizar los días festivos para cada oficina de su organización.",
             "Account Detail": "Detalle de cuenta",
