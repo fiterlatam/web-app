@@ -10,5 +10,6 @@ export interface DatatableColumn {
   type: string;
   isColumnUnique: boolean;
   isColumnIndexed: boolean;
+  fieldMask: string;
 
 }

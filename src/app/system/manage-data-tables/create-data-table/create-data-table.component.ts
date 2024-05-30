@@ -53,7 +53,8 @@ export class CreateDataTableComponent implements OnInit, AfterViewInit {
       columnCodes: undefined,
       type: undefined,
       isColumnUnique: undefined,
-      isColumnIndexed: undefined
+      isColumnIndexed: undefined,
+      fieldMask: undefined
     };
   /** Columns to be displayed in columns table. */
   displayedColumns: string[] = ['name', 'type', 'length', 'code', 'mandatory', 'unique', 'indexed', 'actions'];
@@ -151,6 +152,7 @@ export class CreateDataTableComponent implements OnInit, AfterViewInit {
           isColumnIndexed: response.indexed,
           columnLength: response.length,
           columnCode: response.code,
+          fieldMask: response.fieldMask,
           type: 'new'
         });
         this.dataSource.connect().next(this.columnData);
@@ -170,6 +172,7 @@ export class CreateDataTableComponent implements OnInit, AfterViewInit {
     this.dataForDialog.isColumnIndexed = column.isColumnIndexed;
     this.dataForDialog.columnLength = column.columnLength;
     this.dataForDialog.columnCode = column.columnCode;
+    this.dataForDialog.fieldMask = column.fieldMask;
     this.dataForDialog.type = column.type;
     const editColumnDialogRef = this.dialog.open(ColumnDialogComponent, {
       data: this.dataForDialog,
@@ -186,6 +189,7 @@ export class CreateDataTableComponent implements OnInit, AfterViewInit {
           isColumnIndexed: response.indexed,
           columnLength: response.length,
           columnCode: response.code,
+          fieldMask: response.fieldMask,
           type: 'existing'
         };
         this.dataSource.connect().next(this.columnData);
@@ -223,7 +227,8 @@ export class CreateDataTableComponent implements OnInit, AfterViewInit {
         length: column.columnLength,
         mandatory: !column.isColumnNullable,
         unique: column.isColumnUnique,
-        indexed: column.isColumnIndexed
+        indexed: column.isColumnIndexed,
+        fieldMask: column.fieldMask
       });
     });
     this.dataTableForm.value.columns = columns;

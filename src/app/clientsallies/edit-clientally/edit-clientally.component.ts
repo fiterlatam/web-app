@@ -67,10 +67,7 @@ export class EditClientallyComponent implements OnInit {
     const locale = this.settingsService.language.code;
     const format = `1.${0}-${0}`;
     let accountNumber = this.apiData.accountNumber;
-    if (accountNumber) {
-      const inputVal = accountNumber.toString().replace(/\D/g, '');
-      accountNumber = this.decimalPipe.transform(inputVal, format, locale);
-    }
+
     let cupoMaxSell = this.apiData.cupoMaxSell;
     if (cupoMaxSell) {
       const inputVal = cupoMaxSell.toString().replace(/\D/g, '');
@@ -128,7 +125,7 @@ export class EditClientallyComponent implements OnInit {
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
       'accountTypeCodeValueId': [''],
-      'accountNumber': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.maxLength(20)]],
+      'accountNumber': ['', [Validators.maxLength(20)]],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });

@@ -4,7 +4,8 @@
     <mat-form-field fxFlexFill>
       <mat-label>{{ formfield.label | formatDisplayName }}</mat-label>
       <input *ngIf="formfield.controlType==='input'" [type]="formfield['type']" matInput
-             [formControlName]="formfield.controlName" [required]="formfield.required">
+             [formControlName]="formfield.controlName" [required]="formfield.required" maxlength="formfield.columnLength">
+             
       <mat-error *ngIf="form.controls[formfield.controlName].hasError('required')">
         {{ formfield.label }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
       </mat-error>

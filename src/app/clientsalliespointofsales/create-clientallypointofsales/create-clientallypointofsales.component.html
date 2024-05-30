@@ -31,6 +31,12 @@
                       <mat-error *ngIf="groupForm.controls.name.hasError('pattern')">
                         {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                       </mat-error>
+                      <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
+                        {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong>  {{ "labels.commons.have more than 100 chars" | translate }}
+                      </mat-error>
+                      <mat-error *ngIf="groupForm.controls.name.hasError('min')">
+                        {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong>  {{ "labels.commons.have more than 100 chars" | translate }}
+                      </mat-error>  
                     </mat-form-field>
 
                     <mat-form-field fxFlex="48%">

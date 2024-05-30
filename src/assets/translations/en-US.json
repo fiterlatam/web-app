@@ -533,6 +533,7 @@
             "Unblock Massively": "Unblock massively"
         },
         "commons": {
+            "be larger than 1 and at most 100": "100 characters long",
             "50 characters long": "50 characters long",
             "20 characters long": "20 characters long",
             "30 characters long": "30 characters long",

@@ -144,34 +144,21 @@ export class DatatableSingleRowComponent implements OnInit {
     return returnValue;
   }
 
-  getColumnType(columnDisplayType: string, columnType: string) {
+  getColumnType(columnDisplayType: string, columnType: string, mask: string) {
+    let ret = columnDisplayType;
     switch (columnDisplayType) {
-      case 'DATE': {
-        return columnDisplayType;
-      }
-      case 'CODELOOKUP': {
-        return columnDisplayType;
-      }
-      case 'DATETIME': {
-        return columnDisplayType;
-      }
-      case 'INTEGER': {
-        return columnDisplayType;
-      }
-      case 'DECIMAL': {
-        return columnDisplayType;
-      }
       case 'TEXT': {
         if (columnType === 'JSON') {
-          return 'JSON';
-        } else {
-          return columnDisplayType;
-        }
-      }
-      default: {
-        return columnDisplayType;
+          ret =  'JSON';
+        } 
       }
     }
+
+    if(mask != null && mask != '') {
+      ret = columnDisplayType + '_MASKED';
+    }
+
+    return ret;
   }
 
   getInputName(attr: string): string {

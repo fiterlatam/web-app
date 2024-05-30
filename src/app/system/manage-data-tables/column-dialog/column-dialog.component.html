@@ -37,6 +37,11 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field *ngIf="showMaskField">
+        <mat-label>Column Mask</mat-label>
+        <input matInput type="text" formControlName="fieldMask">
+      </mat-form-field>      
+      
       <div>
         <mat-checkbox labelPosition="after" formControlName="mandatory">Mandatory</mat-checkbox>
       </div>

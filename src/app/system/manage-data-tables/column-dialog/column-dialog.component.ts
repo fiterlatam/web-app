@@ -21,6 +21,8 @@ export class ColumnDialogComponent implements OnInit {
   /** Column Type Data */
   columnTypeData = columnTypeData;
 
+  showMaskField: boolean = false;
+
   /**
    * @param {MatDialogRef} dialogRef Component reference to dialog.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -38,11 +40,17 @@ export class ColumnDialogComponent implements OnInit {
       'name': [this.data ? this.data.columnName : '', Validators.required],
       'type': [{ value: this.data ? (this.data.columnDisplayType === '' ? '' : this.getColumnType(this.data.columnDisplayType)) : '', disabled: this.data.type === 'existing' }, Validators.required],
       'length': [{ value: this.data ? + this.data.columnLength : '', disabled: this.getColumnType(this.data.columnDisplayType) !== 'String' || this.data.type === 'existing' }, Validators.required],
+      'fieldMask': [this.data.fieldMask],
       'mandatory': [{ value: this.data.isColumnNullable, disabled: this.data.type === 'existing' }],
       'unique': [{ value: this.data.isColumnUnique, disabled: this.data.isColumnNullable || this.data.type === 'existing' }],
       'indexed': [{ value: this.data.isColumnIndexed, disabled: this.data.type === 'existing' }],
       'code': [{ value: this.data ? this.data.columnCode : '', disabled: this.getColumnType(this.data.columnDisplayType) !== 'Dropdown' || this.data.type === 'existing' }, Validators.required],
     });
+
+    if(this.data.columnDisplayType != 'String' && this.data.columnDisplayType != 'Dropdown') {
+      this.showMaskField = true;
+    }
+
     this.onColumnTypeChanges();
   }
 
@@ -58,12 +66,15 @@ export class ColumnDialogComponent implements OnInit {
       }
       case 'INTEGER': {
         return 'Number';
+        this.showMaskField = true;
       }
       case 'CODELOOKUP': {
         return 'Dropdown';
+        this.showMaskField = false;
       }
       default: {
         return columnDisplayType[0] + columnDisplayType.substr(1).toLowerCase();
+        this.showMaskField = false;
       }
     }
   }
@@ -90,7 +101,33 @@ export class ColumnDialogComponent implements OnInit {
             this.columnForm.get('length').disable();
           }
         }
+
+        this.defineMaskFieldVisibility(type);
       });
+  }
+
+  defineMaskFieldVisibility(type: string) {
+    switch (type) {
+      case 'Date': {
+        this.showMaskField = true;
+        break;
+      }
+      case 'Date and Time': {
+        this.showMaskField = true;
+        break;
+      }
+      case 'Decimal': {
+        this.showMaskField = true;
+        break;
+      }       
+      case 'Number': {
+        this.showMaskField = true;
+        break;
+      }                    
+      default: {
+        this.showMaskField = false;
+      }
+    }    
   }
 
   /**

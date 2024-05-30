@@ -56,7 +56,7 @@ export class CreateClientallyComponent implements OnInit {
       'collectionEnabled': [false],
       'bankEntityCodeValueId': [''],
       'accountTypeCodeValueId': [''],
-      'accountNumber': ['', [Validators.pattern('^[0-9,\\.]+$'), Validators.maxLength(20)]],
+      'accountNumber': ['', [Validators.maxLength(20)]],
       'taxProfileCodeValueId': [''],
       'stateCodeValueId': [''],
     });

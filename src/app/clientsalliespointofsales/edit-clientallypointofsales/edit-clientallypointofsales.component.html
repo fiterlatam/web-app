@@ -11,17 +11,6 @@
             <mat-card-content>
                 <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
 
-                    <!--mat-form-field fxFlex="48%">
-                        <mat-label>{{"labels.inputs.code" | translate }}</mat-label>
-                        <input matInputformControlName="code">
-                        <mat-error *ngIf="groupForm.controls.code.hasError('required')">
-                          {{"labels.inputs.code" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
-                        </mat-error>
-                        <mat-error *ngIf="groupForm.controls.code.hasError('pattern')">
-                          {{"labels.inputs.code" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
-                        </mat-error>
-                    </mat-form-field-->
-
                     <mat-form-field fxFlex="100%">
                       <mat-label>{{"labels.inputs.name" | translate }}</mat-label>
                       <input matInput required formControlName="name">
@@ -31,6 +20,12 @@
                       <mat-error *ngIf="groupForm.controls.name.hasError('pattern')">
                         {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                       </mat-error>
+                      <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
+                        {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong>  {{ "labels.commons.have more than 100 chars" | translate }}
+                      </mat-error>
+                      <mat-error *ngIf="groupForm.controls.name.hasError('min')">
+                        {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong>  {{ "labels.commons.have more than 100 chars" | translate }}
+                      </mat-error>                      
                     </mat-form-field>
 
                     <mat-form-field fxFlex="100%">

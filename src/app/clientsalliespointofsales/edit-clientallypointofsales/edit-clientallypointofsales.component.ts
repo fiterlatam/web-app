@@ -110,7 +110,7 @@ export class EditClientAllyPointOfSalesComponent implements OnInit {
     this.groupForm = this.formBuilder.group({
 //      'clientallyid': ['', [Validators.required, ]],
       'code': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{1,4}$')]], 
-      'name': ['', [Validators.required, ]],
+      'name': ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
       'brandCodeValueId': ['', [Validators.required, ]],
       'cityCodeValueId': ['', [Validators.required, ]],
       'departmentCodeValueId': ['', [Validators.required, ]],
