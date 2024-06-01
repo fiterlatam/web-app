@@ -13,7 +13,7 @@ export class DelinquencyRangeComponent implements OnInit {
 
   delinquencyRangeData: any;
   /** Columns to be displayed in delinquency range table. */
-  displayedColumns: string[] = ['classification', 'minimumAgeDays', 'maximumAgeDays'];
+  displayedColumns: string[] = ['classification', 'minimumAgeDays', 'maximumAgeDays', 'penaltyInterest'];
   /** Data source for delinquency range table. */
   dataSource: MatTableDataSource<any>;
 
