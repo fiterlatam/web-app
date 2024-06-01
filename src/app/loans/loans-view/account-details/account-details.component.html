@@ -29,7 +29,7 @@
 
         <div fxFlexFill>
             <span fxFlex="50%"> {{"labels.inputs.Interest" | translate}} </span>
-            <span fxFlex="50%"> {{loanDetails.annualInterestRate | formatNumber}} {{"labels.text.per annum" | translate}} ({{loanDetails.interestRatePerPeriod}} %&nbsp; {{loanDetails.interestRateFrequencyType.value}}) - {{"labels.text." + loanDetails.interestType.value | translate}} </span>
+            <span fxFlex="50%"> {{loanDetails.annualInterestRate | formatNumber}}% {{"labels.text.per annum" | translate}} ({{loanDetails.interestRatePerPeriod | formatNumber}}%&nbsp; {{loanDetails.interestRateFrequencyType.value}}) - {{"labels.text." + loanDetails.interestType.value | translate}} </span>
         </div>
 
         <div fxFlexFill>
@@ -100,7 +100,7 @@
 
         <div fxFlexFill *ngIf="loanDetails.canDefineInstallmentAmount">
             <span fxFlex="50%"> {{"labels.inputs.Fixed EMI amount" | translate}}</span>
-            <span fxFlex="50%"> {{loanDetails.fixedEmiAmount | formatNumber}} </span>
+            <span fxFlex="50%"> {{loanDetails.fixedEmiAmount | formatNumber: [decimalPlaces]}} </span>
         </div>
 
         <div fxFlexFill *ngIf="loanDetails.isTopup">
