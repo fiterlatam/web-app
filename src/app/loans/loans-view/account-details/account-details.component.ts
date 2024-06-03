@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./account-details.component.scss']
 })
 export class AccountDetailsComponent implements OnInit {
-
+  decimalPlaces: string;
   loanDetails: any;
   dataObject: {
     property: string,
@@ -17,6 +17,7 @@ export class AccountDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
     this.route.parent.data.subscribe((data: { loanDetailsData: any, }) => {
       this.loanDetails = data.loanDetailsData;
+      this.decimalPlaces = this.loanDetails.currency.decimalPlaces;
     });
   }
 

@@ -1,6 +1,6 @@
 /** Angular Imports */
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormArray } from '@angular/forms';
+import {UntypedFormGroup, UntypedFormBuilder, Validators, FormArray, UntypedFormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { LoansAccountAddCollateralDialogComponent } from 'app/loans/custom-dialog/loans-account-add-collateral-dialog/loans-account-add-collateral-dialog.component';
@@ -79,6 +79,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   /** Multi Disbursement Control */
   totalMultiDisbursed: any = 0;
   isMultiDisbursedCompleted = false;
+  requirePoints = false;
 
   /** Component is pristine if there has been no changes by user interaction */
   pristine = true;
@@ -105,6 +106,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (this.loansAccountProductTemplate) {
       this.loansAccountTermsData = this.loansAccountProductTemplate;
+      this.requirePoints = this.loansAccountProductTemplate ? this.loansAccountProductTemplate['product'] ? this.loansAccountProductTemplate['product'] ?.requirePoints : false : false;
       this.currencyDisplaySymbol = this.loansAccountTermsData.currency.displaySymbol;
       if (this.loanId != null && this.loansAccountTemplate.accountNo) {
         this.loansAccountTermsData = this.loansAccountTemplate;
@@ -117,7 +119,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         'numberOfRepayments': this.loansAccountTermsData.numberOfRepayments,
         'repaymentEvery': this.loansAccountTermsData.repaymentEvery,
         'repaymentFrequencyType': this.loansAccountTermsData.repaymentFrequencyType.id,
-        'interestRatePerPeriod': this.loansAccountTermsData.interestRatePerPeriod,
+        'interestRatePoints': this.loansAccountTermsData.interestRatePoints,
         'amortizationType': this.loansAccountTermsData.amortizationType.id,
         'isEqualAmortization': this.loansAccountTermsData.isEqualAmortization,
         'interestType': this.loansAccountTermsData.interestType.id,
@@ -135,10 +137,6 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         'interestRateDifferential': this.loansAccountTermsData.interestRateDifferential,
         'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
       });
-
-      if (this.loansAccountTermsData.isLoanProductLinkedToFloatingRate) {
-        this.loansAccountTermsForm.removeControl('interestRatePerPeriod');
-      }
 
       this.multiDisburseLoan = this.loansAccountTermsData.multiDisburseLoan;
       if (this.loansAccountTermsData.disbursementDetails) {
@@ -205,7 +203,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         'numberOfRepayments': this.loansAccountTermsData.numberOfRepayments,
         'repaymentEvery': this.loansAccountTermsData.repaymentEvery,
         'repaymentFrequencyType': this.loansAccountTermsData.repaymentFrequencyType.id,
-        'interestRatePerPeriod': this.loansAccountTermsData.interestRatePerPeriod,
+        'interestRatePoints': this.loansAccountTermsData.interestRatePoints,
         'amortizationType': this.loansAccountTermsData.amortizationType.id,
         'isEqualAmortization': this.loansAccountTermsData.isEqualAmortization,
         'interestType': this.loansAccountTermsData.interestType.id,
@@ -288,7 +286,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       'repaymentFrequencyDayOfWeekType': [''],
       'repaymentsStartingFromDate': [''],
       'interestChargedFromDate': [''],
-      'interestRatePerPeriod': [''],
+      'interestRatePoints': ['', [Validators.required, Validators.min(0), Validators.pattern(/^\d+$/)]],
       'interestType': [''],
       'isFloatingInterestRate': [''],
       'isEqualAmortization': [''],
@@ -305,9 +303,17 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       'isTopup': [''],
       'maxOutstandingLoanBalance': [''],
       'interestRateDifferential': [''],
-      'transactionProcessingStrategyCode': ['', Validators.required],
+      'transactionProcessingStrategyCode': [{ value: '', disabled: this.repaymentStrategyDisabled }, Validators.required],
       'multiDisburseLoan': [false]
     });
+
+    if (this.loansAccountTermsData) {
+      if (!this.loansAccountTermsData['isLoanProductLinkedToFloatingRate'] && this.requirePoints) {
+        this.loansAccountTermsForm['interestRatePoints'] .addValidators([Validators.required]);
+      } else {
+        this.loansAccountTermsForm['interestRatePoints']?.clearValidators();
+      }
+    }
   }
 
   calculateLoanTerm(numberOfRepayments: number, repaymentEvery: number): void {

@@ -15,7 +15,7 @@
 
     <mat-form-field fxFlex="48%">
       <mat-label>{{"labels.inputs.Loan Term" | translate}}</mat-label>
-      <input type="number" matInput required disabled formControlName="loanTermFrequency">
+      <input type="number" matInput required formControlName="loanTermFrequency">
       <mat-error *ngIf="loansAccountTermsForm.controls.loanTermFrequency.hasError('required')">
         {{"labels.inputs.Loan Term" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
       </mat-error>
@@ -65,7 +65,7 @@
 
     <mat-form-field fxFlex="48%">
       <mat-label>{{"labels.inputs.Frequency" | translate}}</mat-label>
-      <mat-select formControlName="repaymentFrequencyType" disabled required>
+      <mat-select formControlName="repaymentFrequencyType" required>
         <mat-option *ngFor="let repaymentFrequencyType of termFrequencyTypeData" [value]="repaymentFrequencyType.id">
           {{ repaymentFrequencyType.value }}
         </mat-option>
@@ -102,9 +102,12 @@
 
     <ng-container *ngIf="!loansAccountTermsData?.isLoanProductLinkedToFloatingRate">
 
-      <mat-form-field fxFlex="48%">
-        <mat-label>{{"labels.inputs.Nominal interest rate" | translate}}</mat-label>
-        <input type="number" matInput formControlName="interestRatePerPeriod">
+      <mat-form-field fxFlex="48%" *ngIf="requirePoints">
+        <mat-label>{{"labels.inputs.Interest Rate Points" | translate}}</mat-label>
+        <input type="number" matInput formControlName="interestRatePoints">
+        <mat-error *ngIf="loansAccountTermsForm.controls.interestRatePoints?.hasError('required')">
+          {{"labels.inputs.Interest Rate Points" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="48%">
@@ -128,7 +131,7 @@
 
       <mat-form-field fxFlex="48%">
         <mat-label>{{"labels.inputs.Repayment Strategy" | translate}}</mat-label>
-        <mat-select formControlName="transactionProcessingStrategyCode" matTooltip="{{ 'tooltips.The repayment strategy' | translate}}" [disabled]="repaymentStrategyDisabled">
+        <mat-select formControlName="transactionProcessingStrategyCode" matTooltip="{{ 'tooltips.The repayment strategy' | translate}}">
           <mat-option *ngFor="let transactionProcessingStrategy of transactionProcessingStrategyOptions" [value]="transactionProcessingStrategy.code">
             {{ transactionProcessingStrategy.name }}
           </mat-option>
