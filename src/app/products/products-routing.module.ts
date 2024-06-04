@@ -1045,7 +1045,8 @@ const routes: Routes = [
     AdvanceQuotaResolver,
     InterestRatesResolver,
     InterestRateResolver,
-    InterestRateHistoryResolver
+    InterestRateHistoryResolver,
+    InterestRateTemplateResolver
   ]
 })
 export class ProductsRoutingModule { }

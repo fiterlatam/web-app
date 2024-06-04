@@ -3,6 +3,8 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "El cliente ya existe con la cédula proporcionada [ {{params[0].value}} ]",
+        "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "El cliente ya existe con NIT proporcionado [ {{params[0].value}} ]",
         "error.msg.parameter.unsupported": "El parámetro {{params[0].value}} no es compatible.",
         "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "La tasa de interés proporcionada [ {{params[0].value}} ] no puede ser superior a la tasa de interés legal máxima de [ {{params[1].value}} ]",
         "error.msg.interest.rate.not.found": "Tasa de interés con ID {{params [0] .value}} no encontrado.",
@@ -2137,6 +2139,7 @@
             "Yearly": "Anual",
             "Zip": "Cremallera",
             "begin with a special character or number": "comenzar con un carácter especial o número",
+            "have invalid number format": "tener un formato de número inválido",
             "between": "entre",
             "cannot": "no puedo",
             "day must be selected": "se debe seleccionar el día",

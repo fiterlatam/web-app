@@ -97,13 +97,13 @@
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterHonorarios" class="entries" (change)="enableOrDisableCupoMaxSellField('honorarios', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.fee" | translate}}
               </mat-checkbox>
-              
+
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterTerm" class="entries" (change)="enableOrDisableCupoMaxSellField('term', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.term" | translate}}
               </mat-checkbox>
               <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
-              </mat-error>              
+              </mat-error>
             </div>
 
             <div fxFlex="48%" *ngIf="false" >
@@ -121,8 +121,7 @@
               </mat-form-field>
             </div>
 
-
-            <mat-form-field fxFlex="48%" *ngIf="chargeForm.value.chargeCalculationTypeFilterTerm" >
+            <mat-form-field fxFlex="48%" *ngIf="chargeForm.value['chargeCalculationTypeFilterTerm']" >
               <mat-label>{{ "labels.inputs.Parent Charge" | translate }}</mat-label>
               <mat-select required formControlName="parentChargeId">
                 <mat-option *ngFor="let parentChargeData of parentChargeDataList"
@@ -146,7 +145,7 @@
               <mat-error *ngIf="chargeForm.controls.externalCalculationChargeId.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
               </mat-error>
-            </mat-form-field>      
+            </mat-form-field>
 
 
             <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1" fxFlex="48%">
@@ -229,18 +228,12 @@
               <mat-label>{{ "labels.inputs.Amount" | translate }}</mat-label>
               <input matInput required formControlName="amount" value="0">
               <mat-error *ngIf="chargeForm.controls.amount.hasError('required')">
-                {{ "labels.inputs.Amount" | translate }} is <strong>required</strong>
+                {{ "labels.inputs.Amount" | translate }} {{ 'labels.commons.is' | translate }} <strong> {{'labels.commons.required' | translate }} </strong>
               </mat-error>
-              <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern') && currencyDecimalPlaces !== undefined">
-                {{ "labels.inputs.Amount" | translate }} must be <strong>a positive number with {{ currencyDecimalPlaces ? 'up to ' +
-                  currencyDecimalPlaces : 'no' }} decimal places</strong>
-              </mat-error>
-              <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern') && currencyDecimalPlaces === undefined">
-                {{ "labels.inputs.Amount" | translate }} must be <strong>a positive number</strong>
+              <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern')">
+                {{"labels.inputs.Amount" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.have invalid number format" | translate}}
               </mat-error>
             </mat-form-field>
-
-        
 
             <mat-form-field fxFlex="24%" *ngIf="chargeForm.controls.amount.value == 0 && chargeForm.controls.chargeCalculationType.value > 1 && chargeForm.controls.chargeCalculationType.value < 8" >
               <mat-label>{{ "labels.inputs.Custom Charge" | translate }}</mat-label>
@@ -253,7 +246,7 @@
               <mat-error *ngIf="chargeForm.controls.customChargeId.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
               </mat-error>
-            </mat-form-field>                
+            </mat-form-field>
 
             <mat-form-field fxFlex="48%"
             *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
