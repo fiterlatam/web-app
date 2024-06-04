@@ -1,6 +1,15 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DelinquencyBucket, LoanProduct } from '../../models/loan-product.model';
-import { AccountingMapping, Charge, ChargeToIncomeAccountMapping, GLAccount, PaymentChannelToFundSourceMapping, PaymentType, PaymentTypeOption } from '../../../../shared/models/general.model';
+import {
+  AccountingMapping,
+  Charge,
+  ChargeToIncomeAccountMapping,
+  GLAccount,
+  InterestRate,
+  PaymentChannelToFundSourceMapping,
+  PaymentType,
+  PaymentTypeOption
+} from '../../../../shared/models/general.model';
 import { AdvancePaymentAllocationData, CreditAllocation, PaymentAllocation } from '../../loan-product-stepper/loan-product-payment-strategy-step/payment-allocation-model';
 import { LoanProducts } from '../../loan-products';
 import { CodeName, OptionData } from '../../../../shared/models/option-data.model';
@@ -46,6 +55,13 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
 
   setCurrentValues(): void {
     this.isAdvancedPaymentAllocation = LoanProducts.isAdvancedPaymentAllocationStrategy(this.loanProduct.transactionProcessingStrategyCode);
+    if (this.loanProduct.interestRateId) {
+      this.loanProduct.interestRate = this.interestRateLookUp(this.loanProduct.interestRateId, this.loanProductsTemplate.interestRateOptions);
+    }
+
+    if (typeof this.loanProduct.repaymentFrequencyType === 'number') {
+      this.loanProduct.repaymentFrequencyType = this.optionDataLookUp(this.loanProduct.repaymentFrequencyType, this.loanProductsTemplate.repaymentFrequencyTypeOptions);
+    }
 
     if (!this.loanProduct.currency) {
       this.loanProductsTemplate.currencyOptions.some((o: any) => {
@@ -276,6 +292,18 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
       });
     }
     return chargeData;
+  }
+
+  interestRateLookUp(interestRateId: number, interestRates: InterestRate[]): InterestRate {
+    let interestRateData: InterestRate | null = null;
+    if (interestRateId) {
+      interestRates.some((interestRate: InterestRate) => {
+        if (interestRate.id === interestRateId) {
+          interestRateData = { id: interestRate.id, name: interestRate.name, currentRate: interestRate.currentRate };
+        }
+      });
+    }
+    return interestRateData;
   }
 
   paymentTypeLookUp(paymentTypeId: number, paymentTypes: PaymentTypeOption[]): PaymentType {

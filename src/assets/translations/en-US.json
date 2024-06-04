@@ -3,6 +3,7 @@
     "Logged in as": "Logged in as",
     "Remember me": "Remember me",
     "errors": {
+        "error.msg.parameter.unsupported": "The parameter {{params[0].value}} is not supported.",
         "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "Provided interest rate [ {{params[0].value}} ] cannot be higher than the maximum legal interest rate of [ {{params[1].value}} ]",
         "error.msg.interest.rate.not.found": "Interest Rate with ID {{params[0].value}} not found.",
         "error.unknown.data.integrity.issue": "An unexpected problem occurred when performing the request. Error logged on server.",
@@ -581,6 +582,10 @@
             "till 4 characters": "till 4 characters"
         },
         "heading": {
+            "Configurable Allowed Usages": "Configurable Allowed Usages",
+            "Configurable Terms and Settings": "Configurable Terms and Settings",
+            "Down Payments": "Down Payments",
+            "Loan Schedule": "Loan Schedule",
             "Interest Rate Management": "Interest Rate Management",
             "Account Linked Financial": "List of accounts linked to different financial activities. To know more click:",
             "Account Name": "Account Name",
@@ -940,6 +945,14 @@
             "Manage System Channels": "Manage System Channels"
         },
         "inputs": {
+            "Interest Rate Points": "Interest Rate Points",
+            "Extend term for monthly repayments": "Extend term for monthly repayments",
+            "Enable installment level Delinquency": "Enable installment level Delinquency",
+            "Payment due on non working days": "Payment due on non working days",
+            "Installment day calculation from": "Installment day calculation from",
+            "Fund Name": "Fund Name",
+            "Enable Down Payments": "Enable Down Payments",
+            "Requires Points": "Requires Points?",
             "Current Rate": "Current Interest Rate",
             "Close Date": "Close Date",
             "Is Advance": "Is Advance?",
@@ -2380,6 +2393,8 @@
         },
         "text": {
             "Interest Rate Management": "Define Interest Rate Management for Credits",
+            "Interest Rates": "Interest Rates",
+            "View History": "View History",
             "channel": "Channel",
             "channel.create": "Create Channel",
             "channel.edit": "Edit Channel",
@@ -2985,6 +3000,7 @@
     },
     "not_found_subtitle": "Oops.. Looks like this page doesn't exist.",
     "tooltips": {
+        "These fields are used to select interest rate and define a loan product that require points": "These fields are used to select interest rate and define a loan product that require points.",
         "The description is used to provide additional information regarding the purpose and characteristics of the loan product": "The description is used to provide additional information regarding the purpose and characteristics of the loan product.",
         "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive": "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive.",
         "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created": "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created.",
