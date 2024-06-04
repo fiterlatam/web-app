@@ -2167,6 +2167,7 @@
             "chargeCalculationType.interest": "Interest",
             "chargeCalculationType.outstanding.amount": "Outstanding Principal",
             "chargeCalculationType.insurance": "Insurance",
+            "chargeCalculationType.voluntary.assistance": "Insurance Voluntary/Assistance",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Fees",
             "chargeCalculationType.term": "Term",
@@ -2202,7 +2203,18 @@
             "Channel": "Channel",
             "Channel Name": "Channel Name",
             "Sub Channel":  "Sub Channel"   ,
-            "Sub Channel Name":  "Sub Channel Name"
+            "Sub Channel Name":  "Sub Channel Name",
+            "insurance.type": "Type",
+            "charge.insurance.name": "Insurance Name",
+            "charge.insurance.chargedAs": "Insurance Charged As",
+            "charge.insurance.company": "Insurance Company",
+            "charge.insurer.name": "Insurer Name",
+            "charge.insurance.code": "Insurance Code",
+            "charge.insurance.plan": "Insurance Plan",
+            "charge.insurance.base.value": "Base Value",
+            "charge.insurance.vat.value": "VAT Value",
+            "charge.insurance.total.value": "Total Value",
+            "charge.insurance.deadline": "Deadline"
         },
         "links": {
             "Community": "Community",
@@ -2379,7 +2391,7 @@
             "channel.edit": "Edit Channel",
             "subchannel": "Sub Channel",
             "subchannel.create": "Create Sub Channel",
-            "subchannel.edit": "Edit Sub Channel",            
+            "subchannel.edit": "Edit Sub Channel",
             "A": "A",
             "Ability to manage holidays for individual offices": "The ability to manage holidays for individual offices is a very useful tool for an organization spanning multiple locations.Use this option to customize holidays for each office of your organization.",
             "Account Detail": "Account Detail",
@@ -3308,5 +3320,9 @@
     "move to next working day": "Move to next working day",
     "move to next repayment meeting day": "Move to next repayment meeting day",
     "move to previous working day": "Move to previous working day"
-  }
+  },
+  "error.msg.only.flat.type.allowed.for.voluntary.insurance":"Only Flat Charge Calculation Type allowed for Volutnary/Assistance Insurance",
+  "chargeInsuranceType.invalid": "Invalid",
+  "chargeInsuranceType.compra": "Buy",
+  "chargeInsuranceType.cargo": "Charge"
 }

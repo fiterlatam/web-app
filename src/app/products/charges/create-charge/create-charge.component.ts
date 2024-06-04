@@ -19,7 +19,7 @@ import { ArrayType } from '@angular/compiler';
 })
 export class CreateChargeComponent implements OnInit {
 
-  showAnotherChargeCombobox: boolean = false;
+  showAnotherChargeCombobox = false;
 
   /** Charge form. */
   chargeForm: UntypedFormGroup;
@@ -35,21 +35,22 @@ export class CreateChargeComponent implements OnInit {
   chargeFromExternalCalculationList: any = [];
 
   /** Charge calculation type data. */
-  originalChargeCalculationTypeData: any = []; 
+  originalChargeCalculationTypeData: any = [];
 
   chargeCalculationTypeFilter: any;
-  chargeCalculationTypeFilterFlat: boolean = false;
-  chargeCalculationTypeFilterDisbursal: boolean = false;
-  chargeCalculationTypeFilterAmount: boolean = false;
-  chargeCalculationTypeFilterInterest: boolean = false;
-  chargeCalculationTypeFilterOutstandingAmount: boolean = false;
-  chargeCalculationTypeFilterOutstandingInterest: boolean = false;
-  chargeCalculationTypeFilterInsurance: boolean = false;
-  chargeCalculationTypeFilterAval: boolean = false;
-  chargeCalculationTypeFilterHonorarios: boolean = false;
-  chargeCalculationTypeFilterTerm: boolean = false;
+  chargeCalculationTypeFilterFlat = false;
+  chargeCalculationTypeFilterDisbursal = false;
+  chargeCalculationTypeFilterAmount = false;
+  chargeCalculationTypeFilterInterest = false;
+  chargeCalculationTypeFilterOutstandingAmount = false;
+  chargeCalculationTypeFilterOutstandingInterest = false;
+  chargeCalculationTypeFilterInsurance = false;
+  chargeCalculationTypeFilterInsuranceType = false;
+  chargeCalculationTypeFilterAval = false;
+  chargeCalculationTypeFilterHonorarios = false;
+  chargeCalculationTypeFilterTerm = false;
 
-  
+
 
   /** Income and liability account data */
   incomeAndLiabilityAccountData: any;
@@ -61,6 +62,9 @@ export class CreateChargeComponent implements OnInit {
   repeatEveryLabel: string;
   /** Currency decimal places */
   currencyDecimalPlaces: number;
+
+  showVoluntaryInsuranceError = false;
+  voluntaryInsuranceErrorCode: string;
 
   /**
    * Retrieves the charges template data and income and liability account data from `resolve`.
@@ -114,6 +118,16 @@ export class CreateChargeComponent implements OnInit {
       'minCap': [''],
       'maxCap': [''],
       'graceOnChargePeriodAmount': ['0'],
+      'insuranceName': ['', Validators.required],
+      'insuranceChargedAs': ['', Validators.required],
+      'insuranceCompany': ['', Validators.required],
+      'insurerName': ['', Validators.required],
+      'insuranceCode': ['', Validators.required],
+      'insurancePlan': ['', Validators.required],
+      'baseValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
+      'vatValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
+      'totalValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
+      'deadline':  [''],
 
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
@@ -122,6 +136,7 @@ export class CreateChargeComponent implements OnInit {
       'chargeCalculationTypeFilterOutstandingAmount': [false],
       'chargeCalculationTypeFilterOutstandingInterest': [false],
       'chargeCalculationTypeFilterInsurance': [false],
+      'chargeCalculationTypeFilterInsuranceType': [false],
       'chargeCalculationTypeFilterAval': [false],
       'chargeCalculationTypeFilterHonorarios': [false],
       'chargeCalculationTypeFilterTerm': [false],
@@ -199,6 +214,7 @@ export class CreateChargeComponent implements OnInit {
       this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingAmount');
       this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingInterest');
       this.chargeForm.removeControl('chargeCalculationTypeFilterInsurance');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterInsuranceType');
       this.chargeForm.removeControl('chargeCalculationTypeFilterAval');
       this.chargeForm.removeControl('chargeCalculationTypeFilterHonorarios');
       this.chargeForm.removeControl('chargeCalculationTypeFilterTerm');
@@ -207,7 +223,7 @@ export class CreateChargeComponent implements OnInit {
       this.chargeForm.removeControl('customChargeId');
       this.chargeForm.removeControl('externalCalculationChargeId');
 
-      
+
       switch (chargeAppliesTo) {
         case 1: // Loan
           this.chargeForm.addControl('chargePaymentMode', new UntypedFormControl('', Validators.required));
@@ -224,6 +240,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingAmount', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingInterest', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterInsurance', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterInsuranceType', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterAval', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterHonorarios', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterTerm', new UntypedFormControl(false));
@@ -331,14 +348,15 @@ export class CreateChargeComponent implements OnInit {
     delete data.chargeCalculationTypeFilterOutstandingAmount;
     delete data.chargeCalculationTypeFilterOutstandingInterest;
     delete data.chargeCalculationTypeFilterInsurance;
+    delete data.chargeCalculationTypeFilterInsuranceType;
     delete data.chargeCalculationTypeFilterAval;
     delete data.chargeCalculationTypeFilterHonorarios;
     delete data.chargeCalculationTypeFilterTerm;
 
-    delete data.customChargeId; 
+    delete data.customChargeId;
     delete data.externalCalculationChargeId;
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterTerm == false) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterTerm == false) {
       delete data.parentChargeId;
     }
 
@@ -349,89 +367,105 @@ export class CreateChargeComponent implements OnInit {
 
   enableOrDisableCupoMaxSellField(itemName: String, selected: boolean) {
     this.chargeCalculationTypeData = [];
-    let lookForWordsArray: any = [];
+    const lookForWordsArray: any = [];
     let isFilterApplied = false;
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterFlat) {
-      lookForWordsArray.push('flat');      
+    if (this.chargeForm.value.chargeCalculationTypeFilterFlat) {
+      lookForWordsArray.push('flat');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterDisbursal) {
-      lookForWordsArray.push('disbursedamount');      
-      isFilterApplied = true;
-    }    
-
-    if(this.chargeForm.value.chargeCalculationTypeFilterAmount) {
-      lookForWordsArray.push('installmentprincipal');      
+    if (this.chargeForm.value.chargeCalculationTypeFilterDisbursal) {
+      lookForWordsArray.push('disbursedamount');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterInterest) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterAmount) {
+      lookForWordsArray.push('installmentprincipal');
+      isFilterApplied = true;
+    }
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterInterest) {
       lookForWordsArray.push('installmentinterest');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterOutstandingAmount) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterOutstandingAmount) {
       lookForWordsArray.push('outstandingprincipal');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterOutstandingInterest) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterOutstandingInterest) {
       lookForWordsArray.push('outstandinginterest');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterInsurance) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsurance) {
       lookForWordsArray.push('seguroobrigatorio');
       isFilterApplied = true;
     }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterAval) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterAval) {
       lookForWordsArray.push('aval');
       isFilterApplied = true;
     }
-    
-    if(this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
       lookForWordsArray.push('honorarios');
       isFilterApplied = true;
-    }    
+    }
 
-    if(this.chargeForm.value.chargeCalculationTypeFilterTerm) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterTerm) {
       lookForWordsArray.push('percentofanothercharge');
       isFilterApplied = true;
       this.showAnotherChargeCombobox = true;
       this.chargeForm.get('parentChargeId').setValidators([Validators.required]);
     } else {
-      
+
       this.chargeForm.removeControl('parentChargeId');
       this.showAnotherChargeCombobox = false;
-    }   
-
-    for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
-      this.lookForKeyOnCode(lookForWordsArray, index);
-    } 
-
-    // IOf nothing selected, restore the list
-    if(lookForWordsArray.length == 0) {
-      for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
-        this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
-      } 
     }
 
-    if(isFilterApplied) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      lookForWordsArray.push('segurovoluntarioasistencia');
+      isFilterApplied = true;
+    }
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      if (!this.chargeForm.value.chargeCalculationTypeFilterFlat || lookForWordsArray.length > 2) {
+        this.showVoluntaryInsuranceError = true;
+        this.voluntaryInsuranceErrorCode = 'error.msg.only.flat.type.allowed.for.voluntary.insurance';
+        return;
+      } else {
+        this.showVoluntaryInsuranceError = false;
+        this.voluntaryInsuranceErrorCode = '';
+      }
+    }
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+      this.lookForKeyOnCode(lookForWordsArray, index);
+
+    }
+
+    // IOf nothing selected, restore the list
+    if (lookForWordsArray.length == 0) {
+      for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+        this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
+      }
+    }
+
+    if (isFilterApplied) {
       this.chargeForm.get('chargeCalculationType').setValue(this.chargeCalculationTypeData[0].id);
     } else {
       this.chargeForm.get('chargeCalculationType').setValue(null);
     }
-  }  
+  }
 
 
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
-    let currCode = this.originalChargeCalculationTypeData[index].code;
+    const currCode = this.originalChargeCalculationTypeData[index].code;
 
-    for (let i = 0; i <= lookForWordsArray.length-1; i++) {
-      if(currCode.toString().indexOf("."+ lookForWordsArray[i]) == -1) {
+    for (let i = 0; i <= lookForWordsArray.length - 1; i++) {
+      if (currCode.toString().indexOf('.' + lookForWordsArray[i]) == -1) {
         return;
       }
     }

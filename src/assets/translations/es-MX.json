@@ -542,7 +542,7 @@
         "commons": {
             "have more than 100 chars": "tener mas que 100 caracteres de largo",
             "have more than 1000 chars": "tener mas que 1000 caracteres de largo",
-            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",          
+            "have more than 5000 chars": "tener mas que 5000 caracteres de largo",
             "50 characters long": "50 caracteres de largo",
             "20 characters long": "20 caracteres de largo",
             "30 characters long": "30 caracteres de largo",
@@ -588,7 +588,7 @@
             "till 4 characters": "hasta 4 caracteres"
         },
         "heading": {
-            "Manage System Channels": "Administrar Canales del Sistema",          
+            "Manage System Channels": "Administrar Canales del Sistema",
             "Account Linked Financial": "Listado de cuentas vinculadas a diferentes actividades financieras. Para saber más haga clic en:",
             "Account Name": "Nombre de la cuenta",
             "Account Number Preferences": "Preferencias de número de cuenta",
@@ -2182,7 +2182,8 @@
             "chargeCalculationType.interest": "Interés Cuota",
             "chargeCalculationType.outstanding.amount": "Principal Saldo",
             "chargeCalculationType.outstanding.interest": "Interes Saldo",
-            "chargeCalculationType.insurance": "Seguro",
+            "chargeCalculationType.insurance": "Seguro Obligatorio",
+            "chargeCalculationType.voluntary.assistance": "Seguro Voluntario/Asistencia ",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Honorários",
             "chargeCalculationType.term": "Otro Cargo",
@@ -2218,7 +2219,17 @@
             "Sub Channel":  "Sub Canal"   ,
             "Sub Channel Name":  "Nombre Sub Canal",
             "description": "Descripción",
-            "hash": "Código Hash"            
+            "hash": "Código Hash",
+            "charge.insurance.name": "Nombre el Seguro",
+            "charge.insurance.chargedAs": "Seguro Cobrado Como",
+            "charge.insurance.company": "NIT Aseguradora",
+            "charge.insurer.name": "Nombre Aseguradora",
+            "charge.insurance.code": "Codigo Del Seguro",
+            "charge.insurance.plan": "Plan",
+            "charge.insurance.base.value": "Valor Base",
+            "charge.insurance.vat.value": "Valor IVA",
+            "charge.insurance.total.value": "Valor Total",
+            "charge.insurance.deadline": "Plazo Maximo"
         },
         "links": {
             "Community": "Comunidad",
@@ -2396,7 +2407,7 @@
             "channel.edit": "Editar Canal",
             "subchannel": "Sub Canales",
             "subchannel.create": "Crear Sub Canal",
-            "subchannel.edit": "Editar Sub Canal",              
+            "subchannel.edit": "Editar Sub Canal",
             "A": "A",
             "Ability to manage holidays for individual offices": "La capacidad de gestionar días festivos para oficinas individuales es una herramienta muy útil para una organización que abarca varias ubicaciones. Utilice esta opción para personalizar los días festivos para cada oficina de su organización.",
             "Account Detail": "Detalle de cuenta",
@@ -3266,5 +3277,9 @@
     "move to next working day": "Mover al día siguiente laborable",
     "move to next repayment meeting day": "Mover al día siguiente de la reunión de pagos",
     "move to previous working day": "Mover al día anterior laborable"
-  }
+  },
+  "error.msg.only.flat.type.allowed.for.voluntary.insurance":"Sólo se permite el tipo de cálculo de cargo fijo para el seguro voluntario/de asistencia",
+  "chargeInsuranceType.invalid": "Invalid",
+  "chargeInsuranceType.compra": "Compra",
+  "chargeInsuranceType.cargo": "Cargo"
 }

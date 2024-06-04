@@ -90,6 +90,10 @@
                 {{"labels.inputs.chargeCalculationType.insurance" | translate}}
               </mat-checkbox>
               &nbsp;&nbsp;&nbsp;
+              <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterInsuranceType" class="entries" (change)="enableOrDisableCupoMaxSellField('insuranceType', $event.checked)">
+                {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}}
+              </mat-checkbox>
+              &nbsp;&nbsp;&nbsp;
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterAval" class="entries" (change)="enableOrDisableCupoMaxSellField('aval', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.aval" | translate}}
               </mat-checkbox>
@@ -97,13 +101,14 @@
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterHonorarios" class="entries" (change)="enableOrDisableCupoMaxSellField('honorarios', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.fee" | translate}}
               </mat-checkbox>
-              
+
               <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterTerm" class="entries" (change)="enableOrDisableCupoMaxSellField('term', $event.checked)">
                 {{"labels.inputs.chargeCalculationType.term" | translate}}
               </mat-checkbox>
               <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
-              </mat-error>              
+              </mat-error>
+              <p *ngIf="showVoluntaryInsuranceError" class="mat-error ng-star-inserted">{{voluntaryInsuranceErrorCode | translate }}</p>
             </div>
 
             <div fxFlex="48%" *ngIf="false" >
@@ -146,7 +151,7 @@
               <mat-error *ngIf="chargeForm.controls.externalCalculationChargeId.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
               </mat-error>
-            </mat-form-field>      
+            </mat-form-field>
 
 
             <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1" fxFlex="48%">
@@ -240,7 +245,7 @@
               </mat-error>
             </mat-form-field>
 
-        
+
 
             <mat-form-field fxFlex="24%" *ngIf="chargeForm.controls.amount.value == 0 && chargeForm.controls.chargeCalculationType.value > 1 && chargeForm.controls.chargeCalculationType.value < 8" >
               <mat-label>{{ "labels.inputs.Custom Charge" | translate }}</mat-label>
@@ -253,7 +258,7 @@
               <mat-error *ngIf="chargeForm.controls.customChargeId.hasError('required')">
                 {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
               </mat-error>
-            </mat-form-field>                
+            </mat-form-field>
 
             <mat-form-field fxFlex="48%"
             *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
@@ -299,11 +304,11 @@
               </div>
             </div>
 
-            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 3" fxFlex="48%">
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1" fxFlex="48%">
               <mat-label>{{"labels.inputs.Income from Charge" | translate}} </mat-label>
               <mat-select formControlName="incomeAccountId">
                 <mat-option *ngFor="let incomeOrLiabilityAccount of incomeAndLiabilityAccountData"
-                  [value]="incomeOrLiabilityAccount.id">
+                            [value]="incomeOrLiabilityAccount.id">
                   {{ incomeOrLiabilityAccount.name }}
                 </mat-option>
               </mat-select>
@@ -318,6 +323,53 @@
               </mat-select>
             </mat-form-field>
 
+
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.name" | translate}} </mat-label>
+              <input matInput formControlName="insuranceName">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{ "labels.inputs.charge.insurance.chargedAs" | translate }}</mat-label>
+              <mat-select required formControlName="insuranceChargedAs">
+                <mat-option *ngFor="let chargedAs of chargesTemplateData.chargeInsuranceTypeOptions" [value]="chargedAs.id">
+                  {{ chargedAs.code | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.company" | translate}} </mat-label>
+              <input matInput formControlName="insuranceCompany">
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurer.name" | translate}} </mat-label>
+              <input matInput formControlName="insurerName">
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.code" | translate}} </mat-label>
+              <input matInput formControlName="insuranceCode">
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.plan" | translate}} </mat-label>
+              <input matInput formControlName="insurancePlan">
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.base.value" | translate}} </mat-label>
+              <input  type="number" matInput formControlName="baseValue" value="0" required/>
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.vat.value" | translate}} </mat-label>
+              <input  type="number" matInput formControlName="vatValue" value="0" required/>
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.total.value" | translate}} </mat-label>
+              <input  type="number" matInput formControlName="totalValue" value="0" required/>
+            </mat-form-field>
+            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.insurance.deadline" | translate}} </mat-label>
+              <input type="number" matInput formControlName="deadline" [required]='chargeForm.value.insuranceChargedAs === 1' >
+            </mat-form-field>
+
           </div>
 
         </div>
@@ -326,7 +378,7 @@
 
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
         <button type="button" mat-raised-button [routerLink]="['../']">{{ "labels.buttons.Cancel" | translate }}</button>
-        <button mat-raised-button color="primary" [disabled]="!chargeForm.valid"
+        <button mat-raised-button color="primary" [disabled]="!chargeForm.valid || showVoluntaryInsuranceError"
           *mifosxHasPermission="'CREATE_CHARGE'">{{ "labels.buttons.Submit" | translate }}</button>
       </mat-card-actions>
 
