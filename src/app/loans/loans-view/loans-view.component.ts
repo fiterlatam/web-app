@@ -66,11 +66,13 @@ export class LoansViewComponent implements OnInit {
       this.loanDisplayArrearsDelinquency = data.loanArrearsDelinquencyConfig.value || 0;
       this.loanStatus = this.loanDetailsData.status;
       this.currency = this.loanDetailsData.currency;
-      this.loanDetailsData.transactions.some((lt: LoanTransaction) => {
-        if (lt.type.reAge) {
-          this.loanReAged = true;
-        }
-      });
+      if (this.loanDetailsData.transactions != null) {
+        this.loanDetailsData.transactions.some((lt: LoanTransaction) => {
+          if (lt.type.reAge) {
+            this.loanReAged = true;
+          }
+        });
+    }
     });
     this.loanId = this.route.snapshot.params['loanId'];
     this.clientId = this.loanDetailsData.clientId;

@@ -13,7 +13,7 @@ import { LoanProductsComponent } from './loan-products/loan-products.component';
 import { LoanProductDetailsStepComponent } from './loan-products/loan-product-stepper/loan-product-details-step/loan-product-details-step.component';
 import { LoanProductCurrencyStepComponent } from './loan-products/loan-product-stepper/loan-product-currency-step/loan-product-currency-step.component';
 import { LoanProductTermsStepComponent } from './loan-products/loan-product-stepper/loan-product-terms-step/loan-product-terms-step.component';
-import { LoanProductSettingsStepComponent } from './loan-products//loan-product-stepper/loan-product-settings-step/loan-product-settings-step.component';
+import { LoanProductSettingsStepComponent } from './loan-products/loan-product-stepper/loan-product-settings-step/loan-product-settings-step.component';
 import { LoanProductChargesStepComponent } from './loan-products/loan-product-stepper/loan-product-charges-step/loan-product-charges-step.component';
 import { LoanProductAccountingStepComponent } from './loan-products/loan-product-stepper/loan-product-accounting-step/loan-product-accounting-step.component';
 import { LoanProductPreviewStepComponent } from './loan-products/loan-product-stepper/loan-product-preview-step/loan-product-preview-step.component';
@@ -126,6 +126,13 @@ import {
 import {ViewMaximumCreditRateComponent} from './maximum-credit-rate/view-maximum-credit-rate.component';
 import {EditAdvanceQuotaComponent} from './advance-quota/edit-advance-quota/edit-advance-quota.component';
 import {AdvanceQuotaComponent} from './advance-quota/advance-quota.component';
+import {InterestRatesComponent} from './interest-rates/interest-rates.component';
+import {ViewInterestRateComponent} from './interest-rates/view-interest-rate/view-interest-rate.component';
+import {CreateInterestRateComponent} from './interest-rates/create-interest-rate/create-interest-rate.component';
+import {EditInterestRateComponent} from './interest-rates/edit-interest-rate/edit-interest-rate.component';
+import {InterestRateHistoryComponent} from './interest-rates/interest-rate-history/interest-rate-history.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 /**
  * Products Module
@@ -257,7 +264,12 @@ import {AdvanceQuotaComponent} from './advance-quota/advance-quota.component';
         ViewMaximumCreditRateComponent,
         EditMaximumCreditRateComponent,
         AdvanceQuotaComponent,
-        EditAdvanceQuotaComponent
+        EditAdvanceQuotaComponent,
+        InterestRatesComponent,
+        ViewInterestRateComponent,
+        CreateInterestRateComponent,
+        EditInterestRateComponent,
+        InterestRateHistoryComponent
     ]
 })
 export class ProductsModule { }

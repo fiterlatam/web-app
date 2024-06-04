@@ -12,6 +12,7 @@ export class DateFormatPipe implements PipeTransform {
 
   transform(value: any, dateFormat?: string): any {
     const defaultDateFormat = this.settingsService.dateFormat.replace('dd', 'DD');
+    const locale = this.settingsService.language.code;
     if (typeof value === 'undefined') {
       return '';
     }
@@ -21,10 +22,14 @@ export class DateFormatPipe implements PipeTransform {
     } else {
       dateVal = moment(value);
     }
+    dateVal.locale(locale);
+    let dateString;
     if (dateFormat == null) {
-      return dateVal.format(defaultDateFormat);
+      dateString =  dateVal.format(defaultDateFormat);
+    } else {
+      dateString = dateVal.format(dateFormat);
     }
-    return dateVal.format(dateFormat);
+    return dateString;
   }
 
 }

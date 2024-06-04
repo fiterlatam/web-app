@@ -3,6 +3,9 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.msg.parameter.unsupported": "El parámetro {{params[0].value}} no es compatible.",
+        "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "La tasa de interés proporcionada [ {{params[0].value}} ] no puede ser superior a la tasa de interés legal máxima de [ {{params[1].value}} ]",
+        "error.msg.interest.rate.not.found": "Tasa de interés con ID {{params [0] .value}} no encontrado.",
         "error.unknown.data.integrity.issue": "Se produjo un problema inesperado al realizar la solicitud. Error al iniciar sesión en el servidor.",
         "Email not valid": "Correo electrónico no válido",
         "Filling Details": "Haga clic para comenzar a completar los detalles. * Los campos de marca son necesarios. Para más detalles haga clic en:",
@@ -307,6 +310,7 @@
             "Home": "Inicio"
         },
         "buttons": {
+            "Add Rate": "Agregar tasa",
             "Accept Transfer": "Aceptar transferencia",
             "Actions": "Acciones",
             "Activate": "Activar",
@@ -588,6 +592,12 @@
             "till 4 characters": "hasta 4 caracteres"
         },
         "heading": {
+            "Extend term for monthly repayments": "Extender el plazo para los pagos mensuales",
+            "Configurable Allowed Usages": "Usos permitidos configurables",
+            "Configurable Terms and Settings": "Términos y configuraciones configurables",
+            "Down Payments": "Pagos anticipados",
+            "Loan Schedule": "Programa de Crédito",
+            "Interest Rate Management": "Gestión de Tasas de Interés",
             "Manage System Channels": "Administrar Canales del Sistema",
             "Account Linked Financial": "Listado de cuentas vinculadas a diferentes actividades financieras. Para saber más haga clic en:",
             "Account Name": "Nombre de la cuenta",
@@ -949,6 +959,15 @@
             "state": "Estado"
         },
         "inputs": {
+            "Interest Rate Points": "Puntos de tasa de interés",
+            "Use the Global Configurations values to the Repayment Event (notifications)": "Utilice los valores de las Configuraciones Globales para el Evento de Pago (notificaciones)",
+            "Enable installment level Delinquency": "Habilitar morosidad a nivel de cuota",
+            "Payment due on non working days": "Pago debido en días no laborables",
+            "Installment day calculation from": "Cálculo del día de la cuota desde",
+            "Fund Name": "Nombre del fondo",
+            "Enable Down Payments": "Habilitar pagos anticipados",
+            "Requires Points": "¿Requiere puntos?",
+            "Current Rate": "Tasa de interés vigente",
             "Close Date": "Fecha de cierre",
             "Short Name": "Nombre corto",
             "Is Advance": "¿Es avance?",
@@ -2401,6 +2420,9 @@
             "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
         },
         "text": {
+            "View History": "Ver Historial",
+            "Interest Rates": "Tasas de interés",
+            "Interest Rate Management": "Definir Gestión de Tasas de Interés para Créditos",
             "Manage System Channels": "Administrar los Canales del Sistema y sus Sub Canales",
             "channel": "Canales",
             "channel.create": "Crear Canal",
@@ -3005,6 +3027,7 @@
     },
     "not_found_subtitle": "Vaya... Parece que esta página no existe.",
     "tooltips": {
+      "These fields are used to select interest rate and define a loan product that require points": "Estos campos se utilizan para seleccionar la tasa de interés y definir un producto de Crédito que requiere puntos.",
         "The description is used to provide additional information regarding the purpose and characteristics of the loan product": "La descripción se utiliza para proporcionar información adicional sobre el propósito y las características del producto de Crédito.",
         "The date that the loan product will become inactive and unavailable to clients. If blank, the load product will never become inactive": "La fecha en que el producto de Crédito se volverá inactivo y no estará disponible para los clientes. Si está en blanco, el producto de Crédito nunca se volverá inactivo.",
         "The date that the loan product will be active and available to clients. If blank, the loan product will be active as soon as it is created": "La fecha en que el producto de Crédito estará activo y disponible para los clientes. Si está en blanco, el producto de Crédito estará activo tan pronto como se cree.",

@@ -62,6 +62,12 @@ export interface PaymentType {
   isSystemDefined: boolean;
 }
 
+export interface InterestRate {
+  id:              number;
+  name:            string;
+  currentRate:      number;
+}
+
 export interface PaymentTypeOption {
   id:              number;
   name:            string;

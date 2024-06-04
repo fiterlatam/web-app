@@ -72,6 +72,14 @@
             <p matLine>{{ 'labels.text.Define Maximum legal rate parameterization for system loans' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['interest-rates']" *mifosxHasPermission="'READ_INTEREST_RATE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="money-bill-alt" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Interest Rate Management' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Interest Rate Management' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>

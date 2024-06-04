@@ -125,6 +125,15 @@ export interface LoanProduct {
   paymentChannelToFundSourceMappings?:                       PaymentChannelToFundSourceMapping[];
   feeToIncomeAccountMappings?:                               ChargeToIncomeAccountMapping[];
   penaltyToIncomeAccountMappings?:                           ChargeToIncomeAccountMapping[];
+  interestRate?:                                              any;
+  requirePoints?:                                             boolean;
+  floatingRateName?:                                         string;
+  interestRateDifferential?:                                 number;
+  productType?:                                              any;
+  defaultDifferentialLendingRate?:                           number;
+  minDifferentialLendingRate?:                               number;
+  maxDifferentialLendingRate?:                               number;
+  interestRateId?:                                           number;
 }
 
 
