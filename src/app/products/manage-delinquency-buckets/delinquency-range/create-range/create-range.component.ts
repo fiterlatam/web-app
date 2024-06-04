@@ -33,8 +33,7 @@ export class CreateRangeComponent implements OnInit {
       'classification': ['', [Validators.required]],
       'minimumAgeDays': [0, [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(1000)]],
       'maximumAgeDays': ['', [Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(10000)]],
-      'curentInterest': [''],
-      'penaltyInterest': [''],
+     
     });
   }
 

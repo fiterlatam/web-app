@@ -38,8 +38,6 @@ export class EditRangeComponent implements OnInit {
       'classification': [this.delinquencyRangeData.classification, [Validators.required]],
       'minimumAgeDays': [this.delinquencyRangeData.minimumAgeDays, [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(1000)]],
       'maximumAgeDays': [this.delinquencyRangeData.maximumAgeDays, [Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(10000)]],
-      'curentInterest': [this.delinquencyRangeData.curentInterest],
-      'penaltyInterest': [this.delinquencyRangeData.penaltyInterest],
     });
   }
 
