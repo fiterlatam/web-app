@@ -3,6 +3,8 @@
     "Logged in as": "Logged in as",
     "Remember me": "Remember me",
     "errors": {
+        "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "Client already exist with provide Cedula [ {{params[0].value}} ]",
+        "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "Client already exist with provide NIT [ {{params[0].value}} ]",
         "error.msg.parameter.unsupported": "The parameter {{params[0].value}} is not supported.",
         "error.msg.interest.rate.cannot.be.higher.than.maximum.rate": "Provided interest rate [ {{params[0].value}} ] cannot be higher than the maximum legal interest rate of [ {{params[1].value}} ]",
         "error.msg.interest.rate.not.found": "Interest Rate with ID {{params[0].value}} not found.",
@@ -2123,6 +2125,7 @@
             "Yearly": "Yearly",
             "Zip": "Zip",
             "begin with a special character or number": "begin with a special character or number",
+            "have invalid number format": "have invalid number format",
             "between": "between",
             "cannot": "cannot",
             "day must be selected": "day must be selected",
