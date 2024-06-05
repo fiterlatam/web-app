@@ -114,6 +114,7 @@ export class DisburseComponent implements OnInit {
       dateFormat,
       locale
     };
+    data.channelName = 'Mifos';
     this.loanService.loanActionButtons(this.loanId, 'disburse', data )
       .subscribe((response: any) => {
         this.router.navigate(['../../general'], { relativeTo: this.route });

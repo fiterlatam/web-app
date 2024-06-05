@@ -3,6 +3,13 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "validation.msg.loan.disbursement.channelName.cannot.be.blank": "No se pudo realizar el desembolso porque el canal es obligatorio en la solicitud.",
+        "validation.msg.channel.not.disbursement": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no es un canal de desembolso.",
+        "validation.msg.channel.not.active": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no está habilitado.",
+        "validation.msg.channel.not.found": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no es un canal existente.",
+        "validation.msg.channel.is.blank": "No se pudo realizar el desembolso porque no está previsto el canal en la solicitud",
+        "validation.msg.channel.channelType.is.not.within.expected.range": "El tipo de canal seleccionado no es válido.",
+        "validation.msg.channel.channelType.cannot.be.blank": "El tipo de canal no puede estar en blanco.",
         "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "El cliente ya existe con la cédula proporcionada [ {{params[0].value}} ]",
         "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "El cliente ya existe con NIT proporcionado [ {{params[0].value}} ]",
         "error.msg.parameter.unsupported": "El parámetro {{params[0].value}} no es compatible.",
@@ -961,6 +968,8 @@
             "state": "Estado"
         },
         "inputs": {
+            "Sub Channels": "Subcanales",
+            "Channel Type": "Tipo de canal",
             "Interest Rate Points": "Puntos de tasa de interés",
             "Use the Global Configurations values to the Repayment Event (notifications)": "Utilice los valores de las Configuraciones Globales para el Evento de Pago (notificaciones)",
             "Enable installment level Delinquency": "Habilitar morosidad a nivel de cuota",
@@ -3292,5 +3301,10 @@
     "move to next working day": "Mover al día siguiente laborable",
     "move to next repayment meeting day": "Mover al día siguiente de la reunión de pagos",
     "move to previous working day": "Mover al día anterior laborable"
+  },
+  "channel.type": {
+    "disbursement": "Compra/Avance",
+    "repayment": "Recaudos (Pagos)",
+    "invalid": "Inválido"
   }
 }

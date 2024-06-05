@@ -3,6 +3,13 @@
     "Logged in as": "Logged in as",
     "Remember me": "Remember me",
     "errors": {
+        "validation.msg.loan.disbursement.channelName.cannot.be.blank": "The disbursement could not be made because the channel is mandatory in the request",
+        "validation.msg.channel.not.disbursement": "The disbursement could not be made because channel [ {{params[0].value}} ] is not a disbursement channel.",
+        "validation.msg.channel.not.active": "The disbursement could not be made because channel [ {{params[0].value}} ] is not enabled.",
+        "validation.msg.channel.not.found": "The disbursement could not be made because channel [ {{params[0].value}} ] it is not an existing channel.",
+        "validation.msg.channel.is.blank": "The disbursement could not be made because the channel is not provided in the request",
+        "validation.msg.channel.channelType.is.not.within.expected.range": "The selected Channel Type is invalid.",
+        "validation.msg.channel.channelType.cannot.be.blank": "Channel Type is mandatory",
         "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "Client already exist with provide Cedula [ {{params[0].value}} ]",
         "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "Client already exist with provide NIT [ {{params[0].value}} ]",
         "error.msg.parameter.unsupported": "The parameter {{params[0].value}} is not supported.",
@@ -947,6 +954,7 @@
             "Manage System Channels": "Manage System Channels"
         },
         "inputs": {
+            "Channel Type": "Channel Type",
             "Interest Rate Points": "Interest Rate Points",
             "Extend term for monthly repayments": "Extend term for monthly repayments",
             "Enable installment level Delinquency": "Enable installment level Delinquency",
@@ -3333,5 +3341,10 @@
     "move to next working day": "Move to next working day",
     "move to next repayment meeting day": "Move to next repayment meeting day",
     "move to previous working day": "Move to previous working day"
+  },
+  "channel.type": {
+      "disbursement": "Purchase/Advance",
+      "repayment": "Collections (Payments)",
+      "invalid": "Invalid"
   }
 }

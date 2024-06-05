@@ -1,20 +1,9 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-
-/** rxjs Imports */
-import { merge } from 'rxjs';
-import { tap, startWith, map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
-
-/** Custom Services */
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ChannelService } from '../channel.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Dates } from 'app/core/utils/dates';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-create-channel',
@@ -24,41 +13,33 @@ import { Dates } from 'app/core/utils/dates';
 
 
 export class CreateChannelComponent implements OnInit {
-
   apiData: any;
-
   groupForm: UntypedFormGroup;
-
-
+  channelTypeOptions: any;
   constructor(private route: ActivatedRoute,
       private router: Router,
       private channelService: ChannelService,
-      private dateUtils: Dates,
       private settingsService: SettingsService,
       private formBuilder: UntypedFormBuilder) {
-
-    console.log("constructor");
+    this.route.data.subscribe((data: { channelTemplate: any }) => {
+      this.channelTypeOptions = data.channelTemplate?.channelTypeOptions;
+    });
   }
 
-
   ngOnInit(): void {
-    console.log("ngOnInit");
     this.createGroupForm();
   }
 
-
   createGroupForm() {
-    //, Validators.pattern('')
     this.groupForm = this.formBuilder.group({
       'hash': ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5000)]],
       'name': ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100) ]],
+      'channelType': ['', Validators.required],
       'description': ['', [ Validators.maxLength(1000) ]],
       'active': [true],
     });
-
     this.groupForm.updateValueAndValidity();
   }
-
 
   submit() {
     const groupFormData = this.groupForm.value;
@@ -71,8 +52,8 @@ export class CreateChannelComponent implements OnInit {
     };
 
     this.channelService.createChannel(data).subscribe((response: any) => {
-      this.router.navigate(['system/manage-system-channels/']);
-    });    
+      this.router.navigate(['system/manage-system-channels/']).then(r => logger.info('Channel created successfully'));
+    });
   }
 
 }

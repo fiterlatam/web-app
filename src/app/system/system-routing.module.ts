@@ -223,7 +223,7 @@ const routes: Routes = [
                   }
                 }
               ]
-            },            
+            },
             {
               path: 'email',
               data: { title: 'View Email Configuration', breadcrumb: 'Email' },

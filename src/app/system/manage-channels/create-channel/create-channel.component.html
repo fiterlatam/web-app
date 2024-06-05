@@ -1,71 +1,72 @@
 <div class="container">
-
   <mat-card>
-
     <form [formGroup]="groupForm">
-
       <mat-card-content>
         <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
+              <mat-form-field fxFlex="48%">
+                  <mat-label>{{"labels.inputs.name" | translate }}</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="groupForm.controls.name.hasError('required')">
+                    {{"labels.inputs.name" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="groupForm.controls.name.hasError('maxLength')">
+                    {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
+                    {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 100 chars" | translate }}
+                </mat-error>
+              </mat-form-field>
 
+              <mat-form-field fxFlex="48%">
+                <mat-label> {{'labels.inputs.Channel Type' | translate }}</mat-label>
+                <mat-select formControlName="channelType">
+                  <mat-option *ngFor="let channelTypeOption of channelTypeOptions" [value]="channelTypeOption.id">
+                    {{ channelTypeOption.code | translate }}
+                  </mat-option>
+                </mat-select>
+                <mat-error>
+                  {{'labels.inputs.Channel Type' | translate }}  {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
 
-                      <mat-form-field fxFlex="48%">
-                          <mat-label>{{"labels.inputs.name" | translate }}</mat-label>
-                          <input matInput formControlName="name" required>
-                          <mat-error *ngIf="groupForm.controls.name.hasError('required')">
-                            {{"labels.inputs.name" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
-                          </mat-error>
-                          <mat-error *ngIf="groupForm.controls.name.hasError('maxLength')">
-                            {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
-                          </mat-error>
-                          <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
-                            {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 100 chars" | translate }}
-                        </mat-error>                          
-                      </mat-form-field>
+              <mat-form-field fxFlex="96%">
+                  <mat-label>{{"labels.inputs.description" | translate }}</mat-label>
+                  <input matInput formControlName="description">
+                  <mat-error *ngIf="groupForm.controls.description.hasError('required')">
+                    {{"labels.inputs.description" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                  </mat-error>
+                  <mat-error *ngIf="groupForm.controls.description.hasError('pattern')">
+                    {{"labels.inputs.description" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="groupForm.controls.description.hasError('maxlength')">
+                    {{"labels.inputs.description" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 1000 chars" | translate }}
+                </mat-error>
+              </mat-form-field>
 
-                      <mat-form-field fxFlex="96%">
-                          <mat-label>{{"labels.inputs.description" | translate }}</mat-label>
-                          <input matInput formControlName="description">
-                          <mat-error *ngIf="groupForm.controls.description.hasError('required')">
-                            {{"labels.inputs.description" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
-                          </mat-error>
-                          <mat-error *ngIf="groupForm.controls.description.hasError('pattern')">
-                            {{"labels.inputs.description" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
-                          </mat-error>
-                          <mat-error *ngIf="groupForm.controls.description.hasError('maxlength')">
-                            {{"labels.inputs.description" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 1000 chars" | translate }}
-                        </mat-error>                          
-
-                        </mat-form-field>
-
-                      <mat-form-field fxFlex="96%">
-                        <mat-label>{{"labels.inputs.hash" | translate }}</mat-label>
-                        <input matInput formControlName="hash" required>
-                        <mat-error *ngIf="groupForm.controls.hash.hasError('required')">
-                          {{"labels.inputs.hash" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
-                        </mat-error>
-                        <mat-error *ngIf="groupForm.controls.hash.hasError('pattern')">
-                          {{"labels.inputs.hash" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
-                        </mat-error>
-                        <mat-error *ngIf="groupForm.controls.hash.hasError('maxlength')">
-                          {{"labels.inputs.hash" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 5000 chars" | translate }}
-                      </mat-error>                          
-
-                      </mat-form-field>
-
-                      <mat-checkbox labelPosition="before" formControlName="active" fxFlex="100%">
-                          {{"labels.inputs.active" | translate }}
-                      </mat-checkbox>
+              <mat-form-field fxFlex="96%">
+                <mat-label>{{"labels.inputs.hash" | translate }}</mat-label>
+                <input matInput formControlName="hash" required>
+                <mat-error *ngIf="groupForm.controls.hash.hasError('required')">
+                  {{"labels.inputs.hash" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                </mat-error>
+                <mat-error *ngIf="groupForm.controls.hash.hasError('pattern')">
+                  {{"labels.inputs.hash" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
+                </mat-error>
+                <mat-error *ngIf="groupForm.controls.hash.hasError('maxlength')">
+                  {{"labels.inputs.hash" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.have more than 5000 chars" | translate }}
+              </mat-error>
+              </mat-form-field>
+              <mat-checkbox labelPosition="before" formControlName="active" fxFlex="100%">
+                  {{"labels.inputs.active" | translate }}
+              </mat-checkbox>
 
         </div>
       </mat-card-content>
-
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
         <button type="button" mat-raised-button [routerLink]="['../']">{{"labels.buttons.Cancel" | translate }}</button>
         <button mat-raised-button color="primary" [disabled]="!groupForm.valid" (click)="submit()">{{"labels.buttons.Submit" | translate }}</button>
       </mat-card-actions>
-
     </form>
-
   </mat-card>
 
 </div>
