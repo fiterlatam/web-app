@@ -283,7 +283,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
         legend: { display: false },
         title: {
           display: true,
-          text: 'Curva do Cargo'
+          text: 'Curva del Cargo'
         },          
         layout: {
           padding: {
