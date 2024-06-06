@@ -112,7 +112,7 @@ export class CreateChargeComponent implements OnInit {
       'taxGroupId': [''],
       'minCap': [''],
       'maxCap': [''],
-      'graceOnChargePeriodAmount': ['0'],
+      'graceOnChargePeriodAmount': ['0',[Validators.required,Validators.min(1)]],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],

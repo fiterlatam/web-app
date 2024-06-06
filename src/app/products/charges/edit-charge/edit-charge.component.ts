@@ -195,7 +195,7 @@ export class EditChargeComponent implements OnInit {
         this.chargePaymentMode = true;
         this.chargeForm.addControl('chargePaymentMode', this.formBuilder.control(this.chargeData.chargePaymentMode.id, Validators.required));
 
-        this.chargeForm.addControl('graceOnChargePeriodAmount', this.formBuilder.control(this.chargeData.graceOnChargePeriodAmount, Validators.required));
+        this.chargeForm.addControl('graceOnChargePeriodAmount', this.formBuilder.control(this.chargeData.graceOnChargePeriodAmount, [Validators.required,Validators.min(1)]));
         this.chargeForm.addControl('chargeCalculationTypeFilterFlat', new UntypedFormControl(false));
         this.chargeForm.addControl('chargeCalculationTypeFilterDisbursal', new UntypedFormControl(false));
         this.chargeForm.addControl('chargeCalculationTypeFilterAmount', new UntypedFormControl(false));
