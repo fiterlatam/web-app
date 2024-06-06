@@ -429,6 +429,7 @@
             "Download CSV": "Descargar CSV",
             "Edit": "Editar",
             "Edit Code": "Editar código",
+            "Edit Loan Product": "Editar producto de Crédito",
             "Edit Schedule": "Editar horario",
             "Edit Survey": "Editar encuesta",
             "Enable": "Permitir",
@@ -1957,7 +1958,7 @@
             "Remember me": "Acuérdate de mí",
             "Reopened On Date": "Reabierto en la fecha",
             "Repaid every": "Pagado cada",
-            "Repay Every": "pagar cada",
+            "Repay Every": "Pagar cada",
             "Repayment Info": "Información de pago",
             "Repayment Schedule": "Calendario de pagos",
             "Repayment Schedule Parameters": "Parámetros del calendario de pagos",
@@ -3458,8 +3459,8 @@
   },
   "repaymentReschedulingType":{
     "same day": "Mismo día",
-    "move to next working day": "Mover al día siguiente laborable",
-    "move to next repayment meeting day": "Mover al día siguiente de la reunión de pagos",
+    "move to next working day": "Mover al siguiente día laborable",
+    "move to next repayment meeting day": "Mover al siguiente día de la reunión de pagos",
     "move to previous working day": "Mover al día anterior laborable"
   },
   "channel.type": {

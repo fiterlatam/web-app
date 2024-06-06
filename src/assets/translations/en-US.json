@@ -2238,8 +2238,50 @@
                         "Equal principal payments": "Equal principal payments",
                         "Capital at end": "Capital at End"
                     },
-                    "Months before being considered inactive": "Months before being considered inactive",
-                    "Amount for NPA": "Amount to be considered in arrears"
+                    "overAppliedCalculationType": {
+                        "Percentage": "Percentage",
+                        "Fixed Amount": "Fixed Amount"
+                    },
+                    "repaymentStartDateType": {
+                        "Disbursement Date": "Disbursement Date",
+                        "Submitted On Date": "Submitted On Date"
+                    },
+                    "interestRateFrequencyType": {
+                        "Per month": "Per month",
+                        "Per year": "Per year",
+                        "Whole term": "Whole term"
+                    },
+                    "repaymentFrequencyType": {
+                        "Days": "Days",
+                        "Weeks": "Weeks",
+                        "Months": "Months"
+                    },
+                    "interestCalculationPeriodType": {
+                        "Daily": "Daily",
+                        "Same as repayment period": "Same as repayment period"
+                    },
+                    "interestType": {
+                        "Flat": "Flat",
+                        "Declining Balance": "Declining Balance"
+                    },
+                    "loanScheduleType" : {
+                        "Cumulative": "Cumulative",
+                        "Progressive": "Progressive"
+                   },
+                   "transactionProcessingStrategy": {
+                        "Creocore Unique": "Creocore Unique",
+                        "Early Repayment Strategy": "Early Repayment Strategy",
+                        "Penalties, Fees, Interest, Principal order": "Penalties, Fees, Interest, Principal order",
+                        "HeavensFamily Unique": "HeavensFamily Unique",
+                        "Interest, Principal, Penalties, Fees Order": "Interest, Principal, Penalties, Fees Order",
+                        "Principal, Interest, Penalties, Fees Order": "Principal, Interest, Penalties, Fees Order",
+                        "Overdue/Due Fee/Int,Principal": "Overdue/Due Fee/Int,Principal",
+                        "Due penalty, fee, interest, principal, In advance principal, penalty, fee, interest": "Due penalty, fee, interest, principal, In advance principal, penalty, fee, interest",
+                        "Due penalty, interest, principal, fee, In advance penalty, interest, principal, fee": "Due penalty, interest, principal, fee, In advance penalty, interest, principal, fee",
+                        "Advanced payment allocation strategy": "Advanced payment allocation strategy"
+                  },
+                  "Months before being considered inactive": "Months before being considered inactive",
+                  "Amount for NPA": "Amount to be considered in arrears"
                 }
             },
             "task-management component": "task-management component",

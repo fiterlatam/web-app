@@ -81,7 +81,7 @@
       <input type="number" matInput formControlName="maxNumberOfRepayments" [min]="0">
       <mat-error>
         {{'labels.commons.Maximum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
-        {{'labels.commons.and must be greater than' | translate }} <strong>{{'labels.commons.Minimum Principal | translate }}</strong>
+        {{'labels.commons.and must be greater than' | translate }} <strong>{{'labels.commons.Minimum Principal' | translate }}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -102,37 +102,6 @@
         <mat-select formControlName="interestRateId" required>
           <mat-option *ngFor="let interestRateOption of interestRateOptions" [value]="interestRateOption.id">
             {{ interestRateOption.name }} ({{ interestRateOption['currentRate'] | formatNumber: [2]}}%)
-      <h4 fxFlex="98%" class="mat-h4"> {{'labels.inputs.Nominal interest rate' | translate }} <i class="fas fa-question" matTooltip="{{'tooltips.Define the minimum, default, maximum, and period for the nominal interest rate' | translate }}"></i></h4>
-      <mat-form-field fxFlex="23%">
-        <mat-label>{{'labels.inputs.Minimum' | translate }}</mat-label>
-        <input type="number" matInput formControlName="minInterestRatePerPeriod" [min]="0">
-        <mat-error>
-          {{'labels.commons.Minimum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="23%">
-        <mat-label>{{'labels.inputs.Default' | translate }}</mat-label>
-        <input type="number" matInput formControlName="interestRatePerPeriod" required>
-        <mat-error>
-          {{'labels.commons.Default nominal interest rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="23%">
-        <mat-label>{{'labels.inputs.Maximum' | translate }}</mat-label>
-        <input type="number" matInput formControlName="maxInterestRatePerPeriod" [min]="0">
-        <mat-error>
-          {{'labels.commons.Maximum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
-          {{'labels.commons.and must be greater than' | translate }} <strong>{{'labels.commons.Minimum Principal | translate }}</strong>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="23%">
-        <mat-label>{{'labels.inputs.Frequency' | translate }}</mat-label>
-        <mat-select formControlName="interestRateFrequencyType" required>
-          <mat-option *ngFor="let interestRateFrequencyType of interestRateFrequencyTypeData" [value]="interestRateFrequencyType.id">
-            {{ "labels.inputs.products.loan.interestRateFrequencyType." + interestRateFrequencyType.value | translate }}
           </mat-option>
         </mat-select>
         <mat-error>
@@ -143,7 +112,6 @@
       <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="requirePoints">
         {{'labels.inputs.Requires Points' | translate}}
       </mat-checkbox>
-
     </div>
 
     <div *ngIf="loanProductTermsForm.value['isLinkedToFloatingInterestRates']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="start center">
