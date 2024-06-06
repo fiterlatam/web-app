@@ -7,6 +7,7 @@ import { Route } from '../../core/route/route.service';
 import { ChannelComponent } from './channel.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
+import {CreateChannelResolver} from './create-channel/create-channel.resolver';
 
 const routes: Routes = [
   Route.withShell([
@@ -19,7 +20,10 @@ const routes: Routes = [
       path: 'system/manage-system-channels/create',
       data: { title: 'Channel', breadcrumb: 'channel.create' },
       component: CreateChannelComponent,
-    },            
+      resolve: {
+        channelTemplate: CreateChannelResolver
+      }
+    },
     {
       path: 'system/manage-system-channels/:id',
       data: { title: 'Channel', breadcrumb: 'channel.edit' },
@@ -31,6 +35,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CreateChannelResolver
+  ]
 })
 export class ChannelRoutingModule { }

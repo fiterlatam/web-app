@@ -1,9 +1,9 @@
 /** Angular Imports */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 /**
  * Clients service.
@@ -23,30 +23,23 @@ export class ChannelService {
    */
 
   getChannel(sqlSearch: any): Observable<any> {
-    console.log("channels service called");
-    console.log(sqlSearch);
-    const httpParams = new HttpParams()
-                            .set('sqlSearch', sqlSearch);
-
-    let data = this.http.get('/channels', { params: httpParams })
-    console.log(data);
-    return data;
+    const httpParams = new HttpParams().set('sqlSearch', sqlSearch);
+    return this.http.get('/channels', {params: httpParams});
   }
 
   createChannel(formData: any): Observable<any> {
-    console.log("createChannel service called");
-    const httpParams = new HttpParams();
-    let data = this.http.post('/channels', formData); 
-    console.log(data);
-    return data;
+    return this.http.post('/channels', formData);
   }
 
-  getClientallyById(id: any): Observable<any> {
-    console.log("createChannel service called");
-    const httpParams = new HttpParams();
-    let data = this.http.get(`/channels/${id}`);
-    console.log(data);
-    return data;
+  getChannelById(id: any, template?: boolean): Observable<any> {
+    if (template) {
+      return this.http.get(`/channels/${id}?template=true`);
+    }
+    return this.http.get(`/channels/${id}`);
+  }
+
+  getTemplate(): Observable<any> {
+    return this.http.get('/channels/template');
   }
 
   editChannel(formData: any, id: any): Observable<any> {
