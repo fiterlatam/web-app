@@ -35,6 +35,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.settingsService.tenantIdentifier) {
       httpOptions.headers['Fineract-Platform-TenantId'] = this.settingsService.tenantIdentifier;
+      httpOptions.headers['Fineract-Request-Channel'] = this.settingsService.tenantChannel;
     }
     request = request.clone({ setHeaders: httpOptions.headers });
     return next.handle(request);
