@@ -250,13 +250,13 @@
 
             <mat-form-field fxFlex="48%"
             *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
-              <mat-label>Charge Grace Period Amount</mat-label>
+              <mat-label>{{ "labels.inputs.Charge Grace Period Amount" | translate }}</mat-label>
               <input  type="number" matInput formControlName="graceOnChargePeriodAmount" value="0" required/>
             </mat-form-field>
 
             <mat-form-field fxFlex="48%"
               *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
-              <mat-label>Charge Grace Period Frequency</mat-label>
+              <mat-label>{{ "labels.inputs.Charge Grace Period Frequency" | translate }}</mat-label>
               <input matInput formControlName="graceOnChargePeriodEnum" value="Days" readonly/>
             </mat-form-field>
 
