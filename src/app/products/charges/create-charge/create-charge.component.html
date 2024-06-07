@@ -255,7 +255,7 @@
             </mat-form-field>
 
             <mat-form-field fxFlex="48%"
-              *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+              *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.contains('graceOnChargePeriodEnum')">
               <mat-label>{{ "labels.inputs.Charge Grace Period Frequency" | translate }}</mat-label>
               <input matInput formControlName="graceOnChargePeriodEnum" value="Days" readonly/>
             </mat-form-field>

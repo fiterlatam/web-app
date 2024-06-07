@@ -96,6 +96,19 @@ export class CreateChargeComponent implements OnInit {
     this.setConditionalControls();
   }
 
+  getAmountValidators(): any[] {
+    const locale = this.settingsService.language.code;
+    const amountValidators = [Validators.required];
+    if (locale === 'es') {
+      amountValidators.push(Validators.pattern(/^[0-9,]*$/));
+    } else if (locale === 'en') {
+      amountValidators.push(Validators.pattern(/^[0-9.]*$/));
+    } else {
+      amountValidators.push(Validators.pattern(/^[0-9.,]*$/));
+    }
+    return amountValidators;
+  }
+
   /**
    * Creates the charge form.
    */
@@ -106,7 +119,7 @@ export class CreateChargeComponent implements OnInit {
       'currencyCode': ['', Validators.required],
       'chargeTimeType': ['', Validators.required],
       'chargeCalculationType': ['', Validators.required],
-      'amount': ['', [Validators.required, Validators.pattern('^[0-9,\\.]+$')]],
+      'amount': ['', this.getAmountValidators()],
       'active': [false],
       'penalty': [false],
       'taxGroupId': [''],
@@ -284,7 +297,7 @@ export class CreateChargeComponent implements OnInit {
           break;
       }
     });
-    this.chargeForm.get('amount').setValidators([Validators.required, Validators.pattern('^[0-9,\\.]+$')]);
+    this.chargeForm.get('amount').setValidators(this.getAmountValidators());
   }
 
   /**

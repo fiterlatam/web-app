@@ -574,6 +574,7 @@
             "decimal places": "decimal places",
             "do not match": "do not match",
             "does not match": "does not match",
+            "cannot contain invalid characters": "cannot contain invalid characters",
             "greater equal to than 0": "greater equal to than 0",
             "invalid": "invalid",
             "is": "is",
