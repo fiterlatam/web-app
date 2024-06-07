@@ -553,11 +553,10 @@
             "reset": "Resetear",
             "Block By Control Lists": "Bloqueo por listas de control",
             "Unblock": "Desatascar",
-            "Unblock Massively": "Desbloqueo masivo",
-            "Back": "Atrás",
-            "Create Charge": "Crear cargo"
+            "Unblock Massively": "Desbloqueo masivo"
         },
         "commons": {
+            "cannot contain invalid characters": "no puede contener caracteres no válidos",
             "have more than 100 chars": "tener mas que 100 caracteres de largo",
             "have more than 1000 chars": "tener mas que 1000 caracteres de largo",
             "have more than 5000 chars": "tener mas que 5000 caracteres de largo",
