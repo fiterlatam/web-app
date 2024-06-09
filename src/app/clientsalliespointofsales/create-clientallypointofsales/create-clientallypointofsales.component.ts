@@ -1,37 +1,29 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-
-/** rxjs Imports */
-import { merge } from 'rxjs';
-import { tap, startWith, map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 /** Custom Services */
 import { ClientAllyPointOfSalesService } from '../clientallypointofsales.service';
 import { SettingsService } from 'app/settings/settings.service';
-import { Dates } from 'app/core/utils/dates';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-create-clientallypointofsales',
   templateUrl: './create-clientallypointofsales.component.html',
   styleUrls: ['./create-clientallypointofsales.component.scss']
 })
-
-
 export class CreateClientAllyPointOfSalesComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute,
+      private router: Router,
+      private clientsalliesService: ClientAllyPointOfSalesService,
+      private settingsService: SettingsService,
+      private formBuilder: UntypedFormBuilder) {
+  }
   parentId: any;
-
   apiData: any;
-
   groupForm: UntypedFormGroup;
-
-  // Template data
   departmentsList: any;
   citiesList: any;
   brandsList: any;
@@ -39,72 +31,49 @@ export class CreateClientAllyPointOfSalesComponent implements OnInit {
   segmentsList: any;
   typesList: any;
   statesList: any;
+  parentDescriptionAsTitle = '';
 
-  parentDescriptionAsTitle = "";
-
-  constructor(private route: ActivatedRoute,
-      private router: Router,
-      private clientsalliesService: ClientAllyPointOfSalesService,
-      private dateUtils: Dates,
-      private settingsService: SettingsService,
-      private formBuilder: UntypedFormBuilder) {
-
-    console.log("constructor");
-  }
-
+  protected readonly console = console;
 
   ngOnInit(): void {
-
-    this.parentId = this.route.snapshot.paramMap.get("parentId");
-
-    console.log("ngOnInit");
+    this.parentId = this.route.snapshot.paramMap.get('parentId');
     this.createGroupForm();
-    this.loadClientalliesTemplate("ngOnInit");
+    this.loadClientalliesTemplate('ngOnInit');
     this.getDefaultValuesFromParent();
     this.getValuesFromParent();
   }
 
-
   getDefaultValuesFromParent() {
     this.clientsalliesService.getDefaultValuesFromParent(this.parentId).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-
       this.groupForm.patchValue({
         'settledComission': this.apiData.settledComission,
         'buyEnabled': this.apiData.buyEnabled,
         'collectionEnabled': this.apiData.collectionEnabled,
         'stateCodeValueId': this.apiData.stateCodeValueId,
-      });  
-    });      
+      });
+    });
   }
 
-
   createGroupForm() {
-    //, Validators.pattern('^[\S]{4}$')
     this.groupForm = this.formBuilder.group({
-//      'clientallyid': ['', [Validators.required, ]],
-      'code': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{1,4}$')]], 
-      'name': ['', [Validators.required, ]],
-      'brandCodeValueId': ['', [Validators.required, ]],
-      'cityCodeValueId': ['', [Validators.required, ]],
-      'departmentCodeValueId': ['', [Validators.required, ]],
-      'categoryCodeValueId': ['', [Validators.required, ]],
-      'segmentCodeValueId': ['', [Validators.required, ]],
-      'typeCodeValueId': ['', [Validators.required, ]],
-      'settledComission': ['', [Validators.required, ]],
+      'code': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{1,4}$')]],
+      'name': ['', [Validators.required, Validators.maxLength(100)]],
+      'brandCodeValueId': ['', [Validators.required]],
+      'cityCodeValueId': ['', [Validators.required]],
+      'departmentCodeValueId': ['', [Validators.required]],
+      'categoryCodeValueId': ['', [Validators.required]],
+      'segmentCodeValueId': ['', [Validators.required]],
+      'typeCodeValueId': ['', [Validators.required]],
+      'settledComission': ['', [Validators.required]],
       'buyEnabled': [''],
       'collectionEnabled': [''],
       'stateCodeValueId': ['', [Validators.required, ]],
     });
   }
 
-
   loadClientalliesTemplate(requestFrom: String) {
-    console.log("clientsallies " + requestFrom);
-
     this.clientsalliesService.getTemplate(this.parentId).subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
-
       this.departmentsList = apiResponseBody.departmentsList;
       this.brandsList = apiResponseBody.brandsList;
       this.categoriesList = apiResponseBody.categoriesList;
@@ -112,15 +81,13 @@ export class CreateClientAllyPointOfSalesComponent implements OnInit {
       this.typesList = apiResponseBody.typesList;
       this.statesList = apiResponseBody.statesList;
 
-    });  
+    });
   }
 
   loadCitiesByDepartment(id: any) {
-    console.log("loadCitiesByDepartment called with id:" + id);
-    this.clientsalliesService.getCitiesByDepartment(id).subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
+      this.clientsalliesService.getCitiesByDepartment(id).subscribe(( apiResponseBody: any ) => {
       this.citiesList = apiResponseBody.citiesList;
-    });  
+    });
   }
 
 
@@ -135,10 +102,9 @@ export class CreateClientAllyPointOfSalesComponent implements OnInit {
     };
 
     this.clientsalliesService.createClientAllyPointOfSales(this.parentId, data).subscribe((response: any) => {
-      this.router.navigate([`/clientally/${this.parentId}/pointofsales`]);
-    });    
+      this.router.navigate([`/clientally/${this.parentId}/pointofsales`]).then(r => logger.info('Point of sale successfully created'));
+    });
   }
-
 
   reloadCitiesByDepartment(id: any) {
     this.loadCitiesByDepartment(id);
@@ -147,10 +113,7 @@ export class CreateClientAllyPointOfSalesComponent implements OnInit {
   getValuesFromParent() {
     this.clientsalliesService.getDefaultValuesFromParent(this.parentId).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-
-      this.parentDescriptionAsTitle = this.apiData.companyName + " - NIT: " + this.apiData.nit;
- 
-    });      
-  }  
-
+      this.parentDescriptionAsTitle = this.apiData.companyName + ' - NIT: ' + this.apiData.nit;
+    });
+  }
 }

@@ -3,41 +3,58 @@
   <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
     <div *ngFor="let datatableInput of datatableInputs" fxFlex="48%">
-      <mat-form-field fxFlex="100%" *ngIf="!isBoolean(datatableInput.columnDisplayType) && !isDropdown(datatableInput.columnDisplayType)">
+      <mat-form-field fxFlex="100%" *ngIf="!isBoolean(datatableInput['columnDisplayType']) && !isDropdown(datatableInput['columnDisplayType'])">
         <mat-label>{{getInputName(datatableInput)}}</mat-label>
-        <input matInput type="number" *ngIf="isNumeric(datatableInput.columnDisplayType)"
-        formControlName="{{datatableInput.controlName}}">
 
-        <input matInput *ngIf="isString(datatableInput.columnDisplayType) "
-        formControlName="{{datatableInput.controlName}}">
-        <mat-error *ngIf="isString(datatableInput.columnDisplayType) && datatableForm.controls[datatableInput.controlName].hasError('maxlength')">
-           {{datatableInput.controlName}} <strong> no puede tener más de </strong> {{datatableInput.columnLength}} caracteres
+        <input matInput type="number" *ngIf="isNumeric(datatableInput['columnDisplayType'])" formControlName="{{datatableInput['controlName']}}">
+        <mat-error *ngIf="isNumeric(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('required')">
+          {{datatableInput['controlName']}} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+        </mat-error>
+        <mat-error *ngIf="isNumeric(datatableInput['columnDisplayType']) && (datatableForm.controls[datatableInput['controlName']].hasError('maxLength') || datatableForm.controls[datatableInput['controlName']].hasError('maxlength'))">
+          {{datatableInput['controlName']}} <strong> {{ 'labels.commons.cannot have more than' | translate }} </strong> {{datatableInput['columnLength']}} {{ 'labels.commons.characters'| translate }}
+        </mat-error>
+        <mat-error *ngIf="isNumeric(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('max')">
+          {{datatableInput['controlName']}} {{ 'labels.commons.must be' | translate}} <strong> {{ "labels.commons.be larger than 0 and at most 2147483647" | translate }}</strong>
         </mat-error>
 
-        <textarea matInput *ngIf="isText(datatableInput.columnDisplayType)"
-        formControlName="{{datatableInput.controlName}}"></textarea>
+        <mat-error *ngIf="isNumeric(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('min')">
+          {{datatableInput['controlName']}} {{ 'labels.commons.must be' | translate}} <strong> {{ "labels.commons.must be greater than or equal to zero" | translate }}</strong>
+        </mat-error>
 
-        <span *ngIf="isDate(datatableInput.columnDisplayType)" (click)="datePicker.open()">
-          <input matInput [matDatepicker]="datePicker" formControlName="{{datatableInput.controlName}}" class="date-picker">
+        <input matInput *ngIf="isString(datatableInput['columnDisplayType'])" formControlName="{{datatableInput['controlName']}}">
+        <mat-error *ngIf="isString(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('required')">
+          {{datatableInput['controlName']}} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+        </mat-error>
+        <mat-error *ngIf="isString(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('maxLength')">
+          {{datatableInput['controlName']}} <strong> {{ 'labels.commons.cannot have more than' | translate }} </strong> {{datatableInput['columnLength']}} {{ 'labels.commons.characters'| translate }}
+        </mat-error>
+
+        <textarea matInput *ngIf="isText(datatableInput['columnDisplayType'])"
+        formControlName="{{datatableInput['controlName']}}"></textarea>
+
+        <span *ngIf="isDate(datatableInput['columnDisplayType'])" (click)="datePicker.open()">
+          <input matInput [matDatepicker]="datePicker" formControlName="{{datatableInput['controlName']}}" class="date-picker">
           <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
           <mat-datepicker #datePicker></mat-datepicker>
         </span>
+        <mat-error *ngIf="isDate(datatableInput['columnDisplayType']) && datatableForm.controls[datatableInput['controlName']].hasError('required')">
+          {{datatableInput['controlName']}} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+        </mat-error>
       </mat-form-field>
       <mifosx-data-selector
         fxFlex="48%"
-        *ngIf="isDropdown(datatableInput.columnDisplayType)"
-        [inputFormControl]="datatableForm.controls[datatableInput.controlName]"
-        [dataOptions]="datatableInput.columnValues"
-        [required]="false"
+        *ngIf="isDropdown(datatableInput['columnDisplayType'])"
+        [inputFormControl]="datatableForm.controls[datatableInput['controlName']]"
+        [dataOptions]="datatableInput['columnValues']"
+        [required]="!datatableInput['isColumnNullable']"
         [inputLabel]="getInputName(datatableInput)"
-        [inputFormControlName]="datatableInput.controlName"
+        [inputFormControlName]="datatableInput['controlName']"
         [datatableForm]="datatableForm"
         (onSelectionChangeEvent)="onSelectionChange($event)"
       >
       </mifosx-data-selector>
-
-      <mat-checkbox *ngIf="isBoolean(datatableInput.columnDisplayType)" formControlName="{{datatableInput.controlName}}"
-        labelPosition="before" class="margin-v">
+      <mat-checkbox *ngIf="isBoolean(datatableInput['columnDisplayType'])" formControlName="{{datatableInput['controlName']}}"
+                    labelPosition="before" class="margin-v">
         {{getInputName(datatableInput)}}
       </mat-checkbox>
     </div>

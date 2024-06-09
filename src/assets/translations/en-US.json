@@ -548,6 +548,8 @@
             "Unblock Massively": "Unblock massively"
         },
         "commons": {
+            "cannot have more than": "cannot have more than",
+            "characters": "characters",
             "50 characters long": "50 characters long",
             "20 characters long": "20 characters long",
             "30 characters long": "30 characters long",
@@ -564,8 +566,10 @@
             "a positive number": "a positive number",
             "a positive number with": "a positive number with",
             "and at": "and at",
+            "must be greater than or equal to zero": "must be greater than or equal to zero",
             "and must be greater than": "and must be greater than",
             "are": "are",
+            "must be": "must be",
             "be larger than 0 and at most 100": "be larger than 0 and at most 100",
             "be larger than 0 and at most 99.99": "be larger than 0 and at most 99.99",
             "be larger than 0 and at most 2147483647": "be larger than 0 and at most 2147483647",
