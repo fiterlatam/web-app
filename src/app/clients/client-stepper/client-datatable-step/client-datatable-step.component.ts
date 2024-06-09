@@ -1,5 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { Datatables } from 'app/core/utils/datatables';
 import { SettingsService } from 'app/settings/settings.service';
 import * as _ from 'lodash';
@@ -36,13 +43,26 @@ export class ClientDatatableStepComponent implements OnInit {
       } else {
         inputItems[input.controlName] = new UntypedFormControl('');
       }
-      if  (this.isString(input.columnDisplayType)) {
+      if (this.isString(input.columnDisplayType)) {
         const columnLength = input.columnLength ? input.columnLength : 255;
         inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
+      } else if (this.isNumeric(input.columnDisplayType)) {
+        const columnLength = input.columnLength ? input.columnLength : 10;
+        inputItems[input.controlName].addValidators([Validators.maxLength(columnLength), Validators.max(2147483647), this.maxLength(columnLength), Validators.min(0)]);
       }
     });
     this.datatableForm = this.formBuilder.group(inputItems);
     this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+  }
+
+  maxLength(max: number): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const val = control.value;
+      if (val && val.toString().length > max) {
+        return { 'maxLength': {value: val} };
+      }
+      return null;
+    };
   }
 
   getInputName(datatableInput: any): string {

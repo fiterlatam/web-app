@@ -87,12 +87,12 @@ export class SubChannelComponent implements OnInit {
 
       this.reloaded = true;
 
-    });  
+    });
 
     this.reloaded = true;
   }
 
-  
+
   deleteEntity(id: any) {
         alert('111');
         this.SubChannelService.deleteEntity(id)
@@ -103,6 +103,5 @@ export class SubChannelComponent implements OnInit {
 
 
   changeShowClosedGroups() {
-    console.log("changeShowClosedGroups ");
-  }  
+  }
 }

@@ -10,26 +10,14 @@
           <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
             <mat-card-content>
                 <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
-
-                    <!--mat-form-field fxFlex="48%">
-                        <mat-label>{{"labels.inputs.code" | translate }}</mat-label>
-                        <input matInputformControlName="code">
-                        <mat-error *ngIf="groupForm.controls.code.hasError('required')">
-                          {{"labels.inputs.code" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
-                        </mat-error>
-                        <mat-error *ngIf="groupForm.controls.code.hasError('pattern')">
-                          {{"labels.inputs.code" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
-                        </mat-error>
-                    </mat-form-field-->
-
                     <mat-form-field fxFlex="100%">
                       <mat-label>{{"labels.inputs.name" | translate }}</mat-label>
                       <input matInput required formControlName="name">
                       <mat-error *ngIf="groupForm.controls.name.hasError('required')">
                         {{"labels.inputs.name" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                       </mat-error>
-                      <mat-error *ngIf="groupForm.controls.name.hasError('pattern')">
-                        {{"labels.inputs.name" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
+                      <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
+                        {{"labels.inputs.name" | translate }} <strong> {{ 'labels.commons.cannot have more than' | translate }} </strong> 100 {{ 'labels.commons.characters'| translate }}
                       </mat-error>
                     </mat-form-field>
 
@@ -40,7 +28,7 @@
                         {{"labels.inputs.code" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                       </mat-error>
                       <mat-error *ngIf="groupForm.controls.code.hasError('pattern')">
-                        {{"labels.inputs.code" | translate }} <strong>{{ "labels.commons.till 4 characters" | translate }}</strong> 
+                        {{"labels.inputs.code" | translate }} <strong>{{ "labels.commons.till 4 characters" | translate }}</strong>
                       </mat-error>
                     </mat-form-field>
 
@@ -115,7 +103,7 @@
                       <mat-error *ngIf="groupForm.controls.typeCodeValueId.hasError('required')">
                         {{"labels.inputs.type" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                       </mat-error>
-                    </mat-form-field>                    
+                    </mat-form-field>
 
                     <mat-form-field fxFlex="25%">
                       <mat-label>{{"labels.inputs.settledComission" | translate }}</mat-label>
@@ -126,15 +114,15 @@
                       <mat-error *ngIf="groupForm.controls.settledComission.hasError('pattern')">
                       {{"labels.inputs.settledComission" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
                       </mat-error>
-                    </mat-form-field>   
+                    </mat-form-field>
 
                     <mat-checkbox labelPosition="after" formControlName="buyEnabled" fxFlex="100%">
                         {{"labels.inputs.buyEnabled" | translate }}
                     </mat-checkbox>
-        
+
                     <mat-checkbox labelPosition="after" formControlName="collectionEnabled" fxFlex="100%">
                         {{"labels.inputs.collectionEnabled" | translate }}
-                    </mat-checkbox>                           
+                    </mat-checkbox>
 
                     <mat-form-field fxFlex="20%">
                       <mat-label>{{"labels.inputs.state" | translate }}</mat-label>
@@ -146,7 +134,7 @@
                       <mat-error *ngIf="groupForm.controls.stateCodeValueId.hasError('required')">
                         {{"labels.inputs.state" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                       </mat-error>
-                    </mat-form-field>            
+                    </mat-form-field>
 
                 </div>
             </mat-card-content>
