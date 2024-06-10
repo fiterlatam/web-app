@@ -62,7 +62,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private formBuilder: UntypedFormBuilder,
-              private dateUtils: Dates,              
+              private dateUtils: Dates,
               private dialog: MatDialog,
               private settingsService: SettingsService,
               private customchargetypemapService: CustomChargeTypeMapService) {
@@ -83,12 +83,12 @@ export class CustomChargeTypeMapComponent implements OnInit {
 
   patchValues() {
     this.filterForm.patchValue({
-      'id': ['0'],      
+      'id': ['0'],
       'term': [''],
       'percentage': [''],
       'validFrom': new Date(),
       });
-  }    
+  }
 
   ngOnInit(): void {
   }
@@ -97,7 +97,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
   ngAfterViewInit() {
     this.changeChargeEntityEvent(this.customChargeEntityList[0].id);
   }
-  
+
   deleteEntityModal(id: any) {
     let data: any = {};
     data.id = id;
@@ -108,7 +108,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
 
     const deleteSignatureDialogRef = this.dialog.open(DeleteCustomChargeTypeMapDialogComponent, {
       data
-    });    
+    });
 
 
 
@@ -122,13 +122,12 @@ export class CustomChargeTypeMapComponent implements OnInit {
 
         event.stopPropagation();
       }
-    });    
+    });
   }
 
 
   changeShowClosedGroups() {
-    console.log("changeShowClosedGroups ");
-  }  
+  }
 
   loadEntities() {
     console.log("loadEntities");
@@ -138,7 +137,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
       this.apiData = [];
 
       this.patchValues();
-    });  
+    });
   }
 
   changeChargeEntityEvent(id: any) {
@@ -160,7 +159,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
 //      this.customChargeTypeId = this.customChargeTypeList[0].id;
 
       this.patchValues();
-    }); 
+    });
   }
 
   changeChargeTypeEvent(id: any) {
@@ -194,7 +193,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
 
       this.reloaded = true;
 
-    });  
+    });
 
     this.reloaded = true;
   }
@@ -224,16 +223,16 @@ export class CustomChargeTypeMapComponent implements OnInit {
     var id = this.filterForm.get("id").value;
 
     if(id > 0) {
-      
+
       this.customchargetypemapService.editCustomChargeTypeMap(data, this.customChargeEntityId, this.customChargeTypeId, id).subscribe((response: any) => {
         this.patchValues();
         this.loadClientallies(this.customChargeTypeId);
-      });    
+      });
     } else {
       this.customchargetypemapService.createCustomChargeTypeMap(data, this.customChargeEntityId, this.customChargeTypeId).subscribe((response: any) => {
         this.patchValues();
         this.loadClientallies(this.customChargeTypeId);
-      });    
+      });
     }
   }
 
@@ -259,11 +258,11 @@ export class CustomChargeTypeMapComponent implements OnInit {
   }
 
 
-   
+
   setChart(data: any) {
 
     interface CustomChargeTypeMapInterface {
-      term: number; 
+      term: number;
       percentage: number;
     }
 
@@ -284,7 +283,7 @@ export class CustomChargeTypeMapComponent implements OnInit {
         title: {
           display: true,
           text: 'Curva del Cargo'
-        },          
+        },
         layout: {
           padding: {
             top: 10,

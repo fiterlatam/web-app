@@ -1,9 +1,9 @@
 /** Angular Imports */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 /**
  * Clients service.
@@ -18,36 +18,17 @@ export class ClientAllyPointOfSalesService {
    */
   constructor(private http: HttpClient) { }
 
-  /**
-   * @returns {Observable<any>} ClientAllyPointOfSales.
-   */
-
   getClientAllyPointOfSales(parentId: any, sqlSearch: any): Observable<any> {
-    console.log("clientallypointofsales service called");
-    console.log(sqlSearch);
-    const httpParams = new HttpParams()
-                            .set('sqlSearch', sqlSearch);
-
-    let data = this.http.get(`/clientally/${parentId}/pointofsales`, { params: httpParams })
-    console.log(data);
-    return data;      
-
+    const httpParams = new HttpParams().set('sqlSearch', sqlSearch);
+    return this.http.get(`/clientally/${parentId}/pointofsales`, {params: httpParams});
   }
 
   createClientAllyPointOfSales(parentId: any, formData: any): Observable<any> {
-    console.log("createClientAllyPointOfSales service called");
-    const httpParams = new HttpParams();
-    let data = this.http.post(`/clientally/${parentId}/pointofsales`, formData); 
-    console.log(data);
-    return data;
+    return this.http.post(`/clientally/${parentId}/pointofsales`, formData);
   }
 
   getClientallyById(parentId: any, id: any): Observable<any> {
-    console.log("createClientAllyPointOfSales service called");
-    const httpParams = new HttpParams();
-    let data = this.http.get(`/clientally/${parentId}/pointofsales/${id}`);
-    console.log(data);
-    return data;
+    return this.http.get(`/clientally/${parentId}/pointofsales/${id}`);
   }
 
   editClientAllyPointOfSales(formData: any, parentId: any, id: any): Observable<any> {
@@ -69,11 +50,7 @@ export class ClientAllyPointOfSalesService {
   }
 
   getDefaultValuesFromParent(id: any): Observable<any> {
-    console.log("createClientsallies service called");
-    const httpParams = new HttpParams();
-    let data = this.http.get(`/clientsallies/${id}`);
-    console.log(data);
-    return data;
+    return this.http.get(`/clientsallies/${id}`);
   }
 
 }

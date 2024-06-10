@@ -2,7 +2,7 @@
   <div #buttonCreateCharge class="in-block">
     <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CHARGE'">
       <fa-icon icon="plus" class="m-r-10"></fa-icon>
-      Create Charge
+      {{'labels.buttons.Create Charge' | translate}}
     </button>
   </div>
 </div>
@@ -21,37 +21,37 @@
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Name' | translate}}</th>
         <td mat-cell *matCellDef="let charge"> {{ charge.name }} </td>
       </ng-container>
 
       <ng-container matColumnDef="chargeAppliesTo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Applies To </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Applies To' | translate}}</th>
         <td mat-cell *matCellDef="let charge"> {{ charge.chargeAppliesTo.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="chargeTimeType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Time' | translate}}</th>
         <td mat-cell *matCellDef="let charge"> {{ charge.chargeTimeType.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="chargeCalculationType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Calculation </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Calculation Type' | translate}}</th>
         <td mat-cell *matCellDef="let charge"> {{ charge.chargeCalculationType.code | translate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Amount' | translate}}</th>
         <td mat-cell *matCellDef="let charge" class="r-amount"> {{ charge.amount | formatNumber }} </td>
       </ng-container>
 
       <ng-container matColumnDef="graceOnChargePeriodAmount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Grace </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Grace' | translate}}</th>
         <td mat-cell *matCellDef="let charge" class="r-amount"> {{ charge.graceOnChargePeriodAmount }}d </td>
-      </ng-container>      
+      </ng-container>
 
       <ng-container matColumnDef="penalty">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Penalty? </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Is Penalty' | translate}}</th>
         <td mat-cell *matCellDef="let charge" class="center">
             <fa-icon *ngIf="charge.penalty" icon="check-circle" size="lg" class="ispenalty" matTooltip="Yes" matTooltipPosition="right"></fa-icon>
             <fa-icon *ngIf="!charge.penalty" icon="times-circle" size="lg" class="nopenalty" matTooltip="No" matTooltipPosition="right"></fa-icon>
@@ -59,7 +59,7 @@
       </ng-container>
 
       <ng-container matColumnDef="active">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Active? </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Is Active' | translate}}</th>
         <td mat-cell *matCellDef="let charge" class="center">
           <div [className]="charge.active === true ? 'true' : 'false'">
             <fa-icon matTooltip="{{ charge.active === true ? 'Active' : 'Inactive' }}" matTooltipPosition="right" icon="circle" size="lg"></fa-icon>

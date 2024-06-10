@@ -31,8 +31,8 @@ export class Datatables {
           label: column.columnName,
           value: '',
           type: (column.columnDisplayType === 'INTEGER' || column.columnDisplayType === 'DECIMAL') ? 'number' : 'text',
-          required: (column.isColumnNullable) ? false : true,
-          controlLength: column.columnLength ? column.columnLength : 255
+          required: (!column.isColumnNullable),
+          controlLength: column.columnLength
         });
         case 'BOOLEAN': return new CheckboxBase({
           controlName: column.columnName,

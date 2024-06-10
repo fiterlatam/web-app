@@ -19,7 +19,7 @@ const routes: Routes = [
       path: 'clientally/:parentId/pointofsales/create',
       data: { title: 'Puntos de Ventas', breadcrumb: 'client.allies.point.of.sales.create' },
       component: CreateClientAllyPointOfSalesComponent,
-    },            
+    },
     {
       path: 'clientally/:parentId/pointofsales/:id',
       data: { title: 'Puntos de Ventas', breadcrumb: 'client.allies.point.of.sales.edit' },

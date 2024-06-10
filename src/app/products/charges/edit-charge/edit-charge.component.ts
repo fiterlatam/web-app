@@ -139,6 +139,19 @@ export class EditChargeComponent implements OnInit {
     this.setupFiltersCheckboxes();
   }
 
+  getAmountValidators(): any[] {
+    const locale = this.settingsService.language.code;
+    const amountValidators = [Validators.required];
+    if (locale === 'es') {
+      amountValidators.push(Validators.pattern(/^[0-9,]*$/));
+    } else if (locale === 'en') {
+      amountValidators.push(Validators.pattern(/^[0-9.]*$/));
+    } else {
+      amountValidators.push(Validators.pattern(/^[0-9.,]*$/));
+    }
+    return amountValidators;
+  }
+
   /**
    * Edit Charge form.
    */
@@ -149,7 +162,7 @@ export class EditChargeComponent implements OnInit {
       'name': [this.chargeData.name, Validators.required],
       'chargeAppliesTo': [{ value: this.chargeData.chargeAppliesTo.id, disabled: true }, Validators.required],
       'currencyCode': [this.chargeData.currency.code, Validators.required],
-      'amount': [this.decimalPipe.transform(this.chargeData.amount, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$')]],
+      'amount': [this.decimalPipe.transform(this.chargeData.amount, '1.2-2', locale), this.getAmountValidators()],
       'active': [this.chargeData.active],
       'penalty': [this.chargeData.penalty],
       'minCap': [this.chargeData.minCap],

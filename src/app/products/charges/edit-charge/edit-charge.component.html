@@ -95,13 +95,13 @@
             <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterHonorarios" class="entries" (change)="enableOrDisableCupoMaxSellField('honorarios', $event.checked)">
               {{"labels.inputs.chargeCalculationType.fee" | translate}}
             </mat-checkbox>
-            
+
             <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterTerm" class="entries" (change)="enableOrDisableCupoMaxSellField('term', $event.checked)">
               {{"labels.inputs.chargeCalculationType.term" | translate}}
             </mat-checkbox>
             <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
               {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
-            </mat-error>              
+            </mat-error>
           </div>
 
           <div fxFlex="48%" *ngIf="false" >
@@ -144,7 +144,7 @@
             <mat-error *ngIf="chargeForm.controls.externalCalculationChargeId.hasError('required')">
               {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
             </mat-error>
-          </mat-form-field>      
+          </mat-form-field>
 
           <mat-form-field fxFlex="48%" *ngIf="chargePaymentMode">
             <mat-label>{{ "labels.inputs.Charge Payment Mode" | translate }}</mat-label>
@@ -165,6 +165,9 @@
             <mat-error *ngIf="chargeForm.controls.amount.hasError('required')">
               {{ "labels.inputs.Amount" | translate }} <strong>is required</strong>
             </mat-error>
+            <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern')">
+              {{"labels.inputs.Amount" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.have invalid number format" | translate}}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="48%"
@@ -174,7 +177,7 @@
           </mat-form-field>
 
           <mat-form-field fxFlex="48%"
-            *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+            *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.contains('graceOnChargePeriodEnum')">
             <mat-label>Charge Grace Period Frequency</mat-label>
             <input matInput formControlName="graceOnChargePeriodEnum" value="Days" readonly/>
           </mat-form-field>

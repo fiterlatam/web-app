@@ -10,7 +10,7 @@
       </mat-option>
     </mat-select>
     <mat-error *ngIf="inputFormControl.hasError('required')">
-      {{"labels.inputs.Account"| translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+      {{inputLabel | formatDisplayName}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
     </mat-error>
   </mat-form-field>
 
@@ -27,5 +27,8 @@
         {{dataOpt.value}} - {{dataOpt.score}}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="inputFormControl.hasError('required')">
+      {{inputLabel | formatDisplayName}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+    </mat-error>
   </mat-form-field>
 </div>

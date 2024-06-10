@@ -89,6 +89,5 @@ export class ClientsalliesComponent implements OnInit {
 
 
   changeShowClosedGroups() {
-    console.log("changeShowClosedGroups ");
   }
 }
