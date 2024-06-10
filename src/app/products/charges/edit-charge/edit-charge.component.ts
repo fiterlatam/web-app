@@ -149,7 +149,7 @@ export class EditChargeComponent implements OnInit {
    */
   editChargeForm() {
     this.showFeeOptions = (this.chargeData.feeInterval && this.chargeData.feeInterval > 0);
-
+    const voluntaryInsuranceData = this.chargeData.chargeInsuranceDetailData;
     this.chargeForm = this.formBuilder.group({
       'name': [this.chargeData.name, Validators.required],
       'chargeAppliesTo': [{ value: this.chargeData.chargeAppliesTo.id, disabled: true }, Validators.required],
@@ -175,16 +175,16 @@ export class EditChargeComponent implements OnInit {
       'parentChargeId': [this.chargeData.parentChargeId, Validators.required],
       'chargeCalculationTypeFilterInsuranceType': [false],
       'graceOnChargePeriodAmount': ['0'],
-      'insuranceName': [this.chargeData.chargeInsuranceDetailData.insuranceName, Validators.required],
-      'insuranceChargedAs': [this.chargeData.chargeInsuranceDetailData.insuranceChargedAs, Validators.required],
-      'insuranceCompany': [this.chargeData.chargeInsuranceDetailData.insuranceCompany, Validators.required],
-      'insurerName': [this.chargeData.chargeInsuranceDetailData.insurerName, Validators.required],
-      'insuranceCode': [this.chargeData.chargeInsuranceDetailData.insuranceCode, Validators.required],
-      'insurancePlan': [this.chargeData.chargeInsuranceDetailData.insurancePlan, Validators.required],
-      'baseValue': [this.chargeData.chargeInsuranceDetailData.baseValue, [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'vatValue': [this.chargeData.chargeInsuranceDetailData.vatValue, [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'totalValue': [this.chargeData.chargeInsuranceDetailData.totalValue, [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'deadline':  [this.chargeData.chargeInsuranceDetailData.deadline],
+      'insuranceName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceName],
+      'insuranceChargedAs': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceChargedAs],
+      'insuranceCompany': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCompany],
+      'insurerName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurerName],
+      'insuranceCode': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCode],
+      'insurancePlan': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurancePlan],
+      'baseValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.baseValue],
+      'vatValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.vatValue],
+      'totalValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.totalValue],
+      'deadline':  [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
     });
 
     this.chargeForm.removeControl('graceOnChargePeriodAmount');

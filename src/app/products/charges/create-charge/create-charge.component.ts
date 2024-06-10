@@ -118,7 +118,7 @@ export class CreateChargeComponent implements OnInit {
       'minCap': [''],
       'maxCap': [''],
       'graceOnChargePeriodAmount': ['0'],
-      'insuranceName': ['', Validators.required],
+/*      'insuranceName': ['', Validators.required],
       'insuranceChargedAs': ['', Validators.required],
       'insuranceCompany': ['', Validators.required],
       'insurerName': ['', Validators.required],
@@ -127,7 +127,17 @@ export class CreateChargeComponent implements OnInit {
       'baseValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
       'vatValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
       'totalValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'deadline':  [''],
+      'deadline':  [''],*/
+      'insuranceName': [''],
+      'insuranceChargedAs': [''],
+      'insuranceCompany':  [''],
+      'insurerName':  [''],
+      'insuranceCode':  [''],
+      'insurancePlan':  [''],
+      'baseValue':  [''],
+      'vatValue':  [''],
+      'totalValue': [''],
+      'deadline':   [''],
 
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
@@ -419,6 +429,9 @@ export class CreateChargeComponent implements OnInit {
       lookForWordsArray.push('percentofanothercharge');
       isFilterApplied = true;
       this.showAnotherChargeCombobox = true;
+      if (this.chargeForm.get('parentChargeId') == null) {
+        this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false, Validators.required));
+      }
       this.chargeForm.get('parentChargeId').setValidators([Validators.required]);
     } else {
 
