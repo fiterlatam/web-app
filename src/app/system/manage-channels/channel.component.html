@@ -5,7 +5,6 @@
         <mat-form-field fxFlex="30%">
           <input matInput placeholder="{{ 'labels.placeholders.channel.search' | translate }}" [formControl]="name" (keydown.enter)="loadClientallies($event.value)">
         </mat-form-field>
-        <!--mat-checkbox #showClosedGroups labelPosition="after" (change)="changeShowClosedGroups()">{{"labels.inputs.Show Closed Groups"  |translate}}</mat-checkbox-->
       </div>
       <div class="action-button" fxLayoutGap="25px" >
         <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CHANNEL'">
@@ -13,29 +12,29 @@
         </button>
       </div>
     </div>
-  
+
     <table mat-table [dataSource]="dataSource" #instructionsTable matSort *ngIf="reloaded">
-  
-      <ng-container matColumnDef="id"> 
+      <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.id"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.id }} </td>
       </ng-container>
-
-      <ng-container matColumnDef="hash"> 
+      <ng-container matColumnDef="hash">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.hash"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.hash }} </td>
       </ng-container>
-
-      <ng-container matColumnDef="name"> 
+      <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.name"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.name }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="description"> 
+      <ng-container matColumnDef="channelType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Channel Type"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData['channelType']?.code | translate }} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.description"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.description }} </td>
       </ng-container>
-
       <ng-container matColumnDef="nrSubChannels">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Sub Channels"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData">
@@ -45,20 +44,13 @@
                </button>
               </div>
         </td>
-      </ng-container>      
-
-      <ng-container matColumnDef="active"> 
+      </ng-container>
+      <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.active"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.active }} </td>
       </ng-container>
-
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="[row.id]" class="select-row"></tr>
-  
     </table>
-  
     <mat-paginator [length]="(apiData == null ? 0 : apiData.length)" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
-  
   </mat-card>
-  

@@ -5,7 +5,6 @@
         <mat-form-field fxFlex="30%">
           <input matInput placeholder="{{ 'labels.placeholders.client.allies.search' | translate }}" [formControl]="name" (keydown.enter)="loadClientallies($event.value)">
         </mat-form-field>
-        <!--mat-checkbox #showClosedGroups labelPosition="after" (change)="changeShowClosedGroups()">{{"labels.inputs.Show Closed Groups"  |translate}}</mat-checkbox-->
       </div>
       <div class="action-button" fxLayoutGap="1" >
         <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CLIENTALLY'">

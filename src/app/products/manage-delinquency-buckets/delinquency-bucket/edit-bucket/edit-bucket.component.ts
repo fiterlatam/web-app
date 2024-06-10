@@ -77,11 +77,17 @@ export class EditBucketComponent implements OnInit {
         return (this.delinquencyRangesIds.indexOf(item.id) < 0);
       });
     }
+    const delinquencyRange = delinquencyRanges.map((val:any)=>{
+      return {
+        id: val.id,
+        value: val.classification,
+      }
+    });
     const formfields: FormfieldBase[] = [
       new SelectBase({
         controlName: 'rangeId',
         label: 'Delinquency Range',
-        options: { label: 'classification', value: 'id', data: delinquencyRanges },
+        options: { label: 'classification', value: 'id', data: delinquencyRange },
         order: 1
       })
     ];

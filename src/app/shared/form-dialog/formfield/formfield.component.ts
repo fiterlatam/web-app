@@ -59,4 +59,5 @@ export class FormfieldComponent implements OnInit {
     }
   }
 
+  protected readonly console = console;
 }

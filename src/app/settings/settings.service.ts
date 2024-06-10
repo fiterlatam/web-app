@@ -88,6 +88,10 @@ export class SettingsService {
     localStorage.setItem('mifosXTenantIdentifier', tenantIdentifier);
   }
 
+  setTenantChannel(tenantChannel: string) {
+    localStorage.setItem('mifosXTenantChannel', tenantChannel);
+  }
+
   /**
    * Sets server Date setting for max datepicker, default today
    * @param {string} date
@@ -209,6 +213,10 @@ export class SettingsService {
    */
   get tenantIdentifier(): string {
     return localStorage.getItem('mifosXTenantIdentifier');
+  }
+
+  get tenantChannel(): string {
+    return localStorage.getItem('mifosXTenantChannel');
   }
 
   /**

@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoansService } from 'app/loans/loans.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
+import {logger} from 'codelyzer/util/logger';
 
 /**
  * Disburse Loan Option
@@ -37,6 +38,7 @@ export class DisburseComponent implements OnInit {
    * @param {LoansService} loanService Loan Service.
    * @param {ActivatedRoute} route Activated Route.
    * @param {Router} router Router for navigation.
+   * @param dateUtils
    * @param {SettingsService} settingsService Settings Service
    */
   constructor(private formBuilder: UntypedFormBuilder,
@@ -114,9 +116,10 @@ export class DisburseComponent implements OnInit {
       dateFormat,
       locale
     };
+    data.channelName = this.settingsService.tenantChannel;
     this.loanService.loanActionButtons(this.loanId, 'disburse', data )
       .subscribe((response: any) => {
-        this.router.navigate(['../../general'], { relativeTo: this.route });
+        this.router.navigate(['../../general'], {relativeTo: this.route}).then(r => logger.info('Loan Disbursed Successfully'));
       });
   }
 

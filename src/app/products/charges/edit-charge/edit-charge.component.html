@@ -105,7 +105,7 @@
             </mat-checkbox>
             <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
               {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
-            </mat-error>
+            </mat-error>              
             <p *ngIf="showVoluntaryInsuranceError" class="mat-error ng-star-inserted">{{voluntaryInsuranceErrorCode | translate }}</p>
           </div>
 
@@ -170,6 +170,9 @@
             <mat-error *ngIf="chargeForm.controls.amount.hasError('required')">
               {{ "labels.inputs.Amount" | translate }} <strong>is required</strong>
             </mat-error>
+            <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern')">
+              {{"labels.inputs.Amount" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.have invalid number format" | translate}}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="48%"
@@ -179,7 +182,7 @@
           </mat-form-field>
 
           <mat-form-field fxFlex="48%"
-            *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+            *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.contains('graceOnChargePeriodEnum')">
             <mat-label>Charge Grace Period Frequency</mat-label>
             <input matInput formControlName="graceOnChargePeriodEnum" value="Days" readonly/>
           </mat-form-field>

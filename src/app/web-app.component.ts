@@ -200,6 +200,10 @@ export class WebAppComponent implements OnInit {
     if (!localStorage.getItem('mifosXTenantIdentifier')) {
       this.settingsService.setTenantIdentifier(environment.fineractPlatformTenantId || 'default');
     }
+    if (!localStorage.getItem('mifosXTenantChannel')) {
+      this.settingsService.setTenantChannel(environment.fineractPlatformTenantChannel || 'Mifos');
+    }
+
     this.settingsService.setTenantIdentifiers(environment.fineractPlatformTenantIds.split(','));
   }
 

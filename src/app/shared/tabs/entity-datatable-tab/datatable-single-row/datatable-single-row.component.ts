@@ -74,7 +74,7 @@ export class DatatableSingleRowComponent implements OnInit {
       locale: this.settingsService.language.code
     };
     const dateTransformColumns: string[] = [];
-    const columns = this.datatables.filterSystemColumns(this.dataObject.columnHeaders);
+    const columns = this.datatables.filterSystemColumns(this.dataObject['columnHeaders']);
     let formfields: FormfieldBase[] = this.datatables.getFormfields(columns, dateTransformColumns, dataTableEntryObject);
     formfields = formfields.map((formfield: FormfieldBase, index: number) => {
       if (formfield.controlType === 'datepicker') {

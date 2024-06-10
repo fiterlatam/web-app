@@ -7,7 +7,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../products.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
-import { ArrayType } from '@angular/compiler';
 
 /**
  * Create charge component.
@@ -49,7 +48,6 @@ export class CreateChargeComponent implements OnInit {
   chargeCalculationTypeFilterAval = false;
   chargeCalculationTypeFilterHonorarios = false;
   chargeCalculationTypeFilterTerm = false;
-
 
 
   /** Income and liability account data */
@@ -101,6 +99,19 @@ export class CreateChargeComponent implements OnInit {
     this.setConditionalControls();
   }
 
+  getAmountValidators(): any[] {
+    const locale = this.settingsService.language.code;
+    const amountValidators = [Validators.required];
+    if (locale === 'es') {
+      amountValidators.push(Validators.pattern(/^[0-9,]*$/));
+    } else if (locale === 'en') {
+      amountValidators.push(Validators.pattern(/^[0-9.]*$/));
+    } else {
+      amountValidators.push(Validators.pattern(/^[0-9.,]*$/));
+    }
+    return amountValidators;
+  }
+
   /**
    * Creates the charge form.
    */
@@ -111,23 +122,13 @@ export class CreateChargeComponent implements OnInit {
       'currencyCode': ['', Validators.required],
       'chargeTimeType': ['', Validators.required],
       'chargeCalculationType': ['', Validators.required],
-      'amount': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
+      'amount': ['', this.getAmountValidators()],
       'active': [false],
       'penalty': [false],
       'taxGroupId': [''],
       'minCap': [''],
       'maxCap': [''],
       'graceOnChargePeriodAmount': ['0'],
-/*      'insuranceName': ['', Validators.required],
-      'insuranceChargedAs': ['', Validators.required],
-      'insuranceCompany': ['', Validators.required],
-      'insurerName': ['', Validators.required],
-      'insuranceCode': ['', Validators.required],
-      'insurancePlan': ['', Validators.required],
-      'baseValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'vatValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'totalValue': ['0', [Validators.required, Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d+)?\\s*$')]],
-      'deadline':  [''],*/
       'insuranceName': [''],
       'insuranceChargedAs': [''],
       'insuranceCompany':  [''],
@@ -138,7 +139,6 @@ export class CreateChargeComponent implements OnInit {
       'vatValue':  [''],
       'totalValue': [''],
       'deadline':   [''],
-
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
@@ -239,7 +239,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargePaymentMode', new UntypedFormControl('', Validators.required));
           this.chargeForm.removeControl('incomeAccountId');
 
-          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', Validators.required));
+          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', [Validators.required,Validators.min(1)]));
           this.chargeForm.addControl('graceOnChargePeriodEnum', new UntypedFormControl('days', Validators.required));
 
 
@@ -313,14 +313,7 @@ export class CreateChargeComponent implements OnInit {
           break;
       }
     });
-    this.chargeForm.get('currencyCode').valueChanges.subscribe((currencyCode) => {
-      this.currencyDecimalPlaces = this.chargesTemplateData.currencyOptions.find((currency: any) => currency.code === currencyCode).decimalPlaces;
-      if (this.currencyDecimalPlaces === 0) {
-        this.chargeForm.get('amount').setValidators([Validators.required, Validators.pattern('^[1-9]\\d*$')]);
-      } else {
-        this.chargeForm.get('amount').setValidators([Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(\\.\\d{1,${this.currencyDecimalPlaces}})?\\s*$`)]);
-      }
-    });
+    this.chargeForm.get('amount').setValidators(this.getAmountValidators());
   }
 
   /**
@@ -454,14 +447,13 @@ export class CreateChargeComponent implements OnInit {
         this.voluntaryInsuranceErrorCode = '';
       }
     }
-    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
       this.lookForKeyOnCode(lookForWordsArray, index);
-
-    }
+    } 
 
     // IOf nothing selected, restore the list
     if (lookForWordsArray.length == 0) {
-      for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+      for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
         this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
       }
     }
@@ -471,18 +463,18 @@ export class CreateChargeComponent implements OnInit {
     } else {
       this.chargeForm.get('chargeCalculationType').setValue(null);
     }
-  }
+  }  
 
 
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
-    const currCode = this.originalChargeCalculationTypeData[index].code;
+    let currCode = this.originalChargeCalculationTypeData[index].code;
 
-    for (let i = 0; i <= lookForWordsArray.length - 1; i++) {
-      if (currCode.toString().indexOf('.' + lookForWordsArray[i]) == -1) {
+    for (let i = 0; i <= lookForWordsArray.length-1; i++) {
+      if(currCode.toString().indexOf("."+ lookForWordsArray[i]) == -1) {
+
         return;
       }
     }
-
     this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
   }
 }
