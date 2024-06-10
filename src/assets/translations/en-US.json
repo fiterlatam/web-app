@@ -1018,6 +1018,7 @@
             "Down Payments": "Pagos iniciales"
         },
         "inputs": {
+            "Interest Rate Type": "Interest Rate Type",
             "Channel Type": "Channel Type",
             "Interest Rate Points": "Interest Rate Points",
             "Extend term for monthly repayments": "Extend term for monthly repayments",
@@ -3505,5 +3506,9 @@
       "disbursement": "Purchase/Advance",
       "repayment": "Collections (Payments)",
       "invalid": "Invalid"
+  },
+  "interest.rate.type": {
+      "regular": "Regular Interest",
+      "overdue": "Overdue Interest"
   }
 }

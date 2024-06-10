@@ -1033,6 +1033,7 @@
             "Down Payments": "Pagos iniciales"
         },
         "inputs": {
+            "Interest Rate Type": "Tipo de tasa de interés",
             "Sub Channels": "Subcanales",
             "Channel Type": "Tipo de canal",
             "Interest Rate Points": "Puntos de tasa de interés",
@@ -3470,5 +3471,9 @@
     "disbursement": "Compra/Avance",
     "repayment": "Recaudos (Pagos)",
     "invalid": "Inválido"
+  },
+  "interest.rate.type": {
+    "regular": "Interés corriente",
+    "overdue": "Interés de mora"
   }
 }

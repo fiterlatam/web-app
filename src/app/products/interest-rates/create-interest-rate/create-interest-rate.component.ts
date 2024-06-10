@@ -16,6 +16,7 @@ export class CreateInterestRateComponent implements OnInit {
   maxDate: Date;
   interestRateForm: UntypedFormGroup;
   interestRateTemplate: any;
+  interestRateTypeOptions: any[];
   constructor(private formBuilder: UntypedFormBuilder,
               private productsService: ProductsService,
               private route: ActivatedRoute,
@@ -23,8 +24,9 @@ export class CreateInterestRateComponent implements OnInit {
               private dateUtils: Dates,
               private decimalPipe: DecimalPipe,
               private settingsService: SettingsService) {
-    this.route.data.subscribe((data: { interestRateTemplate: any }) => {
+    this.route.data.subscribe((data: { interestRateTemplate: any, interestRateTypeOptions: any[] }) => {
       this.interestRateTemplate = data.interestRateTemplate;
+      this.interestRateTypeOptions = data.interestRateTemplate.interestRateTypeOptions;
     });
   }
 
@@ -36,10 +38,15 @@ export class CreateInterestRateComponent implements OnInit {
 
   createInterestRate() {
     const locale = this.settingsService.language.code;
+    let currentRate = 0;
+    if (this.interestRateTemplate['maximumCreditRateConfiguration'] && this.interestRateTemplate['maximumCreditRateConfiguration'].annualNominalRate) {
+      currentRate = this.interestRateTemplate['maximumCreditRateConfiguration'].annualNominalRate;
+    }
     this.interestRateForm = this.formBuilder.group({
       'name': ['', Validators.required],
-      'currentRate': [this.decimalPipe.transform(this.interestRateTemplate.annualNominalRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.01), Validators.maxLength(5), Validators.max(100)]],
+      'currentRate': [this.decimalPipe.transform(currentRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.01), Validators.maxLength(5), Validators.max(100)]],
       'appliedOnDate': [this.minDate && new Date(this.minDate), [Validators.required]],
+      'interestRateTypeId': ['', Validators.required],
       'active': [true, [Validators.required]]
     });
   }

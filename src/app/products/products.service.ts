@@ -625,12 +625,18 @@ export class ProductsService {
   }
 
   getInterestRate(interestRateId: string): Observable<any> {
-    return this.http.get(`/interestRates/${interestRateId}`);
+    const httpParams = new HttpParams().set('template', 'true');
+    return this.http.get(`/interestRates/${interestRateId}`, { params: httpParams });
   }
 
   getInterestRates(): Observable<any> {
     return this.http.get('/interestRates');
   }
+
+  getInterestRateTemplate(): Observable<any> {
+    return this.http.get('/interestRates/template');
+  }
+
   createInterestRate(interestRate: any): Observable<any> {
     return this.http.post('/interestRates', interestRate);
   }
