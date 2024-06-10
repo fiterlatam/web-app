@@ -11,7 +11,7 @@ import {ProductsService} from '../../products.service';
 export class InterestRateHistoryComponent implements OnInit {
   totalFilteredRecords: number;
   interestRateHistoryData: any;
-  displayedColumns: string[] = ['id', 'name', 'appliedOnDate', 'currentRate', 'active', 'createdBy'];
+  displayedColumns: string[] = ['id', 'name', 'appliedOnDate', 'currentRate', 'interestRateType', 'active', 'createdBy'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

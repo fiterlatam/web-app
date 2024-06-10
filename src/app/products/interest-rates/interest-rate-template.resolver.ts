@@ -7,7 +7,7 @@ export class InterestRateTemplateResolver implements Resolve<Object> {
   constructor(private productsService: ProductsService) {}
 
   resolve(): Observable<any> {
-    return this.productsService.getMaximumCreditRate();
+    return this.productsService.getInterestRateTemplate();
   }
 
 }
