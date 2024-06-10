@@ -125,7 +125,7 @@ export class CreateChargeComponent implements OnInit {
       'taxGroupId': [''],
       'minCap': [''],
       'maxCap': [''],
-      'graceOnChargePeriodAmount': ['0'],
+      'graceOnChargePeriodAmount': ['0',[Validators.required,Validators.min(1)]],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
@@ -224,7 +224,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargePaymentMode', new UntypedFormControl('', Validators.required));
           this.chargeForm.removeControl('incomeAccountId');
 
-          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', Validators.required));
+          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', [Validators.required,Validators.min(1)]));
           this.chargeForm.addControl('graceOnChargePeriodEnum', new UntypedFormControl('days', Validators.required));
 
 
