@@ -5,6 +5,7 @@ import { ProductsService } from '../../products.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
 import {DecimalPipe} from '@angular/common';
+import { logger } from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-edit-interest-rate',
@@ -16,6 +17,7 @@ export class EditInterestRateComponent implements OnInit {
   maxDate: Date;
   interestRateForm: UntypedFormGroup;
   interestRateData: any;
+  interestRateTypeOptions: any[];
   constructor(private formBuilder: UntypedFormBuilder,
               private productsService: ProductsService,
               private route: ActivatedRoute,
@@ -25,6 +27,7 @@ export class EditInterestRateComponent implements OnInit {
               private settingsService: SettingsService) {
     this.route.data.subscribe((data: { interestRate: any }) => {
       this.interestRateData = data.interestRate;
+      this.interestRateTypeOptions = data.interestRate.interestRateTypeOptions;
     });
   }
 
@@ -40,6 +43,7 @@ export class EditInterestRateComponent implements OnInit {
       'currentRate': [this.decimalPipe.transform(this.interestRateData.currentRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0.01), Validators.maxLength(5), Validators.max(100)]],
       'appliedOnDate': [this.interestRateData.appliedOnDate && new Date(this.interestRateData.appliedOnDate), [Validators.required]],
       'active': [this.interestRateData.active, [Validators.required]],
+      'interestRateTypeId': [this.interestRateData['interestRateType'] ? this.interestRateData['interestRateType'].id : '', Validators.required],
       'name': [this.interestRateData.name, [Validators.required]]
     });
   }
@@ -58,7 +62,7 @@ export class EditInterestRateComponent implements OnInit {
       locale
     };
     this.productsService.updateInterestRate(this.interestRateData.id, data).subscribe((response: any) => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+      this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Interest rate updated successfully'));
     });
   }
 

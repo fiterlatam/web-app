@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class InterestRatesComponent implements OnInit {
   interestRatesData: any;
-  displayedColumns: string[] = ['name', 'appliedOnDate', 'currentRate', 'active'];
+  displayedColumns: string[] = ['name', 'appliedOnDate', 'currentRate', 'interestRateType', 'active'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

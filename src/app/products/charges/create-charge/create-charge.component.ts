@@ -58,9 +58,6 @@ export class CreateChargeComponent implements OnInit {
   maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   /** Repeat every label */
   repeatEveryLabel: string;
-  /** Currency decimal places */
-  currencyDecimalPlaces: number;
-
   /**
    * Retrieves the charges template data and income and liability account data from `resolve`.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -125,7 +122,7 @@ export class CreateChargeComponent implements OnInit {
       'taxGroupId': [''],
       'minCap': [''],
       'maxCap': [''],
-      'graceOnChargePeriodAmount': ['0',[Validators.required,Validators.min(1)]],
+      'graceOnChargePeriodAmount': ['0', [Validators.required, Validators.min(0)]],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
@@ -224,7 +221,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargePaymentMode', new UntypedFormControl('', Validators.required));
           this.chargeForm.removeControl('incomeAccountId');
 
-          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', [Validators.required,Validators.min(1)]));
+          this.chargeForm.addControl('graceOnChargePeriodAmount', new UntypedFormControl('0', [Validators.required, Validators.min(0)]));
           this.chargeForm.addControl('graceOnChargePeriodEnum', new UntypedFormControl('days', Validators.required));
 
 
