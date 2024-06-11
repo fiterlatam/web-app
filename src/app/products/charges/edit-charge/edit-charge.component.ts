@@ -56,16 +56,20 @@ export class EditChargeComponent implements OnInit {
   originalChargeCalculationTypeData: any = [];
 
   chargeCalculationTypeFilter: any;
-  chargeCalculationTypeFilterFlat = false;
-  chargeCalculationTypeFilterDisbursal = false;
-  chargeCalculationTypeFilterAmount = false;
-  chargeCalculationTypeFilterInterest = false;
-  chargeCalculationTypeFilterOutstandingAmount = false;
-  chargeCalculationTypeFilterOutstandingInterest = false;
-  chargeCalculationTypeFilterInsurance = false;
-  chargeCalculationTypeFilterAval = false;
-  chargeCalculationTypeFilterHonorarios = false;
-  chargeCalculationTypeFilterTerm = false;
+
+  chargeCalculationTypeFilterFlat: boolean = false;
+  chargeCalculationTypeFilterDisbursal: boolean = false;
+  chargeCalculationTypeFilterAmount: boolean = false;
+  chargeCalculationTypeFilterInterest: boolean = false;
+  chargeCalculationTypeFilterOutstandingAmount: boolean = false;
+  chargeCalculationTypeFilterOutstandingInterest: boolean = false;
+  chargeCalculationTypeFilterInsurance: boolean = false;
+  chargeCalculationTypeFilterAval: boolean = false;
+  chargeCalculationTypeFilterHonorarios: boolean = false;
+  chargeCalculationTypeFilterTerm: boolean = false;
+
+  showVoluntaryInsuranceError = false;
+  voluntaryInsuranceErrorCode: string;
 
   /**
    * Retrieves the charge data from `resolve`.
@@ -128,10 +132,13 @@ export class EditChargeComponent implements OnInit {
       this.chargeForm.get('chargeCalculationTypeFilterHonorarios').setValue(true);
     }
 
-    if (selectedCalculationTypeCode.indexOf('percentofanothercharge') !== -1) {
+    if(selectedCalculationTypeCode.indexOf('percentofanothercharge') !== -1) {
       this.chargeForm.get('chargeCalculationTypeFilterTerm').setValue(true);
     }
 
+    if(selectedCalculationTypeCode.indexOf('segurovoluntarioasistencia') !== -1) {
+      this.chargeForm.get('chargeCalculationTypeFilterInsuranceType').setValue(true);
+    }
   }
 
   ngOnInit() {
@@ -157,6 +164,7 @@ export class EditChargeComponent implements OnInit {
    */
   editChargeForm() {
     this.showFeeOptions = (this.chargeData.feeInterval && this.chargeData.feeInterval > 0);
+    const voluntaryInsuranceData = this.chargeData.chargeInsuranceDetailData;
     const locale = this.settingsService.language.code;
     this.chargeForm = this.formBuilder.group({
       'name': [this.chargeData.name, Validators.required],
@@ -181,6 +189,18 @@ export class EditChargeComponent implements OnInit {
       'chargeCalculationTypeFilterHonorarios': [false],
       'chargeCalculationTypeFilterTerm': [false],
       'parentChargeId': [this.chargeData.parentChargeId, Validators.required],
+      'chargeCalculationTypeFilterInsuranceType': [false],
+      'graceOnChargePeriodAmount': ['0'],
+      'insuranceName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceName],
+      'insuranceChargedAs': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceChargedAs],
+      'insuranceCompany': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCompany],
+      'insurerName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurerName],
+      'insuranceCode': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCode],
+      'insurancePlan': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurancePlan],
+      'baseValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.baseValue],
+      'vatValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.vatValue],
+      'totalValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.totalValue],
+      'deadline':  [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
     });
 
     this.chargeForm.removeControl('graceOnChargePeriodAmount');
@@ -199,6 +219,7 @@ export class EditChargeComponent implements OnInit {
     this.chargeForm.removeControl('parentChargeId');
     this.chargeForm.removeControl('customChargeId');
     this.chargeForm.removeControl('externalCalculationChargeId');
+    this.chargeForm.removeControl('chargeCalculationTypeFilterInsuranceType');
 
     switch (this.chargeData.chargeAppliesTo.value) {
       case 'Loan': {
@@ -224,6 +245,7 @@ export class EditChargeComponent implements OnInit {
         this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false));
         this.chargeForm.addControl('customChargeId', new UntypedFormControl(false));
         this.chargeForm.addControl('externalCalculationChargeId', new UntypedFormControl(false));
+        this.chargeForm.addControl('chargeCalculationTypeFilterInsuranceType', new UntypedFormControl(false));
 
         this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
 
@@ -308,6 +330,7 @@ export class EditChargeComponent implements OnInit {
     delete charges.chargeCalculationTypeFilterAval;
     delete charges.chargeCalculationTypeFilterHonorarios;
     delete charges.chargeCalculationTypeFilterTerm;
+    delete charges.chargeCalculationTypeFilterInsuranceType;
 
     delete charges.customChargeId;
     delete charges.externalCalculationChargeId;
@@ -324,17 +347,17 @@ export class EditChargeComponent implements OnInit {
     const lookForWordsArray: any = [];
     let isFilterApplied = false;
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterFlat) {
+    if(this.chargeForm.value.chargeCalculationTypeFilterFlat) {
       lookForWordsArray.push('flat');
       isFilterApplied = true;
     }
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterDisbursal) {
+    if(this.chargeForm.value.chargeCalculationTypeFilterDisbursal) {
       lookForWordsArray.push('disbursedamount');
       isFilterApplied = true;
     }
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterAmount) {
+    if(this.chargeForm.value.chargeCalculationTypeFilterAmount) {
       lookForWordsArray.push('installmentprincipal');
       isFilterApplied = true;
     }
@@ -364,7 +387,7 @@ export class EditChargeComponent implements OnInit {
       isFilterApplied = true;
     }
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
+    if(this.chargeForm.value.chargeCalculationTypeFilterHonorarios) {
       lookForWordsArray.push('honorarios');
       isFilterApplied = true;
     }
@@ -375,6 +398,21 @@ export class EditChargeComponent implements OnInit {
       this.showAnotherChargeCombobox = true;
     } else {
       this.showAnotherChargeCombobox = false;
+    }
+    if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      lookForWordsArray.push('segurovoluntarioasistencia');
+      isFilterApplied = true;
+    }
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      if (!this.chargeForm.value.chargeCalculationTypeFilterFlat || lookForWordsArray.length > 2) {
+        this.showVoluntaryInsuranceError = true;
+        this.voluntaryInsuranceErrorCode = 'error.msg.only.flat.type.allowed.for.voluntary.insurance';
+        return;
+      } else {
+        this.showVoluntaryInsuranceError = false;
+        this.voluntaryInsuranceErrorCode = '';
+      }
     }
 
     for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {

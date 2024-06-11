@@ -44,10 +44,10 @@ export class CreateChargeComponent implements OnInit {
   chargeCalculationTypeFilterOutstandingAmount = false;
   chargeCalculationTypeFilterOutstandingInterest = false;
   chargeCalculationTypeFilterInsurance = false;
+  chargeCalculationTypeFilterInsuranceType = false;
   chargeCalculationTypeFilterAval = false;
   chargeCalculationTypeFilterHonorarios = false;
   chargeCalculationTypeFilterTerm = false;
-
 
 
   /** Income and liability account data */
@@ -58,6 +58,13 @@ export class CreateChargeComponent implements OnInit {
   maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   /** Repeat every label */
   repeatEveryLabel: string;
+
+  /** Currency decimal places */
+  currencyDecimalPlaces: number;
+
+  showVoluntaryInsuranceError = false;
+  voluntaryInsuranceErrorCode: string;
+
   /**
    * Retrieves the charges template data and income and liability account data from `resolve`.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -123,6 +130,16 @@ export class CreateChargeComponent implements OnInit {
       'minCap': [''],
       'maxCap': [''],
       'graceOnChargePeriodAmount': ['0', [Validators.required, Validators.min(0)]],
+      'insuranceName': [''],
+      'insuranceChargedAs': [''],
+      'insuranceCompany':  [''],
+      'insurerName':  [''],
+      'insuranceCode':  [''],
+      'insurancePlan':  [''],
+      'baseValue':  [''],
+      'vatValue':  [''],
+      'totalValue': [''],
+      'deadline':   [''],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
@@ -130,6 +147,7 @@ export class CreateChargeComponent implements OnInit {
       'chargeCalculationTypeFilterOutstandingAmount': [false],
       'chargeCalculationTypeFilterOutstandingInterest': [false],
       'chargeCalculationTypeFilterInsurance': [false],
+      'chargeCalculationTypeFilterInsuranceType': [false],
       'chargeCalculationTypeFilterAval': [false],
       'chargeCalculationTypeFilterHonorarios': [false],
       'chargeCalculationTypeFilterTerm': [false],
@@ -207,6 +225,7 @@ export class CreateChargeComponent implements OnInit {
       this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingAmount');
       this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingInterest');
       this.chargeForm.removeControl('chargeCalculationTypeFilterInsurance');
+      this.chargeForm.removeControl('chargeCalculationTypeFilterInsuranceType');
       this.chargeForm.removeControl('chargeCalculationTypeFilterAval');
       this.chargeForm.removeControl('chargeCalculationTypeFilterHonorarios');
       this.chargeForm.removeControl('chargeCalculationTypeFilterTerm');
@@ -232,6 +251,7 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingAmount', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingInterest', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterInsurance', new UntypedFormControl(false));
+          this.chargeForm.addControl('chargeCalculationTypeFilterInsuranceType', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterAval', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterHonorarios', new UntypedFormControl(false));
           this.chargeForm.addControl('chargeCalculationTypeFilterTerm', new UntypedFormControl(false));
@@ -332,6 +352,7 @@ export class CreateChargeComponent implements OnInit {
     delete data.chargeCalculationTypeFilterOutstandingAmount;
     delete data.chargeCalculationTypeFilterOutstandingInterest;
     delete data.chargeCalculationTypeFilterInsurance;
+    delete data.chargeCalculationTypeFilterInsuranceType;
     delete data.chargeCalculationTypeFilterAval;
     delete data.chargeCalculationTypeFilterHonorarios;
     delete data.chargeCalculationTypeFilterTerm;
@@ -339,7 +360,7 @@ export class CreateChargeComponent implements OnInit {
     delete data.customChargeId;
     delete data.externalCalculationChargeId;
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterTerm === false) {
+    if (this.chargeForm.value.chargeCalculationTypeFilterTerm == false) {
       delete data.parentChargeId;
     }
 
@@ -402,21 +423,38 @@ export class CreateChargeComponent implements OnInit {
       lookForWordsArray.push('percentofanothercharge');
       isFilterApplied = true;
       this.showAnotherChargeCombobox = true;
-      this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false, Validators.required));
-
+      if (this.chargeForm.get('parentChargeId') == null) {
+        this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false, Validators.required));
+      }
+      this.chargeForm.get('parentChargeId').setValidators([Validators.required]);
     } else {
 
       this.chargeForm.removeControl('parentChargeId');
       this.showAnotherChargeCombobox = false;
     }
 
-    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
-      this.lookForKeyOnCode(lookForWordsArray, index);
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      lookForWordsArray.push('segurovoluntarioasistencia');
+      isFilterApplied = true;
     }
 
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      if (!this.chargeForm.value.chargeCalculationTypeFilterFlat || lookForWordsArray.length > 2) {
+        this.showVoluntaryInsuranceError = true;
+        this.voluntaryInsuranceErrorCode = 'error.msg.only.flat.type.allowed.for.voluntary.insurance';
+        return;
+      } else {
+        this.showVoluntaryInsuranceError = false;
+        this.voluntaryInsuranceErrorCode = '';
+      }
+    }
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
+      this.lookForKeyOnCode(lookForWordsArray, index);
+    } 
+
     // IOf nothing selected, restore the list
-    if (lookForWordsArray.length === 0) {
-      for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+    if (lookForWordsArray.length == 0) {
+      for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
         this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
       }
     }
@@ -426,12 +464,15 @@ export class CreateChargeComponent implements OnInit {
     } else {
       this.chargeForm.get('chargeCalculationType').setValue(null);
     }
-  }
+  }  
+
 
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
-    const currCode = this.originalChargeCalculationTypeData[index].code;
-    for (let i = 0; i <= lookForWordsArray.length - 1; i++) {
-      if (currCode.toString().indexOf('.' + lookForWordsArray[i]) === -1) {
+    let currCode = this.originalChargeCalculationTypeData[index].code;
+
+    for (let i = 0; i <= lookForWordsArray.length-1; i++) {
+      if(currCode.toString().indexOf("."+ lookForWordsArray[i]) == -1) {
+
         return;
       }
     }

@@ -2350,8 +2350,9 @@
             "chargeCalculationType.amount": "Principal Cuota",
             "chargeCalculationType.interest": "Interés Cuota",
             "chargeCalculationType.outstanding.amount": "Principal Saldo",
-            "chargeCalculationType.outstanding.interest": "Interés Saldo",
-            "chargeCalculationType.insurance": "Seguro",
+            "chargeCalculationType.outstanding.interest": "Interes Saldo",
+            "chargeCalculationType.insurance": "Seguro Obligatorio",
+            "chargeCalculationType.voluntary.assistance": "Seguro Voluntario/Asistencia ",
             "chargeCalculationType.aval": "Aval",
             "chargeCalculationType.fee": "Honorarios",
             "chargeCalculationType.term": "Otro Cargo",
@@ -2407,7 +2408,17 @@
             "Advanced Payment Allocation Transactions": "Transacciones de asignación de pagos anticipados",
             "Advanced Credit Allocation Transactions": "Transacciones de asignación de créditos anticipados",
             "Extend term for monthly repayments": "Extender plazo para pagos mensuales",
-            "Enable Down Payments": "Habilitar Pagos Iniciales"
+            "Enable Down Payments": "Habilitar Pagos Iniciales",
+            "charge.insurance.name": "Nombre el Seguro",
+            "charge.insurance.chargedAs": "Seguro Cobrado Como",
+            "charge.insurance.company": "NIT Aseguradora",
+            "charge.insurer.name": "Nombre Aseguradora",
+            "charge.insurance.code": "Codigo Del Seguro",
+            "charge.insurance.plan": "Plan",
+            "charge.insurance.base.value": "Valor Base",
+            "charge.insurance.vat.value": "Valor IVA",
+            "charge.insurance.total.value": "Valor Total",
+            "charge.insurance.deadline": "Plazo Maximo"
         },
         "links": {
             "Community": "Comunidad",
@@ -3547,8 +3558,12 @@
     "repayment": "Recaudos (Pagos)",
     "invalid": "Inválido"
   },
-  "interest.rate.type": {
+    "interest.rate.type": {
     "regular": "Interés corriente",
     "overdue": "Interés de mora"
-  }
+  },
+  "error.msg.only.flat.type.allowed.for.voluntary.insurance":"Sólo se permite el tipo de cálculo de cargo fijo para el seguro voluntario/de asistencia",
+  "chargeInsuranceType.invalid": "Invalid",
+  "chargeInsuranceType.compra": "Compra",
+  "chargeInsuranceType.cargo": "Cargo"
 }
