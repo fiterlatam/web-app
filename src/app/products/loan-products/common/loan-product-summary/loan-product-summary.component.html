@@ -442,6 +442,11 @@
     <span  fxFlex="53%">{{ loanProduct.graceOnInterestPayment }}</span>
   </div>
 
+  <div fxFlexFill *ngIf="loanProduct.graceOnChargesPayment">
+    <span fxFlex="47%">{{'labels.inputs.Grace on charges payment'| translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.graceOnChargesPayment }}</span>
+  </div>
+
   <div fxFlexFill *ngIf="loanProduct.graceOnInterestCharged">
     <span fxFlex="47%">{{'labels.inputs.Interest free period'| translate }}:</span>
     <span  fxFlex="53%">{{ loanProduct.graceOnInterestCharged }}</span>

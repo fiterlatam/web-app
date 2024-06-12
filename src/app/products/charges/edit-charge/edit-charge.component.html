@@ -105,7 +105,7 @@
             </mat-checkbox>
             <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
               {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
-            </mat-error>              
+            </mat-error>
             <p *ngIf="showVoluntaryInsuranceError" class="mat-error ng-star-inserted">{{voluntaryInsuranceErrorCode | translate }}</p>
           </div>
 
@@ -172,6 +172,19 @@
             </mat-error>
             <mat-error *ngIf="chargeForm.controls.amount.hasError('pattern')">
               {{"labels.inputs.Amount" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.have invalid number format" | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="98%" *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+            <mat-label>{{ "labels.inputs.Interest Rate" | translate }}</mat-label>
+            <mat-select formControlName="interestRateId">
+              <mat-option>---</mat-option>
+              <mat-option *ngFor="let interestRateOption of interestRateOptions" [value]="interestRateOption.id">
+                {{ interestRateOption.name }} ({{ interestRateOption['currentRate'] }}%)
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="chargeForm.controls.customChargeId.hasError('required')">
+              {{ "labels.inputs.Interest Rate" | translate }} {{ 'labels.commons.is'}} <strong>{{ 'labels.commons.required'}}</strong>
             </mat-error>
           </mat-form-field>
 

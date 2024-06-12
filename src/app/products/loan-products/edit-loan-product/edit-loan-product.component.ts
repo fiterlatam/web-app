@@ -110,15 +110,6 @@ export class EditLoanProductComponent implements OnInit {
     this.creditAllocation = creditAllocation;
     this.wasPaymentAllocationChanged = true;
   }
-
-  paymentAllocationChanged(value: boolean): void {
-    this.wasPaymentAllocationChanged = value;
-  }
-
-  setSubChannelInterfaceArray(subChannelLoanProductInterface: SubChannelLoanProductInterface[]): void {
-    this.SubChannelInterfaceArray = subChannelLoanProductInterface;
-  }  
-
   get loanProductAccountingForm() {
     return this.loanProductAccountingStep.loanProductAccountingForm;
   }

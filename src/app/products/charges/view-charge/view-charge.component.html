@@ -49,6 +49,13 @@
           {{ chargeData.amount | formatNumber: [chargeData.currency.decimalPlaces] }}
         </div>
 
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="interestRateData">
+          {{ "labels.inputs.Interest Rate" | translate }}
+        </div>
+        <div fxFlex="50%" *ngIf="interestRateData">
+          {{ interestRateData.name }} ({{ interestRateData['currentRate'] }}%)
+        </div>
+
         <div fxFlex="50%" class="mat-body-strong" *ngIf="minCap">
           {{ "labels.inputs.Minimum Charge Cap" | translate }}
         </div>

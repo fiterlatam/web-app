@@ -18,6 +18,7 @@ import { DeleteDialogComponent } from '../../../shared/delete-dialog/delete-dial
   styleUrls: ['./view-charge.component.scss']
 })
 export class ViewChargeComponent implements OnInit {
+  interestRateData: any;
 
   /** Charge data. */
   chargeData: any;
@@ -43,6 +44,10 @@ export class ViewChargeComponent implements OnInit {
       if (this.chargeData.maxCap) {
         this.maxCap = true;
       }
+      if (this.chargeData.interestRate) {
+        this.interestRateData = this.chargeData.interestRate;
+      }
+
     });
   }
 
