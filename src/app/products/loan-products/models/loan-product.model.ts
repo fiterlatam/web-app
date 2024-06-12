@@ -89,6 +89,7 @@ export interface LoanProduct {
   delinquencyBucketId?:                                      number;
   graceOnPrincipalPayment?:                                  number;
   graceOnInterestPayment?:                                   number;
+  graceOnChargesPayment?:                                    number;
   graceOnInterestCharged?:                                   number;
   inArrearsTolerance?:                                       number;
   dueDaysForRepaymentEvent:                                  number;
@@ -134,6 +135,7 @@ export interface LoanProduct {
   minDifferentialLendingRate?:                               number;
   maxDifferentialLendingRate?:                               number;
   interestRateId?:                                           number;
+  outstandingLoanBalance?:                                   any;
 }
 
 

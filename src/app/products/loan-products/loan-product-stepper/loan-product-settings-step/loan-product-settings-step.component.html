@@ -43,7 +43,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-checkbox *ngIf="loanProductSettingsForm.value.interestCalculationPeriodType === 1" fxFlex="48%" labelPosition="before"
+    <mat-checkbox *ngIf="loanProductSettingsForm.value['interestCalculationPeriodType'] === 1" fxFlex="48%" labelPosition="before"
                   matTooltip="{{ 'tooltips.To be used with SAME AS REPAYMENT PERIOD' | translate }}"
                   formControlName="allowPartialPeriodInterestCalcualtion">
       {{'labels.inputs.Calculate interest for exact days in partial period' | translate }}
@@ -104,7 +104,7 @@
       {{'labels.inputs.Enable Multiple Disbursals' | translate }}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.multiDisburseLoan" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['multiDisburseLoan']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
       <mat-form-field fxFlex="48%">
         <mat-label>{{'labels.inputs.Maximum Tranche count' | translate }}</mat-label>
         <input type="number" matInput matTooltip="{{ 'tooltips.Maximum number of disbursements' | translate }}" formControlName="maxTrancheCount" required>
@@ -129,7 +129,7 @@
       {{'labels.inputs.Enable Down Payment' | translate }}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.enableDownPayment" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['enableDownPayment']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
       <mat-form-field fxFlex="48%">
         <mat-label>{{'labels.inputs.Disbursed Amount Percentage Down Payment (%)' | translate }}</mat-label>
         <input type="number" matInput matTooltip="{{ 'tooltips.The percentage of disbursements amount for Down Payment' | translate }}"
@@ -148,19 +148,22 @@
     </div>
 
     <mat-divider fxFlex="98%"></mat-divider>
-
     <span fxFlex="48%" fxHide.lt-md></span>
-
     <h4 fxFlex="98%" class="mat-h4"> {{'labels.heading.Moratorium' | translate }} <i class="fas fa-question" matTooltip="{{ 'tooltips.The moratorium information' | translate }}"></i></h4>
 
-    <mat-form-field fxFlex="48%">
+    <mat-form-field fxFlex="31%">
       <mat-label>{{'labels.inputs.Grace on principal payment' | translate }}</mat-label>
       <input type="number" matInput formControlName="graceOnPrincipalPayment">
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%">
+    <mat-form-field fxFlex="31%">
       <mat-label>{{'labels.inputs.Grace on interest payment' | translate }}</mat-label>
       <input type="number" matInput formControlName="graceOnInterestPayment">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Grace on charges payment' | translate }}</mat-label>
+      <input type="number" matInput formControlName="graceOnChargesPayment">
     </mat-form-field>
 
     <mat-divider fxFlex="98%"></mat-divider>
@@ -260,7 +263,7 @@
       {{"labels.inputs.Are Variable Installments Allowed?" | translate}}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.allowVariableInstallments" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['allowVariableInstallments']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
       <h4 fxFlex="98%" class="mat-h4">{{"labels.inputs.Variable Installments" | translate}}</h4>
 
@@ -294,7 +297,7 @@
       {{"labels.inputs.Recalculate Interest" | translate}}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.isInterestRecalculationEnabled" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['isInterestRecalculationEnabled']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
       <mat-form-field fxFlex="48%">
         <mat-label>{{"labels.inputs.Pre-closure interest calculation rule" | translate}}</mat-label>
@@ -336,7 +339,7 @@
 
       <div fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
-        <mat-form-field fxFlex="48%" *ngIf="loanProductSettingsForm.value.interestRecalculationCompoundingMethod !== 0 && loanProductSettingsForm.value.recalculationCompoundingFrequencyType !== 1">
+        <mat-form-field fxFlex="48%" *ngIf="loanProductSettingsForm.value['interestRecalculationCompoundingMethod'] !== 0 && loanProductSettingsForm.value['recalculationCompoundingFrequencyType'] !== 1">
           <mat-label>{{"labels.inputs.Frequency Interval for compounding" | translate}}</mat-label>
           <input type="number" matInput formControlName="recalculationCompoundingFrequencyInterval" required>
           <mat-error>
@@ -344,7 +347,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field fxFlex="48%" *ngIf="loanProductSettingsForm.value.recalculationRestFrequencyType !== 1">
+        <mat-form-field fxFlex="48%" *ngIf="loanProductSettingsForm.value['recalculationRestFrequencyType'] !== 1">
           <mat-label>{{"labels.inputs.Frequency Interval for recalculation" | translate}}</mat-label>
           <input type="number" matInput formControlName="recalculationRestFrequencyInterval" required>
           <mat-error>
@@ -354,7 +357,7 @@
 
       </div>
 
-      <div *ngIf="loanProductSettingsForm.value.interestRecalculationCompoundingMethod !== 0" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <div *ngIf="loanProductSettingsForm.value['interestRecalculationCompoundingMethod'] !== 0" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
         <mat-form-field fxFlex="31%">
           <mat-label>{{"labels.inputs.Frequency for compounding" | translate}}</mat-label>
@@ -365,7 +368,7 @@
           </mat-select>
         </mat-form-field>
 
-        <div *ngIf="loanProductSettingsForm.value.recalculationCompoundingFrequencyType === 4" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
+        <div *ngIf="loanProductSettingsForm.value['recalculationCompoundingFrequencyType'] === 4" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
           <mat-form-field fxFlexFill>
             <mat-select formControlName="recalculationCompoundingFrequencyNthDayType">
@@ -377,8 +380,8 @@
 
         </div>
 
-        <div *ngIf="(loanProductSettingsForm.value.recalculationCompoundingFrequencyType === 4 && loanProductSettingsForm.value.recalculationCompoundingFrequencyNthDayType !== -2) ||
-        loanProductSettingsForm.value.recalculationCompoundingFrequencyType === 3" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
+        <div *ngIf="(loanProductSettingsForm.value['recalculationCompoundingFrequencyType'] === 4 && loanProductSettingsForm.value['recalculationCompoundingFrequencyNthDayType'] !== -2) ||
+        loanProductSettingsForm.value['recalculationCompoundingFrequencyType'] === 3" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
           <mat-form-field fxFlexFill>
             <mat-select formControlName="recalculationCompoundingFrequencyDayOfWeekType">
@@ -390,7 +393,7 @@
 
         </div>
 
-        <div *ngIf="loanProductSettingsForm.value.recalculationCompoundingFrequencyType === 4 && loanProductSettingsForm.value.recalculationCompoundingFrequencyNthDayType === -2"
+        <div *ngIf="loanProductSettingsForm.value['recalculationCompoundingFrequencyType'] === 4 && loanProductSettingsForm.value['recalculationCompoundingFrequencyNthDayType'] === -2"
              fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
           <mat-form-field fxFlexFill>
@@ -417,7 +420,7 @@
         </mat-error>
       </mat-form-field>
 
-      <div *ngIf="loanProductSettingsForm.value.recalculationRestFrequencyType === 4" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
+      <div *ngIf="loanProductSettingsForm.value['recalculationRestFrequencyType'] === 4" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
         <mat-form-field fxFlexFill>
           <mat-select formControlName="recalculationRestFrequencyNthDayType">
@@ -429,8 +432,8 @@
 
       </div>
 
-      <div *ngIf="(loanProductSettingsForm.value.recalculationRestFrequencyType === 4 && loanProductSettingsForm.value.recalculationRestFrequencyNthDayType !== -2) ||
-      loanProductSettingsForm.value.recalculationRestFrequencyType === 3" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
+      <div *ngIf="(loanProductSettingsForm.value['recalculationRestFrequencyType'] === 4 && loanProductSettingsForm.value['recalculationRestFrequencyNthDayType'] !== -2) ||
+      loanProductSettingsForm.value['recalculationRestFrequencyType'] === 3" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
         <mat-form-field fxFlexFill>
           <mat-select formControlName="recalculationRestFrequencyDayOfWeekType">
@@ -442,7 +445,7 @@
 
       </div>
 
-      <div *ngIf="loanProductSettingsForm.value.recalculationRestFrequencyType === 4 && loanProductSettingsForm.value.recalculationRestFrequencyNthDayType === -2" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
+      <div *ngIf="loanProductSettingsForm.value['recalculationRestFrequencyType'] === 4 && loanProductSettingsForm.value['recalculationRestFrequencyNthDayType'] === -2" fxFlex="31%" fxLayout="row" fxLayout.lt-md="column">
 
         <mat-form-field fxFlexFill>
           <mat-select formControlName="recalculationRestFrequencyOnDayType">
@@ -468,7 +471,7 @@
       {{"labels.inputs.Place Guarantee Funds On-Hold?" | translate}}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.holdGuaranteeFunds" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['holdGuaranteeFunds']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
       <mat-form-field fxFlex="31%">
         <mat-label>{{"labels.inputs.Mandatory Guarantee(%)" | translate}}</mat-label>
@@ -499,7 +502,7 @@
       {{"labels.inputs.Use the Global Configurations values to the Repayment Event (notifications)" | translate}}
     </mat-checkbox>
 
-    <div fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" *ngIf="!loanProductSettingsForm.value.useDueForRepaymentsConfigurations">
+    <div fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" *ngIf="!loanProductSettingsForm.value['useDueForRepaymentsConfigurations']">
 
       <mat-form-field fxFlex="48%">
         <mat-label>{{"labels.inputs.Due days for repayment event" | translate}}</mat-label>
@@ -534,7 +537,7 @@
       {{'labels.inputs.Allow overriding select terms and settings in loan accounts' | translate }}
     </mat-checkbox>
 
-    <div *ngIf="loanProductSettingsForm.value.allowAttributeConfiguration" formGroupName="allowAttributeOverrides" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <div *ngIf="loanProductSettingsForm.value['allowAttributeConfiguration']" formGroupName="allowAttributeOverrides" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
       <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="amortizationType" class="margin-v">
         {{ 'labels.inputs.Amortization' | translate }}

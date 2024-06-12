@@ -32,6 +32,7 @@ export class CreateChargeComponent implements OnInit {
   parentChargeDataList: any = [];
   chargeFromTableList: any = [];
   chargeFromExternalCalculationList: any = [];
+  interestRateOptions: any = [];
 
   /** Charge calculation type data. */
   originalChargeCalculationTypeData: any = [];
@@ -152,6 +153,7 @@ export class CreateChargeComponent implements OnInit {
       'chargeCalculationTypeFilterHonorarios': [false],
       'chargeCalculationTypeFilterTerm': [false],
       'parentChargeId': ['', Validators.required],
+      'interestRateId': [''],
     });
     this.chargeForm.updateValueAndValidity();
   }
@@ -185,6 +187,7 @@ export class CreateChargeComponent implements OnInit {
     this.parentChargeDataList = this.chargesTemplateData.chargeDataList;
     this.chargeFromTableList =  this.chargesTemplateData.chargeFromTableList;
     this.chargeFromExternalCalculationList = this.chargesTemplateData.chargeFromExternalCalculationList;
+    this.interestRateOptions = this.chargesTemplateData.interestRateOptions;
   }
 
   /**
@@ -450,7 +453,7 @@ export class CreateChargeComponent implements OnInit {
     }
     for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
       this.lookForKeyOnCode(lookForWordsArray, index);
-    } 
+    }
 
     // IOf nothing selected, restore the list
     if (lookForWordsArray.length == 0) {
@@ -464,7 +467,7 @@ export class CreateChargeComponent implements OnInit {
     } else {
       this.chargeForm.get('chargeCalculationType').setValue(null);
     }
-  }  
+  }
 
 
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {

@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
@@ -19,18 +16,33 @@ import { ProductsService } from 'app/products/products.service';
 })
 export class LoanProductSettingsStepComponent implements OnInit {
 
-  DAYS_BEFORE_REPAYMENT_IS_DUE = LoanProducts.DAYS_BEFORE_REPAYMENT_IS_DUE;
-  DAYS_AFTER_REPAYMENT_IS_OVERDUE = LoanProducts.DAYS_AFTER_REPAYMENT_IS_OVERDUE;
+  constructor(private formBuilder: UntypedFormBuilder,
+              private productsService: ProductsService) {
+    this.createLoanProductSettingsForm();
+    this.setConditionalControls();
+  }
 
+  get loanProductSettings() {
+    const productSettings = this.loanProductSettingsForm.value;
+    if (this.loanProductSettingsForm.value.useDueForRepaymentsConfigurations) {
+      productSettings['dueDaysForRepaymentEvent'] = null;
+      productSettings['overDueDaysForRepaymentEvent'] = null;
+    }
+    if (productSettings['delinquencyBucketId'] === '') {
+      productSettings['delinquencyBucketId'] = null;
+    }
+    return productSettings;
+  }
+
+  get getSubChannelLoanProductMapping() {
+    return this.apiData;
+  }
   @Input() toEdit: boolean;
   @Input() loanProductsTemplate: any;
   @Input() isLinkedToFloatingInterestRates: UntypedFormControl;
   @Output() advancePaymentStrategy = new EventEmitter<string>();
 
   loanProductSettingsForm: UntypedFormGroup;
-
-  customCollectionsSubChannelForm: UntypedFormGroup;
-
   amortizationTypeData: any;
   interestTypeData: any;
   interestCalculationPeriodTypeData: any;
@@ -51,23 +63,20 @@ export class LoanProductSettingsStepComponent implements OnInit {
   isAdvancedTransactionProcessingStrategy = false;
   advancedTransactionProcessingStrategyDisabled = true;
   repaymentReschedulingTypeData: OptionData[] = [];
-
-  /** Values to Days for Repayments */
   defaultConfigValues: GlobalConfiguration[] = [];
-
   apiData: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-
   displayedColumns =  ['channelName', 'subChannelName', 'actions'];
-
-  constructor(private formBuilder: UntypedFormBuilder, 
-    private route: ActivatedRoute,
-    private router: Router,    
-    private productsService: ProductsService) {
-    this.createLoanProductSettingsForm();
-//    this.createCustomCollectionsSubChannelForm();
-    this.setConditionalControls();
-  }
+  filteredChannel: ChannelInterface | undefined;
+  filteredSubChannel: SubChannelInterface | undefined;
+  SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
+  channelsList: any[] = [];
+  subChannelsList: any[] = [];
+  channelId: any;
+  subChannelId: any;
+  currentInMemoryId = 0;
+  showCollectionDetails = true;
+  apiDataClone: SubChannelLoanProductInterface[] = [];
 
   ngOnInit() {
     this.defaultConfigValues = this.loanProductsTemplate['itemsByDefault'];
@@ -102,12 +111,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.apiData = this.loanProductsTemplate.customCollectionsSubChannelList;
     this.dataSource = new MatTableDataSource(this.apiData);
     this.dataSource.data = this.apiData;
-
     this.SubChannelInterfaceArray = this.apiData;
-
-//    this.dataSource.paginator = this.paginator;
-//    this.dataSource.sort = this.sort;
-
 
     const transactionProcessingStrategyCode: string = this.loanProductsTemplate.transactionProcessingStrategyCode || this.transactionProcessingStrategyData[0].code;
     this.loanProductSettingsForm.patchValue({
@@ -119,6 +123,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'transactionProcessingStrategyCode': transactionProcessingStrategyCode,
       'graceOnPrincipalPayment': this.loanProductsTemplate.graceOnPrincipalPayment,
       'graceOnInterestPayment': this.loanProductsTemplate.graceOnInterestPayment,
+      'graceOnChargesPayment': this.loanProductsTemplate.graceOnChargesPayment,
       'graceOnInterestCharged': this.loanProductsTemplate.graceOnInterestCharged,
       'inArrearsTolerance': this.loanProductsTemplate.inArrearsTolerance,
       'daysInYearType': this.loanProductsTemplate.daysInYearType.id,
@@ -252,7 +257,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       });
     }
 
-    this.loadChannelsForCombobox()
+    this.loadChannelsForCombobox();
   }
 
   createLoanProductSettingsForm() {
@@ -264,6 +269,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'transactionProcessingStrategyCode': ['', Validators.required],
       'graceOnPrincipalPayment': [''],
       'graceOnInterestPayment': [''],
+      'graceOnChargesPayment': [''],
       'graceOnInterestCharged': [''],
       'inArrearsTolerance': [''],
       'daysInYearType': ['', Validators.required],
@@ -312,13 +318,12 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'channelId': [false],
       'subChannelId': [false],
       'subChannelLoanProductMapper': [],
-      
+
     });
   }
 
   setConditionalControls() {
     const allowAttributeOverrides = this.loanProductSettingsForm.get('allowAttributeOverrides');
-
     this.loanProductSettingsForm.get('interestCalculationPeriodType').valueChanges
       .subscribe((interestCalculationPeriodType: any) => {
         if (interestCalculationPeriodType === 0) {
@@ -526,7 +531,6 @@ export class LoanProductSettingsStepComponent implements OnInit {
     .subscribe((loanScheduleType: string) => {
       this.transactionProcessingStrategyData = [];
       if (loanScheduleType === LoanProducts.LOAN_SCHEDULE_TYPE_CUMULATIVE) {
-        // Filter Advanced Payment Allocation Strategy
         this.transactionProcessingStrategyData = this.transactionProcessingStrategyDataBase.filter(
           (cn: CodeName) => !LoanProducts.isAdvancedPaymentAllocationStrategy(cn.code)
         );
@@ -538,7 +542,6 @@ export class LoanProductSettingsStepComponent implements OnInit {
         this.advancedTransactionProcessingStrategyDisabled = false;
         this.isAdvancedTransactionProcessingStrategy =  false;
       } else {
-        // Only Advanced Payment Allocation Strategy
         this.transactionProcessingStrategyDataBase.some(
           (cn: CodeName) => {
           if (LoanProducts.isAdvancedPaymentAllocationStrategy(cn.code)) {
@@ -574,35 +577,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  get loanProductSettings() {
-    const productSettings = this.loanProductSettingsForm.value;
-    if (this.loanProductSettingsForm.value.useDueForRepaymentsConfigurations) {
-      productSettings['dueDaysForRepaymentEvent'] = null;
-      productSettings['overDueDaysForRepaymentEvent'] = null;
-    }
-    if (productSettings['delinquencyBucketId'] === '') {
-      productSettings['delinquencyBucketId'] = null;
-    }
-    return productSettings;
-  }
 
-  get getSubChannelLoanProductMapping() {
-    return this.apiData;
-  }
-
-  // #############################################################
-  filteredChannel: ChannelInterface | undefined;
-  filteredSubChannel: SubChannelInterface | undefined;
-  SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
-  channelsList: any[] = [];
-  subChannelsList: any[] = [];
-  channelId: any;
-  subChannelId: any;
-  currentInMemoryId: number = 0;
-  showCollectionDetails = true;
-  apiDataClone: SubChannelLoanProductInterface[] = [];
-
-  
   loadChannelsForCombobox() {
       this.productsService.getChannels()
         .subscribe((response: any) => {
@@ -622,20 +597,14 @@ export class LoanProductSettingsStepComponent implements OnInit {
 
   setSubChannelVariable(subChannelId: any) {
     this.subChannelId = subChannelId;
-
-    // Check if this item already exists and if so, disable submit button
-    this.apiDataClone = this.apiData.filter((apiData: { channelId: number; }) => apiData.channelId == this.channelId);
-    this.apiDataClone = this.apiDataClone.filter((apiDataClone: { subChannelId: number; }) => apiDataClone.subChannelId == this.subChannelId);
-
+    this.apiDataClone = this.apiData.filter((apiData: { channelId: number; }) => apiData.channelId === this.channelId);
+    this.apiDataClone = this.apiDataClone.filter((apiDataClone: { subChannelId: number; }) => apiDataClone.subChannelId === this.subChannelId);
   }
 
   addLoadSubChannel() {
     this.filteredChannel = this.channelsList.find(channel => channel.id === this.channelId);
     this.filteredSubChannel = this.subChannelsList.find(subChannel => subChannel.id === this.subChannelId);
-
     this.currentInMemoryId--;
-
-    // Call lthe service and reset comboboxes and variables
     const newItem: SubChannelLoanProductInterface = {
       id: this.currentInMemoryId,
       channelId: this.channelId,
@@ -644,36 +613,34 @@ export class LoanProductSettingsStepComponent implements OnInit {
       subChannelName: this.filteredSubChannel.name,
       loanProductId: this.loanProductsTemplate.id
     };
-    
+
     this.addItem(newItem);
 
-    this.loanProductSettingsForm.get("channelId").patchValue(null);
-    this.loanProductSettingsForm.get("subChannelId").patchValue(null);
+    this.loanProductSettingsForm.get('channelId').patchValue(null);
+    this.loanProductSettingsForm.get('subChannelId').patchValue(null);
     this.channelId = null;
     this.subChannelId = null;
 
   }
 
   addItem(newItem: SubChannelLoanProductInterface) {
-    if(this.apiData == undefined) {
+    if (this.apiData === undefined) {
       this.apiData = [];
     }
 
     this.apiData.push(newItem);
     this.dataSource = new MatTableDataSource(this.apiData);
-    this.dataSource.data = this.apiData;    
+    this.dataSource.data = this.apiData;
   }
 
   deleteItem(id: number) {
     this.apiData = this.apiData.filter((apiData: { id: number; }) => apiData.id !== id);
     this.dataSource = new MatTableDataSource(this.apiData);
-    this.dataSource.data = this.apiData;    
+    this.dataSource.data = this.apiData;
   }
 
   setCustomAllowCollections(checked: any) {
     this.showCollectionDetails = checked;
   }
-
-// #############################################################
 
 }
