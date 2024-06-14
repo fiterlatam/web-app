@@ -5,7 +5,7 @@ import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
 import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 import { CodeName, OptionData } from 'app/shared/models/option-data.model';
-import { SubChannelLoanProductInterface, ChannelInterface, SubChannelInterface } from 'app/loans/models/loan-account.model';
+import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
 import { ProductsService } from 'app/products/products.service';
 
 
@@ -32,10 +32,6 @@ export class LoanProductSettingsStepComponent implements OnInit {
       productSettings['delinquencyBucketId'] = null;
     }
     return productSettings;
-  }
-
-  get getSubChannelLoanProductMapping() {
-    return this.apiData;
   }
   @Input() toEdit: boolean;
   @Input() loanProductsTemplate: any;
@@ -67,16 +63,10 @@ export class LoanProductSettingsStepComponent implements OnInit {
   apiData: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns =  ['channelName', 'subChannelName', 'actions'];
-  filteredChannel: ChannelInterface | undefined;
-  filteredSubChannel: SubChannelInterface | undefined;
   SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
   channelsList: any[] = [];
-  subChannelsList: any[] = [];
   channelId: any;
-  subChannelId: any;
-  currentInMemoryId = 0;
   showCollectionDetails = true;
-  apiDataClone: SubChannelLoanProductInterface[] = [];
 
   ngOnInit() {
     this.defaultConfigValues = this.loanProductsTemplate['itemsByDefault'];
@@ -112,9 +102,11 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.apiData);
     this.dataSource.data = this.apiData;
     this.SubChannelInterfaceArray = this.apiData;
+    this.channelsList = this.loanProductsTemplate['channelOptions'];
 
     const transactionProcessingStrategyCode: string = this.loanProductsTemplate.transactionProcessingStrategyCode || this.transactionProcessingStrategyData[0].code;
     this.loanProductSettingsForm.patchValue({
+      'channelId': this.loanProductsTemplate.channel ? this.loanProductsTemplate.channel.id : '',
       'amortizationType': this.loanProductsTemplate.amortizationType.id,
       'interestType': this.loanProductsTemplate.interestType.id,
       'isEqualAmortization': this.loanProductsTemplate.isEqualAmortization,
@@ -256,8 +248,6 @@ export class LoanProductSettingsStepComponent implements OnInit {
         }
       });
     }
-
-    this.loadChannelsForCombobox();
   }
 
   createLoanProductSettingsForm() {
@@ -315,8 +305,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowCreditNote': [false],
       'customAllowForgiveness': [false],
       'customAllowReversalCancellation': [false],
-      'channelId': [false],
-      'subChannelId': [false],
+      'channelId': [''],
       'subChannelLoanProductMapper': [],
 
     });
@@ -576,69 +565,6 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.loanProductSettingsForm.markAsDirty();
     $event.stopPropagation();
   }
-
-
-  loadChannelsForCombobox() {
-      this.productsService.getChannels()
-        .subscribe((response: any) => {
-          this.channelsList = response;
-          this.SubChannelInterfaceArray = this.apiData;
-        });
-  }
-
-  loadSubChannelsForCombobox(channelId: any) {
-    this.channelId = channelId;
-    this.productsService.getSubChannels(channelId)
-    .subscribe((response: any) => {
-      this.subChannelsList = response;
-      this.SubChannelInterfaceArray = this.apiData;
-    });
-  }
-
-  setSubChannelVariable(subChannelId: any) {
-    this.subChannelId = subChannelId;
-    this.apiDataClone = this.apiData.filter((apiData: { channelId: number; }) => apiData.channelId === this.channelId);
-    this.apiDataClone = this.apiDataClone.filter((apiDataClone: { subChannelId: number; }) => apiDataClone.subChannelId === this.subChannelId);
-  }
-
-  addLoadSubChannel() {
-    this.filteredChannel = this.channelsList.find(channel => channel.id === this.channelId);
-    this.filteredSubChannel = this.subChannelsList.find(subChannel => subChannel.id === this.subChannelId);
-    this.currentInMemoryId--;
-    const newItem: SubChannelLoanProductInterface = {
-      id: this.currentInMemoryId,
-      channelId: this.channelId,
-      channelName: this.filteredChannel.name,
-      subChannelId: this.subChannelId,
-      subChannelName: this.filteredSubChannel.name,
-      loanProductId: this.loanProductsTemplate.id
-    };
-
-    this.addItem(newItem);
-
-    this.loanProductSettingsForm.get('channelId').patchValue(null);
-    this.loanProductSettingsForm.get('subChannelId').patchValue(null);
-    this.channelId = null;
-    this.subChannelId = null;
-
-  }
-
-  addItem(newItem: SubChannelLoanProductInterface) {
-    if (this.apiData === undefined) {
-      this.apiData = [];
-    }
-
-    this.apiData.push(newItem);
-    this.dataSource = new MatTableDataSource(this.apiData);
-    this.dataSource.data = this.apiData;
-  }
-
-  deleteItem(id: number) {
-    this.apiData = this.apiData.filter((apiData: { id: number; }) => apiData.id !== id);
-    this.dataSource = new MatTableDataSource(this.apiData);
-    this.dataSource.data = this.apiData;
-  }
-
   setCustomAllowCollections(checked: any) {
     this.showCollectionDetails = checked;
   }

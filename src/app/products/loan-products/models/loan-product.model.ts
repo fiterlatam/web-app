@@ -136,6 +136,7 @@ export interface LoanProduct {
   maxDifferentialLendingRate?:                               number;
   interestRateId?:                                           number;
   outstandingLoanBalance?:                                   any;
+  channel?:                                                  any;
 }
 
 

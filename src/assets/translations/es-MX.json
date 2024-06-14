@@ -3,6 +3,7 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.msg.interest.rates.exist.above.this.rate": "No puede realizarse el cambio ya que hay intereses por encima del la nueva tasa, debe modificar primero las tasas",
         "validation.msg.loan.disbursement.channelName.cannot.be.blank": "No se pudo realizar el desembolso porque el canal es obligatorio en la solicitud.",
         "validation.msg.channel.not.disbursement": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no es un canal de desembolso.",
         "validation.msg.channel.not.active": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no está habilitado.",
@@ -1029,7 +1030,7 @@
             "Down Payment": "Pago inicial",
             "Configurable Terms and Settings": "Términos y configuraciones configurables",
             "Configurable Allowed Usages": "Usos permitidos configurables",
-            "Configurable Allowed Collections for Sub Channels": "Colecciones permitidas configurables para subcanales",
+            "Configurable Allowed Collections for Channels": "Colecciones permitidas configurables para canales",
             "Down Payments": "Pagos iniciales"
         },
         "inputs": {
@@ -1774,6 +1775,7 @@
             "Next Run": "Siguiente ejecución",
             "No. Of Loan Cycles": "No. de ciclos de Crédito",
             "Loan Cupo Balance": "Saldo de Crédito Cupo",
+            "Loan Advance Cupo Balance": "Saldo de credito cupo de avance",
             "No. of Active Loans": "No. de Créditos Activos",
             "No. of Active Savings": "No. de Ahorros Activos",
             "No. of Days in Year": "No. de días en el año",

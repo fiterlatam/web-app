@@ -35,16 +35,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.description"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.description }} </td>
       </ng-container>
-      <ng-container matColumnDef="nrSubChannels">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Sub Channels"  |translate}} </th>
-        <td mat-cell *matCellDef="let apiData">
-            <div class="action-button" fxLayoutGap="25px">
-                <button mat-raised-button color="danger" (click) = "deleteEntity(apiData.id)"  *mifosxHasPermission="'CREATE_CLIENTALLYPOINTOFSALES'">
-                  <i class="fa fa-sitemap" aria-hidden="true"></i>  {{ apiData.nrOfSubChannels }}
-               </button>
-              </div>
-        </td>
-      </ng-container>
+
       <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.active"  |translate}} </th>
         <td mat-cell *matCellDef="let apiData"> {{ apiData.active }} </td>
