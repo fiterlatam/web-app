@@ -342,6 +342,11 @@
     <span  fxFlex="53%">{{ loanProduct.allowPartialPeriodInterestCalculation | yesNo }}</span>
   </div>
 
+  <div fxFlexFill *ngIf="loanProduct.channel">
+    <span fxFlex="47%">{{'labels.inputs.Channel'| translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.channel.name }}</span>
+  </div>
+
   <h3 class="mat-h3" fxFlexFill>{{'labels.heading.Loan Schedule'| translate }}</h3>
 
   <mat-divider [inset]="true"></mat-divider>

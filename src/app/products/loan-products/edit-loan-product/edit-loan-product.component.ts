@@ -16,6 +16,7 @@ import { GlobalConfiguration } from 'app/system/configurations/global-configurat
 import { LoanProducts } from '../loan-products';
 import { AdvancedCreditAllocation, AdvancedPaymentAllocation, AdvancedPaymentStrategy, CreditAllocation, PaymentAllocation, PaymentAllocationOrder, PaymentAllocationTransactionTypes } from '../loan-product-stepper/loan-product-payment-strategy-step/payment-allocation-model';
 import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-edit-loan-product',
@@ -41,13 +42,12 @@ export class EditLoanProductComponent implements OnInit {
   creditAllocation: CreditAllocation[] = [];
   advancedPaymentAllocations: AdvancedPaymentAllocation[] = [];
   advancedCreditAllocations: AdvancedCreditAllocation[] = [];
-  SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
-
   /**
    * @param {ActivatedRoute} route Activated Route.
    * @param {ProductsService} productsService Product Service.
    * @param {LoanProducts} loanProducts LoanProducts
    * @param {Router} router Router for navigation.
+   * @param advancedPaymentStrategy
    */
 
   constructor(private route: ActivatedRoute,
@@ -159,13 +159,9 @@ export class EditLoanProductComponent implements OnInit {
       loanProduct['overDueDaysForRepaymentEvent'] = null;
     }
     delete loanProduct['useDueForRepaymentsConfigurations'];
-
-    delete loanProduct['channelId'];
-    delete loanProduct['subChannelId'];
-
     this.productsService.updateLoanProduct(this.loanProductAndTemplate.id, loanProduct)
       .subscribe((response: any) => {
-        this.router.navigate(['../../', response.resourceId], { relativeTo: this.route });
+        this.router.navigate(['../../', response.resourceId], {relativeTo: this.route}).then(r => logger.info('Loan Product Updated Successfully'));
       });
   }
 

@@ -16,7 +16,7 @@ import { ChannelService } from './channel.service';
 export class ChannelComponent implements OnInit, AfterViewInit {
   apiData: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns =  ['name', 'channelType', 'description', 'nrSubChannels', 'active'];
+  displayedColumns =  ['name', 'channelType', 'description', 'active'];
   name = new UntypedFormControl();
   reloaded = false;
 
@@ -63,8 +63,5 @@ export class ChannelComponent implements OnInit, AfterViewInit {
   deleteEntity(channelId: any) {
     event.stopPropagation();
     this.router.navigate(['system/manage-system-channels/' + channelId + '/subchannel']);
-  }
-
-  changeShowClosedGroups() {
   }
 }
