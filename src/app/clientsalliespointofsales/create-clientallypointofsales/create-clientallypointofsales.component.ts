@@ -57,7 +57,7 @@ export class CreateClientAllyPointOfSalesComponent implements OnInit {
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
-      'code': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{1,4}$')]],
+      'code': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{1,6}$')]],
       'name': ['', [Validators.required, Validators.maxLength(100)]],
       'brandCodeValueId': ['', [Validators.required]],
       'cityCodeValueId': ['', [Validators.required]],
