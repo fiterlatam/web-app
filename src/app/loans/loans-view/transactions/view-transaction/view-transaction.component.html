@@ -76,11 +76,11 @@
           {{ transactionData.amount | currency }} {{ transactionData.currency.code }}
         </div>
 
-        <div fxFlex="50%" class="mat-body-strong">
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="channelName">
           {{ 'Channel' | translate}} 
         </div>
 
-        <div fxFlex="50%">
+        <div fxFlex="50%" *ngIf="channelName">
           {{ channelName }} 
         </div>
 

@@ -75,7 +75,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'transactionDate': [this.settingsService.businessDate, Validators.required],
       'transactionAmount': ['', Validators.required],
       'externalId': '',
-      'paymentTypeId': '',
+      'paymentTypeId': ['',Validators.required],
       'note': '',
       'channelHash': ['',Validators.required],
     });

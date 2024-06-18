@@ -38,6 +38,8 @@ export class EditTransactionComponent implements OnInit {
   loanAccountId: string;
   /** Transaction Template */
   transactionTemplateData: any;
+   /** Channel List*/
+   channelsList: any; 
 
   /**
    * Retrieves the Loan Account transaction template data from `resolve`.
@@ -59,6 +61,7 @@ export class EditTransactionComponent implements OnInit {
       this.paymentTypeOptions = this.transactionTemplateData.paymentTypeOptions;
     });
     this.loanAccountId = this.route.snapshot.params['loanId'];
+   
   }
 
   /**
@@ -68,11 +71,14 @@ export class EditTransactionComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.createEditTransactionForm();
     this.editTransactionForm.patchValue({
+     
       'transactionDate': this.transactionTemplateData.date && new Date(this.transactionTemplateData.date),
       'transactionAmount': this.transactionTemplateData.amount,
       'externalId': this.transactionTemplateData.externalId,
-      'paymentTypeId': this.transactionTemplateData.paymentTypeId
+      'paymentTypeId': this.transactionTemplateData?.paymentDetailData?.paymentType?.id,
+      'channelHash' : this.transactionTemplateData?.paymentDetailData?.channelHash,
     });
+    this.loadChannelsForCombobox();
   }
 
   /**
@@ -83,7 +89,8 @@ export class EditTransactionComponent implements OnInit {
       'transactionDate': ['', Validators.required],
       'transactionAmount': ['', Validators.required],
       'externalId': [''],
-      'paymentTypeId': [''],
+      'paymentTypeId': ['', Validators.required],
+      'channelHash': ['', Validators.required]
     });
   }
 
@@ -98,6 +105,7 @@ export class EditTransactionComponent implements OnInit {
       this.editTransactionForm.addControl('routingCode', new UntypedFormControl(''));
       this.editTransactionForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.editTransactionForm.addControl('bankNumber', new UntypedFormControl(''));
+      this.editTransactionForm.addControl('channelHash', new UntypedFormControl(''));
     } else {
       this.editTransactionForm.removeControl('accountNumber');
       this.editTransactionForm.removeControl('checkNumber');
@@ -128,5 +136,20 @@ export class EditTransactionComponent implements OnInit {
         this.router.navigate(['../'], { relativeTo: this.route });
       });
   }
+
+  loadChannelsForCombobox() {
+    this.loansService.getChannels()
+      .subscribe((response: any) => {
+       
+        let channelPaymentList = response.filter((val:any)=>{
+          if(val.channelType.value === 'REPAYMENT'){
+            return val;
+          }
+          
+        });
+        
+        this.channelsList = channelPaymentList;
+      });
+}
 
 }
