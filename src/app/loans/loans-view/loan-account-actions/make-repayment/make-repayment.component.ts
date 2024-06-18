@@ -8,6 +8,7 @@ import { LoansService } from 'app/loans/loans.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
 
+
 /**
  * Loan Make Repayment Component
  */
@@ -31,6 +32,8 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   maxDate = new Date();
   /** Repayment Loan Form */
   repaymentLoanForm: UntypedFormGroup;
+  /** Channel List*/
+  channelsList: any; 
 
   /**
    * @param {FormBuilder} formBuilder Form Builder.
@@ -46,6 +49,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     private dateUtils: Dates,
     private settingsService: SettingsService) {
       this.loanId = this.route.snapshot.params['loanId'];
+
     }
 
   /**
@@ -56,6 +60,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     this.maxDate = this.settingsService.businessDate;
     this.createRepaymentLoanForm();
     this.setRepaymentLoanDetails();
+    this.loadChannelsForCombobox();
   }
 
   ngOnDestroy(): void {
@@ -71,11 +76,13 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'transactionAmount': ['', Validators.required],
       'externalId': '',
       'paymentTypeId': '',
-      'note': ''
+      'note': '',
+      'channelHash': ['',Validators.required],
     });
   }
 
   setRepaymentLoanDetails() {
+   
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount
@@ -93,14 +100,31 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       this.repaymentLoanForm.addControl('routingCode', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('bankNumber', new UntypedFormControl(''));
+      this.repaymentLoanForm.addControl('channelHash', new UntypedFormControl(''));
     } else {
       this.repaymentLoanForm.removeControl('accountNumber');
       this.repaymentLoanForm.removeControl('checkNumber');
       this.repaymentLoanForm.removeControl('routingCode');
       this.repaymentLoanForm.removeControl('receiptNumber');
       this.repaymentLoanForm.removeControl('bankNumber');
+      this.repaymentLoanForm.removeControl('channelHash');
     }
   }
+
+  loadChannelsForCombobox() {
+    this.loanService.getChannels()
+      .subscribe((response: any) => {
+       
+        let channelPaymentList = response.filter((val:any)=>{
+          if(val.channelType.value === 'REPAYMENT'){
+            return val;
+          }
+          
+        });
+        
+        this.channelsList = channelPaymentList;
+      });
+}
 
   /** Submits the repayment form */
   submit() {
