@@ -79,8 +79,8 @@
 
           <mat-form-field  fxLayoutGap="2%">
             <mat-label>{{ 'labels.inputs.Channel' | translate }}</mat-label>
-            <mat-select formControlName="channelHash"  aria-placeholder="Oi!">
-              <mat-option *ngFor="let obj of channelsList" [value]="obj.hash">
+            <mat-select formControlName="channelName" aria-placeholder="Oi!">
+              <mat-option *ngFor="let obj of channelsList" [value]="obj.name">
                 {{ obj.name }}
               </mat-option>
             </mat-select>

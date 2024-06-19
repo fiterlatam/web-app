@@ -33,7 +33,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   /** Repayment Loan Form */
   repaymentLoanForm: UntypedFormGroup;
   /** Channel List*/
-  channelsList: any; 
+  channelsList: any;
 
   /**
    * @param {FormBuilder} formBuilder Form Builder.
@@ -75,14 +75,14 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'transactionDate': [this.settingsService.businessDate, Validators.required],
       'transactionAmount': ['', Validators.required],
       'externalId': '',
-      'paymentTypeId': ['',Validators.required],
+      'paymentTypeId': ['', Validators.required],
       'note': '',
-      'channelHash': ['',Validators.required],
+      'channelName': ['', Validators.required],
     });
   }
 
   setRepaymentLoanDetails() {
-   
+
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount
@@ -100,28 +100,28 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       this.repaymentLoanForm.addControl('routingCode', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('bankNumber', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('channelHash', new UntypedFormControl(''));
+      this.repaymentLoanForm.addControl('channelName', new UntypedFormControl(''));
     } else {
       this.repaymentLoanForm.removeControl('accountNumber');
       this.repaymentLoanForm.removeControl('checkNumber');
       this.repaymentLoanForm.removeControl('routingCode');
       this.repaymentLoanForm.removeControl('receiptNumber');
       this.repaymentLoanForm.removeControl('bankNumber');
-      this.repaymentLoanForm.removeControl('channelHash');
+      this.repaymentLoanForm.removeControl('channelName');
     }
   }
 
   loadChannelsForCombobox() {
     this.loanService.getChannels()
       .subscribe((response: any) => {
-       
-        let channelPaymentList = response.filter((val:any)=>{
-          if(val.channelType.value === 'REPAYMENT'){
+
+        const channelPaymentList = response.filter((val: any) => {
+          if (val.channelType.value === 'REPAYMENT') {
             return val;
           }
-          
+
         });
-        
+
         this.channelsList = channelPaymentList;
       });
 }

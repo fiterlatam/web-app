@@ -3,6 +3,7 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "validation.msg.channel.not.allowed": "El canal de cobro [ {{params[0].value}} ] no está permitido para este producto de préstamo.",
         "error.msg.interest.rates.exist.above.this.rate": "No puede realizarse el cambio ya que hay intereses por encima del la nueva tasa, debe modificar primero las tasas",
         "validation.msg.loan.disbursement.channelName.cannot.be.blank": "No se pudo realizar el desembolso porque el canal es obligatorio en la solicitud.",
         "validation.msg.channel.not.disbursement": "El desembolso no se pudo realizar porque el canal [ {{params[0].value}} ] no es un canal de desembolso.",
@@ -658,6 +659,7 @@
             "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
         },
         "heading": {
+            "Collection Channels": "Canales de Recaudos",
             "Extend term for monthly repayments": "Extender el plazo para los pagos mensuales",
             "Configurable Allowed Usages": "Usos permitidos configurables",
             "Configurable Terms and Settings": "Términos y configuraciones configurables",

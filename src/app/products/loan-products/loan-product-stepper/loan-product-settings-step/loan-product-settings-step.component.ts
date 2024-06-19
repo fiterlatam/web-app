@@ -1,12 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+  UntypedFormControl,
+  FormArray,
+  UntypedFormArray
+} from '@angular/forms';
 import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
 import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 import { CodeName, OptionData } from 'app/shared/models/option-data.model';
 import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
-import { ProductsService } from 'app/products/products.service';
+import {any} from 'codelyzer/util/function';
 
 
 @Component({
@@ -16,8 +23,7 @@ import { ProductsService } from 'app/products/products.service';
 })
 export class LoanProductSettingsStepComponent implements OnInit {
 
-  constructor(private formBuilder: UntypedFormBuilder,
-              private productsService: ProductsService) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.createLoanProductSettingsForm();
     this.setConditionalControls();
   }
@@ -64,9 +70,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns =  ['channelName', 'subChannelName', 'actions'];
   SubChannelInterfaceArray: SubChannelLoanProductInterface[] = [];
-  channelsList: any[] = [];
-  channelId: any;
-  showCollectionDetails = true;
+  channelOptions: any[] = [];
 
   ngOnInit() {
     this.defaultConfigValues = this.loanProductsTemplate['itemsByDefault'];
@@ -102,11 +106,10 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.apiData);
     this.dataSource.data = this.apiData;
     this.SubChannelInterfaceArray = this.apiData;
-    this.channelsList = this.loanProductsTemplate['channelOptions'];
+    this.channelOptions = this.loanProductsTemplate['channelOptions'];
 
     const transactionProcessingStrategyCode: string = this.loanProductsTemplate.transactionProcessingStrategyCode || this.transactionProcessingStrategyData[0].code;
     this.loanProductSettingsForm.patchValue({
-      'channelId': this.loanProductsTemplate.channel ? this.loanProductsTemplate.channel.id : '',
       'amortizationType': this.loanProductsTemplate.amortizationType.id,
       'interestType': this.loanProductsTemplate.interestType.id,
       'isEqualAmortization': this.loanProductsTemplate.isEqualAmortization,
@@ -248,6 +251,20 @@ export class LoanProductSettingsStepComponent implements OnInit {
         }
       });
     }
+    this.repaymentChannelControl();
+  }
+
+  repaymentChannelControl() {
+    const repaymentChannelControl = this.formBuilder.array([]);
+    const repaymentChannels = this.loanProductsTemplate['repaymentChannels'] || [];
+    this.loanProductSettingsForm.addControl('repaymentChannels', repaymentChannelControl);
+    if (this.channelOptions && this.channelOptions.length > 0) {
+      this.channelOptions.forEach((channelOption) => {
+          const channelId = channelOption.id;
+          const formState = repaymentChannels.some((channel: { id: number }) => channel.id === channelId);
+          repaymentChannelControl.push(this.formBuilder.control(formState));
+      });
+    }
   }
 
   createLoanProductSettingsForm() {
@@ -304,10 +321,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowDebitNote': [false],
       'customAllowCreditNote': [false],
       'customAllowForgiveness': [false],
-      'customAllowReversalCancellation': [false],
-      'channelId': [''],
-      'subChannelLoanProductMapper': [],
-
+      'customAllowReversalCancellation': [false]
     });
   }
 
@@ -565,8 +579,4 @@ export class LoanProductSettingsStepComponent implements OnInit {
     this.loanProductSettingsForm.markAsDirty();
     $event.stopPropagation();
   }
-  setCustomAllowCollections(checked: any) {
-    this.showCollectionDetails = checked;
-  }
-
 }

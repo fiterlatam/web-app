@@ -1,21 +1,38 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 /** Custom Components */
-import { LoanProductDetailsStepComponent } from '../loan-product-stepper/loan-product-details-step/loan-product-details-step.component';
-import { LoanProductCurrencyStepComponent } from '../loan-product-stepper/loan-product-currency-step/loan-product-currency-step.component';
-import { LoanProductTermsStepComponent } from '../loan-product-stepper/loan-product-terms-step/loan-product-terms-step.component';
-import { LoanProductSettingsStepComponent } from '../loan-product-stepper/loan-product-settings-step/loan-product-settings-step.component';
-import { LoanProductChargesStepComponent } from '../loan-product-stepper/loan-product-charges-step/loan-product-charges-step.component';
-import { LoanProductAccountingStepComponent } from '../loan-product-stepper/loan-product-accounting-step/loan-product-accounting-step.component';
+import {
+  LoanProductDetailsStepComponent
+} from '../loan-product-stepper/loan-product-details-step/loan-product-details-step.component';
+import {
+  LoanProductCurrencyStepComponent
+} from '../loan-product-stepper/loan-product-currency-step/loan-product-currency-step.component';
+import {
+  LoanProductTermsStepComponent
+} from '../loan-product-stepper/loan-product-terms-step/loan-product-terms-step.component';
+import {
+  LoanProductSettingsStepComponent
+} from '../loan-product-stepper/loan-product-settings-step/loan-product-settings-step.component';
+import {
+  LoanProductChargesStepComponent
+} from '../loan-product-stepper/loan-product-charges-step/loan-product-charges-step.component';
+import {
+  LoanProductAccountingStepComponent
+} from '../loan-product-stepper/loan-product-accounting-step/loan-product-accounting-step.component';
 
 /** Custom Services */
-import { ProductsService } from 'app/products/products.service';
-import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
-import { LoanProducts } from '../loan-products';
-import { AdvancedCreditAllocation, AdvancedPaymentAllocation, AdvancedPaymentStrategy, CreditAllocation, PaymentAllocation, PaymentAllocationOrder, PaymentAllocationTransactionTypes } from '../loan-product-stepper/loan-product-payment-strategy-step/payment-allocation-model';
-import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
+import {ProductsService} from 'app/products/products.service';
+import {GlobalConfiguration} from 'app/system/configurations/global-configurations-tab/configuration.model';
+import {LoanProducts} from '../loan-products';
+import {
+  AdvancedCreditAllocation,
+  AdvancedPaymentAllocation,
+  AdvancedPaymentStrategy,
+  CreditAllocation,
+  PaymentAllocation
+} from '../loan-product-stepper/loan-product-payment-strategy-step/payment-allocation-model';
 import {logger} from 'codelyzer/util/logger';
 
 @Component({
@@ -153,7 +170,17 @@ export class EditLoanProductComponent implements OnInit {
   }
 
   submit() {
+    const channelOptions = this.loanProductAndTemplate['channelOptions'];
+    const loanProductSettings = this.loanProductSettingsStep.loanProductSettings;
+    const repaymentChannels = loanProductSettings.repaymentChannels;
+    let selectedRepaymentChannels = [];
+    if (repaymentChannels && repaymentChannels.length > 0) {
+          selectedRepaymentChannels = repaymentChannels
+            .map((opt: any, i: number) => opt ? {id: channelOptions[i].id} : null)
+            .filter((opt: any) => opt !== null);
+    }
     const loanProduct = this.loanProducts.buildPayload(this.loanProduct, this.itemsByDefault);
+    loanProduct['repaymentChannels'] = selectedRepaymentChannels;
     if (loanProduct['useDueForRepaymentsConfigurations'] === true) {
       loanProduct['dueDaysForRepaymentEvent'] = null;
       loanProduct['overDueDaysForRepaymentEvent'] = null;

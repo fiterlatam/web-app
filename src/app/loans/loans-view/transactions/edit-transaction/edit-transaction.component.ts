@@ -39,7 +39,7 @@ export class EditTransactionComponent implements OnInit {
   /** Transaction Template */
   transactionTemplateData: any;
    /** Channel List*/
-   channelsList: any; 
+   channelsList: any;
 
   /**
    * Retrieves the Loan Account transaction template data from `resolve`.
@@ -61,7 +61,7 @@ export class EditTransactionComponent implements OnInit {
       this.paymentTypeOptions = this.transactionTemplateData.paymentTypeOptions;
     });
     this.loanAccountId = this.route.snapshot.params['loanId'];
-   
+
   }
 
   /**
@@ -71,12 +71,12 @@ export class EditTransactionComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.createEditTransactionForm();
     this.editTransactionForm.patchValue({
-     
+
       'transactionDate': this.transactionTemplateData.date && new Date(this.transactionTemplateData.date),
       'transactionAmount': this.transactionTemplateData.amount,
       'externalId': this.transactionTemplateData.externalId,
       'paymentTypeId': this.transactionTemplateData?.paymentDetailData?.paymentType?.id,
-      'channelHash' : this.transactionTemplateData?.paymentDetailData?.channelHash,
+      'channelName' : this.transactionTemplateData?.paymentDetailData?.channelName,
     });
     this.loadChannelsForCombobox();
   }
@@ -90,7 +90,7 @@ export class EditTransactionComponent implements OnInit {
       'transactionAmount': ['', Validators.required],
       'externalId': [''],
       'paymentTypeId': ['', Validators.required],
-      'channelHash': ['', Validators.required]
+      'channelName': ['', Validators.required]
     });
   }
 
@@ -105,7 +105,7 @@ export class EditTransactionComponent implements OnInit {
       this.editTransactionForm.addControl('routingCode', new UntypedFormControl(''));
       this.editTransactionForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.editTransactionForm.addControl('bankNumber', new UntypedFormControl(''));
-      this.editTransactionForm.addControl('channelHash', new UntypedFormControl(''));
+      this.editTransactionForm.addControl('channelName', new UntypedFormControl(''));
     } else {
       this.editTransactionForm.removeControl('accountNumber');
       this.editTransactionForm.removeControl('checkNumber');
@@ -140,14 +140,14 @@ export class EditTransactionComponent implements OnInit {
   loadChannelsForCombobox() {
     this.loansService.getChannels()
       .subscribe((response: any) => {
-       
+
         let channelPaymentList = response.filter((val:any)=>{
           if(val.channelType.value === 'REPAYMENT'){
             return val;
           }
-          
+
         });
-        
+
         this.channelsList = channelPaymentList;
       });
 }
