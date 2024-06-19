@@ -600,18 +600,13 @@
 
     <mat-divider fxFlex="98%"></mat-divider>
 
-    <h3 fxFlex="98%" class="mat-h3">{{ 'labels.heading.Configurable Allowed Collections for Channels' | translate }}</h3>
-    <mat-checkbox fxFlex="96%" labelPosition="before" formControlName="customAllowCollections" class="margin-b" (change)="setCustomAllowCollections($event.checked)">
-      {{ 'labels.inputs.Allow Collections' | translate }}
-    </mat-checkbox>
-    <mat-form-field fxFlex="48%" *ngIf="showCollectionDetails" fxFlexFill>
-      <mat-label>{{ 'labels.inputs.Channel' | translate }}</mat-label>
-      <mat-select formControlName="channelId">
-        <mat-option *ngFor="let obj of channelsList" [value]="obj.id">
-          {{ obj.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <h3 fxFlex="98%" class="mat-h3">{{ 'labels.heading.Collection Channels' | translate }}</h3>
+
+    <ng-container formArrayName="repaymentChannels">
+      <mat-checkbox *ngFor="let channelOption of channelOptions; let i = index" [formControlName]="i">
+        {{ channelOption.name }}
+      </mat-checkbox>
+    </ng-container>
   </div>
 
   <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">

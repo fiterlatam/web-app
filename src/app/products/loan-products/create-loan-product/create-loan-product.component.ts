@@ -139,7 +139,17 @@ export class CreateLoanProductComponent implements OnInit {
   }
 
   submit() {
+    const channelOptions = this.loanProductsTemplate['channelOptions'];
+    const loanProductSettings = this.loanProductSettingsStep.loanProductSettings;
+    const repaymentChannels = loanProductSettings.repaymentChannels;
+    let selectedRepaymentChannels = [];
+    if (repaymentChannels && repaymentChannels.length > 0) {
+      selectedRepaymentChannels = repaymentChannels
+        .map((opt: any, i: number) => opt ? {id: channelOptions[i].id} : null)
+        .filter((opt: any) => opt !== null);
+    }
     const loanProduct = this.loanProducts.buildPayload(this.loanProduct, this.itemsByDefault);
+    loanProduct['repaymentChannels'] = selectedRepaymentChannels;
     if (loanProduct['useDueForRepaymentsConfigurations'] === true) {
       loanProduct['dueDaysForRepaymentEvent'] = null;
       loanProduct['overDueDaysForRepaymentEvent'] = null;
