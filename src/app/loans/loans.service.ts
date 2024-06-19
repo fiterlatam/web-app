@@ -653,4 +653,10 @@ export class LoansService {
 
   }
 
+  /**
+  Get List of Channel */
+  getChannels(): Observable<any> {
+    return this.http.get('/channels');
+  }
+
 }

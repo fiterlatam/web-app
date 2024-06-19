@@ -39,6 +39,15 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field  fxLayoutGap="2%">
+          <mat-label>{{ 'labels.inputs.Channel' | translate }}</mat-label>
+          <mat-select formControlName="channelHash"  aria-placeholder="Oi!">
+            <mat-option *ngFor="let obj of channelsList" [value]="obj.hash">
+              {{ obj.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div fxFlexFill>
           <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40" (click)="addPaymentDetails()">
             <mat-slide-toggle>
