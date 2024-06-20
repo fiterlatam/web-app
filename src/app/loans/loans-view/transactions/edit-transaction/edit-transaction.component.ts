@@ -38,9 +38,8 @@ export class EditTransactionComponent implements OnInit {
   loanAccountId: string;
   /** Transaction Template */
   transactionTemplateData: any;
-   /** Channel List*/
-   channelsList: any;
-
+   /** Channel List */
+   channelOptions: any;
   /**
    * Retrieves the Loan Account transaction template data from `resolve`.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -138,18 +137,7 @@ export class EditTransactionComponent implements OnInit {
   }
 
   loadChannelsForCombobox() {
-    this.loansService.getChannels()
-      .subscribe((response: any) => {
-
-        let channelPaymentList = response.filter((val:any)=>{
-          if(val.channelType.value === 'REPAYMENT'){
-            return val;
-          }
-
-        });
-
-        this.channelsList = channelPaymentList;
-      });
-}
+    this.channelOptions = this.transactionTemplateData.channelOptions;
+  }
 
 }
