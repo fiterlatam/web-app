@@ -558,6 +558,7 @@
             "20 characters long": "20 characters long",
             "30 characters long": "30 characters long",
             "8 characters long": "8 characters long",
+            "6 characters allowed": "Only up to 6 characters are allowed for the code.",
             "Amount must be": "Amount must be",
             "At least one restricted product": "At least one restricted product",
             "At least one role": "At least one role",
