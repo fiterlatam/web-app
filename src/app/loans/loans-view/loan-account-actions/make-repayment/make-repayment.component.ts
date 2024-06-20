@@ -32,9 +32,9 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   maxDate = new Date();
   /** Repayment Loan Form */
   repaymentLoanForm: UntypedFormGroup;
-  /** Channel List*/
-  channelsList: any;
 
+  /** Channel List */
+  channelOptions: any;
   /**
    * @param {FormBuilder} formBuilder Form Builder.
    * @param {LoansService} loanService Loan Service.
@@ -112,18 +112,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   }
 
   loadChannelsForCombobox() {
-    this.loanService.getChannels()
-      .subscribe((response: any) => {
-
-        const channelPaymentList = response.filter((val: any) => {
-          if (val.channelType.value === 'REPAYMENT') {
-            return val;
-          }
-
-        });
-
-        this.channelsList = channelPaymentList;
-      });
+    this.channelOptions = this.dataObject.channelOptions;
 }
 
   /** Submits the repayment form */

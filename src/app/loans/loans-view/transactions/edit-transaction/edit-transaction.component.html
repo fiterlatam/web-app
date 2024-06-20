@@ -42,7 +42,7 @@
         <mat-form-field  fxLayoutGap="2%">
           <mat-label>{{ 'labels.inputs.Channel' | translate }}</mat-label>
           <mat-select formControlName="channelName"  aria-placeholder="Oi!">
-            <mat-option *ngFor="let obj of channelsList" [value]="obj.name">
+            <mat-option *ngFor="let obj of channelOptions" [value]="obj.name">
               {{ obj.name }}
             </mat-option>
           </mat-select>

@@ -3,6 +3,7 @@
     "Logged in as": "Logged in as",
     "Remember me": "Remember me",
     "errors": {
+        "validation.msg.undo.repayment.is.permitted.on.the.same.day": "Undo repayment is allowed on the same day of repayment [ {{params[0].value}} ].",
         "validation.msg.channel.not.allowed": "Collection channel [ {{params[0].value}} ] is not allowed for this loan product",
         "error.msg.interest.rates.exist.above.this.rate": "The change cannot be made since there is interest rates above the new rate, you must first modify the rates",
         "validation.msg.loan.disbursement.channelName.cannot.be.blank": "The disbursement could not be made because the channel is mandatory in the request",
