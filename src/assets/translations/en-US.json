@@ -310,7 +310,8 @@
         "error.msg.loan.maximum.purchase.cupo.limit.exceeded": "Maximum purchase Cupo limit of [ {{params[0].value}} ] is exceeded",
         "error.msg.advance.quota.client.advances.exceeded.the.percentage": "The reduction of the advance quota cannot be carried out since the following clients' IDs {{params[0].value}} have advances above this percentage",
         "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "The selected product is configured to do not allow Loan Creation nor Disbursement",
-        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "The selected product is configured to do not allow Loan´s Transaction reversal nor Cancellation"
+        "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "The selected product is configured to do not allow Loan´s Transaction reversal nor Cancellation",
+         "validation.msg.channel.hash.duplicate" : "Channel Hash invalid duplicate"
     },
     "labels": {
         "breadcrumbs": {
