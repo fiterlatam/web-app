@@ -3,6 +3,7 @@
     "Logged in as": "Conectado como",
     "Remember me": "Recordar me",
     "errors": {
+        "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "¡Reembolso rechazado para este canal!! El monto del reembolso es mayor que el monto pendiente en {{params[0].value}}",
         "validation.msg.undo.repayment.is.permitted.on.the.same.day": "Se permite deshacer el reembolso el mismo día del reembolso [ {{params[0].value}} ].",
         "validation.msg.channel.not.allowed": "El canal de cobro [ {{params[0].value}} ] no está permitido para este producto de préstamo.",
         "error.msg.interest.rates.exist.above.this.rate": "No puede realizarse el cambio ya que hay intereses por encima del la nueva tasa, debe modificar primero las tasas",
