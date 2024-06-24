@@ -60,6 +60,7 @@ import { ExternalAssetOwnerActiveTransferResolver } from './common-resolvers/ext
 import { LoanCollateralsResolver } from './common-resolvers/loan-collaterals.resolver';
 import { LoanDelinquencyDataResolver } from './common-resolvers/loan-delinquency-data.resolver';
 import { LoanDelinquencyActionsResolver } from './common-resolvers/loan-delinquency-actions.resolver';
+import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -258,7 +259,15 @@ const routes: Routes = [
             resolve: {
               loansTransactionReciept: LoansTransactionRecieptResolver
             }
-          }
+          },
+          {
+            path: 'undo',
+            component: UndoTransactionsComponent,
+            data: { breadcrumb: 'Undo', routeParamBreadcrumb: false },
+            resolve: {
+              loansAccountTransactionTemplate: LoansAccountTransactionTemplateResolver
+            }
+          },
         ]
       },
       {
