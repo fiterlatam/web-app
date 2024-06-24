@@ -5,7 +5,7 @@
       <fa-icon icon="edit" class="m-r-10"></fa-icon>{{ 'Edit' | translate}}
     </button>
 
-    <button mat-raised-button color="warn" (click)="undoTransaction()" [disabled]="!allowUndo">
+    <button mat-raised-button color="warn" [routerLink]="'undo'" [disabled]="!allowUndo">
       <fa-icon icon="undo" class="m-r-10"></fa-icon>{{ 'Undo' | translate}}
     </button>
   </span>
