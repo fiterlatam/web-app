@@ -42,10 +42,10 @@ export class CreateClientallyComponent implements OnInit {
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
-      'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       'nit': ['', [Validators.required, Validators.maxLength(20), Validators.minLength(1)]],
       'nitDigit': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      'address': ['', [Validators.required, Validators.maxLength(40)]],
+      'address': ['', [Validators.required, Validators.maxLength(100)]],
       'departmentCodeValueId': ['', [Validators.required]],
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
@@ -77,9 +77,9 @@ export class CreateClientallyComponent implements OnInit {
   }
 
   loadCitiesByDepartment(id: any) {
-    console.log('loadCitiesByDepartment called with id:' + id);
+    
     this.clientsalliesService.getCitiesByDepartment(id).subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
+      
       this.citiesList = apiResponseBody.citiesList;
     });
   }

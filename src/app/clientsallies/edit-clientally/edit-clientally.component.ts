@@ -38,7 +38,6 @@ export class EditClientallyComponent implements OnInit {
       private settingsService: SettingsService,
       private formBuilder: UntypedFormBuilder) {
 
-    console.log('constructor');
   }
 
 
@@ -47,14 +46,11 @@ export class EditClientallyComponent implements OnInit {
     // this.el.nativeElement.applyCupoMaxSell = true;
 
     this.entityId = this.route.snapshot.params['id'];
-
-    console.log('ngOnInit');
     this.createGroupForm();
 
     this.clientsalliesService.getClientallyById(this.entityId).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-      console.log('id: ' + this.entityId);
-      console.log(apiResponseBody);
+     
 
       this.loadClientalliesTemplate('ngOnInit');
       this.loadCitiesByDepartment(apiResponseBody.departmentCodeValueId);
@@ -69,7 +65,7 @@ export class EditClientallyComponent implements OnInit {
     let accountNumber = this.apiData.accountNumber;
     if (accountNumber) {
       const inputVal = accountNumber.toString().replace(/\D/g, '');
-      accountNumber = this.decimalPipe.transform(inputVal, format, locale);
+      // accountNumber = this.decimalPipe.transform(inputVal, format, locale);
     }
     let cupoMaxSell = this.apiData.cupoMaxSell;
     if (cupoMaxSell) {
@@ -97,7 +93,7 @@ export class EditClientallyComponent implements OnInit {
       'collectionEnabled': this.apiData.collectionEnabled,
       'bankEntityCodeValueId': this.apiData.bankEntityCodeValueId,
       'accountTypeCodeValueId': this.apiData.accountTypeCodeValueId,
-      'accountNumber': accountNumber,
+      'accountNumber': this.apiData.accountNumber,
       'taxProfileCodeValueId': this.apiData.taxProfileCodeValueId,
       'stateCodeValueId': this.apiData.stateCodeValueId,
       });
@@ -114,10 +110,10 @@ export class EditClientallyComponent implements OnInit {
 
   createGroupForm() {
     this.groupForm = this.formBuilder.group({
-      'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      'companyName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       'nit': ['', [Validators.required, Validators.maxLength(20), Validators.minLength(1)]],
       'nitDigit': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      'address': ['', [Validators.required, Validators.maxLength(40)]],
+      'address': ['', [Validators.required, Validators.maxLength(100)]],
       'departmentCodeValueId': ['', [Validators.required]],
       'cityCodeValueId': ['', [Validators.required]],
       'liquidationFrequencyCodeValueId': ['', [Validators.required]],
@@ -136,11 +132,9 @@ export class EditClientallyComponent implements OnInit {
 
 
   loadClientalliesTemplate(requestFrom: String) {
-    console.log('clientsallies ' + requestFrom);
-
+    
     this.clientsalliesService.getTemplate().subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
-
+     
       this.departmentsList = apiResponseBody.departmentsList;
       this.liquidationFrequencyList = apiResponseBody.liquidationFrequencyList;
       this.bankEntitiesList = apiResponseBody.bankEntitiesList;
@@ -153,7 +147,6 @@ export class EditClientallyComponent implements OnInit {
 
   loadCitiesByDepartment(id: any) {
     this.clientsalliesService.getCitiesByDepartment(id).subscribe(( apiResponseBody: any ) => {
-      console.log(apiResponseBody);
       this.citiesList = apiResponseBody.citiesList;
 
       this.patchCity();
