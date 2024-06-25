@@ -317,7 +317,8 @@
         "error.msg.advance.quota.client.advances.exceeded.the.percentage": "La reducción de la cuota de anticipo no se puede realizar ya que los siguientes ID de clientes {{params[0].value}} tienen avances superiores a este porcentaje",
         "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "El producto seleccionado está configurado para no aceptar Creación ni Desembolso de Préstamo",
         "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento",
-        "validation.msg.channel.hash.duplicate" : "El código HASH está siendo usado para otro canal, por favor cámbielo"
+        "validation.msg.channel.hash.duplicate" : "El código HASH está siendo usado para otro canal, por favor cámbielo",
+        "validation.msg.channel.name.duplicate" : "Nombre está siendo usado para otro canal, por favor cámbielo"
       },
     "labels": {
         "breadcrumbs": {
