@@ -317,7 +317,8 @@
         "error.msg.advance.quota.client.advances.exceeded.the.percentage": "La reducción de la cuota de anticipo no se puede realizar ya que los siguientes ID de clientes {{params[0].value}} tienen avances superiores a este porcentaje",
         "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "El producto seleccionado está configurado para no aceptar Creación ni Desembolso de Préstamo",
         "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento",
-        "validation.msg.channel.hash.duplicate" : "El código HASH está siendo usado para otro canal, por favor cámbielo"
+        "validation.msg.channel.hash.duplicate" : "El código HASH está siendo usado para otro canal, por favor cámbielo",
+        "validation.msg.channel.name.duplicate" : "Nombre está siendo usado para otro canal, por favor cámbielo"
       },
     "labels": {
         "breadcrumbs": {
@@ -1208,7 +1209,7 @@
             "Charge Calculation Type": "Tipo de cálculo de cargo",
             "Charge Frequency": "Frecuencia de carga",
             "Charge Grace": "Periodo de Gracia",
-            "Charge Grace Period Amount": "Monto del período de gracia de carga",
+            "Charge Grace Period Amount": "Período de Gracias",
             "Charge Grace Period Frequency": "Frecuencia del período de gracia de carga",
             "Charge Name": "Nombre del cargo",
             "Charge Payment By": "Pago de cargo por",
@@ -2412,7 +2413,7 @@
             "Allow Buy/Advances": "Permitir Compras/Avances",
             "Allow Debit Note": "Permitir Nota de Débito",
             "Allow Credit Note": "Permitir Nota de Crédito",
-            "Allow Forgiveness": "Permitir Perdón",
+            "Allow Forgiveness": "Permitir Condonaciones",
             "Allow Reversals / Cancelations": "Permitir Reversos / Cancelaciones",
             "Allow Collections": "Permitir Recaudos",
             "Advanced Payment Allocation Transactions": "Transacciones de asignación de pagos anticipados",

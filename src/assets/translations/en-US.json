@@ -312,7 +312,8 @@
         "error.msg.advance.quota.client.advances.exceeded.the.percentage": "The reduction of the advance quota cannot be carried out since the following clients' IDs {{params[0].value}} have advances above this percentage",
         "error.msg.loan.product.does.not.allow.creation.nor.disbursement": "The selected product is configured to do not allow Loan Creation nor Disbursement",
         "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "The selected product is configured to do not allow Loan´s Transaction reversal nor Cancellation",
-         "validation.msg.channel.hash.duplicate" : "Channel Hash invalid duplicate"
+         "validation.msg.channel.hash.duplicate" : "Channel Hash invalid duplicate",
+         "validation.msg.channel.name.duplicate" : "Name is being used for another channel, please change it"
     },
     "labels": {
         "breadcrumbs": {
