@@ -10,7 +10,7 @@
 
             <mat-form-field fxFlex="100%">
               <mat-label>{{"labels.inputs.companyName" | translate }}</mat-label>
-              <input [maxlength]="40" [minLength]="3" matInput required formControlName="companyName">
+              <input [maxlength]="100" [minLength]="3" matInput required formControlName="companyName">
               <mat-error *ngIf="groupForm.controls.companyName.hasError('required')">
                 {{"labels.inputs.companyName" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
               </mat-error>
@@ -43,7 +43,7 @@
 
             <mat-form-field fxFlex="100%">
                 <mat-label>{{"labels.inputs.address" | translate }}</mat-label>
-                <input  [maxlength]="40" matInput required formControlName="address">
+                <input  [maxlength]="100" matInput required formControlName="address">
                 <mat-error *ngIf="groupForm.controls.address.hasError('required')">
                 {{"labels.inputs.address" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
                 </mat-error>

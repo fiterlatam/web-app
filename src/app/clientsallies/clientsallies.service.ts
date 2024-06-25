@@ -31,29 +31,29 @@ export class ClientsalliesService {
   }
 
   getClientsallies2(sqlSearch: any): Observable<any> {
-    console.log("clientsallies service called");
+    
 
     const httpParams = new HttpParams();
     httpParams.set('sqlSearch', sqlSearch);
 
     let data = this.http.get('/clientsallies', { params: httpParams })
-    console.log(data);
+    
     return data;
   }
 
   createClientsallies(formData: any): Observable<any> {
-    console.log("createClientsallies service called");
+    
     const httpParams = new HttpParams();
     let data = this.http.post('/clientsallies', formData);
-    console.log(data);
+    
     return data;
   }
 
   getClientallyById(id: any): Observable<any> {
-    console.log("createClientsallies service called");
+   
     const httpParams = new HttpParams();
     let data = this.http.get(`/clientsallies/${id}`);
-    console.log(data);
+   
     return data;
   }
 
