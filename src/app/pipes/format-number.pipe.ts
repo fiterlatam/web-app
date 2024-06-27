@@ -13,7 +13,7 @@ export class FormatNumberPipe implements PipeTransform {
 
   transform(value: string | number, ...args: unknown[]): string {
     if (!value) {
-     return '';
+     return '0';
     }
     const locale = this.settingsService.language.code;
     let decimals = this.settingsService.decimals;
