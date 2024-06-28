@@ -10,38 +10,38 @@
 
     <ng-container matColumnDef="principalDue">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Principal Due" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.principalDue | formatNumber }} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalPrincipalExpected | formatNumber }} </b> </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.principalDue | formatNumber:[decimalPlaces] }} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalPrincipalExpected | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="balanceOfLoan">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Balance Of Loan" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.principalLoanBalanceOutstanding | formatNumber }} </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.principalLoanBalanceOutstanding | formatNumber:[decimalPlaces] }} </td>
       <td mat-footer-cell *matFooterCellDef> &nbsp; </td>
     </ng-container>
 
     <ng-container matColumnDef="interest">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Interest" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.interestOriginalDue | formatNumber}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalInterestCharged | formatNumber }} </b> </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.interestOriginalDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalInterestCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="fees">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Fees" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.feeChargesDue | formatNumber}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalFeeChargesCharged | formatNumber }} </b> </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.feeChargesDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalFeeChargesCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="penalties">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Penalties" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.penaltyChargesDue | formatNumber}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalPenaltyChargesCharged | formatNumber }} </b> </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.penaltyChargesDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalPenaltyChargesCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="outstanding">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Outstanding" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.totalOutstandingForPeriod | formatNumber}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalRepaymentExpected | formatNumber }} </b> </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.totalOutstandingForPeriod | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalRepaymentExpected | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <!-- Header row first group -->
