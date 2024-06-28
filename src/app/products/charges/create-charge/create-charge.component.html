@@ -295,19 +295,27 @@
               <input matInput formControlName="maxCap">
             </mat-form-field>
 
-            <div fxFlex="48%" fxLayout="row" fxLayoutGap="2%" fxLayout.lt-md="column">
-              <div fxFlex="50%" class="active-wrapper">
+            <div fxFlex="50%" fxLayout="row" fxLayoutGap="2%" fxLayout.lt-md="column">
+              <div fxFlex="25%" class="active-wrapper">
                 <mat-checkbox labelPosition="before" formControlName="active">
                   {{"labels.inputs.Is Active" | translate}}
                 </mat-checkbox>
               </div>
 
-              <div fxFlex="50%" class="penalty-wrapper">
+              <div fxFlex="25%" class="penalty-wrapper">
                 <mat-checkbox labelPosition="before" formControlName="penalty">
                   {{"labels.inputs.Is Penalty" | translate}}
                 </mat-checkbox>
               </div>
+              <div fxFlex="50%" class="penalty-wrapper" *ngIf="chargeForm.controls.chargeAppliesTo.value === 1">
+                <mat-checkbox labelPosition="before" formControlName="getPercentageAmountFromTable">
+                  {{"labels.inputs.getPercentageAmountFromTable" | translate}}
+                </mat-checkbox>
+              </div>
             </div>
+
+
+
 
             <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 3" fxFlex="48%">
               <mat-label>{{"labels.inputs.Income from Charge" | translate}} </mat-label>

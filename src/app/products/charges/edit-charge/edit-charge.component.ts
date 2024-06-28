@@ -163,6 +163,7 @@ export class EditChargeComponent implements OnInit {
       'active': [this.chargeData.active],
       'interestRateId': [this.chargeData.interestRate ? this.chargeData.interestRate.id : ''],
       'penalty': [this.chargeData.penalty],
+      'getPercentageAmountFromTable': [this.chargeData.getPercentageAmountFromTable],
       'minCap': [this.chargeData.minCap],
       'maxCap': [this.chargeData.maxCap],
       'chargeTimeType': [this.chargeData.chargeTimeType.id, Validators.required],
@@ -210,6 +211,7 @@ export class EditChargeComponent implements OnInit {
     this.chargeForm.removeControl('customChargeId');
     this.chargeForm.removeControl('externalCalculationChargeId');
     this.chargeForm.removeControl('chargeCalculationTypeFilterInsuranceType');
+    this.chargeForm.removeControl('getPercentageAmountFromTable');
 
     switch (this.chargeData.chargeAppliesTo.value) {
       case 'Loan': {
@@ -236,6 +238,7 @@ export class EditChargeComponent implements OnInit {
         this.chargeForm.addControl('customChargeId', new UntypedFormControl(false));
         this.chargeForm.addControl('externalCalculationChargeId', new UntypedFormControl(false));
         this.chargeForm.addControl('chargeCalculationTypeFilterInsuranceType', new UntypedFormControl(false));
+        this.chargeForm.addControl('getPercentageAmountFromTable', this.formBuilder.control(this.chargeData.getPercentageAmountFromTable));
 
         this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
 
@@ -254,6 +257,7 @@ export class EditChargeComponent implements OnInit {
         this.chargeTimeTypeOptions = this.chargeData.savingsChargeTimeTypeOptions;
         this.chargeCalculationTypeOptions = this.chargeData.savingsChargeCalculationTypeOptions;
         this.addFeeFrequency = false;
+        this.chargeForm.removeControl('getPercentageAmountFromTable');
         break;
       }
       case 'Shares': {
@@ -262,6 +266,7 @@ export class EditChargeComponent implements OnInit {
         this.addFeeFrequency = false;
         this.showGLAccount = false;
         this.showPenalty = false;
+        this.chargeForm.removeControl('getPercentageAmountFromTable');
         break;
       }
       default: {
@@ -270,6 +275,7 @@ export class EditChargeComponent implements OnInit {
         this.showGLAccount = true;
         this.addFeeFrequency = false;
         this.chargeForm.addControl('incomeAccountId', this.formBuilder.control(this.chargeData.incomeOrLiabilityAccount.id, Validators.required));
+        this.chargeForm.removeControl('getPercentageAmountFromTable');
         break;
       }
     }

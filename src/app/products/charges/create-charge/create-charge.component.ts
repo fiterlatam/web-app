@@ -127,6 +127,7 @@ export class CreateChargeComponent implements OnInit {
       'amount': ['', this.getAmountValidators()],
       'active': [false],
       'penalty': [false],
+      'getPercentageAmountFromTable': [false],
       'taxGroupId': [''],
       'minCap': [''],
       'maxCap': [''],
@@ -262,20 +263,24 @@ export class CreateChargeComponent implements OnInit {
           this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false, Validators.required));
           this.chargeForm.addControl('customChargeId', new UntypedFormControl(false));
           this.chargeForm.addControl('externalCalculationChargeId', new UntypedFormControl(false));
-
+          this.chargeForm.addControl('getPercentageAmountFromTable', new UntypedFormControl(false));
           break;
         case 2: // Savings
           this.chargeForm.removeControl('chargePaymentMode');
           this.chargeForm.removeControl('incomeAccountId');
+          this.chargeForm.removeControl('getPercentageAmountFromTable');
+
           break;
         case 3: // Client
           this.chargeForm.removeControl('chargePaymentMode');
           this.chargeForm.addControl('incomeAccountId', new UntypedFormControl(''));
+          this.chargeForm.removeControl('getPercentageAmountFromTable');
           break;
         case 4: // Shares
           this.chargeForm.removeControl('chargePaymentMode');
           this.chargeForm.removeControl('incomeAccountId');
           this.chargeForm.get('penalty').setValue(false);
+          this.chargeForm.removeControl('getPercentageAmountFromTable');
           break;
       }
       this.chargeForm.get('chargeCalculationType').reset();
