@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'mifosx-original-schedule-tab',
@@ -13,8 +13,9 @@ export class OriginalScheduleTabComponent implements OnInit {
   /** Loan Details Data */
   originalScheduleDetails: any;
   /** Columns to be displayed in original schedule table. */
-  displayedColumns: string[] = ['date', 'principalDue', 'balanceOfLoan', 'interest', 'fees', 'penalties', 'outstanding'];
+  displayedColumns: string[] = ['date', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'penalties', 'outstanding'];
   decimalPlaces: string;
+
   /**
    * Retrieves the loans with associations data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
