@@ -3,6 +3,8 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "Repayment schedule installment does not exist for the given reschedule date",
+    "validation.msg.rescheduleloan.rescheduleFromDate.repayment.schedule.installment.does.not.exist": "Repayment schedule installment does not exist for the given reschedule date",
     "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "Repayment rejected for this channel!! Repayment amount is greater than the outstanding amount by {{params[0].value}}",
     "validation.msg.undo.repayment.is.permitted.on.the.same.day": "Undo repayment is allowed on the same day of repayment [ {{params[0].value}} ].",
     "validation.msg.channel.not.allowed": "Collection channel [ {{params[0].value}} ] is not allowed for this loan product",

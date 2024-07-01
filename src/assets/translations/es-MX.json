@@ -3,6 +3,8 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "La cuota de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
+    "validation.msg.rescheduleloan.rescheduleFromDate.repayment.schedule.installment.does.not.exist": "La fecha de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
     "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "¡Reembolso rechazado para este canal!! El monto del reembolso es mayor que el monto pendiente en {{params[0].value}}",
     "validation.msg.undo.repayment.is.permitted.on.the.same.day": "Se permite deshacer el reembolso el mismo día del reembolso [ {{params[0].value}} ].",
     "validation.msg.channel.not.allowed": "El canal de cobro [ {{params[0].value}} ] no está permitido para este producto de préstamo.",
