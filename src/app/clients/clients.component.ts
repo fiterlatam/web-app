@@ -1,15 +1,15 @@
 /** Angular Imports. */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
 
 /** Custom Services */
-import { environment } from 'environments/environment';
-import { ClientsService } from './clients.service';
-import { BlockingReasonDialogComponent } from 'app/shared/blocking-reason-dialog/blocking-reason-dialog.component';
+import {environment} from 'environments/environment';
+import {ClientsService} from './clients.service';
+import {BlockingReasonDialogComponent} from 'app/shared/blocking-reason-dialog/blocking-reason-dialog.component';
 
 @Component({
   selector: 'mifosx-clients',
@@ -19,7 +19,7 @@ import { BlockingReasonDialogComponent } from 'app/shared/blocking-reason-dialog
 export class ClientsComponent implements OnInit {
   @ViewChild('showClosedAccounts') showClosedAccounts: MatCheckbox;
 
-  displayedColumns = ['displayName', 'accountNumber', 'externalId', 'status', 'officeName'];
+  displayedColumns = ['displayName', 'cedularOrNit', 'accountNumber', 'externalId', 'status', 'officeName'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   existsClientsToFilter = false;
@@ -40,7 +40,8 @@ export class ClientsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private clientService: ClientsService, public dialog: MatDialog) { }
+  constructor(private clientService: ClientsService, public dialog: MatDialog) {
+  }
 
   ngOnInit() {
     if (environment.preloadClients) {
@@ -60,21 +61,21 @@ export class ClientsComponent implements OnInit {
   private getClients() {
     this.isLoading = true;
     this.clientService.searchByText(this.filterText, this.currentPage, this.pageSize, this.sortAttribute, this.sortDirection)
-    .subscribe((data: any) => {
-      this.dataSource.data = data.content;
-      this.totalRows = data.totalElements;
-      this.existsClientsToFilter = (data.numberOfElements > 0);
+      .subscribe((data: any) => {
+        this.dataSource.data = data.content;
+        this.totalRows = data.totalElements;
+        this.existsClientsToFilter = (data.numberOfElements > 0);
 
-      if(!this.showClosedAccountsChecked) {
-        this.dataSource.data = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
-        this.totalRows = this.dataSource.data.length;
-        this.existsClientsToFilter = (this.totalRows > 0);
-      }
-      this.notExistsClientsToFilter = !this.existsClientsToFilter;
-      this.isLoading = false;
-    }, (error: any) => {
-      this.isLoading = false;
-    });
+        if (!this.showClosedAccountsChecked) {
+          this.dataSource.data = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
+          this.totalRows = this.dataSource.data.length;
+          this.existsClientsToFilter = (this.totalRows > 0);
+        }
+        this.notExistsClientsToFilter = !this.existsClientsToFilter;
+        this.isLoading = false;
+      }, (error: any) => {
+        this.isLoading = false;
+      });
   }
 
   pageChanged(event: PageEvent) {
@@ -100,12 +101,12 @@ export class ClientsComponent implements OnInit {
     this.paginator.firstPage();
   }
 
-  onChangeShowClosedAccount(event:any) {
+  onChangeShowClosedAccount(event: any) {
     this.getClients();
   }
 
   showClientBlockingReasonDialog(clientId: string, statusId: string, displayName: string) {
-    if(statusId == '900') {
+    if (statusId == '900') {
       this.dialog.open(BlockingReasonDialogComponent, {
         data: {
           clientId,
