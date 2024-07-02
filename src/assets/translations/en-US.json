@@ -2411,7 +2411,8 @@
       "charge.insurance.base.value": "Base Value",
       "charge.insurance.vat.value": "VAT Value",
       "charge.insurance.total.value": "Total Value",
-      "charge.insurance.deadline": "Deadline"
+            "charge.insurance.deadline": "Deadline",
+            "getPercentageAmountFromTable": "Percentage From Table"
     },
     "links": {
       "Community": "Community",
