@@ -86,6 +86,24 @@
             </mat-select>
           </mat-form-field>
 
+          <mat-form-field  fxLayoutGap="2%">
+            <mat-label>{{ 'labels.text.client.allies' | translate }}</mat-label>
+            <mat-select formControlName="allyId" aria-placeholder="Oi!" (selectionChange)="changeEvent()">
+              <mat-option *ngFor="let obj of allyOption" [value]="obj.id" >
+                {{ obj.companyName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field  fxLayoutGap="2%">
+            <mat-label>{{ 'labels.inputs.pointOfSalesName' | translate }}</mat-label>
+            <mat-select formControlName="pointOfSalesCode" aria-placeholder="Oi!" >
+              <mat-option *ngFor="let obj of pointSalesOption" [value]="obj.code">
+                {{ obj.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <div fxFlexFill>
             <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40" (click)="addPaymentDetails()">
               <mat-slide-toggle>

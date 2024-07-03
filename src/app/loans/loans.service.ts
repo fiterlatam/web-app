@@ -659,4 +659,14 @@ export class LoansService {
     return this.http.get('/channels');
   }
 
+  /** Get List Ally */
+  getAllies(): Observable<any> {
+    return this.http.get('/clientsallies');
+  }
+
+  /** Get List Point of Sales */
+  getPointOfSales(alliesId : any): Observable<any> {
+    return this.http.get(`/clientally/${alliesId}/pointofsales`);
+  }
+
 }
