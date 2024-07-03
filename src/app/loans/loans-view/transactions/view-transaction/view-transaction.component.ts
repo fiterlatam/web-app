@@ -53,6 +53,8 @@ export class ViewTransactionComponent implements OnInit {
 
   channelName: any;
 
+  pointOfSalesName: any;
+
   /**
    * Retrieves the Transaction data from `resolve`.
    * @param {LoansService} loansService Loans Service
@@ -101,7 +103,9 @@ export class ViewTransactionComponent implements OnInit {
       if (this.existTransactionRelations && transactionsChargebackRelated) {
         this.allowUndo = false;
       }
+     
       this.channelName = this.transactionData?.paymentDetailData?.channelName;
+      this.pointOfSalesName = this.transactionData?.paymentDetailData?.pointOfSales?.name;
     });
     this.clientId = this.route.snapshot.params['clientId'];
     this.loanId = this.route.snapshot.params['loanId'];

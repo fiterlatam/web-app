@@ -2328,6 +2328,7 @@
       "taxProfile": "Tax Profile",
       "state": "State",
       "pointOfSell": "Points Of Sales",
+      "pointOfSalesName" : "Name of point of sale",
       "code": "Code",
       "brand": "Brand",
       "category": "Category",
