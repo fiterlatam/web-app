@@ -3,6 +3,8 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "Una tasa de interés aplicada en la fecha [ {{params[0].value}} ] es posterior a la fecha de vencimiento [ {{params[1].value}} ] .",
+    "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "No se encontró una tasa de interés aplicada en la fecha de desembolso.",
     "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "La cuota de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
     "validation.msg.rescheduleloan.rescheduleFromDate.repayment.schedule.installment.does.not.exist": "La fecha de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
     "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "¡Reembolso rechazado para este canal!! El monto del reembolso es mayor que el monto pendiente en {{params[0].value}}",
