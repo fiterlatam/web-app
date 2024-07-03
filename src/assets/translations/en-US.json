@@ -3,6 +3,8 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "An interest rate applied on date [ {{params[0].value}} ] is after the maturity date [ {{params[1].value}} ] .",
+    "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "An interest rate applied on the disbursement date was not found.",
     "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "Repayment schedule installment does not exist for the given reschedule date",
     "validation.msg.rescheduleloan.rescheduleFromDate.repayment.schedule.installment.does.not.exist": "Repayment schedule installment does not exist for the given reschedule date",
     "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "Repayment rejected for this channel!! Repayment amount is greater than the outstanding amount by {{params[0].value}}",
