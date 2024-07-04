@@ -297,7 +297,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       'repaymentFrequencyDayOfWeekType': [''],
       'repaymentsStartingFromDate': [''],
       'interestChargedFromDate': [''],
-      'interestRatePoints': ['', [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]],
+      'interestRatePoints': [''],
       'interestType': [''],
       'isFloatingInterestRate': [''],
       'isEqualAmortization': [''],
