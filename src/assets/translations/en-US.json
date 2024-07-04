@@ -3538,7 +3538,9 @@
   },
   "custom.charge.entity": {
     "aval": "Aval",
-    "insurance": "Honorarios"
+    "insurance": "Honorarios",
+    "honorario": "Fee",
+    "term": "Term"
   },
   "custom.charge.type": {
     "vip": "VIP",
