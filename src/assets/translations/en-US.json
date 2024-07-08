@@ -325,6 +325,7 @@
       "Home": "Home"
     },
     "buttons": {
+      "Chargeback": "Chargeback",
       "Edit Loan Product": "Edit Loan Product",
       "Add Rate": "Add Rate",
       "Accept Transfer": "Accept Transfer",
@@ -1032,6 +1033,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Bank Name": "Bank Name",
       "Interest Rate Type": "Interest Rate Type",
       "Channel Type": "Channel Type",
       "Interest Rate Points": "Interest Rate Points",

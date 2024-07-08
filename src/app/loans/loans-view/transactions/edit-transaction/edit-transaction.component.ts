@@ -40,6 +40,7 @@ export class EditTransactionComponent implements OnInit {
   transactionTemplateData: any;
    /** Channel List */
    channelOptions: any;
+   bankOptions: any;
   /**
    * Retrieves the Loan Account transaction template data from `resolve`.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -76,6 +77,7 @@ export class EditTransactionComponent implements OnInit {
       'externalId': this.transactionTemplateData.externalId,
       'paymentTypeId': this.transactionTemplateData?.paymentDetailData?.paymentType?.id,
       'channelName' : this.transactionTemplateData?.paymentDetailData?.channelName,
+      'repaymentBankId': this.transactionTemplateData?.paymentDetailData?.bankId,
     });
     this.loadChannelsForCombobox();
   }
@@ -89,7 +91,8 @@ export class EditTransactionComponent implements OnInit {
       'transactionAmount': ['', Validators.required],
       'externalId': [''],
       'paymentTypeId': ['', Validators.required],
-      'channelName': ['', Validators.required]
+      'channelName': ['', Validators.required],
+      'repaymentBankId': [''],
     });
   }
 
@@ -138,6 +141,7 @@ export class EditTransactionComponent implements OnInit {
 
   loadChannelsForCombobox() {
     this.channelOptions = this.transactionTemplateData.channelOptions;
+    this.bankOptions = this.transactionTemplateData.bankOptions;
   }
 
 }
