@@ -35,11 +35,12 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
 
   /** Channel List */
   channelOptions: any;
+  bankOptions: any;
 
   /** Ally List */
-  allyOption : any;
-  /** Point Of Sales*/
-  pointSalesOption : any;
+  allyOption: any;
+  /** Point Of Sales */
+  pointSalesOption: any;
 
   /**
    * @param {FormBuilder} formBuilder Form Builder.
@@ -125,22 +126,21 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   }
 
   loadChannelsForCombobox() {
-   
     this.channelOptions = this.dataObject.channelOptions;
-}
- 
-  loadAllieForComboBox(){
-  return this.loanService.getAllies().subscribe((data)=>{
-   
-    this.allyOption = data;
-  })
+    this.bankOptions = this.dataObject.bankOptions;
 }
 
-  changeEvent(){
+  loadAllieForComboBox() {
+  return this.loanService.getAllies().subscribe((data) => {
+    this.allyOption = data;
+  });
+}
+
+  changeEvent() {
     const alliesId = this.repaymentLoanForm.value.allyId;
-    return this.loanService.getPointOfSales(alliesId).subscribe((data)=>{
+    return this.loanService.getPointOfSales(alliesId).subscribe((data) => {
       this.pointSalesOption = data;
-    })
+    });
   }
 
   /** Submits the repayment form */
@@ -153,7 +153,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       repaymentLoanFormData.transactionDate = this.dateUtils.formatDate(prevTransactionDate, dateFormat);
     }
     delete(repaymentLoanFormData['allyId']);
-    
+
     const data = {
       ...repaymentLoanFormData,
       dateFormat,

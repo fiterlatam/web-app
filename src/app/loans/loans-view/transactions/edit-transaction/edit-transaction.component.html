@@ -48,6 +48,15 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field  fxLayoutGap="2%">
+          <mat-label>{{ 'labels.inputs.Bank Name' | translate }}</mat-label>
+          <mat-select formControlName="repaymentBankId"  aria-placeholder="Oi!">
+            <mat-option *ngFor="let bank of bankOptions" [value]="bank.id">
+              {{ bank.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div fxFlexFill>
           <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40" (click)="addPaymentDetails()">
             <mat-slide-toggle>

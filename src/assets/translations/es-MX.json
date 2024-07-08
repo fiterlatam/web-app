@@ -330,6 +330,7 @@
       "Home": "Inicio"
     },
     "buttons": {
+      "Chargeback": "Devolución de cargo",
       "Add Rate": "Agregar tasa",
       "Accept Transfer": "Aceptar transferencia",
       "Actions": "Acciones",
@@ -1046,6 +1047,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Bank Name": "Nombre del banco",
       "Interest Rate Type": "Tipo de tasa de interés",
       "Sub Channels": "Subcanales",
       "Channel Type": "Tipo de canal",

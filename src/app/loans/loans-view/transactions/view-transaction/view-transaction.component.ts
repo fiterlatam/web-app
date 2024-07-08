@@ -52,7 +52,7 @@ export class ViewTransactionComponent implements OnInit {
   loanId: number;
 
   channelName: any;
-
+  bankName: any;
   pointOfSalesName: any;
 
   /**
@@ -75,7 +75,7 @@ export class ViewTransactionComponent implements OnInit {
     private organizationService: OrganizationService,
     private alertService: AlertService) {
     this.route.data.subscribe((data: { loansAccountTransaction: any }) => {
-     
+
       this.transactionData = data.loansAccountTransaction;
       this.allowEdition = !this.transactionData.manuallyReversed && !this.allowTransactionEdition(this.transactionData.type.id);
       this.allowUndo = !this.transactionData.manuallyReversed;
@@ -103,9 +103,11 @@ export class ViewTransactionComponent implements OnInit {
       if (this.existTransactionRelations && transactionsChargebackRelated) {
         this.allowUndo = false;
       }
-     
+
       this.channelName = this.transactionData?.paymentDetailData?.channelName;
       this.pointOfSalesName = this.transactionData?.paymentDetailData?.pointOfSales?.name;
+      console.log(this.transactionData?.paymentDetailData);
+      this.bankName = this.transactionData?.paymentDetailData?.bankName;
     });
     this.clientId = this.route.snapshot.params['clientId'];
     this.loanId = this.route.snapshot.params['loanId'];
