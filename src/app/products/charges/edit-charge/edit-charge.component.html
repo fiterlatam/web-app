@@ -294,12 +294,12 @@
             </div>
           </div>
 
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.name" | translate}} </mat-label>
             <input matInput formControlName="insuranceName">
           </mat-form-field>
 
-          <mat-form-field  *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field  *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{ "labels.inputs.charge.insurance.chargedAs" | translate }}</mat-label>
             <mat-select required formControlName="insuranceChargedAs">
               <mat-option *ngFor="let chargedAs of chargeData.chargeInsuranceTypeOptions" [value]="chargedAs.id">
@@ -307,35 +307,35 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.company" | translate}} </mat-label>
-            <input matInput formControlName="insuranceCompany" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'>
+            <input matInput formControlName="insuranceCompany" [required]='areInsuranceFieldsRequired()'>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurer.name" | translate}} </mat-label>
-            <input matInput formControlName="insurerName" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'>
+            <input matInput formControlName="insurerName" [required]='areInsuranceFieldsRequired()'>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.code" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="insuranceCode" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'>
+            <input  type="number" matInput formControlName="insuranceCode" [required]='areInsuranceFieldsRequired()'>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.plan" | translate}} </mat-label>
-            <input matInput formControlName="insurancePlan" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'>
+            <input matInput formControlName="insurancePlan" [required]='areInsuranceFieldsRequired()'>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.base.value" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="baseValue" value="0" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'/>
+            <input  type="number" matInput formControlName="baseValue" value="0" [required]='areInsuranceFieldsRequired()'/>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.vat.value" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="vatValue" value="0" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'/>
+            <input  type="number" matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()'/>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.total.value" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="totalValue" value="0" [required]='chargeForm.value.chargeCalculationTypeFilterInsuranceType'/>
+            <input  type="number" matInput formControlName="totalValue" value="0" [required]='areInsuranceFieldsRequired()'/>
           </mat-form-field>
-          <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 1 && chargeForm.value.chargeCalculationTypeFilterInsuranceType" fxFlex="48%">
+          <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.deadline" | translate}} </mat-label>
             <input type="number" matInput formControlName="deadline" [required]='chargeForm.value.insuranceChargedAs === 1'>
           </mat-form-field>

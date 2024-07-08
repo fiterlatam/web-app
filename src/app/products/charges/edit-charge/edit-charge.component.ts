@@ -1,11 +1,11 @@
 /** Angular Imports */
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 /** Custom Services */
-import { ProductsService } from 'app/products/products.service';
-import { SettingsService } from 'app/settings/settings.service';
+import {ProductsService} from 'app/products/products.service';
+import {SettingsService} from 'app/settings/settings.service';
 import {DecimalPipe} from '@angular/common';
 
 
@@ -69,11 +69,11 @@ export class EditChargeComponent implements OnInit {
    * @param decimalPipe
    */
   constructor(private productsService: ProductsService,
-    private formBuilder: UntypedFormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private settingsService: SettingsService,
-    private decimalPipe: DecimalPipe) {
+              private formBuilder: UntypedFormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private settingsService: SettingsService,
+              private decimalPipe: DecimalPipe) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargeData = data.chargesTemplate;
       this.parentChargeDataList = this.chargeData['chargeDataList'];
@@ -157,7 +157,7 @@ export class EditChargeComponent implements OnInit {
     const locale = this.settingsService.language.code;
     this.chargeForm = this.formBuilder.group({
       'name': [this.chargeData.name, Validators.required],
-      'chargeAppliesTo': [{ value: this.chargeData.chargeAppliesTo.id, disabled: true }, Validators.required],
+      'chargeAppliesTo': [{value: this.chargeData.chargeAppliesTo.id, disabled: true}, Validators.required],
       'currencyCode': [this.chargeData.currency.code, Validators.required],
       'amount': [this.decimalPipe.transform(this.chargeData.amount, '1.2-2', locale), this.getAmountValidators()],
       'active': [this.chargeData.active],
@@ -191,7 +191,7 @@ export class EditChargeComponent implements OnInit {
       'baseValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.baseValue],
       'vatValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.vatValue],
       'totalValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.totalValue],
-      'deadline':  [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
+      'deadline': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
     });
 
     this.chargeForm.removeControl('graceOnChargePeriodAmount');
@@ -280,9 +280,12 @@ export class EditChargeComponent implements OnInit {
       }
     }
     if (this.chargeData.taxGroup) {
-      this.chargeForm.addControl('taxGroupId', this.formBuilder.control({ value: this.chargeData.taxGroup.id, disabled: true }));
+      this.chargeForm.addControl('taxGroupId', this.formBuilder.control({
+        value: this.chargeData.taxGroup.id,
+        disabled: true
+      }));
     } else {
-      this.chargeForm.addControl('taxGroupId', this.formBuilder.control({ value: '' }));
+      this.chargeForm.addControl('taxGroupId', this.formBuilder.control({value: ''}));
     }
   }
 
@@ -336,7 +339,7 @@ export class EditChargeComponent implements OnInit {
 
     this.productsService.updateCharge(this.chargeData.id.toString(), charges)
       .subscribe((response: any) => {
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.router.navigate(['../'], {relativeTo: this.route});
       });
   }
 
@@ -433,7 +436,6 @@ export class EditChargeComponent implements OnInit {
   }
 
 
-
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
     const currCode = this.originalChargeCalculationTypeData[index].code;
 
@@ -448,5 +450,28 @@ export class EditChargeComponent implements OnInit {
     }
 
     this.chargeCalculationTypeOptions.push(this.originalChargeCalculationTypeData[index]);
+  }
+
+  shouldDisplayInsuranceFields(insuranceType: string): boolean {
+    const formValues = this.chargeForm.value;
+    const chargesAppliedTo = this.chargeForm.controls.chargeAppliesTo.value;
+    console.log('formValues', JSON.stringify(formValues));
+    switch (insuranceType) {
+      case 'mandatory':
+        return chargesAppliedTo === 1 && formValues.chargeCalculationTypeFilterInsurance;
+      case 'optional':
+        return chargesAppliedTo === 1 && formValues.chargeCalculationTypeFilterInsuranceType;
+      case 'all':
+        return chargesAppliedTo === 1 &&
+          (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+    }
+
+    return chargesAppliedTo === 1 &&
+      (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+  }
+
+
+  areInsuranceFieldsRequired(): boolean {
+    return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
   }
 }
