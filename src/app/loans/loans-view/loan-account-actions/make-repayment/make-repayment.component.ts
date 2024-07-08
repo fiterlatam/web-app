@@ -86,6 +86,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'paymentTypeId': ['', Validators.required],
       'note': '',
       'channelName': ['', Validators.required],
+      'repaymentBankId': [''],
       'allyId' : '',
       'pointOfSalesCode' : '',
     });
@@ -110,18 +111,12 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       this.repaymentLoanForm.addControl('routingCode', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('bankNumber', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('channelName', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('allyId', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('pointOfSalesCode', new UntypedFormControl(''));
     } else {
       this.repaymentLoanForm.removeControl('accountNumber');
       this.repaymentLoanForm.removeControl('checkNumber');
       this.repaymentLoanForm.removeControl('routingCode');
       this.repaymentLoanForm.removeControl('receiptNumber');
       this.repaymentLoanForm.removeControl('bankNumber');
-      this.repaymentLoanForm.removeControl('channelName');
-      this.repaymentLoanForm.removeControl('allyId');
-      this.repaymentLoanForm.removeControl('pointOfSalesCode');
     }
   }
 

@@ -103,7 +103,7 @@ export const BulkImports = [
       entityType: 'loantransactions',
       urlSuffix: '/loans/repayments',
       permission: 'READ_CLIENT',
-      formFields: 1
+      formFields: 0
     },
     {
       name: 'Savings Transactions',
@@ -127,7 +127,7 @@ export const BulkImports = [
       formFields: 1
     },
 
-// ###################################################################    
+// ###################################################################
 // Custom Imports here...
     {
       name: 'Clients Allies',
