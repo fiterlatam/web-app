@@ -4,16 +4,13 @@ import {
   UntypedFormGroup,
   UntypedFormBuilder,
   Validators,
-  UntypedFormControl,
-  FormArray,
-  UntypedFormArray
+  UntypedFormControl
 } from '@angular/forms';
 import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
 import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 import { CodeName, OptionData } from 'app/shared/models/option-data.model';
 import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
-import {any} from 'codelyzer/util/function';
 
 
 @Component({
@@ -84,7 +81,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
 
     this.amortizationTypeData = this.loanProductsTemplate.amortizationTypeOptions;
     this.interestTypeData = this.loanProductsTemplate.interestTypeOptions;
-    this.interestCalculationPeriodTypeData = this.loanProductsTemplate.interestCalculationPeriodTypeOptions;
+    this.interestCalculationPeriodTypeData = this.loanProductsTemplate['interestCalculationPeriodTypeOptions'] ? this.loanProductsTemplate['interestCalculationPeriodTypeOptions'].filter((item: { id: any; }) => item.id === 1) : [];
     this.transactionProcessingStrategyData = this.loanProductsTemplate.transactionProcessingStrategyOptions;
     this.transactionProcessingStrategyDataBase = this.loanProductsTemplate.transactionProcessingStrategyOptions;
     this.daysInYearTypeData = this.loanProductsTemplate.daysInYearTypeOptions;
