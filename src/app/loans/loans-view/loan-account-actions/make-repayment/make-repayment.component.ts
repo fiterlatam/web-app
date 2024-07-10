@@ -35,11 +35,12 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
 
   /** Channel List */
   channelOptions: any;
+  bankOptions: any;
 
   /** Ally List */
-  allyOption : any;
-  /** Point Of Sales*/
-  pointSalesOption : any;
+  allyOption: any;
+  /** Point Of Sales */
+  pointSalesOption: any;
 
   /**
    * @param {FormBuilder} formBuilder Form Builder.
@@ -85,6 +86,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'paymentTypeId': ['', Validators.required],
       'note': '',
       'channelName': ['', Validators.required],
+      'repaymentBankId': [''],
       'allyId' : '',
       'pointOfSalesCode' : '',
     });
@@ -109,38 +111,31 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       this.repaymentLoanForm.addControl('routingCode', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('receiptNumber', new UntypedFormControl(''));
       this.repaymentLoanForm.addControl('bankNumber', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('channelName', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('allyId', new UntypedFormControl(''));
-      this.repaymentLoanForm.addControl('pointOfSalesCode', new UntypedFormControl(''));
     } else {
       this.repaymentLoanForm.removeControl('accountNumber');
       this.repaymentLoanForm.removeControl('checkNumber');
       this.repaymentLoanForm.removeControl('routingCode');
       this.repaymentLoanForm.removeControl('receiptNumber');
       this.repaymentLoanForm.removeControl('bankNumber');
-      this.repaymentLoanForm.removeControl('channelName');
-      this.repaymentLoanForm.removeControl('allyId');
-      this.repaymentLoanForm.removeControl('pointOfSalesCode');
     }
   }
 
   loadChannelsForCombobox() {
-   
     this.channelOptions = this.dataObject.channelOptions;
-}
- 
-  loadAllieForComboBox(){
-  return this.loanService.getAllies().subscribe((data)=>{
-   
-    this.allyOption = data;
-  })
+    this.bankOptions = this.dataObject.bankOptions;
 }
 
-  changeEvent(){
+  loadAllieForComboBox() {
+  return this.loanService.getAllies().subscribe((data) => {
+    this.allyOption = data;
+  });
+}
+
+  changeEvent() {
     const alliesId = this.repaymentLoanForm.value.allyId;
-    return this.loanService.getPointOfSales(alliesId).subscribe((data)=>{
+    return this.loanService.getPointOfSales(alliesId).subscribe((data) => {
       this.pointSalesOption = data;
-    })
+    });
   }
 
   /** Submits the repayment form */
@@ -153,7 +148,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       repaymentLoanFormData.transactionDate = this.dateUtils.formatDate(prevTransactionDate, dateFormat);
     }
     delete(repaymentLoanFormData['allyId']);
-    
+
     const data = {
       ...repaymentLoanFormData,
       dateFormat,

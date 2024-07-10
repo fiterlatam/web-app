@@ -1,12 +1,12 @@
 /** Angular Imports */
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
+import {Router, ActivatedRoute} from '@angular/router';
 
 /** Custom Services */
-import { ProductsService } from '../../products.service';
-import { SettingsService } from 'app/settings/settings.service';
-import { Dates } from 'app/core/utils/dates';
+import {ProductsService} from '../../products.service';
+import {SettingsService} from 'app/settings/settings.service';
+import {Dates} from 'app/core/utils/dates';
 
 /**
  * Create charge component.
@@ -76,11 +76,11 @@ export class CreateChargeComponent implements OnInit {
    * @param {SettingsService} settingsService Settings Service
    */
   constructor(private formBuilder: UntypedFormBuilder,
-    private productsService: ProductsService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private dateUtils: Dates,
-    private settingsService: SettingsService) {
+              private productsService: ProductsService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private dateUtils: Dates,
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargesTemplateData = data.chargesTemplate;
       if (data.chargesTemplate.incomeOrLiabilityAccountOptions.liabilityAccountOptions) {
@@ -134,14 +134,14 @@ export class CreateChargeComponent implements OnInit {
       'graceOnChargePeriodAmount': ['0', [Validators.required, Validators.min(0)]],
       'insuranceName': [''],
       'insuranceChargedAs': [''],
-      'insuranceCompany':  [''],
-      'insurerName':  [''],
-      'insuranceCode':  [''],
-      'insurancePlan':  [''],
-      'baseValue':  [''],
-      'vatValue':  [''],
+      'insuranceCompany': [''],
+      'insurerName': [''],
+      'insuranceCode': [''],
+      'insurancePlan': [''],
+      'baseValue': [''],
+      'vatValue': [''],
       'totalValue': [''],
-      'deadline':   [''],
+      'deadline': [''],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
@@ -186,7 +186,7 @@ export class CreateChargeComponent implements OnInit {
 
     this.originalChargeCalculationTypeData = this.chargesTemplateData.loanChargeCalculationTypeOptions;
     this.parentChargeDataList = this.chargesTemplateData.chargeDataList;
-    this.chargeFromTableList =  this.chargesTemplateData.chargeFromTableList;
+    this.chargeFromTableList = this.chargesTemplateData.chargeFromTableList;
     this.chargeFromExternalCalculationList = this.chargesTemplateData.chargeFromExternalCalculationList;
     this.interestRateOptions = this.chargesTemplateData.interestRateOptions;
   }
@@ -373,7 +373,7 @@ export class CreateChargeComponent implements OnInit {
     }
 
     this.productsService.createCharge(data).subscribe((response: any) => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+      this.router.navigate(['../'], {relativeTo: this.route});
     });
   }
 
@@ -456,13 +456,13 @@ export class CreateChargeComponent implements OnInit {
         this.voluntaryInsuranceErrorCode = '';
       }
     }
-    for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
       this.lookForKeyOnCode(lookForWordsArray, index);
     }
 
     // IOf nothing selected, restore the list
     if (lookForWordsArray.length == 0) {
-      for (let index = 0; index <= this.originalChargeCalculationTypeData.length-1; index++) {
+      for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
         this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
       }
     }
@@ -478,12 +478,34 @@ export class CreateChargeComponent implements OnInit {
   lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
     let currCode = this.originalChargeCalculationTypeData[index].code;
 
-    for (let i = 0; i <= lookForWordsArray.length-1; i++) {
-      if(currCode.toString().indexOf("."+ lookForWordsArray[i]) == -1) {
+    for (let i = 0; i <= lookForWordsArray.length - 1; i++) {
+      if (currCode.toString().indexOf('.' + lookForWordsArray[i]) == -1) {
 
         return;
       }
     }
     this.chargeCalculationTypeData.push(this.originalChargeCalculationTypeData[index]);
+  }
+
+  shouldDisplayInsuranceFields(insuranceType: string): boolean {
+    const formValues = this.chargeForm.value;
+    switch (insuranceType) {
+      case 'mandatory':
+        return formValues.chargeAppliesTo === 1 && formValues.chargeCalculationTypeFilterInsurance;
+      case 'optional':
+        return formValues.chargeAppliesTo === 1 && formValues.chargeCalculationTypeFilterInsuranceType;
+      case 'all':
+        return formValues.chargeAppliesTo === 1 &&
+          (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+    }
+
+    return formValues.chargeAppliesTo === 1 &&
+      (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+  }
+
+
+
+  areInsuranceFieldsRequired(): boolean {
+    return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
   }
 }

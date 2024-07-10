@@ -3,6 +3,8 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "Una tasa de interés aplicada en la fecha [ {{params[0].value}} ] es posterior a la fecha de vencimiento [ {{params[1].value}} ] .",
+    "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "No se encontró una tasa de interés aplicada en la fecha de desembolso.",
     "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "La cuota de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
     "validation.msg.rescheduleloan.rescheduleFromDate.repayment.schedule.installment.does.not.exist": "La fecha de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
     "error.msg.loan.channel.repayment.is.greater.than.outstanding.amount": "¡Reembolso rechazado para este canal!! El monto del reembolso es mayor que el monto pendiente en {{params[0].value}}",
@@ -328,6 +330,7 @@
       "Home": "Inicio"
     },
     "buttons": {
+      "Chargeback": "Devolución de cargo",
       "Add Rate": "Agregar tasa",
       "Accept Transfer": "Aceptar transferencia",
       "Actions": "Acciones",
@@ -1044,6 +1047,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Bank Name": "Nombre del banco",
       "Interest Rate Type": "Tipo de tasa de interés",
       "Sub Channels": "Subcanales",
       "Channel Type": "Tipo de canal",
@@ -1217,7 +1221,7 @@
       "Charge Grace Period Frequency": "Frecuencia del período de gracia de carga",
       "Charge Name": "Nombre del cargo",
       "Charge Payment By": "Pago de cargo por",
-      "Charge Payment Mode": "Período de Gracia",
+      "Charge Payment Mode": "Modo de pago del cargo",
       "Charge Time": "Tiempo de carga",
       "Charge Time Type": "Tipo de tiempo de carga",
       "Charge Type": "Tipo de carga",
@@ -3556,7 +3560,8 @@
   "custom.charge.entity": {
     "aval": "Aval",
     "insurance": "Seguro",
-    "honorario": "Honorario"
+    "honorario": "Honorario",
+    "term": "Otro Cargo"
   },
   "custom.charge.type": {
     "vip": "VIP",
