@@ -1047,6 +1047,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Point Of Sales": "Punto de ventas",
       "Bank Name": "Nombre del banco",
       "Interest Rate Type": "Tipo de tasa de interés",
       "Sub Channels": "Subcanales",
@@ -2611,6 +2612,8 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Edit": "Editar",
+      "Create Custom Charge Mapping": "Crear Mapeo de Cargos Personalizados",
       "View History": "Ver Historial",
       "Interest Rates": "Tasas de interés",
       "Interest Rate Management": "Definir Gestión de Tasas de Interés para Créditos",
