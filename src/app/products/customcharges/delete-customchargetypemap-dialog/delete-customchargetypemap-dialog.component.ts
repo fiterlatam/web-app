@@ -19,7 +19,7 @@ export class DeleteCustomChargeTypeMapDialogComponent {
 
   /**
    * @param {MatDialogRef} dialogRef Component reference to dialog.
-   * @param {any} data Documents data
+   * @param indata
    */
   constructor(public dialogRef: MatDialogRef<DeleteCustomChargeTypeMapDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public indata: any = {}) {

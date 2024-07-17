@@ -1033,6 +1033,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Point Of Sales": "Point Of Sales",
       "Bank Name": "Bank Name",
       "Interest Rate Type": "Interest Rate Type",
       "Channel Type": "Channel Type",
@@ -2590,6 +2591,8 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Edit": "Edit",
+      "Create Custom Charge Mapping": "Create Custom Charge Mapping",
       "Interest Rate Management": "Define Interest Rate Management for Credits",
       "Interest Rates": "Interest Rates",
       "View History": "View History",

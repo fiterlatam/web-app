@@ -38,7 +38,7 @@
             <fa-icon *ngIf="interestRate.active" icon="check-circle" size="lg" class="interest-rate-active" matTooltip="Yes" matTooltipPosition="right"></fa-icon>
             <fa-icon *ngIf="!interestRate.active" icon="times-circle" size="lg" class="interest-rate-inactive" matTooltip="No" matTooltipPosition="right"></fa-icon>
           </td>
-        </ng-container>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="select-row" [routerLink]="[row.id]"></tr>
     </table>
