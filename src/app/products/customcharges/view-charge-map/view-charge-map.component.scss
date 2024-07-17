@@ -1,5 +1,5 @@
 .container {
-  max-width: 37rem;
+  max-width: 67rem;
 
   .content {
     div {
@@ -12,4 +12,10 @@
 h2 {
   margin-top: 1rem;
   text-align: center;
+}
+
+mat-list {
+  mat-list-item{
+    font-size: small;
+  }
 }

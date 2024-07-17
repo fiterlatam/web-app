@@ -141,13 +141,13 @@ export class EditChargeMapComponent implements OnInit {
       dateFormat,
       locale
     };
-    if (this.isChargeOfType(chargeMapFormData.customChargeTypeId, 'VIP')) {
-      this.customChargeTypeMapService.updateImportDocument(this.template, data, this.chargeMapData.id).subscribe(() => {
-        this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
+    if (this.isChargeOfType(this.editChargeMapForm.controls.customChargeTypeId.value, 'VIP')) {
+          this.customChargeTypeMapService.updateImportDocument(this.template, data, this.chargeMapData.id).subscribe(() => {
+            this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
       });
     } else {
-      this.customChargeTypeMapService.editCustomChargeTypeMap(data, this.chargeMapData.id).subscribe(() => {
-        this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
+        this.customChargeTypeMapService.editCustomChargeTypeMap(data, this.chargeMapData.id).subscribe(() => {
+          this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
       });
     }
   }

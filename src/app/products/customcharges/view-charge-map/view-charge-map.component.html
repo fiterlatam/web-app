@@ -68,15 +68,14 @@
           {{ chargeMapData['createdBy'] }}
         </div>
 
-        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeMapData.chargeType.name === 'VIP'">
+        <div fxFlex="45%" class="mat-body-strong" *ngIf="chargeMapData.chargeType.value === 'VIP'">
           {{'labels.inputs.Clients' | translate }}
         </div>
-        <div fxFlex="50%" *ngIf="chargeMapData.chargeType.name === 'VIP'">
-          <p *ngFor="let client of chargeMapData.clients">
-            {{ client.name }} ({{ client['idNumber'] }})
-          </p>
-        </div>
-
+        <mat-list fxFlex="55%" *ngIf="chargeMapData.chargeType.value === 'VIP'">
+            <mat-list-item *ngFor="let client of chargeMapData.clients">
+                {{ client.displayName }} ({{ client['idNumber'] }})
+            </mat-list-item>
+        </mat-list>
       </div>
     </mat-card-content>
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
