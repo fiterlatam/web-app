@@ -17,7 +17,7 @@ import { ConfigurationWizardService } from '../../configuration-wizard/configura
 export class LoanProductsComponent implements OnInit, AfterViewInit {
 
   loanProductsData: any;
-  displayedColumns: string[] = ['name', 'shortName', 'closeDate', 'status'];
+  displayedColumns: string[] = ['id','name', 'shortName', 'closeDate', 'status'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
