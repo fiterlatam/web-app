@@ -19,7 +19,7 @@ import {BlockingReasonDialogComponent} from 'app/shared/blocking-reason-dialog/b
 export class ClientsComponent implements OnInit {
   @ViewChild('showClosedAccounts') showClosedAccounts: MatCheckbox;
 
-  displayedColumns = ['displayName', 'cedularOrNit', 'accountNumber', 'externalId', 'status', 'officeName'];
+  displayedColumns = ['displayName', 'clientType', 'cedularOrNit', 'accountNumber', 'externalId', 'status', 'officeName'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   existsClientsToFilter = false;
