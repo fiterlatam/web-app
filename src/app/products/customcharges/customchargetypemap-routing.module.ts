@@ -7,6 +7,8 @@ import {CustomChargesResolver} from './create-charge-map/custom-charges.resolver
 import {ViewChargeMapComponent} from './view-charge-map/view-charge-map.component';
 import {ViewChargeMapResolver} from './view-charge-map/view-charge-map.resolver';
 import {EditChargeMapComponent} from './edit-charge-map/edit-charge-map.component';
+import {VipCommerceMapResolver} from './vip-commerce-map/vip-commerce-map.resolver';
+import {VipCommerceMapComponent} from './vip-commerce-map/vip-commerce-map.component';
 
 const routes: Routes = [
   Route.withShell([
@@ -24,6 +26,14 @@ const routes: Routes = [
             data: { title: 'Create Custom Charge Mapping', breadcrumb: 'Create Custom Charge Mapping' },
             resolve: {
               customChargeTemplate: CustomChargesResolver
+            }
+          },
+          {
+            path: 'vipcommercemap',
+            component: VipCommerceMapComponent,
+            data: { title: 'VIP & Commerce', breadcrumb: 'VIP & Commerce' },
+            resolve: {
+              vipCommerceMapTemplate: VipCommerceMapResolver
             }
           },
           {
@@ -55,14 +65,6 @@ const routes: Routes = [
           ]
           }
         ]
-    },
-    {
-      path: 'products/customchargetypemap/create',
-      component: CreateChargeMapComponent,
-      data: { title: 'Create Custom Charge Mapping', breadcrumb: 'Create' },
-      resolve: {
-        customChargeTemplate: CustomChargesResolver
-      }
     }
   ])
 ];
@@ -73,7 +75,7 @@ const routes: Routes = [
   providers: [
     CustomChargesResolver,
     ViewChargeMapResolver,
-    EditChargeMapComponent
+    VipCommerceMapResolver
   ]
 })
 export class CustomChargeTypeMapRoutingModule { }

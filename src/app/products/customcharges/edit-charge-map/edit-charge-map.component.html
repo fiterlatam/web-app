@@ -55,44 +55,6 @@
               {{'labels.inputs.validFrom' | translate }} is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-
-          <div *ngIf="isChargeOfType(editChargeMapForm.controls.customChargeTypeId.value,'Commerce')">
-            <h4>{{'labels.inputs.Point Of Sales' | translate }}</h4>
-            <ng-container formArrayName="pointOfSales">
-              <div *ngFor="let clientAllyOption of clientAllyOptions;">
-                <div>
-                  <p (click)="displayPointOfSales(clientAllyOption.id)">
-                    {{ clientAllyOption.companyName }} ({{ clientAllyOption.nit }})
-                  </p>
-                  <div *ngIf="clientAllyOption.isVisible">
-                    <mat-checkbox *ngFor="let pointOfSaleOption of clientAllyOption.pointOfSales; let i = index" [formControlName]="findPointOfSaleIndex(pointOfSaleOption.id)">
-                      {{ pointOfSaleOption.name }}
-                    </mat-checkbox>
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-          </div>
-
-          <div *ngIf="isChargeOfType(editChargeMapForm.controls.customChargeTypeId.value,'VIP')">
-            <h4>{{'labels.inputs.Clients' | translate }}</h4>
-            <div fxLayoutGap="2%" class="m-b-20">
-              <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
-                <h3><strong>{{'labels.heading.Clients' | translate}} {{ 'labels.heading.Template' | translate }}</strong></h3>
-                <div fxFlex="13%">
-                  <button mat-raised-button color="primary" (click)="downloadTemplate()" >
-                    <i class="fa fa-download"></i>&nbsp;&nbsp;{{'labels.buttons.Download' | translate }}
-                  </button>
-                </div>
-              </mat-card>
-              <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
-                <h3><strong>{{ 'labels.heading.Clients' | translate}}</strong></h3>
-                <h4>{{'labels.heading.Select Excel File' | translate }}</h4>
-                <mifosx-file-upload flex="75%" (change)="onFileSelect($event)" acceptFilter=".xls,.xlsx"></mifosx-file-upload>
-              </mat-card>
-            </div>
-          </div>
-
         </div>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">

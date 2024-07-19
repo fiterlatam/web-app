@@ -1,7 +1,7 @@
 <mat-card class="container">
       <form [formGroup]="filterForm">
-        <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="start center">
-          <mat-form-field fxFlex="42%">
+        <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center center">
+          <mat-form-field fxFlex="32%">
             <mat-label>{{ "labels.inputs.custom.charge.entity" | translate }}</mat-label>
             <mat-select (selectionChange)="changeChargeEntityEvent($event.value)">
               <mat-option *ngFor="let chargeTime of customChargeEntityList" [value]="chargeTime.id">
@@ -9,7 +9,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field fxFlex="38%">
+          <mat-form-field fxFlex="32%">
             <mat-label>{{ "labels.inputs.custom.charge.type" | translate }}</mat-label>
             <mat-select (selectionChange)="changeChargeTypeEvent($event.value)">
               <mat-option *ngFor="let chargeTime of customChargeTypeList" [value]="chargeTime.id">
@@ -17,8 +17,11 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="action-button" fxFlex="12%" >
+          <div class="action-button" fxFlex="7%">
             <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'">{{"labels.buttons.Add" | translate }}</button>
+          </div>
+          <div class="action-button" fxFlex="10%">
+            <button mat-raised-button color="primary" [routerLink]="['vipcommercemap']" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'">{{"labels.buttons.VIP & Commerce" | translate }}</button>
           </div>
         </div>
       </form>

@@ -1,20 +1,19 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {EditChargeMapComponent} from './edit-charge-map.component';
 
-import { CreateChargeMap } from './edit-charge-map.component';
-
-describe('CreateInterestRateComponent', () => {
-  let component: CreateChargeMap;
-  let fixture: ComponentFixture<CreateChargeMap>;
+describe('EditChargeMapComponent', () => {
+  let component: EditChargeMapComponent;
+  let fixture: ComponentFixture<EditChargeMapComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateChargeMap ]
+      declarations: [ EditChargeMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateChargeMap);
+    fixture = TestBed.createComponent(EditChargeMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

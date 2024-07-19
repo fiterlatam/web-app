@@ -67,15 +67,6 @@
         <div fxFlex="50%">
           {{ chargeMapData['createdBy'] }}
         </div>
-
-        <div fxFlex="45%" class="mat-body-strong" *ngIf="chargeMapData.chargeType.value === 'VIP'">
-          {{'labels.inputs.Clients' | translate }}
-        </div>
-        <mat-list fxFlex="55%" *ngIf="chargeMapData.chargeType.value === 'VIP'">
-            <mat-list-item *ngFor="let client of chargeMapData.clients">
-                {{ client.displayName }} ({{ client['idNumber'] }})
-            </mat-list-item>
-        </mat-list>
       </div>
     </mat-card-content>
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">

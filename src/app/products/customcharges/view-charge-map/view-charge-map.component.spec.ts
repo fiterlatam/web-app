@@ -1,8 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ViewChargeMapComponent} from './view-charge-map.component';
 
-import { ViewChargeMapComponent } from './view-charge-map.component';
-
-describe('ViewInterestRateComponent', () => {
+describe('ViewChargeMapComponent', () => {
   let component: ViewChargeMapComponent;
   let fixture: ComponentFixture<ViewChargeMapComponent>;
 
