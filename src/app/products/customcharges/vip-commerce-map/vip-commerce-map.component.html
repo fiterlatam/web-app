@@ -1,0 +1,74 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="vipCommerceMapForm">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label> {{'labels.inputs.custom.charge.type' | translate }}</mat-label>
+            <mat-select formControlName="customChargeTypeId">
+              <mat-option *ngFor="let customChargeTypeOption of customChargeTypeOptions" [value]="customChargeTypeOption.id">
+                {{ customChargeTypeOption.code | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="vipCommerceMapForm.controls.customChargeTypeId.hasError('required')">
+              {{'labels.inputs.custom.charge.type' | translate }}  {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="vipCommerceMapForm.controls.customChargeTypeId.value === 1">
+            <mat-list>
+              <mat-list-item *ngFor="let client of clients">
+                {{ client.displayName ? client.displayName + ' - ': '' }} {{ client['idNumber'] }}
+              </mat-list-item>
+            </mat-list>
+
+            <h4>{{'labels.inputs.Clients' | translate }}</h4>
+            <div fxLayoutGap="2%" class="m-b-20">
+              <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
+                <h3><strong>{{'labels.heading.Clients' | translate}} {{ 'labels.heading.Template' | translate }}</strong></h3>
+                <div fxFlex="13%">
+                  <button mat-raised-button color="primary" (click)="downloadTemplate()" >
+                    <i class="fa fa-download"></i>&nbsp;&nbsp;{{'labels.buttons.Download' | translate }}
+                  </button>
+                </div>
+              </mat-card>
+              <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="50%">
+                <h3><strong>{{ 'labels.heading.Clients' | translate}}</strong></h3>
+                <h4>{{'labels.heading.Select Excel File' | translate }}</h4>
+                <mifosx-file-upload flex="75%" (change)="onFileSelect($event)" acceptFilter=".xls,.xlsx"></mifosx-file-upload>
+              </mat-card>
+            </div>
+          </div>
+
+          <div *ngIf="vipCommerceMapForm.controls.customChargeTypeId.value === 2">
+            <mat-list>
+              <mat-list-item *ngFor="let pointOfSale of pointOfSales">
+                {{ pointOfSale.name }} - {{ pointOfSale.code }}
+              </mat-list-item>
+            </mat-list>
+            <h4>{{'labels.inputs.Point Of Sales' | translate }}</h4>
+            <ng-container formArrayName="pointOfSales">
+              <div *ngFor="let clientAllyOption of clientAllyOptions;">
+                <div>
+                  <p (click)="displayPointOfSales(clientAllyOption.id)">
+                    {{ clientAllyOption.companyName }} ({{ clientAllyOption.nit }})
+                  </p>
+                  <div *ngIf="clientAllyOption.isVisible">
+                    <mat-checkbox *ngFor="let pointOfSaleOption of clientAllyOption.pointOfSales; let i = index" [formControlName]="findPointOfSaleIndex(pointOfSaleOption.id)">
+                      {{ pointOfSaleOption.name }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!vipCommerceMapForm.valid" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'" (click)="submit()" >{{'labels.buttons.Submit' | translate}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

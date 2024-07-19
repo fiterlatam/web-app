@@ -13,6 +13,7 @@ import { DeleteCustomChargeTypeMapDialogComponent } from './delete-customcharget
 import {CreateChargeMapComponent} from './create-charge-map/create-charge-map.component';
 import {ViewChargeMapComponent} from './view-charge-map/view-charge-map.component';
 import {EditChargeMapComponent} from './edit-charge-map/edit-charge-map.component';
+import {VipCommerceMapComponent} from './vip-commerce-map/vip-commerce-map.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {EditChargeMapComponent} from './edit-charge-map/edit-charge-map.componen
     CreateChargeMapComponent,
     EditChargeMapComponent,
     ViewChargeMapComponent,
-    DeleteCustomChargeTypeMapDialogComponent
+    DeleteCustomChargeTypeMapDialogComponent,
+    VipCommerceMapComponent
   ],
   imports: [
     SharedModule,

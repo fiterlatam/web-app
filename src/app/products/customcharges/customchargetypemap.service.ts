@@ -40,6 +40,10 @@ export class CustomChargeTypeMapService {
     return this.http.get('/customchargeentities/template', {});
   }
 
+  getVipCommerceTemplate(): Observable<any> {
+    return this.http.get('/customchargeentities/map/template', {});
+  }
+
   getCustomChargeType(entityId: any): Observable<any> {
     return this.http.get(`/customchargeentities/${entityId}/customchargetypes`, {});
   }

@@ -48,7 +48,6 @@ export class EditChargeMapComponent implements OnInit {
     this.loadChargeTypeOptions(this.chargeMapData.charge.id);
     this.createEditChargeMapForm();
     this.loadChargeTypeOptions(this.chargeMapData.charge.id);
-    this.pointOfSaleControl();
   }
 
   createEditChargeMapForm() {
@@ -65,57 +64,6 @@ export class EditChargeMapComponent implements OnInit {
   loadChargeTypeOptions(id: any) {
     this.customChargeTypeMapService.getCustomChargeType(id).subscribe(( apiResponseBody: any ) => {
       this.chargeTypeOptions = apiResponseBody;
-    });
-  }
-
-  isChargeOfType(id: any, name: any) {
-    return this.chargeTypeOptions.some(obj => obj.id === id && obj.name === name);
-  }
-
-  pointOfSaleControl() {
-    const pointOfSaleControl = this.formBuilder.array([]);
-    let pointOfSaleOptions: { id: number; }[] = [];
-    for (const clientAllyOption of this.clientAllyOptions) {
-      pointOfSaleOptions = [...pointOfSaleOptions, ...clientAllyOption.pointOfSales];
-      this.pointOfSalesOptions = pointOfSaleOptions;
-    }
-    this.editChargeMapForm.addControl('pointOfSales', pointOfSaleControl);
-    if (this.pointOfSalesOptions && this.pointOfSalesOptions.length > 0) {
-      this.pointOfSalesOptions.forEach((opt) => {
-        const pointOfSaleId = opt.id;
-        const formState = this.pointOfSales.some((x: { id: number }) => x.id === pointOfSaleId);
-        pointOfSaleControl.push(this.formBuilder.control(formState));
-      });
-    }
-  }
-
-  displayPointOfSales(id: any) {
-    for (const clientAllyOption of this.clientAllyOptions) {
-      if (clientAllyOption.id === id) {
-        clientAllyOption.isVisible = !clientAllyOption.isVisible;
-      }
-    }
-  }
-
-  findPointOfSaleIndex(id: any) {
-    return this.pointOfSalesOptions.findIndex((pointOfSale) => pointOfSale.id === id);
-  }
-
-  onFileSelect($event: any) {
-    $event.preventDefault();
-    if ($event.target.files.length > 0) {
-      this.template = $event.target.files[0];
-    }
-  }
-
-  downloadTemplate() {
-    const date = new Date();
-    const name = `lista_clientes_vip_${this.dateUtils.getDateYYYYMMDDHH(date)}.xlsx`;
-    this.customChargeTypeMapService.getImportTemplate().subscribe( (res: any) => {
-      const contentType = res.headers.get('Content-Type');
-      const blob = new Blob([res.body], { type: contentType });
-      const fileOfBlob = new File([blob], name, { type: contentType });
-      window.open(window.URL.createObjectURL(fileOfBlob));
     });
   }
 
@@ -141,15 +89,9 @@ export class EditChargeMapComponent implements OnInit {
       dateFormat,
       locale
     };
-    if (this.isChargeOfType(this.editChargeMapForm.controls.customChargeTypeId.value, 'VIP')) {
-          this.customChargeTypeMapService.updateImportDocument(this.template, data, this.chargeMapData.id).subscribe(() => {
-            this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
-      });
-    } else {
-        this.customChargeTypeMapService.editCustomChargeTypeMap(data, this.chargeMapData.id).subscribe(() => {
-          this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
-      });
-    }
+      this.customChargeTypeMapService.editCustomChargeTypeMap(data, this.chargeMapData.id).subscribe(() => {
+        this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Custom charge map updated successfully'));
+    });
   }
 
 }
