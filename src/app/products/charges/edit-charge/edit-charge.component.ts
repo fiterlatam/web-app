@@ -455,7 +455,6 @@ export class EditChargeComponent implements OnInit {
   shouldDisplayInsuranceFields(insuranceType: string): boolean {
     const formValues = this.chargeForm.value;
     const chargesAppliedTo = this.chargeForm.controls.chargeAppliesTo.value;
-    console.log('formValues', JSON.stringify(formValues));
     switch (insuranceType) {
       case 'mandatory':
         return chargesAppliedTo === 1 && formValues.chargeCalculationTypeFilterInsurance;

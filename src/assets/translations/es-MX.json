@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.customchargetypemap.id.invalid": "El ID de mapeo de tipo de cargo personalizado no es válido.",
     "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "Una tasa de interés aplicada en la fecha [ {{params[0].value}} ] es posterior a la fecha de vencimiento [ {{params[1].value}} ] .",
     "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "No se encontró una tasa de interés aplicada en la fecha de desembolso.",
     "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "La cuota de reprogramación no puede ser antes de la fecha de inicio del reembolso.",
@@ -1048,6 +1049,11 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Voluntary Insurance Name": "Seguro Voluntario Adquirido",
+      "Seller ID": "Cédula del vendedor",
+      "Purchase Charge": "Cargo de compra",
+      "Voluntary Insurance/Assistance": "Seguro/Asistencia Voluntaria",
+      "Is it a Purchase Charge": "¿Es un cargo de compra?",
       "Point Of Sales": "Punto de ventas",
       "Bank Name": "Nombre del banco",
       "Interest Rate Type": "Tipo de tasa de interés",
@@ -2613,6 +2619,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "VIP & Commerce": "VIP y comercio",
       "Edit": "Editar",
       "Create Custom Charge Mapping": "Crear Mapeo de Cargos Personalizados",
       "View History": "Ver Historial",

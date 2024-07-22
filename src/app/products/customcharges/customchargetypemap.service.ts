@@ -68,31 +68,21 @@ export class CustomChargeTypeMapService {
     return this.http.get(`/customchargetypemap/template`, { params: httpParams });
   }
 
-  getImportTemplate(): Observable<any> {
+  getImportTemplate(customChargeTypeId: any): Observable<any> {
     const httpParams = new HttpParams()
       .set('tenantIdentifier', 'default')
       .set('locale', this.settingsService.language.code)
-      .set('dateFormat', this.settingsService.dateFormat);
+      .set('dateFormat', this.settingsService.dateFormat)
+      .set('customChargeTypeId', customChargeTypeId);
     return this.http.get('/customchargeentities/map/downloadtemplate', { params: httpParams, responseType: 'arraybuffer', observe: 'response' });
   }
 
-  createImportDocument(file: File, apiRequestBody: any): Observable<any> {
+  createImportDocument(file: File, customChargeTypeId: any): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('locale', this.settingsService.language.code);
     formData.append('dateFormat', this.settingsService.dateFormat);
-    formData.append('apiRequestBodyAsJson', JSON.stringify(apiRequestBody));
+    formData.append('customChargeTypeId', customChargeTypeId);
     return this.http.post('/customchargeentities/map/uploadtemplate', formData, {});
   }
-
-  updateImportDocument(file: File, apiRequestBody: any, id: any): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('locale', this.settingsService.language.code);
-    formData.append('dateFormat', this.settingsService.dateFormat);
-    formData.append('id', id);
-    formData.append('apiRequestBodyAsJson', JSON.stringify(apiRequestBody));
-    return this.http.put('/customchargeentities/map/uploadtemplate', formData, {});
-  }
-
 }

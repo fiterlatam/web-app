@@ -2,6 +2,22 @@
 
   <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
+    <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Purchase Charge' | translate}} <i class="fas fa-question" matTooltip="{{ 'tooltips.Voluntary Insurance/Assistance Mappings' | translate }}"></i></h4>
+    <mat-checkbox fxFlex="96%" labelPosition="before" formControlName="isPurchaseCharge">
+      <mat-label>{{'labels.inputs.Is it a Purchase Charge' | translate}}</mat-label>
+    </mat-checkbox>
+
+    <div fxFlex="98%" fxLayoutGap="2%" fxLayout="row wrap" fxLayout.lt-md="column">
+      <mat-form-field fxFlex="100%" *ngIf="loanProductTermsForm.value['isPurchaseCharge']">
+        <mat-label>{{'labels.inputs.Voluntary Insurance/Assistance' | translate }}</mat-label>
+        <mat-select formControlName="voluntaryInsuranceId" (selectionChange)="onVoluntaryInsuranceChange($event)">
+          <mat-option *ngFor="let voluntaryInsuranceOption of voluntaryInsuranceOptions" [value]="voluntaryInsuranceOption.id">
+            {{ voluntaryInsuranceOption.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Principal' | translate}} <i class="fas fa-question" matTooltip="{{ 'tooltips.Fields are used to define the minimum, default, and maximum principal' | translate }}"></i></h4>
 
     <mat-form-field fxFlex="31%">

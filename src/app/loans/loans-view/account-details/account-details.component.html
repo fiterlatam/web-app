@@ -36,6 +36,16 @@
       <span fxFlex="50%"> {{ loanDetails.pointOfSalesName}} </span>
     </div>
 
+    <div fxFlexFill *ngIf="loanDetails.voluntaryInsurance">
+      <span fxFlex="50%"> {{ "labels.inputs.Voluntary Insurance Name" | translate }} </span>
+      <span fxFlex="50%"> {{ loanDetails.voluntaryInsurance.name}} </span>
+    </div>
+
+    <div fxFlexFill *ngIf="loanDetails.voluntaryInsurance">
+      <span fxFlex="50%"> {{ "labels.inputs.Seller ID" | translate }} </span>
+      <span fxFlex="50%"> {{ loanDetails.voluntaryInsurance.cedulaSeguroVoluntario}} </span>
+    </div>
+
     <div fxFlexFill>
       <span fxFlex="50%"> {{ "labels.inputs.Equal Amortization" | translate }} </span>
       <span fxFlex="50%"> {{ loanDetails.isEqualAmortization | yesNo }} </span>
