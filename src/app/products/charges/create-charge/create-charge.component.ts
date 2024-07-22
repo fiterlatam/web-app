@@ -6,6 +6,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 /** Custom Services */
 import {ProductsService} from '../../products.service';
 import {SettingsService} from 'app/settings/settings.service';
+import {SystemService} from 'app/system/system.service';
 import {Dates} from 'app/core/utils/dates';
 
 /**
@@ -66,6 +67,9 @@ export class CreateChargeComponent implements OnInit {
   showVoluntaryInsuranceError = false;
   voluntaryInsuranceErrorCode: string;
 
+  /** Vat commission percentage */
+  vatCommissionPercentage: number;
+
   /**
    * Retrieves the charges template data and income and liability account data from `resolve`.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -74,13 +78,15 @@ export class CreateChargeComponent implements OnInit {
    * @param {Router} router Router for navigation.
    * @param {Dates} dateUtils Date Utils to format date.
    * @param {SettingsService} settingsService Settings Service
+   * @param {SystemService} systemService System Service
    */
   constructor(private formBuilder: UntypedFormBuilder,
               private productsService: ProductsService,
               private route: ActivatedRoute,
               private router: Router,
               private dateUtils: Dates,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private systemService: SystemService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargesTemplateData = data.chargesTemplate;
       if (data.chargesTemplate.incomeOrLiabilityAccountOptions.liabilityAccountOptions) {
@@ -99,6 +105,7 @@ export class CreateChargeComponent implements OnInit {
     this.createChargeForm();
     this.setChargeForm();
     this.setConditionalControls();
+    this.getVatCommissionPercentage();
   }
 
   getAmountValidators(): any[] {
@@ -322,7 +329,6 @@ export class CreateChargeComponent implements OnInit {
           break;
       }
     });
-    this.chargeForm.get('amount').setValidators(this.getAmountValidators());
   }
 
   /**
@@ -507,5 +513,32 @@ export class CreateChargeComponent implements OnInit {
 
   areInsuranceFieldsRequired(): boolean {
     return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
+  }
+
+  getVatCommissionPercentage() {
+    this.systemService.getConfigurationByName('VAT-commission-percentage').subscribe((response: any) => {
+      this.vatCommissionPercentage = response.value;
+    });
+  }
+
+  disableAmountAndBaseValue() {
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}%`);
+      this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  sumVatAndTotalValues() {
+    if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      const baseValue = this.chargeForm.get('baseValue').value;
+      const vatValue =  this.chargeForm.get('baseValue').value * this.vatCommissionPercentage / 100;
+      let sum = vatValue + baseValue;
+      sum = Math.round(sum * 100) / 100;
+      this.chargeForm.get('amount').setValue(sum);
+      this.chargeForm.get('totalValue').setValue(sum);
+    }
   }
 }
