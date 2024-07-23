@@ -9,6 +9,7 @@ import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.co
 import { FormfieldBase } from 'app/shared/form-dialog/formfield/model/formfield-base';
 import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
 import { SelectBase } from 'app/shared/form-dialog/formfield/model/select-base';
+import {MatSelectChange} from '@angular/material/select';
 
 @Component({
   selector: 'mifosx-loan-product-terms-step',
@@ -28,6 +29,7 @@ export class LoanProductTermsStepComponent implements OnInit {
   overAppliedCalculationTypeData: any;
   repaymentFrequencyTypeData: any;
   repaymentStartDateTypeOptions: any;
+  voluntaryInsuranceOptions: any[] = [];
 
   displayedColumns: string[] = ['valueConditionType', 'borrowerCycleNumber', 'minValue', 'defaultValue', 'maxValue', 'actions'];
 
@@ -38,6 +40,7 @@ export class LoanProductTermsStepComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.voluntaryInsuranceOptions = this.loanProductsTemplate.voluntaryInsuranceOptions;
     this.valueConditionTypeData = this.loanProductsTemplate.valueConditionTypeOptions;
     this.floatingRateData = this.loanProductsTemplate.floatingRateOptions;
     this.interestRateFrequencyTypeData = this.loanProductsTemplate.interestRateFrequencyTypeOptions;
@@ -60,6 +63,7 @@ export class LoanProductTermsStepComponent implements OnInit {
       'interestRateDifferential': this.loanProductsTemplate.interestRateDifferential,
       'isFloatingInterestRateCalculationAllowed': this.loanProductsTemplate.isFloatingInterestRateCalculationAllowed,
       'allowApprovedDisbursedAmountsOverApplied': this.loanProductsTemplate.allowApprovedDisbursedAmountsOverApplied,
+      'isPurchaseCharge': this.loanProductsTemplate.isPurchaseCharge,
       'minDifferentialLendingRate': this.loanProductsTemplate.minDifferentialLendingRate,
       'defaultDifferentialLendingRate': this.loanProductsTemplate.defaultDifferentialLendingRate,
       'maxDifferentialLendingRate': this.loanProductsTemplate.maxDifferentialLendingRate,
@@ -97,6 +101,7 @@ export class LoanProductTermsStepComponent implements OnInit {
       'isLinkedToFloatingInterestRates': [{ value: false, disabled: true }],
       'requirePoints': [false],
       'allowApprovedDisbursedAmountsOverApplied': [false],
+      'isPurchaseCharge': [false],
       'interestRateFrequencyType': ['', Validators.required],
       'interestRateId': ['', Validators.required],
       'repaymentEvery': ['1', Validators.required],
@@ -140,7 +145,15 @@ export class LoanProductTermsStepComponent implements OnInit {
         }
       });
 
-      this.loanProductTermsForm.get('useBorrowerCycle').valueChanges
+    this.loanProductTermsForm.get('isPurchaseCharge').valueChanges.subscribe(isPurchaseCharge => {
+      if (isPurchaseCharge) {
+        this.loanProductTermsForm.addControl('voluntaryInsuranceId', new UntypedFormControl(this.loanProductsTemplate.voluntaryInsuranceId, Validators.required));
+      } else {
+        this.loanProductTermsForm.removeControl('voluntaryInsuranceId');
+      }
+    });
+
+    this.loanProductTermsForm.get('useBorrowerCycle').valueChanges
         .subscribe(useBorrowerCycle => {
           if (useBorrowerCycle) {
             this.loanProductTermsForm.addControl('principalVariationsForBorrowerCycle', this.formBuilder.array([]));
@@ -152,6 +165,23 @@ export class LoanProductTermsStepComponent implements OnInit {
             this.loanProductTermsForm.removeControl('interestRateVariationsForBorrowerCycle');
           }
         });
+  }
+
+  onVoluntaryInsuranceChange(event: MatSelectChange) {
+      const voluntaryInsuranceId = event.value;
+      this.voluntaryInsuranceOptions.filter(option => option.id === voluntaryInsuranceId).forEach(option => {
+        if (option.chargeInsuranceDetailData) {
+          this.loanProductTermsForm.patchValue({
+            'principal': option.chargeInsuranceDetailData.totalValue,
+            'minPrincipal': option.chargeInsuranceDetailData.totalValue,
+            'maxPrincipal': option.chargeInsuranceDetailData.totalValue,
+            'minNumberOfRepayments': option.chargeInsuranceDetailData.deadline,
+            'numberOfRepayments': option.chargeInsuranceDetailData.deadline,
+            'maxNumberOfRepayments': option.chargeInsuranceDetailData.deadline,
+          });
+        }
+
+      });
   }
 
   get principalVariationsForBorrowerCycle(): UntypedFormArray {

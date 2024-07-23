@@ -3,6 +3,7 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.customchargetypemap.id.invalid": "The charge type map with identifier {{params[0].value}} is invalid.",
     "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "An interest rate applied on date [ {{params[0].value}} ] is after the maturity date [ {{params[1].value}} ] .",
     "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "An interest rate applied on the disbursement date was not found.",
     "validation.msg.rescheduleloan.loan.repayment.schedule.installment.does.not.exist": "Repayment schedule installment does not exist for the given reschedule date",
@@ -1034,6 +1035,11 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Voluntary Insurance Name": "Purchased Voluntary Insurance",
+      "Seller ID": "Seller's ID",
+      "Voluntary Insurance/Assistance": "Voluntary Insurance/Assistance",
+      "Purchase Charge": "Purchase Charge",
+      "Is it a Purchase Charge": "Is it a Purchase Charge?",
       "Point Of Sales": "Point Of Sales",
       "Bank Name": "Bank Name",
       "Interest Rate Type": "Interest Rate Type",
@@ -2592,6 +2598,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "VIP & Commerce": "VIP & Commerce",
       "Edit": "Edit",
       "Create Custom Charge Mapping": "Create Custom Charge Mapping",
       "Interest Rate Management": "Define Interest Rate Management for Credits",

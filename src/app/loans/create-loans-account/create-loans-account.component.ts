@@ -145,7 +145,7 @@ export class CreateLoansAccountComponent implements OnInit {
       });
       payload['datatables'] = datatables;
     }
-
+    payload.clientIdNumber = this.loansAccountTemplate.clientIdNumber;
     this.loansService.createLoansAccount(payload).subscribe((response: any) => {
       this.router.navigate(['../', response.resourceId, 'general'], { relativeTo: this.route });
     });
