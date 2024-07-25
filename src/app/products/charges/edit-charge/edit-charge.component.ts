@@ -489,7 +489,7 @@ export class EditChargeComponent implements OnInit {
 
   disableAmountAndBaseValue() {
     if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
-      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}%`);
+      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}`);
       this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
       return true;
     } else {
@@ -499,9 +499,10 @@ export class EditChargeComponent implements OnInit {
 
   sumVatAndTotalValues() {
     if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
-      const vatValue =  this.chargeForm.get('baseValue').value * this.vatCommissionPercentage / 100;
-      const totalValue = this.chargeForm.get('totalValue').value || 0;
-      const sum = vatValue + totalValue;
+      const baseValue = this.chargeForm.get('baseValue').value;
+      const vatValue =  baseValue * this.vatCommissionPercentage / 100;
+      let sum = vatValue + baseValue;
+      sum = Math.round(sum) ;
       this.chargeForm.get('amount').setValue(sum);
       this.chargeForm.get('totalValue').setValue(sum);
     }
