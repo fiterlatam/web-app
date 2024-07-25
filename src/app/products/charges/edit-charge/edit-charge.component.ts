@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProductsService} from 'app/products/products.service';
 import {SettingsService} from 'app/settings/settings.service';
 import {DecimalPipe} from '@angular/common';
+import { SystemService } from 'app/system/system.service';
 
 
 /**
@@ -59,6 +60,9 @@ export class EditChargeComponent implements OnInit {
   showVoluntaryInsuranceError = false;
   voluntaryInsuranceErrorCode: string;
 
+  /** Vat commission percentage */
+  vatCommissionPercentage: number;
+
   /**
    * Retrieves the charge data from `resolve`.
    * @param {ProductsService} productsService Products Service.
@@ -67,13 +71,15 @@ export class EditChargeComponent implements OnInit {
    * @param {Router} router Router for navigation.
    * @param {SettingsService} settingsService Settings Service
    * @param decimalPipe
+   * @param {SystemService} systemService System Service
    */
   constructor(private productsService: ProductsService,
               private formBuilder: UntypedFormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private settingsService: SettingsService,
-              private decimalPipe: DecimalPipe) {
+              private decimalPipe: DecimalPipe,
+              private systemService: SystemService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargeData = data.chargesTemplate;
       this.parentChargeDataList = this.chargeData['chargeDataList'];
@@ -133,6 +139,7 @@ export class EditChargeComponent implements OnInit {
   ngOnInit() {
     this.editChargeForm();
     this.setupFiltersCheckboxes();
+    this.getVatCommissionPercentage();
   }
 
   getAmountValidators(): any[] {
@@ -472,5 +479,31 @@ export class EditChargeComponent implements OnInit {
 
   areInsuranceFieldsRequired(): boolean {
     return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
+  }
+  
+  getVatCommissionPercentage() {
+    this.systemService.getConfigurationByName('VAT-commission-percentage').subscribe((response: any) => {
+      this.vatCommissionPercentage = response.value;
+    });
+  }
+
+  disableAmountAndBaseValue() {
+    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}%`);
+      this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  sumVatAndTotalValues() {
+    if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+      const vatValue =  this.chargeForm.get('baseValue').value * this.vatCommissionPercentage / 100;
+      const totalValue = this.chargeForm.get('totalValue').value || 0;
+      const sum = vatValue + totalValue;
+      this.chargeForm.get('amount').setValue(sum);
+      this.chargeForm.get('totalValue').setValue(sum);
+    }
   }
 }

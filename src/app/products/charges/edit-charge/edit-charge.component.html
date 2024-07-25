@@ -166,7 +166,7 @@
 
           <mat-form-field fxFlex="48%">
             <mat-label>{{ "labels.inputs.Amount" | translate }}</mat-label>
-            <input matInput required autofocus type="text" formControlName="amount">
+            <input matInput required autofocus type="text" formControlName="amount" [readonly]='disableAmountAndBaseValue()'>
             <mat-error *ngIf="chargeForm.controls.amount.hasError('required')">
               {{ "labels.inputs.Amount" | translate }} <strong>is required</strong>
             </mat-error>
@@ -329,11 +329,11 @@
           </mat-form-field>
           <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.vat.value" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()'/>
+            <input  matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()' [readonly]='disableAmountAndBaseValue()'/>
           </mat-form-field>
           <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.total.value" | translate}} </mat-label>
-            <input  type="number" matInput formControlName="totalValue" value="0" [required]='areInsuranceFieldsRequired()'/>
+            <input  type="number" matInput formControlName="totalValue" value="0" [required]='areInsuranceFieldsRequired()' [readonly]='disableAmountAndBaseValue()'/>
           </mat-form-field>
           <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
             <mat-label>{{"labels.inputs.charge.insurance.deadline" | translate}} </mat-label>
