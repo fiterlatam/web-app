@@ -8,6 +8,7 @@ import { ProductsService } from '../../products.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
 import {DecimalPipe} from '@angular/common';
+import {logger} from 'codelyzer/util/logger';
 
 /**
  * Edit tax component.
@@ -18,19 +19,14 @@ import {DecimalPipe} from '@angular/common';
   styleUrls: ['./edit-maximum-credit-rate.component.scss']
 })
 export class EditMaximumCreditRateComponent implements OnInit {
-
-  /** Minimum date allowed. */
-  minDate = new Date(2000, 0, 1);
-  /** Maximum start date allowed. */
-  maxDate = new Date();
-  /** Maximum legal rate form. */
+  minDate: Date;
+  maxDate: Date;
   maximumCreditRateForm: UntypedFormGroup;
-  /** Maximum legal rate data. */
   maximumCreditRateData: any;
 
   /**
    * Retrieves the Maximum Credit Rate data from `resolve`.
-   * @param {FormBuilder} formBuilder Form Builder.
+   * @param {UntypedFormBuilder} formBuilder Form Builder.
    * @param {ProductsService} productsService Products Service.
    * @param {ActivatedRoute} route Activated Route.
    * @param {Router} router Router for navigation.
@@ -53,7 +49,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
    * Creates the Edit Maximum Credit Rate form.
    */
   ngOnInit() {
-    this.minDate = this.settingsService.minAllowedDate;
+    this.minDate = new Date();
     this.maxDate = this.settingsService.maxAllowedDate;
     this.editMaximumCreditRate();
   }
@@ -113,8 +109,8 @@ export class EditMaximumCreditRateComponent implements OnInit {
       dateFormat,
       locale
     };
-    this.productsService.updateMaximumCreditRate(data).subscribe((response: any) => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+    this.productsService.updateMaximumCreditRate(data).subscribe(() => {
+        this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Maximum Credit Rate updated successfully'));
     });
   }
 
