@@ -516,8 +516,8 @@ export class CreateChargeComponent implements OnInit {
   }
 
   getVatCommissionPercentage() {
-    this.systemService.getConfigurationByName('VAT-commission-percentage').subscribe((response: any) => {
-      this.vatCommissionPercentage = response.value;
+    this.systemService.getConfigurationByName('IVA Por comision').subscribe((response: any) => {
+      this.vatCommissionPercentage = response?.value;
     });
   }
 
