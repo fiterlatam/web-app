@@ -39,7 +39,7 @@
     "error.msg.charge.update.of.charge.applies.to.is.not.supported": "No se admite la actualización del cargo aplicable.",
     "error.msg.loan.product.close.date.cannot.be.before.start.date": "La fecha de cierre del producto crediticio no puede ser anterior a la fecha de inicio.",
     "error.msg.product.loan.duplicate.charge": "El producto de Crédito sólo podrá tener un cargo de cada tipo.",
-    "error.msg.product.loan.duplicate.name": "El producto de Crédito con nombre {{params[0].value}} ya existe.",
+    "error.msg.product.loan.duplicate.name": "No se puede crear el producto con este nombre {{params[0].value}} porque ya está siendo utilizado por otro producto.",
     "error.msg.product.loan.duplicate.short.name": "El producto de Crédito con nombre corto {{params[0].value}} ya existe.",
     "error.msg.product.savings.duplicate.name": "El producto de ahorro con nombre {{params[0].value}} ya existe.",
     "error.msg.product.savings.duplicate.short.name": "El producto de ahorro con nombre corto {{params[0].value}} ya existe.",
