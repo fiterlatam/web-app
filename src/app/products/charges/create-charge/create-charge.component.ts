@@ -105,7 +105,7 @@ export class CreateChargeComponent implements OnInit {
     const locale = this.settingsService.language.code;
     const amountValidators = [Validators.required];
     if (locale === 'es') {
-      amountValidators.push(Validators.pattern(/^[0-9,]*$/));
+      amountValidators.push(Validators.pattern(/^\d{1,3}(?:\.\d{3})*(?:,\d{2})?$/));
     } else if (locale === 'en') {
       amountValidators.push(Validators.pattern(/^[0-9.]*$/));
     } else {
@@ -337,6 +337,9 @@ export class CreateChargeComponent implements OnInit {
     if (chargeFormData.feeOnMonthDay instanceof Date) {
       chargeFormData.feeOnMonthDay = this.dateUtils.formatDate(prevFeeOnMonthDay, monthDayFormat);
     }
+    if (locale === 'es' && chargeFormData.amount) {
+      chargeFormData.amount = chargeFormData.amount.replace(/\./g, '');
+    }
     const data = {
       ...chargeFormData,
       monthDayFormat,
@@ -502,7 +505,6 @@ export class CreateChargeComponent implements OnInit {
     return formValues.chargeAppliesTo === 1 &&
       (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
   }
-
 
 
   areInsuranceFieldsRequired(): boolean {
