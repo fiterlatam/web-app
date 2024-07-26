@@ -324,7 +324,8 @@
     "error.msg.loan.product.does.not.allow.reversal.nor.cancellation": "El producto seleccionado está configurado para no aceptar Reversiond de Transacciones de Préstamo ni Cancelamento",
     "validation.msg.channel.hash.duplicate": "El código HASH está siendo usado para otro canal, por favor cámbielo",
     "validation.msg.channel.name.duplicate": "Nombre está siendo usado para otro canal, por favor cámbielo",
-    "repayment.amount.exceeds.outstanding.balance": "No se puede realizar el pago ya que el monto excede el total de la deuda."
+    "repayment.amount.exceeds.outstanding.balance": "No se puede realizar el pago ya que el monto excede el total de la deuda.",
+    "error.msg.loan.transaction.repayment.incorrect.processing.type": "Tipo de procesamiento de transacción no válido [ {{params[0].value}} ] proporcionado."
   },
   "labels": {
     "breadcrumbs": {
