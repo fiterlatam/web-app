@@ -33,6 +33,10 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   /** Repayment Loan Form */
   repaymentLoanForm: UntypedFormGroup;
 
+  transactionProcessingStrategyTypes: any;
+  loanProductType: any;
+  loanScheduleType: any;
+
   /** Channel List */
   channelOptions: any;
   bankOptions: any;
@@ -89,14 +93,25 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'repaymentBankId': [''],
       'allyId' : '',
       'pointOfSalesCode' : '',
+      'transactionProcessingStrategy' : '',
     });
   }
 
   setRepaymentLoanDetails() {
 
     this.paymentTypes = this.dataObject.paymentTypeOptions;
+    this.loanProductType = this.dataObject.loanProductType;
+    this.loanScheduleType = this.dataObject.loanScheduleType;
+
+    if (this.loanProductType != "SU+ Empresas") {
+        this.repaymentLoanForm.get('transactionProcessingStrategy')?.disable();
+    } else {
+        this.repaymentLoanForm.get('transactionProcessingStrategy')?.enable();
+    }
+    this.transactionProcessingStrategyTypes = this.dataObject.transactionProcessingStrategyTypes;
     this.repaymentLoanForm.patchValue({
-      transactionAmount: this.dataObject.amount
+      transactionAmount: this.dataObject.amount,
+      transactionProcessingStrategy: this.dataObject.transactionProcessingStrategy,
     });
   }
 

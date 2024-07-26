@@ -68,6 +68,17 @@
             <input matInput formControlName="externalId">
           </mat-form-field>
 
+          <div *ngIf="loanScheduleType === 'PROGRESSIVE'" style="width:100%">
+            <mat-form-field style="width:100%">
+              <mat-label>{{"labels.inputs.Loan Schedule Processing Type" | translate}}</mat-label>
+              <mat-select formControlName="transactionProcessingStrategy">
+                <mat-option *ngFor="let strategyType of transactionProcessingStrategyTypes" [value]="strategyType.code">
+                  {{ strategyType.value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
           <mat-form-field>
             <mat-label>{{"labels.inputs.Payment Type" | translate}}</mat-label>
             <mat-select formControlName="paymentTypeId">
