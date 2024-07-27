@@ -146,7 +146,7 @@ export class EditChargeComponent implements OnInit {
     const locale = this.settingsService.language.code;
     const amountValidators = [Validators.required];
     if (locale === 'es') {
-      amountValidators.push(Validators.pattern(/^[0-9,]*$/));
+      amountValidators.push(Validators.pattern(/^\d{1,3}(?:\.\d{3})*(?:,\d{2})?$/));
     } else if (locale === 'en') {
       amountValidators.push(Validators.pattern(/^[0-9.]*$/));
     } else {
@@ -315,7 +315,11 @@ export class EditChargeComponent implements OnInit {
    */
   submit() {
     const charges = this.chargeForm.getRawValue();
-    charges.locale = this.settingsService.language.code;
+    const locale = this.settingsService.language.code;
+    charges.locale = locale;
+    if (locale === 'es' && charges.amount) {
+      charges.amount = charges.amount.replace(/\./g, '');
+    }
     if (charges.taxGroupId.value === '') {
       delete charges.taxGroupId;
     }
