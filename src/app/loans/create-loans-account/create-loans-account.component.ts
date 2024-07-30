@@ -117,7 +117,6 @@ export class CreateLoansAccountComponent implements OnInit {
   get loanPrincipal() {
     return this.loansAccountTermsStep.loansAccountTermsForm.value.principal;
   }
-
   /** Retrieves Data of all forms except Currency to submit the data */
   get loansAccount() {
     return {

@@ -1,17 +1,19 @@
 /** Angular Imports */
 import {Component, OnInit, Input, OnChanges} from '@angular/core';
 import {UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { LoansAccountAddCollateralDialogComponent } from 'app/loans/custom-dialog/loans-account-add-collateral-dialog/loans-account-add-collateral-dialog.component';
-import { LoanProducts } from 'app/products/loan-products/loan-products';
-import { SettingsService } from 'app/settings/settings.service';
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
-import { FormDialogComponent } from 'app/shared/form-dialog/form-dialog.component';
-import { DatepickerBase } from 'app/shared/form-dialog/formfield/model/datepicker-base';
-import { FormfieldBase } from 'app/shared/form-dialog/formfield/model/formfield-base';
-import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
-import { CodeName, OptionData } from 'app/shared/models/option-data.model';
+import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute} from '@angular/router';
+import {
+  LoansAccountAddCollateralDialogComponent
+} from 'app/loans/custom-dialog/loans-account-add-collateral-dialog/loans-account-add-collateral-dialog.component';
+import {LoanProducts} from 'app/products/loan-products/loan-products';
+import {SettingsService} from 'app/settings/settings.service';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
+import {FormDialogComponent} from 'app/shared/form-dialog/form-dialog.component';
+import {DatepickerBase} from 'app/shared/form-dialog/formfield/model/datepicker-base';
+import {FormfieldBase} from 'app/shared/form-dialog/formfield/model/formfield-base';
+import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
+import {CodeName, OptionData} from 'app/shared/models/option-data.model';
 
 /**
  * Create Loans Account Terms Step
@@ -39,6 +41,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   @Input() collateralOptions: any;
   // @Input loanPrincipal: Loan Principle
   @Input() loanPrincipal: any;
+
+  @Input() loanProductType: string;
 
   /** Minimum date allowed. */
   minDate = new Date(2000, 0, 1);
@@ -96,12 +100,13 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
    * @param dialog
    */
   constructor(private formBuilder: UntypedFormBuilder,
-    private settingsService: SettingsService,
-    private route: ActivatedRoute,
-    public dialog: MatDialog) {
-      this.loanId = this.route.snapshot.params['loanId'];
-      this.createLoansAccountTermsForm();
+              private settingsService: SettingsService,
+              private route: ActivatedRoute,
+              public dialog: MatDialog) {
+    this.loanId = this.route.snapshot.params['loanId'];
+    this.createLoansAccountTermsForm();
   }
+
   /**
    * Executes on change of input values
    */
@@ -109,7 +114,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     setTimeout(() => {
       if (this.loansAccountProductTemplate) {
         this.loansAccountTermsData = this.loansAccountProductTemplate;
-        this.requirePoints = this.loansAccountProductTemplate ? this.loansAccountProductTemplate['product'] ? this.loansAccountProductTemplate['product'] ?.requirePoints : false : false;
+        this.requirePoints = this.loansAccountProductTemplate ? this.loansAccountProductTemplate['product'] ? this.loansAccountProductTemplate['product']?.requirePoints : false : false;
         this.currencyDisplaySymbol = this.loansAccountTermsData.currency.displaySymbol;
         if (this.loanId != null && this.loansAccountTemplate.accountNo) {
           this.loansAccountTermsData = this.loansAccountTemplate;
@@ -137,7 +142,9 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           'maxOutstandingLoanBalance': this.loansAccountTermsData.maxOutstandingLoanBalance,
           'transactionProcessingStrategyCode': this.loansAccountTermsData.transactionProcessingStrategyCode,
           'interestRateDifferential': this.loansAccountTermsData.interestRateDifferential,
-          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
+          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan,
+          'valorDescuento': this.loansAccountTermsData.valorDescuento,
+          'valorGiro': this.loansAccountTermsData.valorGiro
         });
 
         if (this.loansAccountTermsData) {
@@ -267,7 +274,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   setLoanTermListener() {
     this.loansAccountTermsForm.get('numberOfRepayments').valueChanges
       .subscribe(numberOfRepayments => {
-        const repaymentEvery: number =  this.loansAccountTermsForm.value.repaymentEvery;
+        const repaymentEvery: number = this.loansAccountTermsForm.value.repaymentEvery;
         this.calculateLoanTerm(numberOfRepayments, repaymentEvery);
       });
 
@@ -277,9 +284,9 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         this.calculateLoanTerm(numberOfRepayments, repaymentEvery);
       });
 
-      this.loansAccountTermsForm.get('loanTermFrequencyType').valueChanges
-        .subscribe(loanTermFrequencyType => {
-          this.loansAccountTermsForm.patchValue({'repaymentFrequencyType': loanTermFrequencyType});
+    this.loansAccountTermsForm.get('loanTermFrequencyType').valueChanges
+      .subscribe(loanTermFrequencyType => {
+        this.loansAccountTermsForm.patchValue({'repaymentFrequencyType': loanTermFrequencyType});
       });
 
   }
@@ -288,11 +295,11 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   createLoansAccountTermsForm() {
     this.loansAccountTermsForm = this.formBuilder.group({
       'principalAmount': ['', Validators.required],
-      'loanTermFrequency': [{ value: '', disabled: true }, Validators.required],
+      'loanTermFrequency': [{value: '', disabled: true}, Validators.required],
       'loanTermFrequencyType': ['', Validators.required],
       'numberOfRepayments': ['', Validators.required],
       'repaymentEvery': ['', Validators.required],
-      'repaymentFrequencyType': [{ value: '', disabled: true }, Validators.required],
+      'repaymentFrequencyType': [{value: '', disabled: true}, Validators.required],
       'repaymentFrequencyNthDayType': [''],
       'repaymentFrequencyDayOfWeekType': [''],
       'repaymentsStartingFromDate': [''],
@@ -314,8 +321,10 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       'isTopup': [''],
       'maxOutstandingLoanBalance': [''],
       'interestRateDifferential': [''],
-      'transactionProcessingStrategyCode': [{ value: '', disabled: this.repaymentStrategyDisabled }, Validators.required],
-      'multiDisburseLoan': [false]
+      'transactionProcessingStrategyCode': [{value: '', disabled: this.repaymentStrategyDisabled}, Validators.required],
+      'multiDisburseLoan': [false],
+      'valorDescuento': ['', Validators.required],
+      'valorGiro': ['', {disabled: true}]
     });
   }
 
@@ -361,10 +370,10 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     ];
     const data = {
       title: 'Add Disbursement Details',
-      layout: { addButtonText: 'Add' },
+      layout: {addButtonText: 'Add'},
       formfields: formfields
     };
-    const disbursementDialogRef = this.dialog.open(FormDialogComponent, { data });
+    const disbursementDialogRef = this.dialog.open(FormDialogComponent, {data});
     disbursementDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
         const principal = response.data.value.principal * 1;
@@ -385,7 +394,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   removeDisbursementDataEntry(index: number) {
     const currentPrincipalAmount = this.loansAccountTermsForm.get('principalAmount').value;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `this` }
+      data: {deleteContext: `this`}
     });
     dialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -403,7 +412,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
    */
   addCollateral() {
     const addCollateralDialogRef = this.dialog.open(LoansAccountAddCollateralDialogComponent, {
-      data: { collateralOptions: this.collateralOptions }
+      data: {collateralOptions: this.collateralOptions}
     });
     addCollateralDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
@@ -422,13 +431,14 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       }
     });
   }
+
   /**
    * Delete a added collateral from loan
    * @param id ID od the collateral to be deleted
    */
   deleteCollateral(id: any) {
     const deleteCollateralDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `collateral` }
+      data: {deleteContext: `collateral`}
     });
     deleteCollateralDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -469,10 +479,10 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       // Only Advanced Payment Allocation Strategy
       this.loansAccountProductTemplate.transactionProcessingStrategyOptions.some(
         (cn: CodeName) => {
-        if (LoanProducts.isAdvancedPaymentAllocationStrategy(cn.code)) {
-          this.transactionProcessingStrategyOptions.push(cn);
-        }
-      });
+          if (LoanProducts.isAdvancedPaymentAllocationStrategy(cn.code)) {
+            this.transactionProcessingStrategyOptions.push(cn);
+          }
+        });
       this.repaymentStrategyDisabled = true;
     }
   }
@@ -490,4 +500,33 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     };
   }
 
+  isProductTypeSuEmpresas(): boolean {
+    let showDiscountField = false;
+    let productType = '';
+    const expectedProductType = 'SU+ Empresas';
+    if (this.loansAccountTermsData && this.loansAccountTermsData.product && this.loansAccountTermsData.product.productType) {
+      productType = this.loansAccountTermsData.product.productType.name;
+      showDiscountField = productType === expectedProductType;
+      if (!showDiscountField) {
+        productType = (this.loansAccountProductTemplate.product.productType.name);
+        if (productType === expectedProductType) {
+          showDiscountField = true;
+        } else {
+          this.loansAccountTermsForm.get('valorDescuento').clearValidators();
+          this.loansAccountTermsForm.get('valorDescuento').updateValueAndValidity();
+        }
+
+      }
+    }
+    return showDiscountField;
+  }
+
+  calculateValorGiro() {
+    const principalAmount = this.loansAccountTermsForm.get('principalAmount').value;
+    const valorDescuento = this.loansAccountTermsForm.get('valorDescuento').value;
+    const valorGiro = principalAmount - valorDescuento;
+    this.loansAccountTermsForm.patchValue({valorGiro: valorGiro});
+    this.loansAccountTermsForm.patchValue({valorDescuento: valorDescuento});
+    this.loansAccountTermsForm.patchValue({principalAmount: principalAmount});
+  }
 }

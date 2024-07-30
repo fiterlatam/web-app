@@ -4,11 +4,25 @@
 
     <mat-form-field fxFlex="48%">
       <mat-label>{{"labels.inputs.Principal" | translate}} {{currencyDisplaySymbol}}</mat-label>
-      <input type="number" matInput formControlName="principalAmount">
+      <input type="number" matInput formControlName="principalAmount"  (input)="calculateValorGiro()">
       <mat-error *ngIf="loansAccountTermsForm.controls.principalAmount.hasError('required')">
         {{"labels.inputs.Principal" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <ng-container *ngIf="isProductTypeSuEmpresas()">
+      <mat-form-field fxFlex="48%">
+        <mat-label>{{"labels.inputs.Valor de descuento" | translate}} {{currencyDisplaySymbol}}</mat-label>
+        <input type="number" matInput formControlName="valorDescuento" (input)="calculateValorGiro()">
+        <mat-error *ngIf="loansAccountTermsForm.controls.valorDescuento.hasError('required')">
+          {{"labels.inputs.Valor de descuento" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48%">
+        <mat-label>{{"labels.inputs.Valor de giro" | translate}} {{currencyDisplaySymbol}}</mat-label>
+        <input type="number" matInput formControlName="valorGiro" readonly>
+      </mat-form-field>
+    </ng-container>
 
     <h4 fxFlex="98%" class="mat-h4">{{"labels.heading.Term Options" | translate}} <i class="fas fa-question" matTooltip="The loan term parameter in loan accounts
       is the default-calculated field based on the number of repayments and repaid every value entered by the user"></i></h4>
