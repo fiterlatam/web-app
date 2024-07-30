@@ -372,7 +372,7 @@
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.vat.value" | translate}} </mat-label>
-              <input  matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()' [readonly]='disableAmountAndBaseValue()'/>
+              <input type="number" matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()'/>
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.total.value" | translate}} </mat-label>

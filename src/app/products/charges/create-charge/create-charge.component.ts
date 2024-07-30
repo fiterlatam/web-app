@@ -67,8 +67,6 @@ export class CreateChargeComponent implements OnInit {
   showVoluntaryInsuranceError = false;
   voluntaryInsuranceErrorCode: string;
 
-  /** Vat commission percentage */
-  vatCommissionPercentage: number;
 
   /**
    * Retrieves the charges template data and income and liability account data from `resolve`.
@@ -105,7 +103,7 @@ export class CreateChargeComponent implements OnInit {
     this.createChargeForm();
     this.setChargeForm();
     this.setConditionalControls();
-    this.getVatCommissionPercentage();
+    
   }
 
   getAmountValidators(): any[] {
@@ -145,8 +143,8 @@ export class CreateChargeComponent implements OnInit {
       'insurerName': [''],
       'insuranceCode': [''],
       'insurancePlan': [''],
-      'baseValue': [''],
-      'vatValue': [''],
+      'baseValue': ['0'],
+      'vatValue': ['0'],
       'totalValue': [''],
       'deadline': [''],
       'chargeCalculationTypeFilterFlat': [false],
@@ -517,16 +515,12 @@ export class CreateChargeComponent implements OnInit {
     return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
   }
 
-  getVatCommissionPercentage() {
-    this.systemService.getConfigurationByName('IVA Por comision').subscribe((response: any) => {
-      this.vatCommissionPercentage = response?.value;
-    });
-  }
+ 
 
   disableAmountAndBaseValue() {
     if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
-      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}`);
       this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+      this.chargeForm.get('vatValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
       return true;
     } else {
       return false;
@@ -536,9 +530,9 @@ export class CreateChargeComponent implements OnInit {
   sumVatAndTotalValues() {
     if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       const baseValue = this.chargeForm.get('baseValue').value;
-      const vatValue =  this.chargeForm.get('baseValue').value * this.vatCommissionPercentage / 100;
-      let sum = vatValue + baseValue;
-      sum = Math.round(sum);
+      const vatValue =  this.chargeForm.get('vatValue').value;
+      let sum = parseFloat(baseValue) + parseFloat(vatValue);
+      sum = sum;
       this.chargeForm.get('amount').setValue(sum);
       this.chargeForm.get('totalValue').setValue(sum);
     }
