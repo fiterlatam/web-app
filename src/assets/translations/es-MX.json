@@ -2450,7 +2450,7 @@
       "charge.insurance.code": "Codigo Del Seguro",
       "charge.insurance.plan": "Plan",
       "charge.insurance.base.value": "Valor Base",
-      "charge.insurance.vat.value": "Valor IVA %",
+      "charge.insurance.vat.value": "Valor IVA ",
       "charge.insurance.total.value": "Valor Total",
       "charge.insurance.deadline": "Plazo Maximo"
     },

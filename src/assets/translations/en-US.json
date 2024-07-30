@@ -2428,7 +2428,7 @@
       "charge.insurance.code": "Insurance Code",
       "charge.insurance.plan": "Insurance Plan",
       "charge.insurance.base.value": "Base Value",
-      "charge.insurance.vat.value": "VAT Value %",
+      "charge.insurance.vat.value": "VAT Value ",
       "charge.insurance.total.value": "Total Value",
             "charge.insurance.deadline": "Deadline",
             "getPercentageAmountFromTable": "Percentage From Table"

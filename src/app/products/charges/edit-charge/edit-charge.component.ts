@@ -60,8 +60,6 @@ export class EditChargeComponent implements OnInit {
   showVoluntaryInsuranceError = false;
   voluntaryInsuranceErrorCode: string;
 
-  /** Vat commission percentage */
-  vatCommissionPercentage: number;
 
   /**
    * Retrieves the charge data from `resolve`.
@@ -139,7 +137,7 @@ export class EditChargeComponent implements OnInit {
   ngOnInit() {
     this.editChargeForm();
     this.setupFiltersCheckboxes();
-    this.getVatCommissionPercentage();
+    
   }
 
   getAmountValidators(): any[] {
@@ -485,16 +483,12 @@ export class EditChargeComponent implements OnInit {
     return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
   }
   
-  getVatCommissionPercentage() {
-    this.systemService.getConfigurationByName('IVA Por comision').subscribe((response: any) => {
-      this.vatCommissionPercentage = response?.value;
-    });
-  }
+ 
 
   disableAmountAndBaseValue() {
     if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
-      this.chargeForm.get('vatValue').setValue(`${this.vatCommissionPercentage}`);
       this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+      this.chargeForm.get('vatValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
       return true;
     } else {
       return false;
@@ -504,8 +498,8 @@ export class EditChargeComponent implements OnInit {
   sumVatAndTotalValues() {
     if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       const baseValue = this.chargeForm.get('baseValue').value;
-      const vatValue =  baseValue * this.vatCommissionPercentage / 100;
-      let sum = vatValue + baseValue;
+      const vatValue =   this.chargeForm.get('vatValue').value;
+      let sum = parseFloat(vatValue) + parseFloat(baseValue);
       sum = Math.round(sum) ;
       this.chargeForm.get('amount').setValue(sum);
       this.chargeForm.get('totalValue').setValue(sum);
