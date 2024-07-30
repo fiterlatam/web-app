@@ -22,6 +22,7 @@ export interface FutureInstallmentAllocationRule {
 export interface PaymentAllocationOrder {
   id?: number;
   paymentAllocationRule: string;
+  paymentAllocationRuleCode: string;
   order: number;
 }
 
@@ -200,7 +201,8 @@ export class AdvancedPaymentStrategy {
     paymentAllocationOrder.forEach((item: any, index: number) => {
       paymentAllocations.push({
         order: (index + 1),
-        paymentAllocationRule: item.code
+        paymentAllocationRule: item.code,
+        paymentAllocationRuleCode: item.value
       });
     });
 

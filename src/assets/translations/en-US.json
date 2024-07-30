@@ -2419,6 +2419,7 @@
       "Allow Collections": "Allow Collections",
       "Advanced Payment Allocation Transactions": "Advanced Payment Allocation Transactions",
       "Advanced Credit Allocation Transactions": "Advanced Credit Allocation Transactions",
+      "PAYMENT ALLOCATION": "PRIORITY",
       "Extend term for monthly repayments": "Extend term for monthly repayments",
       "Enable Down Payments": "Habilitar Pagos Iniciales",
       "insurance.type": "Type",
@@ -3201,6 +3202,17 @@
       "Home": "Home",
       "Login": "Login",
       "Warning": "Warning"
+    },
+    "allocations": {
+      "types": {
+        "penalty": "Penalty",
+        "principal": "Principal",
+        "interest": "Interest",
+        "fees": "Fee",
+        "aval": "Aval",
+        "mandatory.insurance": "Mandatory Insurance",
+        "voluntary.insurance": "Voluntary Insurance"
+      }
     }
   },
   "languages": {

@@ -2442,6 +2442,7 @@
       "Allow Collections": "Permitir Recaudos",
       "Advanced Payment Allocation Transactions": "Transacciones de asignación de pagos anticipados",
       "Advanced Credit Allocation Transactions": "Transacciones de asignación de créditos anticipados",
+      "PAYMENT ALLOCATION": "PRELACIÓN",
       "Extend term for monthly repayments": "Extender plazo para pagos mensuales",
       "Enable Down Payments": "Habilitar Pagos Iniciales",
       "charge.insurance.name": "Nombre el Seguro",
@@ -3220,6 +3221,17 @@
       "Login": "Acceso",
       "Customchargetypemap": "Mapeo de Cargos Personalizados",
       "Warning": "Advertencia"
+    },
+    "allocations": {
+      "types": {
+        "penalty": "Interés de mora",
+        "principal": "Capital",
+        "interest": "Interés Corriente",
+        "fees": "Honorarios",
+        "aval": "Aval",
+        "mandatory.insurance": "Seguro Obligatorio",
+        "voluntary.insurance": "Seguro Voluntario"
+      }
     }
   },
   "languages": {
