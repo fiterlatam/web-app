@@ -20,6 +20,7 @@
     "validation.msg.channel.channelType.is.not.within.expected.range": "El tipo de canal seleccionado no es válido.",
     "validation.msg.loan.valorDescuento.not.greater.than.zero": "El valor de descuento no puede ser menor o igual a cero.",
     "validation.msg.loan.valorDescuento.cannot.be.blank": "El valor de descuento es obligatorio para los productos SU+ Empresas.",
+    "validation.msg.loan.valorGiro.not.zero.or.greater": "El valor de giro no puede ser menor o igual a cero.",
     "validation.msg.channel.channelType.cannot.be.blank": "El tipo de canal no puede estar en blanco.",
     "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "El cliente ya existe con la cédula proporcionada [ {{params[0].value}} ]",
     "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "El cliente ya existe con NIT proporcionado [ {{params[0].value}} ]",

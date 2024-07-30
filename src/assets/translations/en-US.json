@@ -20,6 +20,7 @@
     "validation.msg.channel.channelType.is.not.within.expected.range": "The selected Channel Type is invalid.",
     "validation.msg.channel.channelType.cannot.be.blank": "Channel Type is mandatory",
     "validation.msg.loan.valorDescuento.not.greater.than.zero": "The discount value must be greater than zero",
+    "validation.msg.loan.valorGiro.not.zero.or.greater": "The transfer amount must be greater than zero",
     "validation.msg.loan.valorDescuento.cannot.be.blank": "The discount value is mandatory for SU+ Empresas products ",
     "error.msg.entity.datatable.check.duplicate.entry.cedula.already.exist": "Client already exist with provide Cedula [ {{params[0].value}} ]",
     "error.msg.entity.datatable.check.duplicate.entry.nit.already.exist": "Client already exist with provide NIT [ {{params[0].value}} ]",

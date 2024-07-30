@@ -142,12 +142,15 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           'maxOutstandingLoanBalance': this.loansAccountTermsData.maxOutstandingLoanBalance,
           'transactionProcessingStrategyCode': this.loansAccountTermsData.transactionProcessingStrategyCode,
           'interestRateDifferential': this.loansAccountTermsData.interestRateDifferential,
-          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan,
-          'valorDescuento': this.loansAccountTermsData.valorDescuento,
-          'valorGiro': this.loansAccountTermsData.valorGiro
+          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
         });
 
         if (this.loansAccountTermsData) {
+          if (this.loansAccountTermsData?.valorDescuento) {
+            this.loansAccountTermsForm.patchValue({valorDescuento: this.loansAccountTermsData.valorDescuento});
+            this.loansAccountTermsForm.patchValue({valorGiro: this.loansAccountTermsData.valorGiro});
+          }
+
           if (!this.loansAccountTermsData['isLoanProductLinkedToFloatingRate'] && this.requirePoints) {
             this.loansAccountTermsForm.get('interestRatePoints')?.addValidators([Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]);
           } else {
@@ -523,8 +526,15 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
 
   calculateValorGiro() {
     const principalAmount = this.loansAccountTermsForm.get('principalAmount').value;
-    const valorDescuento = this.loansAccountTermsForm.get('valorDescuento').value;
-    const valorGiro = principalAmount - valorDescuento;
+    let valorDescuento = this.loansAccountTermsForm.get('valorDescuento')?.value;
+    if (!valorDescuento) {
+      return;
+    }
+    let valorGiro = principalAmount - valorDescuento;
+    if (valorGiro < 0) {
+      valorGiro = 0;
+      valorDescuento = principalAmount;
+    }
     this.loansAccountTermsForm.patchValue({valorGiro: valorGiro});
     this.loansAccountTermsForm.patchValue({valorDescuento: valorDescuento});
     this.loansAccountTermsForm.patchValue({principalAmount: principalAmount});
