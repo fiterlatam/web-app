@@ -205,7 +205,6 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log('This ia alwaysw called  ngOnInit');
     this.maxDate = this.settingsService.maxFutureDate;
     this.loansAccountTermsData = this.loansAccountProductTemplate;
     if (this.loanId != null && this.loansAccountTemplate.accountNo) {
