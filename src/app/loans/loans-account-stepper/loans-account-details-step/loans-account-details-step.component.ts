@@ -1,12 +1,12 @@
 /** Angular Imports */
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { SettingsService } from 'app/settings/settings.service';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {SettingsService} from 'app/settings/settings.service';
 
 /** Custom Services */
-import { LoansService } from '../../loans.service';
-import { Commons } from 'app/core/utils/commons';
+import {LoansService} from '../../loans.service';
+import {Commons} from 'app/core/utils/commons';
 
 /**
  * Loans Account Details Step
@@ -48,6 +48,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
 
   /** Loans Account Template with product data  */
   @Output() loansAccountProductTemplate = new EventEmitter();
+
   /**
    * Sets loans account details form.
    * @param {FormBuilder} formBuilder Form Builder.
@@ -57,10 +58,10 @@ export class LoansAccountDetailsStepComponent implements OnInit {
    * @param commons
    */
   constructor(private formBuilder: UntypedFormBuilder,
-    private loansService: LoansService,
-    private route: ActivatedRoute,
-    private settingsService: SettingsService,
-    private commons: Commons) {
+              private loansService: LoansService,
+              private route: ActivatedRoute,
+              private settingsService: SettingsService,
+              private commons: Commons) {
     this.loanId = this.route.snapshot.params['loanId'];
   }
 

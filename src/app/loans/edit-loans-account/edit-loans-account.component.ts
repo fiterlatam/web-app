@@ -161,5 +161,4 @@ export class EditLoansAccountComponent implements OnInit {
       this.router.navigate(['../'], { relativeTo: this.route });
     });
   }
-
 }

@@ -58,6 +58,20 @@
       <span class="m-l-5">{{loansAccountProductTemplate.currency.code}}</span>
     </span>
   </div>
+  <div fxFlexFill>
+    <span fxFlex="40%">{{"labels.inputs.Valor de descuento" | translate}}:</span>
+    <span fxFlex="60%">
+      {{ loansAccount.valorDescuento | currency:loansAccountProductTemplate.currency.code:'symbol-narrow':format:locale}}
+      <span class="m-l-5">{{loansAccountProductTemplate.currency.code}}</span>
+    </span>
+  </div>
+  <div fxFlexFill>
+    <span fxFlex="40%">{{"labels.inputs.Valor de giro" | translate}}:</span>
+    <span fxFlex="60%">
+      {{ loansAccount.valorGiro | currency:loansAccountProductTemplate.currency.code:'symbol-narrow':format:locale}}
+      <span class="m-l-5">{{loansAccountProductTemplate.currency.code}}</span>
+    </span>
+  </div>
 
   <div fxFlexFill>
     <span fxFlex="40%">{{"labels.inputs.Loan Term" | translate}}:</span>
