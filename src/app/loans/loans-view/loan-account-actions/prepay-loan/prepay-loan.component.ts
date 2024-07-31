@@ -75,6 +75,7 @@ export class PrepayLoanComponent implements OnInit, OnDestroy {
     this.loadChannelsForCombobox();
     this.loadAllieForComboBox();
     this.prepayData = this.dataObject;
+    this.bankOptions = this.dataObject?.bankOptions;
   }
 
   ngOnDestroy(): void {
@@ -93,6 +94,7 @@ export class PrepayLoanComponent implements OnInit, OnDestroy {
       'channelName':'',
       'allyId' : '',
       'pointOfSalesCode' : '',
+      'repaymentBankId': [''],
     });
   }
 
@@ -168,11 +170,11 @@ export class PrepayLoanComponent implements OnInit, OnDestroy {
   }
 
   loadChannelsForCombobox() {
-  
     return this.loanService.getChannels().subscribe((data)=>{
       var paymentChannel = data.filter((key: any) =>key?.channelType?.value === 'REPAYMENT');
       this.channelOptions = paymentChannel;
     })
+   
 }
 
   loadAllieForComboBox() {
