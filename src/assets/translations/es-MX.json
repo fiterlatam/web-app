@@ -1055,6 +1055,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "isInterestStartsAfterGracePeriod": "¿Debe comenzar el interés después del período de gracia?",
       "Voluntary Insurance Name": "Seguro Voluntario Adquirido",
       "Seller ID": "Cédula del vendedor",
       "Purchase Charge": "Cargo de compra",

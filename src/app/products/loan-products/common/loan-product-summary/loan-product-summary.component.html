@@ -421,6 +421,11 @@
 
   <h3 class="mat-h3" fxFlexFill>{{'labels.inputs.Moratorium'| translate }}</h3>
 
+  <div fxFlexFill>
+    <span fxFlex="47%">{{'labels.inputs.isInterestStartsAfterGracePeriod'| translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.isInterestStartsAfterGracePeriod | yesNo }}</span>
+  </div>
+
   <div fxFlexFill *ngIf="loanProduct.delinquencyBucket">
     <span fxFlex="47%">{{'labels.inputs.Delinquency Bucket'| translate }}:</span>
     <span fxFlex="53%" *ngIf="loanProduct.delinquencyBucket.name">{{ loanProduct.delinquencyBucket.name }}</span>

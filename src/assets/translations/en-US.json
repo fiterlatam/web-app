@@ -1042,6 +1042,7 @@
     },
     "inputs": {
       "Voluntary Insurance Name": "Purchased Voluntary Insurance",
+      "isInterestStartsAfterGracePeriod": "Should Interest Start After Grace Period ? ",
       "Seller ID": "Seller's ID",
       "Voluntary Insurance/Assistance": "Voluntary Insurance/Assistance",
       "Purchase Charge": "Purchase Charge",
