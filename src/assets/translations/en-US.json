@@ -325,7 +325,8 @@
     "validation.msg.channel.name.duplicate": "Name is being used for another channel, please change it",
     "repayment.amount.exceeds.outstanding.balance": "Repayment amount exceeds outstanding balance",
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Invalid transaction processing type [ {{params[0].value}} ] provided.",
-    "error.msg.loan.bank.is.required.for.bank.channel" : "You must specify a bank, if the channel is Banks"
+    "error.msg.loan.bank.is.required.for.bank.channel" : "You must specify a bank, if the channel is Banks",
+    "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months"
   },
   "labels": {
     "breadcrumbs": {
