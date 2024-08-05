@@ -330,7 +330,8 @@
     "validation.msg.channel.name.duplicate": "Nombre está siendo usado para otro canal, por favor cámbielo",
     "repayment.amount.exceeds.outstanding.balance": "No se puede realizar el pago ya que el monto excede el total de la deuda.",
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Tipo de procesamiento de transacción no válido [ {{params[0].value}} ] proporcionado.",
-    "error.msg.loan.bank.is.required.for.bank.channel" : "Debe especificar un banco, si el canal es Bancos"
+    "error.msg.loan.bank.is.required.for.bank.channel" : "Debe especificar un banco, si el canal es Bancos",
+    "error.msg.loan.outside.the.off.restriction.period": "Alcanzó las reestructuras permitidas en los ultimos 6 meses"
   },
   "labels": {
     "breadcrumbs": {
