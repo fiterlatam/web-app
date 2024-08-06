@@ -331,7 +331,8 @@
     "repayment.amount.exceeds.outstanding.balance": "No se puede realizar el pago ya que el monto excede el total de la deuda.",
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Tipo de procesamiento de transacción no válido [ {{params[0].value}} ] proporcionado.",
     "error.msg.loan.bank.is.required.for.bank.channel" : "Debe especificar un banco, si el canal es Bancos",
-    "error.msg.loan.outside.the.off.restriction.period": "Alcanzó las reestructuras permitidas en los ultimos 6 meses"
+    "error.msg.loan.outside.the.off.restriction.period": "Alcanzó las reestructuras permitidas en los ultimos 6 meses",
+    "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente."
   },
   "labels": {
     "breadcrumbs": {
