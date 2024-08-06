@@ -325,7 +325,8 @@
     "validation.msg.channel.name.duplicate": "Name is being used for another channel, please change it",
     "repayment.amount.exceeds.outstanding.balance": "Repayment amount exceeds outstanding balance",
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Invalid transaction processing type [ {{params[0].value}} ] provided.",
-    "error.msg.loan.bank.is.required.for.bank.channel" : "You must specify a bank, if the channel is Banks"
+    "error.msg.loan.bank.is.required.for.bank.channel" : "You must specify a bank, if the channel is Banks",
+    "error.msg.charge.not.setup.correctly": "Charge [ {{params[0].value}} ] not setup correctly."
   },
   "labels": {
     "breadcrumbs": {

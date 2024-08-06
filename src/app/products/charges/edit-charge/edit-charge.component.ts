@@ -137,7 +137,7 @@ export class EditChargeComponent implements OnInit {
   ngOnInit() {
     this.editChargeForm();
     this.setupFiltersCheckboxes();
-    
+
   }
 
   getAmountValidators(): any[] {
@@ -415,7 +415,7 @@ export class EditChargeComponent implements OnInit {
       isFilterApplied = true;
     }
 
-    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    if (!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       if (!this.chargeForm.value.chargeCalculationTypeFilterFlat || lookForWordsArray.length > 2) {
         this.showVoluntaryInsuranceError = true;
         this.voluntaryInsuranceErrorCode = 'error.msg.only.flat.type.allowed.for.voluntary.insurance';
@@ -424,45 +424,54 @@ export class EditChargeComponent implements OnInit {
         this.showVoluntaryInsuranceError = false;
         this.voluntaryInsuranceErrorCode = '';
       }
+    } else {
+      this.showVoluntaryInsuranceError = false;
+              this.voluntaryInsuranceErrorCode = '';
     }
-
-    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
-      this.lookForKeyOnCode(lookForWordsArray, index);
-    }
-
     // IOf nothing selected, restore the list
     if (lookForWordsArray.length === 0) {
       for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
         this.chargeCalculationTypeOptions.push(this.originalChargeCalculationTypeData[index]);
       }
+    } else {
+      this.lookForKeyOnCode(lookForWordsArray);
     }
 
     if (isFilterApplied) {
-      this.chargeForm.get('chargeCalculationType').setValue(this.chargeCalculationTypeOptions[0].id);
-    } else {
-      this.chargeForm.get('chargeCalculationType').setValue(null);
+      if (this.chargeCalculationTypeOptions.length === 1) {
+        this.chargeForm.get('chargeCalculationType').setValue(this.chargeCalculationTypeOptions[0].id);
+      } else {
+        this.chargeForm.get('chargeCalculationType').setValue(null);
+      }
     }
   }
 
-
-  lookForKeyOnCode(lookForWordsArray: any = [], index: number) {
-    const currCode = this.originalChargeCalculationTypeData[index].code;
-
-    if (this.chargeCalculationTypeOptions.includes(this.originalChargeCalculationTypeData[index])) {
-      return;
-    }
-
-    for (let i = 0; i <= lookForWordsArray.length - 1; i++) {
-      if (currCode.toString().indexOf('.' + lookForWordsArray[i]) === -1) {
-        return;
+  lookForKeyOnCode(lookForWordsArray: any = []) {
+    let lookupCode = "";
+    for (let i = 0; i < lookForWordsArray.length; i++) {
+      if (i === 0) {
+        lookupCode = lookForWordsArray[i];
+      } else {
+          lookupCode = lookupCode + "." + lookForWordsArray[i];
       }
     }
-
-    this.chargeCalculationTypeOptions.push(this.originalChargeCalculationTypeData[index]);
+    for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
+      if (this.chargeCalculationTypeOptions.includes(this.originalChargeCalculationTypeData[index])) {
+        return;
+      }
+      const currCode = this.originalChargeCalculationTypeData[index].value;
+        if (currCode === lookupCode) {
+          this.chargeCalculationTypeOptions.push(this.originalChargeCalculationTypeData[index]);
+          break;
+        }
+    }
   }
 
   shouldDisplayInsuranceFields(insuranceType: string): boolean {
     const formValues = this.chargeForm.value;
+    if (this.chargeForm.get('penalty').value) {
+      return false;
+    }
     const chargesAppliedTo = this.chargeForm.controls.chargeAppliesTo.value;
     switch (insuranceType) {
       case 'mandatory':
@@ -480,13 +489,13 @@ export class EditChargeComponent implements OnInit {
 
 
   areInsuranceFieldsRequired(): boolean {
-    return this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance;
+    return ((!this.chargeForm.get('penalty').value) && (!this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance));
   }
-  
- 
+
+
 
   disableAmountAndBaseValue() {
-    if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    if (!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
       this.chargeForm.get('vatValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
       return true;
@@ -496,7 +505,7 @@ export class EditChargeComponent implements OnInit {
   }
 
   sumVatAndTotalValues() {
-    if(this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    if(!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       const baseValue = this.chargeForm.get('baseValue').value;
       const vatValue =   this.chargeForm.get('vatValue').value;
       let sum = parseFloat(vatValue) + parseFloat(baseValue);
