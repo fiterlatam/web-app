@@ -255,7 +255,7 @@
 
       <mat-form-field fxFlex="24%" *ngIf="loansAccountTermsForm.controls.isTopup.value">
         <mat-label>{{"labels.inputs.Loan closed with Topup" | translate}}</mat-label>
-        <mat-select formControlName="loanIdToClose">
+        <mat-select formControlName="loanIdToClose" (selectionChange)="onLoanIdToCloseChange($event.value)">
           <mat-option *ngFor="let clientActiveLoan of clientActiveLoanData" [value]="clientActiveLoan.id">
             {{ clientActiveLoan.accountNo }}
           </mat-option>

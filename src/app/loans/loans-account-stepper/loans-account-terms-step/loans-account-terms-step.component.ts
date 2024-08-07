@@ -14,6 +14,7 @@ import {DatepickerBase} from 'app/shared/form-dialog/formfield/model/datepicker-
 import {FormfieldBase} from 'app/shared/form-dialog/formfield/model/formfield-base';
 import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
 import {CodeName, OptionData} from 'app/shared/models/option-data.model';
+import { LoansService } from 'app/loans/loans.service';
 
 /**
  * Create Loans Account Terms Step
@@ -91,6 +92,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   loanId: any = null;
 
   loanScheduleType: OptionData | null = null;
+  
 
   /**
    * Create Loans Account Terms Form
@@ -98,11 +100,12 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
    * @param {SettingsService} settingsService SettingsService
    * @param route
    * @param dialog
+   * @param {LoansService} loansService LoansService
    */
   constructor(private formBuilder: UntypedFormBuilder,
               private settingsService: SettingsService,
               private route: ActivatedRoute,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, public loansService : LoansService) {
     this.loanId = this.route.snapshot.params['loanId'];
     this.createLoansAccountTermsForm();
   }
@@ -538,5 +541,29 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     this.loansAccountTermsForm.patchValue({valorGiro: valorGiro});
     this.loansAccountTermsForm.patchValue({valorDescuento: valorDescuento});
     this.loansAccountTermsForm.patchValue({principalAmount: principalAmount});
+  }
+
+  onLoanIdToCloseChange(value: any) {
+    
+    this.loansService.getLoanAccountAssociationDetails(value).subscribe(
+      (data) => {
+        
+        if (data) {
+          // Update form with principal if available
+          if (data?.repaymentSchedule?.totalOutstanding) {
+            this.loansAccountTermsForm.patchValue({
+              principalAmount: data?.repaymentSchedule?.totalOutstanding
+            });
+          }
+
+        } else {
+          console.warn('Principal or charges data not found in API response');
+        }
+      },
+      error => {
+        console.error('Error fetching loan details:', error);
+        // Handle error (e.g., show user message)
+      }
+    );
   }
 }
