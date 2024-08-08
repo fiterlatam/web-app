@@ -47,7 +47,7 @@ export class LoanActionButtonResolver implements Resolve<Object> {
     } else if (loanActionButton === 'Close (as Rescheduled)') {
       return this.loansService.getLoanActionTemplate(loanId, 'close-rescheduled');
     } else if (loanActionButton === 'Reschedule') {
-      return this.loansService.rescheduleLoanTemplate();
+      return this.loansService.rescheduleLoanTemplate(loanId);
     } else if (loanActionButton === 'Prepay Loan') {
       return this.loansService.getLoanPrepayLoanActionTemplate(loanId, null);
     } else if (loanActionButton === 'Add Collateral') {
@@ -72,11 +72,11 @@ export class LoanActionButtonResolver implements Resolve<Object> {
       return this.loansService.getLoanForeclosureActionTemplate(loanId);
     } else if (loanActionButton === 'Charge-Off') {
       return this.loansService.getLoanActionTemplate(loanId, 'charge-off');
-    } else if (loanActionButton == 'Unblock') {
+    } else if (loanActionButton === 'Unblock') {
       return this.loansService.getLoanBlockingReasons(loanId);
-    }else if (loanActionButton == 'Block Loan') {
+    } else if (loanActionButton === 'Block Loan') {
       return this.loansService.getBlockGuarnateeTemplate();
-    }else {
+    } else {
       return undefined;
     }
   }

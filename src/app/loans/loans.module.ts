@@ -81,10 +81,10 @@ import { ExternalAssetTransferComponent } from './loans-view/external-asset-owne
 import { TranslateModule } from '@ngx-translate/core';
 import { LoanDelinquencyActionDialogComponent } from './custom-dialog/loan-delinquency-action-dialog/loan-delinquency-action-dialog.component';
 import { LoanReagingComponent } from './loans-view/loan-account-actions/loan-reaging/loan-reaging.component';
-import {LoanAssignorSelectorComponent} from "./loan-assignor-selector/loan-assignor-selector.component";
+import {LoanAssignorSelectorComponent} from './loan-assignor-selector/loan-assignor-selector.component';
 import {
   GenerateDisbursementReportComponent
-} from "./loans-view/loan-account-actions/generate-disbursement-report/generate-disbursement-report.component";
+} from './loans-view/loan-account-actions/generate-disbursement-report/generate-disbursement-report.component';
 import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-block-loan/undo-block-loan.component';
 import { BlockLoanComponent } from './loans-view/loan-account-actions/block-loan/block-loan.component';
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';

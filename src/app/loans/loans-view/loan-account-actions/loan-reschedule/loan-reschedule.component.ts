@@ -28,12 +28,14 @@ export class LoanRescheduleComponent implements OnInit {
   introduceGracePeriods = new UntypedFormControl(false);
   extendRepaymentPeriod = new UntypedFormControl(false);
   adjustinterestrates = new UntypedFormControl(false);
+  rediferirCuotas = new UntypedFormControl(false);
 
   /**
-   * @param {FormBuilder} formBuilder Form Builder.
-   * @param {LoansService} systemService Loan Service.
+   * @param {UntypedFormBuilder} formBuilder Form Builder.
+   * @param loanService
    * @param {ActivatedRoute} route Activated Route.
    * @param {Router} router Router for navigation.
+   * @param dateUtils
    * @param {SettingsService} settingsService Settings Service
    */
   constructor(private formBuilder: UntypedFormBuilder,
@@ -59,6 +61,8 @@ export class LoanRescheduleComponent implements OnInit {
       'rescheduleReasonComment': [''],
       'adjustedDueDate': [''],
       'graceOnPrincipal': [''],
+      'repaymentAmount': [{value: this.dataObject.rediferirAmount, disabled: true}],
+      'rediferirTerms': [''],
       'graceOnInterest': [''],
       'extraTerms': [''],
       'newInterestRate': ['']
