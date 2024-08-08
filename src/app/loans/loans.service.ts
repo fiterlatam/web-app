@@ -327,8 +327,9 @@ export class LoansService {
   /**
    * Returns the Reschedule Loans Template
    */
-  rescheduleLoanTemplate() {
-    return this.http.get('/rescheduleloans/template');
+  rescheduleLoanTemplate(loanId: any) {
+    const httpParams = new HttpParams().set('loanId', loanId);
+    return this.http.get('/rescheduleloans/template', { params: httpParams });
   }
 
   /**

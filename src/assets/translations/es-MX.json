@@ -3,6 +3,9 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.reschedule.rediferir.amount.zero": "El monto de reprogramación no puede ser cero.",
+    "error.msg.loan.reschedule.rediferir.other.variations.already.exists": "No se puede reprogramar el Crédito porque ya existe una reprogramación con variaciones diferentes.",
+    "error.msg.loan.reschedule.rediferir.periods.less.than.unpaid.installments": "El número de períodos de reprogramación no puede ser menor que el número de cuotas impagas.",
     "error.msg.customchargetypemap.id.invalid": "El ID de mapeo de tipo de cargo personalizado no es válido.",
     "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "Una tasa de interés aplicada en la fecha [ {{params[0].value}} ] es posterior a la fecha de vencimiento [ {{params[1].value}} ] .",
     "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "No se encontró una tasa de interés aplicada en la fecha de desembolso.",
@@ -1057,6 +1060,8 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Repayment Amount": "Monto del pago",
+      "Rediferir": "Rediferir",
       "isInterestStartsAfterGracePeriod": "¿Debe comenzar el interés después del período de gracia?",
       "Voluntary Insurance Name": "Seguro Voluntario Adquirido",
       "Seller ID": "Cédula del vendedor",

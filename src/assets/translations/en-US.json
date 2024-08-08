@@ -3,6 +3,9 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.loan.reschedule.rediferir.amount.zero": "The rescheduled amount must be greater than zero.",
+    "error.msg.loan.reschedule.rediferir.other.variations.already.exists": "The loan has other variations that are not in the reschedule process.",
+    "error.msg.loan.reschedule.rediferir.periods.less.than.unpaid.installments": "The number of rescheduled periods must be greater than the number of unpaid installments.",
     "error.msg.customchargetypemap.id.invalid": "The charge type map with identifier {{params[0].value}} is invalid.",
     "error.msg.loan.interest.rate.applied.on.date.is.after.maturity.date": "An interest rate applied on date [ {{params[0].value}} ] is after the maturity date [ {{params[1].value}} ] .",
     "error.msg.loan.interest.rate.applied.on.date.not.found.that.matches.disbursement.date": "An interest rate applied on the disbursement date was not found.",
@@ -1043,6 +1046,8 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Repayment Amount": "Repayment Amount",
+      "Rediferir": "Redefer",
       "Voluntary Insurance Name": "Purchased Voluntary Insurance",
       "isInterestStartsAfterGracePeriod": "Should Interest Start After Grace Period ? ",
       "Seller ID": "Seller's ID",
