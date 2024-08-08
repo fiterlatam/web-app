@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 /** rxjs Imports */
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Dates } from 'app/core/utils/dates';
 import { SettingsService } from 'app/settings/settings.service';
+import { any } from 'cypress/types/bluebird';
 
 /**
  * Loans service.
@@ -14,6 +15,9 @@ import { SettingsService } from 'app/settings/settings.service';
   providedIn: 'root'
 })
 export class LoansService {
+  private loanDataSubject = new BehaviorSubject<{ principal?: number, charges?: any[] } | null>(null)
+  loanData$ = this.loanDataSubject.asObservable();
+
   constructor(private http: HttpClient,
     private settingsService: SettingsService,
     private dateUtils: Dates) { }
@@ -21,6 +25,7 @@ export class LoansService {
    * @param {string} loanId loanId of the loan.
    * @returns {Observable<any>}
    */
+
   getLoanChargeTemplateResource(loanId: string): Observable<any> {
     return this.http.get(`/loans/${loanId}/charges/template`);
   }
@@ -154,7 +159,11 @@ export class LoansService {
     const httpParams = new HttpParams()
       .set('associations', 'all')
       .set('exclude', 'guarantors,futureSchedule');
-    return this.http.get(`/loans/${loanId}`, { params: httpParams });
+    return this.http.get<{ principal?: number, charges?: any[], repaymentSchedule :any }>(`/loans/${loanId}`, { params: httpParams });
+  }
+
+  updateLoanData(data: { principal?: number, charges?: any[] }) {
+    this.loanDataSubject.next(data);
   }
 
   getApproveAssociationsDetails(loanId: any) {
