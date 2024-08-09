@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Reached the redeferrals allowed in the last 6 months",
     "error.msg.loan.reschedule.rediferir.amount.zero": "El monto de reprogramación no puede ser cero.",
     "error.msg.loan.reschedule.rediferir.other.variations.already.exists": "No se puede reprogramar el Crédito porque ya existe una reprogramación con variaciones diferentes.",
     "error.msg.loan.reschedule.rediferir.periods.less.than.unpaid.installments": "El número de períodos de reprogramación no puede ser menor que el número de cuotas impagas.",
@@ -2593,6 +2594,7 @@
       "client.search": "Buscar por nombre de cliente, ID externo, móvil"
     },
     "status": {
+      "Rediferidos": "Rediferidos",
       "Active": "Activo",
       "Approved": "Aprobado",
       "Closed": "Cerrado",
