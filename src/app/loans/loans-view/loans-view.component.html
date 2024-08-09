@@ -22,7 +22,7 @@
                   [ngClass]="loanDetailsData.inArrears?'status-active-overdue':( iconLoanStatusColor() | statusLookup)"></i>
                 <span class="m-r-10">{{'labels.heading.Loan Product' | translate}}:</span> {{loanDetailsData.loanProductName}}
                 <mifosx-account-number accountNo="{{loanDetailsData.accountNo}}"></mifosx-account-number>
-               
+
               </h3>
               <h3>
                 <span *ngIf="loanDetailsData.blockStatus">
@@ -32,6 +32,9 @@
               <span class="loans-overview">
                 <span class="m-r-10">{{'labels.text.' + entityType | translate}} {{"labels.inputs.name" | translate}} :</span> {{loanDetailsData.clientName ||
                 loanDetailsData.groupName}}<span class="m-l-5">({{loanDetailsData.clientAccountNo}})</span><br />
+              </span>
+              <span class="loans-overview" *ngIf="loanDetailsData.rediferir">
+                <span class="m-r-10">{{'labels.inputs.Substatus' | translate}} : </span><span>{{'labels.status.Rediferidos' | translate }}</span><br/>
               </span>
               <div *ngIf="loanDisplayArrearsDelinquency != 1">
                 <table class="account-overview">
