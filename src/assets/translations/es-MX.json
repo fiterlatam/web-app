@@ -2463,7 +2463,8 @@
       "charge.insurance.base.value": "Valor Base",
       "charge.insurance.vat.value": "Valor IVA ",
       "charge.insurance.total.value": "Valor Total",
-      "charge.insurance.deadline": "Plazo Maximo"
+      "charge.insurance.deadline": "Plazo Maximo",
+      "getPercentageAmountFromTable": "Porcentaje de la tabla"
     },
     "links": {
       "Community": "Comunidad",
