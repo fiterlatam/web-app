@@ -3,7 +3,8 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
-    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Alcanzó los rediferidos permitidos en los ultimos 6 meses",
+    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.days.in.arrears": "Reached the maximum allowed number of days in arrears",
+    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Reached the redeferrals allowed in the last 6 months",
     "error.msg.loan.reschedule.rediferir.amount.zero": "The rescheduled amount must be greater than zero.",
     "error.msg.loan.reschedule.rediferir.other.variations.already.exists": "The loan has other variations that are not in the reschedule process.",
     "error.msg.loan.reschedule.rediferir.periods.less.than.unpaid.installments": "The number of rescheduled periods must be greater than the number of unpaid installments.",

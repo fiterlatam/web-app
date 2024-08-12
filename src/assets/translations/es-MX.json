@@ -3,7 +3,8 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
-    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Reached the redeferrals allowed in the last 6 months",
+    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.days.in.arrears": "Alcanzó el número máximo permitido de dias de mora",
+    "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Alcanzó los rediferidos permitidos en los ultimos 6 meses",
     "error.msg.loan.reschedule.rediferir.amount.zero": "El monto de reprogramación no puede ser cero.",
     "error.msg.loan.reschedule.rediferir.other.variations.already.exists": "No se puede reprogramar el Crédito porque ya existe una reprogramación con variaciones diferentes.",
     "error.msg.loan.reschedule.rediferir.periods.less.than.unpaid.installments": "El número de períodos de reprogramación no puede ser menor que el número de cuotas impagas.",
