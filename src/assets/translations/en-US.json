@@ -2573,7 +2573,7 @@
       "client.search": "Search by client name, external Id, mobile"
     },
     "status": {
-      "Rediferidos": "Rediferidos",
+      "Rediferido": "Rediferido",
       "Active": "Active",
       "Approved": "Approved",
       "Closed": "Closed",

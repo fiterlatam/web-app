@@ -2595,7 +2595,7 @@
       "client.search": "Buscar por nombre de cliente, ID externo, móvil"
     },
     "status": {
-      "Rediferidos": "Rediferidos",
+      "Rediferido": "Rediferido",
       "Active": "Activo",
       "Approved": "Aprobado",
       "Closed": "Cerrado",
