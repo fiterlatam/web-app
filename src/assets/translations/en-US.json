@@ -1048,6 +1048,8 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "original.loan.account": "Original Loan Account",
+      "Restructured": "Restructured",
       "Repayment Amount": "Repayment Amount",
       "Rediferir": "Redefer",
       "Voluntary Insurance Name": "Purchased Voluntary Insurance",
