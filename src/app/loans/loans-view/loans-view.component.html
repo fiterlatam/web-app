@@ -33,6 +33,13 @@
                 <span class="m-r-10">{{'labels.text.' + entityType | translate}} {{"labels.inputs.name" | translate}} :</span> {{loanDetailsData.clientName ||
                 loanDetailsData.groupName}}<span class="m-l-5">({{loanDetailsData.clientAccountNo}})</span><br />
               </span>
+              <span class="loans-overview" *ngIf="loanDetailsData.isTopup">
+                <span class="m-r-10">{{"labels.inputs.original.loan.account" | translate}} :</span>
+                <a  [routerLink]="['../', loanDetailsData.closureLoanId, 'general']"
+                    style="cursor: pointer; color: inherit; text-decoration: none;">
+                  <mifosx-account-number accountNo="{{loanDetailsData.closureLoanAccountNo}}"></mifosx-account-number>
+                  </a>
+              </span>
               <span class="loans-overview" *ngIf="loanDetailsData.rediferir">
                 <span>{{'labels.status.Rediferido' | translate }}</span><br/>
               </span>

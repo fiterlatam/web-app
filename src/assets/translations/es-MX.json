@@ -1062,6 +1062,7 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "original.loan.account": "Crédito origen",
       "Repayment Amount": "Monto del pago",
       "Rediferir": "Rediferir",
       "isInterestStartsAfterGracePeriod": "¿Debe comenzar el interés después del período de gracia?",
