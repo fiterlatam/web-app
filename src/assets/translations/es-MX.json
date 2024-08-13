@@ -1063,6 +1063,7 @@
     },
     "inputs": {
       "original.loan.account": "Crédito origen",
+      "Restructured": "Reestructurado",
       "Repayment Amount": "Monto del pago",
       "Rediferir": "Rediferir",
       "isInterestStartsAfterGracePeriod": "¿Debe comenzar el interés después del período de gracia?",

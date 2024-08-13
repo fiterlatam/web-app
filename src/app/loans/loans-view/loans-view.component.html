@@ -38,14 +38,21 @@
                   loanDetailsData.groupName
                 }}<span class="m-l-5">({{ loanDetailsData.clientAccountNo }})</span><br/>
               </span>
-              <span class="loans-overview" *ngIf="loanDetailsData.isTopup">
-            <span class="m-r-10">{{ "labels.inputs.original.loan.account" | translate }} :</span>
-            <span
-              style="display: inline-block; cursor: pointer; color: inherit; text-decoration: none;"
-              [routerLink]="['../', loanDetailsData.closureLoanId, 'general']">
-              <mifosx-account-number accountNo="{{loanDetailsData.closureLoanAccountNo}}"></mifosx-account-number>
-            </span>
-            </span>
+
+              <div class="loans-overview" *ngIf="loanDetailsData.isTopup" >
+                <div style="font-weight: bold; color: white; ">
+                  {{ 'labels.inputs.Restructured' | translate }}
+                <div style="font-size: 1em; color: white;">
+                  {{ "labels.inputs.original.loan.account" | translate }}:
+                  <span
+                    style="display: inline-block; cursor: pointer; color: white; text-decoration: none;"
+                    [routerLink]="['../', loanDetailsData.closureLoanId, 'general']">
+                  <mifosx-account-number accountNo="{{loanDetailsData.closureLoanAccountNo}}"></mifosx-account-number>
+        </span>
+                </div>
+              </div>
+              </div>
+
 
               <span class="loans-overview" *ngIf="loanDetailsData.rediferir">
                 <span>{{ 'labels.status.Rediferido' | translate }}</span><br/>
