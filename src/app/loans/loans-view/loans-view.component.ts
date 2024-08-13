@@ -277,4 +277,18 @@ export class LoansViewComponent implements OnInit {
       .then(() => this.router.navigate([url]));
   }
 
+  navigateToLoanDetails(accountId: number) {
+    const clientId = this.clientId;
+    const currentUrl = this.router.url;
+
+    // Navigate to the loan account details page
+    // this.router.navigateByUrl(`/clients/${clientId}/loans-accounts/${accountId}`, { skipLocationChange: true })
+    //   .then(() => {
+    //     // After navigating to the loan details page, return to the current URL
+    //     this.router.navigateByUrl(currentUrl, { skipLocationChange: true });
+    //   });
+    this.router.navigateByUrl(`/clients/${clientId}/loans-accounts/${accountId}`);
+  }
+
+
 }
