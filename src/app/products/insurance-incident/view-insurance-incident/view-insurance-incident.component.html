@@ -1,5 +1,5 @@
 <div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
-  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_INTEREST_RATE'">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_INSURANCE_INCIDENT'">
     <fa-icon icon="edit" class="m-r-10"></fa-icon>
     {{ 'labels.buttons.Edit' | translate }}
   </button>
@@ -28,14 +28,14 @@
           {{ 'labels.inputs.Is For Mandatory Insurance' | translate }}
         </div>
         <div fxFlex="50%">
-          {{ incidentData.mandatoryInsurance | yesNo }}
+          {{ incidentData.isMandatory | yesNo }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
           {{ 'labels.inputs.Is For Voluntary Insurance' | translate }}
         </div>
         <div fxFlex="50%">
-          {{ incidentData.voluntaryInsurance | yesNo }}
+          {{ incidentData.isVoluntary | yesNo }}
         </div>
 
       </div>

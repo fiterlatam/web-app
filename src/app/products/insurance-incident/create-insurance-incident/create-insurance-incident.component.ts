@@ -30,7 +30,7 @@ export class CreateInsuranceIncidentComponent implements OnInit {
       'isVoluntary': [false],
       'isMandatory': [false],
       'name': ['', [Validators.required]]
-    }, { validators: this.incidentService.atLeastOneCheckedValidator() });
+    }, { validators: this.incidentService.validateInsuranceIncidentForm() });
   }
 
   submit() {
@@ -42,7 +42,6 @@ export class CreateInsuranceIncidentComponent implements OnInit {
       dateFormat,
       locale
     };
-    console.log(JSON.stringify(data));
     this.incidentService.createIncident(data).subscribe((response: any) => {
       this.router.navigate(['../'], { relativeTo: this.route });
     });

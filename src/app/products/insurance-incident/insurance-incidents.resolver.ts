@@ -18,7 +18,7 @@ export class InsuranceIncidentsResolver implements Resolve<Observable<Object>> {
   constructor(private incidentService: InsuranceIncidentService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Object> {
-    return of(this.incidentService.getIncidents());
+  resolve(): Observable<Object> {
+    return this.incidentService.getIncidents();
   }
 }

@@ -16,8 +16,8 @@ export class InsuranceIncidentResolver implements Resolve<Object> {
   }
 
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Object> {
+  resolve(route: ActivatedRouteSnapshot): Observable<Object> {
     const incidentId = route.paramMap.get('id');
-    return of(this.incidentService.getIncidentById(Number(incidentId)));
+    return this.incidentService.getIncidentById(Number(incidentId));
   }
 }

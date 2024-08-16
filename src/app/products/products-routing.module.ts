@@ -835,15 +835,6 @@ const routes: Routes = [
               },
               data: { title: 'View Insurance Incidents', breadcrumb: 'View', routeParamBreadcrumb: true }
             },
-
-            {
-              path: ':id',
-              component: ViewInsuranceIncidentComponent,   // Component for viewing a single incident
-              resolve: {
-                incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID
-              },
-              data: { title: 'View Insurance Incidents', breadcrumb: 'View', routeParamBreadcrumb: true }
-            },
             {
               path: ':id/edit',
               component: EditInsuranceIncidentComponent,   // Component for editing an incident
