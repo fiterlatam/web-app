@@ -133,6 +133,10 @@ import {EditInterestRateComponent} from './interest-rates/edit-interest-rate/edi
 import {InterestRateHistoryComponent} from './interest-rates/interest-rate-history/interest-rate-history.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { InsuranceNoveltyListComponent } from './insurance-novelty/insurance-novelty-list/insurance-novelty-list.component';
+import { CreateInsuranceNoveltyComponent } from './insurance-novelty/create-insurance-novelty/create-insurance-novelty.component';
+import { ViewInsuranceNoveltyComponent } from './insurance-novelty/view-insurance-novelty/view-insurance-novelty.component';
+import { EditInsuranceNoveltyComponent } from './insurance-novelty/edit-insurance-novelty/edit-insurance-novelty.component';
 
 /**
  * Products Module
@@ -269,7 +273,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         ViewInterestRateComponent,
         CreateInterestRateComponent,
         EditInterestRateComponent,
-        InterestRateHistoryComponent
+        InterestRateHistoryComponent,
+        InsuranceNoveltyListComponent,
+        CreateInsuranceNoveltyComponent,
+        ViewInsuranceNoveltyComponent,
+        EditInsuranceNoveltyComponent
     ]
 })
 export class ProductsModule { }
