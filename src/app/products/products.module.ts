@@ -133,10 +133,10 @@ import {EditInterestRateComponent} from './interest-rates/edit-interest-rate/edi
 import {InterestRateHistoryComponent} from './interest-rates/interest-rate-history/interest-rate-history.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { InsuranceNoveltyListComponent } from './insurance-novelty/insurance-novelty-list/insurance-novelty-list.component';
-import { CreateInsuranceNoveltyComponent } from './insurance-novelty/create-insurance-novelty/create-insurance-novelty.component';
-import { ViewInsuranceNoveltyComponent } from './insurance-novelty/view-insurance-novelty/view-insurance-novelty.component';
-import { EditInsuranceNoveltyComponent } from './insurance-novelty/edit-insurance-novelty/edit-insurance-novelty.component';
+import { InsuranceIncidentListComponent } from './insurance-incident/insurance-incident-list/insurance-incident-list.component';
+import { CreateInsuranceIncidentComponent } from './insurance-incident/create-insurance-incident/create-insurance-incident.component';
+import { ViewInsuranceIncidentComponent } from './insurance-incident/view-insurance-incident/view-insurance-incident.component';
+import { EditInsuranceIncidentComponent } from './insurance-incident/edit-insurance-incident/edit-insurance-incident.component';
 
 /**
  * Products Module
@@ -274,10 +274,10 @@ import { EditInsuranceNoveltyComponent } from './insurance-novelty/edit-insuranc
         CreateInterestRateComponent,
         EditInterestRateComponent,
         InterestRateHistoryComponent,
-        InsuranceNoveltyListComponent,
-        CreateInsuranceNoveltyComponent,
-        ViewInsuranceNoveltyComponent,
-        EditInsuranceNoveltyComponent
+        InsuranceIncidentListComponent,
+        CreateInsuranceIncidentComponent,
+        ViewInsuranceIncidentComponent,
+        EditInsuranceIncidentComponent
     ]
 })
 export class ProductsModule { }
