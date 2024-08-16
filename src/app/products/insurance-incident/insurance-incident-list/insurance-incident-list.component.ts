@@ -13,7 +13,7 @@ import {PopoverService} from '../../../configuration-wizard/popover/popover.serv
 })
 export class InsuranceIncidentListComponent implements OnInit {
   loanProductsData: any;
-  displayedColumns: string[] = [ 'name', 'name', 'mandatoryInsurance', 'voluntaryInsurance'];
+  displayedColumns: string[] = [ 'name', 'mandatoryInsurance', 'voluntaryInsurance'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
