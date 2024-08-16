@@ -576,6 +576,7 @@
       "Unblock Massively": "Unblock massively"
     },
     "commons": {
+      "must be greater than outstanding balance": "must be greater than outstanding balance",
       "cannot have more than": "cannot have more than",
       "characters": "characters",
       "50 characters long": "50 characters long",
@@ -1048,6 +1049,15 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Balance as of today": "Balance as of today",
+      "Concept": "Concept",
+      "Value to be written-off": "Value to be written-off",
+      "Current Principal": "Principal",
+      "Current Interest": "Current Interest",
+      "Guarantee": "Guarantee",
+      "Insurance": "Insurance",
+      "Current Penalty": "Current Penalty",
+      "Current Fees": "Current Fees",
       "original.loan.account": "Original Loan Account",
       "Restructured": "Restructured",
       "Repayment Amount": "Repayment Amount",
@@ -2464,6 +2474,7 @@
       "Working with Code": "Working with Code"
     },
     "menus": {
+      "Special Write-Off": "Special Write-Off",
       "Accounting": "Accounting",
       "Account Overview": "Account Overview",
       "Activate": "Activate",
@@ -2620,6 +2631,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Special Write-Off": "Special Write-Off",
       "VIP & Commerce": "VIP & Commerce",
       "Edit": "Edit",
       "Create Custom Charge Mapping": "Create Custom Charge Mapping",

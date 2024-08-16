@@ -583,6 +583,7 @@
       "Unblock Massively": "Desbloqueo masivo"
     },
     "commons": {
+      "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
       "must be greater than or equal to zero": "debe ser mayor o igual a cero",
       "cannot have more than": "no puede tener más de",
       "characters": "caracteres",
@@ -1062,6 +1063,15 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Balance as of today": "Saldo a hoy",
+      "Concept": "Concepto",
+      "Value to be written-off": "Valor a condonar",
+      "Current Interest": "Int corriente",
+      "Current Principal": "Capital",
+      "Guarantee": "Aval",
+      "Insurance": "Seguro",
+      "Current Penalty": "Int Mora",
+      "Current Fees": "Honorarios",
       "original.loan.account": "Crédito origen",
       "Restructured": "Reestructurado",
       "Repayment Amount": "Monto del pago",
@@ -2486,6 +2496,7 @@
       "Working with Code": "Trabajar con código"
     },
     "menus": {
+      "Special Write-Off": "Condonación Especial",
       "Accounting": "Contabilidad",
       "Account Overview": "Descripción de cuenta",
       "Activate": "Activar",
@@ -2642,6 +2653,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Special Write-Off": "Condonación Especial",
       "VIP & Commerce": "VIP y comercio",
       "Edit": "Editar",
       "Create Custom Charge Mapping": "Crear Mapeo de Cargos Personalizados",
