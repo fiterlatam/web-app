@@ -5,12 +5,16 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import {ProductsService} from '../products.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InsuranceIncidentsResolver implements Resolve<boolean> {
+
+  constructor(private productsService: ProductsService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return of(true);
+    console.log('InsuranceIncidentsResolver');
+    return this.productsService.getLoanProducts();
   }
 }

@@ -16,9 +16,9 @@
     </mat-form-field>
   </div>
 
-  <div #loanProductsTable class="mat-elevation-z8">
+  <div  class="mat-elevation-z8">
 
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table #loanProductsTable mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Name' | translate}}</th>
