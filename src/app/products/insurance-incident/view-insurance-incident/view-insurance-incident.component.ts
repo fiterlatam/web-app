@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'mifosx-view-insurance-incident',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-insurance-incident.component.scss']
 })
 export class ViewInsuranceIncidentComponent implements OnInit {
+  incidentData: any;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.route.data.subscribe((data: { incident: any }) => {
+      this.incidentData = data.incident;
+    });
+  }
 
   ngOnInit(): void {
   }

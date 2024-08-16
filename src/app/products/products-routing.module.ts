@@ -155,6 +155,9 @@ import {InsuranceIncidentResolver} from './insurance-incident/insurance-incident
 import {
   EditInsuranceIncidentComponent
 } from './insurance-incident/edit-insurance-incident/edit-insurance-incident.component';
+import {
+  CreateInsuranceIncidentComponent
+} from './insurance-incident/create-insurance-incident/create-insurance-incident.component';
 
 /** Products Routes */
 const routes: Routes = [
@@ -816,18 +819,33 @@ const routes: Routes = [
               resolve: {
                 incidents: InsuranceIncidentsResolver       // Resolver for fetching the list of incidents
               },
-              data: { title: 'Insurance Incidents List', breadcrumb: 'List' }
+              data: { title: 'Insurance Incidents', breadcrumb: 'Insurance Incidents' }
             },
             {
-              path: 'view/:id',
+              path: 'create',
+              component: CreateInsuranceIncidentComponent,   // Component for creating a new incident
+              data: { title: 'Create Insurance Incident', breadcrumb: 'Create' }
+            },
+
+            {
+              path: ':id',
               component: ViewInsuranceIncidentComponent,   // Component for viewing a single incident
               resolve: {
                 incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID
               },
-              data: { title: 'View Insurance Incident', breadcrumb: 'View', routeParamBreadcrumb: true }
+              data: { title: 'View Insurance Incidents', breadcrumb: 'View', routeParamBreadcrumb: true }
+            },
+
+            {
+              path: ':id',
+              component: ViewInsuranceIncidentComponent,   // Component for viewing a single incident
+              resolve: {
+                incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID
+              },
+              data: { title: 'View Insurance Incidents', breadcrumb: 'View', routeParamBreadcrumb: true }
             },
             {
-              path: 'edit/:id',
+              path: ':id/edit',
               component: EditInsuranceIncidentComponent,   // Component for editing an incident
               resolve: {
                 incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID

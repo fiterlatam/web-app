@@ -1,1 +1,49 @@
-<p>view-insurance-incident works!</p>
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_INTEREST_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{ 'labels.buttons.Edit' | translate }}
+  </button>
+</div>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row wrap" class="content">
+
+        <div fxFlex="50%" class="mat-body-strong">
+
+        </div>
+        <div fxFlex="50%">
+
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.name' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ incidentData.name }}
+        </div>
+
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.Is For Mandatory Insurance' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ incidentData.mandatoryInsurance | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.Is For Voluntary Insurance' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ incidentData.voluntaryInsurance | yesNo }}
+        </div>
+
+      </div>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <button type="button" color="primary" mat-raised-button
+              [routerLink]="['../']"> {{ 'labels.buttons.Back' | translate }}
+      </button>
+    </div>
+  </mat-card>
+</div>
