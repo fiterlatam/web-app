@@ -144,6 +144,17 @@ import {CreateInterestRateComponent} from './interest-rates/create-interest-rate
 import {InterestRateTemplateResolver} from './interest-rates/interest-rate-template.resolver';
 import {InterestRateHistoryComponent} from './interest-rates/interest-rate-history/interest-rate-history.component';
 import {InterestRateHistoryResolver} from './interest-rates/interest-rate-history/interest-rate-history.resolver';
+import {
+  InsuranceIncidentListComponent
+} from './insurance-incident/insurance-incident-list/insurance-incident-list.component';
+import {InsuranceIncidentsResolver} from './insurance-incident/insurance-incidents.resolver';
+import {
+  ViewInsuranceIncidentComponent
+} from './insurance-incident/view-insurance-incident/view-insurance-incident.component';
+import {InsuranceIncidentResolver} from './insurance-incident/insurance-incident.resolver';
+import {
+  EditInsuranceIncidentComponent
+} from './insurance-incident/edit-insurance-incident/edit-insurance-incident.component';
 
 /** Products Routes */
 const routes: Routes = [
@@ -795,6 +806,37 @@ const routes: Routes = [
             }
           ]
         },
+        {
+          path: 'insurance-incidents',
+          data: { title: 'Insurance Incidents Management', breadcrumb: 'Insurance Incidents' },
+          children: [
+            {
+              path: '',
+              component: InsuranceIncidentListComponent,  // Component for listing insurance incidents
+              resolve: {
+                incidents: InsuranceIncidentsResolver       // Resolver for fetching the list of incidents
+              },
+              data: { title: 'Insurance Incidents List', breadcrumb: 'List' }
+            },
+            {
+              path: 'view/:id',
+              component: ViewInsuranceIncidentComponent,   // Component for viewing a single incident
+              resolve: {
+                incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID
+              },
+              data: { title: 'View Insurance Incident', breadcrumb: 'View', routeParamBreadcrumb: true }
+            },
+            {
+              path: 'edit/:id',
+              component: EditInsuranceIncidentComponent,   // Component for editing an incident
+              resolve: {
+                incident: InsuranceIncidentResolver         // Resolver for fetching a single incident by ID
+              },
+              data: { title: 'Edit Insurance Incident', breadcrumb: 'Edit', routeParamBreadcrumb: true }
+            }
+          ]
+        },
+
         {
           path: 'floating-rates',
           data: { title: 'Floating Rates', breadcrumb: 'Floating Rates' },
