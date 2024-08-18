@@ -31,8 +31,8 @@ export class EditInsuranceIncidentComponent implements OnInit {
   editIncidentForm() {
     const locale = this.settingsService.language.code;
     this.incidentForm = this.formBuilder.group({
-      'isVoluntary': [this.incidentData.isMandatory],
-      'isMandatory': [this.incidentData.isVoluntary],
+      'isVoluntary': [this.incidentData.isVoluntary],
+      'isMandatory': [this.incidentData.isMandatory],
       'name': [this.incidentData.name, [Validators.required]]
     }, {validators: this.incidentService.validateInsuranceIncidentForm()});
   }
