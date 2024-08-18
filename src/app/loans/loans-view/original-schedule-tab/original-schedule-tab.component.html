@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="max-width: 79rem;width: 100% !important;">
 
   <table mat-table [dataSource]="originalScheduleDetails.periods" matSort>
 
@@ -26,10 +26,28 @@
       <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalInterestCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
+    <ng-container matColumnDef="voluntary.insurance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}} </th>
+      <td mat-cell *matCellDef="let ele"> {{ ele.voluntaryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalVoluntaryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mandatory.insurance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.insurance" | translate}} </th>
+      <td mat-cell *matCellDef="let ele"> {{ ele.mandatoryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalMandatoryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aval">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.aval" | translate}} </th>
+      <td mat-cell *matCellDef="let ele"> {{ ele.avalDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalAvalCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
     <ng-container matColumnDef="fees">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Fees" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.feeChargesDue | formatNumber:[decimalPlaces]}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalFeeChargesCharged | formatNumber:[decimalPlaces] }} </b> </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.fee" | translate}} </th>
+      <td mat-cell *matCellDef="let ele"> {{ ele.honorariosDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalHonorariosCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="penalties">

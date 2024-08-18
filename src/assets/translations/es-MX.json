@@ -2398,7 +2398,7 @@
       "chargeCalculationType.outstanding.amount": "Principal Saldo",
       "chargeCalculationType.outstanding.interest": "Interes Saldo",
       "chargeCalculationType.insurance": "Seguro Obligatorio",
-      "chargeCalculationType.voluntary.assistance": "Seguro Voluntario/Asistencia ",
+      "chargeCalculationType.voluntary.assistance": "Seguro Voluntario/ Asistencia ",
       "chargeCalculationType.aval": "Aval",
       "chargeCalculationType.fee": "Honorarios",
       "chargeCalculationType.term": "Otro Cargo",

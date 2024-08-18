@@ -2375,7 +2375,7 @@
       "chargeCalculationType.interest": "Interest",
       "chargeCalculationType.outstanding.amount": "Outstanding Principal",
       "chargeCalculationType.insurance": "Insurance",
-      "chargeCalculationType.voluntary.assistance": "Insurance Voluntary/Assistance",
+      "chargeCalculationType.voluntary.assistance": "Insurance Voluntary/ Assistance",
       "chargeCalculationType.aval": "Aval",
       "chargeCalculationType.fee": "Fees",
       "chargeCalculationType.term": "Term",
