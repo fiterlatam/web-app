@@ -13,7 +13,7 @@ export class OriginalScheduleTabComponent implements OnInit {
   /** Loan Details Data */
   originalScheduleDetails: any;
   /** Columns to be displayed in original schedule table. */
-  displayedColumns: string[] = ['date', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'penalties', 'outstanding'];
+  displayedColumns: string[] = ['date', 'balanceOfLoan', 'principalDue', 'interest', 'voluntary.insurance', 'mandatory.insurance', 'aval', 'fees', 'penalties', 'outstanding'];
   decimalPlaces: string;
 
   /**
