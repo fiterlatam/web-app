@@ -32,5 +32,8 @@ export class OriginalScheduleTabComponent implements OnInit {
 
   ngOnInit() {
   }
+  exportSchedule(): void {
+  console.log('Exporting original schedule');
+  }
 
 }
