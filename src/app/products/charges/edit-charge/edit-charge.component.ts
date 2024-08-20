@@ -197,6 +197,7 @@ export class EditChargeComponent implements OnInit {
       'vatValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.vatValue],
       'totalValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.totalValue],
       'deadline': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
+      'daysInArrears': [voluntaryInsuranceData == null ? 0 : voluntaryInsuranceData.daysInArrears],
     });
 
     this.chargeForm.removeControl('graceOnChargePeriodAmount');

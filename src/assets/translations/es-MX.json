@@ -340,7 +340,8 @@
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Tipo de procesamiento de transacción no válido [ {{params[0].value}} ] proporcionado.",
     "error.msg.loan.bank.is.required.for.bank.channel": "Debe especificar un banco, si el canal es Bancos",
     "error.msg.loan.outside.the.off.restriction.period": "Alcanzó las reestructuras permitidas en los ultimos 6 meses",
-    "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente."
+    "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente.",
+    "validation.msg.invalid.integer.format": "Valor no válido [ {{params[0].value}} ] para el parámetro entero"
   },
   "labels": {
     "breadcrumbs": {
@@ -2488,7 +2489,8 @@
       "charge.insurance.vat.value": "Valor IVA ",
       "charge.insurance.total.value": "Valor Total",
       "charge.insurance.deadline": "Plazo Maximo",
-      "getPercentageAmountFromTable": "Porcentaje de la tabla"
+      "getPercentageAmountFromTable": "Porcentaje de la tabla",
+      "charge.days.in.arrears": "Días de atraso"
     },
     "links": {
       "Community": "Comunidad",

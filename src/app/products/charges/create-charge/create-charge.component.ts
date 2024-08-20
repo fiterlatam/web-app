@@ -147,6 +147,7 @@ export class CreateChargeComponent implements OnInit {
       'vatValue': ['0'],
       'totalValue': [''],
       'deadline': [''],
+      'daysInArrears': [0],
       'chargeCalculationTypeFilterFlat': [false],
       'chargeCalculationTypeFilterDisbursal': [false],
       'chargeCalculationTypeFilterAmount': [false],
