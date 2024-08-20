@@ -88,6 +88,7 @@ import {
 import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-block-loan/undo-block-loan.component';
 import { BlockLoanComponent } from './loans-view/loan-account-actions/block-loan/block-loan.component';
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
+import { GenerateSheduleReportComponent } from './loans-view/loan-account-actions/generate-shedule-report/generate-shedule-report.component';
 
 /**
  * Loans Module
@@ -177,7 +178,8 @@ import { UndoTransactionsComponent } from './loans-view/transactions/undo-transa
     LoanAssignorSelectorComponent,
     UndoBlockLoanComponent,
     BlockLoanComponent,
-    UndoTransactionsComponent
+    UndoTransactionsComponent,
+    GenerateSheduleReportComponent
   ],
   providers: [ ],
 })

@@ -81,4 +81,4 @@ export class LoanActionButtonResolver implements Resolve<Object> {
     }
   }
 
-}3
+}
