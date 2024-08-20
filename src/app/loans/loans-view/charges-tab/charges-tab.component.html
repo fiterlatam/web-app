@@ -59,6 +59,12 @@
         currency:charge.currency.code:'symbol-narrow':format:locale }} </td>
     </ng-container>
 
+    <ng-container matColumnDef="writtenOff">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Written Off" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let charge"> {{ charge.amountWrittenOff |
+        currency:charge.currency.code:'symbol-narrow':format:locale }} </td>
+    </ng-container>
+
     <ng-container matColumnDef="outstanding">
       <th mat-header-cell class="r-amount" *matHeaderCellDef mat-sort-header> {{"labels.inputs.Outstanding" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let charge"> {{charge.amountOutstanding |
