@@ -335,7 +335,8 @@
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Invalid transaction processing type [ {{params[0].value}} ] provided.",
     "error.msg.loan.bank.is.required.for.bank.channel": "You must specify a bank, if the channel is Banks",
     "error.msg.charge.not.setup.correctly": "Charge [ {{params[0].value}} ] not setup correctly.",
-    "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months"
+    "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months",
+    "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter"
   },
   "labels": {
     "breadcrumbs": {
@@ -2466,7 +2467,8 @@
       "charge.insurance.vat.value": "VAT Value ",
       "charge.insurance.total.value": "Total Value",
       "charge.insurance.deadline": "Deadline",
-      "getPercentageAmountFromTable": "Percentage From Table"
+      "getPercentageAmountFromTable": "Percentage From Table",
+      "charge.days.in.arrears": "Days In Arrears"
     },
     "links": {
       "Community": "Community",

@@ -382,6 +382,10 @@
               <mat-label>{{"labels.inputs.charge.insurance.deadline" | translate}} </mat-label>
               <input type="number" matInput formControlName="deadline" [required]='chargeForm.value.insuranceChargedAs === 1' >
             </mat-form-field>
+            <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
+              <mat-label>{{"labels.inputs.charge.days.in.arrears" | translate}} </mat-label>
+              <input type="number" matInput formControlName="daysInArrears" [required]='areInsuranceFieldsRequired()'>
+            </mat-form-field>
 
           </div>
 
