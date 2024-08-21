@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="max-width: 79rem;width: 100% !important;">
 
   <table mat-table [dataSource]="repaymentScheduleDetails.periods" *ngIf="!forEditing">
 
@@ -52,10 +52,28 @@
       <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalInterestCharged | currency:currencyCode:'symbol-narrow':format:locale }} </b> </td>
     </ng-container>
 
+    <ng-container matColumnDef="voluntary.insurance">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.voluntaryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalVoluntaryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mandatory.insurance">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.insurance" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.mandatoryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalMandatoryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aval">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.aval" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.avalDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalAvalCharged | formatNumber:[decimalPlaces] }} </b> </td>
+    </ng-container>
+
     <ng-container matColumnDef="fees">
-      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Fees" | translate}} </th>
-      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.feeChargesDue | formatNumber:[decimalPlaces] }} </td>
-      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalFeeChargesCharged | currency:currencyCode:'symbol-narrow':format:locale }} </b> </td>
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.fee" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.honorariosDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalHonorariosCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="penalties">

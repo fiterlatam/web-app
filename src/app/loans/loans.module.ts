@@ -88,6 +88,9 @@ import {
 import { UndoBlockLoanComponent } from './loans-view/loan-account-actions/undo-block-loan/undo-block-loan.component';
 import { BlockLoanComponent } from './loans-view/loan-account-actions/block-loan/block-loan.component';
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
+import {
+  SpecialWriteOffComponent
+} from './loans-view/loan-account-actions/special-write-off/special-write-off.component';
 
 /**
  * Loans Module
@@ -124,6 +127,7 @@ import { UndoTransactionsComponent } from './loans-view/transactions/undo-transa
     WaiveInterestComponent,
     FloatingInterestRatesComponent,
     WriteOffPageComponent,
+    SpecialWriteOffComponent,
     LoanTrancheDetailsComponent,
     CloseAsRescheduledComponent,
     LoanRescheduleComponent,

@@ -42,6 +42,8 @@ export class LoanActionButtonResolver implements Resolve<Object> {
       return this.loansService.getLoanActionTemplate(loanId, 'waiveinterest');
     } else if (loanActionButton === 'Write Off') {
       return this.loansService.getLoanActionTemplate(loanId, 'writeoff');
+    } else if (loanActionButton === 'Special Write-Off') {
+      return this.loansService.getLoanActionTemplate(loanId, 'special-write-off');
     } else if (loanActionButton === 'Close') {
       return this.loansService.getLoanActionTemplate(loanId, 'close');
     } else if (loanActionButton === 'Close (as Rescheduled)') {
