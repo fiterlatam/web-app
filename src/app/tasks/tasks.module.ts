@@ -14,6 +14,7 @@ import { LoanApprovalComponent } from './checker-inbox-and-tasks-tabs/loan-appro
 import { LoanDisbursalComponent } from './checker-inbox-and-tasks-tabs/loan-disbursal/loan-disbursal.component';
 import { RescheduleLoanComponent } from './checker-inbox-and-tasks-tabs/reschedule-loan/reschedule-loan.component';
 import { ViewCheckerInboxComponent } from './view-checker-inbox/view-checker-inbox.component';
+import { CompensationLoanComponent } from './checker-inbox-and-tasks-tabs/compensation-loan/compensation-loan.component';
 
 /**
  * Tasks Module
@@ -32,7 +33,8 @@ import { ViewCheckerInboxComponent } from './view-checker-inbox/view-checker-inb
     LoanApprovalComponent,
     LoanDisbursalComponent,
     RescheduleLoanComponent,
-    ViewCheckerInboxComponent
+    ViewCheckerInboxComponent,
+    CompensationLoanComponent
   ],
   providers: [ ]
 })

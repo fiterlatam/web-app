@@ -1,0 +1,64 @@
+<div class="tab-container mat-typography">
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+        </ng-container>
+        <ng-container matColumnDef="fechaComp">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.fechaComp' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="fechaDesde">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.fechaDesde' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="fechaHasta">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.fechaHasta' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="nitMatriz">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.nit' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="empresaMatriz">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.empresaMatriz' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="vlrCompraz">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlrCompraz' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="VlrComision">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.VlrComision' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="vlIvaComision">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlIvaComision' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="vlrNetoCompra">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlrNetoCompra' | translate}} </th>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="recaudos">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.recaudos' | translate}} </th>
+            
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    </table>
+</div>

@@ -25,6 +25,10 @@
           [active]="rescheduleLoan.isActive" *mifosxHasPermission="'RESCHEDULE_LOAN'">
           {{'labels.inputs.Reschedule Loan' | translate}}
         </a>
+        <a mat-tab-link [routerLink]="['./compensation-loan']" routerLinkActive #compensationLoan="routerLinkActive"
+          [active]="compensationLoan.isActive" *mifosxHasPermission="'COMPENSATION_LOAN'">
+          {{'labels.inputs.Compensation' | translate}}
+        </a>
       </nav>
 
       <router-outlet></router-outlet>
