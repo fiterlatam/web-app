@@ -167,13 +167,13 @@ export class LoansViewComponent implements OnInit {
         });
       }
 
-      if (this.recalculateInterest) {
-        this.buttonConfig.addButton({
-          name: 'Prepay Loan',
-          icon: 'coins',
-          taskPermissionName: 'REPAYMENT_LOAN'
-        });
-      }
+      // if (this.recalculateInterest) {
+      //   this.buttonConfig.addButton({
+      //     name: 'Prepay Loan',
+      //     icon: 'coins',
+      //     taskPermissionName: 'REPAYMENT_LOAN'
+      //   });
+      // }
 
       // Allow ChargeOff only If there loan is not already ChargeOff
       if (!this.loanDetailsData.chargedOff) {
