@@ -17,10 +17,11 @@ export class LoanAccountActionsComponent {
     'Close': boolean,
     'Undo Approval': boolean,
     'Write Off': boolean,
+    'Special Write-Off': boolean,
     'Add Collateral': boolean,
     'Assign Loan Officer': boolean,
     'Foreclosure': boolean,
-    'Prepay Loan': boolean,
+    // 'Prepay Loan': boolean,
     'Reject': boolean,
     'Disburse to Savings': boolean,
     'Make Repayment': boolean,
@@ -55,10 +56,11 @@ export class LoanAccountActionsComponent {
     'Close': false,
     'Undo Approval': false,
     'Write Off': false,
+    'Special Write-Off': false,
     'Add Collateral': false,
     'Assign Loan Officer': false,
     'Foreclosure': false,
-    'Prepay Loan': false,
+    // 'Prepay Loan':  false,
     'Reject': false,
     'Disburse to Savings': false,
     'Make Repayment': false,
@@ -98,7 +100,6 @@ export class LoanAccountActionsComponent {
    * @param route Activated Route.
    */
   constructor(private route: ActivatedRoute) {
-    console.log('LoanAccountActionsComponent');
     this.route.data.subscribe((data: { actionButtonData: any }) => {
       this.actionButtonData = data.actionButtonData;
     });

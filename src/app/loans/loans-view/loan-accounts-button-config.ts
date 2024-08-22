@@ -197,6 +197,10 @@ export class LoansAccountButtonConfiguration {
           {
             name: 'Generate Disbursement Report',
             taskPermissionName: 'READ_LOAN',
+          },
+          {
+            name: 'Special Write-Off',
+            taskPermissionName: 'SPECIAL_WRITEOFF_LOAN',
           }
         ];
         this.optionPaymentArray = [

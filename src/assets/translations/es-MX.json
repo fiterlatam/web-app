@@ -3,6 +3,13 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.charge.not.found": "El cargo con identificador {{params[0].value}} no existe.",
+    "charge.amount.must.be.less.than.outstanding.charge.amount": "El monto debe ser menor que el monto pendiente de {{params[0].value}} para el cargo con identificador {{params[1].value}}.",
+    "interest.portion.must.be.less.than.outstanding.interest.portion": "La parte de interés debe ser menor que la parte de interés pendiente de {{params[0].value}} para el cargo con identificador {{params[1].value}}.",
+    "principal.portion.must.be.less.than.outstanding.principal": "La parte principal debe ser menor que el capital pendiente de {{params[0].value}}.",
+    "error.msg.loan.written.off.date.must.occur.on.or.before.other.transaction.dates": "La fecha de cancelación debe ocurrir en o antes de otras fechas de transacción [ {{params[0].value}} ].",
+    "error.msg.loan.written.off.date.cannot.be.in.the.future": "La fecha de cancelación no puede estar en el futuro.",
+    "error.msg.loan.written.off.date.cannot.before.disbursement.date": "La fecha de cancelación no puede ser anterior a la fecha de desembolso.",
     "error.msg.loan.reschedule.rediferir.exceed.max.allowed.days.in.arrears": "Alcanzó el número máximo permitido de dias de mora",
     "error.msg.loan.reschedule.rediferir.exceed.max.allowed.in.6.months": "Alcanzó los rediferidos permitidos en los ultimos 6 meses",
     "error.msg.loan.reschedule.rediferir.amount.zero": "El monto de reprogramación no puede ser cero.",
@@ -340,7 +347,8 @@
     "error.msg.loan.transaction.repayment.incorrect.processing.type": "Tipo de procesamiento de transacción no válido [ {{params[0].value}} ] proporcionado.",
     "error.msg.loan.bank.is.required.for.bank.channel": "Debe especificar un banco, si el canal es Bancos",
     "error.msg.loan.outside.the.off.restriction.period": "Alcanzó las reestructuras permitidas en los ultimos 6 meses",
-    "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente."
+    "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente.",
+    "validation.msg.invalid.integer.format": "Valor no válido [ {{params[0].value}} ] para el parámetro entero"
   },
   "labels": {
     "breadcrumbs": {
@@ -469,7 +477,7 @@
       "Export CSV": "Exportar CSV",
       "Export XLS": "Exportar XLS",
       "Filter": "Filtrar",
-      "Foreclosure": "Juicio hipotecario",
+      "Foreclosure": "PrePagar",
       "GLIM Loan Application": "Solicitud de Crédito GLIM",
       "GSIM Application": "Aplicación GSIM",
       "Generate Report": "Generar reporte",
@@ -587,6 +595,7 @@
       "Unblock Massively": "Desbloqueo masivo"
     },
     "commons": {
+      "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
       "must be greater than or equal to zero": "debe ser mayor o igual a cero",
       "cannot have more than": "no puede tener más de",
       "characters": "caracteres",
@@ -890,6 +899,7 @@
       "Loan Provisioning Criteria": "Criterios de concesión de Créditos",
       "Loan Purpose": "Propósito del Crédito",
       "Loan Repayments": "Pagos de Créditos",
+      "Loan Write Offs": "Condonar créditos",
       "Loan Reschedule": "Reprogramación de préstamos",
       "Loan Schedule": "Programa de Créditos",
       "Loan Summary": "Resumen del Crédito",
@@ -1068,6 +1078,15 @@
       "Down Payments": "Pagos iniciales"
     },
     "inputs": {
+      "Balance as of today": "Saldo a hoy",
+      "Concept": "Concepto",
+      "Value to be written-off": "Valor a condonar",
+      "Current Interest": "Int corriente",
+      "Current Principal": "Capital",
+      "Guarantee": "Aval",
+      "Insurance": "Seguro",
+      "Current Penalty": "Int Mora",
+      "Current Fees": "Honorarios",
       "original.loan.account": "Crédito origen",
       "Restructured": "Reestructurado",
       "Repayment Amount": "Monto del pago",
@@ -2478,7 +2497,8 @@
       "charge.insurance.vat.value": "Valor IVA ",
       "charge.insurance.total.value": "Valor Total",
       "charge.insurance.deadline": "Plazo Maximo",
-      "getPercentageAmountFromTable": "Porcentaje de la tabla"
+      "getPercentageAmountFromTable": "Porcentaje de la tabla",
+      "charge.days.in.arrears": "Días de atraso"
     },
     "links": {
       "Community": "Comunidad",
@@ -2496,6 +2516,7 @@
       "Working with Code": "Trabajar con código"
     },
     "menus": {
+      "Special Write-Off": "Condonación Especial",
       "Accounting": "Contabilidad",
       "Account Overview": "Descripción de cuenta",
       "Activate": "Activar",
@@ -2530,7 +2551,7 @@
       "Deposit": "Depósito",
       "Disburse": "Desembolsar",
       "Disburse to Savings": "Desembolsar a Ahorros",
-      "Foreclosure": "Juicio hipotecario",
+      "Foreclosure": "PrePagar Credito Total",
       "Frequent Postings": "Publicaciones frecuentes",
       "Frequently Accessed": "Acceso frecuente",
       "Funds": "Fondos",
@@ -2652,10 +2673,14 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Loan Repayments": "Pagos de Créditos",
+      "Loan Write Offs": "Condonar créditos",
+      "Special Write-Off": "Condonación Especial",
       "VIP & Commerce": "VIP y comercio",
       "Edit": "Editar",
       "Generate Original Schedule Report" : "Generar Reporte de Horario Original",
       "Generate Repayment Schedule Report": "Generar Reporte de Calendario de Pagos",
+      "Foreclosure": "PrePagar Credito Total",
       "Create Custom Charge Mapping": "Crear Mapeo de Cargos Personalizados",
       "View History": "Ver Historial",
       "Interest Rates": "Tasas de interés",
@@ -3649,5 +3674,34 @@
   "error.msg.only.flat.type.allowed.for.voluntary.insurance": "Sólo se permite el tipo de cálculo de cargo fijo para el seguro voluntario/de asistencia",
   "chargeInsuranceType.invalid": "Invalid",
   "chargeInsuranceType.compra": "Compra",
-  "chargeInsuranceType.cargo": "Cargo"
+  "chargeInsuranceType.cargo": "Cargo",
+  "loanTransactionType": {
+    "invalid": "Inválido",
+    "disbursement": "Desembolso",
+    "repayment": "Pago",
+    "repaymentAtDisbursement": "Reembolso en desembolso",
+    "contra": "Contra",
+    "waiver": "Exención",
+    "marked.for.rescheduling": "Marcado para reprogramación",
+    "recoveryRepayment": "Recuperación de reembolso",
+    "waiveCharges": "Renunciar a los cargos",
+    "writeOff": "Condonación",
+    "accrual": "Acumulación",
+    "initiateTransfer": "Iniciar transferencia",
+    "approveTransfer": "Aprobar transferencia",
+    "withdrawTransfer": "Retirar transferencia",
+    "rejectTransfer": "Rechazar transferencia",
+    "refund": "Reembolso",
+    "chargePayment": "Pago de cargo",
+    "incomePosting": "Publicación de ingresos",
+    "creditBalanceRefund": "Reembolso de saldo de crédito",
+    "merchantIssuedRefund": "Reembolso emitido por el comerciante",
+    "payoutRefund": "Reembolso de pago",
+    "goodwillCredit": "Crédito de buena voluntad",
+    "chargeRefund": "Reembolso de cargo",
+    "chargeback": "Devolución de cargo",
+    "chargeAdjustment": "Ajuste de cargo",
+    "chargeOff": "Cargo",
+    "downPayment": "Pago inicial"
+  }
 }

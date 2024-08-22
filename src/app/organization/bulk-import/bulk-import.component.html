@@ -1,14 +1,9 @@
 <!-- TODO: Refactor Permissions -->
 <div class="container">
-
   <mat-card>
-
     <div fxLayout="row" fxLayout.lt-md="column">
-
-      <div fxFlex="50%">
-
+      <div fxFlex="33%">
         <mat-nav-list>
-
           <mat-list-item [routerLink]="['Offices']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
               <fa-icon icon="building" size="sm"></fa-icon>
@@ -69,17 +64,14 @@
 
       </div>
 
-      <div fxFlex="50%">
-
+      <div fxFlex="33%">
         <mat-nav-list>
-
           <mat-list-item [routerLink]="['Employees']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
               <fa-icon icon="user" size="sm"></fa-icon>
             </mat-icon>
             <h4 matLine>{{'labels.heading.Employees' | translate }}</h4>
           </mat-list-item>
-
 
           <mat-list-item [routerLink]="['Clients']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
@@ -102,19 +94,29 @@
             <h4 matLine>{{'labels.heading.Points of Sales' | translate }}</h4>
           </mat-list-item>
 
-
           <mat-list-item [routerLink]="['Centers']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
               <fa-icon icon="users" size="sm"></fa-icon>
             </mat-icon>
             <h4 matLine>{{'labels.heading.Centers' | translate }}</h4>
           </mat-list-item>
+        </mat-nav-list>
+      </div>
 
+      <div fxFlex="33%">
+        <mat-nav-list>
           <mat-list-item [routerLink]="['Loan Repayments']" *mifosxHasPermission="'READ_OFFICE'">
             <mat-icon matListIcon>
               <fa-icon icon="chevron-right" size="sm"></fa-icon>
             </mat-icon>
             <h4 matLine>{{'labels.heading.Loan Repayments' | translate }}</h4>
+          </mat-list-item>
+
+          <mat-list-item [routerLink]="['Loan Write Offs']" *mifosxHasPermission="'READ_OFFICE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="chevron-right" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{'labels.heading.Loan Write Offs' | translate }}</h4>
           </mat-list-item>
 
           <mat-list-item [routerLink]="['Savings Transactions']" *mifosxHasPermission="'READ_OFFICE'">
@@ -151,13 +153,9 @@
             </mat-icon>
             <h4 matLine>{{'labels.heading.Guarantors' | translate }}</h4>
           </mat-list-item>
-
         </mat-nav-list>
-
       </div>
 
     </div>
-
   </mat-card>
-
 </div>

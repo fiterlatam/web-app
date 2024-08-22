@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {LoansService} from '../../../loans.service';
@@ -8,7 +8,7 @@ import {LoansService} from '../../../loans.service';
   templateUrl: './generate-loan-original-schedule-report.component.html',
   styleUrls: ['./generate-loan-original-schedule-report.component.scss']
 })
-export class GenerateLoanOriginalScheduleReportComponent implements OnInit {
+export class GenerateLoanOriginalScheduleReportComponent implements OnInit, OnDestroy {
   loanId: any;
   pdfFileURL: any;
   /**
@@ -31,6 +31,11 @@ export class GenerateLoanOriginalScheduleReportComponent implements OnInit {
 
   pdfURL(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfFileURL);
+  }
+  ngOnDestroy() {
+    if (this.pdfFileURL) {
+      URL.revokeObjectURL(this.pdfFileURL);
+    }
   }
 
 }
