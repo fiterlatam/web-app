@@ -15,7 +15,8 @@ export class OriginalScheduleTabComponent implements OnInit {
   /** Columns to be displayed in original schedule table. */
   displayedColumns: string[] = ['date', 'balanceOfLoan', 'principalDue', 'interest', 'voluntary.insurance', 'mandatory.insurance', 'aval', 'fees', 'penalties', 'outstanding'];
   decimalPlaces: string;
-  loanId: any;
+  loanId: string;
+  clientId: string;
 
   /**
    * Retrieves the loans with associations data from `resolve`.
@@ -24,7 +25,8 @@ export class OriginalScheduleTabComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.parent.data.subscribe((data: { loanDetailsData: any }) => {
       if (data.loanDetailsData) {
-       this.loanId = data.loanDetailsData.id;
+        this.loanId = data.loanDetailsData.id;
+        this.clientId = data.loanDetailsData.clientId;
         this.currencyCode = data.loanDetailsData.currency.code;
         this.decimalPlaces = data.loanDetailsData.currency.decimalPlaces;
       }
@@ -36,12 +38,8 @@ export class OriginalScheduleTabComponent implements OnInit {
   }
 
   exportSchedule(): void {
-    // get the loan id
-    console.log('Exporting original schedule for loan id: ' + this.loanId);
-    // route to generate disbursement report
-
     // Navigate to the specific URL
-    // this.router.navigateByUrl('/clients/29/loans-accounts/194/actions/Generate%20Disbursement%20Report');
+    this.router.navigateByUrl(`/clients/${this.clientId}/loans-accounts/${this.loanId}/actions/Generate Original Schedule Report`);
   }
 
 }

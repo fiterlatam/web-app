@@ -29,6 +29,8 @@
 <mifosx-undo-command [actionName]="actionName" *ngIf="actions['Undo Charge-Off']"></mifosx-undo-command>
 <mifosx-asset-transfer-loan *ngIf="actions['Sell Loan'] || actions['Buy Back Loan']"></mifosx-asset-transfer-loan>
 <mifosx-generate-disbursement-report *ngIf="actions['Generate Disbursement Report']"></mifosx-generate-disbursement-report>
+<mifosx-generate-loan-original-schedule-report *ngIf="actions['Generate Original Schedule Report']"></mifosx-generate-loan-original-schedule-report>
+<mifosx-generate-loan-repayment-schedule-report *ngIf="actions['Generate Repayment Schedule Report']"></mifosx-generate-loan-repayment-schedule-report>
 <mifosx-loan-reaging [dataObject]="actionButtonData" *ngIf="actions['Re-Ageing']"></mifosx-loan-reaging>
 <mifosx-undo-block-loan [dataObject]="actionsButtonData" *ngIf="actions['Unblock']"></mifosx-undo-block-loan>
 <mifosx-block-loan [dataObject]="actionButtonData" *ngIf="actions['Block Loan']"></mifosx-block-loan>

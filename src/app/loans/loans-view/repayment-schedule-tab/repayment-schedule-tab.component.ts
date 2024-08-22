@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SettingsService} from '../../../settings/settings.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class RepaymentScheduleTabComponent implements OnInit {
   /** Loan Repayment Schedule Details Data */
   @Input() repaymentScheduleDetails: any = null;
   loanDetailsDataRepaymentSchedule: any = [];
-
+  loanId: string;
+  clientId: string;
   /** Stores if there is any waived amount */
   isWaived: boolean;
   /** Columns to be displayed in original schedule table. */
@@ -37,9 +38,11 @@ export class RepaymentScheduleTabComponent implements OnInit {
    * @param settingsService
    */
   constructor(private route: ActivatedRoute,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService, private router: Router) {
     this.route.parent.data.subscribe((data: { loanDetailsData: any }) => {
       if (data.loanDetailsData) {
+        this.loanId = data.loanDetailsData.id;
+        this.clientId = data.loanDetailsData.clientId;
         this.currencyCode = data.loanDetailsData.currency.code;
         this.decimalPlaces = data.loanDetailsData.currency.decimalPlaces;
       }
@@ -64,6 +67,10 @@ export class RepaymentScheduleTabComponent implements OnInit {
       return 'additional';
     }
     return '';
+  }
+  exportSchedule(): void {
+    // Navigate to the specific URL
+    this.router.navigateByUrl(`/clients/${this.clientId}/loans-accounts/${this.loanId}/actions/Generate Repayment Schedule Report`);
   }
 
 }
