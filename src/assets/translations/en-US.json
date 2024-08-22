@@ -2310,11 +2310,14 @@
       "fechaHasta" : "Fecha Hast",
       "nitMatriz" : "NIT Matriz",
       "empresaMatriz" : "Empresa Matriz",
+      "elBlanco" : "El Banco",
+      "eltipodecuenta" : "El Tipo de Cuenta",
       "vlrCompraz" : "Vlr Compra",
       "VlrComision" : "Vlr Comision",
       "vlIvaComision" : "Vlr Iva Comision",
       "vlrNetoCompra" : "Vlr Neto Compra", 
       "recaudos" : "Recaudos",
+      "vlrnetdePagar" : "Vlr net a Pagar",
       "products": {
         "loan": {
           "Amortization": "Amortization",

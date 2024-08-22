@@ -15,8 +15,8 @@ import { TasksService } from 'app/tasks/tasks.service';
 })
 export class CompensationLoanComponent implements OnInit {
 
-  /** Loans Data */
-  loans: any;
+  /** compensation Data */
+  compensation: any;
   /** Datasource */
   dataSource: MatTableDataSource<any>;
   /** Rows Selection Data */
@@ -24,7 +24,7 @@ export class CompensationLoanComponent implements OnInit {
   /** Batch Requests */
   batchRequests: any[];
   /** Displayed Columns */
-  displayedColumns: string[] = ['select', 'fechaComp', 'fechaDesde', 'fechaHasta', 'nitMatriz', 'empresaMatriz', 'vlrCompraz', 'VlrComision','vlIvaComision', 'vlrNetoCompra', 'recaudos'];
+  displayedColumns: string[] = ['select', 'compensationDate', 'startDate', 'endDate', 'nit', 'companyName',  'bankName','accontType', 'accountNumber', 'purchaseAmount', 'comissionAmount','vaComissionAmount', 'netPurchaseAmount','collectionAmount','netOutstandingAmount'];
 
   /**
    * Retrieves the reschedule loan data from `resolve`.
@@ -43,10 +43,11 @@ export class CompensationLoanComponent implements OnInit {
     private settingsService: SettingsService,
     private translateService: TranslateService,
     private tasksService: TasksService) {
-    this.route.data.subscribe((data: { recheduleLoansData: any }) => {
-      this.loans = data.recheduleLoansData;
-      this.dataSource = new MatTableDataSource(this.loans);
+    this.route.data.subscribe((data: { compansationLoadData: any }) => {
+      this.compensation = data.compansationLoadData;
+      this.dataSource = new MatTableDataSource(this.compensation);
       this.selection = new SelectionModel(true, []);
+     
     });
   }
 
@@ -73,5 +74,38 @@ export class CompensationLoanComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
+  loanResource() {
+    this.tasksService.getAllCompensation().subscribe((response: any) => {
+      this.compensation = response;
+      this.compensation = this.compensation.filter((account: any) => {
+        return (account.status.waitingForDisbursal === true);
+      });
+      this.dataSource = new MatTableDataSource(this.compensation);
+      this.selection = new SelectionModel(true, []);
+    });
+  }
+
+  bulkCompensation(){
+    const dateFormat = this.settingsService.dateFormat;
+    const locale = this.settingsService.language.code;
+    const listSelectedAccounts = this.selection.selected;
+    this.batchRequests = [];
+    const formData = {
+      dateFormat,
+      locale
+    };
+    let reqId = 1;
+    listSelectedAccounts.forEach((element: any) => {
+      const url = 'clientsallies/compensation/' + element.id ;
+      const bodyData = JSON.stringify(formData);
+      const batchData = { requestId: reqId++, relativeUrl: url, method: 'POST', body: bodyData };
+      this.batchRequests.push(batchData);
+    });
+    this.tasksService.submitBatchData(this.batchRequests).subscribe((response: any) => {
+      this.loanResource();
+    });
+  }
+
 
 }
