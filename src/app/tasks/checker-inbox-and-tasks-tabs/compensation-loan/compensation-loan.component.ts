@@ -78,9 +78,6 @@ export class CompensationLoanComponent implements OnInit {
   loanResource() {
     this.tasksService.getAllCompensation().subscribe((response: any) => {
       this.compensation = response;
-      this.compensation = this.compensation.filter((account: any) => {
-        return (account.status.waitingForDisbursal === true);
-      });
       this.dataSource = new MatTableDataSource(this.compensation);
       this.selection = new SelectionModel(true, []);
     });
