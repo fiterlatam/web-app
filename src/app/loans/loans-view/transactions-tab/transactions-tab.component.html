@@ -40,7 +40,7 @@
     <ng-container matColumnDef="transactionType">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Transaction Type" | translate}} </th>
       <td mat-cell *matCellDef="let transaction" [ngClass]="loanTransactionColor(transaction)"> {{
-        transaction.type.value }} </td>
+        transaction.type.code | translate }} </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
