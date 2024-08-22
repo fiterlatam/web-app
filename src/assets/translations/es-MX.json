@@ -2654,6 +2654,8 @@
     "text": {
       "VIP & Commerce": "VIP y comercio",
       "Edit": "Editar",
+      "Generate Original Schedule Report" : "Generar Reporte de Horario Original",
+      "Generate Repayment Schedule Report": "Generar Reporte de Calendario de Pagos",
       "Create Custom Charge Mapping": "Crear Mapeo de Cargos Personalizados",
       "View History": "Ver Historial",
       "Interest Rates": "Tasas de interés",

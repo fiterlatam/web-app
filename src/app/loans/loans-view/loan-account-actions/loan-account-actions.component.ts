@@ -111,7 +111,6 @@ export class LoanAccountActionsComponent {
       for (const key of Object.keys(this.actions)) {
         this.actions[key] = false;
       }
-      console.log('this.actions', this.actions);
       this.actions[this.actionName] = true;
     });
   }
