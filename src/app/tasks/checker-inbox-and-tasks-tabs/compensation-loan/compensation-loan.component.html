@@ -1,12 +1,17 @@
 <div class="tab-container mat-typography">
-    <div fxLayout="row" fxLayoutAlign="end center">
-        <div class="p-10">
-          <button mat-raised-button color="success" *mifosxHasPermission="'APPROVE_LOANRESCHEDULE'"
-            (click)="bulkCompensation()">
-            <fa-icon icon="check" class="m-r-10"></fa-icon>{{ "Compensate" | translate}}
+    
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="search-box" fxFlex="40%">
+          <mat-form-field fxFlex="90%">
+            <input matInput placeholder="{{'labels.text.Filter by NIT' | translate}}" (keyup)="applyFilter($event.target.value)">
+          </mat-form-field>
+        </div>
+        <div fxFlex="60%">
+          <button mat-raised-button color="success" *mifosxHasPermission="'APPROVE_LOAN'" (click)="bulkCompensation()">
+            <fa-icon icon="check" class="m-r-10"></fa-icon>{{"Compensate" | translate}}
           </button>
         </div>
-    </div>
+      </div>
     <div class="table-output">
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="select">
