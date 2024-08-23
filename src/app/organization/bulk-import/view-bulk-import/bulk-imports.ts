@@ -106,6 +106,13 @@ export const BulkImports = [
       formFields: 0
     },
     {
+      name: 'Loan Write Offs',
+      entityType: 'loanwriteoffs',
+      urlSuffix: '/loans/loanwriteoffs',
+      permission: 'READ_CLIENT',
+      formFields: 0
+    },
+    {
       name: 'Savings Transactions',
       entityType: 'savingstransactions',
       urlSuffix: '/savingsaccounts/transactions',
