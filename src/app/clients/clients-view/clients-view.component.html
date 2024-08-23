@@ -83,6 +83,13 @@
           <span>{{"labels.buttons.Applications" | translate}}</span>
         </button>
 
+        <button *ngIf="!isActive()" mat-menu-item [matMenuTriggerFor]="blockedLoanMenu">
+          <mat-icon matListIcon>
+            <fa-icon icon="money-bill-alt" size="sm"></fa-icon>
+          </mat-icon>
+          <span>{{"labels.buttons.Applications" | translate}}</span>
+        </button>
+
         <button *ngIf="isNotClosed()" mat-menu-item [matMenuTriggerFor]="Actions">
           <mat-icon matListIcon>
             <fa-icon icon="tasks" size="sm"></fa-icon>
@@ -108,6 +115,13 @@
 
         <button mat-menu-item [matMenuTriggerFor]="More">{{"labels.buttons.More" | translate}}</button>
 
+      </mat-menu>
+      
+      <mat-menu #blockedLoanMenu="matMenu">
+        <button mat-menu-item *mifosxHasPermission="'CREATE_LOAN'"
+          [routerLink]="['loans-accounts', 'create']">
+          {{"labels.buttons.New Loan Account" | translate}}
+        </button>
       </mat-menu>
 
       <mat-menu #accountApplications="matMenu">
