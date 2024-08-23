@@ -1,3 +1,9 @@
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
     padding: 5px;
 }
+.table-output{
+    overflow: auto;
+}
+table.mat-table{
+    width: max-content;
+}

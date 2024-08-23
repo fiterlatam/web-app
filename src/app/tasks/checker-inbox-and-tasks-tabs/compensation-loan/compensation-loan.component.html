@@ -7,7 +7,7 @@
           </button>
         </div>
     </div>
-
+    <div class="table-output">
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef >
@@ -108,4 +108,5 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
     </table>
+ </div>
 </div>
