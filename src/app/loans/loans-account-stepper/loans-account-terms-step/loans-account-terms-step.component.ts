@@ -543,26 +543,26 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     this.loansAccountTermsForm.patchValue({principalAmount: principalAmount});
   }
 
-  onLoanIdToCloseChange(value: any) {
-    
-    this.loansService.getLoanAccountAssociationDetails(value).subscribe(
-      (data) => {
-        
-        if (data) {
-          // Update form with principal if available
-          if (data?.repaymentSchedule?.totalOutstanding) {
-            this.loansAccountTermsForm.patchValue({
-              principalAmount: data?.repaymentSchedule?.totalOutstanding
-            });
-          }
-
+  onLoanIdToCloseChange(loanId: string | number) {
+    const foreclosureData = {
+      command: 'foreclosure',
+      dateFormat: 'yyyy-MM-dd',
+      locale: 'en',
+      transactionDate: new Date().toISOString().split('T')[0] // Current date in 'YYYY-MM-DD' format
+    };
+  
+    this.loansService.getForeclosureData(loanId, foreclosureData).subscribe(
+      (response: any) => {
+        if (response && response.amount) {
+          this.loansAccountTermsForm.patchValue({
+            principalAmount: response.amount
+          });
         } else {
-          console.warn('Principal or charges data not found in API response');
+          console.warn('Foreclosure amount not found in API response');
         }
       },
       error => {
-        console.error('Error fetching loan details:', error);
-        // Handle error (e.g., show user message)
+        console.error('Error fetching foreclosure details:', error);
       }
     );
   }
