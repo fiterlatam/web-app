@@ -23,6 +23,8 @@ import { GetLoansToBeDisbursed } from './common-resolvers/getLoansToBeDisbursed.
 import { GetRescheduleLoans } from './common-resolvers/getRescheduleLoans.resolver';
 import { MakerCheckerTemplate } from './common-resolvers/makerCheckerTemplate.resolver';
 import { GetCheckerInboxDetailResolver } from './common-resolvers/getCheckerInboxDetail.resolver';
+import { CompensationLoanComponent } from './checker-inbox-and-tasks-tabs/compensation-loan/compensation-loan.component';
+import { GetCompansationLoanResolver } from './common-resolvers/getCompansationLoan.resolver';
 
 /** Tasks Routes */
 const routes: Routes = [
@@ -73,6 +75,14 @@ const routes: Routes = [
           resolve: {
             recheduleLoansData: GetRescheduleLoans
           }
+        },
+        {
+          path: 'compensation-loan',
+          component: CompensationLoanComponent,
+          data: { title: 'Compensation Loan' },
+          resolve: {
+            compansationLoadData: GetCompansationLoanResolver
+          }
         }
       ]
     },
@@ -103,7 +113,8 @@ const routes: Routes = [
     GetLoansToBeDisbursed,
     GetRescheduleLoans,
     MakerCheckerTemplate,
-    GetCheckerInboxDetailResolver
+    GetCheckerInboxDetailResolver,
+    GetCompansationLoanResolver
   ]
 })
 export class TasksRoutingModule { }

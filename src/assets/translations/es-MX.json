@@ -1388,6 +1388,7 @@
       "Currently Running": "Actualmente en ejecución",
       "Custom Report Run Frequency": "Frecuencia de ejecución de reportes personalizados",
       "Custom Report Run Frequency (Days)": "Frecuencia de ejecución de reportes personalizados (días)",
+      "Compensation" : "Compensation",
       "DETAILS": "DETALLES",
       "Daily": "Diario",
       "Data Table": "Tabla de datos",
@@ -2333,6 +2334,19 @@
       "Over Amount Calculation Type": "Tipo de cálculo de monto excedente",
       "Over Amount": "Monto excedente",
       "Installment day calculation from": "Cálculo del día de la cuota desde",
+      "fechaComp" : "Fecha Compra",
+      "fechaDesde" : "Fecha Des",
+      "fechaHasta" : "Fecha Hast",
+      "nitMatriz" : "NIT Matriz",
+      "empresaMatriz" : "Empresa Matriz",
+      "elBlanco" : "El Banco",
+      "eltipodecuenta" : "El Tipo de Cuenta",
+      "vlrCompraz" : "Vlr Compra",
+      "VlrComision" : "Vlr Comision",
+      "vlIvaComision" : "Vlr Iva Comision",
+      "vlrNetoCompra" : "Vlr Neto Compra", 
+      "recaudos" : "Recaudos",
+      "vlrnetdePagar" : "Vlr net a Pagar",
       "products": {
         "loan": {
           "Amortization": "Amortización",
@@ -3270,7 +3284,8 @@
       "Maximum legal rate parameterization": "Parametrización de la tasa legal máxima",
       "Advance Quota Parameterization": "Parametrización del Cupo de Avance",
       "Enable extended": "Habilitar plazo extendido para pagos mensuales",
-      "Warning dialog": "Este sistema es sólo para uso autorizado. El acceso no autorizado dará lugar a posibles acciones legales. Al acceder a este sistema, usted reconoce que está autorizado a hacerlo y que todos los datos almacenados y procesados aquí son confidenciales."
+      "Warning dialog": "Este sistema es sólo para uso autorizado. El acceso no autorizado dará lugar a posibles acciones legales. Al acceder a este sistema, usted reconoce que está autorizado a hacerlo y que todos los datos almacenados y procesados aquí son confidenciales.",
+      "Filter by NIT": "Filter by NIT"
     },
     "titles": {
       "Dashboard": "Tableros",

@@ -127,4 +127,12 @@ export class TasksService {
     return this.http.get(`/audits/${makerCheckerId}`);
   }
 
+  /**
+   * Get Compensation Loans Locked Data using pages and limit
+   */
+  getAllCompensation(): Observable<any> {
+  
+    return this.http.get('/clientsallies/compensation');
+  }
+
 }

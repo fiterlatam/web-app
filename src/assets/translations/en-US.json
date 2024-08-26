@@ -1370,6 +1370,7 @@
       "Currently Running": "Currently Running",
       "Custom Report Run Frequency": "Custom Report Run Frequency",
       "Custom Report Run Frequency (Days)": "Custom Report Run Frequency (Days)",
+      "Compensation" : "Compensation",
       "DETAILS": "DETAILS",
       "Daily": "Daily",
       "Data Table": "Data Table",
@@ -2312,6 +2313,19 @@
       "Over Amount Calculation Type": "Over Amount Calculation Type",
       "Over Amount": "Over Amount",
       "Installment day calculation from": "Installment day calculation from",
+      "fechaComp" : "Fecha Compra",
+      "fechaDesde" : "Fecha Des",
+      "fechaHasta" : "Fecha Hast",
+      "nitMatriz" : "NIT Matriz",
+      "empresaMatriz" : "Empresa Matriz",
+      "elBlanco" : "El Banco",
+      "eltipodecuenta" : "El Tipo de Cuenta",
+      "vlrCompraz" : "Vlr Compra",
+      "VlrComision" : "Vlr Comision",
+      "vlIvaComision" : "Vlr Iva Comision",
+      "vlrNetoCompra" : "Vlr Neto Compra", 
+      "recaudos" : "Recaudos",
+      "vlrnetdePagar" : "Vlr net a Pagar",
       "products": {
         "loan": {
           "Amortization": "Amortization",
@@ -3248,7 +3262,8 @@
       "Advance Quota Parameterization": "Advance Quota Parameterization",
       "Enable extended": "Enable extended term for monthly repayments",
       "Manage System Channels": "Manage System Channels and its Sub Channels",
-      "Warning dialog": "This system is for authorized use only. Unauthorized access will result in possible legal action. By accessing this system, you acknowledge that you are authorized to do so and that all data stored and processed here is confidential."
+      "Warning dialog": "This system is for authorized use only. Unauthorized access will result in possible legal action. By accessing this system, you acknowledge that you are authorized to do so and that all data stored and processed here is confidential.",
+      "Filter by NIT": "Filter by NIT"
     },
     "titles": {
       "Dashboard": "Dashboard",
