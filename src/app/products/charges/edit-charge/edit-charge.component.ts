@@ -511,7 +511,15 @@ export class EditChargeComponent implements OnInit {
       const vatValue =   this.chargeForm.get('vatValue').value;
       let sum = parseFloat(vatValue) + parseFloat(baseValue);
       sum = Math.round(sum) ;
-      this.chargeForm.get('amount').setValue(sum);
+
+      this.chargeForm.controls['amount'].setValidators([]);
+      this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
+      this.chargeForm.get('amount').updateValueAndValidity();
+      if (this.settingsService.language.code === "es") {
+        this.chargeForm.get('amount').setValue(this.decimalPipe.transform(sum, '1.2-2', this.settingsService.language.code));
+      } else {
+        this.chargeForm.get('amount').setValue(sum);
+      }
       this.chargeForm.get('totalValue').setValue(sum);
     }
   }
