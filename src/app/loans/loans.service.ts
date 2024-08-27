@@ -218,6 +218,24 @@ export class LoansService {
   }
 
   /**
+   * Generate Loan Original Schedule  Report PDF
+   * @param loanId Loan ID
+   */
+  generateLoanOriginalScheduleReportPDF(loanId: string) {
+    return this.http.get(`/loans/${loanId}/schedule-report?scheduleType=original`,  { responseType: 'blob'});
+  }
+
+
+  /**
+   * Generate Loan Repayment Schedule Report PDF
+   * @param loanId Loan ID
+   */
+  generateLoanRepaymentReportPDF(loanId: string) {
+    return this.http.get(`/loans/${loanId}/schedule-report?scheduleType=repayment`,  { responseType: 'blob'});
+  }
+
+
+  /**
    * Used For: Close Action, Prepay Loan Action
    * Returns the response of the action
    * @param loanId Loan Id
