@@ -150,5 +150,12 @@ export const BulkImports = [
       permission: 'CREATE_CLIENTALLYPOINTOFSALES',
       formFields: 0
     },
+    {
+        name: 'Sale Of Insurance',
+        entityType: 'sales.of.insurance.or.assistance',
+        urlSuffix: '/clientbuyprocess',
+        permission: 'CREATE_CLIENTALLYPOINTOFSALES',
+        formFields: 0
+    },
 
   ];

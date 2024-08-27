@@ -1076,7 +1076,8 @@
       "Configurable Terms and Settings": "Términos y configuraciones configurables",
       "Configurable Allowed Usages": "Usos permitidos configurables",
       "Configurable Allowed Collections for Channels": "Colecciones permitidas configurables para canales",
-      "Down Payments": "Pagos iniciales"
+      "Down Payments": "Pagos iniciales",
+      "sale.of.insurance.or.assurance": "Ventas de seguros y/o asistencias voluntarias"
     },
     "inputs": {
       "Balance as of today": "Saldo a hoy",

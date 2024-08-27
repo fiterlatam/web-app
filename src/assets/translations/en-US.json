@@ -1061,7 +1061,8 @@
       "Configurable Terms and Settings": "Configurable Terms and Settings",
       "Configurable Allowed Usages": "Configurable Allowed Usages",
       "Configurable Allowed Collections for Channels": "Configurable Allowed Collections for Channels",
-      "Down Payments": "Pagos iniciales"
+      "Down Payments": "Pagos iniciales",
+      "sale.of.insurance.or.assurance": "Sales of insurance and/or voluntary assistance"
     },
     "inputs": {
       "Balance as of today": "Balance as of today",
