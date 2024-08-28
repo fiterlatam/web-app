@@ -8,6 +8,7 @@ import {ProductsService} from '../../products.service';
 import {SettingsService} from 'app/settings/settings.service';
 import {SystemService} from 'app/system/system.service';
 import {Dates} from 'app/core/utils/dates';
+import {DecimalPipe} from '@angular/common';
 
 /**
  * Create charge component.
@@ -84,6 +85,7 @@ export class CreateChargeComponent implements OnInit {
               private router: Router,
               private dateUtils: Dates,
               private settingsService: SettingsService,
+              private decimalPipe: DecimalPipe,
               private systemService: SystemService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargesTemplateData = data.chargesTemplate;
@@ -547,8 +549,16 @@ export class CreateChargeComponent implements OnInit {
       const baseValue = this.chargeForm.get('baseValue').value;
       const vatValue =  this.chargeForm.get('vatValue').value;
       let sum = parseFloat(baseValue) + parseFloat(vatValue);
-      sum = sum;
-      this.chargeForm.get('amount').setValue(sum);
+      sum = Math.round(sum);
+
+      this.chargeForm.controls['amount'].setValidators([]);
+      this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
+      this.chargeForm.get('amount').updateValueAndValidity();
+      if (this.settingsService.language.code === "es") {
+        this.chargeForm.get('amount').setValue(this.decimalPipe.transform(sum, '1.2-2', this.settingsService.language.code));
+      } else {
+        this.chargeForm.get('amount').setValue(sum);
+      }
       this.chargeForm.get('totalValue').setValue(sum);
     }
   }
