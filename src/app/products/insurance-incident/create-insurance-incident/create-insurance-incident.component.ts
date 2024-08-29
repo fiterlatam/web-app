@@ -11,12 +11,18 @@ import {InsuranceIncidentService} from '../insurance-incident.service';
 })
 export class CreateInsuranceIncidentComponent implements OnInit {
   incidentForm: UntypedFormGroup;
+  incidentData: any;
+
 
   constructor(private formBuilder: UntypedFormBuilder,
               private incidentService: InsuranceIncidentService,
               private route: ActivatedRoute,
               private router: Router,
               private settingsService: SettingsService) {
+                this.route.data.subscribe((data: { incident: any }) => {
+                      this.incidentData = data.incident;
+                    });
+
   }
 
   ngOnInit(): void {
@@ -29,7 +35,8 @@ export class CreateInsuranceIncidentComponent implements OnInit {
     this.incidentForm = this.formBuilder.group({
       'isVoluntary': [false],
       'isMandatory': [false],
-      'name': ['', [Validators.required]]
+      'name': ['', [Validators.required]],
+      'incidentType': ['', Validators.required]
     }, { validators: this.incidentService.validateInsuranceIncidentForm() });
   }
 

@@ -11,6 +11,20 @@
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field>
+            <mat-label>{{ 'labels.inputs.type' | translate }}</mat-label>
+            <mat-select required formControlName="incidentType">
+              <mat-option *ngFor="let incidentType of incidentData.incidentTypeOptions"
+                          [value]="incidentType.id">
+                {{ incidentType.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="incidentForm.controls.incidentType.hasError('required')">
+              {{ 'labels.inputs.type' | translate }} {{ 'labels.commons.is' | translate }}
+              <strong>{{ 'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
           <mat-checkbox  formControlName="isMandatory">
             {{'labels.inputs.Is For Mandatory Insurance' | translate}}
           </mat-checkbox>

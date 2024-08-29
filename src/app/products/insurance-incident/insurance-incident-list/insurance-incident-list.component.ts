@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class InsuranceIncidentListComponent implements OnInit {
   incidents: any;
-  displayedColumns: string[] = ['name', 'mandatoryInsurance', 'voluntaryInsurance'];
+  displayedColumns: string[] = ['name', 'type', 'mandatoryInsurance', 'voluntaryInsurance'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

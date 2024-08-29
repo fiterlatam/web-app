@@ -33,7 +33,8 @@ export class EditInsuranceIncidentComponent implements OnInit {
     this.incidentForm = this.formBuilder.group({
       'isVoluntary': [this.incidentData.isVoluntary],
       'isMandatory': [this.incidentData.isMandatory],
-      'name': [this.incidentData.name, [Validators.required]]
+      'name': [this.incidentData.name, [Validators.required]],
+      'incidentType': [this.incidentData.incidentTypeId, Validators.required]
     }, {validators: this.incidentService.validateInsuranceIncidentForm()});
   }
 

@@ -343,7 +343,8 @@
     "error.msg.loan.bank.is.required.for.bank.channel": "You must specify a bank, if the channel is Banks",
     "error.msg.charge.not.setup.correctly": "Charge [ {{params[0].value}} ] not setup correctly.",
     "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months",
-    "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter"
+    "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter",
+    "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists"
   },
   "labels": {
     "breadcrumbs": {
@@ -2324,7 +2325,7 @@
       "vlrCompraz" : "Vlr Compra",
       "VlrComision" : "Vlr Comision",
       "vlIvaComision" : "Vlr Iva Comision",
-      "vlrNetoCompra" : "Vlr Neto Compra", 
+      "vlrNetoCompra" : "Vlr Neto Compra",
       "recaudos" : "Recaudos",
       "vlrnetdePagar" : "Vlr net a Pagar",
       "products": {
@@ -2491,7 +2492,14 @@
       "charge.insurance.total.value": "Total Value",
       "charge.insurance.deadline": "Deadline",
       "getPercentageAmountFromTable": "Percentage From Table",
-      "charge.days.in.arrears": "Days In Arrears"
+      "charge.days.in.arrears": "Days In Arrears",
+      "insurance.incident.definitive.default": "Definitive cancellation due to default",
+      "insurance.incident.definitive.voluntary.cancellation": "Definitive voluntary cancellation",
+      "insurance.incident.final.advance.payment.cancellation": "Final cancellation due to credit cancellation",
+      "insurance.incident.final.guarantee.claim.cancellation": "Final cancellation due to guarantee claim",
+      "insurance.incident.final.refinanced.cancellation": "Final cancellation due to redeferred/refinanced",
+      "insurance.incident.bad.sale.cancellation": "Cancellation due to bad sale",
+      "insurance.incident.portfolio.write.off.cancellation": "Cancellation due to portfolio write-off"
     },
     "links": {
       "Community": "Community",
