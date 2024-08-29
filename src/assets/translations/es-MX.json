@@ -1077,7 +1077,8 @@
       "Configurable Allowed Usages": "Usos permitidos configurables",
       "Configurable Allowed Collections for Channels": "Colecciones permitidas configurables para canales",
       "Down Payments": "Pagos iniciales",
-      "sale.of.insurance.or.assurance": "Ventas de seguros y/o asistencias voluntarias"
+      "sale.of.insurance.or.assurance": "Ventas de seguros y/o asistencias voluntarias",
+      "Sale Of Insurance": "Venta de Seguros y/o Asistencias"
     },
     "inputs": {
       "Balance as of today": "Saldo a hoy",
@@ -2345,7 +2346,7 @@
       "vlrCompraz" : "Vlr Compra",
       "VlrComision" : "Vlr Comision",
       "vlIvaComision" : "Vlr Iva Comision",
-      "vlrNetoCompra" : "Vlr Neto Compra", 
+      "vlrNetoCompra" : "Vlr Neto Compra",
       "recaudos" : "Recaudos",
       "vlrnetdePagar" : "Vlr net a Pagar",
       "products": {
@@ -3288,7 +3289,8 @@
       "Advance Quota Parameterization": "Parametrización del Cupo de Avance",
       "Enable extended": "Habilitar plazo extendido para pagos mensuales",
       "Warning dialog": "Este sistema es sólo para uso autorizado. El acceso no autorizado dará lugar a posibles acciones legales. Al acceder a este sistema, usted reconoce que está autorizado a hacerlo y que todos los datos almacenados y procesados aquí son confidenciales.",
-      "Filter by NIT": "Filter by NIT"
+      "Filter by NIT": "Filter by NIT",
+      "Sale Of Insurance": "Venta de Seguros y/o Asistencias"
     },
     "titles": {
       "Dashboard": "Tableros",
