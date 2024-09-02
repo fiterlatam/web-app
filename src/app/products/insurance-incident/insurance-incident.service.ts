@@ -25,6 +25,10 @@ export class InsuranceIncidentService {
               private settingsService: SettingsService) {
   }
 
+  public getTemplate(): Observable<any> {
+      return this.http.get(`${this.baseUrl}/template`);
+    }
+
   public getIncidents(): Observable<any> {
     console.log('getIncidents');
     return this.http.get(`${this.baseUrl}`);

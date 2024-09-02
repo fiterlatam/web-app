@@ -158,6 +158,7 @@ import {
 import {
   CreateInsuranceIncidentComponent
 } from './insurance-incident/create-insurance-incident/create-insurance-incident.component';
+import {InsuranceIncidentTemplateResolver} from './insurance-incident/insurance-incident-template.resolver';
 
 /** Products Routes */
 const routes: Routes = [
@@ -824,6 +825,9 @@ const routes: Routes = [
             {
               path: 'create',
               component: CreateInsuranceIncidentComponent,   // Component for creating a new incident
+               resolve: {
+                  incident: InsuranceIncidentTemplateResolver         // Resolver for fetching a template
+               },
               data: { title: 'Create Insurance Incident', breadcrumb: 'Create' }
             },
 

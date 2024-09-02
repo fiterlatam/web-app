@@ -25,6 +25,11 @@
         <td mat-cell *matCellDef="let incident"> {{ incident.name }} </td>
       </ng-container>
 
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.type' | translate}}</th>
+        <td mat-cell *matCellDef="let incident"> {{ incident.incidentTypeName | translate}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="mandatoryInsurance">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Mandatory Insurance' | translate}}</th>
         <td mat-cell *matCellDef="let incident">
