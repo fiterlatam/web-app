@@ -14,6 +14,7 @@ import { ChartComponent } from './run-report/chart/chart.component';
 import { PentahoComponent } from './run-report/pentaho/pentaho.component';
 import { XBRLComponent } from './xbrl/xbrl.component';
 import { XBRLReportComponent } from './xbrl-report/xbrl-report.component';
+import {PipesModule} from '../pipes/pipes.module';
 
 /**
  * Reports Module
@@ -21,10 +22,11 @@ import { XBRLReportComponent } from './xbrl-report/xbrl-report.component';
  * Reports components should be declared here.
  */
 @NgModule({
-  imports: [
-    SharedModule,
-    ReportsRoutingModule
-  ],
+    imports: [
+        SharedModule,
+        ReportsRoutingModule,
+        PipesModule
+    ],
   declarations: [
     ReportsComponent,
     RunReportComponent,

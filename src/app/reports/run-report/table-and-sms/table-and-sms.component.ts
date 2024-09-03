@@ -186,4 +186,8 @@ export class TableAndSmsComponent implements OnChanges {
   isDecimal(index: number) {
     return this.columnTypes[index] === 'DECIMAL';
   }
+
+  isDate(index: number) {
+    return this.columnTypes[index] === 'DATE';
+  }
 }
