@@ -14,7 +14,7 @@ import {DatepickerBase} from 'app/shared/form-dialog/formfield/model/datepicker-
 import {FormfieldBase} from 'app/shared/form-dialog/formfield/model/formfield-base';
 import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
 import {CodeName, OptionData} from 'app/shared/models/option-data.model';
-import { LoansService } from 'app/loans/loans.service';
+import {LoansService} from 'app/loans/loans.service';
 
 /**
  * Create Loans Account Terms Step
@@ -92,7 +92,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   loanId: any = null;
 
   loanScheduleType: OptionData | null = null;
-  
+
 
   /**
    * Create Loans Account Terms Form
@@ -105,7 +105,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   constructor(private formBuilder: UntypedFormBuilder,
               private settingsService: SettingsService,
               private route: ActivatedRoute,
-              public dialog: MatDialog, public loansService : LoansService) {
+              public dialog: MatDialog, public loansService: LoansService) {
     this.loanId = this.route.snapshot.params['loanId'];
     this.createLoansAccountTermsForm();
   }
@@ -530,9 +530,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   calculateValorGiro() {
     const principalAmount = this.loansAccountTermsForm.get('principalAmount').value;
     let valorDescuento = this.loansAccountTermsForm.get('valorDescuento')?.value;
-    if (!valorDescuento) {
-      return;
-    }
+    // check that valorDescuento is not undefined or null
+    valorDescuento = valorDescuento ? valorDescuento : 0;
     let valorGiro = principalAmount - valorDescuento;
     if (valorGiro < 0) {
       valorGiro = 0;
@@ -550,7 +549,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       locale: 'en',
       transactionDate: new Date().toISOString().split('T')[0] // Current date in 'YYYY-MM-DD' format
     };
-  
+
     this.loansService.getForeclosureData(loanId, foreclosureData).subscribe(
       (response: any) => {
         if (response && response.amount) {
