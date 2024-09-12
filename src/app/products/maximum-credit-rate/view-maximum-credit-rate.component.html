@@ -3,6 +3,10 @@
     <fa-icon icon="edit" class="m-r-10"></fa-icon>
     {{'labels.buttons.Edit' | translate}}
   </button>
+  <button mat-raised-button color="primary" [routerLink]="['view-history']" *mifosxHasPermission="'READ_INTEREST_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.View History' | translate}}
+  </button>
 </div>
 <div class="container">
   <mat-card>
