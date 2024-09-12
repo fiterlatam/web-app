@@ -17,7 +17,6 @@ export class MaximumCreditRateHistoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: { creditRateHistory: any }) => {
-      console.log(data.creditRateHistory);
       this.creditRateHistoryData = data.creditRateHistory;
     });
   }
