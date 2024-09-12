@@ -137,6 +137,7 @@ import { InsuranceIncidentListComponent } from './insurance-incident/insurance-i
 import { CreateInsuranceIncidentComponent } from './insurance-incident/create-insurance-incident/create-insurance-incident.component';
 import { ViewInsuranceIncidentComponent } from './insurance-incident/view-insurance-incident/view-insurance-incident.component';
 import { EditInsuranceIncidentComponent } from './insurance-incident/edit-insurance-incident/edit-insurance-incident.component';
+import { MaximumCreditRateHistoryComponent } from './maximum-credit-rate/maximum-credit-rate-history/maximum-credit-rate-history.component';
 
 /**
  * Products Module
@@ -277,7 +278,8 @@ import { EditInsuranceIncidentComponent } from './insurance-incident/edit-insura
         InsuranceIncidentListComponent,
         CreateInsuranceIncidentComponent,
         ViewInsuranceIncidentComponent,
-        EditInsuranceIncidentComponent
+        EditInsuranceIncidentComponent,
+        MaximumCreditRateHistoryComponent
     ]
 })
 export class ProductsModule { }

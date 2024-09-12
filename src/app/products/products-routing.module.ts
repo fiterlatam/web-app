@@ -159,6 +159,10 @@ import {
   CreateInsuranceIncidentComponent
 } from './insurance-incident/create-insurance-incident/create-insurance-incident.component';
 import {InsuranceIncidentTemplateResolver} from './insurance-incident/insurance-incident-template.resolver';
+import {MaximumCreditRateHistoryResolver} from './maximum-credit-rate/maximum-credit-rate-history.resolver';
+import {
+  MaximumCreditRateHistoryComponent
+} from './maximum-credit-rate/maximum-credit-rate-history/maximum-credit-rate-history.component';
 
 /** Products Routes */
 const routes: Routes = [
@@ -785,6 +789,14 @@ const routes: Routes = [
               data: { title: 'Edit Maximum Credit Rate', breadcrumb: 'Edit', routeParamBreadcrumb: false },
               resolve: {
                 maximumCreditRate: MaximumCreditRateResolver
+              }
+            },
+            {
+              path: 'view-history',
+              component: MaximumCreditRateHistoryComponent,
+              data: { title: 'View History', breadcrumb: 'View History', routeParamBreadcrumb: false },
+              resolve: {
+                creditRateHistory: MaximumCreditRateHistoryResolver
               }
             }
           ]
