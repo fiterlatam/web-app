@@ -99,7 +99,7 @@
 
             <mat-form-field>
               <mat-label>{{"labels.inputs.Number Of new Repayments" | translate}}</mat-label>
-              <input matInput type="number" formControlName="rediferirTerms">
+              <input required matInput type="number" formControlName="rediferirTerms" min="1">
             </mat-form-field>
           </ng-container>
         </div>
