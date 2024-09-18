@@ -162,6 +162,10 @@
             </mat-form-field>
           </ng-container>
 
+          <mat-checkbox *ngIf="loanScheduleType === 'PROGRESSIVE'" labelPosition="before" formControlName="reduceInstallmentAmount" fxFlex="26%">
+            <p>{{'labels.inputs.Reduce Installment Amount' | translate}}</p>
+          </mat-checkbox>
+
           <mat-form-field>
             <mat-label> {{"labels.inputs.Note" | translate}}</mat-label>
             <textarea matInput formControlName="note" cdkTextareaAutosize cdkAutosizeMinRows="2"></textarea>

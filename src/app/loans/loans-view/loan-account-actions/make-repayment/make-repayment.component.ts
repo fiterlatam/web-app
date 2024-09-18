@@ -94,6 +94,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'allyId' : '',
       'pointOfSalesCode' : '',
       'transactionProcessingStrategy' : '',
+      'reduceInstallmentAmount': [false],
     });
   }
 
