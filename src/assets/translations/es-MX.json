@@ -2523,7 +2523,8 @@
       "insurance.incident.final.guarantee.claim.cancellation": "Cancelación definitiva por reclamación avaladora",
       "insurance.incident.final.refinanced.cancellation": "Cancelación definitiva por rediferido/refinanciado",
       "insurance.incident.bad.sale.cancellation": "Cancelación por mala venta",
-      "insurance.incident.portfolio.write.off.cancellation": "Cancelación por castigo de cartera"
+      "insurance.incident.portfolio.write.off.cancellation": "Cancelación por castigo de cartera",
+      "Reduce Installment Amount": "Reducir monto de cuotas"
     },
     "links": {
       "Community": "Comunidad",

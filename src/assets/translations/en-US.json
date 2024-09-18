@@ -2500,7 +2500,8 @@
       "insurance.incident.final.guarantee.claim.cancellation": "Final cancellation due to guarantee claim",
       "insurance.incident.final.refinanced.cancellation": "Final cancellation due to redeferred/refinanced",
       "insurance.incident.bad.sale.cancellation": "Cancellation due to bad sale",
-      "insurance.incident.portfolio.write.off.cancellation": "Cancellation due to portfolio write-off"
+      "insurance.incident.portfolio.write.off.cancellation": "Cancellation due to portfolio write-off",
+      "Reduce Installment Amount": "Reduce Installment Amount"
     },
     "links": {
       "Community": "Community",
