@@ -700,6 +700,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
     },
     "heading": {
+      "Client Cupo Increments": "Aumento de cupo",
       "Collection Channels": "Canales de Recaudos",
       "Extend term for monthly repayments": "Extender el plazo para los pagos mensuales",
       "Configurable Allowed Usages": "Usos permitidos configurables",
@@ -2700,6 +2701,7 @@
     "text": {
       "Loan Repayments": "Pagos de Créditos",
       "Loan Write Offs": "Condonar créditos",
+      "Client Cupo Increments": "Aumento de cupo",
       "Special Write-Off": "Condonación Especial",
       "VIP & Commerce": "VIP y comercio",
       "Edit": "Editar",
