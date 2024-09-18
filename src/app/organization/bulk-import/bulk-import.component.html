@@ -100,6 +100,14 @@
             </mat-icon>
             <h4 matLine>{{'labels.heading.Centers' | translate }}</h4>
           </mat-list-item>
+
+          <mat-list-item [routerLink]="['Client Cupo Increments']" *mifosxHasPermission="'READ_OFFICE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="user" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{'labels.heading.Client Cupo Increments' | translate }}</h4>
+          </mat-list-item>
+
         </mat-nav-list>
       </div>
 
