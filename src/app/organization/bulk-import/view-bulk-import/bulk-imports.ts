@@ -43,6 +43,13 @@ export const BulkImports = [
       formFields: 0
     },
     {
+      name: 'Client Cupo Decrements',
+      entityType: 'client.cupo.decrements',
+      urlSuffix: '/clients/cupodecrements',
+      permission: 'READ_CLIENT',
+      formFields: 0
+    },
+    {
       name: 'Employees',
       entityType: 'staff',
       urlSuffix: '/staff',
