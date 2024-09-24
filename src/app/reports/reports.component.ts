@@ -1,9 +1,9 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {ActivatedRoute, Router} from '@angular/router';
 
 /**
  * Reports component.
@@ -25,9 +25,9 @@ export class ReportsComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   /** Paginator for reports table. */
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   /** Sorter for reports table. */
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   /**
    * Retrieves the reports data from `resolve`.
@@ -38,7 +38,7 @@ export class ReportsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.route.data.subscribe(( data: { reports: any }) => {
+    this.route.data.subscribe((data: { reports: any }) => {
       this.reportsData = data.reports;
     });
     this.filter = this.route.snapshot.params['filter'];
@@ -58,8 +58,8 @@ export class ReportsComponent implements OnInit {
    */
   applyFilter(filterValue: string) {
     if (filterValue.length) {
-        this.setCustomFilterPredicate();
-        this.dataSource.filter = filterValue.trim().toLowerCase();
+      this.setCustomFilterPredicate();
+      this.dataSource.filter = filterValue.trim().toLowerCase();
     } else {
       this.filterReportsByCategory();
     }
@@ -89,22 +89,24 @@ export class ReportsComponent implements OnInit {
    */
   setCustomFilterPredicate() {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-        /** Transform the data into a lowercase string of all property values. */
-        const dataStr = Object.keys(data).reduce(function (currentTerm: string, key: string) {
-            /** Use an obscure Unicode character to delimit the words in the concatenated string.
-             * This avoids matches where the values of two columns combined will match the user's query
-             */
-            return currentTerm + ((/** @type {any} */ (data)))[key] + '◬';
-        }, '').toLowerCase();
-        /** Transform the filter by converting it to lowercase and removing whitespace. */
-        const transformedFilter = filter.trim().toLowerCase();
-        /* Seperates filter for All reports page.*/
-        if (this.filter) {
-          return dataStr.indexOf(transformedFilter) !== -1 && data.reportCategory === this.filter;
-        } else {
-          return dataStr.indexOf(transformedFilter) !== -1;
-        }
+      // Convert the filter input to lowercase and trim spaces
+      const transformedFilter = filter.trim().toLowerCase();
+
+      // Extract the name and description, and make them lowercase
+      const name = data.reportName.toLowerCase();
+      const description = data.description ? data.description.toLowerCase() : '';
+
+      // Create a regex to match at the start of any word in both name and description
+      const regex = new RegExp(`\\b${transformedFilter}`, 'i');
+
+      /* Seperates filter for All reports page and checks either report name or description contains the filter */
+      if (this.filter) {
+        return regex.test(name) && data.reportCategory === this.filter;
+      } else {
+        return regex.test(name);
+      }
     };
   }
+
 
 }
