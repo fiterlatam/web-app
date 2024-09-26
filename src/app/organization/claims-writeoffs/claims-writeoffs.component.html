@@ -1,0 +1,218 @@
+<mat-card class="container" [style.width.%]="95"
+          [style.max-width]="100+'rem'">
+  <div fxLayout="row" fxLayoutAlign="start right" fxLayoutGap="50" >
+    <div class="action-button" fxLayoutGap="25px" >
+      <button mat-stroked-button color="primary" (click)="showReclaimInfo('guarantor')">
+        {{"labels.buttons.Guarantor Claim"  |translate}}
+      </button>
+    </div>
+    <div class="action-button" fxLayoutGap="25px" >
+      <button mat-stroked-button color="primary" (click)="showReclaimInfo('insurance')">
+        {{"labels.buttons.Insurance Claim"  |translate}}
+      </button>
+    </div>
+    <div class="action-button" fxLayoutGap="25px" >
+      <button mat-stroked-button color="primary">
+        {{"labels.buttons.Portfolio Writeoff"  |translate}}
+      </button>
+    </div>
+  </div>
+  <br>
+  <h2 class="mat-h2">{{'labels.inputs.reclaims.Reclaim Loans' | translate }}</h2>
+  <div>
+    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="showReclaimTable">
+      <div class="search-box" fxFlex="40%">
+        <mat-form-field fxFlex="90%">
+          <input matInput placeholder="{{'labels.text.Filter by name' | translate}}" (keyup)="applyFilter($event.target.value)">
+        </mat-form-field>
+      </div>
+      <div fxFlex="10%">
+        <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="bulkLoanClaim($event)">
+          <fa-icon icon="check" class="m-r-10"></fa-icon>{{'labels.buttons.Claim' | translate}}
+        </button>
+      </div>
+      <div fxFlex="10%">
+        <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="export($event, 'loansToClaim')">
+          <fa-icon icon="check" class="m-r-10"></fa-icon>{{'labels.buttons.Export' | translate}}
+        </button>
+      </div>
+    </div>
+  <table mat-table [dataSource]="dataSource" *ngIf="showReclaimTable">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Client Name' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.clientName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loanAccountNumber">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Account Number' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.loanAccountNumber }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Product Name' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.productName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="daysInArrears">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Days In Arrears' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.daysInArrears }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingPrincipal">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Principal' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingPrincipalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingInterest">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Interest' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingInterestAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingAval">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Aval' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingAvalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingMandatoryInsurance">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Mandatory Insurance' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingMandatoryInsuranceAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingAllOtherCharges">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Other Charges' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingAllOtherChargesAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingPenalty">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Penalty' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingPenaltyAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingTotal">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Total' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData"> {{ claimData.outstandingTotalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Action' | translate}} </th>
+      <td mat-cell *matCellDef="let claimData">
+        <button mat-stroked-button color="primary" (click)="exclude(claimData.id)">
+        {{"labels.buttons.Exclude"  |translate}}
+      </button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="select-row" (click)="selection.toggle(row)">
+    </tr>
+  </table>
+    <div class="alert" *ngIf="!showReclaimTable">
+
+      <div class="message">
+        <i class="fa fa-exclamation-circle alert-check fa-2x"></i>
+        {{'labels.text.No data available' | translate}}
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="showExcludedTable">
+  <br>
+  <h2 class="mat-h2">{{'labels.inputs.reclaims.Excluded Loans' | translate }}</h2>
+  <table mat-table [dataSource]="excludedDataSource" *ngIf="showExcludedTable">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+
+      </th>
+      <td mat-cell *matCellDef="let row">
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Client Name' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.clientName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loanAccountNumber">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Account Number' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.loanAccountNumber }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Product Name' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.productName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="daysInArrears">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Days In Arrears' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.daysInArrears }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingPrincipal">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Principal' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingPrincipalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingInterest">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Interest' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingInterestAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingAval">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Aval' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingAvalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingMandatoryInsurance">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Mandatory Insurance' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingMandatoryInsuranceAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingAllOtherCharges">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Other Charges' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingAllOtherChargesAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingPenalty">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Penalty' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingPenaltyAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outstandingTotal">
+      <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.reclaims.Outstanding Total' | translate}} </th>
+      <td mat-cell *matCellDef="let excludedData"> {{ excludedData.outstandingTotalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td > </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="select-row">
+    </tr>
+  </table>
+  <div class="alert" *ngIf="!showExcludedTable">
+
+    <div class="message">
+      <i class="fa fa-exclamation-circle alert-check fa-2x"></i>
+      {{'labels.text.No data available' | translate}}
+    </div>
+
+  </div>
+  </div>
+</mat-card>

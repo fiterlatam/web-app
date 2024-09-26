@@ -594,7 +594,13 @@
       "reset": "Resetear",
       "Block By Control Lists": "Bloqueo por listas de control",
       "Unblock": "Desatascar",
-      "Unblock Massively": "Desbloqueo masivo"
+      "Unblock Massively": "Desbloqueo masivo",
+      "Guarantor Claim": "Reclamación a la avaladora",
+      "Insurance Claim": "Reclamación aseguradora",
+      "Portfolio Writeoff":"Castigo de cartera",
+      "Claim": "Afirmar",
+      "Exclude": "Excluir",
+      "Export": "Exportar"
     },
     "commons": {
       "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
@@ -1081,7 +1087,8 @@
       "Configurable Allowed Collections for Channels": "Colecciones permitidas configurables para canales",
       "Down Payments": "Pagos iniciales",
       "sale.of.insurance.or.assurance": "Ventas de seguros y/o asistencias voluntarias",
-      "Sale Of Insurance": "Venta de Seguros y/o Asistencias"
+      "Sale Of Insurance": "Venta de Seguros y/o Asistencias",
+      "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
       "Balance as of today": "Saldo a hoy",
@@ -2527,7 +2534,23 @@
       "insurance.incident.final.refinanced.cancellation": "Cancelación definitiva por rediferido/refinanciado",
       "insurance.incident.bad.sale.cancellation": "Cancelación por mala venta",
       "insurance.incident.portfolio.write.off.cancellation": "Cancelación por castigo de cartera",
-      "Reduce Installment Amount": "Reducir monto de cuotas"
+      "Reduce Installment Amount": "Reducir monto de cuotas",
+      "reclaims": {
+        "Client Name": "Nombre del cliente",
+        "Account Number": "número del crédito",
+        "Product Name": "producto de crédito",
+        "Days In Arrears": "días de mora",
+        "Outstanding Principal": "saldo de capital",
+        "Outstanding Interest": "Saldo de interés corriente",
+        "Outstanding Aval": "saldo de aval",
+        "Outstanding Mandatory Insurance": "saldo de seguro obligatorio",
+        "Outstanding Other Charges": "saldo de otros cargos fijos",
+        "Outstanding Penalty": "saldo de interés de mora",
+        "Outstanding Total": "saldo total de deuda",
+        "Reclaim Loans": "Recuperar préstamos",
+        "Excluded Loans": "Préstamos excluidos",
+        "Action": "Acción"
+      }
     },
     "links": {
       "Community": "Comunidad",
@@ -3304,7 +3327,8 @@
       "Enable extended": "Habilitar plazo extendido para pagos mensuales",
       "Warning dialog": "Este sistema es sólo para uso autorizado. El acceso no autorizado dará lugar a posibles acciones legales. Al acceder a este sistema, usted reconoce que está autorizado a hacerlo y que todos los datos almacenados y procesados aquí son confidenciales.",
       "Filter by NIT": "Filter by NIT",
-      "Sale Of Insurance": "Venta de Seguros y/o Asistencias"
+      "Sale Of Insurance": "Venta de Seguros y/o Asistencias",
+      "No data available": "No hay datos disponibles"
     },
     "titles": {
       "Dashboard": "Tableros",

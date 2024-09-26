@@ -697,4 +697,13 @@ export class LoansService {
     return this.http.get(`/clientally/${alliesId}/pointofsales`);
   }
 
+  showReclaimInfo(reclaimType : any): Observable<any> {
+    const httpParams = new HttpParams().set('reclaimType', reclaimType);
+    return this.http.get(`/loans/reclaim/template`, { params: httpParams });
+  }
+
+  excludeFromReclaim(loanId: any, data:any): Observable<any> {
+    return this.http.post(`/loans/reclaim/exclude/${loanId}`, data);
+   }
+
 }

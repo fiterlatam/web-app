@@ -101,6 +101,17 @@
             </mat-list-item>
           </div>
 
+          <div #loanreclaim>
+            <mat-list-item [routerLink]="['claims-writeoffs']"
+                           *mifosxHasPermission="'RECLAIM_LOAN'">
+              <mat-icon matListIcon>
+                <fa-icon icon="check" size="sm"></fa-icon>
+              </mat-icon>
+              <h4 matLine>{{ 'labels.heading.Claims-Writeoffs' | translate }}</h4>
+              <p matLine>{{ 'labels.text.Entity Data Table Checks Organization' | translate }}</p>
+            </mat-list-item>
+          </div>
+
         </mat-nav-list>
 
       </div>
