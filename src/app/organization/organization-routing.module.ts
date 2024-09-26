@@ -103,6 +103,8 @@ import { ViewFundComponent } from './manage-funds/view-fund/view-fund.component'
 import { EditFundComponent } from './manage-funds/edit-fund/edit-fund.component';
 import { CreateFundComponent } from './manage-funds/create-fund/create-fund.component';
 import { InvestorsComponent } from './investors/investors.component';
+import { ClaimsWriteoffsComponent } from './claims-writeoffs/claims-writeoffs.component';
+// import { ClaimsWriteOffsResolver } from './claims-writeoffs/claims-writeoffs.resolver';
 
 /** Organization Routes */
 const routes: Routes = [
@@ -683,6 +685,12 @@ const routes: Routes = [
               ]
             }
           ]
+        },
+
+        {
+          path: 'claims-writeoffs',
+          component: ClaimsWriteoffsComponent,
+          data: { title: 'Claims/WriteOffs', breadcrumb: 'claims/writeoofs' }
         }
       ]
     }

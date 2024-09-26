@@ -586,7 +586,13 @@
       "reset": "Reset",
       "Block By Control Lists": "Block by control lists",
       "Unblock": "Unblock",
-      "Unblock Massively": "Unblock massively"
+      "Unblock Massively": "Unblock massively",
+      "Guarantor Claim": "Guarantor Claim",
+      "Insurance Claim": "Insurance Claim",
+      "Portfolio Writeoff":"Portfolio Writeoff",
+      "Claim": "Claim",
+      "Exclude": "Exclude",
+      "Export": "Export"
     },
     "commons": {
       "must be greater than outstanding balance": "must be greater than outstanding balance",
@@ -2503,7 +2509,23 @@
       "insurance.incident.final.refinanced.cancellation": "Final cancellation due to redeferred/refinanced",
       "insurance.incident.bad.sale.cancellation": "Cancellation due to bad sale",
       "insurance.incident.portfolio.write.off.cancellation": "Cancellation due to portfolio write-off",
-      "Reduce Installment Amount": "Reduce Installment Amount"
+      "Reduce Installment Amount": "Reduce Installment Amount",
+      "reclaims": {
+        "Client Name": "Client Name",
+        "Account Number": "Account Number",
+        "Product Name": "Product Name",
+        "Days In Arrears": "Days In Arrears",
+        "Outstanding Principal": "Outstanding Principal",
+        "Outstanding Interest": "Outstanding Interest",
+        "Outstanding Aval": "Outstanding Aval",
+        "Outstanding Mandatory Insurance": "Outstanding Mandatory Insurance",
+        "Outstanding Other Charges": "Outstanding Other Charges",
+        "Outstanding Penalty": "Outstanding Penalty",
+        "Outstanding Total": "Outstanding Total",
+        "Reclaim Loans": "Reclaim Loans",
+        "Excluded Loans": "Excluded Loans",
+        "Action": "Action"
+      }
     },
     "links": {
       "Community": "Community",
@@ -3278,7 +3300,8 @@
       "Manage System Channels": "Manage System Channels and its Sub Channels",
       "Warning dialog": "This system is for authorized use only. Unauthorized access will result in possible legal action. By accessing this system, you acknowledge that you are authorized to do so and that all data stored and processed here is confidential.",
       "Filter by NIT": "Filter by NIT",
-      "Sale Of Insurance": "Sale Of Insurance"
+      "Sale Of Insurance": "Sale Of Insurance",
+      "No data available": "No data available"
     },
     "titles": {
       "Dashboard": "Dashboard",
