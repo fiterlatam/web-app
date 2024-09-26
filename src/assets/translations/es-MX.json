@@ -1087,7 +1087,8 @@
       "Configurable Allowed Collections for Channels": "Colecciones permitidas configurables para canales",
       "Down Payments": "Pagos iniciales",
       "sale.of.insurance.or.assurance": "Ventas de seguros y/o asistencias voluntarias",
-      "Sale Of Insurance": "Venta de Seguros y/o Asistencias"
+      "Sale Of Insurance": "Venta de Seguros y/o Asistencias",
+      "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
       "Balance as of today": "Saldo a hoy",
