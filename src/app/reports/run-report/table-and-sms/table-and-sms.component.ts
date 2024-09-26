@@ -7,14 +7,11 @@ import { DecimalPipe } from '@angular/common';
 /** Custom Servies */
 import { ReportsService } from '../../reports.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormfieldBase } from 'app/shared/form-dialog/formfield/model/formfield-base';
-import { SelectBase } from 'app/shared/form-dialog/formfield/model/select-base';
-import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
-import { FormDialogComponent } from 'app/shared/form-dialog/form-dialog.component';
 import { environment } from 'environments/environment';
 import { ProgressBarService } from 'app/core/progress-bar/progress-bar.service';
 
 import * as XLSX from 'xlsx';
+import {DateFormatPipe} from '../../../pipes/date-format.pipe';
 
 /**
  * Table and SMS Component
@@ -49,11 +46,15 @@ export class TableAndSmsComponent implements OnChanges {
 
   /**
    * @param {ReportsService} reportsService Reports Service
+   * @param dialog
    * @param {DecimalPipe} decimalPipe Decimal Pipe
+   * @param dateFormatPipe
+   * @param progressBarService
    */
   constructor(private reportsService: ReportsService,
           public dialog: MatDialog,
           private decimalPipe: DecimalPipe,
+          private dateFormatPipe: DateFormatPipe,
           private progressBarService: ProgressBarService) { }
 
   /**
@@ -99,52 +100,26 @@ export class TableAndSmsComponent implements OnChanges {
   /**
    * Generates the CSV file dynamically for run report data.
    */
-  exportFile() {
-    const delimiterOptions: any[] = [
-      {name: 'Comma (,)', char: ','},
-      {name: 'Colon (:)', char: ':'},
-      {name: 'SemiColon (;)', char: ';'},
-      {name: 'Pipe (|)', char: '|'},
-      {name: 'Space ( )', char: ' '},
-    ];
-    const fileName = `${this.dataObject.report.name}.csv`;
-    const formfields: FormfieldBase[] = [
-      new SelectBase({
-        controlName: 'delimiter',
-        label: 'Delimiter',
-        value: environment.defaultCharDelimiter,
-        options: { label: 'name', value: 'char', data: delimiterOptions },
-        required: true,
-        order: 1
-      }),
-      new InputBase({
-        controlName: 'fileName',
-        label: 'File Name',
-        value: fileName,
-        type: 'text',
-        required: true,
-        order: 2
-      })
-    ];
-    const data = {
-      title: 'Export data to File',
-      layout: { addButtonText: 'Export to File' },
-      formfields: formfields
-    };
-    const exportDialogRef = this.dialog.open(FormDialogComponent, { data });
-    exportDialogRef.afterClosed().subscribe((response: { data: any }) => {
-      if (response.data) {
-        this.downloadCSV(response.data.value.fileName, response.data.value.delimiter);
-      }
-    });
+  exportCsvFile() {
+    const fileName = `${this.dataObject.report.name}_${this.timestampString()}.csv`;
+    const delimiter = environment.defaultCharDelimiter || ',';
+    this.downloadCSV(fileName, delimiter);
+  }
+
+  timestampString() {
+    return new Date().getFullYear() + '_' + (new Date().getMonth() + 1) + '_' + new Date().getDate() + '_' + new Date().getHours() + '_' + new Date().getMinutes() + '_' + new Date().getSeconds()
   }
 
   exportToXLS(): void {
-    const fileName = `${this.dataObject.report.name}.xlsx`;
+    const fileName = `${this.dataObject.report.name}_${this.timestampString()}.xlsx`;
     const data = this.csvData.map((object: any) => {
       const row = {};
       for (let i = 0; i < this.displayedColumns.length; i++) {
-        row[this.displayedColumns[i]] = object.row[i];
+        if (this.isDate(i)) {
+          row[this.displayedColumns[i]] = this.dateFormatPipe.transform(object.row[i]);
+        } else {
+          row[this.displayedColumns[i]] = object.row[i];
+        }
       }
       return row;
     });
@@ -158,8 +133,16 @@ export class TableAndSmsComponent implements OnChanges {
    * Generates the CSV file dynamically for run report data.
    */
   downloadCSV(fileName: string, delimiter: string) {
+    const csvToBeExported = this.csvData.map((dt: any) => {
+      for (let i = 0; i < this.displayedColumns.length; i++) {
+        if (this.isDate(i)) {
+          dt.row[i] = this.dateFormatPipe.transform(dt.row[i]);
+        }
+      }
+      return dt;
+    });
     const headers = this.displayedColumns;
-    let csv = this.csvData.map((object: any) => object.row.join(delimiter));
+    let csv = csvToBeExported.map((object: any) => object.row.join(delimiter));
     csv.unshift(`data:text/csv;charset=utf-8,${headers.join(delimiter)}`);
     csv = csv.join('\r\n');
     const link = document.createElement('a');

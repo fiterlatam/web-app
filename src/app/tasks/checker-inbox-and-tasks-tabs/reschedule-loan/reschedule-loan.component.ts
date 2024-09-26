@@ -14,6 +14,8 @@ import { TasksService } from '../../tasks.service';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
 import { TranslateService } from '@ngx-translate/core';
+import { ErrorDialogComponent } from 'app/shared/error-dialog/error-dialog.component';
+
 
 @Component({
   selector: 'mifosx-reschedule-loan',
@@ -32,7 +34,8 @@ export class RescheduleLoanComponent implements OnInit {
   batchRequests: any[];
   /** Displayed Columns */
   displayedColumns: string[] = ['select', 'client', 'rescheduleRequestNo', 'loanAccountNo', 'rescheduleForm', 'rescheduleReason'];
-
+ 
+  errorMessage: any;
   /**
    * Retrieves the reschedule loan data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
@@ -89,6 +92,9 @@ export class RescheduleLoanComponent implements OnInit {
       if (response.confirm) {
         this.bulkLoanRescheduleRequest(action.toLowerCase());
       }
+      (error: any) => {
+        console.error("error on confirm", error)
+      }
     });
   }
 
@@ -116,6 +122,25 @@ export class RescheduleLoanComponent implements OnInit {
     });
     this.tasksService.submitBatchData(this.batchRequests).subscribe((response: any) => {
       this.reload();
+      // console.log(response, response[0].body);
+      response.forEach((responseEle: any) => {
+        if (responseEle.statusCode = '200') {
+          responseEle.body = JSON.parse(responseEle.body);
+          console.log(responseEle.body);
+          if(responseEle.body?.errors){
+            
+            this.errorMessage = responseEle.body?.errors[0]?.defaultUserMessage;
+             this.dialog.open(ErrorDialogComponent, {
+              width: '400px',
+                data: '<pre><code>' + this.errorMessage+ '</code></pre>'
+            });
+          
+          }
+            this.reload();
+          
+           
+        }
+      });
     });
   }
 

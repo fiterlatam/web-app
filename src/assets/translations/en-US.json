@@ -696,6 +696,7 @@
     },
     "heading": {
       "Client Cupo Increments": "Client Cupo Increments",
+      "Client Cupo Decrements": "Client Cupo Decrements",
       "Collection Channels": "Collection Channels",
       "Configurable Allowed Usages": "Configurable Allowed Usages",
       "Configurable Terms and Settings": "Configurable Terms and Settings",
@@ -2704,6 +2705,7 @@
       "Loan Write Offs": "Loan Write Offs",
       "Special Write-Off": "Special Write-Off",
       "Client Cupo Increments": "Client Cupo Increments",
+      "Client Cupo Decrements": "Client Cupo Decrements",
       "VIP & Commerce": "VIP & Commerce",
       "Edit": "Edit",
       "Create Custom Charge Mapping": "Create Custom Charge Mapping",
