@@ -690,7 +690,7 @@ const routes: Routes = [
         {
           path: 'claims-writeoffs',
           component: ClaimsWriteoffsComponent,
-          data: { title: 'Claims/WriteOffs', breadcrumb: 'claims/writeoofs' }
+          data: { title: 'Claims/WriteOffs', breadcrumb: 'Claims/WriteOffs' }
         }
       ]
     }

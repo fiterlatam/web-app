@@ -598,7 +598,7 @@
       "Guarantor Claim": "Reclamación a la avaladora",
       "Insurance Claim": "Reclamación aseguradora",
       "Portfolio Writeoff":"Castigo de cartera",
-      "Claim": "Afirmar",
+      "Claim": "RECLAMAR",
       "Exclude": "Excluir",
       "Export": "Exportar"
     },
@@ -3328,7 +3328,8 @@
       "Warning dialog": "Este sistema es sólo para uso autorizado. El acceso no autorizado dará lugar a posibles acciones legales. Al acceder a este sistema, usted reconoce que está autorizado a hacerlo y que todos los datos almacenados y procesados aquí son confidenciales.",
       "Filter by NIT": "Filter by NIT",
       "Sale Of Insurance": "Venta de Seguros y/o Asistencias",
-      "No data available": "No hay datos disponibles"
+      "No data available": "No hay datos disponibles",
+      "Claims/WriteOffs": "Reclamos/Castigos"
     },
     "titles": {
       "Dashboard": "Tableros",
