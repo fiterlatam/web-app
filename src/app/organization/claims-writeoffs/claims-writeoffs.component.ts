@@ -137,13 +137,13 @@ bulkLoanClaim($event: Event): void {
       response.forEach((responseEle: any) => {
         if (responseEle.statusCode = '200') {
           claimedAccounts++;
-          this.selection = new SelectionModel(true, []);
           responseEle.body = JSON.parse(responseEle.body);
           if (selectedAccounts === claimedAccounts) {
             this.export($event, 'claimedLoans');
           }
         }
       });
+    this.selection = new SelectionModel(true, []);
      // this.reload();
     });
   }
