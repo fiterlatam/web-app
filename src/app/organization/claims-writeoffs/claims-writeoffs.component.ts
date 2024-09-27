@@ -33,6 +33,7 @@ export class ClaimsWriteoffsComponent implements OnInit {
   claimTypeSelected: any;
   isProcessing = false;
   displayedColumns =  ['select','clientName','loanAccountNumber','productName','daysInArrears', 'outstandingPrincipal','outstandingInterest','outstandingAval','outstandingMandatoryInsurance','outstandingAllOtherCharges','outstandingPenalty','outstandingTotal','action'];
+  displayedColumnsForExcluded =  ['clientName','loanAccountNumber','productName','daysInArrears', 'outstandingPrincipal','outstandingInterest','outstandingAval','outstandingMandatoryInsurance','outstandingAllOtherCharges','outstandingPenalty','outstandingTotal'];
 
   constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -56,12 +57,11 @@ export class ClaimsWriteoffsComponent implements OnInit {
           this.showReclaimTable = true;
         }
         if (this.excludedData != null) {
-            // this.showExcludedTable = true;
+            this.showExcludedTable = true;
         }
         this.dataSource = new MatTableDataSource(this.reclaimData);
         this.excludedDataSource = new MatTableDataSource(this.excludedData);
-        this.dataSource.data = apiResponseBody.reclaimData;
-        this.excludedDataSource.data = apiResponseBody.excludedData;
+
         this.selection = new SelectionModel(true, []);
 
       });
@@ -104,9 +104,13 @@ export class ClaimsWriteoffsComponent implements OnInit {
           }
         }
       if (index !== -1) {
+          this.excludedData.push(this.reclaimData[index])
           this.reclaimData.splice(index, 1);
           this.dataSource = new MatTableDataSource(this.reclaimData);
           this.dataSource._updateChangeSubscription();
+
+          this.excludedDataSource = new MatTableDataSource(this.excludedData);
+          this.excludedDataSource._updateChangeSubscription();
       }
       });
   }
@@ -143,6 +147,21 @@ bulkLoanClaim($event: Event): void {
           }
         }
       });
+
+    let index = -1;
+    this.selection.selected.forEach((element: any) => {
+      for (let i = 0; i < this.reclaimData.length; i++) {
+              if (this.reclaimData[i].id === element.id) {
+                index = i;
+                break;
+                }
+              }
+            if (index !== -1) {
+                this.reclaimData.splice(index, 1);
+            }
+    });
+    this.dataSource = new MatTableDataSource(this.reclaimData);
+    this.dataSource._updateChangeSubscription();
     this.selection = new SelectionModel(true, []);
      // this.reload();
     });
