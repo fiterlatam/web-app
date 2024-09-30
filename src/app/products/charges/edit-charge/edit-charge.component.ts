@@ -144,9 +144,9 @@ export class EditChargeComponent implements OnInit {
     const locale = this.settingsService.language.code;
     const amountValidators = [Validators.required];
     if (locale === 'es') {
-      amountValidators.push(Validators.pattern(/^\d{1,3}(?:\.\d{3})*(?:,\d{2})?$/));
+      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:,\d{1,2})?$/));
     } else if (locale === 'en') {
-      amountValidators.push(Validators.pattern(/^[0-9.]*$/));
+      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:\.\d{1,2})?$/));
     } else {
       amountValidators.push(Validators.pattern(/^[0-9.,]*$/));
     }
@@ -164,7 +164,7 @@ export class EditChargeComponent implements OnInit {
       'name': [this.chargeData.name, Validators.required],
       'chargeAppliesTo': [{value: this.chargeData.chargeAppliesTo.id, disabled: true}, Validators.required],
       'currencyCode': [this.chargeData.currency.code, Validators.required],
-      'amount': [this.decimalPipe.transform(this.chargeData.amount, '1.2-2', locale), this.getAmountValidators()],
+      'amount': [this.replaceCharactersFromAmount(this.chargeData.amount), this.getAmountValidators()],
       'active': [this.chargeData.active],
       'interestRateId': [this.chargeData.interestRate ? this.chargeData.interestRate.id : ''],
       'penalty': [this.chargeData.penalty],
@@ -516,11 +516,24 @@ export class EditChargeComponent implements OnInit {
       this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
       this.chargeForm.get('amount').updateValueAndValidity();
       if (this.settingsService.language.code === "es") {
-        this.chargeForm.get('amount').setValue(this.decimalPipe.transform(sum, '1.2-2', this.settingsService.language.code));
+        this.chargeForm.get('amount').setValue(this.replaceCharactersFromAmount(sum));
       } else {
         this.chargeForm.get('amount').setValue(sum);
       }
       this.chargeForm.get('totalValue').setValue(sum);
+    }
+  }
+
+  replaceCharactersFromAmount(amount: any): any {
+    if (amount !== undefined && amount !== null) {
+    if (this.settingsService.language.code === 'es') {
+      amount = amount.toString().replace(/,/g, "");
+       return amount = amount.toString().replace(/\./g, ",");
+    } else {
+      return amount;
+      }
+  } else {
+    return ""
     }
   }
 }
