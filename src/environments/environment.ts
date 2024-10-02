@@ -44,7 +44,13 @@ export const environment = {
   // Time in seconds, default 30 seconds
   waitTimeForCOBCatchUp: window['env']['waitTimeForCOBCatchUp'] || 30,
 
-  languageSelector: window['env']['languageSelector'] || false
+  languageSelector: window['env']['languageSelector'] || false,
+
+  session: {
+    timeout: {
+      idleTimeout: window['env']['sessionIdleTimeout'] || 300000, // 5 minutes
+    }
+  }
 };
 
 // Server URL
