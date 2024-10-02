@@ -45,7 +45,7 @@
 
     <mat-form-field *ngIf="createClientForm.contains('firstname')" fxFlex="48%">
       <mat-label>{{"labels.inputs.First Name" | translate}}</mat-label>
-      <input maxlength="20" matInput required formControlName="firstname">
+      <input maxlength="60" matInput required formControlName="firstname">
       <mat-error *ngIf="createClientForm.controls.firstname.hasError('required')">
         {{"labels.inputs.Client first name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
       </mat-error>
@@ -59,7 +59,7 @@
 
     <mat-form-field *ngIf="createClientForm.contains('middlename')" fxFlex="48%">
       <mat-label>{{"labels.inputs.Middle Name" | translate}}</mat-label>
-      <input maxlength="20" matInput formControlName="middlename">
+      <input maxlength="60" matInput formControlName="middlename">
       <mat-error *ngIf="createClientForm.controls.middlename.hasError('maxlength')">
         {{"labels.inputs.Middle Name" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{'labels.commons.20 characters long' | translate }}
       </mat-error>
@@ -70,7 +70,7 @@
 
     <mat-form-field *ngIf="createClientForm.contains('lastname')" fxFlex="48%">
       <mat-label>{{"labels.inputs.Last Name One" | translate}}</mat-label>
-      <input maxlength="20" matInput required formControlName="lastname">
+      <input maxlength="60" matInput required formControlName="lastname">
       <mat-error *ngIf="createClientForm.controls.lastname.hasError('required')">
         {{"labels.inputs.Last Name One" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
       </mat-error>

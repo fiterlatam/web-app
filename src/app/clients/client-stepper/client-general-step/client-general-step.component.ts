@@ -1,11 +1,11 @@
 /** Angular Imports */
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
-import { ClientsService } from 'app/clients/clients.service';
-import { Dates } from 'app/core/utils/dates';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl} from '@angular/forms';
+import {ClientsService} from 'app/clients/clients.service';
+import {Dates} from 'app/core/utils/dates';
 
 /** Custom Services */
-import { SettingsService } from 'app/settings/settings.service';
+import {SettingsService} from 'app/settings/settings.service';
 
 /**
  * Create Client Component
@@ -23,6 +23,8 @@ export class ClientGeneralStepComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   /** Maximum date allowed. */
   maxDate = new Date();
+
+  maximumNameLength = 60;
 
   /** Client Template */
   @Input() clientTemplate: any;
@@ -113,14 +115,14 @@ export class ClientGeneralStepComponent implements OnInit {
    */
   buildDependencies() {
     this.createClientForm.get('legalFormId').valueChanges.subscribe((legalFormId: number) => {
-      this.legalFormChangeEvent.emit({ legalForm: legalFormId });
+      this.legalFormChangeEvent.emit({legalForm: legalFormId});
       if (legalFormId === 1) {
         this.createClientForm.removeControl('fullname');
         this.createClientForm.removeControl('clientNonPersonDetails');
         this.createClientForm.addControl('genderId', new UntypedFormControl('', Validators.required));
-        this.createClientForm.addControl('firstname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
-        this.createClientForm.addControl('middlename', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
-        this.createClientForm.addControl('lastname', new UntypedFormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('firstname', new UntypedFormControl('', [Validators.required, Validators.maxLength(this.maximumNameLength), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('middlename', new UntypedFormControl('', [Validators.maxLength(this.maximumNameLength), Validators.pattern('(^[A-z]).*')]));
+        this.createClientForm.addControl('lastname', new UntypedFormControl('', [Validators.required, Validators.maxLength(this.maximumNameLength), Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('secondLastname', new UntypedFormControl('', [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.createClientForm.removeControl('firstname');
@@ -185,7 +187,7 @@ export class ClientGeneralStepComponent implements OnInit {
     if (generalDetails.clientNonPersonDetails && generalDetails.clientNonPersonDetails.incorpValidityTillDate) {
       generalDetails.clientNonPersonDetails = {
         ...generalDetails.clientNonPersonDetails,
-        incorpValidityTillDate:  generalDetails.dateOfBirth,
+        incorpValidityTillDate: generalDetails.dateOfBirth,
         dateFormat,
         locale
       };
