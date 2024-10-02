@@ -4,16 +4,13 @@ import {
   UntypedFormGroup,
   UntypedFormBuilder,
   Validators,
-  UntypedFormControl,
-  FormArray,
-  UntypedFormArray
+  UntypedFormControl
 } from '@angular/forms';
 import { LoanProducts } from '../../loan-products';
 import { rangeValidator } from 'app/shared/validators/percentage.validator';
 import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 import { CodeName, OptionData } from 'app/shared/models/option-data.model';
 import { SubChannelLoanProductInterface } from 'app/loans/models/loan-account.model';
-import {any} from 'codelyzer/util/function';
 
 
 @Component({
@@ -29,7 +26,9 @@ export class LoanProductSettingsStepComponent implements OnInit {
   }
 
   get loanProductSettings() {
+    this.loanProductSettingsForm.get('loanScheduleType')?.enable();
     const productSettings = this.loanProductSettingsForm.value;
+    this.loanProductSettingsForm.get('loanScheduleType')?.disable();
     if (this.loanProductSettingsForm.value.useDueForRepaymentsConfigurations) {
       productSettings['dueDaysForRepaymentEvent'] = null;
       productSettings['overDueDaysForRepaymentEvent'] = null;
@@ -312,7 +311,7 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'useDueForRepaymentsConfigurations': [false],
       'dueDaysForRepaymentEvent': [''],
       'overDueDaysForRepaymentEvent': [''],
-      'loanScheduleType': [LoanProducts.LOAN_SCHEDULE_TYPE_CUMULATIVE, Validators.required],
+      'loanScheduleType': [{ value: LoanProducts.LOAN_SCHEDULE_TYPE_PROGRESSIVE, disabled: true }, Validators.required],
       'allowAccrualPostingInArrears': [false],
       'repaymentReschedulingType': [''],
       'maxClientInactivityPeriod': [''],

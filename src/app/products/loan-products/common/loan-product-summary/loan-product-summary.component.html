@@ -56,22 +56,22 @@
 
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Currency' | translate }}:</span>
-    <span  fxFlex="53%">{{ loanProduct.currency.code }}</span>
+    <span  fxFlex="53%">{{ loanProduct.currency?.code }}</span>
   </div>
 
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Currency' | translate }}:</span>
-    <span  fxFlex="53%">{{ loanProduct.currency.displayLabel }}</span>
+    <span  fxFlex="53%">{{ loanProduct.currency?.displayLabel }}</span>
   </div>
 
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Decimal Places' | translate }}:</span>
-    <span  fxFlex="53%">{{ loanProduct.currency.decimalPlaces }}</span>
+    <span  fxFlex="53%">{{ loanProduct.currency?.decimalPlaces }}</span>
   </div>
 
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Currency in multiples of' | translate }}:</span>
-    <span  fxFlex="53%">{{ loanProduct.currency.inMultiplesOf }}</span>
+    <span  fxFlex="53%">{{ loanProduct.currency?.inMultiplesOf }}</span>
   </div>
 
   <div fxFlexFill>
@@ -353,7 +353,7 @@
 
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Loan Schedule Type'| translate }}:</span>
-    <span  fxFlex="53%"> {{ "labels.inputs.products.loan.loanScheduleType." + loanProduct.loanScheduleType.value | translate }} </span>
+    <span  fxFlex="53%"> {{ "labels.inputs.products.loan.loanScheduleType." + loanProduct.loanScheduleType?.value | translate }} </span>
   </div>
 
   <div fxFlexFill>
