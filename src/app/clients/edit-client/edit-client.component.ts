@@ -45,6 +45,7 @@ export class EditClientComponent implements OnInit {
   /** Gender Options */
   genderOptions: any;
   legalFormId = 1;
+  maximumNameLength = 60;
 
   /**
    * Fetches client template data from `resolve`
@@ -141,9 +142,9 @@ export class EditClientComponent implements OnInit {
       if (legalFormId === 1) {
         this.editClientForm.removeControl('fullname');
         this.editClientForm.removeControl('clientNonPersonDetails');
-        this.editClientForm.addControl('firstname', new UntypedFormControl(this.clientDataAndTemplate.firstname, [Validators.maxLength(20), Validators.required]));
+        this.editClientForm.addControl('firstname', new UntypedFormControl(this.clientDataAndTemplate.firstname, [Validators.maxLength(this.maximumNameLength), Validators.required]));
         this.editClientForm.addControl('middlename', new UntypedFormControl(this.clientDataAndTemplate.middlename, [Validators.maxLength(20)]));
-        this.editClientForm.addControl('lastname', new UntypedFormControl(this.clientDataAndTemplate.lastname, [Validators.maxLength(20), Validators.required]));
+        this.editClientForm.addControl('lastname', new UntypedFormControl(this.clientDataAndTemplate.lastname, [Validators.maxLength(this.maximumNameLength), Validators.required]));
         this.editClientForm.addControl('secondLastname', new UntypedFormControl(this.clientDataAndTemplate.secondLastname, [Validators.maxLength(20), Validators.pattern('(^[A-z]).*')]));
       } else {
         this.editClientForm.removeControl('firstname');
