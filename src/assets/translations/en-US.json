@@ -3,6 +3,7 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.duplicate.file.name": "File with name {{params[0].value}} already exists.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "The transaction date cannot be a past date.",
     "error.msg.loan.charge.not.found": "The charge with identifier {{params[0].value}} does not exist.",
     "charge.amount.must.be.less.than.outstanding.charge.amount": "The amount must be less than the outstanding amount of {{params[0].value}} for charge with identifier {{params[1].value}}.",

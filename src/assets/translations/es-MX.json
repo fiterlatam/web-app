@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.duplicate.file.name": "El archivo con el nombre {{params[0].value}} ya existe.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "La fecha de la transacción no puede ser una fecha pasada.",
     "error.msg.loan.charge.not.found": "El cargo con identificador {{params[0].value}} no existe.",
     "charge.amount.must.be.less.than.outstanding.charge.amount": "El monto debe ser menor que el monto pendiente de {{params[0].value}} para el cargo con identificador {{params[1].value}}.",
