@@ -99,6 +99,12 @@
       <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalRepayment | currency:currencyCode:'symbol-narrow':format:locale }} </b> </td>
     </ng-container>
 
+    <ng-container matColumnDef="writtenOff">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Written Off" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.totalWrittenOffForPeriod | formatNumber:[decimalPlaces] }} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalWrittenOff | currency:currencyCode:'symbol-narrow':format:locale }} </b> </td>
+    </ng-container>
+
     <ng-container matColumnDef="inadvance">
       <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.In advance" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.totalPaidInAdvanceForPeriod | formatNumber:[decimalPlaces] }} </td>
