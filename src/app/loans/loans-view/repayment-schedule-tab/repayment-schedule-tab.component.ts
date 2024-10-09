@@ -21,7 +21,7 @@ export class RepaymentScheduleTabComponent implements OnInit {
   /** Stores if there is any waived amount */
   isWaived: boolean;
   /** Columns to be displayed in original schedule table. */
-  displayedColumns: string[] = ['number', 'days', 'date', 'paiddate', 'check', 'balanceOfLoan', 'principalDue', 'interest', 'voluntary.insurance', 'mandatory.insurance', 'aval', 'fees', 'penalties', 'due', 'paid', 'inadvance', 'late', 'waived', 'outstanding'];
+  displayedColumns: string[] = ['number', 'days', 'date', 'paiddate', 'check', 'balanceOfLoan', 'principalDue', 'interest', 'voluntary.insurance', 'mandatory.insurance', 'aval', 'fees', 'penalties', 'due', 'paid', 'writtenOff', 'inadvance', 'late', 'waived', 'outstanding'];
   /** Columns to be displayed in editable schedule table. */
   displayedColumnsEdit: string[] = ['number', 'date', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'due'];
 
