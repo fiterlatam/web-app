@@ -14,6 +14,11 @@
     <span  fxFlex="53%">{{ loanProduct.productType.name }}</span>
   </div>
 
+  <div fxFlexFill *ngIf="loanProduct.vehicleCupo">
+    <span fxFlex="47%">{{'labels.inputs.Vehicle Cupo' | translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.vehicleCupo }}</span>
+  </div>
+
   <div fxFlexFill>
     <span fxFlex="47%">{{'labels.inputs.Short Name' | translate }}:</span>
     <span  fxFlex="53%">{{ loanProduct.shortName }}</span>
