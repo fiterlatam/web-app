@@ -1094,6 +1094,7 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Vehicle Cupo": "Cupo exclusivo del vehículo",
       "Balance as of today": "Saldo a hoy",
       "Concept": "Concepto",
       "Value to be written-off": "Valor a condonar",

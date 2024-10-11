@@ -1079,6 +1079,7 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Vehicle Cupo": "Exclusive vehicle Cupo",
       "Balance as of today": "Balance as of today",
       "Concept": "Concept",
       "Value to be written-off": "Value to be written-off",

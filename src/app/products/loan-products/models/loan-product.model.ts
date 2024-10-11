@@ -146,6 +146,7 @@ export interface LoanProduct {
   interestRateId?: number;
   outstandingLoanBalance?: any;
   channel?: any;
+  vehicleCupo?: any;
 }
 
 
