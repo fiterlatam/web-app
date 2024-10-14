@@ -592,7 +592,8 @@
       "Portfolio Writeoff": "Portfolio Writeoff",
       "Claim": "Claim",
       "Exclude": "Exclude",
-      "Export": "Export"
+      "Export": "Export",
+      "punish": "Punish"
     },
     "commons": {
       "must be greater than outstanding balance": "must be greater than outstanding balance",

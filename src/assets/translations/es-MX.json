@@ -600,7 +600,8 @@
       "Portfolio Writeoff":"Castigo de cartera",
       "Claim": "RECLAMAR",
       "Exclude": "Excluir",
-      "Export": "Exportar"
+      "Export": "Exportar",
+      "punish": "Castigar"
     },
     "commons": {
       "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
