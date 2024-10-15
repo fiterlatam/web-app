@@ -132,7 +132,12 @@ bulkLoanClaim($event: Event): void {
     this.batchRequests = [];
     let reqId = 1;
     listSelectedAccounts.forEach((element: any) => {
-      const url = 'loans/' + element.id + '/transactions?command=claim';
+      let url = "";
+      if (this.claimTypeSelected != "castigado") {
+        url = 'loans/' + element.id + '/transactions?command=claim';
+      } else {
+        url = 'loans/' + element.id + '/transactions?command=castigado';
+      }
       const bodyData = JSON.stringify(formData);
       const batchData = { requestId: reqId++, relativeUrl: url, method: 'POST', body: bodyData };
       this.batchRequests.push(batchData);
@@ -143,7 +148,7 @@ bulkLoanClaim($event: Event): void {
           claimedAccounts++;
           responseEle.body = JSON.parse(responseEle.body);
           if (selectedAccounts === claimedAccounts) {
-            this.export($event, 'claimedLoans');
+            this.export($event, 'loansToClaim');
           }
         }
       });
@@ -174,6 +179,8 @@ bulkLoanClaim($event: Event): void {
         let reportName = "Reporte de reclamación de seguro";
         if (this.claimTypeSelected === "guarantor") {
           reportName = "Reporte de reclamación de Aval";
+        } else if (this.claimTypeSelected === "castigado") {
+         reportName = "Reporte de Castigo de cartera";
         }
         if (reportType === "claimedLoans") {
           reportName = "Reporte de préstamos reclamados";

@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="action-button" fxLayoutGap="25px" >
-      <button mat-stroked-button color="primary">
+      <button mat-stroked-button color="primary" (click)="showReclaimInfo('castigado')">
         {{"labels.buttons.Portfolio Writeoff"  |translate}}
       </button>
     </div>
@@ -26,9 +26,14 @@
           <input matInput placeholder="{{'labels.text.Filter by name' | translate}}" (keyup)="applyFilter($event.target.value)">
         </mat-form-field>
       </div>
-      <div fxFlex="10%">
+      <div fxFlex="10%" *ngIf="claimTypeSelected != 'castigado'">
         <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="bulkLoanClaim($event)">
           <fa-icon icon="check" class="m-r-10"></fa-icon>{{'labels.buttons.Claim' | translate}}
+        </button>
+      </div>
+      <div fxFlex="10%" *ngIf="claimTypeSelected === 'castigado'">
+        <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="bulkLoanClaim($event)">
+          <fa-icon icon="check" class="m-r-10"></fa-icon>{{'labels.buttons.punish' | translate}}
         </button>
       </div>
       <div fxFlex="10%">
