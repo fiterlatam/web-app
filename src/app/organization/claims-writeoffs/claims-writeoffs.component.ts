@@ -12,6 +12,8 @@ import { LoansService } from 'app/loans/loans.service';
 import { AlertService } from 'app/core/alert/alert.service';
 import * as XLSX from 'xlsx';
 import { ReportsService } from 'app/reports/reports.service';
+import {TranslateService} from '@ngx-translate/core';
+import {Injectable, Injector} from '@angular/core';
 
 @Component({
   selector: 'mifosx-claims-writeoffs',
@@ -35,6 +37,8 @@ export class ClaimsWriteoffsComponent implements OnInit {
   displayedColumns =  ['select','clientName','loanAccountNumber','productName','daysInArrears', 'outstandingPrincipal','outstandingInterest','outstandingAval','outstandingMandatoryInsurance','outstandingAllOtherCharges','outstandingPenalty','outstandingTotal','action'];
   displayedColumnsForExcluded =  ['clientName','loanAccountNumber','productName','daysInArrears', 'outstandingPrincipal','outstandingInterest','outstandingAval','outstandingMandatoryInsurance','outstandingAllOtherCharges','outstandingPenalty','outstandingTotal'];
 
+  private _translateService: TranslateService;
+
   constructor(private route: ActivatedRoute,
                 private router: Router,
                 private loanService: LoansService,
@@ -42,9 +46,18 @@ export class ClaimsWriteoffsComponent implements OnInit {
                 private tasksService: TasksService,
                 private dateUtils: Dates,
                 private alertService: AlertService,
-                private reportsService: ReportsService) {
+                private reportsService: ReportsService,
+                private injector: Injector) {
 
     }
+
+   private get translateService(): TranslateService {
+      if (!this._translateService) {
+        this._translateService = this.injector.get(TranslateService);
+      }
+      return this._translateService;
+    }
+
   ngOnInit(): void {}
 
   showReclaimInfo(filterValue: String) {
@@ -142,17 +155,41 @@ bulkLoanClaim($event: Event): void {
       const batchData = { requestId: reqId++, relativeUrl: url, method: 'POST', body: bodyData };
       this.batchRequests.push(batchData);
     });
+
+    this.export($event, 'claimedLoans');
+
     this.tasksService.submitBatchData(this.batchRequests).subscribe((response: any) => {
+      let errorAlert:string = null;
       response.forEach((responseEle: any) => {
+
         if (responseEle.statusCode = '200') {
           claimedAccounts++;
+          const prefix = this.translateService.instant('errors.processing.loan.request');
           responseEle.body = JSON.parse(responseEle.body);
-          if (selectedAccounts === claimedAccounts) {
-            this.export($event, 'loansToClaim');
-          }
+          if (responseEle.body.httpStatusCode === '403') {
+
+              let errorMessage = responseEle.body.errors[0].userMessageGlobalisationCode || responseEle.body.errors[0].defaultUserMessage || responseEle.body.errors[0].developerMessage;
+              const params = responseEle.body.errors[0].args || [];
+
+              errorMessage = this.translateService.instant('errors.' + errorMessage);
+              if (params && params.length > 0) {
+                for (let i = 0; i < params.length; i++) {
+                  errorMessage = errorMessage.replace('{{params[' + i + '].value}}', params[i].value);
+                }
+              }
+              let loanIndex = responseEle.requestId;
+              let loanIdWithError = this.selection.selected[loanIndex - 1].id;
+              if (errorAlert == null) {
+                errorAlert = prefix  + ' ' + loanIdWithError + ': ' + errorMessage + '</p>';
+              } else {
+                errorAlert = errorAlert  + '<p>' + prefix  + ' ' + loanIdWithError + ': ' + errorMessage + '</p>';
+              }
+            }
         }
       });
-
+      if (errorAlert != null) {
+        this.alertService.alert({ type: 'Validation Error', message: `${errorAlert}`});
+      }
     let index = -1;
     this.selection.selected.forEach((element: any) => {
       for (let i = 0; i < this.reclaimData.length; i++) {
