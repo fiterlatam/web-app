@@ -53,6 +53,14 @@ export class ClientDatatableStepComponent implements OnInit {
     });
     this.datatableForm = this.formBuilder.group(inputItems);
     this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+
+    if (this.datatableForm.get('NIT')){
+      this.datatableForm.get('NIT').valueChanges.subscribe(value => {
+        if (value && value.length > 20) {
+          this.datatableForm.get('NIT').setValue(value.slice(0,20), { emitEvent: false})
+        }
+      });
+    }
   }
 
   maxLength(max: number): ValidatorFn {
