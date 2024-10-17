@@ -13,25 +13,6 @@
 
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Id" | translate}} </th>
-      <td mat-cell *matCellDef="let transaction" [ngClass]="loanTransactionColor(transaction)"> {{ transaction.id }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="office">
-      <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Office" | translate}} </th>
-      <td mat-cell *matCellDef="let transaction" [ngClass]="loanTransactionColor(transaction)"> {{
-        transaction.officeName }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="externalId">
-      <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.External Id" | translate}} </th>
-      <td mat-cell *matCellDef="let transaction" [ngClass]="loanTransactionColor(transaction)">
-        <mifosx-external-identifier externalId="{{transaction.externalId}}"></mifosx-external-identifier>
-      </td>
-    </ng-container>
-
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Transaction Date" | translate}} </th>
       <td mat-cell *matCellDef="let transaction" [ngClass]="loanTransactionColor(transaction)"> {{ transaction.date | dateFormat }} </td>
@@ -61,16 +42,34 @@
         [ngClass]="loanTransactionColor(transaction)"> {{ transaction.interestPortion | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
+    <ng-container matColumnDef="mandatoryInsurance">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.mandatoryInsurance | formatNumber: [decimalPlaces] }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="voluntaryInsurance">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
+          [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.voluntaryInsurance | formatNumber: [decimalPlaces] }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aval">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
+          [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.aval | formatNumber: [decimalPlaces] }} </td>
+    </ng-container>
+
     <ng-container matColumnDef="fee">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.feeChargesPortion | formatNumber: [decimalPlaces] }} </td>
+          [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.hono | formatNumber: [decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="penalties">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.penaltyChargesPortion | formatNumber:[decimalPlaces] }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.penalty | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="loanBalance">
@@ -100,7 +99,7 @@
 
     <!-- Sub header -->
     <ng-container matColumnDef="header">
-      <th mat-header-cell *matHeaderCellDef [attr.colspan]="6"> </th>
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> </th>
     </ng-container>
 
     <ng-container matColumnDef="header-principal">
@@ -111,8 +110,20 @@
       <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.Interest" | translate}} </th>
     </ng-container>
 
-    <ng-container matColumnDef="header-fees">
-      <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.Fees" | translate}} </th>
+    <ng-container matColumnDef="header-mandatoryInsurance">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.chargeCalculationType.insurance" | translate}} </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-voluntaryInsurance">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}} </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-aval">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.chargeCalculationType.aval" | translate}} </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-fee">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef [attr.colspan]="1"> {{"labels.inputs.chargeCalculationType.fee" | translate}} </th>
     </ng-container>
 
     <ng-container matColumnDef="header-penalties">
@@ -125,7 +136,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-header-row
-      *matHeaderRowDef="['header', 'header-principal', 'header-interest', 'header-fees', 'header-penalties', 'header-action']">
+      *matHeaderRowDef="['header', 'header-principal', 'header-interest', 'header-mandatoryInsurance', 'header-voluntaryInsurance', 'header-aval', 'header-fee', 'header-penalties', 'header-action']">
     </tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="select-row" (click)="showTransactions(row)">
     </tr>
