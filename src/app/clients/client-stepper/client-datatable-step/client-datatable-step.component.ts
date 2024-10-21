@@ -46,13 +46,34 @@ export class ClientDatatableStepComponent implements OnInit {
       if (this.isString(input.columnDisplayType)) {
         const columnLength = input.columnLength ? input.columnLength : 255;
         inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
+        this.addStringLengthListener(inputItems[input.controlName], columnLength);
       } else if (this.isNumeric(input.columnDisplayType)) {
         const columnLength = input.columnLength ? input.columnLength : 10;
         inputItems[input.controlName].addValidators([Validators.maxLength(columnLength), Validators.max(2147483647), this.maxLength(columnLength), Validators.min(0)]);
+        this.addNumericLengthListener(inputItems[input.controlName], columnLength)
       }
     });
     this.datatableForm = this.formBuilder.group(inputItems);
     this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+  }
+
+  private addStringLengthListener(control: AbstractControl, maxLength: number): void {
+    control.valueChanges.subscribe(value => {
+      if (value && value.length > maxLength) {
+        control.setValue(value.slice(0, maxLength), { emitEvent: false });
+      }
+    });
+  }
+
+  private addNumericLengthListener(control: AbstractControl, maxLength: number): void {
+    control.valueChanges.subscribe(value => {
+      if (value !== null && value !== '') {
+        const strValue = value.toString();
+        if (strValue.length > maxLength) {
+          control.setValue(Number(strValue.slice(0, maxLength)), { emitEvent: false });
+        }
+      }
+    });
   }
 
   maxLength(max: number): ValidatorFn {
