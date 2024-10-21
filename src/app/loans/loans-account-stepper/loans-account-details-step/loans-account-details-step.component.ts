@@ -46,6 +46,11 @@ export class LoansAccountDetailsStepComponent implements OnInit {
 
   loanProductSelected = false;
 
+  /** Ally List */
+  allyOption: any;
+  /** Point Of Sales */
+  pointSalesOption: any;
+
   /** Loans Account Template with product data  */
   @Output() loansAccountProductTemplate = new EventEmitter();
 
@@ -80,11 +85,15 @@ export class LoansAccountDetailsStepComponent implements OnInit {
           'loanPurposeId': this.loansAccountTemplate.loanPurposeId,
           'fundId': this.loansAccountTemplate.fundId,
           'expectedDisbursementDate': this.loansAccountTemplate.timeline.expectedDisbursementDate && new Date(this.loansAccountTemplate.timeline.expectedDisbursementDate),
-          'externalId': this.loansAccountTemplate.externalId
+          'externalId': this.loansAccountTemplate.externalId,
+          'allyId': this.loansAccountTemplate.allyId,
+          'pointOfSaleCode': this.loansAccountTemplate.pointOfSaleCode
         });
       }
     }
   }
+
+  
 
   /**
    * Creates loans account details form.
@@ -100,7 +109,9 @@ export class LoansAccountDetailsStepComponent implements OnInit {
       'expectedDisbursementDate': ['', Validators.required],
       'externalId': [''],
       'linkAccountId': [''],
-      'createStandingInstructionAtDisbursement': ['']
+      'createStandingInstructionAtDisbursement': [''],
+      'allyId' : null,
+      'pointOfSaleCode' : null
     });
   }
 
@@ -123,6 +134,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
           this.loansAccountDetailsForm.get('createStandingInstructionAtDisbursement').patchValue(response.createStandingInstructionAtDisbursement);
         }
       });
+      this.loadAllieForComboBox();
     });
   }
 
@@ -131,6 +143,18 @@ export class LoansAccountDetailsStepComponent implements OnInit {
    */
   get loansAccountDetails() {
     return this.loansAccountDetailsForm.getRawValue();
+  }
+
+  loadAllieForComboBox() {
+    return this.loansService.getAllies().subscribe((data) => {
+      this.allyOption = data;
+    });
+  }
+  changeEvent() {
+    const alliesId = this.loansAccountDetailsForm.value.allyId;
+    return this.loansService.getPointOfSales(alliesId).subscribe((data) => {
+      this.pointSalesOption = data;
+    });
   }
 
 }
