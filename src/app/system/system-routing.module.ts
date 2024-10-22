@@ -102,6 +102,9 @@ import { BlockByControlListsResolver } from './manage-blocking-reasons/block-by-
 import { CustomChargeHonorarioConfigurationResolver } from './external-services/customchargehonorario/customchargehonorario.resolver';
 import { CustomChargeHonorarioComponent } from './external-services/customchargehonorario/customchargehonorario.component';
 import { EditCustomChargeHonorarioComponent } from './external-services/customchargehonorario/edit-customchargehonorario/edit-customchargehonorario.component';
+import { ChannelComponent } from './manage-channels/channel.component';
+import { CreateChannelComponent } from './manage-channels/create-channel/create-channel.component';
+import { EditChannelComponent } from './manage-channels/edit-channel/edit-channel.component';
 
 const routes: Routes = [
   Route.withShell([
@@ -687,6 +690,27 @@ const routes: Routes = [
                 },
               ]
             }
+          ]
+        },
+        {
+          path: 'manage-system-channels',
+          data: { title: 'Channel', breadcrumb: 'Channel' },
+          children :[
+            {
+              path: '',
+              pathMatch: 'full',
+              component: ChannelComponent,
+            },
+            {
+              path: 'create',
+              component: CreateChannelComponent,
+              data: { title: 'Channel', breadcrumb: 'channel.create' },
+            },
+            {
+              path: ':id',
+              component: EditChannelComponent,
+              data: { title: 'Channel', breadcrumb: 'channel.edit' },
+            },
           ]
         }
       ]
