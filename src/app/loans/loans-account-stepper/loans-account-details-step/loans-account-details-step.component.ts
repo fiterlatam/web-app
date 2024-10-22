@@ -155,7 +155,6 @@ export class LoansAccountDetailsStepComponent implements OnInit {
   }
   loadPointOfSale(alliesId: any){
     return this.loansService.getPointOfSales(alliesId).subscribe((data) => {
-        console.log(data)
       this.pointSalesOption = data;
     });
   }
