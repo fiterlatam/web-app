@@ -77,7 +77,7 @@ export class LoansAccountDetailsStepComponent implements OnInit {
     if (this.loansAccountTemplate) {
       this.productData = this.loansAccountTemplate.productOptions.sort(this.commons.dynamicSort('name'));
       if (this.loansAccountTemplate.loanProductId != null) {
-        this.loansAccountDetailsForm.patchValue({
+        this.loansAccountDetailsForm.patchValue({ 
           'productId': this.loansAccountTemplate.loanProductId,
           'submittedOnDate': this.loansAccountTemplate.timeline.submittedOnDate && new Date(this.loansAccountTemplate.timeline.submittedOnDate),
           'loanOfficerId': this.loansAccountTemplate.loanOfficerId,
@@ -87,8 +87,11 @@ export class LoansAccountDetailsStepComponent implements OnInit {
           'expectedDisbursementDate': this.loansAccountTemplate.timeline.expectedDisbursementDate && new Date(this.loansAccountTemplate.timeline.expectedDisbursementDate),
           'externalId': this.loansAccountTemplate.externalId,
           'allyId': this.loansAccountTemplate.allyId,
-          'pointOfSaleCode': this.loansAccountTemplate.pointOfSaleCode
+          'pointOfSaleCode': this.loansAccountTemplate.pointOfSalesCode
         });
+        this.loansAccountDetailsForm.get('allyId').setValue(this.loansAccountTemplate.allyId);
+        this.loadPointOfSale(this.loansAccountTemplate.allyId);
+        
       }
     }
   }
@@ -150,11 +153,15 @@ export class LoansAccountDetailsStepComponent implements OnInit {
       this.allyOption = data;
     });
   }
-  changeEvent() {
-    const alliesId = this.loansAccountDetailsForm.value.allyId;
+  loadPointOfSale(alliesId: any){
     return this.loansService.getPointOfSales(alliesId).subscribe((data) => {
+        console.log(data)
       this.pointSalesOption = data;
     });
+  }
+  changeEvent() {
+    const alliesId = this.loansAccountDetailsForm.value.allyId;
+    this.loadPointOfSale(alliesId);
   }
 
 }
