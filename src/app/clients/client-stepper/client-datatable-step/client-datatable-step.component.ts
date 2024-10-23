@@ -25,7 +25,7 @@ export class ClientDatatableStepComponent implements OnInit {
   datatableInputs: any = [];
   datatableInputsCopy: any[];
 
-  private decimalFields: string[] = ['CUPO', 'CUPO SOLICITADO', 'CUPO APROBADO', 'CUPO SCORE'];
+  private decimalFields: string[] = ['Cupo', 'Cupo solicitado', 'Cupo aprobado', 'Cupo score'];
   
   constructor(private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
@@ -34,8 +34,18 @@ export class ClientDatatableStepComponent implements OnInit {
     ngOnInit(): void {
       this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
       const inputItems: any = {};
-      this.datatableInputs.forEach((input: any) => {
+      this.datatableInputs.forEach((input: any, index: number) => {
+        if(this.decimalFields.includes(this.getInputName(input))){
+          this.datatableInputs[index]={
+            ...this.datatableInputs[index], // Keep existing properties
+            columnDisplayType:"STRING"                 // Update with new data
+          };
+        }
+      });
+
+      this.datatableInputs.forEach((input: any, index: number) => {
         input.controlName = this.getInputName(input);
+
         if (!input.isColumnNullable) {
           if (this.isNumeric(input.columnDisplayType)) {
             inputItems[input.controlName] = new UntypedFormControl(0, [Validators.required]);
@@ -45,10 +55,20 @@ export class ClientDatatableStepComponent implements OnInit {
         } else {
           inputItems[input.controlName] = new UntypedFormControl('');
         }
-        if (this.isString(input.columnDisplayType)) {
+
+        if(this.decimalFields.includes(input.controlName)){
+          this.addDecimalListener(inputItems[input.controlName]);
+          if(input.controlName == 'Cupo solicitado'){
+            const columnLength = input.columnLength ? input.columnLength : 10;
+            inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
+          }
+        }
+
+        if (this.isString(input.columnDisplayType) && !this.decimalFields.includes(input.controlName)) {
           const columnLength = input.columnLength ? input.columnLength : 255;
           inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
           this.addStringLengthListener(inputItems[input.controlName], columnLength);
+         
         } else if (this.isNumeric(input.columnDisplayType)) {
           const columnLength = input.columnLength ? input.columnLength : 10;
           inputItems[input.controlName].addValidators([
@@ -56,13 +76,8 @@ export class ClientDatatableStepComponent implements OnInit {
             this.maxLength(columnLength),
             Validators.min(0)
           ]);
-          
-          // Check if this field needs decimal formatting
-          if (this.decimalFields.includes(input.controlName)) {
-            this.addDecimalListener(inputItems[input.controlName]);
-          } else {
             this.addNumericLengthListener(inputItems[input.controlName], columnLength);
-          }
+          
         }
       });
       this.datatableForm = this.formBuilder.group(inputItems);
@@ -89,63 +104,58 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   private formatNumber(value: string): string {
-    // Remove all non-numeric characters except dots
-    let cleanValue = value.replace(/[^\d.]/g, '');
-    
-    // Ensure only one decimal point exists
-    const parts = cleanValue.split('.');
-    if (parts.length > 2) {
-      cleanValue = parts[0] + '.' + parts.slice(1).join('');
-    }
+       // Split the value into integer and decimal parts
+      let [integerPart, decimalPart] = value.split('.');
 
-    // If there's no decimal point, format with thousands separator
-    if (!cleanValue.includes('.')) {
-      return this.addThousandsSeparator(cleanValue);
-    }
+      // Add periods to the integer part (thousands separator)
+      integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-    // If there is a decimal point, format both parts
-    const [integerPart, decimalPart] = cleanValue.split('.');
-    return this.addThousandsSeparator(integerPart) + '.' + decimalPart;
-  }
-
-  private addThousandsSeparator(value: string): string {
-    return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  }
-
-  private parseFormattedNumber(value: string): number {
-    const parts = value.split('.');
-    if (parts.length <= 1) return Number(value.replace(/\./g, ''));
-    
-    const integerPart = parts.slice(0, -1).join('').replace(/\./g, '');
-    const decimalPart = parts[parts.length - 1];
-    return Number(`${integerPart}.${decimalPart}`);
+      // If there's a decimal part, return it along with the formatted integer part
+      if (decimalPart !== undefined) {
+        return integerPart + ',' + decimalPart; // Use comma for decimal separator
+      } else {
+        return integerPart; // Return only the formatted integer part if there's no decimal
+      }
   }
 
   private addDecimalListener(control: AbstractControl): void {
-    let previousValue = '';
-    
+    let isProgrammaticChange = false;  // Flag to prevent recursion
+  
     control.valueChanges.subscribe(value => {
-      if (value === null || value === '') {
-        previousValue = '';
+      if (isProgrammaticChange || !value) {
         return;
       }
-
-      // If the value is a number (from programmatic changes), convert to string
-      const stringValue = value.toString();
-
-      // Don't format if the value hasn't changed (prevents endless loops)
-      if (stringValue === previousValue) {
-        return;
+    
+      // Remove existing commas to avoid formatting an already formatted value
+      const cleanValue = value.toString().replace(/\./g, '').replace(',', '.');;
+  
+      if (!isNaN(cleanValue)) {
+        // Format the value
+        const formattedValue = this.formatNumber(cleanValue);
+  
+        if (formattedValue !== value) {
+          // Prevent re-triggering the same value change
+          isProgrammaticChange = true;
+          control.setValue(formattedValue, { emitEvent: false });
+          isProgrammaticChange = false;
+        }
+      }else{
+        value = value.replace(/[^0-9]/g, '');
+        isProgrammaticChange = true;
+        control.setValue(value, { emitEvent: false });
+        isProgrammaticChange = false;
       }
-
-      // Format the number
-      const formattedValue = this.formatNumber(stringValue);
-      previousValue = formattedValue;
-
-      // Update the control with the formatted value
-      control.setValue(formattedValue, { emitEvent: false });
     });
   }
+
+
+
+  private parseFormattedNumber(value: string): number {
+    const cleanValue = value.replace(/\./g, '').replace(',', '.');
+    return Number(cleanValue);
+  }
+
+  
 
   maxLength(max: number): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
@@ -198,6 +208,7 @@ export class ClientDatatableStepComponent implements OnInit {
 
     const data = this.datatableService.buildPayload(this.datatableInputs, datatableDataValues, dateFormat,
       { locale: this.settingsService.language.code });
+      
 
     return {
       registeredTableName: this.datatableData.registeredTableName,
