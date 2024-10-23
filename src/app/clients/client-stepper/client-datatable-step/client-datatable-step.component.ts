@@ -25,8 +25,8 @@ export class ClientDatatableStepComponent implements OnInit {
   datatableInputs: any = [];
   datatableInputsCopy: any[];
 
-  private decimalFields: string[] = ['CUPO', 'CUPO SOLICITADO', 'CUPO APROBADO', 'CUPO SCORE'];
-  
+  private decimalFields: string[] = ['Cupo', 'Cupo solicitado', 'Cupo aprobado', 'Cupo score'];
+
   constructor(private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
     private datatableService: Datatables) { }
@@ -89,21 +89,17 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   private formatNumber(value: string): string {
-    // Remove all non-numeric characters except dots
     let cleanValue = value.replace(/[^\d.]/g, '');
     
-    // Ensure only one decimal point exists
     const parts = cleanValue.split('.');
     if (parts.length > 2) {
       cleanValue = parts[0] + '.' + parts.slice(1).join('');
     }
 
-    // If there's no decimal point, format with thousands separator
     if (!cleanValue.includes('.')) {
       return this.addThousandsSeparator(cleanValue);
     }
 
-    // If there is a decimal point, format both parts
     const [integerPart, decimalPart] = cleanValue.split('.');
     return this.addThousandsSeparator(integerPart) + '.' + decimalPart;
   }
@@ -130,19 +126,15 @@ export class ClientDatatableStepComponent implements OnInit {
         return;
       }
 
-      // If the value is a number (from programmatic changes), convert to string
       const stringValue = value.toString();
-
-      // Don't format if the value hasn't changed (prevents endless loops)
       if (stringValue === previousValue) {
         return;
       }
 
-      // Format the number
       const formattedValue = this.formatNumber(stringValue);
       previousValue = formattedValue;
 
-      // Update the control with the formatted value
+
       control.setValue(formattedValue, { emitEvent: false });
     });
   }
@@ -189,7 +181,6 @@ export class ClientDatatableStepComponent implements OnInit {
     const dateFormat = this.settingsService.dateFormat;
     const datatableDataValues = { ...this.datatableForm.value };
 
-    // Convert formatted numbers back to actual numbers for the payload
     this.decimalFields.forEach(fieldName => {
       if (datatableDataValues[fieldName]) {
         datatableDataValues[fieldName] = this.parseFormattedNumber(datatableDataValues[fieldName]);
