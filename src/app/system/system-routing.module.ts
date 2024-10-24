@@ -694,7 +694,7 @@ const routes: Routes = [
         },
         {
           path: 'manage-system-channels',
-          data: { title: 'Channel', breadcrumb: 'Channel' },
+          data: { title: 'Channel', breadcrumb: 'channel' },
           children :[
             {
               path: '',
