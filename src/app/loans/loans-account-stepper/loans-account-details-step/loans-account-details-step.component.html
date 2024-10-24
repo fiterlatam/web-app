@@ -80,6 +80,24 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field  fxLayoutGap="2%">
+            <mat-label>{{ 'labels.text.client.allies' | translate }}</mat-label>
+            <mat-select formControlName="allyId" aria-placeholder="Oi!" (selectionChange)="changeEvent()">
+              <mat-option *ngFor="let obj of allyOption" [value]="obj.id" >
+                {{ obj.companyName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field  fxLayoutGap="2%">
+            <mat-label>{{ 'labels.inputs.pointOfSalesName' | translate }}</mat-label>
+            <mat-select formControlName="pointOfSaleCode" aria-placeholder="Oi!" >
+              <mat-option *ngFor="let obj of pointSalesOption" [value]="obj.code">
+                {{ obj.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
     <mat-divider fxFlex="98%"></mat-divider>
 
     <h3 class="mat-h3" fxFlexFill>{{"labels.heading.Savings Linkage" | translate}}</h3>
