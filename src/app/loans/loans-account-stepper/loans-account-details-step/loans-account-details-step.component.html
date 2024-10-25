@@ -82,7 +82,7 @@
 
     <mat-form-field  fxLayoutGap="2%">
             <mat-label>{{ 'labels.text.client.allies' | translate }}</mat-label>
-            <mat-select formControlName="allyId" aria-placeholder="Oi!" (selectionChange)="changeEvent()">
+            <mat-select formControlName="allyId" aria-placeholder="ally-id" (selectionChange)="changeEvent()">
               <mat-option *ngFor="let obj of allyOption" [value]="obj.id" >
                 {{ obj.companyName }}
               </mat-option>
@@ -91,7 +91,7 @@
 
           <mat-form-field  fxLayoutGap="2%">
             <mat-label>{{ 'labels.inputs.pointOfSalesName' | translate }}</mat-label>
-            <mat-select formControlName="pointOfSaleCode" aria-placeholder="Oi!" >
+            <mat-select formControlName="pointOfSaleCode" aria-placeholder="point-of-sale-code">
               <mat-option *ngFor="let obj of pointSalesOption" [value]="obj.code">
                 {{ obj.name }}
               </mat-option>
