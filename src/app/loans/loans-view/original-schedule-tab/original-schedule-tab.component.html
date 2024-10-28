@@ -5,7 +5,7 @@
       {{"labels.buttons.Export" | translate}}
     </button>
   </div>
-
+  <div class="table-container">
   <table mat-table [dataSource]="originalScheduleDetails.periods" matSort>
 
     <ng-container matColumnDef="date">
@@ -92,5 +92,5 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 
   </table>
-
+  </div>
 </div>

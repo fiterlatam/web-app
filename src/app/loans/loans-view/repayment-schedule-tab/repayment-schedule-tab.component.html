@@ -5,6 +5,7 @@
       {{"labels.buttons.Export" | translate}}
     </button>
   </div>
+  <div class="table-container">
   <table mat-table [dataSource]="repaymentScheduleDetails.periods" *ngIf="!forEditing">
 
     <ng-container matColumnDef="number">
@@ -161,10 +162,12 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 
   </table>
+  </div>
 
   <!-- Repayment Schedule to be Edited -->
   <div *ngIf="forEditing" fxLayout="column" fxFlex="100%" >
 
+    <div class="table-container">
     <table mat-table [dataSource]="repaymentScheduleDetails.periods">
 
       <ng-container matColumnDef="number">
@@ -231,6 +234,7 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumnsEdit"></tr>
 
     </table>
+    </div>
 
   </div>
 
