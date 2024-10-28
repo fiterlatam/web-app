@@ -1123,6 +1123,7 @@
       "Interest Rate Type": "Tipo de tasa de interés",
       "Sub Channels": "Subcanales",
       "Channel Type": "Tipo de canal",
+      "channelId": "ID del canal",
       "Interest Rate Points": "Puntos de tasa de interés",
       "Use the Global Configurations values to the Repayment Event (notifications)": "Utilice los valores de las Configuraciones Globales para el Evento de Pago (notificaciones)",
       "Enable installment level Delinquency": "Habilitar morosidad a nivel de cuota",
