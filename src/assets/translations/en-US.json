@@ -1107,6 +1107,7 @@
       "Bank Name": "Bank Name",
       "Interest Rate Type": "Interest Rate Type",
       "Channel Type": "Channel Type",
+      "channelId": "Channel ID",
       "Interest Rate Points": "Interest Rate Points",
       "Extend term for monthly repayments": "Extend term for monthly repayments",
       "Enable installment level Delinquency": "Enable installment level Delinquency",
