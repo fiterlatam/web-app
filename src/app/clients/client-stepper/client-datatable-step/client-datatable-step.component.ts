@@ -4,6 +4,7 @@ import {
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
+  ValidationErrors,
   ValidatorFn,
   Validators
 } from '@angular/forms';
@@ -60,7 +61,8 @@ export class ClientDatatableStepComponent implements OnInit {
           this.addDecimalListener(inputItems[input.controlName]);
           if(input.controlName == 'Cupo solicitado'){
             const columnLength = input.columnLength ? input.columnLength : 10;
-            inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
+            inputItems[input.controlName].setValidators([this.maxLengthWithoutDots(columnLength)]);
+            inputItems[input.controlName].updateValueAndValidity();
           }
         }
 
@@ -148,7 +150,12 @@ export class ClientDatatableStepComponent implements OnInit {
     });
   }
 
-
+  private maxLengthWithoutDots(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value ? control.value.replace(/\./g, '') : '';
+      return value.length > maxLength ? { maxLengthWithoutDots: { requiredLength: maxLength, actualLength: value.length } } : null;
+    };
+  }
 
   private parseFormattedNumber(value: string): number {
     const cleanValue = value.replace(/\./g, '').replace(',', '.');
