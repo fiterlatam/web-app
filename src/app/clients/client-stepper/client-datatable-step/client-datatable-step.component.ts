@@ -4,6 +4,7 @@ import {
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
+  ValidationErrors,
   ValidatorFn,
   Validators
 } from '@angular/forms';
@@ -57,11 +58,10 @@ export class ClientDatatableStepComponent implements OnInit {
         }
 
         if(this.decimalFields.includes(input.controlName)){
-          this.addDecimalListener(inputItems[input.controlName]);
-          if(input.controlName == 'Cupo solicitado'){
-            const columnLength = input.columnLength ? input.columnLength : 10;
-            inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
-          }
+          const columnLength = input.columnLength ? input.columnLength : 10;
+          inputItems[input.controlName].setValidators([this.maxLengthWithoutDots(columnLength)]);
+          inputItems[input.controlName].updateValueAndValidity();
+          this.addDecimalListener(inputItems[input.controlName], columnLength);
         }
 
         if (this.isString(input.columnDisplayType) && !this.decimalFields.includes(input.controlName)) {
@@ -118,7 +118,7 @@ export class ClientDatatableStepComponent implements OnInit {
       }
   }
 
-  private addDecimalListener(control: AbstractControl): void {
+  private addDecimalListener(control: AbstractControl, maxLength: number): void {
     let isProgrammaticChange = false;  // Flag to prevent recursion
   
     control.valueChanges.subscribe(value => {
@@ -131,7 +131,7 @@ export class ClientDatatableStepComponent implements OnInit {
   
       if (!isNaN(cleanValue)) {
         // Format the value
-        const formattedValue = this.formatNumber(cleanValue);
+        const formattedValue = this.formatNumber(cleanValue.slice(0, maxLength));
   
         if (formattedValue !== value) {
           // Prevent re-triggering the same value change
@@ -141,14 +141,20 @@ export class ClientDatatableStepComponent implements OnInit {
         }
       }else{
         value = value.replace(/[^0-9]/g, '');
+        const formattedValue = this.formatNumber(value.slice(0, maxLength));
         isProgrammaticChange = true;
-        control.setValue(value, { emitEvent: false });
+        control.setValue(formattedValue, { emitEvent: false });
         isProgrammaticChange = false;
       }
     });
   }
 
-
+  private maxLengthWithoutDots(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value ? control.value.replace(/\./g, '') : '';
+      return value.length > maxLength ? { maxLengthWithoutDots: { requiredLength: maxLength, actualLength: value.length } } : null;
+    };
+  }
 
   private parseFormattedNumber(value: string): number {
     const cleanValue = value.replace(/\./g, '').replace(',', '.');
