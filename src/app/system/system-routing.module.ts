@@ -105,6 +105,7 @@ import { EditCustomChargeHonorarioComponent } from './external-services/customch
 import { ChannelComponent } from './manage-channels/channel.component';
 import { CreateChannelComponent } from './manage-channels/create-channel/create-channel.component';
 import { EditChannelComponent } from './manage-channels/edit-channel/edit-channel.component';
+import {CreateChannelResolver} from './manage-channels/create-channel/create-channel.resolver';
 
 const routes: Routes = [
   Route.withShell([
@@ -694,7 +695,7 @@ const routes: Routes = [
         },
         {
           path: 'manage-system-channels',
-          data: { title: 'Channel', breadcrumb: 'Channel' },
+          data: { title: 'Channel', breadcrumb: 'channel' },
           children :[
             {
               path: '',
@@ -705,6 +706,9 @@ const routes: Routes = [
               path: 'create',
               component: CreateChannelComponent,
               data: { title: 'Channel', breadcrumb: 'channel.create' },
+              resolve: {
+                channelTemplate: CreateChannelResolver
+              }
             },
             {
               path: ':id',
@@ -722,6 +726,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
+    CreateChannelResolver,
     CodesResolver,
     CodeResolver,
     CodeValuesResolver,

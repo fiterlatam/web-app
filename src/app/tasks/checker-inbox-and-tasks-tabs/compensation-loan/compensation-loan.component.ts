@@ -83,14 +83,15 @@ export class CompensationLoanComponent implements OnInit {
     });
   }
 
-  bulkCompensation(){
+  bulkCompensation(command: string){
     const dateFormat = this.settingsService.dateFormat;
     const locale = this.settingsService.language.code;
     const listSelectedAccounts = this.selection.selected;
     this.batchRequests = [];
     const formData = {
       dateFormat,
-      locale
+      locale,
+      status:command
     };
     let reqId = 1;
     listSelectedAccounts.forEach((element: any) => {
