@@ -22,13 +22,9 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field  *ngIf="isProductTypeSuVehicle()"  fxFlex="24%">
-      <mat-label>{{'labels.inputs.Vehicle Cupo' | translate }}</mat-label>
-      <input type="number" [min]="0" matInput formControlName="vehicleCupo" matTooltip="{{ 'tooltips.Vehicle Product Exclusive Cupo' | translate }}">
-      <mat-error>
-        {{'labels.inputs.Vehicle Cupo' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
-      </mat-error>
-    </mat-form-field>
+    <mat-checkbox *ngIf="isProductTypeSuVehicle()" labelPosition="before" matTooltip="{{ 'tooltips.Use Other Loans Cupo when validating client cupo limit' | translate }}" formControlName="useOtherLoansCupo" fxFlex="24%">
+      <p>{{'labels.inputs.Use Other Loans Cupo' | translate}}</p>
+    </mat-checkbox>
 
     <mat-form-field fxFlex="24%">
       <mat-label>{{'labels.inputs.Short Name' | translate }}</mat-label>

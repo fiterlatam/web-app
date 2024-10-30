@@ -48,7 +48,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'includeInBorrowerCycle': this.loanProductsTemplate.includeInBorrowerCycle,
       'advance': this.loanProductsTemplate.advance,
       'productType': this.loanProductsTemplate.productType ? this.loanProductsTemplate.productType.id : '',
-      'vehicleCupo': this.loanProductsTemplate.vehicleCupo,
+      'useOtherLoansCupo': this.loanProductsTemplate.useOtherLoansCupo,
     });
     this.loanProductDetailsForm.get('productType')?.valueChanges.subscribe(productTypeValue => {
         if (this.isProductTypeSuVehicle(productTypeValue)) {
@@ -71,7 +71,7 @@ export class LoanProductDetailsStepComponent implements OnInit {
       'includeInBorrowerCycle': [false],
       'advance': [false],
       'productType': ['', Validators.required],
-      'vehicleCupo': [''],
+      'useOtherLoansCupo': [false],
     });
   }
 
