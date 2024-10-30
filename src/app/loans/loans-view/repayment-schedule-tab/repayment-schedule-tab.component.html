@@ -1,7 +1,7 @@
 <div class="container" >
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px" class="transaction-buttons" >
-    <button mat-raised-button color="primary" class="transaction-button" (click)="exportSchedule()" *ngIf="loanId !== undefined">
+    <button mat-raised-button color="primary" class="transaction-button" (click)="exportSchedule()" *ngIf="loanId">
       {{"labels.buttons.Export" | translate}}
     </button>
   </div>
