@@ -10,12 +10,12 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Date" | translate}} </th>
-      <td mat-cell *matCellDef="let ele"> {{ ele.dueDate | dateFormat}} </td>
+      <td mat-cell *matCellDef="let ele"> {{ ele.dueDate | dateFormat:'DD/MM/YYYY'}} </td>
       <td mat-footer-cell *matFooterCellDef> <b> {{"labels.inputs.Total" | translate}}</b> </td>
     </ng-container>
 
     <ng-container matColumnDef="principalDue">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Principal Due" | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.Principal" | translate}} </th>
       <td mat-cell *matCellDef="let ele"> {{ ele.principalDue | formatNumber:[decimalPlaces] }} </td>
       <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalPrincipalExpected | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
@@ -33,13 +33,13 @@
     </ng-container>
 
     <ng-container matColumnDef="voluntary.insurance">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.voluntary.assistance.short" | translate}} </th>
       <td mat-cell *matCellDef="let ele"> {{ ele.voluntaryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
       <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalVoluntaryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="mandatory.insurance">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.insurance" | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.chargeCalculationType.insurance.short" | translate}} </th>
       <td mat-cell *matCellDef="let ele"> {{ ele.mandatoryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
       <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalMandatoryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>

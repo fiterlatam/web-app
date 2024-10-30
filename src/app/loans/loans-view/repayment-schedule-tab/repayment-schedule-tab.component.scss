@@ -59,4 +59,15 @@
   max-height: 400px; /* Adjust the height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: auto; /* Enable horizontal scrolling */
+  width: 100%; /* Set the width to 100% of the parent container */
+  max-width: 1200px; /* Adjust the max-width as needed */
+}
+.date-column {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.paiddate-column {
+  padding-left: 10px;
+  padding-right: 10px;
 }
