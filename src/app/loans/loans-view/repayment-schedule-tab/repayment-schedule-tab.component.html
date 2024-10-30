@@ -21,14 +21,14 @@
     </ng-container>
 
     <ng-container matColumnDef="date">
-      <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Date" | translate}} </th>
-      <td mat-cell class="m-r-5" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.dueDate | dateFormat}} </td>
+      <th mat-header-cell class="center date-column" *matHeaderCellDef> {{"labels.inputs.Date" | translate}} </th>
+      <td mat-cell class="m-r-5 date-column" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.dueDate | dateFormat:'DD/MM/YYYY'}} </td>
       <td mat-footer-cell *matFooterCellDef>  </td>
     </ng-container>
 
     <ng-container matColumnDef="paiddate">
-      <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Paid Date" | translate}} </th>
-      <td mat-cell class="center" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.obligationsMetOnDate | dateFormat}} </td>
+      <th mat-header-cell class="center date-column" *matHeaderCellDef> {{"labels.inputs.Paid Date" | translate}} </th>
+      <td mat-cell class="center date-column" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.obligationsMetOnDate | dateFormat:'DD/MM/YYYY'}} </td>
       <td mat-footer-cell *matFooterCellDef>  </td>
     </ng-container>
 
@@ -59,13 +59,13 @@
     </ng-container>
 
     <ng-container matColumnDef="voluntary.insurance">
-      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.voluntary.assistance" | translate}} </th>
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.voluntary.assistance.short" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.voluntaryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
       <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalVoluntaryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="mandatory.insurance">
-      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.insurance" | translate}} </th>
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.insurance.short" | translate}} </th>
       <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.mandatoryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
       <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalMandatoryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
