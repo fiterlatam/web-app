@@ -201,6 +201,10 @@ export class LoansAccountButtonConfiguration {
           {
             name: 'Special Write-Off',
             taskPermissionName: 'SPECIAL_WRITEOFF_LOAN',
+          },
+          {
+            name: 'AddCreditNote',
+            taskPermissionName: 'SPECIAL_WRITEOFF_LOAN',
           }
         ];
         this.optionPaymentArray = [
