@@ -354,6 +354,7 @@
       "Home": "Home"
     },
     "buttons": {
+      "Cancel Loan": "Cancel Loan",
       "DownloadAttachment" : "Download Attachment",
       "VIP & Commerce": "VIP & Commerce",
       "Chargeback": "Chargeback",
@@ -2567,6 +2568,7 @@
       "Working with Code": "Working with Code"
     },
     "menus": {
+      "Cancel Loan": "Cancel Loan",
       "Special Write-Off": "Special Write-Off",
       "AddCreditNote": "Add Credit Note",
       "Accounting": "Accounting",

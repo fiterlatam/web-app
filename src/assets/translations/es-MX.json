@@ -360,6 +360,7 @@
       "Home": "Inicio"
     },
     "buttons": {
+      "Cancel Loan": "Anular crédito",
       "DownloadAttachment" : "Descargar archivo",
       "VIP & Commerce": "VIP y comercio",
       "Chargeback": "Devolución de cargo",
@@ -2590,6 +2591,7 @@
       "Working with Code": "Trabajar con código"
     },
     "menus": {
+      "Cancel Loan": "Anular crédito",
       "AddCreditNote": "Ingreso de Nota de Crédito",
       "Special Write-Off": "Condonación Especial",
       "Accounting": "Contabilidad",
