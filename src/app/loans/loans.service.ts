@@ -336,6 +336,15 @@ export class LoansService {
    * @param {string|number} loanId Loan Id
    * @param {any} data Data
    */
+  cancelLoan(loanId: any, data: any) {
+    const httpParams = new HttpParams().set('command', 'cancel-loan');
+    return this.http.post(`/loans/${loanId}/transactions`, data, { params: httpParams });
+  }
+
+  /**
+   * @param {string|number} loanId Loan Id
+   * @param {any} data Data
+   */
   loanForclosureData(loanId: any, data: any) {
     const httpParams = new HttpParams().set('command', 'foreclosure');
     return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});

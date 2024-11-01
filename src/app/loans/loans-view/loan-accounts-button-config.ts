@@ -49,6 +49,11 @@ export class LoansAccountButtonConfiguration {
             taskPermissionName: 'FORECLOSURE_LOAN',
           },
           {
+            name: 'Cancel Loan',
+            icon: 'heart-broken',
+            taskPermissionName: 'CANCEL_LOAN',
+          },
+          {
             name: 'Make Repayment',
             icon: 'coins',
             taskPermissionName: 'REPAYMENT_LOAN',
