@@ -255,6 +255,12 @@
           {{ "labels.inputs.Standing Instruction" | translate }}
         </a>
       </ng-container>
+      <ng-container *ngIf="loanDetailsData.clientId">
+        <a mat-tab-link [routerLink]="['./credit-notes']" routerLinkActive
+           #standingInstruction="routerLinkActive" [active]="standingInstruction.isActive">
+          {{ "labels.inputs.Credit Notes" | translate }}
+        </a>
+      </ng-container>
       <ng-container *ngIf="loanDetailsData.status.active">
         <a mat-tab-link [routerLink]="['./external-asset-owner']" routerLinkActive
            #externalAssetOwner="routerLinkActive" [active]="externalAssetOwner.isActive">

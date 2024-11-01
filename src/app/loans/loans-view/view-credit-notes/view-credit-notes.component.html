@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <table mat-table [dataSource]="creditNotes" class="mat-elevation-z8">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.CreditNoteDate' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.creditNoteDate | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="arrearInterest">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.ArrearInterest' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.arrearInterest | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currentInterest">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.CurrentInterest' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.currentInterest | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="honorarios">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Honorarios' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.honorarios | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="aval">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Aval' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.aval | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="insurance">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Insurance' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.insurance | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="capital">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Capital' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.capital | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Actions' | translate }} </th>
+          <td mat-cell *matCellDef="let note">
+            <button mat-button (click)="downloadAttachment(note.documentId, note.loanId)">{{ 'labels.buttons.DownloadAttachment' | translate }}</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

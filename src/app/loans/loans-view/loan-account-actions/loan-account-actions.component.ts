@@ -51,7 +51,8 @@ export class LoanAccountActionsComponent {
     'Generate Repayment Schedule Report': boolean,
     'Buy Back Loan': boolean,
     'Re-Ageing': boolean,
-    'Unblock': boolean
+    'Unblock': boolean,
+    'AddCreditNote': boolean
   } = {
     'Close': false,
     'Undo Approval': false,
@@ -90,7 +91,8 @@ export class LoanAccountActionsComponent {
     'Generate Repayment Schedule Report': false,
     'Buy Back Loan': false,
     'Re-Ageing': false,
-    'Unblock': false
+    'Unblock': false,
+    'AddCreditNote': false
   };
 
   actionButtonData: any;

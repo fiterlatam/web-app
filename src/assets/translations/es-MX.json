@@ -360,6 +360,7 @@
       "Home": "Inicio"
     },
     "buttons": {
+      "DownloadAttachment" : "Descargar archivo",
       "VIP & Commerce": "VIP y comercio",
       "Chargeback": "Devolución de cargo",
       "Add Rate": "Agregar tasa",
@@ -1096,6 +1097,15 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "ArrearInterest":"Interés en Mora",
+      "CurrentInterest":"Interés Corriente",
+      "Honorarios":"Honoarios",
+      "Aval":"Aval",
+      "Capital":"Capital",
+      "Attachment":"Adjunto",
+      "AddCreditNote":"Agregar Nota de Crédito",
+      "Credit Notes": "Notas de Crédito",
+      "CreditNoteDate":"Fecha de la Nota de Crédito",
       "Vehicle Cupo": "Cupo exclusivo del vehículo",
       "Balance as of today": "Saldo a hoy",
       "Concept": "Concepto",
@@ -2580,6 +2590,7 @@
       "Working with Code": "Trabajar con código"
     },
     "menus": {
+      "AddCreditNote": "Ingreso de Nota de Crédito",
       "Special Write-Off": "Condonación Especial",
       "Accounting": "Contabilidad",
       "Account Overview": "Descripción de cuenta",
@@ -2737,6 +2748,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "AddCreditNote": "Ingreso de Nota de Crédito",
       "Loan Repayments": "Pagos de Créditos",
       "Loan Write Offs": "Condonar créditos",
       "Client Cupo Increments": "Aumento de cupos",

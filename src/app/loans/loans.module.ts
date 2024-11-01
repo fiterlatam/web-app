@@ -151,6 +151,8 @@ import {
 import {
   GenerateLoanRepaymentScheduleReportComponent
 } from './loans-view/loan-account-actions/generate-loan-repayment-schedule-report/generate-loan-repayment-schedule-report.component';
+import { AddCreditNoteComponent } from './loans-view/loan-account-actions/add-credit-note/add-credit-note.component';
+import { ViewCreditNotesComponent } from './loans-view/view-credit-notes/view-credit-notes.component';
 
 /**
  * Loans Module
@@ -244,6 +246,8 @@ import {
     UndoTransactionsComponent,
     GenerateLoanOriginalScheduleReportComponent,
     GenerateLoanRepaymentScheduleReportComponent,
+    AddCreditNoteComponent,
+    ViewCreditNotesComponent,
   ],
   providers: [],
 })
