@@ -355,6 +355,7 @@
     },
     "buttons": {
       "Cancel Loan": "Cancel Loan",
+      "DownloadAttachment" : "Download Attachment",
       "VIP & Commerce": "VIP & Commerce",
       "Chargeback": "Chargeback",
       "Edit Loan Product": "Edit Loan Product",
@@ -1082,6 +1083,15 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "ArrearInterest":"Interest in Arrears",
+      "CurrentInterest":"Current Interest",
+      "Honorarios":"Charges",
+      "Aval":"Aval",
+      "Capital":"Capital",
+      "Attachment":"attachment",
+      "AddCreditNote":"Add Credit Note",
+      "Credit Notes": "Credit Notes",
+      "CreditNoteDate":"Credit Note Date",
       "Vehicle Cupo": "Exclusive vehicle Cupo",
       "Balance as of today": "Balance as of today",
       "Concept": "Concept",
@@ -2560,6 +2570,7 @@
     "menus": {
       "Cancel Loan": "Cancel Loan",
       "Special Write-Off": "Special Write-Off",
+      "AddCreditNote": "Add Credit Note",
       "Accounting": "Accounting",
       "Account Overview": "Account Overview",
       "Activate": "Activate",

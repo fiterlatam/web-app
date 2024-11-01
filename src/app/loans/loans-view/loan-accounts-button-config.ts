@@ -51,7 +51,7 @@ export class LoansAccountButtonConfiguration {
           {
             name: 'Cancel Loan',
             icon: 'heart-broken',
-            taskPermissionName: 'CANCEL_LOAN',
+            taskPermissionName: 'ANULAR_LOAN',
           },
           {
             name: 'Make Repayment',
