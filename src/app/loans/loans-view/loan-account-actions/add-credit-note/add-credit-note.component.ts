@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoansService} from '../../../loans.service';
 import {logger} from 'codelyzer/util/logger';
@@ -31,7 +31,7 @@ export class AddCreditNoteComponent implements OnInit {
       aval: [0, Validators.required],
       insurance: [0, Validators.required],
       capital: [0, Validators.required]
-    });
+    }, {validators: this.atLeastOneValueGreaterThanZeroValidator()});
   }
 
   ngOnInit(): void {
@@ -98,5 +98,20 @@ export class AddCreditNoteComponent implements OnInit {
     }
   }
 
+  atLeastOneValueGreaterThanZeroValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+     // ensure that at least one of the values is greater than zero
+      const arrearInterest = control.get('arrearInterest')?.value;
+      const currentInterest = control.get('currentInterest')?.value;
+      const honorarios = control.get('honorarios')?.value;
+      const aval = control.get('aval')?.value;
+      const insurance = control.get('insurance')?.value;
+      const capital = control.get('capital')?.value;
 
+      if (arrearInterest === 0 && currentInterest === 0 && honorarios === 0 && aval === 0 && insurance === 0 && capital === 0) {
+        return {atLeastOneValueGreaterThanZero: true};
+      }
+      return null;
+    };
+  }
 }
