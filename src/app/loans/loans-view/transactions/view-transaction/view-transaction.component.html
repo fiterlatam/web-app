@@ -107,6 +107,13 @@
         <div fxFlex="50%" *ngIf="transactionData.externalId">
           <mifosx-external-identifier externalId="{{transactionData.externalId}}" completed="true"></mifosx-external-identifier>
         </div>
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.cashierName' | translate}}
+        </div>
+
+        <div fxFlex="50%">
+          {{ lastModifiedByFullName() }}
+        </div>
 
         <mat-divider *ngIf="existTransactionRelations" [inset]="true"></mat-divider>
 
