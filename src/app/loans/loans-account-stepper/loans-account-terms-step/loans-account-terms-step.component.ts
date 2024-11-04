@@ -155,7 +155,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           }
 
           if (!this.loansAccountTermsData['isLoanProductLinkedToFloatingRate'] && this.requirePoints) {
-            this.loansAccountTermsForm.get('interestRatePoints')?.addValidators([Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]);
+            this.loansAccountTermsForm.get('interestRatePoints')?.addValidators([Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+(\.\d{1,2})?$/)]);
           } else {
             this.loansAccountTermsForm.get('interestRatePoints')?.clearValidators();
           }
