@@ -1083,6 +1083,7 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "cashierName": "Cashier Name",
       "ArrearInterest":"Interest in Arrears",
       "CurrentInterest":"Current Interest",
       "Honorarios":"Charges",

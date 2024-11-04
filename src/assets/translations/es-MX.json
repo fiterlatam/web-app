@@ -1098,6 +1098,7 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",
       "Honorarios":"Honoarios",
