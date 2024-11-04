@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ViewCreditNotesComponent implements OnInit {
   loanId: any;
   creditNotes: any[] = [];
-  displayedColumns: string[] = ['date', 'arrearInterest', 'currentInterest', 'honorarios', 'aval', 'insurance', 'capital', 'actions'];
+  displayedColumns: string[] = ['date', 'arrearInterest', 'currentInterest', 'honorarios', 'aval', 'insurance', 'mandatoryInsurance', 'capital', 'actions'];
 
   constructor(private loansService: LoansService, private route: ActivatedRoute) {
     this.loanId = this.route.snapshot.params['loanId'];
