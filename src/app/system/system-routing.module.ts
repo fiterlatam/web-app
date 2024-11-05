@@ -32,7 +32,7 @@ import { NotificationComponent } from './external-services/notification/notifica
 import { EditAmazonS3Component } from './external-services/amazon-s3/edit-amazon-s3/edit-amazon-s3.component';
 import { EditEmailComponent } from './external-services/email/edit-email/edit-email.component';
 import { EditNotificationComponent } from './external-services/notification/edit-notification/edit-notification.component';
-import { EditSMSComponent } from './external-services/sms/edit-sms/edit-sms.component';
+import { EditMasivianComponent } from './external-services/masivian/edit-masivian/edit-masivian.component';
 import { AccountNumberPreferencesComponent } from './account-number-preferences/account-number-preferences.component';
 import { CreateAccountNumberPreferenceComponent } from './account-number-preferences/create-account-number-preference/create-account-number-preference.component';
 import { ViewAccountNumberPreferenceComponent } from './account-number-preferences/view-account-number-preference/view-account-number-preference.component';
@@ -106,6 +106,9 @@ import { ChannelComponent } from './manage-channels/channel.component';
 import { CreateChannelComponent } from './manage-channels/create-channel/create-channel.component';
 import { EditChannelComponent } from './manage-channels/edit-channel/edit-channel.component';
 import {CreateChannelResolver} from './manage-channels/create-channel/create-channel.resolver';
+import {MasivianConfigurationResolver} from './external-services/masivian/masivian.resolver';
+import {MasivianComponent} from './external-services/masivian/masivian.component';
+import {EditSMSComponent} from './external-services/sms/edit-sms/edit-sms.component';
 
 const routes: Routes = [
   Route.withShell([
@@ -266,6 +269,27 @@ const routes: Routes = [
                   component: EditSMSComponent,
                   resolve: {
                     smsConfiguration: SMSConfigurationResolver
+                  }
+                }
+              ]
+            },
+            {
+              path: 'masivian',
+              data: { title: 'View Masivian Configuration', breadcrumb: 'Masivian' },
+              children: [
+                {
+                  path: '',
+                  component: MasivianComponent,
+                  resolve: {
+                    masivianConfiguration: MasivianConfigurationResolver
+                  }
+                },
+                {
+                  path: 'edit',
+                  data: { title: 'Edit Masivian Configuration', breadcrumb: 'Edit' },
+                  component: EditMasivianComponent,
+                  resolve: {
+                    masivianConfiguration: MasivianConfigurationResolver
                   }
                 }
               ]
@@ -696,7 +720,7 @@ const routes: Routes = [
         {
           path: 'manage-system-channels',
           data: { title: 'Channel', breadcrumb: 'channel' },
-          children :[
+          children : [
             {
               path: '',
               pathMatch: 'full',
@@ -743,6 +767,7 @@ const routes: Routes = [
     AmazonS3ConfigurationResolver,
     EmailConfigurationResolver,
     SMSConfigurationResolver,
+    MasivianConfigurationResolver,
     NotificationConfigurationResolver,
     AccountNumberPreferencesResolver,
     AccountNumberPreferencesTemplateResolver,

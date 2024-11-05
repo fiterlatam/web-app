@@ -986,6 +986,7 @@
       "SMS": "SMS",
       "SMS Campaigns": "Campañas de SMS",
       "SMS External Service": "Servicio externo de SMS",
+      "Masivian External Service": "Servicio externo de Masivian",
       "Saved Successfully": "Guardado exitosamente",
       "Saving Accounts": "Cuentas de ahorro",
       "Savings Account Overview": "Resumen de la Cuenta de Ahorros",
@@ -1098,6 +1099,8 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "SMS API URL": "URL de la API de SMS",
+      "SMS API Authorization Header": "Encabezado de autorización de la API de SMS",
       "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",
@@ -2751,6 +2754,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Masivian Service Configuration": "Configuración del servicio Masivian",
       "AddCreditNote": "Ingreso de Nota de Crédito",
       "Loan Repayments": "Pagos de Créditos",
       "Loan Write Offs": "Condonar créditos",
