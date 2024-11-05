@@ -1086,6 +1086,7 @@
     "inputs": {
       "SMS API URL": "SMS API URL",
       "SMS API Authorization Header": "SMS API Authorization",
+      "MandatoryInsurance": "Mandatory Insurance",
       "cashierName": "Cashier Name",
       "ArrearInterest":"Interest in Arrears",
       "CurrentInterest":"Current Interest",

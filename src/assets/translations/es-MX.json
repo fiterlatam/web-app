@@ -1101,6 +1101,7 @@
     "inputs": {
       "SMS API URL": "URL de la API de SMS",
       "SMS API Authorization Header": "Encabezado de autorización de la API de SMS",
+      "MandatoryInsurance": "Seguro Obligatorio",
       "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",
