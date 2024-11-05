@@ -1083,6 +1083,7 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "MandatoryInsurance": "Mandatory Insurance",
       "cashierName": "Cashier Name",
       "ArrearInterest":"Interest in Arrears",
       "CurrentInterest":"Current Interest",

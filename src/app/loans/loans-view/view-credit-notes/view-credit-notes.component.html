@@ -32,6 +32,11 @@
           <td mat-cell *matCellDef="let note"> {{ note.insurance | number:'1.2-2' }} </td>
         </ng-container>
 
+        <ng-container matColumnDef="mandatoryInsurance">
+          <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.MandatoryInsurance' | translate }} </th>
+          <td mat-cell *matCellDef="let note"> {{ note.mandatoryInsurance | number:'1.2-2' }} </td>
+        </ng-container>
+
         <ng-container matColumnDef="capital">
           <th mat-header-cell *matHeaderCellDef> {{ 'labels.inputs.Capital' | translate }} </th>
           <td mat-cell *matCellDef="let note"> {{ note.capital | number:'1.2-2' }} </td>

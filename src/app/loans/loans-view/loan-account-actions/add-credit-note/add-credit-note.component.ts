@@ -30,6 +30,7 @@ export class AddCreditNoteComponent implements OnInit {
       honorarios: [0, Validators.required],
       aval: [0, Validators.required],
       insurance: [0, Validators.required],
+      mandatoryInsurance: [0, Validators.required],
       capital: [0, Validators.required]
     }, {validators: this.atLeastOneValueGreaterThanZeroValidator()});
   }
@@ -68,6 +69,7 @@ export class AddCreditNoteComponent implements OnInit {
         honorarios: creditNoteData.honorarios,
         aval: creditNoteData.aval,
         insurance: creditNoteData.insurance,
+        mandatoryInsurance: creditNoteData.mandatoryInsurance,
         capital: creditNoteData.capital,
         dateFormat,
         locale
@@ -100,15 +102,16 @@ export class AddCreditNoteComponent implements OnInit {
 
   atLeastOneValueGreaterThanZeroValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-     // ensure that at least one of the values is greater than zero
+      // ensure that at least one of the values is greater than zero
       const arrearInterest = control.get('arrearInterest')?.value;
       const currentInterest = control.get('currentInterest')?.value;
       const honorarios = control.get('honorarios')?.value;
       const aval = control.get('aval')?.value;
       const insurance = control.get('insurance')?.value;
+      const mandatoryInsurance = control.get('mandatoryInsurance')?.value;
       const capital = control.get('capital')?.value;
 
-      if (arrearInterest === 0 && currentInterest === 0 && honorarios === 0 && aval === 0 && insurance === 0 && capital === 0) {
+      if (arrearInterest === 0 && currentInterest === 0 && honorarios === 0 && aval === 0 && insurance === 0 && capital === 0 && mandatoryInsurance === 0) {
         return {atLeastOneValueGreaterThanZero: true};
       }
       return null;
