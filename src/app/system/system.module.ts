@@ -30,7 +30,7 @@ import { NotificationComponent } from './external-services/notification/notifica
 import { EditAmazonS3Component } from './external-services/amazon-s3/edit-amazon-s3/edit-amazon-s3.component';
 import { EditEmailComponent } from './external-services/email/edit-email/edit-email.component';
 import { EditNotificationComponent } from './external-services/notification/edit-notification/edit-notification.component';
-import { EditSMSComponent } from './external-services/sms/edit-sms/edit-sms.component';
+import { EditMasivianComponent } from './external-services/masivian/edit-masivian/edit-masivian.component';
 import { ViewCodeComponent } from './codes/view-code/view-code.component';
 import { EditCodeComponent } from './codes/edit-code/edit-code.component';
 import { AccountNumberPreferencesComponent } from './account-number-preferences/account-number-preferences.component';
@@ -82,6 +82,8 @@ import { BlockByControlListsComponent } from './manage-blocking-reasons/block-by
 import { EditCustomChargeHonorarioComponent } from './external-services/customchargehonorario/edit-customchargehonorario/edit-customchargehonorario.component';
 import { CustomChargeHonorarioComponent } from './external-services/customchargehonorario/customchargehonorario.component';
 import { UnblockClientsComponent } from './manage-blocking-reasons/unblock-clients/unblock-clients.component';
+import {MasivianComponent} from './external-services/masivian/masivian.component';
+import {EditSMSComponent} from './external-services/sms/edit-sms/edit-sms.component';
 
 @NgModule({
   imports: [
@@ -111,11 +113,13 @@ import { UnblockClientsComponent } from './manage-blocking-reasons/unblock-clien
     AmazonS3Component,
     EmailComponent,
     SMSComponent,
+    MasivianComponent,
     NotificationComponent,
     EditAmazonS3Component,
     EditEmailComponent,
     EditNotificationComponent,
     EditSMSComponent,
+    EditMasivianComponent,
     AccountNumberPreferencesComponent,
     CreateAccountNumberPreferenceComponent,
     ViewAccountNumberPreferenceComponent,
