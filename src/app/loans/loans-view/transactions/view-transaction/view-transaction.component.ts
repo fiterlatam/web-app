@@ -225,4 +225,9 @@ export class ViewTransactionComponent implements OnInit {
     return 'active';
   }
 
+  // simple function to concatenate the first name and last name of the last modified by user
+  lastModifiedByFullName(): string {
+    return `${this.transactionData.lastModifiedByFirstname} ${this.transactionData.lastModifiedByLastname}`;
+  }
+
 }

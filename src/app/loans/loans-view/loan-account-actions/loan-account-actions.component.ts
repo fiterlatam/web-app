@@ -21,7 +21,7 @@ export class LoanAccountActionsComponent {
     'Add Collateral': boolean,
     'Assign Loan Officer': boolean,
     'Foreclosure': boolean,
-    // 'Prepay Loan': boolean,
+    'Cancel Loan': boolean,
     'Reject': boolean,
     'Disburse to Savings': boolean,
     'Make Repayment': boolean,
@@ -51,7 +51,8 @@ export class LoanAccountActionsComponent {
     'Generate Repayment Schedule Report': boolean,
     'Buy Back Loan': boolean,
     'Re-Ageing': boolean,
-    'Unblock': boolean
+    'Unblock': boolean,
+    'AddCreditNote': boolean
   } = {
     'Close': false,
     'Undo Approval': false,
@@ -60,7 +61,7 @@ export class LoanAccountActionsComponent {
     'Add Collateral': false,
     'Assign Loan Officer': false,
     'Foreclosure': false,
-    // 'Prepay Loan':  false,
+    'Cancel Loan':  false,
     'Reject': false,
     'Disburse to Savings': false,
     'Make Repayment': false,
@@ -90,7 +91,8 @@ export class LoanAccountActionsComponent {
     'Generate Repayment Schedule Report': false,
     'Buy Back Loan': false,
     'Re-Ageing': false,
-    'Unblock': false
+    'Unblock': false,
+    'AddCreditNote': false
   };
 
   actionButtonData: any;

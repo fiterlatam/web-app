@@ -49,6 +49,11 @@ export class LoansAccountButtonConfiguration {
             taskPermissionName: 'FORECLOSURE_LOAN',
           },
           {
+            name: 'Cancel Loan',
+            icon: 'heart-broken',
+            taskPermissionName: 'ANULAR_LOAN',
+          },
+          {
             name: 'Make Repayment',
             icon: 'coins',
             taskPermissionName: 'REPAYMENT_LOAN',
@@ -200,6 +205,10 @@ export class LoansAccountButtonConfiguration {
           },
           {
             name: 'Special Write-Off',
+            taskPermissionName: 'SPECIAL_WRITEOFF_LOAN',
+          },
+          {
+            name: 'AddCreditNote',
             taskPermissionName: 'SPECIAL_WRITEOFF_LOAN',
           }
         ];

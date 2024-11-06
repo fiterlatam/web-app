@@ -1,0 +1,66 @@
+<div class="container mat-elevation-z8">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="creditNoteForm">
+        <div fxLayout="row wrap" fxLayoutGap="16px">
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.CreditNoteDate" | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" [max]="maxDate"  formControlName="creditNoteDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.ArrearInterest" | translate }}</mat-label>
+            <input matInput type="number" formControlName="arrearInterest">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.CurrentInterest" | translate }}</mat-label>
+            <input matInput type="number" formControlName="currentInterest">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.Honorarios" | translate }}</mat-label>
+            <input matInput type="number" formControlName="honorarios">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.Aval" | translate }}</mat-label>
+            <input matInput type="number" formControlName="aval">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.Insurance" | translate }}</mat-label>
+            <input matInput type="number" formControlName="insurance">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.MandatoryInsurance" | translate }}</mat-label>
+            <input matInput type="number" formControlName="mandatoryInsurance">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.Capital" | translate }}</mat-label>
+            <input matInput type="number" formControlName="capital">
+          </mat-form-field>
+
+
+            <mifosx-file-upload flex="60%" (change)="onFileSelected($event)" acceptFilter=".pdf"></mifosx-file-upload>
+
+
+
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <button type="button" mat-raised-button
+              [routerLink]="['../../general']">{{ "labels.buttons.Cancel" | translate }}
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!creditNoteForm.valid"
+              (click)="onSave()">{{ "labels.buttons.Submit" | translate }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

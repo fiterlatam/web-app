@@ -354,6 +354,8 @@
       "Home": "Home"
     },
     "buttons": {
+      "Cancel Loan": "Cancel Loan",
+      "DownloadAttachment" : "Download Attachment",
       "VIP & Commerce": "VIP & Commerce",
       "Chargeback": "Chargeback",
       "Edit Loan Product": "Edit Loan Product",
@@ -970,6 +972,7 @@
       "S3 Amazon External Service": "S3 Amazon External Service",
       "SMS Campaigns": "SMS Campaigns",
       "SMS External Service": "SMS External Service",
+      "Masivian External Service": "Masivian External Service",
       "Saved Successfully": "Saved Successfully",
       "Saving Accounts": "Saving Accounts",
       "Savings Account Overview": "Savings Account Overview",
@@ -1081,6 +1084,19 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "SMS API URL": "SMS API URL",
+      "SMS API Authorization Header": "SMS API Authorization",
+      "MandatoryInsurance": "Mandatory Insurance",
+      "cashierName": "Cashier Name",
+      "ArrearInterest":"Interest in Arrears",
+      "CurrentInterest":"Current Interest",
+      "Honorarios":"Charges",
+      "Aval":"Aval",
+      "Capital":"Capital",
+      "Attachment":"attachment",
+      "AddCreditNote":"Add Credit Note",
+      "Credit Notes": "Credit Notes",
+      "CreditNoteDate":"Credit Note Date",
       "Vehicle Cupo": "Exclusive vehicle Cupo",
       "Balance as of today": "Balance as of today",
       "Concept": "Concept",
@@ -2557,7 +2573,9 @@
       "Working with Code": "Working with Code"
     },
     "menus": {
+      "Cancel Loan": "Cancel Loan",
       "Special Write-Off": "Special Write-Off",
+      "AddCreditNote": "Add Credit Note",
       "Accounting": "Accounting",
       "Account Overview": "Account Overview",
       "Activate": "Activate",
@@ -2714,6 +2732,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Masivian Service Configuration": "Masivian Service Configuration",
       "Loan Repayments": "Loan Repayments",
       "Loan Write Offs": "Loan Write Offs",
       "Special Write-Off": "Special Write-Off",

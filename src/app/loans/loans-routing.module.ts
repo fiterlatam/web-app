@@ -61,6 +61,8 @@ import { LoanCollateralsResolver } from './common-resolvers/loan-collaterals.res
 import { LoanDelinquencyDataResolver } from './common-resolvers/loan-delinquency-data.resolver';
 import { LoanDelinquencyActionsResolver } from './common-resolvers/loan-delinquency-actions.resolver';
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
+import {ViewCreditNotesComponent} from './loans-view/view-credit-notes/view-credit-notes.component';
+import {LoanCreditNoteResolver} from './common-resolvers/loan-credit-note.resolver';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -98,6 +100,14 @@ const routes: Routes = [
             resolve: {
               loanDetailsData: LoanDetailsResolver,
               loanDatatables: LoanDatatablesResolver
+            },
+          },
+          {
+            path: 'credit-notes',
+            component: ViewCreditNotesComponent,
+            data: { title: 'Credit Notes', breadcrumb: 'Credit Notes', routeParamBreadcrumb: false },
+            resolve: {
+              creditNoteData: LoanCreditNoteResolver
             },
           },
           {
