@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "validation.msg.loan.charges.expdate.cannot.be.blank" : "La fecha de expiración no puede estar en blanco",
     "error.msg.duplicate.file.name": "El archivo con el nombre {{params[0].value}} ya existe.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "La fecha de la transacción no puede ser una fecha pasada.",
     "error.msg.loan.charge.not.found": "El cargo con identificador {{params[0].value}} no existe.",
