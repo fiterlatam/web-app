@@ -1098,7 +1098,8 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
-      "MandatoryInsurance": "Seguro Obligatorio",
+      "MandatoryInsurance": "Seguro",
+      "VoluntaryInsurance": "Seg vol/assist",
       "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",

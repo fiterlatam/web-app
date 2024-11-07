@@ -1084,6 +1084,7 @@
     },
     "inputs": {
       "MandatoryInsurance": "Mandatory Insurance",
+      "VoluntaryInsurance": "Voluntary Insurance",
       "cashierName": "Cashier Name",
       "ArrearInterest":"Interest in Arrears",
       "CurrentInterest":"Current Interest",
