@@ -1099,9 +1099,10 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "MandatoryInsurance": "Seguro",
+      "VoluntaryInsurance": "Seg vol/assist",
       "SMS API URL": "URL de la API de SMS",
       "SMS API Authorization Header": "Encabezado de autorización de la API de SMS",
-      "MandatoryInsurance": "Seguro Obligatorio",
       "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",
