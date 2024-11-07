@@ -70,15 +70,13 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    
-    
     this.maxDate = this.settingsService.maxFutureDate;
     if (this.loansAccountTemplate && this.loansAccountTemplate.charges) {
       if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
         this.isVehiculos = true;
         this.chargesDisplayedColumns= ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'action', 'endorsed'];
       }
-      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: false })) || [];
+      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate || null, isEndorsed: false })) || [];
     }
   }
 
@@ -95,7 +93,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
           this.isVehiculos = true;
         }
-          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0  })) || []; 
+          this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate, isEndorsed: charge.amount === 0  })) || [];
       }
     }
   }
@@ -115,6 +113,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
    */
   editChargeAmount(charge: any) {
     const tomorrow = new Date(Date.now() + 86400000);
+    this.maxDate = this.settingsService.maxFutureDate;
 
     var formfields: FormfieldBase[];
     
@@ -128,12 +127,14 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           type: 'number',
           required: false
         }),
-        new InputBase({
+        new DatepickerBase({
           controlName: 'expdate',
           label: 'Expire Date',
-          value: null, 
+          value: charge.expdate || null, 
           type: 'date',
-          required: true // Set to true if the date is required
+          required: true,
+          maxDate: this.maxDate,
+          minDate: tomorrow
         })
       ];
     }else{
@@ -161,10 +162,11 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           if(response.data.value.amount === 0 ){
             isEndorsed = true;
           }
+         let expdate = this.dateUtils.formatDate(response.data.value.expdate, 'yyyy-MM-dd');
          newCharge = { 
           ...charge, 
           amount: response.data.value.amount,
-          expdate: response.data.value.expdate, isEndorsed: isEndorsed };
+          expdate: expdate, isEndorsed: isEndorsed };
         }else{
           newCharge = { ...charge, amount: response.data.value.amount };
         }
