@@ -113,7 +113,7 @@ export class SmsCampaignStepComponent implements OnInit {
   createSMSCampaignDetailsForm() {
     this.smsCampaignDetailsForm = this.formBuilder.group({
       'campaignName': ['', Validators.required],
-      'providerId': [null],
+      'providerId': [{value: '', disabled: true}],
       'triggerType': ['', Validators.required],
       'runReportId': ['', Validators.required],
       'isNotification': [false]
@@ -127,7 +127,7 @@ export class SmsCampaignStepComponent implements OnInit {
   buildDependencies() {
     this.smsCampaignDetailsForm.get('isNotification').valueChanges.subscribe((value: boolean) => {
       if (!value) {
-        this.smsCampaignDetailsForm.addControl('providerId', new UntypedFormControl(null));
+        this.smsCampaignDetailsForm.addControl('providerId', new UntypedFormControl({value: '', disabled: true}));
       } else {
         this.smsCampaignDetailsForm.removeControl('providerId');
       }
