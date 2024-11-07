@@ -81,6 +81,14 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="endorsed">
+      <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Endorsed" | translate}} </th>
+      <td mat-cell *matCellDef="let charge">
+        <mat-checkbox [checked]="charge.amount === 0" [disabled]="true">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="chargesDisplayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: chargesDisplayedColumns;"></tr>
 

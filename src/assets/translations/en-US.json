@@ -2555,7 +2555,8 @@
         "Reclaim Loans": "Reclaim Loans",
         "Excluded Loans": "Excluded Loans",
         "Action": "Action"
-      }
+      },
+      "Endorsed": "Endorsed"
     },
     "links": {
       "Community": "Community",

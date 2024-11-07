@@ -42,7 +42,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   /** Collateral Data Source */
   collateralDataSource: {}[] = [];
   /** Charges table columns */
-  chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'date', 'action'];
+  chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'date', 'action', 'endorsed'];
   /** Columns to be displayed in overdue charges table. */
   overdueChargesDisplayedColumns: string[] = ['name', 'type', 'amount', 'collectedon'];
   /** Component is pristine if there has been no changes by user interaction */
@@ -52,6 +52,8 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   /** Total value of all collateral added to a loan */
   totalCollateralValue: any = 0;
   loanId: any = null;
+  /** Maximum date allowed. */
+  maxDate = new Date(2100, 0, 1);
 
   /**
    * Loans Account Charges Form Step
@@ -67,6 +69,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.maxDate = this.settingsService.maxFutureDate;
     if (this.loansAccountTemplate && this.loansAccountTemplate.charges) {
       this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId })) || [];
     }
@@ -101,6 +104,8 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
    * @param {any} charge Charge
    */
   editChargeAmount(charge: any) {
+    const tomorrow = new Date(Date.now() + 86400000);
+
     const formfields: FormfieldBase[] = [
       new InputBase({
         controlName: 'amount',
@@ -109,6 +114,15 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         type: 'number',
         required: false
       }),
+      new DatepickerBase({
+        controlName: 'expirationDate',
+        label: 'Expiration Date',
+        value: charge.expirationDate || '',
+        type: 'date',
+        required: false,
+        minDate: tomorrow,
+        maxDate: this.maxDate
+      })
     ];
     const data = {
       title: 'Edit Charge Amount',
@@ -118,7 +132,16 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
     const editNoteDialogRef = this.dialog.open(FormDialogComponent, { data });
     editNoteDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
-        const newCharge = { ...charge, amount: response.data.value.amount };
+        const dateFormat = this.settingsService.dateFormat;
+        const expirationDate = response.data.value.expirationDate ? 
+          this.dateUtils.formatDate(response.data.value.expirationDate, dateFormat) : 
+          null;
+        
+        const newCharge = { 
+          ...charge, 
+          amount: response.data.value.amount,
+          expirationDate: expirationDate
+        };
         this.chargesDataSource.splice(this.chargesDataSource.indexOf(charge), 1, newCharge);
         this.chargesDataSource = this.chargesDataSource.concat([]);
       }
