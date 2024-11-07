@@ -76,7 +76,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         this.isVehiculos = true;
         this.chargesDisplayedColumns= ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'action', 'endorsed'];
       }
-      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate || null, isEndorsed: false })) || [];
+      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate || null, isEndorsed: charge.amount === 0 })) || [];
     }
   }
 
@@ -93,7 +93,13 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
           this.isVehiculos = true;
         }
-          this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate, isEndorsed: charge.amount === 0  })) || [];
+        console.log("loansAccountTemplate ngOnChanges",this.loanId);
+        if(this.loanId){
+          this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0  })) || [];
+        }else{
+          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0  })) || [];
+        }
+          
       }
     }
   }
@@ -130,9 +136,9 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         new DatepickerBase({
           controlName: 'expdate',
           label: 'Expire Date',
-          value: charge.expdate || null, 
+          value: charge?.expDate || null, 
           type: 'date',
-          required: true,
+          required: false,
           maxDate: this.maxDate,
           minDate: tomorrow
         })
