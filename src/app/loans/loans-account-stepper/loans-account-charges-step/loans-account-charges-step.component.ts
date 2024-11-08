@@ -166,7 +166,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         var newCharge: any;
         if (this.isVehiculos === true) {
           var isEndorsed = false;
-          if (response.data.value.amount === 0) {
+          if (response.data.value.amount == 0) {
             isEndorsed = true;
           }
           let expdate = this.dateUtils.formatDate(response.data.value.expdate, "yyyy-MM-dd");
