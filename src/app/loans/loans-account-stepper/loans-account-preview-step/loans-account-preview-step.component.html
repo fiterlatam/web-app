@@ -232,9 +232,13 @@
           <span *ngIf="charge.chargeTimeType.value === 'Monthly Fee' || charge.chargeTimeType.value === 'Annual Fee'">
             {{(charge.feeOnMonthDay | dateFormat) || 'Unassigned'}}
           </span>
+          <span *ngIf="charge?.expdate !=null">
+            {{ charge?.expdate !=null ? (charge.expdate | dateFormat) : ''}}
+          </span>
           <span
             *ngIf="!(charge.chargeTimeType.value === 'Monthly Fee' || charge.chargeTimeType.value === 'Annual Fee'
-                  || charge.chargeTimeType.value === 'Specified due date' || charge.chargeTimeType.value === 'Weekly Fee')">
+                  || charge.chargeTimeType.value === 'Specified due date' || charge.chargeTimeType.value === 'Weekly Fee')
+                  && charge?.expdate == null">
                   {{"labels.inputs.N/A" | translate}}
           </span>
         </td>

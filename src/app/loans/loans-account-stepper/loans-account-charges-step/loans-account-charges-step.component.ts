@@ -52,6 +52,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   /** Total value of all collateral added to a loan */
   totalCollateralValue: any = 0;
   loanId: any = null;
+  /** Check if the product is Vehiculos */
   isVehiculos: boolean = false;
   /** Maximum date allowed. */
   maxDate = new Date(2100, 0, 1);
@@ -162,18 +163,20 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
     const editNoteDialogRef = this.dialog.open(FormDialogComponent, { data });
     editNoteDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
-        var newCharge:any;
-        if(this.isVehiculos === true){
-          var isEndorsed =false;
-          if(response.data.value.amount === 0 ){
+        var newCharge: any;
+        if (this.isVehiculos === true) {
+          var isEndorsed = false;
+          if (response.data.value.amount === 0) {
             isEndorsed = true;
           }
-         let expdate = this.dateUtils.formatDate(response.data.value.expdate, 'yyyy-MM-dd');
-         newCharge = { 
-          ...charge, 
-          amount: response.data.value.amount,
-          expdate: expdate, isEndorsed: isEndorsed };
-        }else{
+          let expdate = this.dateUtils.formatDate(response.data.value.expdate, "yyyy-MM-dd");
+          newCharge = {
+            ...charge,
+            amount: response.data.value.amount,
+            expdate: expdate,
+            isEndorsed: isEndorsed,
+          };
+        } else {
           newCharge = { ...charge, amount: response.data.value.amount };
         }
         this.chargesDataSource.splice(this.chargesDataSource.indexOf(charge), 1, newCharge);
