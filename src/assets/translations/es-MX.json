@@ -1099,9 +1099,14 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Is SMS API Enabled": "¿Está habilitada la API de SMS?",
+      "Referido Movement": "movimiento por referido",
+      "Refinance Movement": "movimiento por refinanciación",
+      "Restructure Movement": "movimiento por reestructuración",
+      "MandatoryInsurance": "Seguro",
+      "VoluntaryInsurance": "Seg vol/assist",
       "SMS API URL": "URL de la API de SMS",
       "SMS API Authorization Header": "Encabezado de autorización de la API de SMS",
-      "MandatoryInsurance": "Seguro Obligatorio",
       "cashierName" : "Nombre del Cajero",
       "ArrearInterest":"Interés en Mora",
       "CurrentInterest":"Interés Corriente",
