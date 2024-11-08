@@ -1084,6 +1084,10 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Is SMS API Enabled": "Is SMS API Enabled?",
+      "Referido Movement": "Referral Movement",
+      "Refinance Movement": "Refinancing Movement",
+      "Restructure Movement": "Restructuring Movement",
       "SMS API URL": "SMS API URL",
       "SMS API Authorization Header": "SMS API Authorization",
       "MandatoryInsurance": "Mandatory Insurance",

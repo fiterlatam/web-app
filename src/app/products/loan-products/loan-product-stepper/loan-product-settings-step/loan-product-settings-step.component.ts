@@ -150,6 +150,9 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowDebitNote': (this.loanProductsTemplate.customAllowDebitNote == null ? true : this.loanProductsTemplate.customAllowDebitNote),
       'customAllowCreditNote': (this.loanProductsTemplate.customAllowCreditNote == null ? true : this.loanProductsTemplate.customAllowCreditNote),
       'customAllowForgiveness': (this.loanProductsTemplate.customAllowForgiveness == null ? true : this.loanProductsTemplate.customAllowForgiveness),
+      'customAllowSmsReferido': this.loanProductsTemplate.customAllowSmsReferido,
+      'customAllowSmsRefinance': this.loanProductsTemplate.customAllowSmsRefinance,
+      'customAllowSmsRestructure': this.loanProductsTemplate.customAllowSmsRestructure,
       'customAllowReversalCancellation': (this.loanProductsTemplate.customAllowReversalCancellation == null ? true : this.loanProductsTemplate.customAllowReversalCancellation),
       'subChannelLoanProductMapper': (this.apiData),
     });
@@ -322,6 +325,9 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowDebitNote': [false],
       'customAllowCreditNote': [false],
       'customAllowForgiveness': [false],
+      'customAllowSmsReferido': [false],
+      'customAllowSmsRefinance': [false],
+      'customAllowSmsRestructure': [false],
       'customAllowReversalCancellation': [false]
     });
   }
