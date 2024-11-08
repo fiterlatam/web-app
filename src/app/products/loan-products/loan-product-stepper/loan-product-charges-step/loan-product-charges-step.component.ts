@@ -4,6 +4,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
 
 import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import { ProductsService } from 'app/products/products.service';
 
 @Component({
   selector: 'mifosx-loan-product-charges-step',
@@ -24,11 +25,23 @@ export class LoanProductChargesStepComponent implements OnInit {
 
   pristine = true;
 
-  constructor(public dialog: MatDialog) {
+  typeProductIsVehicle: boolean | null = null;
+
+  constructor(public dialog: MatDialog,
+    private productsService: ProductsService
+  ) {
   }
 
   ngOnInit() {
-    this.chargeData = this.loanProductsTemplate.chargeOptions;
+    this.productsService.isVehicleProduct$.subscribe((value) => {
+      if (!value) {
+        this.chargeData = this.loanProductsTemplate.chargeOptions.filter((charge: any) => charge.amount !== 0)
+        this.typeProductIsVehicle = false;
+      } else {
+        this.chargeData = this.loanProductsTemplate.chargeOptions
+        this.typeProductIsVehicle = true;
+      }
+    });
     this.overdueChargeData = this.loanProductsTemplate.penaltyOptions ?
       this.loanProductsTemplate.penaltyOptions.filter((penalty: any) => penalty.chargeTimeType.code === 'chargeTimeType.overdueInstallment') :
       [];

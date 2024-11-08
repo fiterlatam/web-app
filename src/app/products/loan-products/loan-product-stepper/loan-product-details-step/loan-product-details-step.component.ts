@@ -2,6 +2,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Dates } from 'app/core/utils/dates';
+import { ProductsService } from 'app/products/products.service';
 
 /** Custom Services */
 import { SettingsService } from 'app/settings/settings.service';
@@ -31,7 +32,8 @@ export class LoanProductDetailsStepComponent implements OnInit {
 
   constructor(private formBuilder: UntypedFormBuilder,
               private dateUtils: Dates,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private productsService: ProductsService) {
     this.createLoanProductDetailsForm();
   }
 
@@ -94,9 +96,11 @@ export class LoanProductDetailsStepComponent implements OnInit {
     for (let i = 0; i < this.productTypeData.length; i++) {
       if (this.productTypeData[i].name === 'SU+ Vehiculos'
         && this.productTypeData[i].id === productTypeId) {
+        this.productsService.setIsVehicleProduct(true);
         return true;
       }
     }
+    this.productsService.setIsVehicleProduct(false);
     return false;
   }
 }

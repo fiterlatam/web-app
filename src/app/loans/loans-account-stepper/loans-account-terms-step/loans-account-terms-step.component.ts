@@ -510,11 +510,11 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     let showDiscountField = false;
     let productType = '';
     const expectedProductType = 'SU+ Empresas';
-    if (this.loansAccountTermsData && this.loansAccountTermsData.product && this.loansAccountTermsData.product.productType) {
-      productType = this.loansAccountTermsData.product.productType.name;
+    if (this.loansAccountTermsData && this.loansAccountTermsData?.product && this.loansAccountTermsData?.product?.productType) {
+      productType = this.loansAccountTermsData?.product?.productType?.name;
       showDiscountField = productType === expectedProductType;
       if (!showDiscountField) {
-        productType = (this.loansAccountProductTemplate.product.productType.name);
+        productType = (this.loansAccountProductTemplate?.product?.productType?.name);
         if (productType === expectedProductType) {
           showDiscountField = true;
         } else {

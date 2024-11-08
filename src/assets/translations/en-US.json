@@ -3,6 +3,7 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "validation.msg.loan.charges.expdate.cannot.be.blank" : "Expiration date cannot be blank",
     "error.msg.duplicate.file.name": "File with name {{params[0].value}} already exists.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "The transaction date cannot be a past date.",
     "error.msg.loan.charge.not.found": "The charge with identifier {{params[0].value}} does not exist.",
@@ -2556,7 +2557,8 @@
         "Reclaim Loans": "Reclaim Loans",
         "Excluded Loans": "Excluded Loans",
         "Action": "Action"
-      }
+      },
+      "Endorsed": "Endorsed"
     },
     "links": {
       "Community": "Community",

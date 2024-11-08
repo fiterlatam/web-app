@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 /** Custom Services */
 import {SettingsService} from 'app/settings/settings.service';
@@ -16,12 +16,23 @@ import {SettingsService} from 'app/settings/settings.service';
 })
 export class ProductsService {
 
+  private isVehicleProductSubject = new BehaviorSubject<boolean | null>(null);
+  isVehicleProduct$ = this.isVehicleProductSubject.asObservable();
+
   /**
    * @param {HttpClient} http Http Client to send requests.
    * @param {SettingsService} settingsService Settings Service.
    */
   constructor(private http: HttpClient,
               private settingsService: SettingsService) {
+  }
+
+  /**
+   * Sets the type of product
+   * @param {boolean} type Product type value
+   */
+  setIsVehicleProduct(isVehicle: boolean) {
+    this.isVehicleProductSubject.next(isVehicle);
   }
 
   /**
