@@ -26,6 +26,7 @@ export class EditMasivianComponent implements OnInit {
     this.masivianConfigurationForm = this.formBuilder.group({
       'SMS_API_URL': [this.masivianConfigurationData[0].value, Validators.required],
       'SMS_API_AUTHORIZATION_HEADER': [this.masivianConfigurationData[1].value, Validators.required],
+      'SMS_API_ENABLED': [this.masivianConfigurationData[2].value === 'true', Validators.required],
     });
   }
   submit() {

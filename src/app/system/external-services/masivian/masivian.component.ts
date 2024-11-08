@@ -14,7 +14,6 @@ export class MasivianComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: {masivianConfiguration: any}) => {
-      console.log(data);
       this.masivianConfigurationData = data.masivianConfiguration;
     });
    }

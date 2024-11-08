@@ -147,6 +147,15 @@ export interface LoanProduct {
   outstandingLoanBalance?: any;
   channel?: any;
   useOtherLoansCupo?: any;
+  customAllowSmsRestructure?: any;
+  customAllowSmsRefinance?: any;
+  customAllowSmsReferido?: any;
+  customAllowCreateOrDisburse?: any;
+  customAllowDebitNote?: any;
+  customAllowCreditNote?: any;
+  customAllowForgiveness?: any;
+  customAllowReversalCancellation?: any;
+  customAllowCollections?: any;
 }
 
 
