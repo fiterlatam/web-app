@@ -366,17 +366,17 @@
               <mat-label>{{"labels.inputs.charge.insurance.plan" | translate}} </mat-label>
               <input matInput formControlName="insurancePlan" [required]='areInsuranceFieldsRequired()'>
             </mat-form-field>
-            <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
+            <mat-form-field *ngIf="shouldDisplayInsuranceFields('vat')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.base.value" | translate}} </mat-label>
-              <input  type="number" matInput formControlName="baseValue" value="0" [required]='areInsuranceFieldsRequired()'/>
+              <input type="number" matInput formControlName="baseValue" value="0" [required]='areInsuranceFieldsRequired()'/>
             </mat-form-field>
-            <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
+            <mat-form-field *ngIf="shouldDisplayInsuranceFields('vat')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.vat.value" | translate}} </mat-label>
               <input type="number" matInput formControlName="vatValue" value="0" [required]='areInsuranceFieldsRequired()'/>
             </mat-form-field>
-            <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
+            <mat-form-field *ngIf="shouldDisplayInsuranceFields('vat')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.total.value" | translate}} </mat-label>
-              <input  type="number" matInput formControlName="totalValue" value="0" [required]='areInsuranceFieldsRequired()' [readonly]='disableAmountAndBaseValue()'/>
+              <input type="number" matInput formControlName="totalValue" value="0" [required]='areInsuranceFieldsRequired()' [readonly]='disableAmountAndBaseValue()'/>
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.deadline" | translate}} </mat-label>

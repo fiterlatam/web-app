@@ -94,7 +94,6 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
           this.isVehiculos = true;
         }
-        console.log("loansAccountTemplate ngOnChanges",this.loanId);
         if(this.loanId){
           this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0  })) || [];
         }else{
