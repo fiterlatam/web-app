@@ -482,35 +482,44 @@ export class EditChargeComponent implements OnInit {
       case 'all':
         return chargesAppliedTo === 1 &&
           (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+      case 'vat':
+        return chargesAppliedTo === 1 && 
+          (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
     }
-
-    return chargesAppliedTo === 1 &&
-      (formValues.chargeCalculationTypeFilterInsuranceType || formValues.chargeCalculationTypeFilterInsurance);
+    return false;
   }
-
 
   areInsuranceFieldsRequired(): boolean {
-    return ((!this.chargeForm.get('penalty').value) && (!this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || this.chargeForm.value.chargeCalculationTypeFilterInsurance));
+    return (!this.chargeForm.get('penalty').value) && 
+           (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType || 
+            this.chargeForm.value.chargeCalculationTypeFilterInsurance);
   }
 
 
 
-  disableAmountAndBaseValue() {
-    if (!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
-      this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
-      this.chargeForm.get('vatValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
-      return true;
-    } else {
-      return false;
-    }
+ disableAmountAndBaseValue(): boolean {
+  const isPenalty = this.chargeForm.get('penalty').value;
+  const isInsurance = this.chargeForm.value.chargeCalculationTypeFilterInsurance;
+  const isVoluntaryInsurance = this.chargeForm.value.chargeCalculationTypeFilterInsuranceType;
+  
+  if (!isPenalty && (isVoluntaryInsurance || isInsurance)) {
+    this.chargeForm.get('baseValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+    this.chargeForm.get('vatValue').valueChanges.subscribe(() => this.sumVatAndTotalValues());
+    return true;
   }
+  return false;
+}
 
   sumVatAndTotalValues() {
-    if(!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    const isPenalty = this.chargeForm.get('penalty').value;
+    const isInsurance = this.chargeForm.value.chargeCalculationTypeFilterInsurance;
+    const isVoluntaryInsurance = this.chargeForm.value.chargeCalculationTypeFilterInsuranceType;
+    
+    if (!isPenalty && (isVoluntaryInsurance || isInsurance)) {
       const baseValue = this.chargeForm.get('baseValue').value;
-      const vatValue =   this.chargeForm.get('vatValue').value;
+      const vatValue = this.chargeForm.get('vatValue').value;
       let sum = parseFloat(vatValue) + parseFloat(baseValue);
-      sum = Math.round(sum) ;
+      sum = Math.round(sum);
 
       this.chargeForm.controls['amount'].setValidators([]);
       this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
