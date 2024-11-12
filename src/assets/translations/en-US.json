@@ -3,6 +3,11 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.loan.credit.note.not.allowed": "Credit note is not allowed for this product",
+    "error.msg.loan.product.write.off.is.disabled.on.product": "Write off is not allowed for this loan product",
+    "error.msg.loan.reschedule.not.allowed.on.product": "Reschedule is not allowed for this loan product",
+    "error.msg.loan.reschedule.rediferir.not.allowed": "Reschedule referral is not allowed for this loan product",
+    "error.msg.loan.product.does.not.allow.topup": "Loan product does not allow topup",
     "validation.msg.loan.charges.expdate.cannot.be.blank" : "Expiration date cannot be blank",
     "error.msg.duplicate.file.name": "File with name {{params[0].value}} already exists.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "The transaction date cannot be a past date.",
@@ -1085,10 +1090,12 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Message": "Message",
+      "SMS": "SMS",
       "Is SMS API Enabled": "Is SMS API Enabled?",
-      "Referido Movement": "Referral Movement",
-      "Refinance Movement": "Refinancing Movement",
-      "Restructure Movement": "Restructuring Movement",
+      "Referido Movement": "Allow Referral Movement",
+      "Refinance Movement": "Allow Refinancing Movement",
+      "Restructure Movement": "Allow Restructuring Movement",
       "SMS API URL": "SMS API URL",
       "SMS API Authorization Header": "SMS API Authorization",
       "MandatoryInsurance": "Mandatory Insurance",

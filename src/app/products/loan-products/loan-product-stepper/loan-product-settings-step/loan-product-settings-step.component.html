@@ -578,40 +578,46 @@
 
 
     <mat-divider fxFlex="98%"></mat-divider>
-
     <h3 fxFlex="98%" class="mat-h3">{{ 'labels.heading.Configurable Allowed Usages' | translate }}</h3>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowCreateOrDisburse" class="margin-b"> {{ 'labels.inputs.Allow Buy/Advances' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowCreateOrDisburseSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowCreateOrDisburse" class="margin-b">
-      {{ 'labels.inputs.Allow Buy/Advances' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowDebitNote" class="margin-b">{{ 'labels.inputs.Allow Debit Note' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowDebitNoteSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowDebitNote" class="margin-b">
-      {{ 'labels.inputs.Allow Debit Note' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowCreditNote" class="margin-b">{{ 'labels.inputs.Allow Credit Note' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowCreditNoteSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowCreditNote" class="margin-b">
-      {{ 'labels.inputs.Allow Credit Note' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowForgiveness" class="margin-b">{{ 'labels.inputs.Allow Forgiveness' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowForgivenessSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowForgiveness" class="margin-b">
-      {{ 'labels.inputs.Allow Forgiveness' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowReversalCancellation" class="margin-b">{{ 'labels.inputs.Allow Reversals / Cancelations' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowReversalCancellationSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowReversalCancellation" class="margin-b">
-      {{ 'labels.inputs.Allow Reversals / Cancelations' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowReferido" class="margin-b">{{ 'labels.inputs.Referido Movement' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowReferidoSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowSmsReferido" class="margin-b">
-      {{ 'labels.inputs.Referido Movement' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+     <mat-checkbox labelPosition="before" formControlName="customAllowRefinance" class="margin-b">{{ 'labels.inputs.Refinance Movement' | translate }}</mat-checkbox>
+     <mat-checkbox labelPosition="before" formControlName="customAllowRefinanceSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowSmsRefinance" class="margin-b">
-      {{ 'labels.inputs.Refinance Movement' | translate }}
-    </mat-checkbox>
-
-    <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="customAllowSmsRestructure" class="margin-b">
-      {{ 'labels.inputs.Restructure Movement' | translate }}
-    </mat-checkbox>
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowRestructure" class="margin-b">{{ 'labels.inputs.Restructure Movement' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowRestructureSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
 
     <mat-divider fxFlex="98%"></mat-divider>
 

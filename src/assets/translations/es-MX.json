@@ -3,6 +3,11 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.credit.note.not.allowed": "No se permite la nota de crédito para este producto de préstamo.",
+    "error.msg.loan.product.write.off.is.disabled.on.product": "La condonaciones de Créditos está deshabilitada para este producto de Crédito.",
+    "error.msg.loan.reschedule.not.allowed.on.product": "No se permite refinanciación para este producto de préstamo.",
+    "error.msg.loan.reschedule.rediferir.not.allowed": "Referido no está permitido para este producto de préstamo.",
+    "error.msg.loan.product.does.not.allow.topup": "El producto de préstamo no permite la reestructuración.",
     "validation.msg.loan.charges.expdate.cannot.be.blank" : "La fecha de vencimiento no puede estar vacía cuando el seguro obligatorio es igual a 0",
     "error.msg.duplicate.file.name": "El archivo con el nombre {{params[0].value}} ya existe.",
     "error.msg.loan.transaction.cannot.be.a.past.date": "La fecha de la transacción no puede ser una fecha pasada.",
@@ -1100,10 +1105,12 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Message": "Mensaje",
+      "SMS": "SMS",
       "Is SMS API Enabled": "¿Está habilitada la API de SMS?",
-      "Referido Movement": "movimiento por referido",
-      "Refinance Movement": "movimiento por refinanciación",
-      "Restructure Movement": "movimiento por reestructuración",
+      "Referido Movement": "Permitir movimiento por referido",
+      "Refinance Movement": "Permitir movimiento por refinanciación",
+      "Restructure Movement": "Permitir movimiento por reestructuración",
       "MandatoryInsurance": "Seguro",
       "VoluntaryInsurance": "Seg vol/assist",
       "SMS API URL": "URL de la API de SMS",
