@@ -15,6 +15,7 @@ import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Recurring Deposit Account Charges Step
@@ -66,7 +67,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   constructor(public dialog: MatDialog,
     private dateUtils: Dates,
     private route: ActivatedRoute,
-    private settingsService: SettingsService) {
+    private settingsService: SettingsService, private translate: TranslateService) {
     this.loanId = this.route.snapshot.params['loanId'];
   }
 
@@ -77,7 +78,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         this.isVehiculos = true;
         this.chargesDisplayedColumns= ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'action', 'endorsed'];
       }
-      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge.expDate || null, isEndorsed: charge.amount === 0 })) || [];
+      this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate || null, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId })) || [];
     }
   }
 
@@ -95,9 +96,9 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           this.isVehiculos = true;
         }
         if(this.loanId){
-          this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0  })) || [];
+          this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId  })) || [];
         }else{
-          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0  })) || [];
+          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0, insuranceName: "", insuranceId : ""  })) || [];
         }
           
       }
@@ -128,14 +129,30 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         new InputBase(
           {
           controlName: 'amount',
-          label: 'Amount',
+          label: this.translate.instant('labels.inputs.Amount'),
           value: charge.amount,
           type: 'number',
           required: false
         }),
+        new InputBase(
+          {
+          controlName: 'insuranceName',
+          label: this.translate.instant('labels.inputs.insuranceName'),
+          value: charge?.insuranceName,
+          type: 'string',
+          required: false
+        }),
+        new InputBase(
+          {
+          controlName: 'insuranceId',
+          label: this.translate.instant('labels.inputs.insuranceID'),
+          value: charge?.insuranceId,
+          type: 'string',
+          required: false
+        }),
         new DatepickerBase({
           controlName: 'expdate',
-          label: 'Expire Date',
+          label: this.translate.instant('labels.inputs.expdate'),
           value: charge?.expDate || null, 
           type: 'date',
           required: false,
@@ -174,6 +191,8 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
             amount: response.data.value.amount,
             expdate: expdate,
             isEndorsed: isEndorsed,
+            insuranceName: response.data.value.insuranceName,
+            insuranceId : response.data.value.insuranceId,
           };
         } else {
           newCharge = { ...charge, amount: response.data.value.amount };
