@@ -621,6 +621,8 @@ export class LoansService {
         dueDate: charge.dueDate && this.dateUtils.formatDate(charge.dueDate, dateFormat),
         expdate: charge.expdate,
         isEndorsed : charge.isEndorsed,
+        insuranceName : charge.insuranceName,
+        insuranceId : charge.insuranceId
       })),
       collateral: loansAccount.collateral.map((collateralEle: any) => ({
         clientCollateralId: collateralEle.type.collateralId,
