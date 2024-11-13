@@ -122,6 +122,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         if (this.loanId != null && this.loansAccountTemplate.accountNo) {
           this.loansAccountTermsData = this.loansAccountTemplate;
         }
+        const interestRatePoints = this.loansAccountTermsForm.value.interestRatePoints ?? this.loansAccountTermsData.interestRatePoints;
         this.loansAccountTermsForm.patchValue({
           'principalAmount': this.loansAccountTermsData.principal,
           'loanTermFrequency': this.loansAccountTermsData.termFrequency,
@@ -129,7 +130,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           'numberOfRepayments': this.loansAccountTermsData.numberOfRepayments,
           'repaymentEvery': this.loansAccountTermsData.repaymentEvery,
           'repaymentFrequencyType': this.loansAccountTermsData.repaymentFrequencyType.id,
-          'interestRatePoints': this.loansAccountTermsForm.value.interestRatePoints ? this.loansAccountTermsForm.value.interestRatePoints : this.loansAccountTermsData.interestRatePoints,
+          'interestRatePoints': interestRatePoints,
           'amortizationType': this.loansAccountTermsData.amortizationType.id,
           'isEqualAmortization': this.loansAccountTermsData.isEqualAmortization,
           'interestType': this.loansAccountTermsData.interestType.id,
@@ -155,7 +156,7 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           }
 
           if (!this.loansAccountTermsData['isLoanProductLinkedToFloatingRate'] && this.requirePoints) {
-            this.loansAccountTermsForm.get('interestRatePoints')?.addValidators([Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]);
+            this.loansAccountTermsForm.get('interestRatePoints')?.addValidators([Validators.required, Validators.min(0), Validators.max(100)]);
           } else {
             this.loansAccountTermsForm.get('interestRatePoints')?.clearValidators();
           }
