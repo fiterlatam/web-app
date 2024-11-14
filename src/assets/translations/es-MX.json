@@ -2578,6 +2578,10 @@
       "insurance.incident.final.refinanced.cancellation": "Cancelación definitiva por rediferido/refinanciado",
       "insurance.incident.bad.sale.cancellation": "Cancelación por mala venta",
       "insurance.incident.portfolio.write.off.cancellation": "Cancelación por castigo de cartera",
+      "insurance.incident.temporary.suspension.default" : "Suspensión temporal de seguros",
+      "insurance.incident.permanent.cancellation.max.age" : "Cancelación de la edad máxima",
+      "insurance.incident.death.cancellation": "Cancelación por defunción",
+      "insurance.incident.removed.suspension": "Cancelación Suspensión",
       "Reduce Installment Amount": "Reducir monto de cuotas",
       "reclaims": {
         "Client Name": "Nombre del cliente",
