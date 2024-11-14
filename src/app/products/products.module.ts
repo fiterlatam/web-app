@@ -138,6 +138,10 @@ import { CreateInsuranceIncidentComponent } from './insurance-incident/create-in
 import { ViewInsuranceIncidentComponent } from './insurance-incident/view-insurance-incident/view-insurance-incident.component';
 import { EditInsuranceIncidentComponent } from './insurance-incident/edit-insurance-incident/edit-insurance-incident.component';
 import { MaximumCreditRateHistoryComponent } from './maximum-credit-rate/maximum-credit-rate-history/maximum-credit-rate-history.component';
+import { CreateLoanProductParameterizationComponent } from './loan-product-parameterization/create-loan-product-parameterization/create-loan-product-parameterization.component';
+import { EditLoanProductParameterizationComponent } from './loan-product-parameterization/edit-loan-product-parameterization/edit-loan-product-parameterization.component';
+import { ViewLoanProductParameterizationComponent } from './loan-product-parameterization/view-loan-product-parameterization/view-loan-product-parameterization.component';
+import { ViewLoanProductParameterizationListComponent } from './loan-product-parameterization/view-loan-product-parameterization-list/view-loan-product-parameterization-list.component';
 
 /**
  * Products Module
@@ -279,7 +283,11 @@ import { MaximumCreditRateHistoryComponent } from './maximum-credit-rate/maximum
         CreateInsuranceIncidentComponent,
         ViewInsuranceIncidentComponent,
         EditInsuranceIncidentComponent,
-        MaximumCreditRateHistoryComponent
+        MaximumCreditRateHistoryComponent,
+        CreateLoanProductParameterizationComponent,
+        EditLoanProductParameterizationComponent,
+        ViewLoanProductParameterizationComponent,
+        ViewLoanProductParameterizationListComponent
     ]
 })
 export class ProductsModule { }

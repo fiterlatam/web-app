@@ -1,0 +1,72 @@
+<div class="container mat-elevation-z8">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="productParamForm">
+        <div fxLayout="row wrap" fxLayoutGap="16px">
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.Product Type' | translate }}</mat-label>
+            <mat-select formControlName="productType">
+              <mat-option *ngFor="let productType of productTypes" [value]="productType">{{ productType }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.InvoicePrefix' | translate }}</mat-label>
+            <input matInput formControlName="billingPrefix" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.BillingResolutionNumber' | translate }}</mat-label>
+            <input matInput type="number" formControlName="billingResolutionNumber" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.GenerationDate' | translate }}</mat-label>
+            <input matInput [matDatepicker]="generationDatePicker" formControlName="generationDate" />
+            <mat-datepicker-toggle matSuffix [for]="generationDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #generationDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.ResolutionExpirationDate' | translate }}</mat-label>
+            <input matInput [matDatepicker]="expirationDatePicker" formControlName="expirationDate" />
+            <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #expirationDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.RangeFrom' | translate }}</mat-label>
+            <input matInput type="number" formControlName="rangeFrom" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.RangeTo' | translate }}</mat-label>
+            <input matInput type="number" formControlName="rangeEndNumber" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.LastInvoiceUsed' | translate }}</mat-label>
+            <input matInput type="number" formControlName="lastInvoiceNumber" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.LastCreditNote' | translate }}</mat-label>
+            <input matInput type="number" formControlName="lastCreditNoteNumber" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ 'labels.inputs.LastDebitNote' | translate }}</mat-label>
+            <input matInput type="number" formControlName="lastDebitNoteNumber" />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <button type="button" mat-raised-button
+              [routerLink]="['../']" >{{ "labels.buttons.Cancel" | translate }}
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!productParamForm.valid" (click)="onSave()">{{ "labels.buttons.Submit" | translate }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

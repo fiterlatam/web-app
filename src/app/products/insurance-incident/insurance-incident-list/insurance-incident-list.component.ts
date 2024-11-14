@@ -19,7 +19,6 @@ export class InsuranceIncidentListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router) {
     this.route.data.subscribe((data: { incidents: any }) => {
-      console.log('data' + JSON.stringify(data));
       this.incidents = data.incidents;
     });
   }
