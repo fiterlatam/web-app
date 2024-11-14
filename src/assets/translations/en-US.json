@@ -2555,6 +2555,10 @@
       "insurance.incident.final.refinanced.cancellation": "Final cancellation due to redeferred/refinanced",
       "insurance.incident.bad.sale.cancellation": "Cancellation due to bad sale",
       "insurance.incident.portfolio.write.off.cancellation": "Cancellation due to portfolio write-off",
+      "insurance.incident.temporary.suspension.default" : "Insurance temporary suspension",
+      "insurance.incident.permanent.cancellation.max.age" : "Cancellation of the maximum age",
+      "insurance.incident.death.cancellation": "Cancellation due to death",
+      "insurance.incident.removed.suspension": "Cancellation Suspension",
       "Reduce Installment Amount": "Reduce Installment Amount",
       "reclaims": {
         "Client Name": "Client Name",
