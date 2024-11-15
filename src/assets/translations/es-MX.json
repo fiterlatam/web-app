@@ -721,6 +721,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
     },
     "heading": {
+      "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Client Cupo Increments": "Aumento de cupos",
       "Client Cupo Decrements": "Disminución de cupos",
       "Collection Channels": "Canales de Recaudos",
@@ -2790,6 +2791,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Masivian Service Configuration": "Configuración del servicio Masivian",
       "AddCreditNote": "Ingreso de Nota de Crédito",
       "Loan Repayments": "Pagos de Créditos",
