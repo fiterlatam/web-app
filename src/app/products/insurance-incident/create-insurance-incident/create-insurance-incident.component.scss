@@ -7,3 +7,24 @@ h2 {
   text-align: center;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

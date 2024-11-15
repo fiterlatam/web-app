@@ -80,6 +80,14 @@
             <p matLine>{{ 'labels.text.Interest Rate Management' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['loan-products-parameters']" *mifosxHasPermission="'READ_ADVANCE_QUOTA'">
+            <mat-icon matListIcon>
+              <fa-icon icon="briefcase" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Loan Product Parameterization' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Loan Product Parameterization' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>
@@ -155,6 +163,8 @@
             <h4 matLine>{{ 'labels.heading.Insurance Incident Management' | translate }}</h4>
             <p matLine>{{ 'labels.text.Manage Insurance Novelty' | translate }}</p>
           </mat-list-item>
+
+
 
         </mat-nav-list>
 

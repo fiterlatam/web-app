@@ -1,0 +1,88 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+  <button mat-raised-button color="primary" [routerLink]="['edit']">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    Edit
+  </button>
+</div>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row wrap" class="content">
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.InvoicePrefix' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.billingPrefix }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.Product Type' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.productType }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.BillingResolutionNumber' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.billingResolutionNumber }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.GenerationDate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.generationDate | date }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.ResolutionExpirationDate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.expirationDate | date }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.RangeFrom' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.rangeStartNumber }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.RangeTo' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.rangeEndNumber }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.LastInvoiceUsed' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.lastInvoiceNumber }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.LastCreditNote' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.lastCreditNoteNumber }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ 'labels.inputs.LastDebitNote' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ loanProductParameterization.lastDebitNoteNumber }}
+        </div>
+
+      </div>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <button type="button" color="primary" mat-raised-button [routerLink]="['../']">Back</button>
+    </div>
+  </mat-card>
+</div>
