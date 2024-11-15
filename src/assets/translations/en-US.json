@@ -710,6 +710,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)"
     },
     "heading": {
+      "Loan Product Parameterization": "Loan Product Parameterization",
       "Client Cupo Increments": "Client Cupo Increments",
       "Client Cupo Decrements": "Client Cupo Decrements",
       "Collection Channels": "Collection Channels",
@@ -2759,6 +2760,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Loan Product Parameterization": "Loan Product Parameterization",
       "Masivian Service Configuration": "Masivian Service Configuration",
       "Loan Repayments": "Loan Repayments",
       "Loan Write Offs": "Loan Write Offs",
