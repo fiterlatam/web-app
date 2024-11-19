@@ -2,6 +2,7 @@
 
 @mixin account-view-component-theme($theme) {
   $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
 
   mifosx-clients-view,
   mifosx-fixed-deposit-account-view,
@@ -42,6 +43,24 @@
             object-fit: cover;
             border-radius: 20px;
           }
+
+          .client-image-button {
+            min-width: 26px;
+            padding: 0 6px;
+            margin: 4px;
+            line-height: 25px;
+          }
+          .signature {
+            background-color: mat.get-color-from-palette($accent, 500);;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 2%;
+            &:hover {
+              cursor: pointer;
+              background-color: mat.get-color-from-palette($accent, 700);
+            }
+          }
         }
         .account-actions {
           align-self: flex-end;
@@ -72,7 +91,7 @@
       i,
       img:hover {
         cursor: pointer;
-      }
+      }     
     }
   }
 }
