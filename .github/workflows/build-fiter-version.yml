@@ -1,8 +1,8 @@
-name: Build and Push SU+ images to Amazon ECR
+name: Build and Push EntreAmigos images to Amazon ECR
 on:
   push:
     branches:
-      - fiter/sumas/dev
+      - fiter/entreamigos/dev
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
@@ -36,8 +36,8 @@ jobs:
           ECR_REPOSITORY: latam-frontend
           IMAGE_TAG: ${{ steps.commit.outputs.short }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:sumas_$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:sumas_$IMAGE_TAG
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:entreamigos_$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:entreamigos_$IMAGE_TAG
 
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:sumas_latest .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:sumas_latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:entreamigos_latest .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:entreamigos_latest
