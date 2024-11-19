@@ -2594,8 +2594,8 @@
       "insurance.incident.portfolio.write.off.cancellation": "Cancelación por castigo de cartera",
       "insurance.incident.temporary.suspension.default" : "Suspensión temporal por mora",
       "insurance.incident.permanent.cancellation.max.age" : "Cancelación definitiva por edad máxima de permanencia",
-      "insurance.incident.death.cancellation": "Salida de suspensión",
-      "insurance.incident.removed.suspension": "Cancelación Suspensión",
+      "insurance.incident.death.cancellation": "Cancelación definitiva por fallecimiento",
+      "insurance.incident.removed.suspension": "Salida de suspensión",
       "insurance.incident.invalid" : "Inválido",
       "Reduce Installment Amount": "Reducir monto de cuotas",
       "reclaims": {
