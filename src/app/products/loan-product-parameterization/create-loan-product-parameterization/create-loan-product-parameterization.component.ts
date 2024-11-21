@@ -17,15 +17,17 @@ export class CreateLoanProductParameterizationComponent implements OnInit {
   productTypes: string[] = [];
   loanProductsTemplate: any;
 
-  constructor(private formBuilder: UntypedFormBuilder,
-              private productParameterizationService: ProductParameterizationService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private settingsService: SettingsService, private dateUtils: Dates) {
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private productParameterizationService: ProductParameterizationService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private settingsService: SettingsService,
+    private dateUtils: Dates
+  ) {
     this.route.data.subscribe((data: { loanProductParameterization: any }) => {
       this.productParamData = data.loanProductParameterization;
     });
-    //   get loan products template data to get the product types
     this.route.data.subscribe((data: { loanProductsTemplate: any }) => {
       this.loanProductsTemplate = data.loanProductsTemplate;
       this.productTypes = this.loanProductsTemplate?.productTypeOptions?.map((productType: {
@@ -40,13 +42,23 @@ export class CreateLoanProductParameterizationComponent implements OnInit {
 
   createProductParamForm() {
     this.productParamForm = this.formBuilder.group({
-      billingPrefix: ['', Validators.required],
+      billingPrefix: ['', [Validators.required, Validators.maxLength(6)]],
       productType: ['', Validators.required],
-      billingResolutionNumber: [0, Validators.required],
+      billingResolutionNumber: [0, [Validators.required, Validators.maxLength(50)]],
       generationDate: ['', Validators.required],
       expirationDate: ['', Validators.required],
-      rangeStartNumber: [0, Validators.required],
-      rangeEndNumber: [0, Validators.required],
+      rangeStartNumber: [0, [
+        Validators.required,
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
+        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+      ]],
+      rangeEndNumber: [0, [
+        Validators.required,
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
+        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+      ]],
       lastInvoiceNumber: [0, Validators.required],
       lastCreditNoteNumber: [0, Validators.required],
       lastDebitNoteNumber: [0, Validators.required]
@@ -72,5 +84,4 @@ export class CreateLoanProductParameterizationComponent implements OnInit {
       this.router.navigate(['../'], {relativeTo: this.route});
     });
   }
-
 }
