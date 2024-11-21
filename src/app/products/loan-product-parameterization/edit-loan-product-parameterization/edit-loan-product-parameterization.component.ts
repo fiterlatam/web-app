@@ -49,7 +49,9 @@ export class EditLoanProductParameterizationComponent implements OnInit {
       ]],
       lastInvoiceNumber: [this.productParamData.lastInvoiceNumber],
       lastCreditNoteNumber: [this.productParamData.lastCreditNoteNumber],
-      lastDebitNoteNumber: [this.productParamData.lastDebitNoteNumber]
+      lastDebitNoteNumber: [this.productParamData.lastDebitNoteNumber],
+      note: [this.productParamData.note],
+      technicalKey: [this.productParamData.technicalKey, [Validators.required, Validators.maxLength(100)]]
     });
   }
 

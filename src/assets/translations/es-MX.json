@@ -1115,6 +1115,7 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "technicalKey": "Clave técnica",
       "InvoicePrefix": "Prefijo de la factura",
       "BillingResolutionNumber": "El número de la resolución de facturación",
       "GenerationDate": "Fecha de generación",

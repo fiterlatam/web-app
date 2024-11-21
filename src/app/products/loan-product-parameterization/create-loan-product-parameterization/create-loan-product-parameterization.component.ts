@@ -61,7 +61,9 @@ export class CreateLoanProductParameterizationComponent implements OnInit {
       ]],
       lastInvoiceNumber: [0, Validators.required],
       lastCreditNoteNumber: [0, Validators.required],
-      lastDebitNoteNumber: [0, Validators.required]
+      lastDebitNoteNumber: [0, Validators.required],
+      technicalKey: ['', [Validators.required, Validators.maxLength(100)]],
+      notes: ['', Validators.maxLength(500)]
     });
   }
 
