@@ -1100,6 +1100,7 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "technicalKey": "Technical Key",
       "InvoicePrefix": "Invoice Prefix",
       "BillingResolutionNumber": "Billing Resolution Number",
       "GenerationDate": "Generation Date",
