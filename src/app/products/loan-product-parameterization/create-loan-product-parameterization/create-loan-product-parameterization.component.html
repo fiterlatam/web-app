@@ -11,51 +11,80 @@
           </mat-form-field>
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.InvoicePrefix' | translate }}</mat-label>
-            <input matInput formControlName="billingPrefix" />
+            <input matInput formControlName="billingPrefix"/>
+            <mat-error *ngIf="productParamForm.get('billingPrefix').hasError('maxlength')">
+              {{ 'labels.commons.6 characters allowed' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.BillingResolutionNumber' | translate }}</mat-label>
-            <input matInput type="number" formControlName="billingResolutionNumber" />
+            <input matInput type="number" formControlName="billingResolutionNumber"/>
+            <mat-error *ngIf="productParamForm.get('billingResolutionNumber').hasError('maxlength')">
+              {{ 'labels.commons.50 characters allowed' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.GenerationDate' | translate }}</mat-label>
-            <input matInput [matDatepicker]="generationDatePicker" formControlName="generationDate" />
+            <input matInput [matDatepicker]="generationDatePicker" formControlName="generationDate"/>
             <mat-datepicker-toggle matSuffix [for]="generationDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #generationDatePicker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.ResolutionExpirationDate' | translate }}</mat-label>
-            <input matInput [matDatepicker]="expirationDatePicker" formControlName="expirationDate" />
+            <input matInput [matDatepicker]="expirationDatePicker" formControlName="expirationDate"/>
             <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #expirationDatePicker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.RangeFrom' | translate }}</mat-label>
-            <input matInput type="number" formControlName="rangeFrom" />
+            <input matInput type="number" formControlName="rangeStartNumber"/>
+            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('required')">
+              {{ "labels.inputs.RangeFrom" | translate }} {{ "labels.commons.is" | translate }}
+              <strong>{{ "labels.commons.required" | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('maxlength')">
+              {{ 'labels.commons.4 characters allowed' | translate }}
+            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('pattern')">
+              {{ 'labels.commons.4 characters allowed' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.RangeTo' | translate }}</mat-label>
-            <input matInput type="number" formControlName="rangeEndNumber" />
+            <input matInput type="number" formControlName="rangeEndNumber"/>
+            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('required')">
+              {{ "labels.inputs.Value" | translate }} {{ "labels.commons.is" | translate }}
+              <strong>{{ "labels.commons.required" | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('maxlength')">
+              {{ 'labels.commons.4 characters allowed' | translate }}
+            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('pattern')">
+              {{ 'labels.commons.4 characters allowed' | translate }}
+            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('max')">
+              {{ 'labels.commons.4 characters allowed' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.LastInvoiceUsed' | translate }}</mat-label>
-            <input matInput type="number" formControlName="lastInvoiceNumber" />
+            <input matInput type="number" formControlName="lastInvoiceNumber"/>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.LastCreditNote' | translate }}</mat-label>
-            <input matInput type="number" formControlName="lastCreditNoteNumber" />
+            <input matInput type="number" formControlName="lastCreditNoteNumber"/>
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
             <mat-label>{{ 'labels.inputs.LastDebitNote' | translate }}</mat-label>
-            <input matInput type="number" formControlName="lastDebitNoteNumber" />
+            <input matInput type="number" formControlName="lastDebitNoteNumber"/>
           </mat-form-field>
         </div>
       </form>
@@ -63,9 +92,10 @@
 
     <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
       <button type="button" mat-raised-button
-              [routerLink]="['../']" >{{ "labels.buttons.Cancel" | translate }}
+              [routerLink]="['../']">{{ "labels.buttons.Cancel" | translate }}
       </button>
-      <button mat-raised-button color="primary" [disabled]="!productParamForm.valid" (click)="onSave()">{{ "labels.buttons.Submit" | translate }}
+      <button mat-raised-button color="primary" [disabled]="!productParamForm.valid"
+              (click)="onSave()">{{ "labels.buttons.Submit" | translate }}
       </button>
     </mat-card-actions>
   </mat-card>

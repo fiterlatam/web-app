@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {ProductParameterizationService} from '../product-parameterization.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SettingsService} from '../../../settings/settings.service';
@@ -30,13 +30,23 @@ export class EditLoanProductParameterizationComponent implements OnInit {
 
   editLoanProductParameterizationForm() {
     this.productParamForm = this.formBuilder.group({
-      billingPrefix: [this.productParamData.billingPrefix],
+      billingPrefix: [this.productParamData.billingPrefix, [Validators.required, Validators.maxLength(6)]],
       productType: [this.productParamData.productType],
-      billingResolutionNumber: [this.productParamData.billingResolutionNumber],
+      billingResolutionNumber: [this.productParamData.billingResolutionNumber || 0, [Validators.required, Validators.maxLength(50)]],
       generationDate: [this.dateUtils.parseDate(this.productParamData.generationDate)],
       expirationDate: [this.dateUtils.parseDate(this.productParamData.expirationDate)],
-      rangeStartNumber: [this.productParamData.rangeStartNumber],
-      rangeEndNumber: [this.productParamData.rangeEndNumber],
+      rangeStartNumber: [this.productParamData.rangeStartNumber || 0, [
+        Validators.required,
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
+        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+      ]],
+      rangeEndNumber: [this.productParamData.rangeEndNumber || 0, [
+        Validators.required,
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
+        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+      ]],
       lastInvoiceNumber: [this.productParamData.lastInvoiceNumber],
       lastCreditNoteNumber: [this.productParamData.lastCreditNoteNumber],
       lastDebitNoteNumber: [this.productParamData.lastDebitNoteNumber]
