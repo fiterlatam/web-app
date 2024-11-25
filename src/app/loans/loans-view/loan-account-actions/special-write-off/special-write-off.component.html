@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="specialWriteOffForm">
+            <table mat-table [dataSource]="concepts.controls" [formArrayName]="'concepts'">
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Concept' | translate}}</th>
+                <td mat-cell *matCellDef="let conceptData"> {{ conceptData.value.name | translate }} </td>
+              </ng-container>
+              <ng-container matColumnDef="outstandingBalance">
+                <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Balance as of today' | translate}}</th>
+                <td mat-cell *matCellDef="let conceptData"> {{ conceptData.value.amountOutstanding | currency:currency.code:'symbol-narrow':format:locale }} </td>
+              </ng-container>
+              <ng-container matColumnDef="writeOffAmount">
+                <th mat-header-cell *matHeaderCellDef>{{'labels.inputs.Value to be written-off' | translate}}</th>
+                <td mat-cell *matCellDef="let conceptData, let i = index" [formGroupName]="i">
+                  <mat-form-field class="editable-form-field" (change)="writeOffAmountChangeEvent()">
+                    <input matInput formControlName="writeOffAmount" [readonly]="conceptData.value.readOnly" type="number"/>
+                    <mat-error *ngIf="specialWriteOffForm.controls.concepts['controls'][i].controls.writeOffAmount.hasError('required')">
+                      {{'labels.inputs.Value to be written-off' | translate}} {{'labels.commons.is' | translate}} <strong>{{'labels.commons.required' | translate}}</strong>
+                    </mat-error>
+                    <mat-error *ngIf="specialWriteOffForm.controls.concepts['controls'][i].controls.writeOffAmount.hasError('min')">
+                      {{'labels.inputs.Value to be written-off' | translate}} {{'labels.commons.is' | translate}} <strong>{{'labels.commons.must be greater than or equal to zero' | translate}}</strong>
+                    </mat-error>
+                    <mat-error *ngIf="specialWriteOffForm.controls.concepts['controls'][i].controls.writeOffAmount.hasError('max')">
+                      {{'labels.inputs.Value to be written-off' | translate}} {{'labels.commons.is' | translate}} <strong>{{'labels.commons.must be greater than outstanding balance' | translate}}</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+      </form>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../../general']">{{"labels.buttons.Cancel" | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!specialWriteOffForm.valid" (click)="submit()" *mifosxHasPermission="'SPECIAL_WRITEOFF_LOAN'">{{"labels.buttons.Submit" | translate}}</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

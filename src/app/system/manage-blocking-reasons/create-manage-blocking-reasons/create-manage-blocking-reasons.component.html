@@ -1,0 +1,45 @@
+<div class="container">
+
+    <mat-card>
+  
+      <form [formGroup]="blockingReasonForm" (ngSubmit)="submit()">
+  
+        <mat-card-content>
+  
+          <div fxLayout="column">
+            
+            <mat-radio-group formControlName="level">
+              <mat-radio-button value="CLIENT">{{'labels.inputs.Client Level' | translate}}</mat-radio-button>
+              <mat-radio-button value="CREDIT">{{'labels.inputs.Credit Level' | translate}}</mat-radio-button>
+            </mat-radio-group>     
+
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Name Of Reason" | translate}}</mat-label>
+              <input matInput required formControlName="nameOfReason">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Priority" | translate}}</mat-label>
+              <input matInput type="number" required formControlName="priority" min="1" max="100">
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>{{"labels.inputs.Description" | translate}}</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+  
+          </div>
+  
+          </mat-card-content>
+  
+          <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+            <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
+            <button mat-raised-button color="primary" [disabled]="!blockingReasonForm.valid">Submit</button>
+          </mat-card-actions>
+  
+        </form>
+  
+      </mat-card>
+  
+  </div>
+  

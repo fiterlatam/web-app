@@ -1,0 +1,165 @@
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_CHARGE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{ "labels.buttons.Edit" | translate }}
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteCharge()" *mifosxHasPermission="'DELETE_CHARGE'">
+    <fa-icon icon="trash" class="m-r-10"></fa-icon>
+    {{ "labels.buttons.Delete" | translate }}
+  </button>
+</div>
+
+<div class="container">
+
+  <mat-card>
+
+    <mat-card-content>
+
+      <div fxLayout="row wrap" class="content">
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Name" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.name }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Type" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ (chargeData.penalty === true ? "labels.inputs.Penalty" : "labels.inputs.Charge") | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Currency" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.currency.name }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Amount" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.amount | formatNumber: [chargeData.currency.decimalPlaces] }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="interestRateData">
+          {{ "labels.inputs.Interest Rate" | translate }}
+        </div>
+        <div fxFlex="50%" *ngIf="interestRateData">
+          {{ interestRateData.name }} ({{ interestRateData['currentRate'] }}%)
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="minCap">
+          {{ "labels.inputs.Minimum Charge Cap" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="minCap">
+          {{ chargeData.minCap }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="maxCap">
+          {{ "labels.inputs.Maximum Charge Cap" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="maxCap">
+          {{ chargeData.maxCap }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Time Type" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.chargeTimeType.code | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Applies To" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.chargeAppliesTo.code | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Calculation Type" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.chargeCalculationType.code | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Charge Payment Mode" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.chargePaymentMode.code | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.chargeAppliesTo.value == 'Loan'">
+          {{ "labels.inputs.graceOnChargePeriodAmount" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.chargeAppliesTo.value == 'Loan'">
+          {{ chargeData.graceOnChargePeriodAmount  }} day(s)
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Is Active" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ chargeData.active === true | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.chargeTimeType.id == 9 && chargeData.feeFrequency">
+          {{ "labels.inputs.Fee Frequency" | translate }}
+        </div>
+
+        <div fxFlex="50%"
+          *ngIf="chargeData.chargeTimeType.id == 9 && chargeData.feeFrequency && chargeData.feeFrequency">
+          {{ chargeData.feeFrequency.code | translate }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.chargeTimeType.id == 9 && chargeData.feeInterval">
+          {{ "labels.inputs.Frequency Interval" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.chargeTimeType.id == 9 && chargeData.feeInterval">
+          {{ chargeData.feeInterval }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.incomeOrLiabilityAccount">
+          {{ "labels.inputs.Income from Charges" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.incomeOrLiabilityAccount">
+          {{ chargeData.incomeOrLiabilityAccount.name + ' (' + chargeData.incomeOrLiabilityAccount.glCode + ')' }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.taxGroup">
+          {{ "labels.inputs.Tax Group" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.taxGroup">
+          {{ chargeData.taxGroup.name }}
+        </div>
+
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+        <button type="button" mat-raised-button color="primary" [routerLink]="['../']">{{ 'labels.buttons.Back' | translate}}</button>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

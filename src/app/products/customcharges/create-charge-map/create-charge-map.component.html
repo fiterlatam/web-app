@@ -1,0 +1,73 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="chargeMapForm">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label> {{'labels.inputs.custom.charge.entity' | translate }}</mat-label>
+            <mat-select formControlName="customChargeEntityId" (selectionChange)="reloadChargeTypeOptions($event.value);">
+              <mat-option *ngFor="let chargeOption of chargeOptions" [value]="chargeOption.id">
+                {{ chargeOption.code | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="chargeMapForm.controls.customChargeEntityId.hasError('required')">
+              {{'labels.inputs.custom.charge.entity' | translate }}  {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.term' | translate }}</mat-label>
+            <input matInput formControlName="term" />
+            <mat-error *ngIf="chargeMapForm.controls.term.hasError('required')">
+              {{'labels.inputs.term' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.percentage' | translate }}</mat-label>
+            <input matInput required min="0" max="100"   [maxLength]="5"  formControlName="percentage" />
+            <mat-error *ngIf="chargeMapForm.controls.percentage.hasError('required')">
+              {{'labels.inputs.percentage' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="chargeMapForm.controls.percentage.hasError('pattern')">
+              {{"labels.inputs.percentage" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.begin with a special character or number" | translate}}
+            </mat-error>
+            <mat-error *ngIf="chargeMapForm.controls.percentage.hasError('max')">
+              {{"labels.inputs.percentage" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="chargeMapForm.controls.percentage.hasError('min')">
+              {{"labels.inputs.percentage" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field (click)="validFromDatePicker.open()">
+            <mat-label>{{'labels.inputs.validFrom' | translate }}</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="validFromDatePicker" formControlName="validFromDate" />
+            <mat-datepicker-toggle matSuffix [for]="validFromDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #validFromDatePicker></mat-datepicker>
+            <mat-error *ngIf="chargeMapForm.controls.validFromDate.hasError('required')">
+              {{'labels.inputs.validFrom' | translate }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label> {{'labels.inputs.custom.charge.type' | translate }}</mat-label>
+            <mat-select formControlName="customChargeTypeId">
+              <mat-option *ngFor="let chargeTypeOption of chargeTypeOptions" [value]="chargeTypeOption.id">
+                {{ chargeTypeOption.code | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="chargeMapForm.controls.customChargeTypeId.hasError('required')">
+              {{'labels.inputs.custom.charge.type' | translate }}  {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!chargeMapForm.valid" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'" (click)="submit()" >{{'labels.buttons.Submit' | translate}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

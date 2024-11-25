@@ -1,0 +1,120 @@
+<div class="tab-container mat-typography">
+    
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="search-box" fxFlex="40%">
+          <mat-form-field fxFlex="90%">
+            <input matInput placeholder="{{'labels.text.Filter by NIT' | translate}}" (keyup)="applyFilter($event.target.value)">
+          </mat-form-field>
+        </div>
+        <div fxFlex="60%">
+          <button mat-raised-button color="success" *mifosxHasPermission="'APPROVE_LOAN'" (click)="bulkCompensation('true')">
+            <fa-icon icon="check" class="m-r-10"></fa-icon>{{"Compensate" | translate}}
+          </button>
+          <button mat-raised-button color="reject" *mifosxHasPermission="'APPROVE_LOAN'" (click)="bulkCompensation('false')">
+            <fa-icon icon="times" class="m-r-10"></fa-icon>{{'labels.buttons.Reject' | translate}}
+          </button>
+        </div>
+      </div>
+    <div class="table-output">
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef >
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+        </ng-container>
+        <ng-container matColumnDef="compensationDate">
+            <th mat-header-cell *matHeaderCellDef class="p-5"> {{'labels.inputs.fechaComp' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.compensationDate | dateFormat}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.fechaDesde' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.startDate | dateFormat}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.fechaHasta' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.endDate | dateFormat}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.nit' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.nit}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.empresaMatriz' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.companyName}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="bankName">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.elBlanco' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.bankName}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="accontType">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.eltipodecuenta' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.accontType}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="accountNumber">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.accountNumber' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.accountNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="purchaseAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlrCompraz' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.purchaseAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="comissionAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.VlrComision' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.comissionAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="vaComissionAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlIvaComision' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.vaComissionAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="netPurchaseAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlrNetoCompra' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.netPurchaseAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="collectionAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.recaudos' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.collectionAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <ng-container matColumnDef="netOutstandingAmount">
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.vlrnetdePagar' | translate}} </th>
+            <td mat-cell *matCellDef="let compensation"> {{compensation.netOutstandingAmount | formatNumber}} </td>
+            
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    </table>
+ </div>
+</div>

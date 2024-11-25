@@ -1,0 +1,24 @@
+.container {
+
+}
+
+h4 {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+mat-checkbox {
+  display: block;
+  padding-left: 20px;
+}
+
+p {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+p:hover {
+  color: blue;
+}
+
+

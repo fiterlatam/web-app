@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="undoBlockClientForm" (ngSubmit)="submit()">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field (click)="undoBlockClientDatePicker.open()">
+            <mat-label>{{"labels.inputs.Undo Blocked On Date" | translate}}</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="undoBlockClientDatePicker" required formControlName="undoBlockedOnDate">
+            <mat-datepicker-toggle matSuffix [for]="undoBlockClientDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #undoBlockClientDatePicker></mat-datepicker>
+            <mat-error *ngIf="undoBlockClientForm.controls.undoBlockedOnDate.hasError('required')">
+              {{"labels.inputs.Undo Blocked On Date" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="48%">
+            <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
+            <mat-select formControlName="blockingReasonId">
+              <mat-option *ngFor="let reason of blockingReasonsDataOptions" [value]="reason.id">
+                {{ reason.priority }} - {{ reason.nameOfReason }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="undoBlockClientForm.controls.blockingReasonId.hasError('required')">
+              {{"labels.inputs.Blocking Reason" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="48%">
+            <mat-label>{{"labels.inputs.Comments" | translate}}</mat-label>
+            <input matInput formControlName="undoBlockingComment" maxlength="255" required>
+            <mat-error *ngIf="undoBlockClientForm.controls.undoBlockingComment.hasError('required')">
+              {{"labels.inputs.Comments" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../../']">{{"labels.buttons.Cancel" | translate}}</button>
+        <button mat-raised-button color="warn" [disabled]="!undoBlockClientForm.valid">{{"labels.buttons.Confirm" | translate}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

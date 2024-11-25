@@ -1,0 +1,153 @@
+<div class="container">
+
+  <mat-card>
+
+    <b>{{parentDescriptionAsTitle}}</b>
+
+    <form [formGroup]="groupForm">
+
+      <mat-card-content>
+          <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutGap="50" fxLayout.lt-md="column">
+                    <mat-form-field fxFlex="100%">
+                      <mat-label>{{"labels.inputs.name" | translate }}</mat-label>
+                      <input matInput required formControlName="name">
+                      <mat-error *ngIf="groupForm.controls.name.hasError('required')">
+                        {{"labels.inputs.name" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                      <mat-error *ngIf="groupForm.controls.name.hasError('maxlength')">
+                        {{"labels.inputs.name" | translate }} <strong> {{ 'labels.commons.cannot have more than' | translate }} </strong> 100 {{ 'labels.commons.characters'| translate }}
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="48%">
+                      <mat-label>{{"labels.inputs.code" | translate }}</mat-label>
+                      <input matInput required formControlName="code">
+                      <mat-error *ngIf="groupForm.controls.code.hasError('required')">
+                        {{"labels.inputs.code" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                      <mat-error *ngIf="groupForm.controls.code.hasError('pattern')">
+                       <strong>{{ "labels.commons.6 characters allowed" | translate }}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="38%">
+                      <mat-label>{{"labels.inputs.brand" | translate }}</mat-label>
+                      <mat-select required formControlName="brandCodeValueId">
+                        <mat-option *ngFor="let office of brandsList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.brandCodeValueId.hasError('required')">
+                        {{"labels.inputs.brand" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="48%">
+                      <mat-label>{{"labels.inputs.department" | translate }}</mat-label>
+                      <mat-select required formControlName="departmentCodeValueId" (selectionChange)="reloadCitiesByDepartment($event.value);">
+                        <mat-option *ngFor="let office of departmentsList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.departmentCodeValueId.hasError('required')">
+                        {{"labels.inputs.department" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="38%">
+                      <mat-label>{{"labels.inputs.city" | translate }}</mat-label>
+                      <mat-select required formControlName="cityCodeValueId">
+                        <mat-option *ngFor="let office of citiesList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.cityCodeValueId.hasError('required')">
+                        {{"labels.inputs.city" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="48%">
+                      <mat-label>{{"labels.inputs.category" | translate }}</mat-label>
+                      <mat-select required formControlName="categoryCodeValueId">
+                        <mat-option *ngFor="let office of categoriesList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.categoryCodeValueId.hasError('required')">
+                        {{"labels.inputs.category" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="38%">
+                      <mat-label>{{"labels.inputs.segment" | translate }}</mat-label>
+                      <mat-select required formControlName="segmentCodeValueId">
+                        <mat-option *ngFor="let office of segmentsList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.segmentCodeValueId.hasError('required')">
+                        {{"labels.inputs.segment" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field fxFlex="48%">
+                      <mat-label>{{"labels.inputs.type" | translate }}</mat-label>
+                      <mat-select required formControlName="typeCodeValueId">
+                        <mat-option *ngFor="let office of typesList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.typeCodeValueId.hasError('required')">
+                        {{"labels.inputs.type" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="25%">
+                      <mat-label>{{"labels.inputs.settledComission" | translate }}</mat-label>
+                      <input matInput required formControlName="settledComission">
+                      <mat-error *ngIf="groupForm.controls.settledComission.hasError('required')">
+                      {{"labels.inputs.settledComission" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                      <mat-error *ngIf="groupForm.controls.settledComission.hasError('pattern')">
+                      {{"labels.inputs.settledComission" | translate }} <strong>{{"labels.inputs.cannot" | translate }}</strong> {{ "labels.commons.begin with a special character or number" | translate }}
+                      </mat-error>
+                    </mat-form-field>
+
+                    <mat-checkbox labelPosition="after" formControlName="buyEnabled" fxFlex="100%">
+                        {{"labels.inputs.buyEnabled" | translate }}
+                    </mat-checkbox>
+
+                    <mat-checkbox labelPosition="after" formControlName="collectionEnabled" fxFlex="100%">
+                        {{"labels.inputs.collectionEnabled" | translate }}
+                    </mat-checkbox>
+
+                    <mat-form-field fxFlex="20%">
+                      <mat-label>{{"labels.inputs.state" | translate }}</mat-label>
+                      <mat-select required formControlName="stateCodeValueId">
+                        <mat-option *ngFor="let office of statesList" [value]="office.id">
+                        {{ office.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="groupForm.controls.stateCodeValueId.hasError('required')">
+                        {{"labels.inputs.state" | translate }} {{ "labels.commons.is"  |translate}} <strong>{{ "labels.commons.required"  |translate}}</strong>
+                      </mat-error>
+                    </mat-form-field>
+
+                </div>
+            </mat-card-content>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{"labels.buttons.Cancel" | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!groupForm.valid" (click)="submit()">{{"labels.buttons.Submit" | translate }}</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+
+</div>

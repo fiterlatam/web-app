@@ -1,0 +1,21 @@
+$primary-palette: (
+  100: rgba(#00738e, 0.87),
+  500: rgba(#00738e, 0.87),
+  700: rgba(#00738e, 0.87),
+  contrast: (
+    100: rgba(black, 0.87),
+    500: white,
+    700: white
+  )
+);
+
+$accent-palette: (
+  100: rgba(#abd9e3, 0.87),
+  500: rgba(#abd9e3, 0.87),
+  700: rgba(#54bdd4, 0.87),
+  contrast: (
+    100: rgba(#045062, 0.87),
+    500: rgba(#045062, 0.87),
+    700: rgba(#045062, 0.87)
+  )
+);

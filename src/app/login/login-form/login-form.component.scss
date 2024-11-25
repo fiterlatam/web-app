@@ -1,0 +1,32 @@
+#login-form {
+  .login-input {
+    width: 17rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .login-button {
+    width: 17rem;
+    margin-top: 1rem;
+  }
+
+  .forgot-password {
+    width: 17rem;
+    text-align: center;
+
+    mat-checkbox {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+
+
+  mat-spinner {
+    float: right;
+    margin: 0.5rem 0;
+  }
+}

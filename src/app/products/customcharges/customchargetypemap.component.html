@@ -1,0 +1,97 @@
+<mat-card class="container">
+      <form [formGroup]="filterForm">
+        <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center center">
+          <mat-form-field fxFlex="32%">
+            <mat-label>{{ "labels.inputs.custom.charge.entity" | translate }}</mat-label>
+            <mat-select (selectionChange)="changeChargeEntityEvent($event.value)">
+              <mat-option *ngFor="let chargeTime of customChargeEntityList" [value]="chargeTime.id">
+                {{ chargeTime.code | translate}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="32%">
+            <mat-label>{{ "labels.inputs.custom.charge.type" | translate }}</mat-label>
+            <mat-select (selectionChange)="changeChargeTypeEvent($event.value)">
+              <mat-option *ngFor="let chargeTime of customChargeTypeList" [value]="chargeTime.id">
+                {{ chargeTime.code | translate}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="action-button" fxFlex="7%">
+            <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'">{{"labels.buttons.Add" | translate }}</button>
+          </div>
+          <div class="action-button" fxFlex="10%">
+            <button mat-raised-button color="primary" [routerLink]="['vipcommercemap']" *mifosxHasPermission="'CREATE_CUSTOMCHARGETYPEMAP'">{{"labels.buttons.VIP & Commerce" | translate }}</button>
+          </div>
+        </div>
+      </form>
+
+    <table mat-table [dataSource]="dataSource" matSort *ngIf="reloaded">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.id"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"  class="text-right"> {{ apiData.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customChargeTypeId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.customChargeTypeId"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData" style="text-align: right;"> <div >{{ apiData.customChargeTypeId }}</div> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="term">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.term"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.term }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="percentage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.percentage"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.percentage }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="validFrom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.validFrom"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.validFromDate | dateFormat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="validTo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.validTo"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.validToDate | dateFormat }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.active"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.active }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.createdBy"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.createdBy }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.createdAt"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.createdAt }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.updatedBy"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.updatedBy }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"labels.inputs.updatedAt"  |translate}} </th>
+        <td mat-cell *matCellDef="let apiData"> {{ apiData.updatedAt }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="select-row" [routerLink]="[row.id, 'general']"></tr>
+    </table>
+
+    <mat-paginator [length]="(apiData == null ? 0 : apiData.length)" [pageSize]="25" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-card-content>
+      <div [ngStyle]="{'display': (customChargeTypeId == 0 || customChargeTypeId == null) ? 'none' : 'block'}">
+        <canvas id="charge-line-chart" width="800" height="200"></canvas>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+

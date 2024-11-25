@@ -1,0 +1,69 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_INTEREST_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.Edit' | translate}}
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="['view-history']" *mifosxHasPermission="'READ_INTEREST_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.View History' | translate}}
+  </button>
+</div>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row wrap" class="content">
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.ID' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData.id }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.name' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData.name }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Current Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['currentRate'] | formatNumber:[2]}}%
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Interest Rate Type' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['interestRateType'].code | translate}}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Applied On Date' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['appliedOnDate'] | dateFormat}}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Is Active' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['active'] | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Created By' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['createdBy'] }}
+        </div>
+      </div>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <button type="button" color="primary" mat-raised-button [routerLink]="['../']"> {{ 'labels.buttons.Back' | translate }}</button>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="masivianConfigurationForm" (ngSubmit)="submit()">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.SMS API URL' | translate}}</mat-label>
+            <input matInput required formControlName="SMS_API_URL">
+            <mat-error *ngIf="masivianConfigurationForm.controls.SMS_API_URL.hasError('required')">
+              {{'labels.inputs.SMS API URL' | translate}} {{ "labels.commons.is" | translate}} <strong>{{ "labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.SMS API Authorization Header' | translate}}</mat-label>
+            <input matInput required formControlName="SMS_API_AUTHORIZATION_HEADER">
+            <mat-error *ngIf="masivianConfigurationForm.controls.SMS_API_AUTHORIZATION_HEADER.hasError('required')">
+              {{'labels.inputs.SMS API Authorization Header' | translate}} {{ "labels.commons.is" | translate}} <strong>{{ "labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-checkbox labelPosition="before" formControlName="SMS_API_ENABLED" >
+            {{'labels.inputs.Is SMS API Enabled' | translate}}
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!masivianConfigurationForm.valid || masivianConfigurationForm.pristine">{{'labels.buttons.Submit' | translate}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

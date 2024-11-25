@@ -1,0 +1,68 @@
+<div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+
+    <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_BLOCKINGREASONSETTINGS'">
+      <fa-icon icon="edit" class="m-r-10"></fa-icon>
+      {{'labels.buttons.Edit' | translate}}
+    </button>
+  
+    <button mat-raised-button [color]="viewBlockingReasonItemData.isEnabled ? 'warn' : 'success'" *mifosxHasPermission="(viewBlockingReasonItemData.isEnabled  ? 'DISABLE_BLOCKINGREASONSETTINGS' : 'ENABLE_BLOCKINGREASONSETTINGS')"
+       (click)="openDialog()">
+      <fa-icon [icon]="viewBlockingReasonItemData.isEnabled ? 'trash' : 'check'" class="m-r-10"></fa-icon>
+      {{(viewBlockingReasonItemData.isEnabled ? 'labels.buttons.Disable' : 'labels.buttons.Enable') | translate}}
+    </button>
+  
+  </div>
+  
+  <div class="container">
+  
+    <mat-card>
+  
+      <mat-card-content>
+  
+        <div fxLayout="row wrap" class="content">
+  
+          <div fxFlex="50%" class="mat-body-strong">
+            {{'labels.inputs.Block Level' | translate}}
+          </div>
+  
+          <div fxFlex="50%">
+            {{ ('labels.text.'+viewBlockingReasonItemData.level) | translate }}
+          </div>
+
+          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.priority">
+            {{'labels.inputs.Priority' | translate}}
+          </div>
+  
+          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.priority">
+            {{ viewBlockingReasonItemData.priority }}
+          </div>
+
+          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.nameOfReason">
+            {{'labels.inputs.Name Of Reason' | translate}}
+          </div>
+          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.nameOfReason">
+            {{ viewBlockingReasonItemData.nameOfReason }}
+          </div>
+
+          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.description">
+            {{'labels.inputs.Description' | translate}}
+          </div>
+          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.description">
+            {{ viewBlockingReasonItemData.description }}
+          </div>
+
+          <div fxFlex="50%" class="mat-body-strong" *ngIf="viewBlockingReasonItemData.createdDate">
+            {{'labels.inputs.Created On' | translate}}
+          </div>
+          <div fxFlex="50%" *ngIf="viewBlockingReasonItemData.createdDate">
+            {{ viewBlockingReasonItemData.createdDate | dateFormat }}
+          </div>
+  
+        </div>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  </div>
+  

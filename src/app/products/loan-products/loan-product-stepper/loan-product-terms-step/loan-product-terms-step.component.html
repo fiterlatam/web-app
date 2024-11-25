@@ -1,0 +1,430 @@
+<form [formGroup]="loanProductTermsForm">
+
+  <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+
+    <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Purchase Charge' | translate}} <i class="fas fa-question" matTooltip="{{ 'tooltips.Voluntary Insurance/Assistance Mappings' | translate }}"></i></h4>
+    <mat-checkbox fxFlex="96%" labelPosition="before" formControlName="isPurchaseCharge">
+      <mat-label>{{'labels.inputs.Is it a Purchase Charge' | translate}}</mat-label>
+    </mat-checkbox>
+
+    <div fxFlex="98%" fxLayoutGap="2%" fxLayout="row wrap" fxLayout.lt-md="column">
+      <mat-form-field fxFlex="100%" *ngIf="loanProductTermsForm.value['isPurchaseCharge']">
+        <mat-label>{{'labels.inputs.Voluntary Insurance/Assistance' | translate }}</mat-label>
+        <mat-select formControlName="voluntaryInsuranceId" (selectionChange)="onVoluntaryInsuranceChange($event)">
+          <mat-option *ngFor="let voluntaryInsuranceOption of voluntaryInsuranceOptions" [value]="voluntaryInsuranceOption.id">
+            {{ voluntaryInsuranceOption.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Principal' | translate}} <i class="fas fa-question" matTooltip="{{ 'tooltips.Fields are used to define the minimum, default, and maximum principal' | translate }}"></i></h4>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Minimum Value' | translate}}</mat-label>
+      <input type="number" matInput formControlName="minPrincipal" [min]="0">
+      <mat-error>
+        {{'labels.commons.Minimum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Default Value' | translate}}</mat-label>
+      <input type="number" matInput formControlName="principal" required>
+      <mat-error>
+        {{'labels.commons.Default Principal is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Maximum Value' | translate}}</mat-label>
+      <input type="number" matInput formControlName="maxPrincipal" [min]="0">
+      <mat-error>
+        {{'labels.commons.Maximum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
+        <strong>{{'labels.commons.and must be greater than' | translate }}</strong> <strong>{{'labels.inputs.Minimum Value' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox fxFlex="96%" labelPosition="before" formControlName="allowApprovedDisbursedAmountsOverApplied">
+      <mat-label>{{'labels.inputs.Allow approval / disbursal above loan applied amount?' | translate}}</mat-label>
+    </mat-checkbox>
+
+    <div fxFlex="98%" fxLayoutGap="2%" fxLayout="row wrap" fxLayout.lt-md="column">
+      <mat-form-field fxFlex="32%" *ngIf="loanProductTermsForm.value.allowApprovedDisbursedAmountsOverApplied">
+        <mat-label>{{'labels.inputs.Over Amount Calculation Type' | translate }}</mat-label>
+        <mat-select formControlName="overAppliedCalculationType" required>
+          <mat-option *ngFor="let overAppliedCalculationType of overAppliedCalculationTypeData" [value]="overAppliedCalculationType.id">
+            {{ "labels.inputs.products.loan.overAppliedCalculationType." + overAppliedCalculationType.value | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="32%" *ngIf="loanProductTermsForm.value['allowApprovedDisbursedAmountsOverApplied']">
+        <mat-label>{{'labels.inputs.Over Amount' | translate }}</mat-label>
+        <input type="number" matInput formControlName="overAppliedNumber" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Installment day calculation from' | translate }}<i class="fas fa-question" matTooltip="{{ 'tooltips.Repayment schedule and installment dates' | translate }}"></i></mat-label>
+      <mat-select formControlName="repaymentStartDateType" required>
+        <mat-option *ngFor="let repaymentStartDateType of repaymentStartDateTypeOptions" [value]="repaymentStartDateType.id">
+          {{ "labels.inputs.products.loan.repaymentStartDateType." + repaymentStartDateType.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Number of repayments' | translate }}<i class="fas fa-question" matTooltip="{{ 'tooltips.Fields are used to define the minimum, default, and maximum number of repayments' | translate }}"></i></h4>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Minimum' | translate }}</mat-label>
+      <input type="number" matInput formControlName="minNumberOfRepayments" [min]="1">
+      <mat-error>
+        {{'labels.commons.Minimum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Default' | translate }}</mat-label>
+      <input type="number" matInput formControlName="numberOfRepayments" required>
+      <mat-error>
+        {{'labels.commons.Default number of repayments is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="31%">
+      <mat-label>{{'labels.inputs.Maximum' | translate }}</mat-label>
+      <input type="number" matInput formControlName="maxNumberOfRepayments" [min]="0">
+      <mat-error>
+        {{'labels.commons.Maximum Value must be' | translate }} <strong>{{'labels.commons.greater equal to than 0' | translate }}</strong>
+        {{'labels.commons.and must be greater than' | translate }} <strong>{{'labels.commons.Minimum Principal' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider fxFlex="98%"></mat-divider>
+
+    <h3 fxFlex="23%" class="mat-h3"> {{'labels.heading.Interest Rates' | translate }} </h3>
+
+    <mat-checkbox fxFlex="73%" labelPosition="before" formControlName="isLinkedToFloatingInterestRates">
+      {{'labels.inputs.Is Linked to floating interest rates?' | translate }}
+    </mat-checkbox>
+
+    <div *ngIf="!loanProductTermsForm.value['isLinkedToFloatingInterestRates']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+
+      <h4 fxFlex="98%" class="mat-h4">{{ 'labels.inputs.Nominal interest rate' | translate}} <i class="fas fa-question" matTooltip="{{'tooltips.These fields are used to select interest rate and define a loan product that require points' | translate}}"></i></h4>
+
+      <mat-form-field fxFlex="48%">
+        <mat-label>{{ 'labels.inputs.Interest Rate' | translate }}</mat-label>
+        <mat-select formControlName="interestRateId" required>
+          <mat-option *ngFor="let interestRateOption of interestRateOptions" [value]="interestRateOption.id">
+            {{ interestRateOption.name }} ({{ interestRateOption['currentRate'] | formatNumber: [2]}}%)
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          {{'labels.commons.Nominal interest rate frequency is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox fxFlex="48%" labelPosition="before" formControlName="requirePoints">
+        {{'labels.inputs.Requires Points' | translate}}
+      </mat-checkbox>
+    </div>
+
+    <div *ngIf="loanProductTermsForm.value['isLinkedToFloatingInterestRates']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="start center">
+
+      <h4 fxFlex="98%" class="mat-h4">{{'labels.inputs.Floating Interest Rate' | translate }}<i class="fas fa-question" matTooltip="{{'tooltips.Define the minimum, default, maximum, and period for the floating interest rate' | translate }}"></i></h4>
+
+      <mat-form-field fxFlex="31%">
+        <mat-label>{{'labels.inputs.Floating Rate' | translate }}</mat-label>
+        <mat-select formControlName="floatingRatesId" required>
+          <mat-option *ngFor="let floatingRate of floatingRateData" [value]="floatingRate.id">
+            {{ floatingRate.name | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+           {{'labels.commons.Floating rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="31%">
+        <mat-label>{{'labels.inputs.Differential Rate' | translate }}</mat-label>
+        <input type="number" matInput formControlName="interestRateDifferential" required>
+        <mat-error>
+          {{'labels.commons.Differential rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox fxFlex="31%" labelPosition="before" formControlName="isFloatingInterestRateCalculationAllowed">
+        {{'labels.inputs.Is Floating calculation allowed?' | translate }}
+      </mat-checkbox>
+
+      <mat-form-field fxFlex="31%">
+        <mat-label>{{'labels.inputs.Minimum' | translate }}</mat-label>
+        <input type="number" matInput formControlName="minDifferentialLendingRate" [min]="0" required>
+        <mat-error>
+          {{'labels.commons.Minimum interest rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="31%">
+        <mat-label>{{'labels.inputs.Default' | translate }}</mat-label>
+        <input type="number" matInput formControlName="defaultDifferentialLendingRate" required>
+        <mat-error>
+          {{'labels.commons.Default interest rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="31%">
+        <mat-label>{{'labels.inputs.Maximum' | translate }}</mat-label>
+        <input type="number" matInput formControlName="maxDifferentialLendingRate" required>
+        <mat-error>
+          {{'labels.commons.Maximum interest rate is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <mat-divider fxFlex="98%"></mat-divider>
+
+    <h3 fxFlex="23%" class="mat-h3">{{'labels.inputs.Variations' | translate }}</h3>
+
+    <mat-checkbox fxFlex="73%" labelPosition="before" formControlName="useBorrowerCycle">
+      {{'labels.inputs.Terms vary based on loan cycle' | translate }}
+    </mat-checkbox>
+
+    <div *ngIf="loanProductTermsForm.value['useBorrowerCycle']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+
+      <h4 fxFlex="23%" class="mat-h4"> {{'labels.heading.Principal by loan cycle' | translate }} </h4>
+
+      <div fxFlex="73%">
+        <button type="button" mat-raised-button color="primary" (click)="addVariationsForBorrowerCycle('Principal', principalVariationsForBorrowerCycle)">
+          <fa-icon icon="plus" class="m-r-10"></fa-icon>
+            {{'labels.buttons.Add' | translate }}
+        </button>
+      </div>
+
+      <table fxFlex="98%" class="mat-elevation-z1" mat-table [dataSource]="principalVariationsForBorrowerCycle.value" *ngIf="principalVariationsForBorrowerCycle.value.length">
+
+        <ng-container matColumnDef="valueConditionType">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Condition' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.valueConditionType | find:valueConditionTypeData:'id':'value' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="borrowerCycleNumber">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Cycle' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.borrowerCycleNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="minValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Minimum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.minValue  }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="defaultValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Default' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.defaultValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maxValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Maximum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.maxValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Actions' | translate }}</th>
+          <td mat-cell *matCellDef="let variation; let i = index">
+            <button mat-icon-button color="primary" (click)="editVariationsForBorrowerCycle('Principal', principalVariationsForBorrowerCycle, i)">
+              <fa-icon icon="edit"></fa-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteVariationsForBorrowerCycle(principalVariationsForBorrowerCycle, i)">
+              <fa-icon icon="trash"></fa-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <h4 fxFlex="23%" class="mat-h4">{{'labels.heading.Number of Repayments by loan cycle' | translate }}</h4>
+
+      <div fxFlex="73%">
+        <button type="button" mat-raised-button color="primary" (click)="addVariationsForBorrowerCycle('NumberOfRepayments', numberOfRepaymentVariationsForBorrowerCycle)">
+          <fa-icon icon="plus" class="m-r-10"></fa-icon>
+          {{'labels.buttons.Add' | translate }}
+        </button>
+      </div>
+
+      <table fxFlex="98%" class="mat-elevation-z1" mat-table [dataSource]="numberOfRepaymentVariationsForBorrowerCycle.value" *ngIf="numberOfRepaymentVariationsForBorrowerCycle.value.length">
+
+        <ng-container matColumnDef="valueConditionType">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Condition' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.valueConditionType | find:valueConditionTypeData:'id':'value' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="borrowerCycleNumber">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Cycle' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.borrowerCycleNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="minValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Minimum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.minValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="defaultValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Default' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.defaultValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maxValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Maximum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.maxValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Actions' | translate }} </th>
+          <td mat-cell *matCellDef="let variation; let i = index">
+            <button mat-icon-button color="primary" (click)="editVariationsForBorrowerCycle('NumberOfRepayments', numberOfRepaymentVariationsForBorrowerCycle, i)">
+              <fa-icon icon="edit"></fa-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteVariationsForBorrowerCycle(numberOfRepaymentVariationsForBorrowerCycle, i)">
+              <fa-icon icon="trash"></fa-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <h4 fxFlex="23%" class="mat-h4"> {{'labels.heading.Nominal Interest Rate by loan cycle' | translate }} </h4>
+
+      <div fxFlex="73%">
+        <button type="button" mat-raised-button color="primary" (click)="addVariationsForBorrowerCycle('NominalInterestRate', interestRateVariationsForBorrowerCycle)">
+          <fa-icon icon="plus" class="m-r-10"></fa-icon>
+            {{'labels.buttons.Add' | translate }}
+        </button>
+      </div>
+
+      <table fxFlex="98%" class="mat-elevation-z1" mat-table [dataSource]="interestRateVariationsForBorrowerCycle.value" *ngIf="interestRateVariationsForBorrowerCycle.value.length">
+
+        <ng-container matColumnDef="valueConditionType">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Condition' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.valueConditionType | find:valueConditionTypeData:'id':'value' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="borrowerCycleNumber">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Loan Cycle' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.borrowerCycleNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="minValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Minimum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.minValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="defaultValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Default' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.defaultValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maxValue">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Maximum' | translate }} </th>
+          <td mat-cell *matCellDef="let variation">
+            {{ variation.maxValue }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Actions' | translate }} </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-icon-button color="primary" (click)="editVariationsForBorrowerCycle('NominalInterestRate', interestRateVariationsForBorrowerCycle, i)">
+              <fa-icon icon="edit"></fa-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteVariationsForBorrowerCycle(interestRateVariationsForBorrowerCycle, i)">
+              <fa-icon icon="trash"></fa-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+    </div>
+
+    <mat-divider fxFlex="98%"></mat-divider>
+
+    <h4 fxFlex="98%" class="mat-h4"> {{'labels.heading.Repaid Every' | translate }} <i class="fas fa-question" matTooltip="{{ 'tooltips.Fields are input to calculating the repayment schedule' | translate }}" ></i></h4>
+
+    <mat-form-field fxFlex="48%">
+      <mat-label>{{'labels.inputs.Frequency' | translate }}</mat-label>
+      <input type="number" matInput formControlName="repaymentEvery" required>
+      <mat-error>
+        {{'labels.commons.Repaid every frequency is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48%">
+      <mat-label> {{'labels.inputs.Type' | translate }} </mat-label>
+      <mat-select formControlName="repaymentFrequencyType" required>
+        <mat-option *ngFor="let repaymentFrequencyType of repaymentFrequencyTypeData" [value]="repaymentFrequencyType.id">
+          {{ "labels.inputs.products.loan.repaymentFrequencyType." + repaymentFrequencyType.value | translate }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        {{'labels.commons.Repaid every type is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48%">
+      <mat-label> {{'labels.inputs.Minimum days between disbursal and first repayment date' | translate }} </mat-label>
+      <input type="number" matInput formControlName="minimumDaysBetweenDisbursalAndFirstRepayment">
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+    <button mat-raised-button matStepperPrevious>
+      <fa-icon icon="arrow-left" class="m-r-10"></fa-icon>
+      {{'labels.buttons.Previous' | translate}}
+    </button>
+    <button mat-raised-button matStepperNext>
+      {{'labels.buttons.Next' | translate}}
+      <fa-icon icon="arrow-right" class="m-l-10"></fa-icon>
+    </button>
+  </div>
+
+</form>

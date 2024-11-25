@@ -1,42 +1,74 @@
+/** Angular Imports */
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ShellComponent } from './shell/shell.component';
-import { HeaderComponent } from './shell/header/header.component';
-import { RouteReusableStrategy } from './route-reusable-strategy';
+/** Translation Imports */
+import { TranslateModule } from '@ngx-translate/core';
+
+/** Custom Services */
 import { AuthenticationService } from './authentication/authentication.service';
-import { AuthenticationGuard } from './authentication/authentication.guard';
-import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
+import { ProgressBarService } from './progress-bar/progress-bar.service';
+
+/** Custom Guards */
+import { AuthenticationGuard } from './authentication/authentication.guard';
+
+/** Custom Interceptors */
+import { ProgressInterceptor } from './progress-bar/progress.interceptor';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
+import { AuthenticationInterceptor } from './authentication/authentication.interceptor';
 
+/** Custom Strategies */
+import { RouteReusableStrategy } from './route/route-reusable-strategy';
+
+/** Custom Modules */
+import { SharedModule } from '../shared/shared.module';
+
+/** Custom Components */
+import { ShellComponent } from './shell/shell.component';
+import { SidenavComponent } from './shell/sidenav/sidenav.component';
+import { ToolbarComponent } from './shell/toolbar/toolbar.component';
+import { BreadcrumbComponent } from './shell/breadcrumb/breadcrumb.component';
+import { ContentComponent } from './shell/content/content.component';
+import {PipesModule} from "../pipes/pipes.module";
+
+
+/**
+ * Core Module
+ *
+ * Main app shell components and singleton services should be here.
+ */
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    TranslateModule,
-    NgbModule,
-    RouterModule  
-  ],
-
+    imports: [
+        SharedModule,
+        HttpClientModule,
+        TranslateModule,
+        RouterModule,
+        PipesModule
+    ],
   declarations: [
-    HeaderComponent,
-    ShellComponent
+    ShellComponent,
+    SidenavComponent,
+    ToolbarComponent,
+    BreadcrumbComponent,
+    ContentComponent
   ],
   exports: [
-    HeaderComponent],
-    
+    SharedModule // TO BE REMOVED: Once all components have replaced the core module import by shared module.
+  ],
   providers: [
     AuthenticationService,
     AuthenticationGuard,
-    I18nService,
+    AuthenticationInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    },
     HttpCacheService,
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
@@ -44,6 +76,12 @@ import { CacheInterceptor } from './http/cache.interceptor';
     {
       provide: HttpClient,
       useClass: HttpService
+    },
+    ProgressBarService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ProgressInterceptor,
+      multi: true
     },
     {
       provide: RouteReuseStrategy,

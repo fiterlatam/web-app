@@ -1,26 +1,44 @@
+/** Angular Imports */
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
-import { CoreModule } from '@app/core';
-import { SharedModule } from '@app/shared';
+/** Custom Modules */
+import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
+import { PipesModule } from '../pipes/pipes.module';
 
+/** Custom Components */
+import { HomeComponent } from './home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AmountCollectedPieComponent } from './dashboard/amount-collected-pie/amount-collected-pie.component';
+import { AmountDisbursedPieComponent } from './dashboard/amount-disbursed-pie/amount-disbursed-pie.component';
+import { ClientTrendsBarComponent } from './dashboard/client-trends-bar/client-trends-bar.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
+import { SessionTimeoutDialogComponent } from './timeout-dialog/session-timeout-dialog.component';
+
+/**
+ * Home Component
+ *
+ * Home and dashboard components should be declared here.
+ */
 @NgModule({
   imports: [
-    CommonModule,
-    TranslateModule,
-    CoreModule,
+    MatDialogModule,
     SharedModule,
-    HomeRoutingModule
+    PipesModule,
+    HomeRoutingModule,
+    TranslateModule,
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    DashboardComponent,
+    AmountCollectedPieComponent,
+    AmountDisbursedPieComponent,
+    ClientTrendsBarComponent,
+    WarningDialogComponent,
+    SessionTimeoutDialogComponent
   ],
-  providers: [
-    QuoteService
-  ]
+  providers: [ ]
 })
 export class HomeModule { }

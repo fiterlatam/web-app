@@ -1,0 +1,64 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="interestRateForm" (ngSubmit)="submit()">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.Name' | translate }}</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="interestRateForm.controls.currentRate.hasError('required')">
+              {{'labels.inputs.Name' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label> {{'labels.inputs.Interest Rate Type' | translate }}</mat-label>
+            <mat-select formControlName="interestRateTypeId">
+              <mat-option *ngFor="let interestRateTypeOption of interestRateTypeOptions" [value]="interestRateTypeOption.id">
+                {{ interestRateTypeOption.code | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{'labels.inputs.Interest Rate Type' | translate }}  {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'labels.inputs.Current Rate' | translate }}</mat-label>
+            <input matInput required min="0" max="100"   [maxLength]="5"  formControlName="currentRate" />
+            <mat-error *ngIf="interestRateForm.controls.currentRate.hasError('required')">
+              {{'labels.inputs.Current Rate' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="interestRateForm.controls.currentRate.hasError('pattern')">
+              {{"labels.inputs.Current Rate" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.begin with a special character or number" | translate}}
+            </mat-error>
+            <mat-error *ngIf="interestRateForm.controls.currentRate.hasError('max')">
+              {{"labels.inputs.Current Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="interestRateForm.controls.currentRate.hasError('min')">
+              {{"labels.inputs.Current Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field (click)="appliedOnDatePicker.open()">
+            <mat-label>{{'labels.inputs.Applied On Date' | translate }}</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="appliedOnDatePicker" required formControlName="appliedOnDate" />
+            <mat-datepicker-toggle matSuffix [for]="appliedOnDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #appliedOnDatePicker></mat-datepicker>
+            <mat-error *ngIf="interestRateForm.controls.appliedOnDate.hasError('required')">
+              {{'labels.inputs.Applied On Date' | translate }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-checkbox  formControlName="active">
+            {{'labels.inputs.Is Active' | translate}}?
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!interestRateForm.valid" *mifosxHasPermission="'UPDATE_INTEREST_RATE'">{{'labels.buttons.Submit' | translate}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

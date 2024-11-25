@@ -1,0 +1,65 @@
+<div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+  <div  class="in-block">
+    <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_INSURANCE_INCIDENT'">
+      <fa-icon icon="plus" class="m-r-10"></fa-icon>
+      {{'labels.buttons.Create Insurance Incident' | translate }}
+    </button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div #filter fxLayout="row">
+    <mat-form-field fxFlex>
+      <mat-label>{{'labels.inputs.Filter' | translate}}</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)">
+    </mat-form-field>
+  </div>
+
+  <div  class="mat-elevation-z8">
+
+    <table #loanProductsTable mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Name' | translate}}</th>
+        <td mat-cell *matCellDef="let incident"> {{ incident.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.type' | translate}}</th>
+        <td mat-cell *matCellDef="let incident"> {{ incident.incidentTypeName | translate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mandatoryInsurance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Mandatory Insurance' | translate}}</th>
+        <td mat-cell *matCellDef="let incident">
+          <div [className]="incident.isMandatory | statusLookup">
+            <fa-icon matTooltip="{{ incident.isMandatory ? 'Active' : 'Inactive' }}" matTooltipPosition="right" icon="circle" size="lg"></fa-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="voluntaryInsurance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Voluntary Insurance' | translate}}</th>
+        <td mat-cell *matCellDef="let incident">
+          <div [className]="incident.isVoluntary | statusLookup">
+            <fa-icon matTooltip="{{ incident.isVoluntary ? 'Active' : 'Inactive' }}" matTooltipPosition="right" icon="circle" size="lg"></fa-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="[row.id]" class="select-row"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</div>
+
+
+
+
+

@@ -1,68 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+/** Angular Imports */
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
 
-import { environment } from '@env/environment';
-import { Logger, I18nService, AuthenticationService } from '@app/core';
+/** rxjs Imports */
+import { Subscription } from 'rxjs';
 
-const log = new Logger('Login');
+/** Custom Models */
+import { Alert } from '../core/alert/alert.model';
 
+/** Custom Services */
+import { AlertService } from '../core/alert/alert.service';
+
+/** Environment Imports */
+import { environment } from '../../environments/environment';
+
+/**
+ * Login component.
+ */
 @Component({
-  selector: 'app-login',
+  selector: 'mifosx-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  version: string = environment.version;
-  error: string;
-  loginForm: FormGroup;
-  isLoading = false;
+  public environment = environment;
 
-  constructor(private router: Router,
-              private formBuilder: FormBuilder,
-              private i18nService: I18nService,
-              private authenticationService: AuthenticationService) {
-    this.createForm();
-  }
+  /** True if password requires a reset. */
+  resetPassword = false;
+  /** True if user requires two factor authentication. */
+  twoFactorAuthenticationRequired = false;
+  /** Subscription to alerts. */
+  alert$: Subscription;
 
-  ngOnInit() { }
+  /**
+   * @param {AlertService} alertService Alert Service.
+   * @param {Router} router Router for navigation.
+   */
+  constructor(private alertService: AlertService,
+              private router: Router) { }
 
-  login() {
-    this.isLoading = true;
-    this.authenticationService.login(this.loginForm.value)
-      .pipe(finalize(() => {
-        this.loginForm.markAsPristine();
-        this.isLoading = false;
-      }))
-      .subscribe(credentials => {
-        log.debug(`${credentials.username} successfully logged in`);
+  /**
+   * Subscribes to alert event of alert service.
+   */
+  ngOnInit() {
+    this.alert$ = this.alertService.alertEvent.subscribe((alertEvent: Alert) => {
+      const alertType = alertEvent.type;
+      if (alertType === 'Password Expired') {
+        this.twoFactorAuthenticationRequired = false;
+        this.resetPassword = true;
+      } else if (alertType === 'Two Factor Authentication Required') {
+        this.resetPassword = false;
+        this.twoFactorAuthenticationRequired = true;
+      } else if (alertType === 'Authentication Success') {
+        this.resetPassword = false;
+        this.twoFactorAuthenticationRequired = false;
         this.router.navigate(['/'], { replaceUrl: true });
-      }, error => {
-        log.debug(`Login error: ${error}`);
-        this.error = error;
-      });
-  }
-
-  setLanguage(language: string) {
-    this.i18nService.language = language;
-  }
-
-  get currentLanguage(): string {
-    return this.i18nService.language;
-  }
-
-  get languages(): string[] {
-    return this.i18nService.supportedLanguages;
-  }
-
-  private createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: true
+      }
     });
+
+    console.log('Environment:', this.environment);
+  }
+
+  /**
+   * Unsubscribes from alerts.
+   */
+  ngOnDestroy() {
+    this.alert$.unsubscribe();
   }
 
 }

@@ -30,7 +30,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      120
+      250
     ],
     "member-access": false,
     "member-ordering": [
@@ -49,7 +49,6 @@
     "no-console": [
       true,
       "debug",
-      "info",
       "time",
       "timeEnd",
       "trace"
@@ -77,7 +76,6 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -129,22 +127,22 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "mifosx",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "mifosx",
       "kebab-case"
     ],
     "no-output-on-prefix": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
+    "no-inputs-metadata-property": true,
+    "no-outputs-metadata-property": true,
+    "no-host-metadata-property": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "use-life-cycle-interface": true,
+    "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true

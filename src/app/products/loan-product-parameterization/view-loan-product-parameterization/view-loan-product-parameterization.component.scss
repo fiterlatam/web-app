@@ -1,0 +1,77 @@
+.container {
+  max-width: 37rem;
+
+  .content {
+    div {
+      margin: 1rem 0;
+      word-wrap: break-word;
+    }
+  }
+}
+
+h2 {
+  margin-top: 1rem;
+  text-align: center;
+}
+.container {
+  margin-bottom: 20px;
+
+  mat-card {
+    padding: 16px;
+    max-height: 400px; // Set a fixed height for the card
+
+    mat-card-content {
+      margin-bottom: 20px;
+      overflow-y: auto; // Enable vertical scrolling
+      max-height: calc(400px - 80px); // Account for padding and button space
+
+      .content {
+        row-gap: 8px; // Reduced space between rows
+
+        > div {
+          padding: 4px 8px; // Reduced padding
+          min-height: 32px; // Minimum height for each row
+          display: flex;
+          align-items: center;
+
+          &.mat-body-strong {
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.87);
+          }
+
+          // Optional: add subtle separators between rows
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          }
+        }
+      }
+
+      // Style the scrollbar
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    }
+  }
+}
+
+// Utility classes remain the same
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}

@@ -1,6 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "module": "es2020",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -9,18 +13,14 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5",
+    "target": "es2020",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "src/typings.d.ts"
     ],
     "lib": [
       "es2017",
       "dom"
-    ],
-    "baseUrl": "src",
-    "paths": {
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
-    }
+    ]
   }
 }

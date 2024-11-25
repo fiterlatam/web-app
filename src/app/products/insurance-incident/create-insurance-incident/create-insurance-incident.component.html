@@ -1,0 +1,51 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="incidentForm" (ngSubmit)="submit()">
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>{{ 'labels.inputs.Name' | translate }}</mat-label>
+            <input matInput formControlName="name"/>
+            <mat-error *ngIf="incidentForm.controls.name.hasError('required')">
+              {{ 'labels.inputs.Name' | translate }} {{ 'labels.commons.is' | translate }}
+              <strong>{{ 'labels.commons.required' | translate }}</strong>
+            </mat-error>
+            <mat-error *ngIf="incidentForm.hasError('atLeastOneChecked') && (incidentForm.touched || incidentForm.dirty)">
+              Please select at least one type of insurance.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{ 'labels.inputs.type' | translate }}</mat-label>
+            <mat-select required formControlName="incidentType">
+              <mat-option *ngFor="let incidentType of incidentData.incidentTypeOptions"
+                          [value]="incidentType.id">
+                {{ incidentType.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="incidentForm.controls.incidentType.hasError('required')">
+              {{ 'labels.inputs.type' | translate }} {{ 'labels.commons.is' | translate }}
+              <strong>{{ 'labels.commons.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-checkbox formControlName="isMandatory">
+            {{ 'labels.inputs.Is For Mandatory Insurance' | translate }}
+          </mat-checkbox>
+
+          <mat-checkbox formControlName="isVoluntary">
+            {{ 'labels.inputs.Is For Voluntary Insurance' | translate }}
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{ 'labels.buttons.Cancel' | translate }}
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!incidentForm.valid"
+                *mifosxHasPermission="'CREATE_INTEREST_RATE'">{{ 'labels.buttons.Submit' | translate }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
