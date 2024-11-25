@@ -225,6 +225,13 @@ import {
 import {
   CreateLoanProductParameterizationComponent
 } from './loan-product-parameterization/create-loan-product-parameterization/create-loan-product-parameterization.component';
+import { CollectionHouseConfigComponent } from './collection-house-config/collection-house-config.component';
+import { CollectionHouseConfigResolver } from './collection-house-config/collection-house-config.resolver';
+import { CreateCollectionHouseComponent } from './collection-house-config/create-collection-house-config/create-collection-house/create-collection-house.component';
+import { ViewCollectionHouseConfigComponent } from './collection-house-config/view/view-collection-house-config/view-collection-house-config.component';
+import { EditCollectionHouseConfigComponent } from './collection-house-config/edit-collection-house-config/edit-collection-house-config/edit-collection-house-config.component';
+import { ViewCollectionHouseConfigResolver } from './collection-house-config/view/view-collection-house-config.resolver';
+
 
 /** Products Routes */
 const routes: Routes = [
@@ -1157,7 +1164,45 @@ const routes: Routes = [
                 ]
               },
             ]
-          }
+          },
+          {
+            path: 'collectionhouseconfiguration',
+            data: {title: 'Collection House Configuration', breadcrumb: 'Collection House Configuration'},
+            children: [
+              {
+                path: '',
+                component: CollectionHouseConfigComponent,  
+                resolve: {
+                  collectionHouse: CollectionHouseConfigResolver      
+                },
+                data: {title: 'Collection House Configuration', breadcrumb: 'Collection House Configuration'}
+              },
+              {
+                path: 'create',
+                component: CreateCollectionHouseComponent,  
+                resolve: {
+                  collectionHouse: CollectionHouseConfigResolver        
+                },
+                data: {title: 'Create Collection House Configuration', breadcrumb: 'Create', routeParamBreadcrumb: true}
+              },
+              {
+                path: ':id',
+                component: ViewCollectionHouseConfigComponent,   // Component for viewing a single incident
+                resolve: {
+                  collectionHouse: ViewCollectionHouseConfigResolver         // Resolver for fetching a single incident by ID
+                },
+                data: {title: 'View Collection House Configuration', breadcrumb: 'View', routeParamBreadcrumb: true}
+              },
+              {
+                path: ':id/edit',
+                component: EditCollectionHouseConfigComponent,   // Component for editing an incident
+                resolve: {
+                  collectionHouse: ViewCollectionHouseConfigResolver         // Resolver for fetching a single incident by ID
+                },
+                data: {title: 'Edit Collection House Configuration', breadcrumb: 'Edit', routeParamBreadcrumb: true}
+              }
+            ]
+          },
         ]
       }
     ]

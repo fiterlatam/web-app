@@ -608,7 +608,8 @@
       "Claim": "Claim",
       "Exclude": "Exclude",
       "Export": "Export",
-      "punish": "Punish"
+      "punish": "Punish",
+      "Add Collection House": "Add Collection House"
     },
     "commons": {
       "must be greater than outstanding balance": "must be greater than outstanding balance",
@@ -715,6 +716,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)"
     },
     "heading": {
+      "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
       "Client Cupo Increments": "Client Cupo Increments",
       "Client Cupo Decrements": "Client Cupo Decrements",
@@ -1100,6 +1102,10 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "collectionName": "Company name of the collection house",
+      "collectionNit": "NIT",
+      "collectionCode": "Code",
+      "collectionVerificationCode":"Verification",
       "technicalKey": "Technical Key",
       "InvoicePrefix": "Invoice Prefix",
       "BillingResolutionNumber": "Billing Resolution Number",
@@ -2774,6 +2780,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
       "Masivian Service Configuration": "Masivian Service Configuration",
       "Loan Repayments": "Loan Repayments",

@@ -142,6 +142,10 @@ import { CreateLoanProductParameterizationComponent } from './loan-product-param
 import { EditLoanProductParameterizationComponent } from './loan-product-parameterization/edit-loan-product-parameterization/edit-loan-product-parameterization.component';
 import { ViewLoanProductParameterizationComponent } from './loan-product-parameterization/view-loan-product-parameterization/view-loan-product-parameterization.component';
 import { ViewLoanProductParameterizationListComponent } from './loan-product-parameterization/view-loan-product-parameterization-list/view-loan-product-parameterization-list.component';
+import { CollectionHouseConfigComponent } from './collection-house-config/collection-house-config.component';
+import { CreateCollectionHouseComponent } from './collection-house-config/create-collection-house-config/create-collection-house/create-collection-house.component';
+import { EditCollectionHouseConfigComponent } from './collection-house-config/edit-collection-house-config/edit-collection-house-config/edit-collection-house-config.component';
+import { ViewCollectionHouseConfigComponent } from './collection-house-config/view/view-collection-house-config/view-collection-house-config.component';
 
 /**
  * Products Module
@@ -287,7 +291,11 @@ import { ViewLoanProductParameterizationListComponent } from './loan-product-par
         CreateLoanProductParameterizationComponent,
         EditLoanProductParameterizationComponent,
         ViewLoanProductParameterizationComponent,
-        ViewLoanProductParameterizationListComponent
+        ViewLoanProductParameterizationListComponent,
+        CollectionHouseConfigComponent,
+        CreateCollectionHouseComponent,
+        EditCollectionHouseConfigComponent,
+        ViewCollectionHouseConfigComponent
     ]
 })
 export class ProductsModule { }
