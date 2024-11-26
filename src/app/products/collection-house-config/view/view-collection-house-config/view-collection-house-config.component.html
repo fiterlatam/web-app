@@ -1,0 +1,44 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+    <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_COLLECTION_HOUSE'">
+      <fa-icon icon="edit" class="m-r-10"></fa-icon>
+      {{ 'labels.buttons.Edit' | translate }}
+    </button>
+</div>
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <div fxLayout="row wrap" class="content">
+                <div fxFlex="50%" class="mat-body-strong">
+
+                </div>
+                <div fxFlex="50%">
+        
+                </div>
+                <div fxFlex="50%" class="mat-body-strong">
+                    {{ 'labels.inputs.collectionName' | translate }}
+                </div>
+                  <div fxFlex="50%">
+                    {{ collectionHouseData.collectionName }}
+                </div>
+                <div fxFlex="50%" class="mat-body-strong">
+                    {{ 'labels.inputs.collectionNit' | translate }}
+                </div>
+                  <div fxFlex="50%">
+                    {{ collectionHouseData.collectionNit }}
+                </div>
+                <div fxFlex="50%" class="mat-body-strong">
+                    {{ 'labels.inputs.collectionCode' | translate }}
+                </div>
+                  <div fxFlex="50%">
+                    {{ collectionHouseData.collectionCode }}
+                </div>
+                <div fxFlex="50%" class="mat-body-strong">
+                    {{ 'labels.inputs.collectionName' | translate }}
+                </div>
+                  <div fxFlex="50%">
+                    {{ collectionHouseData.collectionVerificationCode }}
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

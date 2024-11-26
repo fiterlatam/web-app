@@ -1,0 +1,65 @@
+<div class="container">
+    <mat-card>
+      <form [formGroup]="collectionHouseForm" (ngSubmit)="submit()">
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-form-field>
+              <mat-label>{{ 'labels.inputs.collectionName' | translate }}</mat-label>
+              <input matInput formControlName="collectionName"/>
+              <mat-error *ngIf="collectionHouseForm.controls.collectionName.hasError('required')">
+                {{ 'labels.inputs.collectionName' | translate }} 
+                <strong>{{ 'labels.commons.required' | translate }}</strong>
+              </mat-error>
+              <mat-error *ngIf="collectionHouseForm.hasError('atLeastOneChecked') && (collectionHouseForm.touched || collectionHouseForm.dirty)">
+                Please select at least one type of insurance.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+                <mat-label>{{ 'labels.inputs.collectionNit' | translate }}</mat-label>
+                <input matInput formControlName="collectionNit"/>
+                <mat-error *ngIf="collectionHouseForm.controls.collectionNit.hasError('required')">
+                  {{ 'labels.inputs.collectionNit' | translate }} 
+                  <strong>{{ 'labels.commons.required' | translate }}</strong>
+                </mat-error>
+                <mat-error *ngIf="collectionHouseForm.hasError('atLeastOneChecked') && (collectionHouseForm.touched || collectionHouseForm.dirty)">
+                  Please select at least one type of insurance.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>{{ 'labels.inputs.collectionCode' | translate }}</mat-label>
+                <input matInput formControlName="collectionCode"/>
+                <mat-error *ngIf="collectionHouseForm.controls.collectionCode.hasError('required')">
+                  {{ 'labels.inputs.collectionCode' | translate }} 
+                  <strong>{{ 'labels.commons.required' | translate }}</strong>
+                </mat-error>
+                <mat-error *ngIf="collectionHouseForm.hasError('atLeastOneChecked') && (collectionHouseForm.touched || collectionHouseForm.dirty)">
+                  Please select at least one type of insurance.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>{{ 'labels.inputs.collectionVerificationCode' | translate }}</mat-label>
+                <input matInput formControlName="collectionVerificationCode" type="number"/>
+                <mat-error *ngIf="collectionHouseForm.controls.collectionVerificationCode.hasError('required')">
+                  {{ 'labels.inputs.collectionVerificationCode' | translate }} 
+                  <strong>{{ 'labels.commons.required' | translate }}</strong>
+                </mat-error>
+                <mat-error *ngIf="collectionHouseForm.hasError('atLeastOneChecked') && (collectionHouseForm.touched || collectionHouseForm.dirty)">
+                  Please select at least one type of insurance.
+                </mat-error>
+              </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+          <button type="button" mat-raised-button [routerLink]="['../']">{{ 'labels.buttons.Cancel' | translate }}
+          </button>
+          <button mat-raised-button color="primary" [disabled]="!collectionHouseForm.valid"
+                  *mifosxHasPermission="'UPDATE_COLLECTION_HOUSE'">{{ 'labels.buttons.Submit' | translate }}
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  
