@@ -58,7 +58,7 @@ export class LoanCancelComponent implements OnInit {
     const dateFormat = this.settingsService.dateFormat;
     const transactionDateFormatted = this.dateUtils.formatDate(val, dateFormat);
     const data = {
-      command: 'foreclosure',
+      command: 'anulado',
       dateFormat: this.settingsService.dateFormat,
       locale: this.settingsService.language.code,
       transactionDate: transactionDateFormatted
