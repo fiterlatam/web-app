@@ -67,8 +67,8 @@ export class ClientsComponent implements OnInit {
         this.existsClientsToFilter = (data.numberOfElements > 0);
 
         if (!this.showClosedAccountsChecked) {
-          this.dataSource.data = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
-          this.totalRows = data.totalElements;
+          const filteredData = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
+          this.dataSource.data = filteredData;
           this.existsClientsToFilter = (this.totalRows > 0);
         }
         this.notExistsClientsToFilter = !this.existsClientsToFilter;
