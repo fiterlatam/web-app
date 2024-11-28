@@ -68,7 +68,7 @@ export class ClientsComponent implements OnInit {
 
         if (!this.showClosedAccountsChecked) {
           this.dataSource.data = this.dataSource.data.filter((client: any) => client.status.value !== 'Closed');
-          this.totalRows = this.dataSource.data.length;
+          this.totalRows = data.totalElements;
           this.existsClientsToFilter = (this.totalRows > 0);
         }
         this.notExistsClientsToFilter = !this.existsClientsToFilter;
