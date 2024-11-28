@@ -727,6 +727,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
     },
     "heading": {
+      "Collection House Provider": "Servicio Casa de cobro",
       "Collection House Configuration": "Gestión de Casas de Cobro",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Client Cupo Increments": "Aumento de cupos",
@@ -2803,6 +2804,7 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Collection House": "Administrar detalles del Proveedor de Servicios de Casa de cobro",
       "Collection House Configuration": "Gestión de Casas de Cobro",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Masivian Service Configuration": "Configuración del servicio Masivian",

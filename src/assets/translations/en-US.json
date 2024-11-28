@@ -716,6 +716,7 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)"
     },
     "heading": {
+      "Collection House": "Collection House Provider",
       "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
       "Client Cupo Increments": "Client Cupo Increments",
@@ -2780,6 +2781,7 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Collection House": "Collection House",
       "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
       "Masivian Service Configuration": "Masivian Service Configuration",
