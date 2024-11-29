@@ -138,11 +138,19 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.incomeOrLiabilityAccount">
-          {{ "labels.inputs.Income from Charges" | translate }}
+          {{ "labels.inputs.Income from Charge" | translate }}
         </div>
 
         <div fxFlex="50%" *ngIf="chargeData.incomeOrLiabilityAccount">
           {{ chargeData.incomeOrLiabilityAccount.name + ' (' + chargeData.incomeOrLiabilityAccount.glCode + ')' }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.feeReceivableAccount">
+          {{ "labels.inputs.Receivable from Charge" | translate }}
+        </div>
+
+        <div fxFlex="50%" *ngIf="chargeData.feeReceivableAccount">
+          {{ chargeData.feeReceivableAccount.name + ' (' + chargeData.feeReceivableAccount.glCode + ')' }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.taxGroup">

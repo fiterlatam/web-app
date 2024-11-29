@@ -317,12 +317,22 @@
 
 
 
-            <mat-form-field *ngIf="chargeForm.controls.chargeAppliesTo.value === 3" fxFlex="48%">
+            <mat-form-field fxFlex="48%">
               <mat-label>{{"labels.inputs.Income from Charge" | translate}} </mat-label>
               <mat-select formControlName="incomeAccountId">
                 <mat-option *ngFor="let incomeOrLiabilityAccount of incomeAndLiabilityAccountData"
                             [value]="incomeOrLiabilityAccount.id">
                   {{ incomeOrLiabilityAccount.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="48%">
+              <mat-label>{{"labels.inputs.Receivable from Charge" | translate}} </mat-label>
+              <mat-select formControlName="feeReceivableAccountId">
+                <mat-option *ngFor="let assetAccount of assetAccountData"
+                            [value]="assetAccount.id">
+                  {{ assetAccount.name }}
                 </mat-option>
               </mat-select>
             </mat-form-field>

@@ -49,6 +49,7 @@ export interface AccountingMapping {
 export interface ChargeToIncomeAccountMapping {
   charge:          Charge;
   incomeAccount:   AccountingMapping;
+  receivableAccount: AccountingMapping;
 }
 
 export interface PaymentChannelToFundSourceMapping {
