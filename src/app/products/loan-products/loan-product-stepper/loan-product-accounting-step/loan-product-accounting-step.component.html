@@ -232,7 +232,7 @@
           </ng-container>
 
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.actions' | translate }} </th>
             <td mat-cell *matCellDef="let paymentFundSource; let i = index">
               <button mat-icon-button color="primary" (click)="edit('PaymentFundSource', paymentChannelToFundSourceMappings, i)">
                 <fa-icon icon="edit"></fa-icon>
@@ -260,21 +260,28 @@
         <table fxFlex="98%" class="mat-elevation-z1" mat-table [dataSource]="feeToIncomeAccountMappings.value" *ngIf="feeToIncomeAccountMappings.value.length !== 0">
 
           <ng-container matColumnDef="chargeId">
-            <th mat-header-cell *matHeaderCellDef> Fees </th>
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.Fees' | translate}} </th>
             <td mat-cell *matCellDef="let feesIncome">
               {{ feesIncome.chargeId | find:chargeData:'id':'name' }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="incomeAccountId">
-            <th mat-header-cell *matHeaderCellDef> Income Account </th>
+            <th mat-header-cell *matHeaderCellDef>{{'labels.inputs.Income Account' | translate}} </th>
             <td mat-cell *matCellDef="let feesIncome">
               {{ feesIncome.incomeAccountId | find:incomeAndLiabilityAccountData:'id':'name' }}
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="receivableAccountId">
+            <th mat-header-cell *matHeaderCellDef>{{'labels.inputs.Receivable Account' | translate}}</th>
+            <td mat-cell *matCellDef="let feesIncome">
+              {{ feesIncome.receivableAccountId | find:assetAccountData:'id':'name' }}
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <th mat-header-cell *matHeaderCellDef> {{'labels.inputs.actions' | translate }} </th>
             <td mat-cell *matCellDef="let feesIncome; let i = index">
               <button mat-icon-button color="primary" (click)="edit('FeesIncome', feeToIncomeAccountMappings, i)">
                 <fa-icon icon="edit"></fa-icon>
@@ -313,6 +320,13 @@
             <th mat-header-cell *matHeaderCellDef>{{'labels.inputs.Income Account' | translate}}</th>
             <td mat-cell *matCellDef="let penaltyIncome">
               {{ penaltyIncome.incomeAccountId | find:incomeAccountData:'id':'name' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="receivableAccountId">
+            <th mat-header-cell *matHeaderCellDef>{{'labels.inputs.Receivable Account' | translate}} </th>
+            <td mat-cell *matCellDef="let penaltyIncome">
+              {{ feesIncome.receivableAccountId | find:assetAccountData:'id':'name' }}
             </td>
           </ng-container>
 

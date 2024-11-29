@@ -218,7 +218,7 @@
           </mat-form-field>
 
           <mat-form-field fxFlex="48%" *ngIf="showGLAccount">
-            <mat-label> {{ "labels.inputs.Income from charge" | translate }}</mat-label>
+            <mat-label> {{ "labels.inputs.Income from Charge" | translate }}</mat-label>
             <mat-select required formControlName="incomeAccountId">
               <mat-option *ngFor="let income of chargeData.incomeOrLiabilityAccountOptions.incomeAccountOptions"
                 [value]="income.id">
@@ -226,8 +226,18 @@
               </mat-option>
             </mat-select>
             <mat-error *ngIf="chargeForm.controls.incomeAccountId.hasError('required')">
-              {{ "labels.inputs.Income from charge" | translate }} is <strong>required</strong>
+              {{ "labels.inputs.Income from Charge" | translate }} is <strong>required</strong>
             </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="48%" *ngIf="showGLAccount">
+            <mat-label> {{ "labels.inputs.Receivable from Charge" | translate }}</mat-label>
+            <mat-select required formControlName="feeReceivableAccountId">
+              <mat-option *ngFor="let asset of chargeData.assetAccountOptions"
+                [value]="asset.id">
+                {{ asset.name }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">

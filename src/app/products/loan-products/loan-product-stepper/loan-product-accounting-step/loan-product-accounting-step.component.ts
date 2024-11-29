@@ -32,7 +32,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
   assetAndLiabilityAccountData: any;
 
   paymentFundSourceDisplayedColumns: string[] = ['paymentTypeId', 'fundSourceAccountId', 'actions'];
-  feesPenaltyIncomeDisplayedColumns: string[] = ['chargeId', 'incomeAccountId', 'actions'];
+  feesPenaltyIncomeDisplayedColumns: string[] = ['chargeId', 'incomeAccountId', 'receivableAccountId', 'actions'];
 
   constructor(private formBuilder: UntypedFormBuilder,
               public dialog: MatDialog) {
@@ -93,10 +93,10 @@ export class LoanProductAccountingStepComponent implements OnInit {
           ({ paymentTypeId: paymentFundSource.paymentType.id, fundSourceAccountId: paymentFundSource.fundSourceAccount.id }))));
         this.loanProductAccountingForm.setControl('feeToIncomeAccountMappings',
           this.formBuilder.array((this.loanProductsTemplate.feeToIncomeAccountMappings || []).map((feesIncome: any) =>
-          ({ chargeId: feesIncome.charge.id, incomeAccountId: feesIncome.incomeAccount.id }))));
+          ({ chargeId: feesIncome.charge.id, incomeAccountId: feesIncome.incomeAccount.id, receivableAccountId: feesIncome.receivableAccount.id }))));
         this.loanProductAccountingForm.setControl('penaltyToIncomeAccountMappings',
           this.formBuilder.array((this.loanProductsTemplate.penaltyToIncomeAccountMappings || []).map((penaltyIncome: any) =>
-          ({ chargeId: penaltyIncome.charge.id, incomeAccountId: penaltyIncome.incomeAccount.id }))));
+          ({ chargeId: penaltyIncome.charge.id, incomeAccountId: penaltyIncome.incomeAccount.id, receivableAccountId: penaltyIncome.receivableAccount.id }))));
     }
   }
 
@@ -275,6 +275,14 @@ export class LoanProductAccountingStepComponent implements OnInit {
         options: { label: 'name', value: 'id', data: this.incomeAndLiabilityAccountData },
         required: true,
         order: 2
+      }),
+      new SelectBase({
+        controlName: 'receivableAccountId',
+        label: 'Receivable Account',
+        value: values ? values.receivableAccountId : this.assetAccountData[0].id,
+        options: { label: 'name', value: 'id', data: this.assetAccountData },
+        required: true,
+        order: 3
       })
     ];
     return formfields;
@@ -297,6 +305,14 @@ export class LoanProductAccountingStepComponent implements OnInit {
         options: { label: 'name', value: 'id', data: this.incomeAccountData },
         required: true,
         order: 2
+      }),
+      new SelectBase({
+        controlName: 'receivableAccountId',
+        label: 'Receivable Account',
+        value: values ? values.receivableAccountId : this.assetAccountData[0].id,
+        options: { label: 'name', value: 'id', data: this.assetAccountData },
+        required: true,
+        order: 3
       })
     ];
     return formfields;

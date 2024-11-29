@@ -31,7 +31,7 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
   variationsDisplayedColumns: string[] = ['valueConditionType', 'borrowerCycleNumber', 'minValue', 'defaultValue', 'maxValue'];
   chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType'];
   paymentFundSourceDisplayedColumns: string[] = ['paymentTypeId', 'fundSourceAccountId'];
-  feesPenaltyIncomeDisplayedColumns: string[] = ['chargeId', 'incomeAccountId'];
+  feesPenaltyIncomeDisplayedColumns: string[] = ['chargeId', 'incomeAccountId', 'receivableAccountId'];
   accountingRuleData = ['None', 'Cash', 'Accrual (periodic)', 'Accrual (upfront)'];
 
   isAdvancedPaymentAllocation = false;
@@ -126,7 +126,8 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
           this.loanProduct.feeToIncomeAccountMappings.forEach((m: any) => {
             this.feeToIncomeAccountMappings.push({
               incomeAccount: this.glAccountLookUp(m.incomeAccountId, incomeAccountData),
-              charge: this.chargeLookUp(m.chargeId, this.loanProductsTemplate.chargeOptions)
+              charge: this.chargeLookUp(m.chargeId, this.loanProductsTemplate.chargeOptions),
+              receivableAccount: this.glAccountLookUp(m.receivableAccountId, assetAccountData)
             });
           });
         }
@@ -136,7 +137,8 @@ export class LoanProductSummaryComponent implements OnInit, OnChanges {
           this.loanProduct.penaltyToIncomeAccountMappings.forEach((m: any) => {
             this.penaltyToIncomeAccountMappings.push({
               incomeAccount: this.glAccountLookUp(m.incomeAccountId, incomeAccountData),
-              charge: this.chargeLookUp(m.chargeId, this.loanProductsTemplate.penaltyOptions)
+              charge: this.chargeLookUp(m.chargeId, this.loanProductsTemplate.penaltyOptions),
+              receivableAccount: this.glAccountLookUp(m.receivableAccountId, assetAccountData)
             });
           });
         }

@@ -249,6 +249,9 @@ export class EditChargeComponent implements OnInit {
         this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
 
         this.chargeForm.get('parentChargeId').setValue(this.chargeData.parentChargeId);
+        this.showGLAccount = true;
+        this.chargeForm.addControl('incomeAccountId', this.formBuilder.control(this.chargeData.incomeOrLiabilityAccount ? this.chargeData.incomeOrLiabilityAccount.id : ''));
+        this.chargeForm.addControl('feeReceivableAccountId', this.formBuilder.control(this.chargeData.feeReceivableAccount ? this.chargeData.feeReceivableAccount.id : ''));
 
         if (this.showFeeOptions) {
           this.getFeeFrequency(this.showFeeOptions);

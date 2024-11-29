@@ -55,6 +55,7 @@ export class CreateChargeComponent implements OnInit {
 
   /** Income and liability account data */
   incomeAndLiabilityAccountData: any;
+  assetAccountData: any;
   /** Minimum due date allowed. */
   minDate = new Date(2000, 0, 1);
   /** Maximum due date allowed. */
@@ -94,6 +95,9 @@ export class CreateChargeComponent implements OnInit {
           .concat(data.chargesTemplate.incomeOrLiabilityAccountOptions.liabilityAccountOptions);
       } else {
         this.incomeAndLiabilityAccountData = data.chargesTemplate.incomeOrLiabilityAccountOptions.incomeAccountOptions;
+      }
+      if (data.chargesTemplate.assetAccountOptions) {
+        this.assetAccountData = data.chargesTemplate.assetAccountOptions;
       }
     });
   }

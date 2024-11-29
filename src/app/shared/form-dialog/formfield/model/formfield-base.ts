@@ -7,7 +7,11 @@ export class FormfieldBase {
   required: boolean;
   order: number;
   controlLength: number;
-  options: any;
+  options: {
+    label: string,
+    value: string,
+    data: {}[]
+  };
   type: string;
 
   constructor(options: {
