@@ -84,6 +84,9 @@ import { CustomChargeHonorarioComponent } from './external-services/customcharge
 import { UnblockClientsComponent } from './manage-blocking-reasons/unblock-clients/unblock-clients.component';
 import {MasivianComponent} from './external-services/masivian/masivian.component';
 import {EditSMSComponent} from './external-services/sms/edit-sms/edit-sms.component';
+import { CollectionhousehistoryComponent } from './external-services/collectionhousehistory/collectionhousehistory.component';
+import { EditCollectionhousehistoryComponent } from './external-services/collectionhousehistory/edit-collectionhousehistory/edit-collectionhousehistory.component';
+
 
 @NgModule({
   imports: [
@@ -167,7 +170,9 @@ import {EditSMSComponent} from './external-services/sms/edit-sms/edit-sms.compon
     BlockByControlListsComponent,
     CustomChargeHonorarioComponent,
     EditCustomChargeHonorarioComponent,
-    UnblockClientsComponent
+    UnblockClientsComponent,
+    CollectionhousehistoryComponent,
+    EditCollectionhousehistoryComponent
   ],
 })
 export class SystemModule { }
