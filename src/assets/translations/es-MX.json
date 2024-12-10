@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.collection.not.allowed.on.this.product": "Recaudos no está permitido para este producto de préstamo: {{params[0].value}}",
     "productParamForm.required": "Por favor, seleccione un producto",
     "validation.error.range.start.number.greater.than.range.end.number": "El número de inicio del rango debe ser mayor que el número de fin del rango.",
     "validation.error.invalid.product.type" : "Tipo de producto no válido",
@@ -1139,6 +1140,7 @@
       "Referido Movement": "Permitir movimiento por referido",
       "Refinance Movement": "Permitir movimiento por refinanciación",
       "Restructure Movement": "Permitir movimiento por reestructuración",
+      "Allow Repayment": "Permitir Recaudos",
       "MandatoryInsurance": "Seguro",
       "VoluntaryInsurance": "Seg vol/assist",
       "SMS API URL": "URL de la API de SMS",

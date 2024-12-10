@@ -619,6 +619,11 @@
       <mat-checkbox labelPosition="before" formControlName="customAllowRestructureSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
     </div>
 
+    <div fxFlex="48%" fxLayout="row" fxLayoutGap="10px">
+      <mat-checkbox labelPosition="before" formControlName="customAllowCollections" class="margin-b">{{ 'labels.inputs.Allow Collections' | translate }}</mat-checkbox>
+      <mat-checkbox labelPosition="before" formControlName="customAllowCollectionsSms" class="margin-b">{{ 'labels.inputs.SMS' | translate }}</mat-checkbox>
+    </div>
+
     <mat-divider fxFlex="98%"></mat-divider>
 
     <h3 fxFlex="98%" class="mat-h3">{{ 'labels.heading.Collection Channels' | translate }}</h3>
