@@ -356,7 +356,8 @@
     "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months",
     "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter",
     "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists",
-    "processing.loan.request": "Error processing Loan request"
+    "processing.loan.request": "Error processing Loan request",
+    "error.msg.codeValue.in.use": "Code value is in use"
   },
   "labels": {
     "breadcrumbs": {
