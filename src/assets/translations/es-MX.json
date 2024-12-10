@@ -362,7 +362,8 @@
     "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente.",
     "validation.msg.invalid.integer.format": "Valor no válido [ {{params[0].value}} ] para el parámetro entero",
     "error.msg.insurance.incident.duplicate.type": "Ya existe un incidente de seguro con el tipo dado",
-    "processing.loan.request": "Error al procesar la solicitud de préstamo"
+    "processing.loan.request": "Error al procesar la solicitud de préstamo",
+    "error.msg.codeValue.in.use": "El valor del código está en uso"
   },
   "labels": {
     "breadcrumbs": {
