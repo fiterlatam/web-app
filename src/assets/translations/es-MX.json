@@ -2,6 +2,7 @@
   "APP_NAME": "Mifos X",
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
+  "ACTIVE":"ACTIVO",
   "errors": {
     "error.msg.loan.collection.not.allowed.on.this.product": "Recaudos no está permitido para este producto de préstamo: {{params[0].value}}",
     "productParamForm.required": "Por favor, seleccione un producto",
