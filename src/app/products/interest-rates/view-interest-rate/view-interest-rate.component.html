@@ -27,10 +27,24 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Min Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['minRate'] | formatNumber:[2]}}%
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
           {{'labels.inputs.Current Rate' | translate }}
         </div>
         <div fxFlex="50%">
           {{ interestRateData['currentRate'] | formatNumber:[2]}}%
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Max Rate' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ interestRateData['maxRate'] | formatNumber:[2]}}%
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">

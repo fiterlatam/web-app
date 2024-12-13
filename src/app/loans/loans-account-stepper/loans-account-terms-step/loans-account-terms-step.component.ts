@@ -146,7 +146,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
           'maxOutstandingLoanBalance': this.loansAccountTermsData.maxOutstandingLoanBalance,
           'transactionProcessingStrategyCode': this.loansAccountTermsData.transactionProcessingStrategyCode,
           'interestRateDifferential': this.loansAccountTermsData.interestRateDifferential,
-          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
+          'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan,
+          'interestRatePerPeriod': this.loansAccountTermsData.interestRatePerPeriod,
         });
 
         if (this.loansAccountTermsData) {
@@ -244,7 +245,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
         'maxOutstandingLoanBalance': this.loansAccountTermsData.maxOutstandingLoanBalance,
         'transactionProcessingStrategyCode': this.loansAccountTermsData.transactionProcessingStrategyCode,
         'interestRateDifferential': this.loansAccountTermsData.interestRateDifferential,
-        'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan
+        'multiDisburseLoan': this.loansAccountTermsData.multiDisburseLoan,
+        'interestRatePerPeriod': this.loansAccountTermsData.interestRatePerPeriod,
       });
     }
     this.createLoansAccountTermsForm();
@@ -331,7 +333,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       'transactionProcessingStrategyCode': [{value: '', disabled: this.repaymentStrategyDisabled}, Validators.required],
       'multiDisburseLoan': [false],
       'valorDescuento': ['', Validators.required],
-      'valorGiro': ['', {disabled: true}]
+      'valorGiro': ['', {disabled: true}],
+      'interestRatePerPeriod': ['']
     });
   }
 
