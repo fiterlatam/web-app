@@ -1095,6 +1095,8 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Min Rate": "Min Interest Rate",
+      "Max Rate": "Max Interest Rate",
       "InvoicePrefix": "Invoice Prefix",
       "BillingResolutionNumber": "Billing Resolution Number",
       "GenerationDate": "Generation Date",

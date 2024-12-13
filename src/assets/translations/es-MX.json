@@ -1110,6 +1110,8 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Min Rate": "Tasa de interés Mínima",
+      "Max Rate": "Tasa de interés Máxima",
       "InvoicePrefix": "Prefijo de la factura",
       "BillingResolutionNumber": "El número de la resolución de facturación",
       "GenerationDate": "Fecha de generación",
