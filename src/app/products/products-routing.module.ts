@@ -28,6 +28,7 @@ import {
 import {ChargesComponent} from './charges/charges.component';
 import {ViewChargeComponent} from './charges/view-charge/view-charge.component';
 import {CreateChargeComponent} from './charges/create-charge/create-charge.component';
+import { ClassificationConceptsComponent } from './classification-concepts/classification-concepts.component';
 import {FixedDepositProductsComponent} from './fixed-deposit-products/fixed-deposit-products.component';
 import {
   CreateFixedDepositProductComponent
@@ -80,6 +81,8 @@ import {RecurringDepositProductsResolver} from './recurring-deposit-products/rec
 import {RecurringDepositProductResolver} from './recurring-deposit-products/recurring-deposit-product.resolver';
 import {ChargesResolver} from './charges/charges.resolver';
 import {ChargeResolver} from './charges/charge.resolver';
+import { ClassificationConceptResolver } from './classification-concepts/classification-concept.resolver';
+import {ClassificationConceptsResolver} from './classification-concepts/classification-concepts.resolver';
 import {ChargesTemplateResolver} from './charges/charges-template.resolver';
 import {FixedDepositProductsResolver} from './fixed-deposit-products/fixed-deposit-products.resolver';
 import {FixedDepositProductsTemplateResolver} from './fixed-deposit-products/fixed-deposit-products-template.resolver';
@@ -231,6 +234,9 @@ import { CreateCollectionHouseComponent } from './collection-house-config/create
 import { ViewCollectionHouseConfigComponent } from './collection-house-config/view/view-collection-house-config/view-collection-house-config.component';
 import { EditCollectionHouseConfigComponent } from './collection-house-config/edit-collection-house-config/edit-collection-house-config/edit-collection-house-config.component';
 import { ViewCollectionHouseConfigResolver } from './collection-house-config/view/view-collection-house-config.resolver';
+import { CreateClassificationConceptComponent } from './classification-concepts/create-classification-concept/create-classification-concept.component';
+import { ViewClassficationConceptComponent } from './classification-concepts/view-classification-concept/view-classification-concept.component';
+import { EditClassificationConceptComponent } from './classification-concepts/edit-classification-concept/edit-classification-concept.component';
 
 
 /** Products Routes */
@@ -349,7 +355,48 @@ const routes: Routes = [
               }
             ]
           },
-
+          {
+            path: 'classification-concepts',
+            data: {title: 'Classification Concepts', breadcrumb: 'Classification Concepts'},
+            children: [
+              {
+                path: 'create',
+                component: CreateClassificationConceptComponent,
+                data: {title: 'Create Classification Concept', breadcrumb: 'Create Classification Concept'},
+              },
+              {
+                path: '',
+                component: ClassificationConceptsComponent,
+                resolve: {
+                  classificationConcepts: ClassificationConceptsResolver
+                }
+              },
+              {
+                path: ':id',
+                data: {title: 'View Classification Concepts', breadcrumb: 'id', routeParamBreadcrumb: 'id'},
+                resolve: {
+                  classificationConcept: ClassificationConceptResolver
+                },
+                children: [
+                  {
+                    path: '',
+                    component: ViewClassficationConceptComponent,
+                    resolve: {
+                      classificationConcept: ClassificationConceptResolver
+                    },
+                  },
+                  {
+                    path: 'edit',
+                    component: EditClassificationConceptComponent,
+                    data: {title: 'Edit Classification Concepts', breadcrumb: 'Edit', routeParamBreadcrumb: false},
+                    resolve: {
+                      classificationConcept: ClassificationConceptResolver
+                    }
+                  },
+                ]
+              },
+            ]
+          },
           {
             path: 'saving-products',
             data: {title: 'Saving Products', breadcrumb: 'Saving Products'},
@@ -1234,6 +1281,8 @@ const routes: Routes = [
     RecurringDepositProductResolver,
     ChargesResolver,
     ChargeResolver,
+    ClassificationConceptResolver,
+    ClassificationConceptsResolver,
     ChargesTemplateAndResolver,
     ChargesTemplateResolver,
     FixedDepositProductsResolver,
