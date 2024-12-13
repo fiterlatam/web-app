@@ -3824,6 +3824,7 @@
     "chargeback": "Chargeback",
     "chargeAdjustment": "Charge Adjustment",
     "chargeOff": "Charge Off",
-    "downPayment": "Down Payment"
+    "downPayment": "Down Payment",
+    "creditNote": "Credit Note"
   }
 }
