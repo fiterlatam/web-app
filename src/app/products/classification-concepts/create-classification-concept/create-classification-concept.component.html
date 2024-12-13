@@ -1,0 +1,73 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="classificationConceptForm" (ngSubmit)="submit()">
+      <mat-card-content>
+        <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+          <mat-form-field fxFlex="50%">
+            <mat-label>{{ "labels.inputs.Concept" | translate }}</mat-label>
+            <input matInput required formControlName="concepto" />
+            <mat-error *ngIf="classificationConceptForm.controls.concepto.hasError('required')">
+              {{ "labels.inputs.Concept" | translate }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-divider [inset]="true"></mat-divider>
+
+          <div fxFlex="50%" fxLayout="row" fxLayoutGap="2%" fxLayout.lt-md="column">
+            <div fxFlex="25%" class="mandato-wrapper">
+              <mat-checkbox labelPosition="before" formControlName="mandato">
+                {{ "labels.inputs.Mandate" | translate }}
+              </mat-checkbox>
+            </div>
+
+            <div fxFlex="25%" class="excluido-wrapper">
+              <mat-checkbox labelPosition="before" formControlName="excluido">
+                {{ "labels.inputs.Excluded" | translate }}
+              </mat-checkbox>
+            </div>
+
+            <div fxFlex="25%" class="exento-wrapper">
+              <mat-checkbox labelPosition="before" formControlName="exento">
+                {{ "labels.inputs.Exempt" | translate }}
+              </mat-checkbox>
+            </div>
+
+            <div fxFlex="25%" class="gravado-wrapper">
+              <mat-checkbox labelPosition="before" formControlName="gravado">
+                {{ "labels.inputs.Taxed" | translate }}
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <mat-form-field fxFlex="50%">
+            <mat-label>{{ "labels.inputs.Rule" | translate }}</mat-label>
+            <input matInput formControlName="norma" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <mat-label>{{ "labels.inputs.Fee" | translate }}</mat-label>
+            <input matInput formControlName="tarifa" value="" />
+            <mat-error *ngIf="classificationConceptForm.controls.tarifa.hasError('pattern')">
+              {{ "labels.inputs.Fee" | translate }} <strong>{{ "labels.inputs.cannot" | translate }}</strong>
+              {{ "labels.inputs.have invalid number format" | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">
+          {{ "labels.buttons.Cancel" | translate }}
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!classificationConceptForm.valid"
+          *mifosxHasPermission="'CREATE_CLASIFICACION_CONCEPTO'"
+        >
+          {{ "labels.buttons.Submit" | translate }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

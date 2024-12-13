@@ -22,6 +22,10 @@ import { ManageTaxConfigurationsComponent } from './manage-tax-configurations/ma
 import { RecurringDepositProductsComponent } from './recurring-deposit-products/recurring-deposit-products.component';
 import { ChargesComponent } from './charges/charges.component';
 import { ViewChargeComponent } from './charges/view-charge/view-charge.component';
+import { ClassificationConceptsComponent } from './classification-concepts/classification-concepts.component';
+import { CreateClassificationConceptComponent } from './classification-concepts/create-classification-concept/create-classification-concept.component';
+import { ViewClassficationConceptComponent } from './classification-concepts/view-classification-concept/view-classification-concept.component';
+import { EditClassificationConceptComponent } from './classification-concepts/edit-classification-concept/edit-classification-concept.component';
 import { FixedDepositProductsComponent } from './fixed-deposit-products/fixed-deposit-products.component';
 import { ProductsMixComponent } from './products-mix/products-mix.component';
 import { ViewProductMixComponent } from './products-mix/view-product-mix/view-product-mix.component';
@@ -175,6 +179,10 @@ import { ViewCollectionHouseConfigComponent } from './collection-house-config/vi
         RecurringDepositProductsComponent,
         ChargesComponent,
         ViewChargeComponent,
+        ClassificationConceptsComponent,
+        CreateClassificationConceptComponent,
+        ViewClassficationConceptComponent,
+        EditClassificationConceptComponent,
         FixedDepositProductsComponent,
         ManageTaxComponentsComponent,
         ProductsMixComponent,
