@@ -612,7 +612,8 @@
       "Exclude": "Exclude",
       "Export": "Export",
       "punish": "Punish",
-      "Add Collection House": "Add Collection House"
+      "Add Collection House": "Add Collection House",
+      "Calculate": "Calculate"
     },
     "commons": {
       "must be greater than outstanding balance": "must be greater than outstanding balance",

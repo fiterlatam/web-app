@@ -620,7 +620,8 @@
       "Exclude": "Excluir",
       "Export": "Exportar",
       "punish": "Castigar",
-      "Add Collection House": "Agregar Gestión de Casas de Cobro"
+      "Add Collection House": "Agregar Gestión de Casas de Cobro",
+      "Calculate": "Calcular"
     },
     "commons": {
       "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
