@@ -743,4 +743,9 @@ export class LoansService {
     return this.http.get(`/loans/${loanId}/credit-notes`);
   }
 
+   calculateHonoAmount(loanId: any, amount: any) {
+     const httpParams = new HttpParams().set('amount', amount);
+    return this.http.get(`/loans/${loanId}/calculateHonorariosAmount`, {params: httpParams});
+   }
+
 }
