@@ -190,6 +190,9 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     this.loanService.calculateHonoAmount(this.loanId, amount)
           .subscribe((response: any) => {
             this.honorariosAmount = response;
+            this.repaymentLoanForm.patchValue({
+              transactionAmount : this.repaymentLoanForm.value.transactionAmount + response,
+              });
         });
   }
 
