@@ -67,7 +67,7 @@ export class SpecialWriteOffComponent implements OnInit {
         readOnly: false
       };
     }));
-    console.log('concepts', concepts);
+    
     const totalOutstandingAmount = concepts.reduce((acc, curr) => acc + curr.amountOutstanding, 0);
     concepts.push({
       name: 'labels.inputs.Total',

@@ -201,6 +201,45 @@ export class ProductsService {
   }
 
   /**
+   * @returns {Observable<any>} Classification Concepts data.
+   */
+  getClassificationConcepts(): Observable<any> {
+    return this.http.get('/clasificacionconceptos');
+  }
+
+  /**
+   * @param {string} id Classification Concept ID.
+   * @returns {Observable<any>} Classification Concept.
+   */
+  getClassificationConcept(id: string): Observable<any> {
+    return this.http.get(`/clasificacionconceptos/${id}`);
+  }
+
+  /**
+   * @param id Classification Concept Id to be updated.
+   * @param classificationConcepts  Classification Concept Data to be updated.
+   */
+  updateClassificationConcept(id: string, classificationConcepts: any): Observable<any> {
+    return this.http.put(`/clasificacionconceptos/${id}`, classificationConcepts);
+  }
+
+  /**
+   * @param {string} id  Classification Concept ID of Classification Concept to be deleted.
+   * @returns {Observable<any>}
+   */
+  deleteClassificationConcept(id: string): Observable<any> {
+    return this.http.delete(`/clasificacionconceptos/${id}`);
+  }
+
+  /**
+   * @param {any} classificationConcept Charge to be created.
+   * @returns {Observable<any>}
+   */
+  createClassificationConcept(classificationConcept: any): Observable<any> {
+    return this.http.post('/clasificacionconceptos', classificationConcept);
+  }
+
+  /**
    * @returns {Observable<any>} Fixed deposit products data
    */
   getFixedDepositProducts(): Observable<any> {

@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { Dates } from 'app/core/utils/dates';
 import { LoansService } from 'app/loans/loans.service';
+import { InsuranceIncidentService } from 'app/products/insurance-incident/insurance-incident.service';
 import { SettingsService } from 'app/settings/settings.service';
 
 @Component({
@@ -40,7 +41,7 @@ export class ChargeOffComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dateUtils: Dates,
-    private settingsService: SettingsService) {
+    private settingsService: SettingsService, private incidentService: InsuranceIncidentService) {
       this.loanId = this.route.snapshot.params['loanId'];
     }
 
@@ -50,10 +51,21 @@ export class ChargeOffComponent implements OnInit {
    */
   ngOnInit() {
     this.maxDate = this.settingsService.businessDate;
-    this.chargeOffReasonOptions = this.dataObject.chargeOffReasonOptions;
+    this.getNoveltyData();
     this.createChargeoffLoanForm();
   }
 
+  /*
+    getNovelty data
+  */
+  getNoveltyData(){
+      this.incidentService.getTemplate().subscribe(data => {
+        this.chargeOffReasonOptions = data?.incidentTypeOptions; // Assign the fetched data to chargeOffReasonOptions
+       
+      }, error => {
+        
+      });
+  }
   /**
    * Creates the create close form.
    */
@@ -62,7 +74,8 @@ export class ChargeOffComponent implements OnInit {
       'transactionDate': [this.settingsService.businessDate, Validators.required],
       'externalId': '',
       'chargeOffReasonId': '',
-      'note': ''
+      'note': '',
+      'incidentTypeId': '',
     });
   }
 

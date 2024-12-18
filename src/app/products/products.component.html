@@ -88,6 +88,14 @@
             <p matLine>{{ 'labels.text.Loan Product Parameterization' | translate }}</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['classification-concepts']" *mifosxHasPermission="'READ_ADVANCE_QUOTA'">
+            <mat-icon matListIcon>
+              <fa-icon icon="briefcase" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Classification Concepts' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Classification Concepts' | translate }}</p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>
@@ -164,7 +172,13 @@
             <p matLine>{{ 'labels.text.Manage Insurance Novelty' | translate }}</p>
           </mat-list-item>
 
-
+          <mat-list-item [routerLink]="['collectionhouseconfiguration']" *mifosxHasPermission="'READ_COLLECTION_HOUSE'">
+            <mat-icon matListIcon>
+              <fa-icon icon="gear" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>{{ 'labels.heading.Collection House Configuration' | translate }}</h4>
+            <p matLine>{{ 'labels.text.Collection House Configuration' | translate }}</p>
+          </mat-list-item>
 
         </mat-nav-list>
 

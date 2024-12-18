@@ -3,6 +3,8 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.collection.not.allowed.on.this.product": "Recaudos no está permitido para este producto de préstamo: {{params[0].value}}",
+    "productParamForm.required": "Por favor, seleccione un producto",
     "validation.error.range.start.number.greater.than.range.end.number": "El número de inicio del rango debe ser mayor que el número de fin del rango.",
     "validation.error.invalid.product.type" : "Tipo de producto no válido",
     "error.msg.loan.credit.note.not.allowed": "No se permite la nota de crédito para este producto de préstamo.",
@@ -361,7 +363,8 @@
     "error.msg.charge.not.setup.correctly": "La carga [ {{params[0].value}} ] no está configurada correctamente.",
     "validation.msg.invalid.integer.format": "Valor no válido [ {{params[0].value}} ] para el parámetro entero",
     "error.msg.insurance.incident.duplicate.type": "Ya existe un incidente de seguro con el tipo dado",
-    "processing.loan.request": "Error al procesar la solicitud de préstamo"
+    "processing.loan.request": "Error al procesar la solicitud de préstamo",
+    "error.msg.codeValue.in.use": "El valor del código está en uso"
   },
   "labels": {
     "breadcrumbs": {
@@ -428,6 +431,7 @@
       "Create AdHoc Query": "Crear consulta ad hoc",
       "Create Center": "Crear centro",
       "Create Charge": "Crear cargo",
+      "Create Classification Concept": "Crear clasificación concepto",
       "Create Client": "Crear cliente",
       "Create Closure": "Crear cierre",
       "Create Code": "Crear código",
@@ -615,7 +619,9 @@
       "Claim": "RECLAMAR",
       "Exclude": "Excluir",
       "Export": "Exportar",
-      "punish": "Castigar"
+      "punish": "Castigar",
+      "Add Collection House": "Agregar Gestión de Casas de Cobro",
+      "Calculate": "Calcular"
     },
     "commons": {
       "must be greater than outstanding balance": "debe ser mayor que el saldo pendiente",
@@ -630,7 +636,11 @@
       "20 characters long": "20 caracteres de largo",
       "30 characters long": "30 caracteres de largo",
       "8 characters long": "8 caracteres de largo",
+      "4 characters long": "4 caracteres de largo",
+      "6 characters long": "6 caracteres de largo",
       "6 characters allowed": "Sólo se pemiten hasta 6 caractéres para el código.",
+      "4 characters allowed": "Sólo se pemiten hasta 4 caractéres para el código.",
+      "50 characters allowed": "Sólo se pemiten hasta 50 caractéres para el código.",
       "Amount must be": "La cantidad debe ser",
       "At least one restricted product": "Al menos un producto restringido",
       "At least one role": "Al menos un rol",
@@ -721,7 +731,10 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
     },
     "heading": {
+      "Collection House Provider": "Servicio Casa de cobro",
+      "Collection House Configuration": "Gestión de Casas de Cobro",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
+      "Classification Concepts": "Clasificación Conceptos",
       "Client Cupo Increments": "Aumento de cupos",
       "Client Cupo Decrements": "Disminución de cupos",
       "Collection Channels": "Canales de Recaudos",
@@ -799,6 +812,7 @@
       "Configure Maker-Checker Tasks": "Configurar tareas de Realizador Aprobador",
       "Configure Mifos Organization Needs": "La siguiente guía le ayudará a configurar Mifos según las necesidades de su organización.",
       "Create Charge": "Crear cargo",
+      "Create Classification Concept": "Crear clasificación concepto",
       "Create Closure": "Crear cierre",
       "Create Code": "Crear código",
       "Create Data Table": "Crear tabla de datos",
@@ -1110,6 +1124,13 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Min Rate": "Tasa de interés Mínima",
+      "Max Rate": "Tasa de interés Máxima",
+      "collectionName": "Razón social de la casa de cobro",
+      "collectionNit": "NIT",
+      "collectionCode": "Código",
+      "collectionVerificationCode":"Dígito de verificación",
+      "technicalKey": "Clave técnica",
       "InvoicePrefix": "Prefijo de la factura",
       "BillingResolutionNumber": "El número de la resolución de facturación",
       "GenerationDate": "Fecha de generación",
@@ -1125,6 +1146,7 @@
       "Referido Movement": "Permitir movimiento por referido",
       "Refinance Movement": "Permitir movimiento por refinanciación",
       "Restructure Movement": "Permitir movimiento por reestructuración",
+      "Allow Repayment": "Permitir Recaudos",
       "MandatoryInsurance": "Seguro",
       "VoluntaryInsurance": "Seg vol/assist",
       "SMS API URL": "URL de la API de SMS",
@@ -1142,6 +1164,11 @@
       "Vehicle Cupo": "Cupo exclusivo del vehículo",
       "Balance as of today": "Saldo a hoy",
       "Concept": "Concepto",
+      "Mandate": "Mandato",
+      "Excluded": "Excluido",
+      "Exempt": "Exento",
+      "Taxed": "Gravado",
+      "Rule": "Norma",
       "Value to be written-off": "Valor a condonar",
       "Current Interest": "Int corriente",
       "Current Principal": "Capital",
@@ -2791,7 +2818,10 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Collection House": "Administrar detalles del Proveedor de Servicios de Casa de cobro",
+      "Collection House Configuration": "Gestión de Casas de Cobro",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
+      "Classification Concepts": "Clasificación Conceptos",
       "Masivian Service Configuration": "Configuración del servicio Masivian",
       "AddCreditNote": "Ingreso de Nota de Crédito",
       "Loan Repayments": "Pagos de Créditos",
@@ -2905,6 +2935,7 @@
       "Create Adhoc Query": "Crear consulta ad hoc",
       "Create Center": "Crear centro",
       "Create Charge": "Crear cargo",
+      "Create Classification Concept": "Crear clasificación concepto",
       "Create Client": "Crear cliente",
       "Create Code": "Crear código",
       "Create Collateral": "Crear garantía",
@@ -3832,6 +3863,7 @@
     "chargeback": "Devolución de cargo",
     "chargeAdjustment": "Ajuste de cargo",
     "chargeOff": "Cargo",
-    "downPayment": "Pago inicial"
+    "downPayment": "Pago inicial",
+    "creditNote": "Nota crédito"
   }
 }

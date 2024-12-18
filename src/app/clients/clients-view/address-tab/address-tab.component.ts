@@ -139,6 +139,11 @@ export class AddressTabComponent {
   getAddressFormFields(formType?: string, address?: any) {
     let formfields: FormfieldBase[] = [];
     if (formType === 'add') {
+
+      this.clientAddressTemplate.addressTypeIdOptions = this.clientAddressTemplate.addressTypeIdOptions.map((option: any) => {
+        return { ...option, value: option.name };
+      });
+
       formfields.push(this.isFieldEnabled('addressType') ? new SelectBase({
         controlName: 'addressType',
         label: 'Address Type',

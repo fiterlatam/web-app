@@ -40,6 +40,8 @@ export class EditInterestRateComponent implements OnInit {
   editInterestRate() {
     const locale = this.settingsService.language.code;
     this.interestRateForm = this.formBuilder.group({
+      'maxRate': [this.decimalPipe.transform(this.interestRateData.maxRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
+      'minRate': [this.decimalPipe.transform(this.interestRateData.minRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
       'currentRate': [this.decimalPipe.transform(this.interestRateData.currentRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
       'appliedOnDate': [this.interestRateData.appliedOnDate && new Date(this.interestRateData.appliedOnDate), [Validators.required]],
       'active': [this.interestRateData.active, [Validators.required]],

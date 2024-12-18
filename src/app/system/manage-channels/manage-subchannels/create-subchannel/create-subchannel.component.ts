@@ -39,12 +39,12 @@ export class CreateSubChannelComponent implements OnInit {
       private settingsService: SettingsService,
       private formBuilder: UntypedFormBuilder) {
 
-    console.log("constructor");
+    
   }
 
 
   ngOnInit(): void {
-    console.log("ngOnInit");
+    
     this.createGroupForm();
 
     this.entityId = this.route.snapshot.params["id"];

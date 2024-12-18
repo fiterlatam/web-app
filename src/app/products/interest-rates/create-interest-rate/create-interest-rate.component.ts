@@ -44,7 +44,9 @@ export class CreateInterestRateComponent implements OnInit {
     }
     this.interestRateForm = this.formBuilder.group({
       'name': ['', Validators.required],
+      'minRate': [this.decimalPipe.transform(0, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
       'currentRate': [this.decimalPipe.transform(currentRate, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
+      'maxRate': [this.decimalPipe.transform(0, '1.2-2', locale), [Validators.required, Validators.pattern('^[0-9,\\.]+$'), Validators.min(0), Validators.maxLength(5), Validators.max(100)]],
       'appliedOnDate': [this.minDate && new Date(this.minDate), [Validators.required]],
       'interestRateTypeId': ['', Validators.required],
       'active': [true, [Validators.required]]

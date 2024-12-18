@@ -1,0 +1,40 @@
+<div class="container">
+
+    <mat-card>
+  
+      <form [formGroup]="collectionHouseConfigurationForm" (ngSubmit)="submit()">
+  
+        <mat-card-content>
+  
+          <div fxLayout="column">
+  
+            <mat-form-field>
+              <mat-label>{{'labels.inputs.Collection House Service Url' | translate}}</mat-label>
+              <input matInput required formControlName="COLLECTION_HOUSE_URL">
+              <mat-error *ngIf="collectionHouseConfigurationForm.controls?.COLLECTION_HOUSE_URL.hasError('required')">
+                {{'labels.inputs.Custom Charge Honorario Service Url' | translate}} {{ "labels.commons.is" | translate}} <strong>{{ "labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>{{'labels.inputs.Collection House Service API Key' | translate}}</mat-label>
+              <input matInput required type="text" formControlName="COLLECTION_HOUSE_API_KEY">
+              <mat-error *ngIf="collectionHouseConfigurationForm.controls?.COLLECTION_HOUSE_API_KEY.hasError('required')">
+                {{'labels.inputs.Custom Charge Honorario Service API Key' | translate}} {{ "labels.commons.is" | translate}} <strong>{{ "labels.commons.required" | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+        </mat-card-content>
+  
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+          <button type="button" mat-raised-button [routerLink]="['../']">{{'labels.buttons.Cancel' | translate}}</button>
+          <button mat-raised-button color="primary" [disabled]="!collectionHouseConfigurationForm.valid || collectionHouseConfigurationForm.pristine">{{'labels.buttons.Submit' | translate}}</button>
+        </mat-card-actions>
+  
+      </form>
+  
+    </mat-card>
+  
+  </div>
+  

@@ -22,7 +22,6 @@ export class PopoverCloseDirective<T = any> {
 
   @HostListener('click') onClick(): void {
     if (!this.popoverRef) {
-      console.error('PopoverClose is not supported within a template');
 
       return;
     }

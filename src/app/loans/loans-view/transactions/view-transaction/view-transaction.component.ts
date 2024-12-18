@@ -106,7 +106,7 @@ export class ViewTransactionComponent implements OnInit {
 
       this.channelName = this.transactionData?.paymentDetailData?.channelName;
       this.pointOfSalesName = this.transactionData?.paymentDetailData?.pointOfSales?.name;
-      console.log(this.transactionData?.paymentDetailData);
+      
       this.bankName = this.transactionData?.paymentDetailData?.bankName;
     });
     this.clientId = this.route.snapshot.params['clientId'];

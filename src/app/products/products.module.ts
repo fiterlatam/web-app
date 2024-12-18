@@ -22,6 +22,10 @@ import { ManageTaxConfigurationsComponent } from './manage-tax-configurations/ma
 import { RecurringDepositProductsComponent } from './recurring-deposit-products/recurring-deposit-products.component';
 import { ChargesComponent } from './charges/charges.component';
 import { ViewChargeComponent } from './charges/view-charge/view-charge.component';
+import { ClassificationConceptsComponent } from './classification-concepts/classification-concepts.component';
+import { CreateClassificationConceptComponent } from './classification-concepts/create-classification-concept/create-classification-concept.component';
+import { ViewClassficationConceptComponent } from './classification-concepts/view-classification-concept/view-classification-concept.component';
+import { EditClassificationConceptComponent } from './classification-concepts/edit-classification-concept/edit-classification-concept.component';
 import { FixedDepositProductsComponent } from './fixed-deposit-products/fixed-deposit-products.component';
 import { ProductsMixComponent } from './products-mix/products-mix.component';
 import { ViewProductMixComponent } from './products-mix/view-product-mix/view-product-mix.component';
@@ -142,6 +146,10 @@ import { CreateLoanProductParameterizationComponent } from './loan-product-param
 import { EditLoanProductParameterizationComponent } from './loan-product-parameterization/edit-loan-product-parameterization/edit-loan-product-parameterization.component';
 import { ViewLoanProductParameterizationComponent } from './loan-product-parameterization/view-loan-product-parameterization/view-loan-product-parameterization.component';
 import { ViewLoanProductParameterizationListComponent } from './loan-product-parameterization/view-loan-product-parameterization-list/view-loan-product-parameterization-list.component';
+import { CollectionHouseConfigComponent } from './collection-house-config/collection-house-config.component';
+import { CreateCollectionHouseComponent } from './collection-house-config/create-collection-house-config/create-collection-house/create-collection-house.component';
+import { EditCollectionHouseConfigComponent } from './collection-house-config/edit-collection-house-config/edit-collection-house-config/edit-collection-house-config.component';
+import { ViewCollectionHouseConfigComponent } from './collection-house-config/view/view-collection-house-config/view-collection-house-config.component';
 
 /**
  * Products Module
@@ -171,6 +179,10 @@ import { ViewLoanProductParameterizationListComponent } from './loan-product-par
         RecurringDepositProductsComponent,
         ChargesComponent,
         ViewChargeComponent,
+        ClassificationConceptsComponent,
+        CreateClassificationConceptComponent,
+        ViewClassficationConceptComponent,
+        EditClassificationConceptComponent,
         FixedDepositProductsComponent,
         ManageTaxComponentsComponent,
         ProductsMixComponent,
@@ -287,7 +299,11 @@ import { ViewLoanProductParameterizationListComponent } from './loan-product-par
         CreateLoanProductParameterizationComponent,
         EditLoanProductParameterizationComponent,
         ViewLoanProductParameterizationComponent,
-        ViewLoanProductParameterizationListComponent
+        ViewLoanProductParameterizationListComponent,
+        CollectionHouseConfigComponent,
+        CreateCollectionHouseComponent,
+        EditCollectionHouseConfigComponent,
+        ViewCollectionHouseConfigComponent
     ]
 })
 export class ProductsModule { }

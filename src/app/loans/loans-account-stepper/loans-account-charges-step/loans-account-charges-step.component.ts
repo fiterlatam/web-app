@@ -96,8 +96,10 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           this.isVehiculos = true;
         }
         if(this.loanId){
+          
           this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId  })) || [];
         }else{
+          
           this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0, insuranceName: "", insuranceId : ""  })) || [];
         }
           
@@ -155,7 +157,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           label: this.translate.instant('labels.inputs.expdate'),
           value: charge?.expDate || null, 
           type: 'date',
-          required: false,
+          required: true,
           maxDate: this.maxDate,
           minDate: tomorrow
         })

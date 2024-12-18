@@ -23,29 +23,28 @@ export class SubChannelService {
    */
 
   getSubChannel(channelId: number, sqlSearch: any): Observable<any> {
-    console.log("subchannel service called");
-    console.log(sqlSearch);
+  
     const httpParams = new HttpParams()
                             .set('sqlSearch', sqlSearch);
 
     let data = this.http.get(`/channels/${channelId}/subchannels`,{ params: httpParams })
-    console.log(data);
+    
     return data;
   }
 
   createSubChannel(channelId: number, formData: any): Observable<any> {
-    console.log("createSubChannel service called");
+    
     const httpParams = new HttpParams();
     let data = this.http.post(`/channels/${channelId}/subchannels`, formData); 
-    console.log(data);
+    
     return data;
   }
 
   getClientallyById(channelId: number, id: any): Observable<any> {
-    console.log("createSubChannel service called");
+    
     const httpParams = new HttpParams();
     let data = this.http.get(`/channels/${channelId}/subchannels/${id}`);
-    console.log(data);
+    
     return data;
   }
 

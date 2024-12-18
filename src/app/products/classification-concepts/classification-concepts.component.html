@@ -1,0 +1,197 @@
+<div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+  <div #buttonCreateClassificationConcept class="in-block">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['create']"
+      *mifosxHasPermission="'CREATE_CLASIFICACION_CONCEPTO'"
+    >
+      <fa-icon icon="plus" class="m-r-10"></fa-icon>
+      {{ "labels.buttons.Create Classification Concept" | translate }}
+    </button>
+  </div>
+</div>
+
+<div class="container">
+  <div #filter fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field fxFlex>
+      <mat-label>{{ "labels.inputs.Filter" | translate }}</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)" />
+    </mat-form-field>
+  </div>
+
+  <div #classificationConceptsTable class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="concepto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "labels.inputs.Concept" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">{{ classificationConcept.concepto }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mandato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "labels.inputs.Mandate" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">
+          <fa-icon
+            *ngIf="classificationConcept.mandato"
+            icon="check-circle"
+            size="lg"
+            class="ispenalty"
+            matTooltip="Sí"
+            matTooltipPosition="right"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!classificationConcept.mandato"
+            icon="times-circle"
+            size="lg"
+            class="nopenalty"
+            matTooltip="No"
+            matTooltipPosition="right"
+          ></fa-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="excluido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "labels.inputs.Excluded" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">
+          <fa-icon
+            *ngIf="classificationConcept.excluido"
+            icon="check-circle"
+            size="lg"
+            class="ispenalty"
+            matTooltip="Sí"
+            matTooltipPosition="right"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!classificationConcept.excluido"
+            icon="times-circle"
+            size="lg"
+            class="nopenalty"
+            matTooltip="No"
+            matTooltipPosition="right"
+          ></fa-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="exento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "labels.inputs.Exempt" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">
+          <fa-icon
+            *ngIf="classificationConcept.exento"
+            icon="check-circle"
+            size="lg"
+            class="ispenalty"
+            matTooltip="Sí"
+            matTooltipPosition="right"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!classificationConcept.exento"
+            icon="times-circle"
+            size="lg"
+            class="nopenalty"
+            matTooltip="No"
+            matTooltipPosition="right"
+          ></fa-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="gravado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "labels.inputs.Taxed" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">
+          <fa-icon
+            *ngIf="classificationConcept.gravado"
+            icon="check-circle"
+            size="lg"
+            class="ispenalty"
+            matTooltip="Sí"
+            matTooltipPosition="right"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!classificationConcept.gravado"
+            icon="times-circle"
+            size="lg"
+            class="nopenalty"
+            matTooltip="No"
+            matTooltipPosition="right"
+          ></fa-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="norma">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="center">{{ "labels.inputs.Rule" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">{{ classificationConcept.norma }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tarifa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="center">{{ "labels.inputs.Fee" | translate }}</th>
+        <td mat-cell *matCellDef="let classificationConcept">{{ classificationConcept.tarifa | formatNumber }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="[row.id]" class="select-row"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+<ng-template #templateButtonCreateCharge let-popover="popover">
+  <h2>Create Classification Concept</h2>
+  <p class="mw300">This option allows you to create new classification concepts.</p>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <button mat-raised-button color="warn" (click)="popover.close(); configurationWizardService.closeConfigWizard()">
+      Close
+    </button>
+    <button mat-raised-button color="primary" (click)="popover.close(); previousStep()">Back</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="popover.close(); showPopover(templateFilter, filter, 'bottom', true)"
+    >
+      Next
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #templateFilter let-popover="popover">
+  <h4>Search bar to filter classification concepts.</h4>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <button mat-raised-button color="warn" (click)="popover.close(); configurationWizardService.closeConfigWizard()">
+      Close
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        popover.close();
+        showPopover(templateButtonCreateClassificationConcept, buttonCreateClassificationConcept, 'bottom', true)
+      "
+    >
+      Back
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        popover.close(); showPopover(templateButtonCreateClassificationConcept, classificationConceptTable, 'top', true)
+      "
+    >
+      Next
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #templateChargesTable let-popover="popover">
+  <h4 class="mw300">List of classification concepts in the organization.</h4>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column">
+    <button mat-raised-button color="warn" (click)="popover.close(); configurationWizardService.closeConfigWizard()">
+      Close
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="popover.close(); showPopover(templateFilter, filter, 'bottom', true)"
+    >
+      Back
+    </button>
+    <button mat-raised-button color="primary" (click)="popover.close(); nextStep()">Next</button>
+  </div>
+</ng-template>

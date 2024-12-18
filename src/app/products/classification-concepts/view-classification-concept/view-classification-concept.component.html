@@ -1,0 +1,90 @@
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['edit']"
+    *mifosxHasPermission="'UPDATE_CLASIFICACION_CONCEPTO'"
+  >
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{ "labels.buttons.Edit" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="deleteClassificationConcept()"
+    *mifosxHasPermission="'DELETE_CLASIFICACION_CONCEPTO'"
+  >
+    <fa-icon icon="trash" class="m-r-10"></fa-icon>
+    {{ "labels.buttons.Delete" | translate }}
+  </button>
+</div>
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row wrap" class="content">
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Concept" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.concepto }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Mandate" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.mandato === true | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Excluded" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.excluido === true | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Exempt" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.exento === true | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Taxed" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.gravado === true | yesNo }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Rule" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.norma }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{ "labels.inputs.Fee" | translate }}
+        </div>
+
+        <div fxFlex="50%">
+          {{ classificationConceptData.tarifa | formatNumber }}
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+        <button type="button" mat-raised-button color="primary" [routerLink]="['../']">
+          {{ "labels.buttons.Back" | translate }}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

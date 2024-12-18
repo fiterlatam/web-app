@@ -116,6 +116,11 @@
 
     <ng-container *ngIf="!loansAccountTermsData?.isLoanProductLinkedToFloatingRate">
 
+        <mat-form-field fxFlex="48%">
+          <mat-label>{{"labels.inputs.Nominal interest rate" | translate}}</mat-label>
+          <input type="number" matInput formControlName="interestRatePerPeriod">
+        </mat-form-field>
+  
       <mat-form-field fxFlex="48%" *ngIf="requirePoints">
         <mat-label>{{"labels.inputs.Interest Rate Points" | translate}}</mat-label>
         <input type="number" matInput formControlName="interestRatePoints">

@@ -46,6 +46,8 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   /** Point Of Sales */
   pointSalesOption: any;
 
+  honorariosAmount: any;
+
   /**
    * @param {FormBuilder} formBuilder Form Builder.
    * @param {LoansService} loanService Loan Service.
@@ -181,6 +183,17 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       .subscribe((response: any) => {
         this.router.navigate(['../../transactions'], { relativeTo: this.route });
     });
+  }
+
+  calculateHonoAmount() {
+    const amount = this.repaymentLoanForm.value.transactionAmount;
+    this.loanService.calculateHonoAmount(this.loanId, amount)
+          .subscribe((response: any) => {
+            this.honorariosAmount = response;
+            this.repaymentLoanForm.patchValue({
+              transactionAmount : this.repaymentLoanForm.value.transactionAmount + response,
+              });
+        });
   }
 
 }
