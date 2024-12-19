@@ -46,7 +46,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
   /** Point Of Sales */
   pointSalesOption: any;
 
-  honorariosAmount: any;
+  honoAmount: any;
 
   /**
    * @param {FormBuilder} formBuilder Form Builder.
@@ -88,6 +88,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     this.repaymentLoanForm = this.formBuilder.group({
       'transactionDate': [this.settingsService.businessDate, Validators.required],
       'transactionAmount': ['', Validators.required],
+      'honorariosAmount': '',
       'externalId': '',
       'paymentTypeId': ['', Validators.required],
       'note': '',
@@ -115,6 +116,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount,
       transactionProcessingStrategy: this.dataObject.transactionProcessingStrategy,
+      honorariosAmount: 0,
     });
   }
 
@@ -189,9 +191,10 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
     const amount = this.repaymentLoanForm.value.transactionAmount;
     this.loanService.calculateHonoAmount(this.loanId, amount)
           .subscribe((response: any) => {
-            this.honorariosAmount = response;
+            this.honoAmount = response;
             this.repaymentLoanForm.patchValue({
               transactionAmount : this.repaymentLoanForm.value.transactionAmount + response,
+              honorariosAmount: response,
               });
         });
   }
