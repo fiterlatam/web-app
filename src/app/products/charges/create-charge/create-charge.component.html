@@ -339,7 +339,7 @@
 
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.name" | translate}} </mat-label>
-              <input matInput formControlName="insuranceName" [required]='areInsuranceFieldsRequired()'>
+              <input matInput formControlName="insuranceName">
             </mat-form-field>
 
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
@@ -352,15 +352,15 @@
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.company" | translate}} </mat-label>
-              <input matInput formControlName="insuranceCompany" [required]='areInsuranceFieldsRequired()'>
+              <input matInput formControlName="insuranceCompany">
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurer.name" | translate}} </mat-label>
-              <input matInput formControlName="insurerName" [required]='areInsuranceFieldsRequired()'>
+              <input matInput formControlName="insurerName">
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.code" | translate}} </mat-label>
-              <input  type="number" matInput formControlName="insuranceCode" [required]='areInsuranceFieldsRequired()'>
+              <input  type="number" matInput formControlName="insuranceCode">
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('optional')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.insurance.plan" | translate}} </mat-label>
@@ -384,7 +384,7 @@
             </mat-form-field>
             <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
               <mat-label>{{"labels.inputs.charge.days.in.arrears" | translate}} </mat-label>
-              <input type="number" matInput formControlName="daysInArrears" [required]='areInsuranceFieldsRequired()'>
+              <input type="number" matInput formControlName="daysInArrears">
             </mat-form-field>
 
           </div>
