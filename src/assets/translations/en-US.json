@@ -2588,6 +2588,7 @@
       "getPercentageAmountFromTable": "Percentage From Table",
       "charge.days.in.arrears": "Days In Arrears",
       "insurance.incident.definitive.default": "Definitive cancellation due to default",
+      "insurance.incident.definitive.restructuring.cancellation": "Definitive cancellation due to restructuring",
       "insurance.incident.definitive.voluntary.cancellation": "Definitive voluntary cancellation",
       "insurance.incident.final.advance.payment.cancellation": "Final cancellation due to credit cancellation",
       "insurance.incident.final.guarantee.claim.cancellation": "Final cancellation due to guarantee claim",

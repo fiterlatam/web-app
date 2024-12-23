@@ -2611,6 +2611,7 @@
       "getPercentageAmountFromTable": "Porcentaje de la tabla",
       "charge.days.in.arrears": "Días de atraso",
       "insurance.incident.definitive.default": "Cancelación definitiva por mora",
+      "insurance.incident.definitive.restructuring.cancellation": "Cancelación definitiva por reestructuración",
       "insurance.incident.definitive.voluntary.cancellation": "Cancelación voluntaria definitiva",
       "insurance.incident.final.advance.payment.cancellation": "Cancelación definitiva por cancelación del crédito",
       "insurance.incident.final.guarantee.claim.cancellation": "Cancelación definitiva por reclamación avaladora",
