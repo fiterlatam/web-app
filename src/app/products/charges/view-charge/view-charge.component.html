@@ -46,7 +46,7 @@
         </div>
 
         <div fxFlex="50%">
-          {{ chargeData.amount | formatNumber: [chargeData.currency.decimalPlaces] }}
+          {{ chargeData.amount | formatNumber: [8] }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong" *ngIf="interestRateData">
