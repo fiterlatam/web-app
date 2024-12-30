@@ -2,6 +2,7 @@
   "APP_NAME": "Mifos X",
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
+  "ACTIVE":"ACTIVE",
   "errors": {
     "error.msg.loan.collection.not.allowed.on.this.product": "Repayment is not allowed for this loan product: {{params[0].value}}",
     "productParamForm.required": "Please fill out this field.",
