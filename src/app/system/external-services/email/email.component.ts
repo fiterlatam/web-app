@@ -30,10 +30,12 @@ export class EmailComponent implements OnInit {
    */
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: { emailConfiguration: any }) => {
-      this.emailConfigurationData = data.emailConfiguration.filter((config: any) => {
-        const name = config.name.toLowerCase();
-        return name !== 'username' && name !== 'password' && name !== 'usetls';
-      });
+      const configMap = new Map(data.emailConfiguration.map((config: any) => [config.name, config]));
+      
+      // Filter out username and password and maintain correct order
+      this.emailConfigurationData = ['host', 'port', 'fromEmail', 'fromName']
+        .map(name => configMap.get(name))
+        .filter(config => config);
     });
   }
 
