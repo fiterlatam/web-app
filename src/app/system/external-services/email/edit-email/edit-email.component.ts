@@ -52,11 +52,11 @@ export class EditEmailComponent implements OnInit {
    */
   setEmailConfigurationForm() {
     this.emailConfigurationForm = this.formBuilder.group({
-      'username': [this.emailConfigurationData[0].value, Validators.required],
-      'password': [this.emailConfigurationData[1].value, Validators.required],
+      'username': ' ',
+      'password': 'password',
       'host': [this.emailConfigurationData[2].value, Validators.required],
       'port': [this.emailConfigurationData[3].value, Validators.required],
-      'useTLS': [this.emailConfigurationData[4].value, Validators.required],
+      'useTLS': false,
       'fromEmail': [this.emailConfigurationData[5].value, Validators.required],
       'fromName': [this.emailConfigurationData[6].value, Validators.required]
     });
