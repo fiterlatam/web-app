@@ -30,7 +30,10 @@ export class EmailComponent implements OnInit {
    */
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: { emailConfiguration: any }) => {
-      this.emailConfigurationData = data.emailConfiguration;
+      this.emailConfigurationData = data.emailConfiguration.filter((config: any) => {
+        const name = config.name.toLowerCase();
+        return name !== 'username' && name !== 'password' && name !== 'usetls';
+      });
     });
   }
 
@@ -48,5 +51,4 @@ export class EmailComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.emailConfigurationData);
     this.dataSource.sort = this.sort;
   }
-
 }
