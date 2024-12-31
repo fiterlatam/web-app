@@ -27,7 +27,7 @@
         </mat-form-field>
       </div>
       <div fxFlex="10%" *ngIf="claimTypeSelected != 'castigado'">
-        <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="bulkLoanClaim($event)">
+        <button mat-raised-button color="success" *mifosxHasPermission="'RECLAIM_LOAN'" (click)="bulkLoanClaim($event)" [disabled]="selection.selected.length === 0">
           <fa-icon icon="check" class="m-r-10"></fa-icon>{{'labels.buttons.Claim' | translate}}
         </button>
       </div>
