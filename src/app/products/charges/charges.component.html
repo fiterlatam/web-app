@@ -42,7 +42,7 @@
 
       <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.inputs.Charge Amount' | translate}}</th>
-        <td mat-cell *matCellDef="let charge" class="r-amount"> {{ charge.amount | formatNumber }} </td>
+        <td mat-cell *matCellDef="let charge" class="r-amount"> {{ charge.amount | formatNumber : [8] }} </td>
       </ng-container>
 
       <ng-container matColumnDef="graceOnChargePeriodAmount">
