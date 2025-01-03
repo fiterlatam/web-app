@@ -384,6 +384,14 @@ export class LoansService {
   }
 
   /**
+   * Return the loan get Redefine Amount 
+   */
+  loanRescheduleReferidoRequests(loanId: any, tillDate: string) {
+    const httpParams = new HttpParams().set('loanId', loanId).append("tillDate", tillDate);
+    return this.http.get('/rescheduleloans/referido', {params: httpParams});
+  }
+
+  /**
    * Returns the Loan Reschedule request
    */
   applyCommandLoanRescheduleRequests(rescheduleId: any, command: string, data: any) {

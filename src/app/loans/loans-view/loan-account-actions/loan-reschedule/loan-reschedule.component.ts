@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 /** Custom Services */
 import { SettingsService } from 'app/settings/settings.service';
 import { Dates } from 'app/core/utils/dates';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'mifosx-loan-reschedule',
@@ -43,7 +44,7 @@ export class LoanRescheduleComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dateUtils: Dates,
-    private settingsService: SettingsService) {
+    private settingsService: SettingsService, private datePipe: DatePipe) {
       this.loanId = this.route.snapshot.params['loanId'];
     }
 
@@ -69,6 +70,26 @@ export class LoanRescheduleComponent implements OnInit {
     });
 
   }
+
+  loadReferidoAmountTillDate(){
+        const prevRescheduleFromDate = this.rescheduleLoanForm.value.rescheduleFromDate;
+        const formattedDate = this.datePipe.transform(prevRescheduleFromDate, 'yyyy-MM-dd');
+    this.loanService.loanRescheduleReferidoRequests(this.loanId, formattedDate)
+            .subscribe((data:any) => {
+              this.rescheduleLoanForm.patchValue({
+                repaymentAmount: data?.rediferirAmount
+              });
+            });
+  }
+
+  onCheckboxChange(event: any): void {
+    const isChecked = this.rediferirCuotas.value;
+   if(isChecked){
+    this.loadReferidoAmountTillDate();
+   }
+    console.log(isChecked) // true or false
+    
+}
 
   submit() {
     const rescheduleLoanFormData = this.rescheduleLoanForm.value;
