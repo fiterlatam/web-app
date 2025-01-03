@@ -112,9 +112,9 @@ export class CreateChargeComponent implements OnInit {
     const locale = this.settingsService.language.code;
     const amountValidators = [Validators.required];
     if (locale === 'es') {
-      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:,\d{1,2})?$/));
+      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:,\d{1,8})?$/));
     } else if (locale === 'en') {
-      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:\.\d{1,2})?$/));
+      amountValidators.push(Validators.pattern(/^(?!(?:\D*\d){15})([0-9]){1,9}(?:\.\d{1,8})?$/));
     } else {
       amountValidators.push(Validators.pattern(/^[0-9.,]*$/));
     }

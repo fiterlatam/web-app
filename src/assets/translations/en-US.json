@@ -356,6 +356,9 @@
     "error.msg.charge.not.setup.correctly": "Charge [ {{params[0].value}} ] not setup correctly.",
     "error.msg.loan.outside.the.off.restriction.period": "Reached allowed restructurings in the last 6 months",
     "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter",
+    "validation.msg.interest.rate.currentRate.is.less.than.min": "The Parameter CurrentRate value [ {{params[0].value}} ] must not be less than the minimum value  [ {{params[1].value}} ]",
+    "validation.msg.interest.rate.currentRate.is.greater.than.max": "The Parameter CurrentRate value [ {{params[0].value}} ] must not be more than maximum value [ {{params[1].value}} ] ",
+    "validation.msg.interest.rate.maxRate.is.less.than.min": "The Parameter maxRate value [ {{params[0].value}} ] must not be less than the minimum value [ {{params[1].value}} ] ",
     "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists",
     "processing.loan.request": "Error processing Loan request",
     "error.msg.codeValue.in.use": "Code value is in use"
