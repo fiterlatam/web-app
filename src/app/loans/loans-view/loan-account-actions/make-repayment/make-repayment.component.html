@@ -51,6 +51,18 @@
             <div fxFlex="50%" class="r-amount right-label">
               {{ dataObject.penaltyChargesPortion | formatNumber }}
             </div>
+
+            <div fxFlex="33%" class="mat-body-strong">
+              {{ 'Honorarios' | translate}}
+            </div>
+            <div fxFlex="40%" class="r-amount right-label">
+              <button type="button" mat-stroked-button color="primary" (click)="calculateHonoAmount()">
+                {{"labels.buttons.Calculate"  |translate}}
+              </button>
+            </div>
+            <div fxFlex="27%" class="r-amount right-label">
+              {{ honoAmount | formatNumber }}
+            </div>
           </div>
 
           <mat-form-field appearance="fill">

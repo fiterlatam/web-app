@@ -30,7 +30,7 @@
 
           <mat-form-field fxFlex="48%" (click)="configurationDatePicker.open()">
             <mat-label>{{'labels.inputs.Date Value' | translate}}</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="configurationDatePicker" formControlName="dateValue">
+            <input matInput [min]="minDate" [matDatepicker]="configurationDatePicker" formControlName="dateValue">
             <mat-datepicker-toggle matSuffix [for]="configurationDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #configurationDatePicker></mat-datepicker>
           </mat-form-field>

@@ -57,6 +57,15 @@ export class LoansService {
     return this.http.get(`/loans/${loanId}/transactions/template`, {params: httpParams});
   }
 
+  getLoanAnuladoActionTemplate(loanId: string): Observable<any> {
+    const httpParams = new HttpParams()
+      .set('command', 'anulado')
+      .set('locale', this.settingsService.language.code)
+      .set('dateFormat', this.settingsService.dateFormat)
+      .set('transactionDate', this.dateUtils.formatDate(this.settingsService.businessDate, this.settingsService.dateFormat));
+    return this.http.get(`/loans/${loanId}/transactions/template`, {params: httpParams});
+  }
+
   getLoanAccountResource(loanId: string, associations: string): Observable<any> {
     const httpParams = new HttpParams().set('associations', associations);
     return this.http.get(`/loans/${loanId}`, {params: httpParams});
@@ -733,5 +742,10 @@ export class LoansService {
   getLoanCreditNotes(loanId: any): Observable<any> {
     return this.http.get(`/loans/${loanId}/credit-notes`);
   }
+
+   calculateHonoAmount(loanId: any, amount: any) {
+     const httpParams = new HttpParams().set('amount', amount);
+    return this.http.get(`/loans/${loanId}/calculateHonorariosAmount`, {params: httpParams});
+   }
 
 }
