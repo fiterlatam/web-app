@@ -1,5 +1,5 @@
 /** Angular Imports */
-import {Component, OnInit, Input, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, EventEmitter, Output} from '@angular/core';
 import {UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
@@ -16,6 +16,10 @@ import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
 import {CodeName, OptionData} from 'app/shared/models/option-data.model';
 import {LoansService} from 'app/loans/loans.service';
 
+import { debounceTime } from 'rxjs/operators';
+
+export const principalAmountChangeEvent = new EventEmitter<{ id: number; nome: string }>();
+
 /**
  * Create Loans Account Terms Step
  */
@@ -24,6 +28,8 @@ import {LoansService} from 'app/loans/loans.service';
   templateUrl: './loans-account-terms-step.component.html',
   styleUrls: ['./loans-account-terms-step.component.scss']
 })
+
+
 export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
 
   /** Loans Product Options */
@@ -297,6 +303,18 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
       .subscribe(loanTermFrequencyType => {
         this.loansAccountTermsForm.patchValue({'repaymentFrequencyType': loanTermFrequencyType});
       });
+
+
+      // If principal amount changes, then we need to revisit charges rules on charge-step-component.
+     this.loansAccountTermsForm.controls['principalAmount']
+     .valueChanges
+     .pipe(
+       debounceTime(1000) // Aguarda 1 segundo sem alterações antes de executar
+     )
+     .subscribe(value => {
+       const newPrincipalAmountValue = { id: value, nome: `Principal Amount Changed on ${Date.now()}` };
+       principalAmountChangeEvent.emit(newPrincipalAmountValue);       
+     });      
 
   }
 
