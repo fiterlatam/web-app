@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Input, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -17,6 +17,10 @@ import { Dates } from 'app/core/utils/dates';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { principalAmountChangeEvent } from '../loans-account-terms-step/loans-account-terms-step.component'; // Importe o EventEmitter do ComponentB
+import { MatSelect } from '@angular/material/select';
+import { Charge } from 'app/shared/models/general.model';
+
 /**
  * Recurring Deposit Account Charges Step
  */
@@ -33,6 +37,10 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   @Input() loansAccountTemplate: any;
   // @Input() loansAccountFormValid: LoansAccountFormValid
   @Input() loansAccountFormValid: boolean;
+
+  @ViewChild('charge') chargeSelect!: MatSelect;
+  @ViewChild('addChargeButton') addChargeButton!: HTMLButtonElement;
+
 
   /** Charges Data */
   chargeData: any;
@@ -80,6 +88,60 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
       }
       this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate || null, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId })) || [];
     }
+
+    principalAmountChangeEvent.subscribe((newPrincipalAmountValue: any) => {
+
+      // Delete all "Comision Mi Pyme" charge previously associated to this loan
+      this.chargesDataSource = this.chargesDataSource.filter(
+        (item: Charge) => !item.name?.toLowerCase().includes("comision mi pyme")
+      );
+
+
+      // Filter charges by amount and associate them out
+
+      var amountLimit = this.loansAccountProductTemplate.smvl;
+      var filterCriteria = "Comision Mi Pyme >= 4SMLV";
+      let informationIndex = -1;
+
+      if(newPrincipalAmountValue.id < amountLimit) {
+        filterCriteria = "Comision Mi Pyme < 4SMLV";
+      }
+      
+
+      // Filter charges by name to correspond to the filterCriteria, depending on the amount.
+      this.chargeData.forEach((item: Charge) => {
+
+        informationIndex++;
+
+        if(item.name?.toLowerCase().includes(filterCriteria.toLowerCase())) {
+
+          const mappedItem = {
+            chargeId:       this.chargeData[informationIndex].id,
+            name:       this.chargeData[informationIndex].name,
+            chargeTimeType:       this.chargeData[informationIndex].chargeTimeType,
+            chargeCalculationType:       this.chargeData[informationIndex].chargeCalculationType,
+            currency:       this.chargeData[informationIndex].currency,
+            amount:       this.chargeData[informationIndex].amount,
+            amountPaid: 0,
+            amountWaived: 0,
+            amountWrittenOff: 0,
+            amountOutstanding:       this.chargeData[informationIndex].amount,
+            penalty:       this.chargeData[informationIndex].penalty,
+            chargePaymentMode:       this.chargeData[informationIndex].chargePaymentMode,
+            paid: false,
+            waived: false,
+            chargePayable: false,
+            id:       this.chargeData[informationIndex].id,
+            isEndorsed: false,
+            insuranceName:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceName || "",
+            insuranceId:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceCode || ""
+          };
+    
+          // Add charge to the chargesDataSource
+          this.chargesDataSource = [...this.chargesDataSource, mappedItem];
+        }
+      });
+    });
   }
 
   /**
