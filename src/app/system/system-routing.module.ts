@@ -109,6 +109,9 @@ import {CreateChannelResolver} from './manage-channels/create-channel/create-cha
 import {MasivianConfigurationResolver} from './external-services/masivian/masivian.resolver';
 import {MasivianComponent} from './external-services/masivian/masivian.component';
 import {EditSMSComponent} from './external-services/sms/edit-sms/edit-sms.component';
+import { CollectionhousehistoryComponent } from './external-services/collectionhousehistory/collectionhousehistory.component';
+import { EditCollectionhousehistoryComponent } from './external-services/collectionhousehistory/edit-collectionhousehistory/edit-collectionhousehistory.component';
+import { CollectionhousehistoryResolver } from './external-services/collectionhousehistory/collectionhousehistory.resolver';
 
 const routes: Routes = [
   Route.withShell([
@@ -227,6 +230,27 @@ const routes: Routes = [
                   data: { title: 'Edit Custom Charge Honorarios Provider Configuration', breadcrumb: 'Edit' },
                   resolve: {
                     customChargeHonorarioConfiguration: CustomChargeHonorarioConfigurationResolver
+                  }
+                }
+              ]
+            },
+            {
+              path: 'collectionhouseservice',
+              data: { title: 'View Collection House Configuration', breadcrumb: 'Collection House Provider' },
+              children: [
+                {
+                  path: '',
+                  component: CollectionhousehistoryComponent,
+                  resolve: {
+                    collectionHouseHistory: CollectionhousehistoryResolver
+                  }
+                },
+                {
+                  path: 'edit',
+                  component: EditCollectionhousehistoryComponent,
+                  data: { title: 'Edit Collection House Provider Configuration', breadcrumb: 'Edit' },
+                  resolve: {
+                    customChargeHonorarioConfiguration: CollectionhousehistoryResolver
                   }
                 }
               ]

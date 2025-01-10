@@ -158,11 +158,13 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           this.isVehiculos = true;
         }
         if(this.loanId){
+          console.log(this.loansAccountTemplate.charges)
           this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId  })) || [];
         }else{
+          console.log("non ",this.loansAccountTemplate.charges)
           this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0, insuranceName: "", insuranceId : ""  })) || [];
         }
-          
+
       }
     }
   }
@@ -185,7 +187,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
     this.maxDate = this.settingsService.maxFutureDate;
 
     var formfields: FormfieldBase[];
-    
+
     if(this.isVehiculos === true){
        formfields = [
         new InputBase(
@@ -215,9 +217,9 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         new DatepickerBase({
           controlName: 'expdate',
           label: this.translate.instant('labels.inputs.expdate'),
-          value: charge?.expDate || null, 
+          value: charge?.expDate || null,
           type: 'date',
-          required: false,
+          required: true,
           maxDate: this.maxDate,
           minDate: tomorrow
         })
@@ -359,7 +361,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
    * Returns Loans Account Charges and Collateral Form
    */
   get loansAccountCharges(): { charges: any[] } {
-    
+
     return {
       charges: this.chargesDataSource,
     };

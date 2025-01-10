@@ -73,7 +73,31 @@
         </div>
 
         <div fxFlex="50%">
-          {{ transactionData.amount | currency }} {{ transactionData.currency.code }}
+          {{ transactionData.amount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="transactionData.type.disbursement">
+          {{ 'labels.inputs.Disbursement Fees' | translate}}
+        </div>
+
+        <div fxFlex="50%" *ngIf="transactionData.type.disbursement">
+          {{ transactionData.disbursementFeesSummary }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="transactionData.type.disbursement">
+          {{ 'labels.inputs.Total Disbursement Fees' | translate}}
+        </div>
+
+        <div fxFlex="50%" *ngIf="transactionData.type.disbursement">
+          {{ transactionData.totalDisbursementFeesAmount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="transactionData.type.disbursement">
+          {{ 'labels.inputs.Net Disbursal Amount' | translate}}
+        </div>
+
+        <div fxFlex="50%" *ngIf="transactionData.type.disbursement">
+          {{ transactionData.netDisbursalAmount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong" *ngIf="channelName">
@@ -141,7 +165,7 @@
               <ng-container matColumnDef="amount">
                 <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Amount" | translate}} </th>
                 <td mat-cell *matCellDef="let transactionRel">
-                  {{ transactionRel.amount | currency }} {{ transactionData.currency.code }}
+                  {{ transactionRel.amount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
                 </td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

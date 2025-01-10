@@ -3,6 +3,9 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.loan.charge.amount.exceeds.principal": "The charge amount {{params[0].value}} exceeds the principal amount {{params[1].value}}.",
+    "error.msg.loan.collection.not.allowed.on.this.product": "Repayment is not allowed for this loan product: {{params[0].value}}",
+    "productParamForm.required": "Please fill out this field.",
     "validation.error.range.start.number.greater.than.range.end.number": "The start number must be less than the end number.",
     "validation.error.invalid.product.type": "Invalid product type",
     "error.msg.loan.credit.note.not.allowed": "Credit note is not allowed for this product",
@@ -358,7 +361,8 @@
     "validation.msg.interest.rate.currentRate.is.greater.than.max": "The Parameter CurrentRate value [ {{params[0].value}} ] must not be more than maximum value [ {{params[1].value}} ] ",
     "validation.msg.interest.rate.maxRate.is.less.than.min": "The Parameter maxRate value [ {{params[0].value}} ] must not be less than the minimum value [ {{params[1].value}} ] ",
     "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists",
-    "processing.loan.request": "Error processing Loan request"
+    "processing.loan.request": "Error processing Loan request",
+    "error.msg.codeValue.in.use": "Code value is in use"
   },
   "labels": {
     "breadcrumbs": {
@@ -426,6 +430,7 @@
       "Create AdHoc Query": "Create AdHoc Query",
       "Create Center": "Create Center",
       "Create Charge": "Create Charge",
+      "Create Classification Concept": "Create Classification Concept",
       "Create Client": "Create Client",
       "Create Closure": "Create Closure",
       "Create Code": "Create Code",
@@ -610,7 +615,9 @@
       "Claim": "Claim",
       "Exclude": "Exclude",
       "Export": "Export",
-      "punish": "Punish"
+      "punish": "Punish",
+      "Add Collection House": "Add Collection House",
+      "Calculate": "Calculate"
     },
     "commons": {
       "must be greater than outstanding balance": "must be greater than outstanding balance",
@@ -620,7 +627,11 @@
       "20 characters long": "20 characters long",
       "30 characters long": "30 characters long",
       "8 characters long": "8 characters long",
+      "6 characters long": "6 characters long",
+      "4 characters long": "6 characters long",
       "6 characters allowed": "Only up to 6 characters are allowed for the code.",
+      "4 characters allowed": "Only up to 4 characters are allowed for the code.",
+      "50 characters allowed": "Only up to 50 characters are allowed for the code.",
       "Amount must be": "Amount must be",
       "At least one restricted product": "At least one restricted product",
       "At least one role": "At least one role",
@@ -713,7 +724,10 @@
       "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)"
     },
     "heading": {
+      "Collection House": "Collection House Provider",
+      "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
+      "Classification Concepts": "Classification Concepts",
       "Client Cupo Increments": "Client Cupo Increments",
       "Client Cupo Decrements": "Client Cupo Decrements",
       "Collection Channels": "Collection Channels",
@@ -789,6 +803,7 @@
       "Configure Maker-Checker Tasks": "Configure Maker-Checker Tasks",
       "Configure Mifos Organization Needs": "Following guide tour will help you configure Mifos according to your organization needs.",
       "Create Charge": "Create Charge",
+      "Create Classification Concept": "Create Classification Concept",
       "Create Closure": "Create Closure",
       "Create Code": "Create Code",
       "Create Data Table": "Create Data Table",
@@ -1098,8 +1113,16 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Net Disbursal Amount": "Net Disbursal Amount",
+      "Total Disbursement Fees": "Total Disbursement Fees",
+      "Disbursement Fees": "Disbursement Fees",
       "Min Rate": "Min Interest Rate",
       "Max Rate": "Max Interest Rate",
+      "collectionName": "Company name of the collection house",
+      "collectionNit": "NIT",
+      "collectionCode": "Code",
+      "collectionVerificationCode":"Verification",
+      "technicalKey": "Technical Key",
       "InvoicePrefix": "Invoice Prefix",
       "BillingResolutionNumber": "Billing Resolution Number",
       "GenerationDate": "Generation Date",
@@ -1115,6 +1138,7 @@
       "Referido Movement": "Allow Referral Movement",
       "Refinance Movement": "Allow Refinancing Movement",
       "Restructure Movement": "Allow Restructuring Movement",
+      "Allow Repayment": "Allow Repayment",
       "SMS API URL": "SMS API URL",
       "SMS API Authorization Header": "SMS API Authorization",
       "MandatoryInsurance": "Mandatory Insurance",
@@ -1132,6 +1156,11 @@
       "Vehicle Cupo": "Exclusive vehicle Cupo",
       "Balance as of today": "Balance as of today",
       "Concept": "Concept",
+      "Mandate": "Mandate",
+      "Excluded": "Excluded",
+      "Exempt": "Exempt",
+      "Taxed": "Taxed",
+      "Rule": "Rule",
       "Value to be written-off": "Value to be written-off",
       "Current Principal": "Principal",
       "Current Interest": "Current Interest",
@@ -2548,7 +2577,7 @@
       "Allow Credit Note": "Allow Credit Note",
       "Allow Forgiveness": "Allow Forgiveness",
       "Allow Reversals / Cancelations": "Allow Reversals / Cancelations",
-      "Allow Collections": "Allow Collections",
+      "Allow Collections": "Allow Repayments",
       "Advanced Payment Allocation Transactions": "Advanced Payment Allocation Transactions",
       "Advanced Credit Allocation Transactions": "Advanced Credit Allocation Transactions",
       "PAYMENT ALLOCATION": "PRIORITY",
@@ -2568,6 +2597,8 @@
       "getPercentageAmountFromTable": "Percentage From Table",
       "charge.days.in.arrears": "Days In Arrears",
       "insurance.incident.definitive.default": "Definitive cancellation due to default",
+      "insurance.incident.definitive.restructuring.cancellation": "Definitive cancellation due to restructuring",
+      "insurance.incident.novedad.rediferido": "Definitive cancellation due to redeferred",
       "insurance.incident.definitive.voluntary.cancellation": "Definitive voluntary cancellation",
       "insurance.incident.final.advance.payment.cancellation": "Final cancellation due to credit cancellation",
       "insurance.incident.final.guarantee.claim.cancellation": "Final cancellation due to guarantee claim",
@@ -2773,7 +2804,10 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Collection House": "Collection House",
+      "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
+      "Classification Concepts": "Classification Concepts",
       "Masivian Service Configuration": "Masivian Service Configuration",
       "Loan Repayments": "Loan Repayments",
       "Loan Write Offs": "Loan Write Offs",
@@ -2882,6 +2916,7 @@
       "Create Adhoc Query": "Create Adhoc Query",
       "Create Center": "Create Center",
       "Create Charge": "Create Charge",
+      "Create Classification Concept": "Create Classification Concept",
       "Create Client": "Create Client",
       "Create Code": "Create Code",
       "Create Collateral": "Create Collateral",
@@ -3811,6 +3846,7 @@
     "chargeback": "Chargeback",
     "chargeAdjustment": "Charge Adjustment",
     "chargeOff": "Charge Off",
-    "downPayment": "Down Payment"
+    "downPayment": "Down Payment",
+    "creditNote": "Credit Note"
   }
 }

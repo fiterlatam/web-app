@@ -89,7 +89,7 @@
     <ng-container matColumnDef="endorsed">
       <th mat-header-cell *matHeaderCellDef> {{"labels.inputs.Endorsed" | translate}} </th>
       <td mat-cell *matCellDef="let charge">
-        <mat-checkbox [checked]="charge?.isEndorsed || false">
+        <mat-checkbox [checked]="charge?.amount == 0 || false">
         </mat-checkbox>
       </td>
     </ng-container>

@@ -21,9 +21,9 @@
 
           <mat-form-field>
             <mat-label>{{"labels.inputs.Reason for Charge-Off" | translate}}</mat-label>
-            <mat-select formControlName="chargeOffReasonId">
+            <mat-select formControlName="incidentTypeId">
               <mat-option *ngFor="let chargeOffReason of chargeOffReasonOptions" [value]="chargeOffReason.id">
-                {{ chargeOffReason.name }}
+                {{ chargeOffReason.value  | translate}}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="chargeoffLoanForm.controls.chargeOffReasonId.hasError('required')">

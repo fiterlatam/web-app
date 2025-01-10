@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SettingsService } from 'app/settings/settings.service';
+import {Dates} from 'app/core/utils/dates';
 
 /** Custom Services */
 import { SystemService } from '../../../system.service';
@@ -33,12 +34,14 @@ export class EditConfigurationComponent implements OnInit {
    * @param {SystemService} systemService System Service.
    * @param {SettingsService} settingsService Setting Service.
    * @param {ActivatedRoute} route Activated Route.
+   * @param {Dates} dateUtils Date Utils
    * @param {Router} router Router for navigation.
    */
   constructor(private formBuilder: UntypedFormBuilder,
               private systemService: SystemService,
               private settingsService: SettingsService,
               private route: ActivatedRoute,
+             private dateUtils: Dates,
               private router: Router) {
     this.route.data.subscribe((data: { configuration: any }) => {
       this.configuration = data.configuration;
@@ -81,6 +84,7 @@ export class EditConfigurationComponent implements OnInit {
       if (this.configurationForm.value.dateValue != null) {
         payload.locale = this.settingsService.language.code;
         payload.dateFormat = this.settingsService.dateFormat;
+       payload.dateValue = this.dateUtils.formatDate(this.configurationForm.value.dateValue, payload.dateFormat);
       } else {
         delete payload.dateValue;
       }
