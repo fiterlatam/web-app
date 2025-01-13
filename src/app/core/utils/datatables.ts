@@ -28,7 +28,7 @@ export class Datatables {
         case 'DECIMAL':
         case 'TEXT': return new InputBase({
           controlName: column.columnName,
-          label: column.columnName,
+          label: (column.columnComment == null ? column.columnName : column.columnComment),
           value: '',
           type: (column.columnDisplayType === 'INTEGER' || column.columnDisplayType === 'DECIMAL') ? 'number' : 'text',
           required: (!column.isColumnNullable),
@@ -36,14 +36,14 @@ export class Datatables {
         });
         case 'BOOLEAN': return new CheckboxBase({
           controlName: column.columnName,
-          label: column.columnName,
+          label: (column.columnComment == null ? column.columnName : column.columnComment),
           value: '',
           type: 'checkbox',
           required: (column.isColumnNullable) ? false : true
         });
         case 'CODELOOKUP': return new SelectBase({
           controlName: column.columnName,
-          label: column.columnName,
+          label: (column.columnComment == null ? column.columnName : column.columnComment),
           value: '',
           options: { label: 'value', value: 'id', data: column.columnValues },
           required: (column.isColumnNullable) ? false : true
@@ -55,7 +55,7 @@ export class Datatables {
           }
           return new DatepickerBase({
             controlName: column.columnName,
-            label: column.columnName,
+            label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
             required: (column.isColumnNullable) ? false : true
@@ -66,7 +66,7 @@ export class Datatables {
           dataTableEntryObject.dateFormat = Dates.DEFAULT_DATETIMEFORMAT;
           return new DateTimepickerBase({
             controlName: column.columnName,
-            label: column.columnName,
+            label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
             required: (column.isColumnNullable) ? false : true
