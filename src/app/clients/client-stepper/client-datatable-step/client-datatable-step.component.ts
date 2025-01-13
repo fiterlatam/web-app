@@ -27,7 +27,7 @@ export class ClientDatatableStepComponent implements OnInit {
   datatableInputsCopy: any[];
 
   private decimalFields: string[] = ['Cupo', 'Cupo solicitado', 'Cupo aprobado', 'Cupo score'];
-  
+
   constructor(private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
     private datatableService: Datatables) { }
@@ -60,6 +60,9 @@ export class ClientDatatableStepComponent implements OnInit {
         if(this.decimalFields.includes(input.controlName)){
           const columnLength = input.columnLength ? input.columnLength : 10;
           inputItems[input.controlName].setValidators([this.maxLengthWithoutDots(columnLength)]);
+          if(!input.isColumnNullable){
+            inputItems[input.controlName].addValidators([Validators.required]);
+          }
           inputItems[input.controlName].updateValueAndValidity();
           this.addDecimalListener(inputItems[input.controlName], columnLength);
         }
@@ -68,7 +71,7 @@ export class ClientDatatableStepComponent implements OnInit {
           const columnLength = input.columnLength ? input.columnLength : 255;
           inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
           this.addStringLengthListener(inputItems[input.controlName], columnLength);
-         
+
         } else if (this.isNumeric(input.columnDisplayType)) {
           const columnLength = input.columnLength ? input.columnLength : 10;
           inputItems[input.controlName].addValidators([
@@ -77,7 +80,7 @@ export class ClientDatatableStepComponent implements OnInit {
             Validators.min(0)
           ]);
             this.addNumericLengthListener(inputItems[input.controlName], columnLength);
-          
+
         }
       });
       this.datatableForm = this.formBuilder.group(inputItems);
@@ -120,19 +123,19 @@ export class ClientDatatableStepComponent implements OnInit {
 
   private addDecimalListener(control: AbstractControl, maxLength: number): void {
     let isProgrammaticChange = false;  // Flag to prevent recursion
-  
+
     control.valueChanges.subscribe(value => {
       if (isProgrammaticChange || !value) {
         return;
       }
-    
+
       // Remove existing commas to avoid formatting an already formatted value
       const cleanValue = value.toString().replace(/\./g, '').replace(',', '.');;
-  
+
       if (!isNaN(cleanValue)) {
         // Format the value
         const formattedValue = this.formatNumber(cleanValue.slice(0, maxLength));
-  
+
         if (formattedValue !== value) {
           // Prevent re-triggering the same value change
           isProgrammaticChange = true;
@@ -161,7 +164,7 @@ export class ClientDatatableStepComponent implements OnInit {
     return Number(cleanValue);
   }
 
-  
+
 
   maxLength(max: number): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
@@ -214,7 +217,7 @@ export class ClientDatatableStepComponent implements OnInit {
 
     const data = this.datatableService.buildPayload(this.datatableInputs, datatableDataValues, dateFormat,
       { locale: this.settingsService.language.code });
-      
+
 
     return {
       registeredTableName: this.datatableData.registeredTableName,
