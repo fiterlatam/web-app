@@ -3,6 +3,7 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.loan.charge.amount.exceeds.principal": "The charge amount {{params[0].value}} exceeds the principal amount {{params[1].value}}.",
     "error.msg.loan.collection.not.allowed.on.this.product": "Repayment is not allowed for this loan product: {{params[0].value}}",
     "productParamForm.required": "Please fill out this field.",
     "validation.error.range.start.number.greater.than.range.end.number": "The start number must be less than the end number.",
@@ -1112,6 +1113,9 @@
       "Claims-Writeoffs": "Claims / Writeoffs"
     },
     "inputs": {
+      "Net Disbursal Amount": "Net Disbursal Amount",
+      "Total Disbursement Fees": "Total Disbursement Fees",
+      "Disbursement Fees": "Disbursement Fees",
       "Min Rate": "Min Interest Rate",
       "Max Rate": "Max Interest Rate",
       "collectionName": "Company name of the collection house",
@@ -2593,6 +2597,8 @@
       "getPercentageAmountFromTable": "Percentage From Table",
       "charge.days.in.arrears": "Days In Arrears",
       "insurance.incident.definitive.default": "Definitive cancellation due to default",
+      "insurance.incident.definitive.restructuring.cancellation": "Definitive cancellation due to restructuring",
+      "insurance.incident.novedad.rediferido": "Definitive cancellation due to redeferred",
       "insurance.incident.definitive.voluntary.cancellation": "Definitive voluntary cancellation",
       "insurance.incident.final.advance.payment.cancellation": "Final cancellation due to credit cancellation",
       "insurance.incident.final.guarantee.claim.cancellation": "Final cancellation due to guarantee claim",

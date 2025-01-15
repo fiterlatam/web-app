@@ -17,6 +17,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LoanTransactionType } from 'app/loans/models/loan-transaction-type.model';
 import { AlertService } from 'app/core/alert/alert.service';
 import { TranslateService } from '@ngx-translate/core';
+import {CurrencyPipe} from "@angular/common";
 
 /** Custom Dialogs */
 
@@ -27,9 +28,13 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'mifosx-view-transaction',
   templateUrl: './view-transaction.component.html',
-  styleUrls: ['./view-transaction.component.scss']
+  styleUrls: ['./view-transaction.component.scss'],
+  providers: [CurrencyPipe]
 })
 export class ViewTransactionComponent implements OnInit {
+  locale: string;
+  format: string;
+  decimalPlace: string;
 
   /** Transaction data. */
   transactionData: any;
@@ -62,7 +67,10 @@ export class ViewTransactionComponent implements OnInit {
    * @param {Router} router Router for navigation.
    * @param {MatDialog} dialog Dialog reference.
    * @param {Dates} dateUtils Date Utils.
+   * @param translateService
    * @param {SettingsService} settingsService Settings Service
+   * @param currencyPipe
+   * @param organizationService
    * @param {AlertService} alertService Alert Service
    */
   constructor(private loansService: LoansService,
@@ -72,12 +80,12 @@ export class ViewTransactionComponent implements OnInit {
     public dialog: MatDialog,
     private translateService: TranslateService,
     private settingsService: SettingsService,
+    private currencyPipe: CurrencyPipe,
     private organizationService: OrganizationService,
     private alertService: AlertService) {
     this.route.data.subscribe((data: { loansAccountTransaction: any }) => {
-
       this.transactionData = data.loansAccountTransaction;
-      this.allowEdition = !this.transactionData.manuallyReversed && !this.allowTransactionEdition(this.transactionData.type.id);
+      this.allowEdition = !this.transactionData.manuallyReversed && !this.allowTransactionEdition(this.transactionData.type.id );
       this.allowUndo = !this.transactionData.manuallyReversed;
       this.allowChargeback = this.allowChargebackTransaction(this.transactionData.type) && !this.transactionData.manuallyReversed;
       let transactionsChargebackRelated = false;
@@ -106,7 +114,6 @@ export class ViewTransactionComponent implements OnInit {
 
       this.channelName = this.transactionData?.paymentDetailData?.channelName;
       this.pointOfSalesName = this.transactionData?.paymentDetailData?.pointOfSales?.name;
-      
       this.bankName = this.transactionData?.paymentDetailData?.bankName;
     });
     this.clientId = this.route.snapshot.params['clientId'];
@@ -114,6 +121,20 @@ export class ViewTransactionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.locale = this.settingsService.language.code;
+    this.decimalPlace = this.settingsService.decimals;
+    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+    let disbursementFeesSummary = '';
+    if(this.transactionData.disbursementFees){
+      for(let i = 0; i < this.transactionData.disbursementFees.length; i++){
+        disbursementFeesSummary += this.transactionData.disbursementFees[i].chargeName + ' : ' + this.currencyPipe.transform(this.transactionData.disbursementFees[i].amount, this.transactionData.currency.code, 'symbol-narrow', this.format, this.locale);
+        if(i < this.transactionData.disbursementFees.length - 1){
+          disbursementFeesSummary += ' + ';
+        }
+      }
+    }
+    this.transactionData.disbursementFeesSummary = disbursementFeesSummary;
+    console.log(this.transactionData.disbursementFeesSummary);
     if (this.allowChargeback) {
       this.organizationService.getPaymentTypesWithCode().toPromise()
         .then(data => {

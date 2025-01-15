@@ -30,7 +30,8 @@ export class CustomChargeHonorarioComponent implements OnInit {
    */
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe((data: { customChargeHonorarioConfiguration: any }) => {
-      this.amazonS3ConfigurationData = data.customChargeHonorarioConfiguration;   
+      this.amazonS3ConfigurationData = data.customChargeHonorarioConfiguration;
+      console.log(data);      
     });
   }
 
@@ -58,7 +59,7 @@ export class CustomChargeHonorarioComponent implements OnInit {
   }
 
   getConfigurationValue(configuration: any): string {
-    
+    console.log(configuration);
     const value = configuration.value;
     if (configuration.name === 's3_access_key' || configuration.name === 's3_secret_key') {
       return value.replace(value.substr(1, value.length - 3), value.substr(1, value.length - 3).replace(/./g, '*'));

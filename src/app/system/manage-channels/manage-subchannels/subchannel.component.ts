@@ -72,11 +72,11 @@ export class SubChannelComponent implements OnInit {
 
     this.reloaded = false;
 
-    
+    console.log("loadClientallies " + filterValue);
     this.SubChannelService.getSubChannel(this.parentId, filterValue).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-      
-      
+      console.log(apiResponseBody);
+      console.log(this.apiData);
       this.dataSource = new MatTableDataSource(this.apiData);
       this.dataSource.data = apiResponseBody;
 

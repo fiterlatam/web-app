@@ -3,6 +3,7 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.loan.charge.amount.exceeds.principal": "El monto del cargo {{params[0].value}} no puede ser mayor que el monto principal {{params[1].value}}.",
     "error.msg.loan.collection.not.allowed.on.this.product": "Recaudos no está permitido para este producto de préstamo: {{params[0].value}}",
     "productParamForm.required": "Por favor, seleccione un producto",
     "validation.error.range.start.number.greater.than.range.end.number": "El número de inicio del rango debe ser mayor que el número de fin del rango.",
@@ -1127,6 +1128,9 @@
       "Claims-Writeoffs": "Reclamos / castigos"
     },
     "inputs": {
+      "Net Disbursal Amount": "Monto neto desembolsado",
+      "Total Disbursement Fees": "Total de comisiones de desembolso",
+      "Disbursement Fees": "Comisiones de desembolso",
       "Min Rate": "Tasa de interés Mínima",
       "Max Rate": "Tasa de interés Máxima",
       "collectionName": "Razón social de la casa de cobro",
@@ -2616,6 +2620,8 @@
       "getPercentageAmountFromTable": "Porcentaje de la tabla",
       "charge.days.in.arrears": "Días de atraso",
       "insurance.incident.definitive.default": "Cancelación definitiva por mora",
+      "insurance.incident.novedad.rediferido": "Novedad rediferido",
+      "insurance.incident.definitive.restructuring.cancellation": "Cancelación definitiva por reestructuración",
       "insurance.incident.definitive.voluntary.cancellation": "Cancelación voluntaria definitiva",
       "insurance.incident.final.advance.payment.cancellation": "Cancelación definitiva por cancelación del crédito",
       "insurance.incident.final.guarantee.claim.cancellation": "Cancelación definitiva por reclamación avaladora",

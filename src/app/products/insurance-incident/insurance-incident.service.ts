@@ -30,7 +30,7 @@ export class InsuranceIncidentService {
     }
 
   public getIncidents(): Observable<any> {
-    
+    console.log('getIncidents');
     return this.http.get(`${this.baseUrl}`);
   }
 

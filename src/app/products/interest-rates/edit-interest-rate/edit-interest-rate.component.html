@@ -56,23 +56,6 @@
               {{"labels.inputs.Current Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
             </mat-error>
           </mat-form-field>
-          
-          <mat-form-field>
-            <mat-label>{{'labels.inputs.Max Rate' | translate }}</mat-label>
-            <input matInput required min="0" max="100"   [maxLength]="5"  formControlName="maxRate" />
-            <mat-error *ngIf="interestRateForm.controls.maxRate.hasError('required')">
-              {{'labels.inputs.Max Rate' | translate }} {{'labels.commons.is' | translate }} <strong>{{'labels.commons.required' | translate }}</strong>
-            </mat-error>
-            <mat-error *ngIf="interestRateForm.controls.maxRate.hasError('pattern')">
-              {{"labels.inputs.Max Rate" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.inputs.begin with a special character or number" | translate}}
-            </mat-error>
-            <mat-error *ngIf="interestRateForm.controls.maxRate.hasError('max')">
-              {{"labels.inputs.Max Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
-            </mat-error>
-            <mat-error *ngIf="interestRateForm.controls.maxRate.hasError('min')">
-              {{"labels.inputs.Max Rate" | translate }} <strong> {{ "labels.commons.be larger than 0 and at most 100" | translate }}</strong>
-            </mat-error>
-          </mat-form-field>
 
           <mat-form-field>
             <mat-label>{{'labels.inputs.Max Rate' | translate }}</mat-label>

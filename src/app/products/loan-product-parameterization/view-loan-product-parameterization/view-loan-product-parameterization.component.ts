@@ -12,7 +12,7 @@ export class ViewLoanProductParameterizationComponent implements OnInit {
               private router: Router) {
     this.route.data.subscribe((data: { loanProductParameterization: any }) => {
       this.loanProductParameterization = data.loanProductParameterization;
-      
+      console.log(this.loanProductParameterization);
     });
   }
 

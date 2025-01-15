@@ -43,8 +43,11 @@ export class EditSubChannelComponent implements OnInit {
   constructor(private route: ActivatedRoute,
       private router: Router,
       private subchannelService: SubChannelService,
+      private dateUtils: Dates,
       private settingsService: SettingsService,
       private formBuilder: UntypedFormBuilder) {
+
+    console.log("constructor");
   }
 
 
@@ -53,13 +56,13 @@ export class EditSubChannelComponent implements OnInit {
     this.entityId = this.route.snapshot.params["id"];
     this.channelId = this.route.snapshot.params["channelId"];
 
-    
+    console.log("ngOnInit");
     this.createGroupForm();
 
     this.subchannelService.getClientallyById(this.channelId, this.entityId).subscribe(( apiResponseBody: any ) => {
       this.apiData = apiResponseBody;
-      
-      
+      console.log("id: " + this.entityId);
+      console.log(apiResponseBody);
 
       this.patchValues();
     });  

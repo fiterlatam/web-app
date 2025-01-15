@@ -61,9 +61,9 @@ export class ChargeOffComponent implements OnInit {
   getNoveltyData(){
       this.incidentService.getTemplate().subscribe(data => {
         this.chargeOffReasonOptions = data?.incidentTypeOptions; // Assign the fetched data to chargeOffReasonOptions
-       
+       // console.log(this.chargeOffReasonOptions); // Log to verify the data
       }, error => {
-        
+        console.error("Failed to load incident template:", error); // Log any errors
       });
   }
   /**

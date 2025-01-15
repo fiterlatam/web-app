@@ -32,7 +32,7 @@ export class EditCollectionhousehistoryComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) { 
                 this.route.data.subscribe((data: { customChargeHonorarioConfiguration: any }) => {
-                  
+                  console.log(data)
                   this.collectionHouseConfigurationData = data?.customChargeHonorarioConfiguration;
                 });
               }
@@ -46,12 +46,12 @@ export class EditCollectionhousehistoryComponent implements OnInit {
   createCollectionHouseConfigurationForm(){
     let urlEntryIndexOnAPIResultset = 0;
     let apiKeyEntryIndexOnAPIResultset = 1;
-    
+    console.log(this,this.collectionHouseConfigurationData)
     if(this.collectionHouseConfigurationData[1].name == "COLLECTION_HOUSE_URL") {
       urlEntryIndexOnAPIResultset++;
       apiKeyEntryIndexOnAPIResultset--;
     }
-    
+    console.log(this.collectionHouseConfigurationData);
     this.collectionHouseConfigurationForm = this.formBuilder.group({
       'COLLECTION_HOUSE_URL': [this.collectionHouseConfigurationData[urlEntryIndexOnAPIResultset].value, Validators.required],
       'COLLECTION_HOUSE_API_KEY': [this.collectionHouseConfigurationData[apiKeyEntryIndexOnAPIResultset].value, Validators.required]

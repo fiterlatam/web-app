@@ -47,7 +47,7 @@ export class EditInsuranceIncidentComponent implements OnInit {
       dateFormat,
       locale
     };
-    
+    console.log(JSON.stringify(data));
     this.incidentService.updateIncident(this.incidentData.id, data).subscribe((response: any) => {
       this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Insurance Incident updated successfully'));
     });

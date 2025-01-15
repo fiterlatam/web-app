@@ -23,7 +23,9 @@
          [ngClass]="setAttributeClass(columnHeader.columnName)">
 
       <div fxFlex="40%" class="mat-body-strong left">
-        {{ getInputName(columnHeader.columnName) }}
+
+        {{ getInputName((columnHeader.columnComment == null ? columnHeader.columnName : columnHeader.columnComment)) }}
+
       </div>
 
       <div fxFlex="68%" [ngSwitch]="getColumnType(columnHeader.columnDisplayType, columnHeader.columnType)"

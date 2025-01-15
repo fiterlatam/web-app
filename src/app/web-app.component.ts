@@ -227,7 +227,7 @@ export class WebAppComponent implements OnInit {
         }
       });
     } else {
-      
+      console.log('IdleTimeout is disabled');
     }
   }
 
