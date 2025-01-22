@@ -343,7 +343,7 @@
   </div>
 
   <div fxFlexFill *ngIf="loanProduct.allowPartialPeriodInterestCalculation">
-    <span fxFlex="47%">{{'labels.inputs.Allow Partial Interest Calculation with same as repayment{{'labels.inputs.:</span>
+    <span fxFlex="47%">{{'labels.inputs.Allow Partial Interest Calculation with same as repayment'| translate }}:</span>
     <span  fxFlex="53%">{{ loanProduct.allowPartialPeriodInterestCalculation | yesNo }}</span>
   </div>
 
