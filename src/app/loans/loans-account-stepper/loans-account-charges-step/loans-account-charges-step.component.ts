@@ -103,11 +103,11 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         var amountLimit = this.loansAccountProductTemplate.smvl;
         let informationIndex = -1;
 
-        let chargeRootName = "Comision";
+        let chargeRootName = "Capital Pendiente";
 
         if (this.loansAccountProductTemplate.loanProductName.toLowerCase() == 'microcredito' 
               || this.loansAccountProductTemplate.loanProductName.toLowerCase() == 'microcredito m' ) {
-          chargeRootName = "Capital Pendiente";
+          chargeRootName = "Comision";
         }
 
         var filterCriteria = chargeRootName + " Mi Pyme >= 4SMLV";
