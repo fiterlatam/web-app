@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UntypedFormControl } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Dates } from 'app/core/utils/dates';
-import { LoansService } from 'app/loans/loans.service';
-import { MatDialog } from '@angular/material/dialog';
-import { SettingsService } from 'app/settings/settings.service';
-import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UntypedFormControl} from '@angular/forms';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {Dates} from 'app/core/utils/dates';
+import {LoansService} from 'app/loans/loans.service';
+import {MatDialog} from '@angular/material/dialog';
+import {SettingsService} from 'app/settings/settings.service';
+import {ConfirmationDialogComponent} from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'mifosx-transactions-tab',
@@ -30,8 +30,8 @@ export class TransactionsTabComponent implements OnInit {
   displayedColumns: string[] = ['date', 'transactionType', 'amount', 'principal', 'interest', 'mandatoryInsurance', 'voluntaryInsurance', 'aval', 'fee', 'penalties', 'loanBalance', 'actions'];
 
   dataSource: MatTableDataSource<any>;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   /** Currency details */
   currencyCode: string;
@@ -42,18 +42,18 @@ export class TransactionsTabComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    */
   constructor(private route: ActivatedRoute,
-    private dateUtils: Dates,
-    private router: Router,
-    private dialog: MatDialog,
-    private loansService: LoansService,
-    private translateService: TranslateService,
-    private settingsService: SettingsService) {
+              private dateUtils: Dates,
+              private router: Router,
+              private dialog: MatDialog,
+              private loansService: LoansService,
+              private translateService: TranslateService,
+              private settingsService: SettingsService) {
     this.route.parent.parent.data.subscribe((data: { loanDetailsData: any }) => {
       this.transactions = data.loanDetailsData.transactions;
       this.tempTransaction = data.loanDetailsData.transactions;
       this.status = data.loanDetailsData.status.value;
-      this.currencyCode =  data.loanDetailsData.currency.code;
-      this.decimalPlaces = ( data.loanDetailsData.currency.decimalPlaces != null) ?  data.loanDetailsData.currency.decimalPlaces : this.settingsService.decimals;
+      this.currencyCode = data.loanDetailsData.currency.code;
+      this.decimalPlaces = (data.loanDetailsData.currency.decimalPlaces != null) ? data.loanDetailsData.currency.decimalPlaces : this.settingsService.decimals;
     });
   }
 
@@ -121,7 +121,7 @@ export class TransactionsTabComponent implements OnInit {
    */
   showTransactions(transactionsData: any) {
     if ([1, 2, 4, 6, 9, 20, 21, 22, 23, 26, 28].includes(transactionsData.type.id)) {
-      this.router.navigate([transactionsData.id], { relativeTo: this.route });
+      this.router.navigate([transactionsData.id, 'general'], {relativeTo: this.route});
     }
   }
 
@@ -188,8 +188,9 @@ export class TransactionsTabComponent implements OnInit {
     }
 
     const undoTransactionAccountDialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { heading: this.translateService.instant('labels.heading.Undo Transaction'),
-      dialogContext: this.translateService.instant('labels.dialogContext.Are you sure you want undo the transaction type') + `${transaction.type.value}` + this.translateService.instant('labels.dialogContext.with id') + `${transaction.id}`
+      data: {
+        heading: this.translateService.instant('labels.heading.Undo Transaction'),
+        dialogContext: this.translateService.instant('labels.dialogContext.Are you sure you want undo the transaction type') + `${transaction.type.value}` + this.translateService.instant('labels.dialogContext.with id') + `${transaction.id}`
       }
     });
     undoTransactionAccountDialogRef.afterClosed().subscribe((response: { confirm: any }) => {
@@ -226,7 +227,7 @@ export class TransactionsTabComponent implements OnInit {
     const clientId = this.route.parent.parent.snapshot.params['clientId'];
     const loanId = this.route.parent.parent.snapshot.params['loanId'];
     const url: string = this.router.url;
-    this.router.navigateByUrl(`/clients/${clientId}/loans-accounts`, { skipLocationChange: true })
+    this.router.navigateByUrl(`/clients/${clientId}/loans-accounts`, {skipLocationChange: true})
       .then(() => this.router.navigate([url]));
   }
 }

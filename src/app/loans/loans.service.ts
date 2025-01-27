@@ -347,7 +347,7 @@ export class LoansService {
    */
   cancelLoan(loanId: any, data: any) {
     const httpParams = new HttpParams().set('command', 'cancel-loan');
-    return this.http.post(`/loans/${loanId}/transactions`, data, { params: httpParams });
+    return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});
   }
 
   /**
@@ -629,9 +629,9 @@ export class LoansService {
         amount: charge.amount,
         dueDate: charge.dueDate && this.dateUtils.formatDate(charge.dueDate, dateFormat),
         expdate: charge.expdate,
-        isEndorsed : charge.isEndorsed,
-        insuranceName : charge.insuranceName,
-        insuranceId : charge.insuranceId
+        isEndorsed: charge.isEndorsed,
+        insuranceName: charge.insuranceName,
+        insuranceId: charge.insuranceId
       })),
       collateral: loansAccount.collateral.map((collateralEle: any) => ({
         clientCollateralId: collateralEle.type.collateralId,
@@ -743,9 +743,26 @@ export class LoansService {
     return this.http.get(`/loans/${loanId}/credit-notes`);
   }
 
-   calculateHonoAmount(loanId: any, amount: any) {
-     const httpParams = new HttpParams().set('amount', amount);
+  calculateHonoAmount(loanId: any, amount: any) {
+    const httpParams = new HttpParams().set('amount', amount);
     return this.http.get(`/loans/${loanId}/calculateHonorariosAmount`, {params: httpParams});
-   }
+  }
 
+  /**
+   * @returns {Observable<any>}
+   */
+  getLoanTransactionDatatables(): Observable<any> {
+    const httpParams = new HttpParams().set('apptable', 'm_loan_transaction');
+    return this.http.get(`/datatables`, {params: httpParams});
+  }
+
+  /**
+   * @param transactionId transaction id  of Loan account to get datatable for.
+   * @param datatableName Data table name.
+   * @returns {Observable<any>}
+   */
+  getLoanTransactionDatatable(transactionId: string, datatableName: string): Observable<any> {
+    const httpParams = new HttpParams().set('genericResultSet', 'true');
+    return this.http.get(`/datatables/${datatableName}/${transactionId}`, {params: httpParams});
+  }
 }

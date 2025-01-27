@@ -15,7 +15,7 @@ import { LoansService } from '../loans.service';
 export class LoansAccountTransactionResolver implements Resolve<Object> {
 
   /**
-   * @param {LoansService} LoansService Loans service.
+   * @param loansService
    */
   constructor(private loansService: LoansService) { }
 
@@ -25,8 +25,8 @@ export class LoansAccountTransactionResolver implements Resolve<Object> {
    * @returns {Observable<any>}
    */
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    const loanId = route.paramMap.get('loanId');
-    const transactionId = route.paramMap.get('id');
+    const loanId = route.parent.paramMap.get('loanId');
+    const transactionId = route.parent.paramMap.get('id');
     return this.loansService.getLoansAccountTransaction(loanId, transactionId);
   }
 
