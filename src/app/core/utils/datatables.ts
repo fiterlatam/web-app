@@ -42,7 +42,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             type: 'checkbox',
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         case 'CODELOOKUP':
           return new SelectBase({
@@ -50,7 +50,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             options: {label: 'value', value: 'id', data: column.columnValues},
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         case 'DATE': {
           dateTransformColumns.push(column.columnName);
@@ -62,7 +62,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         }
         case 'DATETIME': {
@@ -73,7 +73,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         }
       }

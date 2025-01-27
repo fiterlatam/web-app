@@ -6,7 +6,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Dates} from 'app/core/utils/dates';
 import {SettingsService} from 'app/settings/settings.service';
-import {any} from 'cypress/types/bluebird';
 
 /**
  * Loans service.
@@ -402,7 +401,8 @@ export class LoansService {
 
   /**
    * Gets Loan Account Template
-   * @param {any} clientId Client ID
+   * @param entityId
+   * @param isGroup
    * @param {any} productId Product ID
    */
   getLoansAccountTemplateResource(entityId: any, isGroup: boolean, productId?: any): Observable<any> {
@@ -592,6 +592,7 @@ export class LoansService {
 
   /**
    * @param glimId GLIM Id of account to get data for.
+   * @param groupId
    * @returns {Observable<any>} GLIM Account data.
    */
   getGLIMAccountData(glimId: string, groupId: string): Observable<any> {
