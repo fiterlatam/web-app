@@ -3,7 +3,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -47,8 +46,9 @@ export class EditHookComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    * @param {SystemService} systemService System Service.
    * @param {Router} router Router for navigation.
-   * @param {FormBuilder} formBuilder Form Builder.
+   * @param formBuilder
    * @param {MatDialog} dialog Dialog Reference.
+   * @param hooksUtils
    */
   constructor(private route: ActivatedRoute,
               private systemService: SystemService,

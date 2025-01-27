@@ -3,7 +3,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -42,7 +41,7 @@ export class CreateHookComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    * @param {SystemService} systemService System Service.
    * @param {Router} router Router for navigation.
-   * @param {FormBuilder} formBuilder Form Builder.
+   * @param {UntypedFormBuilder} formBuilder Form Builder.
    * @param {MatDialog} dialog Dialog Reference.
    */
   constructor(private route: ActivatedRoute,
