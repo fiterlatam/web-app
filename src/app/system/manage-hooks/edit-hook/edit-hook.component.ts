@@ -1,18 +1,18 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 /** Custom Services */
-import { SystemService } from '../../system.service';
+import {SystemService} from '../../system.service';
 
 /** Custom Components */
-import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {AddEventDialogComponent} from '../add-event-dialog/add-event-dialog.component';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
+import {HooksUtils} from '../../../core/utils/hooks';
 
 /**
  * Edit Hook Component.
@@ -39,22 +39,23 @@ export class EditHookComponent implements OnInit {
   /** Boolean to check if events data is changed or not. */
   eventsDataChanged: Boolean = false;
   /** Sorter for events table. */
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   /**
    * Retrieves the hooks template data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
    * @param {SystemService} systemService System Service.
    * @param {Router} router Router for navigation.
-   * @param {FormBuilder} formBuilder Form Builder.
+   * @param formBuilder
    * @param {MatDialog} dialog Dialog Reference.
+   * @param hooksUtils
    */
   constructor(private route: ActivatedRoute,
               private systemService: SystemService,
               private router: Router,
               private formBuilder: UntypedFormBuilder,
-              private dialog: MatDialog) {
-    this.route.data.subscribe(( data: { hooksTemplate: any, hook: any }) => {
+              private dialog: MatDialog, private hooksUtils: HooksUtils) {
+    this.route.data.subscribe((data: { hooksTemplate: any, hook: any }) => {
       this.hooksTemplateData = data.hooksTemplate;
       this.hookData = data.hook;
       this.eventsData = data.hook.events ? data.hook.events : [];
@@ -82,15 +83,31 @@ export class EditHookComponent implements OnInit {
    */
   createHookForm() {
     this.hookForm = this.formBuilder.group({
-      'name': [{ value: this.hookData.name, disabled: true }, Validators.required],
+      'name': [{value: this.hookData.name, disabled: true}, Validators.required],
       'displayName': [this.hookData.displayName, Validators.required],
       'isActive': [this.hookData.isActive],
-      'phoneNumber': [{ value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[1].fieldValue : '', disabled: this.hookData.name !== 'SMS Bridge' }, Validators.required],
-      'smsProvider': [{ value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[2].fieldValue : '', disabled: this.hookData.name !== 'SMS Bridge' }, Validators.required],
-      'smsProviderAccountId': [{ value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[3].fieldValue : '', disabled: this.hookData.name !== 'SMS Bridge' }, Validators.required],
-      'smsProviderToken': [{ value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[4].fieldValue : '', disabled: this.hookData.name !== 'SMS Bridge' }, Validators.required],
-      'contentType': [{ value: this.hookData.name === 'Web' ? this.hookData.config[0].fieldValue : '', disabled: this.hookData.name !== 'Web' }, Validators.required],
-      'payloadUrl': [this.hookData.name === 'Web' ? this.hookData.config[1].fieldValue : this.hookData.config[0].fieldValue, Validators.required]
+      'phoneNumber': [{
+        value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[1].fieldValue : '',
+        disabled: this.hookData.name !== 'SMS Bridge'
+      }, Validators.required],
+      'smsProvider': [{
+        value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[2].fieldValue : '',
+        disabled: this.hookData.name !== 'SMS Bridge'
+      }, Validators.required],
+      'smsProviderAccountId': [{
+        value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[3].fieldValue : '',
+        disabled: this.hookData.name !== 'SMS Bridge'
+      }, Validators.required],
+      'smsProviderToken': [{
+        value: this.hookData.name === 'SMS Bridge' ? this.hookData.config[4].fieldValue : '',
+        disabled: this.hookData.name !== 'SMS Bridge'
+      }, Validators.required],
+      'contentType': [{
+        value: this.hooksUtils.getContentType(this.hookData.config),
+        disabled: this.hookData.name !== 'Web'
+      }, Validators.required],
+      'payloadUrl': [this.hookData.name === 'Web' ? this.hooksUtils.getPayloadUrl(this.hookData.config) : this.hookData.config[0].fieldValue, Validators.required],
+      'apiKey': [this.hooksUtils.getApiKey(this.hookData.config)]
     });
   }
 
@@ -102,11 +119,13 @@ export class EditHookComponent implements OnInit {
       data: this.hooksTemplateData
     });
     addEventDialogRef.afterClosed().subscribe((response: any) => {
-    if (response) {
-      this.eventsData.push({ entityName: response.entity,
-                             actionName: response.action  });
-      this.dataSource.connect().next(this.eventsData);
-      this.eventsDataChanged = true;
+      if (response) {
+        this.eventsData.push({
+          entityName: response.entity,
+          actionName: response.action
+        });
+        this.dataSource.connect().next(this.eventsData);
+        this.eventsDataChanged = true;
       }
     });
   }
@@ -117,7 +136,7 @@ export class EditHookComponent implements OnInit {
    */
   deleteEvent(index: number) {
     const deleteEventDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `event with entity name of ${this.eventsData[index].entityName}` }
+      data: {deleteContext: `event with entity name of ${this.eventsData[index].entityName}`}
     });
     deleteEventDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -136,7 +155,7 @@ export class EditHookComponent implements OnInit {
     const hook: {
       name: string, isActive: boolean, displayName: string, events: any,
       config: {
-        'Payload URL': string, 'Content Type'?: string, 'SMS Provider'?: string,
+        'Payload URL': string, 'Content Type'?: string, 'API Key'?: string, 'SMS Provider'?: string,
         'SMS Provider Account Id'?: string, 'SMS Provider Token'?: string
       }
     } = {
@@ -147,6 +166,7 @@ export class EditHookComponent implements OnInit {
       config: {
         'Payload URL': this.hookForm.get('payloadUrl').value,
         'Content Type': this.hookForm.get('contentType').enabled ? this.hookForm.get('contentType').value : undefined,
+        'API Key': this.hookForm.get('apiKey').enabled ? this.hookForm.get('apiKey').value : undefined,
         'SMS Provider': this.hookForm.get('smsProvider').enabled ? this.hookForm.get('smsProvider').value : undefined,
         'SMS Provider Account Id': this.hookForm.get('smsProviderAccountId').enabled ? this.hookForm.get('smsProviderAccountId').value : undefined,
         'SMS Provider Token': this.hookForm.get('smsProviderToken').enabled ? this.hookForm.get('smsProviderToken').value : undefined
@@ -157,5 +177,4 @@ export class EditHookComponent implements OnInit {
         this.router.navigate(['../'], {relativeTo: this.route});
       });
   }
-
 }
