@@ -8,7 +8,8 @@ export const appTableData: { displayValue: string, value: string }[] = [
   { displayValue: 'Loan Product', value: 'm_product_loan' },
   { displayValue: 'Saving Account Transaction', value: 'm_savings_account_transaction' },
   { displayValue: 'Savings Product', value: 'm_savings_product' },
-  { displayValue: 'Share Product', value: 'm_share_product' }
+  { displayValue: 'Share Product', value: 'm_share_product' },
+  { displayValue: 'Loan Account Transaction', value: 'm_loan_transaction' }
 ];
 
 export const entitySubTypeData: { displayValue: string, value: string }[] = [

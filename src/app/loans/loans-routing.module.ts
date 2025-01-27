@@ -63,6 +63,14 @@ import { LoanDelinquencyActionsResolver } from './common-resolvers/loan-delinque
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
 import {ViewCreditNotesComponent} from './loans-view/view-credit-notes/view-credit-notes.component';
 import {LoanCreditNoteResolver} from './common-resolvers/loan-credit-note.resolver';
+import {
+  LoanTransactionGeneralTabComponent
+} from './loans-view/transactions/view-transaction/loan-transaction-general-tab/loan-transaction-general-tab.component';
+import {
+  DatatableTransactionTabComponent
+} from './loans-view/transactions/view-transaction/datatable-transaction-tab/datatable-transaction-tab.component';
+import {LoanTransactionDatatableResolver} from './common-resolvers/loan-transaction-datatable.resolver';
+import {LoanTransactionDatatablesResolver} from './common-resolvers/loan-transaction-datatables.resolver';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -251,8 +259,35 @@ const routes: Routes = [
             data: { routeParamBreadcrumb: 'id' },
             component: ViewTransactionComponent,
             resolve: {
-              loansAccountTransaction: LoansAccountTransactionResolver
-            }
+              transactionDatatables: LoanTransactionDatatablesResolver
+            },
+            children: [
+              {
+                path: '',
+                redirectTo: 'general',
+                pathMatch: 'full'
+              },
+              {
+                path: 'general',
+                component: LoanTransactionGeneralTabComponent,
+                resolve: {
+                  loansAccountTransaction: LoansAccountTransactionResolver,
+                }
+              },
+              {
+                path: 'datatables',
+                children: [
+                  {
+                    path: ':datatableName',
+                    component: DatatableTransactionTabComponent,
+                    data: { title: 'View Data table', routeParamBreadcrumb: 'datatableName' },
+                    resolve: {
+                      transactionDatatable: LoanTransactionDatatableResolver
+                    }
+                  }
+                ]
+              }
+            ]
           },
           {
             path: 'edit',

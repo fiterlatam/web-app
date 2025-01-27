@@ -6,7 +6,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Dates} from 'app/core/utils/dates';
 import {SettingsService} from 'app/settings/settings.service';
-import {any} from 'cypress/types/bluebird';
 
 /**
  * Loans service.
@@ -119,6 +118,8 @@ export class LoansService {
   }
 
   /**
+   * @param loanId
+   * @param resourceType
    * @param {any} loanCharge to apply on a Loan Account.
    * @returns {Observable<any>}
    */
@@ -321,6 +322,7 @@ export class LoansService {
 
   /**
    * @param {string} loanId Loan Id.
+   * @param command
    * @param {any} data Data.
    * @returns {Observable<any>}
    */
@@ -347,7 +349,7 @@ export class LoansService {
    */
   cancelLoan(loanId: any, data: any) {
     const httpParams = new HttpParams().set('command', 'cancel-loan');
-    return this.http.post(`/loans/${loanId}/transactions`, data, { params: httpParams });
+    return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});
   }
 
   /**
@@ -402,7 +404,8 @@ export class LoansService {
 
   /**
    * Gets Loan Account Template
-   * @param {any} clientId Client ID
+   * @param entityId
+   * @param isGroup
    * @param {any} productId Product ID
    */
   getLoansAccountTemplateResource(entityId: any, isGroup: boolean, productId?: any): Observable<any> {
@@ -550,6 +553,7 @@ export class LoansService {
   /**
    * @param {string} loanId Loans Account Id
    * @param {string} command Schedule command
+   * @param payload
    * @returns {Observable<any>}
    */
   applyCommandLoanScheduleVariations(loanId: string, command: string, payload: any): Observable<any> {
@@ -592,6 +596,7 @@ export class LoansService {
 
   /**
    * @param glimId GLIM Id of account to get data for.
+   * @param groupId
    * @returns {Observable<any>} GLIM Account data.
    */
   getGLIMAccountData(glimId: string, groupId: string): Observable<any> {
@@ -629,9 +634,9 @@ export class LoansService {
         amount: charge.amount,
         dueDate: charge.dueDate && this.dateUtils.formatDate(charge.dueDate, dateFormat),
         expdate: charge.expdate,
-        isEndorsed : charge.isEndorsed,
-        insuranceName : charge.insuranceName,
-        insuranceId : charge.insuranceId
+        isEndorsed: charge.isEndorsed,
+        insuranceName: charge.insuranceName,
+        insuranceId: charge.insuranceId
       })),
       collateral: loansAccount.collateral.map((collateralEle: any) => ({
         clientCollateralId: collateralEle.type.collateralId,
@@ -709,8 +714,7 @@ export class LoansService {
 
   }
 
-  /**
-   Get List of Channel */
+  /** Get List of Channel */
   getChannels(): Observable<any> {
     return this.http.get('/channels');
   }
@@ -743,9 +747,26 @@ export class LoansService {
     return this.http.get(`/loans/${loanId}/credit-notes`);
   }
 
-   calculateHonoAmount(loanId: any, amount: any) {
-     const httpParams = new HttpParams().set('amount', amount);
+  calculateHonoAmount(loanId: any, amount: any) {
+    const httpParams = new HttpParams().set('amount', amount);
     return this.http.get(`/loans/${loanId}/calculateHonorariosAmount`, {params: httpParams});
-   }
+  }
 
+  /**
+   * @returns {Observable<any>}
+   */
+  getLoanTransactionDatatables(): Observable<any> {
+    const httpParams = new HttpParams().set('apptable', 'm_loan_transaction');
+    return this.http.get(`/datatables`, {params: httpParams});
+  }
+
+  /**
+   * @param transactionId transaction id  of Loan account to get datatable for.
+   * @param datatableName Data table name.
+   * @returns {Observable<any>}
+   */
+  getLoanTransactionDatatable(transactionId: string, datatableName: string): Observable<any> {
+    const httpParams = new HttpParams().set('genericResultSet', 'true');
+    return this.http.get(`/datatables/${datatableName}/${transactionId}`, {params: httpParams});
+  }
 }

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { SettingsService } from 'app/settings/settings.service';
-import { CheckboxBase } from 'app/shared/form-dialog/formfield/model/checkbox-base';
-import { DatepickerBase } from 'app/shared/form-dialog/formfield/model/datepicker-base';
-import { DateTimepickerBase } from 'app/shared/form-dialog/formfield/model/datetimepicker-base';
-import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
-import { SelectBase } from 'app/shared/form-dialog/formfield/model/select-base';
-import { Dates } from './dates';
+import {Injectable} from '@angular/core';
+import {SettingsService} from 'app/settings/settings.service';
+import {CheckboxBase} from 'app/shared/form-dialog/formfield/model/checkbox-base';
+import {DatepickerBase} from 'app/shared/form-dialog/formfield/model/datepicker-base';
+import {DateTimepickerBase} from 'app/shared/form-dialog/formfield/model/datetimepicker-base';
+import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
+import {SelectBase} from 'app/shared/form-dialog/formfield/model/select-base';
+import {Dates} from './dates';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class Datatables {
     'loan_id', 'group_id', 'center_id', 'office_id', 'product_loan_id', 'savings_product_id', 'share_product_id'];
 
   constructor(private dateUtils: Dates,
-    private settingsService: SettingsService) { }
+              private settingsService: SettingsService) {
+  }
 
   public getFormfields(columns: any, dateTransformColumns: string[], dataTableEntryObject: any) {
     return columns.map((column: any) => {
@@ -26,28 +27,31 @@ export class Datatables {
         case 'INTEGER':
         case 'STRING':
         case 'DECIMAL':
-        case 'TEXT': return new InputBase({
-          controlName: column.columnName,
-          label: (column.columnComment == null ? column.columnName : column.columnComment),
-          value: '',
-          type: (column.columnDisplayType === 'INTEGER' || column.columnDisplayType === 'DECIMAL') ? 'number' : 'text',
-          required: (!column.isColumnNullable),
-          controlLength: column.columnLength
-        });
-        case 'BOOLEAN': return new CheckboxBase({
-          controlName: column.columnName,
-          label: (column.columnComment == null ? column.columnName : column.columnComment),
-          value: '',
-          type: 'checkbox',
-          required: (column.isColumnNullable) ? false : true
-        });
-        case 'CODELOOKUP': return new SelectBase({
-          controlName: column.columnName,
-          label: (column.columnComment == null ? column.columnName : column.columnComment),
-          value: '',
-          options: { label: 'value', value: 'id', data: column.columnValues },
-          required: (column.isColumnNullable) ? false : true
-        });
+        case 'TEXT':
+          return new InputBase({
+            controlName: column.columnName,
+            label: (column.columnComment == null ? column.columnName : column.columnComment),
+            value: '',
+            type: (column.columnDisplayType === 'INTEGER' || column.columnDisplayType === 'DECIMAL') ? 'number' : 'text',
+            required: (!column.isColumnNullable),
+            controlLength: column.columnLength
+          });
+        case 'BOOLEAN':
+          return new CheckboxBase({
+            controlName: column.columnName,
+            label: (column.columnComment == null ? column.columnName : column.columnComment),
+            value: '',
+            type: 'checkbox',
+            required: (!column.isColumnNullable)
+          });
+        case 'CODELOOKUP':
+          return new SelectBase({
+            controlName: column.columnName,
+            label: (column.columnComment == null ? column.columnName : column.columnComment),
+            value: '',
+            options: {label: 'value', value: 'id', data: column.columnValues},
+            required: (!column.isColumnNullable)
+          });
         case 'DATE': {
           dateTransformColumns.push(column.columnName);
           if (!dataTableEntryObject.dateFormat) {
@@ -58,7 +62,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         }
         case 'DATETIME': {
@@ -69,7 +73,7 @@ export class Datatables {
             label: (column.columnComment == null ? column.columnName : column.columnComment),
             value: '',
             maxDate: this.settingsService.maxAllowedDate,
-            required: (column.isColumnNullable) ? false : true
+            required: (!column.isColumnNullable)
           });
         }
       }
@@ -96,7 +100,7 @@ export class Datatables {
   public getInputName(datatableInput: any): string {
     if (datatableInput.columnName && datatableInput.columnName.includes('_cd_')) {
       const columnNames = datatableInput.columnName.split('_cd_');
-      if(columnNames && columnNames.length > 1){
+      if (columnNames && columnNames.length > 1) {
         return columnNames[1];
       }
       return columnNames[0];
@@ -159,9 +163,9 @@ export class Datatables {
   public getName(columnName: any): string {
     if (columnName && columnName.includes('_cd_')) {
       const columnNames = columnName.split('_cd_');
-      if(columnNames && columnNames.length > 1){
+      if (columnNames && columnNames.length > 1) {
         return columnNames[1];
-      }else {
+      } else {
         return columnNames[0];
       }
 
@@ -170,12 +174,16 @@ export class Datatables {
   }
 
   public isValidUrl(urlString: string): boolean {
-      try {
-        const url = new URL(urlString);
-        return url.protocol.startsWith('http') || url.protocol.startsWith('https');
-      } catch (e) {
-        return false;
-      }
+    try {
+      const url = new URL(urlString);
+      return url.protocol.startsWith('http') || url.protocol.startsWith('https');
+    } catch (e) {
+      return false;
+    }
+  }
+
+  public formatTableName(tableName: string): string {
+    return tableName.split('_').map((name: string) => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
   }
 
 }
