@@ -87,11 +87,9 @@ export class TransactionsTabComponent implements OnInit {
    * Checks Status of the loan account
    */
   checkStatus() {
-    if (this.status === 'Active' || this.status === 'Closed (obligations met)' || this.status === 'Overpaid' ||
-      this.status === 'Closed (rescheduled)' || this.status === 'Closed (written off)') {
-      return true;
-    }
-    return false;
+    return this.status === 'Active' || this.status === 'Closed (obligations met)' || this.status === 'Overpaid' ||
+      this.status === 'Closed (rescheduled)' || this.status === 'Closed (written off)';
+
   }
 
   hideAccruals() {
@@ -170,6 +168,7 @@ export class TransactionsTabComponent implements OnInit {
 
   /**
    * Stops the propagation to view pages.
+   * @param transaction
    * @param $event Mouse Event
    */
   undoTransaction(transaction: any, $event: MouseEvent) {
@@ -231,7 +230,6 @@ export class TransactionsTabComponent implements OnInit {
 
   private reload() {
     const clientId = this.route.parent.parent.snapshot.params['clientId'];
-    const loanId = this.route.parent.parent.snapshot.params['loanId'];
     const url: string = this.router.url;
     this.router.navigateByUrl(`/clients/${clientId}/loans-accounts`, {skipLocationChange: true})
       .then(() => this.router.navigate([url]));
