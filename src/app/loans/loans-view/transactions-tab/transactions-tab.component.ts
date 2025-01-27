@@ -40,6 +40,12 @@ export class TransactionsTabComponent implements OnInit {
   /**
    * Retrieves the loans with associations data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
+   * @param dateUtils
+   * @param router
+   * @param dialog
+   * @param loansService
+   * @param translateService
+   * @param settingsService
    */
   constructor(private route: ActivatedRoute,
               private dateUtils: Dates,
