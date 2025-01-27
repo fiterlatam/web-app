@@ -118,6 +118,8 @@ export class LoansService {
   }
 
   /**
+   * @param loanId
+   * @param resourceType
    * @param {any} loanCharge to apply on a Loan Account.
    * @returns {Observable<any>}
    */
@@ -320,6 +322,7 @@ export class LoansService {
 
   /**
    * @param {string} loanId Loan Id.
+   * @param command
    * @param {any} data Data.
    * @returns {Observable<any>}
    */
@@ -550,6 +553,7 @@ export class LoansService {
   /**
    * @param {string} loanId Loans Account Id
    * @param {string} command Schedule command
+   * @param payload
    * @returns {Observable<any>}
    */
   applyCommandLoanScheduleVariations(loanId: string, command: string, payload: any): Observable<any> {
