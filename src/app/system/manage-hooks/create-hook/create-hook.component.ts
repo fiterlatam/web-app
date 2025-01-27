@@ -1,18 +1,18 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 /** Custom Services */
-import { SystemService } from '../../system.service';
+import {SystemService} from '../../system.service';
 
 /** Custom Components */
-import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {AddEventDialogComponent} from '../add-event-dialog/add-event-dialog.component';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
 
 /**
  * Create Hook Component.
@@ -35,7 +35,7 @@ export class CreateHookComponent implements OnInit {
   /** Events Data. */
   eventsData: any[] = [];
   /** Sorter for events table. */
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   /**
    * Retrieves the hooks template data from `resolve`.
@@ -94,12 +94,13 @@ export class CreateHookComponent implements OnInit {
       'name': ['Web', Validators.required],
       'displayName': ['', Validators.required],
       'isActive': [''],
-      'phoneNumber': [{ value: '', disabled: true }, Validators.required],
-      'smsProvider': [{ value: '', disabled: true }, Validators.required],
-      'smsProviderAccountId': [{ value: '', disabled: true }, Validators.required],
-      'smsProviderToken': [{ value: '', disabled: true }, Validators.required],
+      'phoneNumber': [{value: '', disabled: true}, Validators.required],
+      'smsProvider': [{value: '', disabled: true}, Validators.required],
+      'smsProviderAccountId': [{value: '', disabled: true}, Validators.required],
+      'smsProviderToken': [{value: '', disabled: true}, Validators.required],
       'contentType': ['', Validators.required],
-      'payloadUrl': ['', Validators.required]
+      'payloadUrl': ['', Validators.required],
+      'apiKey': ['']
     });
   }
 
@@ -111,11 +112,13 @@ export class CreateHookComponent implements OnInit {
       data: this.hooksTemplateData
     });
     addEventDialogRef.afterClosed().subscribe((response: any) => {
-    if (response) {
-      this.eventsData.push({ entityName: response.entity,
-                             actionName: response.action  });
-      this.dataSource.connect().next(this.eventsData);
-    }
+      if (response) {
+        this.eventsData.push({
+          entityName: response.entity,
+          actionName: response.action
+        });
+        this.dataSource.connect().next(this.eventsData);
+      }
     });
   }
 
@@ -125,7 +128,7 @@ export class CreateHookComponent implements OnInit {
    */
   deleteEvent(index: number) {
     const deleteEventDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `event with entity name of ${this.eventsData[index].entityName}` }
+      data: {deleteContext: `event with entity name of ${this.eventsData[index].entityName}`}
     });
     deleteEventDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -143,7 +146,7 @@ export class CreateHookComponent implements OnInit {
     const hook: {
       name: string, isActive: boolean, displayName: string, events: any,
       config: {
-        'Payload URL': string, 'Content Type'?: string, 'SMS Provider'?: string,
+        'Payload URL': string, 'Content Type'?: string, 'API Key'?: string, 'SMS Provider'?: string,
         'SMS Provider Account Id'?: string, 'SMS Provider Token'?: string
       }
     } = {
@@ -154,6 +157,7 @@ export class CreateHookComponent implements OnInit {
       config: {
         'Payload URL': this.hookForm.get('payloadUrl').value,
         'Content Type': this.hookForm.get('contentType').enabled ? this.hookForm.get('contentType').value : undefined,
+        'API Key': this.hookForm.get('apiKey').enabled ? this.hookForm.get('apiKey').value : undefined,
         'SMS Provider': this.hookForm.get('smsProvider').enabled ? this.hookForm.get('smsProvider').value : undefined,
         'SMS Provider Account Id': this.hookForm.get('smsProviderAccountId').enabled ? this.hookForm.get('smsProviderAccountId').value : undefined,
         'SMS Provider Token': this.hookForm.get('smsProviderToken').enabled ? this.hookForm.get('smsProviderToken').value : undefined

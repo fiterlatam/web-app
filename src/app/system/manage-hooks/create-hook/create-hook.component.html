@@ -53,6 +53,14 @@
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field fxFlex="48%" *ngIf="hookForm.controls.name.value === 'Web'">
+            <mat-label>API Key</mat-label>
+            <input matInput required formControlName="apiKey">
+            <mat-error *ngIf="hookForm.controls.apiKey.hasError('required')">
+              API Key is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
           <mat-form-field fxFlex="48%" *ngIf="hookForm.controls.name.value === 'SMS Bridge'">
             <mat-label>Phone Number</mat-label>
             <input matInput type="tel" #input maxlength="10" required formControlName="phoneNumber">

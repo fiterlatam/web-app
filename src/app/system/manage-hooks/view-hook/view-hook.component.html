@@ -73,7 +73,7 @@
         </div>
 
         <div fxFlex="50%" *ngIf="hookData.name === 'Web'">
-          {{ hookData.config[0].fieldValue }}
+          {{ getConfigValue('Content Type') }}
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
@@ -81,7 +81,7 @@
         </div>
 
         <div fxFlex="50%" *ngIf="hookData.name === 'Web'">
-          {{ hookData.config[1].fieldValue }}
+          {{ getConfigValue('Payload URL') }}
         </div>
 
         <div fxFlex="50%" *ngIf="hookData.name === 'SMS Bridge'">
@@ -118,6 +118,14 @@
 
         <div fxFlex="50%" *ngIf="hookData.name === 'SMS Bridge'">
           {{ hookData.config[4].fieldValue }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="hookData.name === 'Web'">
+          API Key:
+        </div>
+
+        <div fxFlex="50%" *ngIf="hookData.name === 'Web'">
+          {{ getConfigValue('API Key') }}
         </div>
 
       </div>
