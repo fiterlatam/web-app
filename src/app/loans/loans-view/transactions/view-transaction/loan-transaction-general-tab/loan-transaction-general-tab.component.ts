@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {LoansService} from '../../../../loans.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -75,7 +75,7 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
               private alertService: AlertService) {
     this.route.data.subscribe((data: { loansAccountTransaction: any }) => {
       this.transactionData = data.loansAccountTransaction || {};
-      this.allowEdition = !this.transactionData.manuallyReversed && !this.allowTransactionEdition(this.transactionData.type.id );
+      this.allowEdition = !this.transactionData.manuallyReversed && !this.allowTransactionEdition(this.transactionData.type.id);
       this.allowUndo = !this.transactionData.manuallyReversed;
       this.allowChargeback = this.allowChargebackTransaction(this.transactionData.type) && !this.transactionData.manuallyReversed;
       let transactionsChargebackRelated = false;
@@ -113,12 +113,13 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
   ngOnInit(): void {
     this.locale = this.settingsService.language.code;
     this.decimalPlace = this.settingsService.decimals;
-    this.format = `1.${this.decimalPlace}-${ this.decimalPlace}`;
+    this.format = `1.${this.decimalPlace}-${this.decimalPlace}`;
     let disbursementFeesSummary = '';
-    if(this.transactionData.disbursementFees){
-      for(let i = 0; i < this.transactionData.disbursementFees.length; i++){
-        disbursementFeesSummary += this.transactionData.disbursementFees[i].chargeName + ' : ' + this.currencyPipe.transform(this.transactionData.disbursementFees[i].amount, this.transactionData.currency.code, 'symbol-narrow', this.format, this.locale);
-        if(i < this.transactionData.disbursementFees.length - 1){
+    if (this.transactionData.disbursementFees) {
+      for (let i = 0; i < this.transactionData.disbursementFees.length; i++) {
+        disbursementFeesSummary += this.transactionData.disbursementFees[i].chargeName + ' : ' +
+        this.currencyPipe.transform(this.transactionData.disbursementFees[i].amount, this.transactionData.currency.code, 'symbol-narrow', this.format, this.locale);
+        if (i < this.transactionData.disbursementFees.length - 1) {
           disbursementFeesSummary += ' + ';
         }
       }
@@ -154,7 +155,10 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
   undoTransaction() {
     const accountId = this.route.snapshot.params['loanId'];
     const undoTransactionAccountDialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { heading: this.translateService.instant('labels.heading.Undo Transaction'), dialogContext: this.translateService.instant('labels.dialogContext.Are you sure you want undo the transaction') + `${this.transactionData.id}` }
+      data: {
+        heading: this.translateService.instant('labels.heading.Undo Transaction'),
+        dialogContext: this.translateService.instant('labels.dialogContext.Are you sure you want undo the transaction') + `${this.transactionData.id}`
+      }
     });
     undoTransactionAccountDialogRef.afterClosed().subscribe((response: { confirm: any }) => {
       if (response.confirm) {
@@ -167,7 +171,7 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
           locale
         };
         this.loansService.executeLoansAccountTransactionsCommand(accountId, 'undo', data, this.transactionData.id).subscribe(() => {
-          this.router.navigate(['../'], { relativeTo: this.route });
+          this.router.navigate(['../'], {relativeTo: this.route});
         });
       }
     });
@@ -180,7 +184,7 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
         controlName: 'paymentTypeId',
         label: 'Payment Type',
         value: '',
-        options: { label: 'name', value: 'id', data: this.paymentTypeOptions },
+        options: {label: 'name', value: 'id', data: this.paymentTypeOptions},
         required: true,
         order: 1
       }),
@@ -196,10 +200,10 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
     ];
     const data = {
       title: 'Chargeback Repayment Transaction',
-      layout: { addButtonText: 'Chargeback' },
+      layout: {addButtonText: 'Chargeback'},
       formfields: formfields
     };
-    const chargebackDialogRef = this.dialog.open(FormDialogComponent, { data });
+    const chargebackDialogRef = this.dialog.open(FormDialogComponent, {data});
     chargebackDialogRef.afterClosed().subscribe((response: { data: any }) => {
       if (response.data) {
         if (response.data.value.amount <= this.amountRelationsAllowed) {
@@ -210,7 +214,7 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
             locale
           };
           this.loansService.executeLoansAccountTransactionsCommand(accountId, 'chargeback', payload, this.transactionData.id).subscribe(() => {
-            this.router.navigate(['../'], { relativeTo: this.route });
+            this.router.navigate(['../'], {relativeTo: this.route});
           });
         } else {
           this.alertService.alert({
