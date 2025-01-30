@@ -24,7 +24,11 @@ export const environment = {
   apiVersion: window['env']['apiVersion'] || '/v1',
   serverUrl: '',
   oauth: {
-    enabled: false,  // For connecting to Mifos X using OAuth2 Authentication change the value to true
+    azureAppClientId: window['env']['azureAppClientId'] || 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+    azureTenantId: window['env']['azureTenantId'] || 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+    azureRedirectURL: window['env']['azureRedirectURL'] || 'http://localhost:4200/microsoft/redirect',
+    azureCodeChallenge: window['env']['azureCodeChallenge'] || 'XXXXXXXXXXXXXXXXXXXXXXXX',
+    enabled: window['env']['azureAdSsoEnabled'] || false,
     serverUrl: ''
   },
   warningDialog: {
