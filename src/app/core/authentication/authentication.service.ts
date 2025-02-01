@@ -55,6 +55,7 @@ export class AuthenticationService {
    * @param {HttpClient} http Http Client to send requests.
    * @param {AlertService} alertService Alert Service.
    * @param {AuthenticationInterceptor} authenticationInterceptor Authentication Interceptor.
+   * @param msalService
    */
   constructor(private http: HttpClient,
               private alertService: AlertService,
@@ -71,11 +72,7 @@ export class AuthenticationService {
         this.storage = localStorage;
       }
       const twoFactorAccessToken = JSON.parse(this.storage.getItem(this.twoFactorAuthenticationTokenStorageKey));
-      if (environment.oauth.enabled) {
-        this.refreshOAuthAccessToken();
-      } else {
-        authenticationInterceptor.setAuthorizationToken(savedCredentials.base64EncodedAuthenticationKey);
-      }
+      authenticationInterceptor.setAuthorizationToken(savedCredentials.base64EncodedAuthenticationKey);
       if (twoFactorAccessToken) {
         authenticationInterceptor.setTwoFactorAccessToken(twoFactorAccessToken.token);
       }
@@ -91,19 +88,12 @@ export class AuthenticationService {
     this.alertService.alert({type: 'Authentication Start', message: 'Please wait...'});
     this.rememberMe = loginContext.remember;
     this.storage = this.rememberMe ? localStorage : sessionStorage;
-
     if (environment.oauth.enabled) {
-      let httpParams = new HttpParams();
-      httpParams = httpParams.set('client_id', 'community-app');
-      httpParams = httpParams.set('grant_type', 'password');
-      httpParams = httpParams.set('client_secret', '123');
-      return this.http.disableApiPrefix().post(`${environment.oauth.serverUrl}/oauth/token`, {}, {params: httpParams})
-        .pipe(
-          map((tokenResponse: OAuth2Token) => {
-            this.getUserDetails(tokenResponse);
-            return of(true);
-          })
-        );
+      const azureTenantId = environment.oauth.azureTenantId;
+      const azureAppClientId = environment.oauth.azureAppClientId;
+      const azureRedirectURL = environment.oauth.azureRedirectURL;
+      const azureCodeChallenge = environment.oauth.azureCodeChallenge;
+      window.location.href = `https://login.microsoftonline.com/${azureTenantId}/oauth2/v2.0/authorize?client_id=${azureAppClientId}&redirect_uri=${azureRedirectURL}&code_challenge=${azureCodeChallenge}&code_challenge_method=S256&client-request-id=${azureCodeChallenge}&state=${azureCodeChallenge}&scope=user.read&response_mode=query&response_type=code`;
     } else {
       return this.http.post('/authentication', {username: loginContext.username, password: loginContext.password})
         .pipe(
@@ -113,24 +103,6 @@ export class AuthenticationService {
           })
         );
     }
-  }
-
-  /**
-   * Retrieves the user details after oauth2 authentication.
-   *
-   * Sets the oauth2 token refresh time.
-   * @param {OAuth2Token} tokenResponse OAuth2 Token details.
-   */
-  private getUserDetails(tokenResponse: OAuth2Token) {
-    const httpParams = new HttpParams().set('access_token', tokenResponse.access_token);
-    this.refreshTokenOnExpiry(tokenResponse.expires_in);
-    this.http.get('/userdetails', {params: httpParams})
-      .subscribe((credentials: Credentials) => {
-        this.onLoginSuccess(credentials);
-        if (!credentials.shouldRenewPassword) {
-          this.storage.setItem(this.oAuthTokenDetailsStorageKey, JSON.stringify(tokenResponse));
-        }
-      });
   }
 
   /**
@@ -145,7 +117,8 @@ export class AuthenticationService {
    * Refreshes the oauth2 authorization token.
    */
   private refreshOAuthAccessToken() {
-    const oAuthRefreshToken = JSON.parse(this.storage.getItem(this.oAuthTokenDetailsStorageKey)).refresh_token;
+    const storageItem = JSON.parse(this.storage.getItem(this.oAuthTokenDetailsStorageKey));
+    const oAuthRefreshToken = storageItem ? storageItem.refresh_token : '';
     this.authenticationInterceptor.removeAuthorization();
     let httpParams = new HttpParams();
     httpParams = httpParams.set('client_id', 'community-app');
@@ -173,34 +146,28 @@ export class AuthenticationService {
    * Sends an alert on successful login.
    * @param {Credentials} credentials Authenticated user credentials.
    */
-  private onLoginSuccess(credentials: Credentials) {
+  public onLoginSuccess(credentials: Credentials) {
     this.userLoggedIn = true;
-    if (environment.oauth.enabled) {
-      this.authenticationInterceptor.setAuthorizationToken(credentials.accessToken);
-    } else {
-      this.authenticationInterceptor.setAuthorizationToken(credentials.base64EncodedAuthenticationKey);
-    }
+    this.authenticationInterceptor.setAuthorizationToken(credentials.base64EncodedAuthenticationKey);
     if (credentials.isTwoFactorAuthenticationRequired) {
       this.credentials = credentials;
       this.alertService.alert({
         type: 'Two Factor Authentication Required',
         message: 'Two Factor Authentication Required'
       });
+    } else if (credentials.shouldRenewPassword) {
+      this.credentials = credentials;
+      this.alertService.alert({
+        type: 'Password Expired',
+        message: 'Your password has expired, please reset your password!'
+      });
     } else {
-      if (credentials.shouldRenewPassword) {
-        this.credentials = credentials;
-        this.alertService.alert({
-          type: 'Password Expired',
-          message: 'Your password has expired, please reset your password!'
-        });
-      } else {
-        this.setCredentials(credentials);
-        this.alertService.alert({
-          type: 'Authentication Success',
-          message: `${credentials.username} successfully logged in!`
-        });
-        delete this.credentials;
-      }
+      this.setCredentials(credentials);
+      this.alertService.alert({
+        type: 'Authentication Success',
+        message: `${credentials.username} successfully logged in!`
+      });
+      delete this.credentials;
     }
   }
 

@@ -11,6 +11,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TwoFactorAuthenticationComponent } from './two-factor-authentication/two-factor-authentication.component';
 import { TranslateModule } from '@ngx-translate/core';
+import {RedirectComponent} from "./microsoft-azure-ad/redirect/redirect.component";
 
 /**
  * Login Module
@@ -27,7 +28,8 @@ import { TranslateModule } from '@ngx-translate/core';
     LoginComponent,
     LoginFormComponent,
     ResetPasswordComponent,
-    TwoFactorAuthenticationComponent
+    TwoFactorAuthenticationComponent,
+    RedirectComponent
   ]
 })
 export class LoginModule { }

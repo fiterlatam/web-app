@@ -30,4 +30,12 @@
   window['env']['waitTimeForCOBCatchUp'] = '';
   // Time in milliseconds for Session idle timeout, default 300000 seconds
   window['env']['sessionIdleTimeout'] = '300000';
+
+  // Microsoft Azure AD SSO Configurations
+  window['env']['azureAppClientId'] = '';
+  window['env']['azureTenantId'] = '';
+  window['env']['azureRedirectURL'] = '';
+  window['env']['azureCodeChallenge'] = '';
+  window['env']['azureAdSsoEnabled'] = '';
+
 })(this);

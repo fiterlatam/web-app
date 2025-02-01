@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 /** Custom Components */
 import { LoginComponent } from './login.component';
+import {RedirectComponent} from "./microsoft-azure-ad/redirect/redirect.component";
 
 /** Login Routes */
 const routes: Routes = [
@@ -11,6 +12,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: { title: 'Login' }
+  },
+  {
+    path: 'microsoft/redirect',
+    component: RedirectComponent,
+    data: { title: 'Redirect' }
   }
 ];
 

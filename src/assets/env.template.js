@@ -32,4 +32,12 @@
 
   // Time in milliseconds for Session idle timeout, default 300000 seconds
   window['env']['sessionIdleTimeout'] = '$MIFOS_SESSION_IDLE_TIMEOUT';
+
+  // Microsoft Azure AD SSO Configurations
+  window['env']['azureAppClientId'] = '$FINERACT_AZURE_AD_APP_CLIENT_ID';
+  window['env']['azureTenantId'] = '$FINERACT_AZURE_AD_TENANT_ID';
+  window['env']['azureRedirectURL'] = '$FINERACT_AZURE_AD_REDIRECT_URL';
+  window['env']['azureCodeChallenge'] = '$FINERACT_AZURE_AD_CODE_CHALLENGE';
+  window['env']['azureAdSsoEnabled'] = '$FINERACT_AZURE_AD_SSO_ENABLED';
+
 })(this);
