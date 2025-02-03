@@ -3,19 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 /** rxjs Imports */
-import {filter, finalize} from 'rxjs/operators';
+import {finalize} from 'rxjs/operators';
 
 /** Custom Services */
 import { AuthenticationService } from '../../core/authentication/authentication.service';
-import {MsalBroadcastService, MsalService} from "@azure/msal-angular";
-import {
-  AuthenticationResult,
-  BrowserAuthError,
-  InteractionStatus,
-  PopupRequest, PublicClientApplication,
-  RedirectRequest
-} from "@azure/msal-browser";
-import {logger} from "codelyzer/util/logger";
 import {environment} from "../../../environments/environment";
 
 /**
