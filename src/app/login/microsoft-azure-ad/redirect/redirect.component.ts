@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {Credentials} from "../../../core/authentication/credentials.model";
-import {AuthenticationService} from "../../../core/authentication/authentication.service";
-import {logger} from "codelyzer/util/logger";
+import {ActivatedRoute, Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Credentials} from '../../../core/authentication/credentials.model';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-redirect',
