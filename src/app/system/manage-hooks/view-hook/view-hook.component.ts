@@ -34,7 +34,6 @@ export class ViewHookComponent implements OnInit {
               private systemService: SystemService,
               private router: Router) {
     this.route.data.subscribe((data: { hook: any }) => {
-      console.log(JSON.stringify(data.hook.config));
       this.hookData = data.hook;
     });
   }
