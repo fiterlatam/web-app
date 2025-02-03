@@ -24,9 +24,9 @@ export class RedirectComponent implements OnInit {
         this.http.post('/authentication', {authorizationCode, isMicrosoftSsoLogin: true})
           .subscribe((credentials: Credentials) => {
               this.authenticationService.onLoginSuccess(credentials);
-              this.router.navigate(['/home']).then(r => logger.info('Redirected to home'));
+              this.router.navigate(['/home']).then(() => logger.info('Redirected to home'));
             },
-            error => {
+            () => {
               this.router.navigate(['/login']).then(r => logger.info('Redirected to login'));
             }
           );
