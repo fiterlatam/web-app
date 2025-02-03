@@ -3,6 +3,10 @@
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
   "errors": {
+    "error.msg.invalid.authentication.request.body": "Invalid authentication request",
+    "error.msg.microsoft.sso.login.failed": "Microsoft SSO login failed",
+    "error.msg.authentication.failed": "Authentication failed",
+    "error.msg.user.name.not.found": "Login failed. User not found",
     "error.msg.loan.charge.amount.exceeds.principal": "The charge amount {{params[0].value}} exceeds the principal amount {{params[1].value}}.",
     "error.msg.loan.collection.not.allowed.on.this.product": "Repayment is not allowed for this loan product: {{params[0].value}}",
     "productParamForm.required": "Please fill out this field.",
@@ -2804,6 +2808,8 @@
       "Are you sure you want to reactivate back user": "Are you sure you want to reactivate back this user?"
     },
     "text": {
+      "Redirecting": "Redirecting",
+      "Please wait while we log you in": "Please wait while we log you in.",
       "Collection House": "Collection House",
       "Collection House Configuration": "Collection House Management",
       "Loan Product Parameterization": "Loan Product Parameterization",

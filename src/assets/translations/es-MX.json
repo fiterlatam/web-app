@@ -3,6 +3,10 @@
   "Logged in as": "Conectado como",
   "Remember me": "Recordar me",
   "errors": {
+    "error.msg.invalid.authentication.request.body": "Cuerpo de solicitud de autenticación no válido",
+    "error.msg.microsoft.sso.login.failed": "Error al iniciar sesión con Microsoft SSO",
+    "error.msg.authentication.failed": "Error de autenticación",
+    "error.msg.user.name.not.found": "Nombre de usuario no encontrado",
     "error.msg.loan.charge.amount.exceeds.principal": "El monto del cargo {{params[0].value}} no puede ser mayor que el monto principal {{params[1].value}}.",
     "error.msg.loan.collection.not.allowed.on.this.product": "Recaudos no está permitido para este producto de préstamo: {{params[0].value}}",
     "productParamForm.required": "Por favor, seleccione un producto",
@@ -2827,6 +2831,8 @@
       "Are you sure you want to reactivate back user": "¿Estás seguro de que deseas reactivar a este usuario?"
     },
     "text": {
+      "Redirecting": "Redirigiendo",
+      "Please wait while we log you in": "Por favor, espere mientras lo conectamos",
       "Collection House": "Administrar detalles del Proveedor de Servicios de Casa de cobro",
       "Collection House Configuration": "Gestión de Casas de Cobro",
       "Loan Product Parameterization": "Parametrizar tipos de productos",

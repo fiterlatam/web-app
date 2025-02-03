@@ -57,5 +57,13 @@ export class ViewHookComponent implements OnInit {
       }
     });
   }
-
+  /**
+   * Retrieves the value for a given key from the hook configuration.
+   * @param {string} key The key to search for.
+   * @returns {string} The value associated with the key.
+   */
+  getConfigValue(key: string): string {
+    const configItem = this.hookData.config.find((item: { fieldName: string; }) => item.fieldName === key);
+    return configItem ? configItem.fieldValue : '';
+  }
 }

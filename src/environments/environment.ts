@@ -16,7 +16,7 @@ export const environment = {
   fineractPlatformTenantChannel: window['env']['fineractPlatformTenantChannel'] || 'Mifos',
   // For connecting to others servers running elsewhere update the base API URL
   baseApiUrls: window['env']['fineractApiUrls'] ||
-    'https://dev.mifos.io,https://demo.mifos.io,https://qa.mifos.io,https://staging.mifos.io,https://mobile.mifos.io,https://demo.fineract.dev,https://localhost:8443,https://sumas-dev.fiter.io,http://localhost:8080',
+    'https://dev.mifos.io,https://demo.mifos.io,https://qa.mifos.io,https://staging.mifos.io,https://mobile.mifos.io,https://demo.fineract.dev,https://localhost:8443,https://entreamigos-dev.fiter.io,http://localhost:8080',
   // For connecting to server running elsewhere set the base API URL
   baseApiUrl: window['env']['baseApiUrl'] || 'https://demo.fineract.dev',
   allowServerSwitch: env.allow_switching_backend_instance,
@@ -24,7 +24,11 @@ export const environment = {
   apiVersion: window['env']['apiVersion'] || '/v1',
   serverUrl: '',
   oauth: {
-    enabled: false,  // For connecting to Mifos X using OAuth2 Authentication change the value to true
+    azureAppClientId: window['env']['azureAppClientId'] || 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+    azureTenantId: window['env']['azureTenantId'] || 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+    azureRedirectURL: window['env']['azureRedirectURL'] || 'http://localhost:4200/microsoft/redirect',
+    azureCodeChallenge: window['env']['azureCodeChallenge'] || 'XXXXXXXXXXXXXXXXXXXXXXXX',
+    enabled: window['env']['azureAdSsoEnabled'] || false,
     serverUrl: ''
   },
   warningDialog: {

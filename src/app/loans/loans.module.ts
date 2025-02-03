@@ -154,6 +154,9 @@ import {
 import { AddCreditNoteComponent } from './loans-view/loan-account-actions/add-credit-note/add-credit-note.component';
 import { ViewCreditNotesComponent } from './loans-view/view-credit-notes/view-credit-notes.component';
 import {LoanCancelComponent} from './loans-view/loan-account-actions/loan-cancel/loan-cancel.component';
+import { LoanTransactionGeneralTabComponent } from './loans-view/transactions/view-transaction/loan-transaction-general-tab/loan-transaction-general-tab.component';
+import { DatatableTransactionTabComponent } from './loans-view/transactions/view-transaction/datatable-transaction-tab/datatable-transaction-tab.component';
+import {CurrencyPipe} from '@angular/common';
 
 /**
  * Loans Module
@@ -249,9 +252,13 @@ import {LoanCancelComponent} from './loans-view/loan-account-actions/loan-cancel
     GenerateLoanRepaymentScheduleReportComponent,
     AddCreditNoteComponent,
     ViewCreditNotesComponent,
-    LoanCancelComponent
+    LoanCancelComponent,
+    LoanTransactionGeneralTabComponent,
+    DatatableTransactionTabComponent
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe
+  ],
 })
 export class LoansModule {
 }
