@@ -1,5 +1,5 @@
 import { Configuration, LogLevel } from '@azure/msal-browser';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 export const msalConfig: Configuration = {
   auth: {
@@ -21,16 +21,12 @@ export const msalConfig: Configuration = {
         }
         switch (level) {
           case LogLevel.Error:
-            console.error(message);
             return;
           case LogLevel.Info:
-            console.info(message);
             return;
           case LogLevel.Verbose:
-            console.debug(message);
             return;
           case LogLevel.Warning:
-            console.warn(message);
             return;
         }
       },

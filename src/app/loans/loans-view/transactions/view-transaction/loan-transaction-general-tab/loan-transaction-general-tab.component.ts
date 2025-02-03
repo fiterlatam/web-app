@@ -125,7 +125,6 @@ export class LoanTransactionGeneralTabComponent implements OnInit {
       }
     }
     this.transactionData.disbursementFeesSummary = disbursementFeesSummary;
-    console.log(this.transactionData.disbursementFeesSummary);
     if (this.allowChargeback) {
       this.organizationService.getPaymentTypesWithCode().toPromise()
         .then(data => {
