@@ -1,7 +1,7 @@
 ###############
 ### STAGE 1: Build app
 ###############
-ARG BUILDER_IMAGE=node:22-alpine
+ARG BUILDER_IMAGE=node:19-alpine
 ARG NGINX_IMAGE=nginx:1.19.3
 
 FROM $BUILDER_IMAGE as builder
@@ -40,7 +40,7 @@ FROM $NGINX_IMAGE
 
 COPY --from=builder /dist /usr/share/nginx/html
 COPY --from=builder /usr/src/app/config/default.conf.template /etc/nginx/conf.d/default.conf.template
-#COPY --from=builder /usr/src/app/prod /etc/nginx/cert
+COPY --from=builder /usr/src/app/prod /etc/nginx/cert
 COPY --from=builder /usr/src/app/config/start.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/start.sh
 

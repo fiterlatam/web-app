@@ -29,7 +29,7 @@ export const environment = {
     azureRedirectURL: window['env']['azureRedirectURL'] || 'http://localhost:4200/microsoft/redirect',
     azureCodeChallenge: window['env']['azureCodeChallenge'] || 'XXXXXXXXXXXXXXXXXXXXXXXX',
     enabled: window['env']['azureAdSsoEnabled'] || false,
-    serverUrl: ''
+    serverUrl: '',
   },
   warningDialog: {
     title: 'Warning',
