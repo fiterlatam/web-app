@@ -42,11 +42,7 @@ export class LoginFormComponent implements OnInit {
    */
   ngOnInit() {
     const oauthEnabledValue = environment.oauth.enabled;
-    if(this.isMicrosoftSSoEnabled(oauthEnabledValue)){
-       if(oauthEnabledValue.toString().toLowerCase() === 'true'){
-          this.isMicrosoftSsoLogin = true;
-       }
-    }
+    this.isMicrosoftSsoLogin = this.isMicrosoftSSoEnabled(oauthEnabledValue);
     this.createLoginForm();
     this.passwordInputType = 'password';
   }
