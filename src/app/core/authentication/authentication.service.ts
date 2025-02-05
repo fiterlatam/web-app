@@ -88,7 +88,8 @@ export class AuthenticationService {
     this.alertService.alert({type: 'Authentication Start', message: 'Please wait...'});
     this.rememberMe = loginContext.remember;
     this.storage = this.rememberMe ? localStorage : sessionStorage;
-    if (environment.oauth.enabled) {
+    const oauthEnabledValue = environment.oauth.enabled;
+    if (this.isMicrosoftSSoEnabled(oauthEnabledValue)) {
       const azureTenantId = environment.oauth.azureTenantId;
       const azureAppClientId = environment.oauth.azureAppClientId;
       const azureRedirectURL = environment.oauth.azureRedirectURL;
@@ -103,6 +104,10 @@ export class AuthenticationService {
           })
         );
     }
+  }
+
+  isMicrosoftSSoEnabled(oauthEnabledValue: any): boolean{
+    return oauthEnabledValue ? oauthEnabledValue.toString().toLowerCase() === 'true' : false;
   }
 
   /**
