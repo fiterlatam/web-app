@@ -1,8 +1,9 @@
 name: Build and Push EntreAmigos images to Amazon ECR
-on:
-  push:
-    branches:
-      - fiter/entreamigos/dev
+#on:
+#  push:
+#    branches:
+#      - fiter/entreamigos/dev
+on: [push]
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
