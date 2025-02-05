@@ -41,7 +41,12 @@ export class LoginFormComponent implements OnInit {
    * Initializes password input field type.
    */
   ngOnInit() {
-    this.isMicrosoftSsoLogin = environment.oauth.enabled;
+    const oauthEnabledValue = environment.oauth.enabled;
+    if(oauthEnabledValue){
+       if(oauthEnabledValue.toString().toLowerCase() === 'true'){
+          this.isMicrosoftSsoLogin = true;
+       }
+    }
     this.createLoginForm();
     this.passwordInputType = 'password';
   }
