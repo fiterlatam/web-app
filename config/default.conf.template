@@ -26,6 +26,10 @@ server {
         index  index.html index.htm;
     }
 
+   location / {
+        try_files $uri $uri/ /index.html;
+    }
+
     location ^~ /_health {
         types { } default_type "text/plain; charset=utf-8";
         return 200 "UP";
