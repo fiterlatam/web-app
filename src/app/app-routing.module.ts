@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Not Found Component
 import {NotFoundComponent} from './not-found/not-found.component';
-import {LocationStrategy, PathLocationStrategy} from "@angular/common";
+import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from "@angular/common";
 
 /**
  * Fallback to this route when no prior route is matched.
@@ -22,12 +22,13 @@ const routes: Routes = [
  * Configures the fallback route.
  */
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
   providers: [
+    PathLocationStrategy,
       {
         provide: LocationStrategy,
-        useClass: PathLocationStrategy
+        useClass: HashLocationStrategy
       }
   ]
 })
