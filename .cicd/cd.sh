@@ -53,6 +53,7 @@ helm package \
       --set env.FINERACT_AZURE_AD_REDIRECT_URL="$FINERACT_AZURE_AD_REDIRECT_URL" \
       --set env.FINERACT_AZURE_AD_CODE_CHALLENGE="$FINERACT_AZURE_AD_CODE_CHALLENGE" \
       --set env.FINERACT_AZURE_AD_SSO_ENABLED="$FINERACT_AZURE_AD_SSO_ENABLED" \
+      --set env.SERVER_NAME="$FFD_SERVICE_HOST_NAME" \
       \
       --set deployment.useSpotNode="false" \
       \
