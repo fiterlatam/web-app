@@ -46,12 +46,9 @@
               {{ "labels.inputs.RangeFrom" | translate }} {{ "labels.commons.is" | translate }}
               <strong>{{ "labels.commons.required" | translate }}</strong>
             </mat-error>
-            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('maxlength')">
-              {{ 'labels.commons.4 characters allowed' | translate }}
-            </mat-error>
-            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('pattern')">
-              {{ 'labels.commons.4 characters allowed' | translate }}
-            </mat-error>
+            <mat-error *ngIf="productParamForm.get('rangeStartNumber').hasError('max')">
+              {{ 'labels.commons.9007199254740991 is the max number allowed' | translate }}
+            </mat-error>            
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">
@@ -61,15 +58,9 @@
               {{ "labels.inputs.Value" | translate }} {{ "labels.commons.is" | translate }}
               <strong>{{ "labels.commons.required" | translate }}</strong>
             </mat-error>
-            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('maxlength')">
-              {{ 'labels.commons.4 characters allowed' | translate }}
-            </mat-error>
-            <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('pattern')">
-              {{ 'labels.commons.4 characters allowed' | translate }}
-            </mat-error>
             <mat-error *ngIf="productParamForm.get('rangeEndNumber').hasError('max')">
-              {{ 'labels.commons.4 characters allowed' | translate }}
-            </mat-error>
+              {{ 'labels.commons.9007199254740991 is the max number allowed' | translate }}
+            </mat-error>                        
           </mat-form-field>
 
           <mat-form-field fxFlex="45%">

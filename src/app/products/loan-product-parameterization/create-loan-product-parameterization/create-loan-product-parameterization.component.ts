@@ -49,15 +49,11 @@ export class CreateLoanProductParameterizationComponent implements OnInit {
       expirationDate: ['', Validators.required],
       rangeStartNumber: [0, [
         Validators.required,
-        Validators.maxLength(4),
-        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
-        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+        Validators.max(9007199254740991) // Ensures numeric value doesn't exceed 9999
       ]],
       rangeEndNumber: [0, [
         Validators.required,
-        Validators.maxLength(4),
-        Validators.pattern('^[0-9]{1,4}$'), // Ensures only digits, 1-4 characters
-        Validators.max(9999) // Ensures numeric value doesn't exceed 9999
+        Validators.max(9007199254740991) // Ensures numeric value doesn't exceed 9999
       ]],
       lastInvoiceNumber: [0, Validators.required],
       lastCreditNoteNumber: [0, Validators.required],
