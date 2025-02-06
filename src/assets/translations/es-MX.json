@@ -728,7 +728,8 @@
       "Frequency Interval for recalculation is": "El intervalo de frecuencia para el recalculo es",
       "Frequency for recalculate Outstanding Principal is": "La frecuencia para recalcular el principal pendiente es",
       "Mandatory Guarantee is": "La garantía obligatoria es",
-      "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)"
+      "Use or not the Global Configurations values to the Repayment Event (notifications)": "Usar o no los valores de Configuraciones Globales para el Evento de Pago (notificaciones)",
+      "9007199254740991 is the max number allowed": "9007199254740991 es el número máximo permitido"
     },
     "heading": {
       "Collection House Provider": "Servicio Casa de cobro",

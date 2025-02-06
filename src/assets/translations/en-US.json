@@ -717,7 +717,8 @@
       "Frequency Interval for recalculation is": "Frequency Interval for recalculation is",
       "Frequency for recalculate Outstanding Principal is": "Frequency for recalculate Outstanding Principal is",
       "Mandatory Guarantee is": "Mandatory Guarantee is",
-      "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)"
+      "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)",
+      "9007199254740991 is the max number allowed": "9007199254740991 is the maximum number allowed"
     },
     "heading": {
       "Collection House": "Collection House Provider",
