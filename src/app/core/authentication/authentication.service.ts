@@ -19,6 +19,8 @@ import {environment} from '../../../environments/environment';
 import {LoginContext} from './login-context.model';
 import {Credentials} from './credentials.model';
 import {OAuth2Token} from './o-auth2-token.model';
+import {logger} from "codelyzer/util/logger";
+import {Router} from "@angular/router";
 
 /**
  * Authentication workflow.
@@ -55,11 +57,12 @@ export class AuthenticationService {
    * @param {HttpClient} http Http Client to send requests.
    * @param {AlertService} alertService Alert Service.
    * @param {AuthenticationInterceptor} authenticationInterceptor Authentication Interceptor.
-   * @param msalService
+   * @param router
    */
   constructor(private http: HttpClient,
               private alertService: AlertService,
-              private authenticationInterceptor: AuthenticationInterceptor) {
+              private authenticationInterceptor: AuthenticationInterceptor,
+              private readonly router: Router) {
     this.rememberMe = false;
     this.userLoggedIn = false;
     this.storage = sessionStorage;
@@ -92,9 +95,11 @@ export class AuthenticationService {
     if (this.isMicrosoftSSoEnabled(oauthEnabledValue)) {
       const azureTenantId = environment.oauth.azureTenantId;
       const azureAppClientId = environment.oauth.azureAppClientId;
-      const azureRedirectURL = environment.oauth.azureRedirectURL;
+      const azureRedirectURL = encodeURIComponent(environment.oauth.azureRedirectURL);
       const azureCodeChallenge = environment.oauth.azureCodeChallenge;
-      window.location.href = `https://login.microsoftonline.com/${azureTenantId}/oauth2/v2.0/authorize?client_id=${azureAppClientId}&redirect_uri=${azureRedirectURL}&code_challenge=${azureCodeChallenge}&code_challenge_method=S256&client-request-id=${azureCodeChallenge}&state=${azureCodeChallenge}&scope=user.read&response_mode=query&response_type=code`;
+      const scopes = ['user.read', 'openid', 'profile'];
+      const scope = encodeURIComponent(scopes.join(' '));
+      window.location.href = `https://login.microsoftonline.com/${azureTenantId}/oauth2/v2.0/authorize?client_id=${azureAppClientId}&redirect_uri=${azureRedirectURL}&code_challenge=${azureCodeChallenge}&code_challenge_method=S256&client-request-id=${azureCodeChallenge}&state=${azureCodeChallenge}&scope=${scope}&response_mode=query&response_type=code`;
     } else {
       return this.http.post('/authentication', {username: loginContext.username, password: loginContext.password})
         .pipe(
@@ -109,6 +114,21 @@ export class AuthenticationService {
   isMicrosoftSSoEnabled(oauthEnabledValue: any): boolean{
     return oauthEnabledValue ? oauthEnabledValue.toString().toLowerCase() === 'true' : false;
   }
+
+  loginWithMicrosoftCode(authorizationCode : string) {
+    if (authorizationCode) {
+      this.http.post('/authentication', {authorizationCode, isMicrosoftSsoLogin: true})
+        .subscribe((credentials: Credentials) => {
+            this.onLoginSuccess(credentials);
+            this.router.navigate(['/home']).then(() => logger.info('Redirected to home'));
+          },
+          () => {
+            this.router.navigate(['/login']).then(() => logger.info('Redirected to login'));
+          }
+        );
+    }
+  }
+
 
   /**
    * Sets the oauth2 token to refresh on expiry.

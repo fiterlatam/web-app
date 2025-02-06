@@ -34,7 +34,7 @@ import {I18nService} from './core/i18n/i18n.service';
 /** Initialize Logger */
 const log = new Logger('MifosX');
 
-import {registerLocaleData} from '@angular/common';
+import {PathLocationStrategy, registerLocaleData} from '@angular/common';
 import localeCS from '@angular/common/locales/cs';
 import localeEN from '@angular/common/locales/en';
 import localeES from '@angular/common/locales/es';
@@ -87,6 +87,7 @@ export class WebAppComponent implements OnInit {
 
   i18nService: I18nService;
 
+
   /**
    * @param {Router} router Router for navigation.
    * @param {ActivatedRoute} activatedRoute Activated Route.
@@ -97,8 +98,10 @@ export class WebAppComponent implements OnInit {
    * @param {AlertService} alertService Alert Service.
    * @param {SettingsService} settingsService Settings Service.
    * @param {AuthenticationService} authenticationService Authentication service.
+   * @param dialog
    * @param {Dates} dateUtils Dates service.
    * @param {IdleTimeoutService} idle Idle Timeout Service.
+   * @param pathLocationStrategy
    */
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -111,7 +114,8 @@ export class WebAppComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private idle: IdleTimeoutService,
               private dialog: MatDialog,
-              private dateUtils: Dates) {
+              private dateUtils: Dates,
+              private pathLocationStrategy: PathLocationStrategy) {
   }
 
   /**
@@ -226,9 +230,21 @@ export class WebAppComponent implements OnInit {
           this.logout();
         }
       });
-    } else {
-      console.log('IdleTimeout is disabled');
     }
+
+    const basePath = this.pathLocationStrategy.getBaseHref();
+    const absolutePathWithParams = this.pathLocationStrategy.path();
+    if (basePath !== absolutePathWithParams){
+        const urlTree = this.router.parseUrl(absolutePathWithParams);
+        if(urlTree != null) {
+          const queryParams = urlTree.queryParams;
+          const authorizationCode = queryParams['code'];
+          if (authorizationCode) {
+            this.alertService.alert({type: 'Authentication Start', message: 'Please wait ...'});
+            this.authenticationService.loginWithMicrosoftCode(authorizationCode);
+          }
+        }
+      }
   }
 
   logout() {
