@@ -18,4 +18,4 @@ variables:
   - template: .cicd/variables/common.yaml@common
 
 stages:
-  - template: .cicd/stages/fineract/backend/ci.yaml@common
+  - template: .cicd/stages/angular/frontend/ci.yaml@common
