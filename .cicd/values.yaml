@@ -31,7 +31,7 @@ serviceAccount:
 deployment:
   labels:
     aadpodidbinding: pod-identity-rbac
-  probePath: /
+  probePath: /healthz
   podPort: 80
   podAnnotations:
     sidecar.istio.io/inject: 'true'
