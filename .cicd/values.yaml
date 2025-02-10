@@ -1,0 +1,80 @@
+# Default values for helm-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: 'fineract-webapp'
+replicaCount: 1
+
+image:
+  pullPolicy: Always
+
+keyVault:
+  name: ''
+  tenantId: ''
+  secret:
+    mysql-user-mambu-db: TYPEORM_MYSQL_DB_REPLY_USERNAME
+
+env:
+  CSP: 'AZURE'
+  SERVICE_NAME: 'fineract-webapp'
+  SERVICE_PORT: 80
+
+configMap:
+
+secret:
+
+serviceAccount:
+  create: true
+  annotations:
+  name: 'fineract-webapp'
+
+deployment:
+  labels:
+    aadpodidbinding: pod-identity-rbac
+  probePath: /healthz
+  podPort: 80
+  podAnnotations:
+    sidecar.istio.io/inject: 'true'
+    sidecar.istio.io/proxyCPULimit: 250m
+    sidecar.istio.io/proxyMemoryLimit: 256Mi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  nodeSelector:
+    agentpool: fineract
+  tolerations:
+    - key: kubernetes.azure.com/scalesetpriority
+      operator: Equal
+      value: spot
+      effect: NoSchedule
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 90
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    appgw.ingress.kubernetes.io/backend-path-prefix: /
+    appgw.ingress.kubernetes.io/request-timeout: "300"
+    cert-manager.io/issuer: cert-manager-issuer
+    kubernetes.io/ingress.class: azure/application-gateway
+  paths:
+    - path: /
+      pathType: Prefix
+  tls:
+    secretName: "fineract-webapp-cert"
+
+podDisruptionBudgets:
+  enabled: false
