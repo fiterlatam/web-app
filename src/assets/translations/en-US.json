@@ -366,7 +366,9 @@
     "validation.msg.interest.rate.maxRate.is.less.than.min": "The Parameter maxRate value [ {{params[0].value}} ] must not be less than the minimum value [ {{params[1].value}} ] ",
     "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists",
     "processing.loan.request": "Error processing Loan request",
-    "error.msg.codeValue.in.use": "Code value is in use"
+    "error.msg.codeValue.in.use": "Code value is in use",
+    "error.msg.loan.creditorotativo.first.repayment.date.mandatory": "First Repayment Date for Credito Rotativo Product is mandatory",
+    "error.msg.loan.creditorotativo.first.repayment.date.must.be.day.1.10.20": "Product Credito Rotativo requires First Repayment date´s day on 1,10 o 20"
   },
   "labels": {
     "breadcrumbs": {

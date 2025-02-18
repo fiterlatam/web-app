@@ -372,7 +372,9 @@
     "validation.msg.interest.rate.maxRate.is.less.than.min": "El valor de maxRate del parámetro [ {{params[0].value}} ] no debe ser inferior al valor mínimo [ {{params[1].value}} ] ",
     "error.msg.insurance.incident.duplicate.type": "Ya existe un incidente de seguro con el tipo dado",
     "processing.loan.request": "Error al procesar la solicitud de préstamo",
-    "error.msg.codeValue.in.use": "El valor del código está en uso"
+    "error.msg.codeValue.in.use": "El valor del código está en uso",
+    "error.msg.loan.creditorotativo.first.repayment.date.mandatory": "Para el producto Credito Rotativo la fecha de Primer Pago es obligatoria",
+    "error.msg.loan.creditorotativo.first.repayment.date.must.be.day.1.10.20": "Para el producto Credito Rotativo el día de la fecha de Primer Pago debe ser 1,10 o 20"
   },
   "labels": {
     "breadcrumbs": {
