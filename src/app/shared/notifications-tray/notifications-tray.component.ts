@@ -28,7 +28,7 @@ export class NotificationsTrayComponent implements OnInit, OnDestroy {
   unreadNotifications: any[] = [];
   /** Timer to refetch notifications every 60 seconds */
   timer: any;
-
+  private static hasRun = false;
   /**
    * Gets router link prefix from notification's objectType attribute
    * Shares, Savings, Deposits, Loans routes inaccessible because of dependency on entity ID.
@@ -50,16 +50,18 @@ export class NotificationsTrayComponent implements OnInit, OnDestroy {
    * @param {NotificationsService} notificationsService Notifications Service
    */
   constructor(public notificationsService: NotificationsService) {
-    forkJoin([this.notificationsService.getNotifications(true), this.notificationsService.getNotifications(false)])
-    .subscribe((response: any[]) => {
-      this.readNotifications = response[0].pageItems;
-      this.unreadNotifications = response[1].pageItems;
-      this.setNotifications();
-    });
   }
 
   ngOnInit() {
-    this.fetchUnreadNotifications();
+    if (!NotificationsTrayComponent.hasRun) {
+      console.log('Notification component runs once!');
+      this.notificationsService.getNotifications(true).subscribe((response: any) => {
+        this.readNotifications = response.pageItems;
+      });
+      this.fetchUnreadNotifications();
+      NotificationsTrayComponent.hasRun = true;
+    }
+
   }
 
   ngOnDestroy() {
@@ -83,7 +85,7 @@ export class NotificationsTrayComponent implements OnInit, OnDestroy {
       this.setNotifications();
     });
     // this.mockNotifications(); // Uncomment for Testing.
-    this.timer = setTimeout(() => { this.fetchUnreadNotifications(); }, this.waitTime * 1000);
+    this.timer = setTimeout(() => { this.fetchUnreadNotifications(); }, this.waitTime * 10000);
   }
 
   /**
