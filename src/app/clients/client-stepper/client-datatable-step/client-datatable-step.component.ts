@@ -28,14 +28,34 @@ export class ClientDatatableStepComponent implements OnInit {
   datatableInputs: any = [];
   datatableInputsCopy: any[];
 
+  cupoDefaultValue = "1";
+
   private decimalFields: string[] = ['Cupo', 'Cupo solicitado', 'Cupo aprobado', 'Cupo score'];
 
-  constructor(private formBuilder: UntypedFormBuilder,
+  constructor(
+    private systemService: SystemService,
+    private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
-    private datatableService: Datatables,
-    private systemService: SystemService) { }
+    private datatableService: Datatables) { }
+
 
     ngOnInit(): void {
+
+      this.systemService.getConfigurationByName('client-creation-cupo-default-value').subscribe({
+        next: (config: GlobalConfiguration) => {
+          this.cupoDefaultValue = String(config.value);
+          this.ngPostInit();
+        },
+        error: (err) => {
+          console.error('Error whilst retrieving default value configuration:', err);
+        }
+      });
+
+    }
+
+
+    ngPostInit(): void {
+
       this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
       const inputItems: any = {};
       this.datatableInputs.forEach((input: any, index: number) => {
@@ -87,11 +107,11 @@ export class ClientDatatableStepComponent implements OnInit {
         }
 
         // Set default values
-        if(input.controlName == "Cupo" || input.controlName == "Cupo otros prestamos" ) {
-          this.systemService.getConfigurationByName('client-creation-cupo-default-value').subscribe((config: GlobalConfiguration) => {
-            inputItems[input.controlName].setValue(config.value);
+        if(input.controlName == "Cupo" || input.controlName == "Cupo otros prestamos" 
+            || input.controlName == "Cupo aprobado" || input.controlName == "Cupo solicitado" ) {
+            inputItems[input.controlName].setValue(this.cupoDefaultValue);
             inputItems[input.controlName].updateValueAndValidity();
-          });
+            
         } else if(input.controlName == "Fecha Cupo") {
           inputItems[input.controlName].setValue(new Date());
           inputItems[input.controlName].updateValueAndValidity();
