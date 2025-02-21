@@ -87,7 +87,7 @@ export class ClientDatatableStepComponent implements OnInit {
         }
 
         // Set default values
-        if(input.controlName == "Cupo") {
+        if(input.controlName == "Cupo" || input.controlName == "Cupo otros prestamos" ) {
           this.systemService.getConfigurationByName('client-creation-cupo-default-value').subscribe((config: GlobalConfiguration) => {
             inputItems[input.controlName].setValue(config.value);
             inputItems[input.controlName].updateValueAndValidity();
