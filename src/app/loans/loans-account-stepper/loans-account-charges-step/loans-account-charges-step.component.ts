@@ -100,7 +100,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
       // Filter charges by amount and associate them out
       if (this.loansAccountProductTemplate.loanProductName.toLowerCase().includes('microcredito')) {
 
-        var amountLimit = this.loansAccountProductTemplate.smvl;
+        var amountLimit = 4 * this.loansAccountProductTemplate.smvl;
         let informationIndex = -1;
 
         let chargeRootName = "Capital Pendiente";
