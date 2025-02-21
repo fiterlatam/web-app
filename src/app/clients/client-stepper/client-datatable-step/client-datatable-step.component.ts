@@ -11,6 +11,8 @@ import {
 import { Datatables } from 'app/core/utils/datatables';
 import { SettingsService } from 'app/settings/settings.service';
 import * as _ from 'lodash';
+import { SystemService } from 'app/system/system.service';
+import { GlobalConfiguration } from 'app/system/configurations/global-configurations-tab/configuration.model';
 
 @Component({
   selector: 'mifosx-client-datatable-step',
@@ -30,7 +32,8 @@ export class ClientDatatableStepComponent implements OnInit {
 
   constructor(private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
-    private datatableService: Datatables) { }
+    private datatableService: Datatables,
+    private systemService: SystemService) { }
 
     ngOnInit(): void {
       this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
@@ -82,6 +85,18 @@ export class ClientDatatableStepComponent implements OnInit {
             this.addNumericLengthListener(inputItems[input.controlName], columnLength);
 
         }
+
+        // Set default values
+        if(input.controlName == "Cupo") {
+          this.systemService.getConfigurationByName('client-creation-cupo-default-value').subscribe((config: GlobalConfiguration) => {
+            inputItems[input.controlName].setValue(config.value);
+            inputItems[input.controlName].updateValueAndValidity();
+          });
+        } else if(input.controlName == "Fecha Cupo") {
+          inputItems[input.controlName].setValue(new Date());
+          inputItems[input.controlName].updateValueAndValidity();
+        }
+
       });
       this.datatableForm = this.formBuilder.group(inputItems);
       this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
