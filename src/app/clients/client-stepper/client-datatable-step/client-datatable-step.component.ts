@@ -35,8 +35,8 @@ export class ClientDatatableStepComponent implements OnInit {
   constructor(
     private readonly systemService: SystemService,
     private readonly formBuilder: UntypedFormBuilder,
-    private settingsService: SettingsService,
-    private datatableService: Datatables) {
+    private readonly settingsService: SettingsService,
+    private readonly datatableService: Datatables) {
   }
 
 
