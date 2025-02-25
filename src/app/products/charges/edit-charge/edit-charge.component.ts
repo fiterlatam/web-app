@@ -40,6 +40,7 @@ export class EditChargeComponent implements OnInit {
   showFeeOptions = false;
 
   parentChargeDataList: any = [];
+  assetAGLAccounts: any = [];
   chargeFromTableList: any = [];
   chargeFromExternalCalculationList: any = [];
   interestRateOptions: any = [];
@@ -82,6 +83,7 @@ export class EditChargeComponent implements OnInit {
       this.chargeData = data.chargesTemplate;
       this.parentChargeDataList = this.chargeData['chargeDataList'];
       this.interestRateOptions = this.chargeData.interestRateOptions;
+      this.assetAGLAccounts = this.chargeData.glAccounts;
     });
   }
 
@@ -159,6 +161,7 @@ export class EditChargeComponent implements OnInit {
   editChargeForm() {
     this.showFeeOptions = (this.chargeData.feeInterval && this.chargeData.feeInterval > 0);
     const voluntaryInsuranceData = this.chargeData.chargeInsuranceDetailData;
+    const incomeOrLiabilityAccount = this.chargeData.incomeOrLiabilityAccount;
     const locale = this.settingsService.language.code;
     this.chargeForm = this.formBuilder.group({
       'name': [this.chargeData.name, Validators.required],
@@ -187,6 +190,7 @@ export class EditChargeComponent implements OnInit {
       'parentChargeId': [this.chargeData.parentChargeId, Validators.required],
       'chargeCalculationTypeFilterInsuranceType': [false],
       'graceOnChargePeriodAmount': ['0'],
+      'incomeAccountId': [incomeOrLiabilityAccount == null ? null : incomeOrLiabilityAccount.id],
       'insuranceName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceName],
       'insuranceChargedAs': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceChargedAs],
       'insuranceCompany': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCompany],
