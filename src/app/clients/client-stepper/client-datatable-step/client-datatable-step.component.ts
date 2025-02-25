@@ -160,10 +160,10 @@ export class ClientDatatableStepComponent implements OnInit {
 
   private formatNumber(value: string): string {
     // Split the value into integer and decimal parts
-    let [integerPart, decimalPart] = value.split('.');
+    const [integerDerivedPart, decimalPart] = value.split('.');
 
     // Add periods to the integer part (thousands separator)
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+   const  integerPart = integerDerivedPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     // If there's a decimal part, return it along with the formatted integer part
     if (decimalPart !== undefined) {
