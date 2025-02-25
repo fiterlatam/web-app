@@ -34,7 +34,7 @@ export class ClientDatatableStepComponent implements OnInit {
 
   constructor(
     private systemService: SystemService,
-    private formBuilder: UntypedFormBuilder,
+    private readonly formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
     private datatableService: Datatables) {
   }
@@ -108,12 +108,12 @@ export class ClientDatatableStepComponent implements OnInit {
       }
 
       // Set default values
-      if (input.controlName == 'Cupo' || input.controlName == 'Cupo otros prestamos'
-        || input.controlName == 'Cupo aprobado' || input.controlName == 'Cupo solicitado') {
+      if (input.controlName === 'Cupo' || input.controlName === 'Cupo otros prestamos'
+        || input.controlName === 'Cupo aprobado' || input.controlName === 'Cupo solicitado') {
         inputItems[input.controlName].setValue(this.cupoDefaultValue);
         inputItems[input.controlName].updateValueAndValidity();
 
-      } else if (input.controlName == 'Fecha Cupo') {
+      } else if (input.controlName === 'Fecha Cupo') {
         inputItems[input.controlName].setValue(new Date());
         inputItems[input.controlName].updateValueAndValidity();
       }
