@@ -33,7 +33,7 @@ export class ClientDatatableStepComponent implements OnInit {
   private decimalFields: string[] = ['Cupo', 'Cupo solicitado', 'Cupo aprobado', 'Cupo score'];
 
   constructor(
-    private systemService: SystemService,
+    private readonly systemService: SystemService,
     private readonly formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
     private datatableService: Datatables) {
