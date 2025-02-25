@@ -56,71 +56,87 @@ export class ClientDatatableStepComponent implements OnInit {
 
 
   ngPostInit(): void {
-
     this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
-    const inputItems: any = {};
-    this.datatableInputs.forEach((input: any, index: number) => {
-      if (this.decimalFields.includes(this.getInputName(input))) {
-        this.datatableInputs[index] = {
-          ...this.datatableInputs[index], // Keep existing properties
-          columnDisplayType: 'STRING'                 // Update with new data
-        };
-      }
-    });
-
-    this.datatableInputs.forEach((input: any, index: number) => {
-      input.controlName = this.getInputName(input);
-
-      if (!input.isColumnNullable) {
-        if (this.isNumeric(input.columnDisplayType)) {
-          inputItems[input.controlName] = new UntypedFormControl(0, [Validators.required]);
-        } else {
-          inputItems[input.controlName] = new UntypedFormControl('', [Validators.required]);
-        }
-      } else {
-        inputItems[input.controlName] = new UntypedFormControl('');
-      }
-
-      if (this.decimalFields.includes(input.controlName)) {
-        const columnLength = input.columnLength ? input.columnLength : 10;
-        inputItems[input.controlName].setValidators([this.maxLengthWithoutDots(columnLength)]);
-        if (!input.isColumnNullable) {
-          inputItems[input.controlName].addValidators([Validators.required]);
-        }
-        inputItems[input.controlName].updateValueAndValidity();
-        this.addDecimalListener(inputItems[input.controlName], columnLength);
-      }
-
-      if (this.isString(input.columnDisplayType) && !this.decimalFields.includes(input.controlName)) {
-        const columnLength = input.columnLength ? input.columnLength : 255;
-        inputItems[input.controlName].addValidators([Validators.maxLength(columnLength)]);
-        this.addStringLengthListener(inputItems[input.controlName], columnLength);
-
-      } else if (this.isNumeric(input.columnDisplayType)) {
-        const columnLength = input.columnLength ? input.columnLength : 10;
-        inputItems[input.controlName].addValidators([
-          Validators.max(2147483647),
-          this.maxLength(columnLength),
-          Validators.min(0)
-        ]);
-        this.addNumericLengthListener(inputItems[input.controlName], columnLength);
-
-      }
-
-      // Set default values
-      if (input.controlName === 'Cupo' || input.controlName === 'Cupo otros prestamos'
-        || input.controlName === 'Cupo aprobado' || input.controlName === 'Cupo solicitado') {
-        inputItems[input.controlName].setValue(this.cupoDefaultValue);
-        inputItems[input.controlName].updateValueAndValidity();
-
-      } else if (input.controlName === 'Fecha Cupo') {
-        inputItems[input.controlName].setValue(new Date());
-        inputItems[input.controlName].updateValueAndValidity();
-      }
-
-    });
+    this.updateDecimalFieldTypes();
+    const inputItems = this.createFormControls();
     this.datatableForm = this.formBuilder.group(inputItems);
     this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+  }
+
+  private updateDecimalFieldTypes(): void {
+    this.datatableInputs.forEach((input: any) => {
+      if (this.decimalFields.includes(this.getInputName(input))) {
+        input.columnDisplayType = 'STRING';
+      }
+    });
+  }
+
+  private createFormControls(): { [key: string]: UntypedFormControl } {
+    const inputItems: { [key: string]: UntypedFormControl } = {};
+
+    this.datatableInputs.forEach((input: any) => {
+      const controlName = this.getInputName(input);
+      const control = this.createFormControl(input);
+
+      this.applyValidators(control, input);
+      this.setDefaultValue(control, controlName);
+
+      inputItems[controlName] = control;
+    });
+
+    return inputItems;
+  }
+
+  private createFormControl(input: any): UntypedFormControl {
+    const initialValue = !input.isColumnNullable && this.isNumeric(input.columnDisplayType) ? 0 : '';
+    return new UntypedFormControl(initialValue, input.isColumnNullable ? null : Validators.required);
+  }
+
+  private applyValidators(control: UntypedFormControl, input: any): void {
+    const controlName = this.getInputName(input);
+    const columnLength = input.columnLength || (this.isNumeric(input.columnDisplayType) ? 10 : 255);
+
+    if (this.decimalFields.includes(controlName)) {
+      this.applyDecimalValidators(control, input, columnLength);
+    } else if (this.isString(input.columnDisplayType)) {
+      this.applyStringValidators(control, columnLength);
+    } else if (this.isNumeric(input.columnDisplayType)) {
+      this.applyNumericValidators(control, columnLength);
+    }
+  }
+
+  private applyDecimalValidators(control: UntypedFormControl, input: any, columnLength: number): void {
+    control.setValidators([this.maxLengthWithoutDots(columnLength)]);
+    if (!input.isColumnNullable) {
+      control.addValidators(Validators.required);
+    }
+    this.addDecimalListener(control, columnLength);
+  }
+
+  private applyStringValidators(control: UntypedFormControl, columnLength: number): void {
+    control.addValidators(Validators.maxLength(columnLength));
+    this.addStringLengthListener(control, columnLength);
+  }
+
+  private applyNumericValidators(control: UntypedFormControl, columnLength: number): void {
+    control.addValidators([
+      Validators.max(2147483647),
+      this.maxLength(columnLength),
+      Validators.min(0)
+    ]);
+    this.addNumericLengthListener(control, columnLength);
+  }
+
+  private setDefaultValue(control: UntypedFormControl, controlName: string): void {
+    const cupoFields = ['Cupo', 'Cupo otros prestamos', 'Cupo aprobado', 'Cupo solicitado'];
+
+    if (cupoFields.includes(controlName)) {
+      control.setValue(this.cupoDefaultValue);
+    } else if (controlName === 'Fecha Cupo') {
+      control.setValue(new Date());
+    }
+
+    control.updateValueAndValidity();
   }
 
   private addStringLengthListener(control: AbstractControl, maxLength: number): void {
