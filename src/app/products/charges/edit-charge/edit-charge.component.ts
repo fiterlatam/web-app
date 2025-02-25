@@ -69,16 +69,12 @@ export class EditChargeComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    * @param {Router} router Router for navigation.
    * @param {SettingsService} settingsService Settings Service
-   * @param decimalPipe
-   * @param {SystemService} systemService System Service
    */
   constructor(private productsService: ProductsService,
               private formBuilder: UntypedFormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private settingsService: SettingsService,
-              private decimalPipe: DecimalPipe,
-              private systemService: SystemService) {
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargeData = data.chargesTemplate;
       this.parentChargeDataList = this.chargeData['chargeDataList'];
@@ -203,6 +199,33 @@ export class EditChargeComponent implements OnInit {
 
     controlsToRemove.forEach(control => this.chargeForm.removeControl(control));
   }
+  private addLoanSpecificControls() {
+    const controls = [
+      { name: 'chargePaymentMode', value: this.chargeData.chargePaymentMode.id, validators: [Validators.required] },
+      { name: 'graceOnChargePeriodAmount', value: this.chargeData.graceOnChargePeriodAmount, validators: [Validators.required, Validators.min(0)] },
+      { name: 'chargeCalculationTypeFilterFlat', value: false },
+      { name: 'chargeCalculationTypeFilterDisbursal', value: false },
+      { name: 'chargeCalculationTypeFilterAmount', value: false },
+      { name: 'chargeCalculationTypeFilterInterest', value: false },
+      { name: 'chargeCalculationTypeFilterOutstandingAmount', value: false },
+      { name: 'chargeCalculationTypeFilterOutstandingInterest', value: false },
+      { name: 'chargeCalculationTypeFilterInsurance', value: false },
+      { name: 'chargeCalculationTypeFilterAval', value: false },
+      { name: 'chargeCalculationTypeFilterHonorarios', value: false },
+      { name: 'chargeCalculationTypeFilterTerm', value: false },
+      { name: 'parentChargeId', value: this.chargeData.parentChargeId },
+      { name: 'customChargeId', value: false },
+      { name: 'externalCalculationChargeId', value: false },
+      { name: 'chargeCalculationTypeFilterInsuranceType', value: false },
+      { name: 'getPercentageAmountFromTable', value: this.chargeData.getPercentageAmountFromTable }
+    ];
+
+    controls.forEach(control => {
+      this.chargeForm.addControl(control.name, this.formBuilder.control(control.value, control.validators));
+    });
+
+    this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
+  }
 
   private setupChargeSpecificControls() {
     const chargeAppliesTo = this.chargeData.chargeAppliesTo.value;
@@ -230,6 +253,15 @@ export class EditChargeComponent implements OnInit {
 
     this.addLoanSpecificControls();
     this.setupFeeOptions();
+  }
+  private setupFeeOptions() {
+    if (this.showFeeOptions) {
+      this.getFeeFrequency(this.showFeeOptions);
+      this.chargeForm.patchValue({
+        'feeInterval': this.chargeData.feeInterval,
+        'feeFrequency': this.chargeData.feeFrequency.id
+      });
+    }
   }
 
   private setupSavingsChargeControls() {
