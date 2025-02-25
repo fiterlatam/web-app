@@ -35,6 +35,7 @@ export class CreateChargeComponent implements OnInit {
   chargeFromTableList: any = [];
   chargeFromExternalCalculationList: any = [];
   interestRateOptions: any = [];
+  glAccountsList: any = [];
 
   /** Charge calculation type data. */
   originalChargeCalculationTypeData: any = [];
@@ -95,6 +96,9 @@ export class CreateChargeComponent implements OnInit {
       } else {
         this.incomeAndLiabilityAccountData = data.chargesTemplate.incomeOrLiabilityAccountOptions.incomeAccountOptions;
       }
+      if (data.chargesTemplate.glAccounts) {
+        this.glAccountsList = data.chargesTemplate.glAccounts;
+      }
     });
   }
 
@@ -136,6 +140,7 @@ export class CreateChargeComponent implements OnInit {
       'penalty': [false],
       'getPercentageAmountFromTable': [false],
       'taxGroupId': [''],
+      'incomeAccountId': [''],
       'minCap': [''],
       'maxCap': [''],
       'graceOnChargePeriodAmount': ['0', [Validators.required, Validators.min(0)]],
@@ -197,6 +202,7 @@ export class CreateChargeComponent implements OnInit {
     this.chargeFromTableList = this.chargesTemplateData.chargeFromTableList;
     this.chargeFromExternalCalculationList = this.chargesTemplateData.chargeFromExternalCalculationList;
     this.interestRateOptions = this.chargesTemplateData.interestRateOptions;
+    this.glAccountsList = this.chargesTemplateData.glAccounts;
   }
 
   /**
@@ -361,6 +367,9 @@ export class CreateChargeComponent implements OnInit {
     }
     if (!data.maxCap) {
       delete data.maxCap;
+    }
+    if (!data.glAccountId) {
+      delete data.glAccountId;
     }
 
     delete data.chargeCalculationTypeFilterFlat;
