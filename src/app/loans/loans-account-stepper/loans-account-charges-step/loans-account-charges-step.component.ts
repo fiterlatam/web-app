@@ -51,7 +51,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   /** Collateral Data Source */
   collateralDataSource: {}[] = [];
   /** Charges table columns */
-  chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'date', 'action','endorsed'];
+  chargesDisplayedColumns: string[] = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'date', 'action', 'endorsed'];
   /** Columns to be displayed in overdue charges table. */
   overdueChargesDisplayedColumns: string[] = ['name', 'type', 'amount', 'collectedon'];
   /** Component is pristine if there has been no changes by user interaction */
@@ -62,7 +62,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   totalCollateralValue: any = 0;
   loanId: any = null;
   /** Check if the product is Vehiculos */
-  isVehiculos: boolean = false;
+  isVehiculos = false;
   /** Maximum date allowed. */
   maxDate = new Date(2100, 0, 1);
 
@@ -82,9 +82,9 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.maxDate = this.settingsService.maxFutureDate;
     if (this.loansAccountTemplate && this.loansAccountTemplate.charges) {
-      if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
+      if (this.loansAccountProductTemplate?.product?.productType?.name === 'SU+ Vehiculos') {
         this.isVehiculos = true;
-        this.chargesDisplayedColumns= ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'action', 'endorsed'];
+        this.chargesDisplayedColumns = ['name', 'chargeCalculationType', 'amount', 'chargeTimeType', 'action', 'endorsed'];
       }
       this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate || null, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId })) || [];
     }
@@ -93,36 +93,36 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
 
       // Delete all "Comision Mi Pyme" charge previously associated to this loan
       this.chargesDataSource = this.chargesDataSource.filter(
-        (item: Charge) => !item.name?.toLowerCase().includes("comision mi pyme") && !item.name?.toLowerCase().includes("capital pendiente mi pyme")
+        (item: Charge) => !item.name?.toLowerCase().includes('comision mi pyme') && !item.name?.toLowerCase().includes('capital pendiente mi pyme')
       );
 
 
       // Filter charges by amount and associate them out
       if (this.loansAccountProductTemplate.loanProductName.toLowerCase().includes('microcredito')) {
 
-        var amountLimit = 4 * this.loansAccountProductTemplate.smvl;
+        const amountLimit = 4 * this.loansAccountProductTemplate.smvl;
         let informationIndex = -1;
 
-        let chargeRootName = "Capital Pendiente";
+        let chargeRootName = 'Capital Pendiente';
 
-        if (this.loansAccountProductTemplate.loanProductName.toLowerCase() == 'microcredito' 
+        if (this.loansAccountProductTemplate.loanProductName.toLowerCase() == 'microcredito'
               || this.loansAccountProductTemplate.loanProductName.toLowerCase() == 'microcredito m' ) {
-          chargeRootName = "Comision";
+          chargeRootName = 'Comision';
         }
 
-        var filterCriteria = chargeRootName + " Mi Pyme >= 4SMLV";
+        let filterCriteria = chargeRootName + ' Mi Pyme >= 4SMLV';
 
-        if(newPrincipalAmountValue.id < amountLimit) {
-          filterCriteria = chargeRootName + " Mi Pyme < 4SMLV";
+        if (newPrincipalAmountValue.id < amountLimit) {
+          filterCriteria = chargeRootName + ' Mi Pyme < 4SMLV';
         }
-        
+
 
         // Filter charges by name to correspond to the filterCriteria, depending on the amount.
         this.chargeData.forEach((item: Charge) => {
 
           informationIndex++;
 
-          if(item.name?.toLowerCase().includes(filterCriteria.toLowerCase())) {
+          if (item.name?.toLowerCase().includes(filterCriteria.toLowerCase())) {
 
             const mappedItem = {
               chargeId:       this.chargeData[informationIndex].id,
@@ -142,10 +142,10 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
               chargePayable: false,
               id:       this.chargeData[informationIndex].id,
               isEndorsed: false,
-              insuranceName:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceName || "",
-              insuranceId:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceCode || ""
+              insuranceName:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceName || '',
+              insuranceId:       this.chargeData[informationIndex].chargeInsuranceDetailData?.insuranceCode || ''
             };
-      
+
             // Add charge to the chargesDataSource
             this.chargesDataSource = [...this.chargesDataSource, mappedItem];
           }
@@ -166,15 +166,15 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
         this.overDueChargesDataSource = this.loansAccountProductTemplate.overdueCharges;
       }
       if (this.loansAccountProductTemplate.charges) {
-        if(this.loansAccountProductTemplate?.product?.productType?.name === "SU+ Vehiculos"){
+        if (this.loansAccountProductTemplate?.product?.productType?.name === 'SU+ Vehiculos') {
           this.isVehiculos = true;
         }
-        if(this.loanId){
-          console.log(this.loansAccountTemplate.charges)
+        if (this.loanId) {
+          console.log(this.loansAccountTemplate.charges);
           this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: charge?.expDate, isEndorsed: charge.amount === 0, insuranceName: charge?.insuranceName, insuranceId : charge?.insuranceId  })) || [];
-        }else{
-          console.log("non ",this.loansAccountTemplate.charges)
-          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0, insuranceName: "", insuranceId : ""  })) || [];
+        } else {
+          console.log('non ', this.loansAccountTemplate.charges);
+          this.chargesDataSource = this.loansAccountProductTemplate.charges.map((charge: any) => ({ ...charge, id: charge.chargeId, expdate: null, isEndorsed: charge.amount === 0, insuranceName: '', insuranceId : ''  })) || [];
         }
 
       }
@@ -198,9 +198,9 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
     const tomorrow = new Date(Date.now() + 86400000);
     this.maxDate = this.settingsService.maxFutureDate;
 
-    var formfields: FormfieldBase[];
+    let formfields: FormfieldBase[];
 
-    if(this.isVehiculos === true){
+    if (this.isVehiculos === true) {
        formfields = [
         new InputBase(
           {
@@ -236,7 +236,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           minDate: tomorrow
         })
       ];
-    }else{
+    } else {
      formfields = [
       new InputBase({
         controlName: 'amount',
@@ -255,13 +255,13 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
     const editNoteDialogRef = this.dialog.open(FormDialogComponent, { data });
     editNoteDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
-        var newCharge: any;
+        let newCharge: any;
         if (this.isVehiculos === true) {
-          var isEndorsed = false;
+          let isEndorsed = false;
           if (response.data.value.amount == 0) {
             isEndorsed = true;
           }
-          let expdate = this.dateUtils.formatDate(response.data.value.expdate, "yyyy-MM-dd");
+          const expdate = this.dateUtils.formatDate(response.data.value.expdate, 'yyyy-MM-dd');
           newCharge = {
             ...charge,
             amount: response.data.value.amount,
