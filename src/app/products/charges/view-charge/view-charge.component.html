@@ -138,7 +138,8 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong" *ngIf="chargeData.incomeOrLiabilityAccount">
-          {{ "labels.inputs.Income from Charges" | translate }}
+          <span *ngIf="chargeData.chargeAppliesTo.value!='Loan'">{{ "labels.inputs.Income from Charges" | translate }}</span>
+          <span *ngIf="chargeData.chargeAppliesTo.value=='Loan'">{{ "labels.inputs.Assets GL Account" | translate }}</span>
         </div>
 
         <div fxFlex="50%" *ngIf="chargeData.incomeOrLiabilityAccount">
