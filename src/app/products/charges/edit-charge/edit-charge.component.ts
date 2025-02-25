@@ -179,10 +179,31 @@ export class EditChargeComponent implements OnInit {
       'chargeTimeType': [this.chargeData.chargeTimeType.id, Validators.required],
       'chargeCalculationType': [this.chargeData.chargeCalculationType.id, Validators.required],
       'incomeAccountId': [incomeOrLiabilityAccount?.id],
-      // ... (other form controls)
     });
 
     this.addInsuranceControls(voluntaryInsuranceData);
+  }
+
+  private addInsuranceControls(voluntaryInsuranceData: any) {
+    if (voluntaryInsuranceData) {
+      const insuranceControls = {
+        'insuranceName': [voluntaryInsuranceData.insuranceName],
+        'insuranceChargedAs': [voluntaryInsuranceData.insuranceChargedAs],
+        'insuranceCompany': [voluntaryInsuranceData.insuranceCompany],
+        'insurerName': [voluntaryInsuranceData.insurerName],
+        'insuranceCode': [voluntaryInsuranceData.insuranceCode],
+        'insurancePlan': [voluntaryInsuranceData.insurancePlan],
+        'baseValue': [voluntaryInsuranceData.baseValue],
+        'vatValue': [voluntaryInsuranceData.vatValue],
+        'totalValue': [voluntaryInsuranceData.totalValue],
+        'deadline': [voluntaryInsuranceData.deadline],
+        'daysInArrears': [voluntaryInsuranceData.daysInArrears || 0],
+      };
+
+      Object.entries(insuranceControls).forEach(([key, value]) => {
+        this.chargeForm.addControl(key, this.formBuilder.control(value[0]));
+      });
+    }
   }
 
   private removeUnusedControls() {
@@ -455,12 +476,12 @@ export class EditChargeComponent implements OnInit {
   }
 
   lookForKeyOnCode(lookForWordsArray: any = []) {
-    let lookupCode = "";
+    let lookupCode = '';
     for (let i = 0; i < lookForWordsArray.length; i++) {
       if (i === 0) {
         lookupCode = lookForWordsArray[i];
       } else {
-          lookupCode = lookupCode + "." + lookForWordsArray[i];
+          lookupCode = lookupCode + '.' + lookForWordsArray[i];
       }
     }
     for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
@@ -513,7 +534,7 @@ export class EditChargeComponent implements OnInit {
   }
 
   sumVatAndTotalValues() {
-    if(!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    if (!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       const baseValue = this.chargeForm.get('baseValue').value;
       const vatValue =   this.chargeForm.get('vatValue').value;
       let sum = parseFloat(vatValue) + parseFloat(baseValue);
@@ -522,7 +543,7 @@ export class EditChargeComponent implements OnInit {
       this.chargeForm.controls['amount'].setValidators([]);
       this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
       this.chargeForm.get('amount').updateValueAndValidity();
-      if (this.settingsService.language.code === "es") {
+      if (this.settingsService.language.code === 'es') {
         this.chargeForm.get('amount').setValue(this.replaceCharactersFromAmount(sum));
       } else {
         this.chargeForm.get('amount').setValue(sum);
@@ -534,13 +555,13 @@ export class EditChargeComponent implements OnInit {
   replaceCharactersFromAmount(amount: any): any {
     if (amount !== undefined && amount !== null) {
     if (this.settingsService.language.code === 'es') {
-      amount = amount.toString().replace(/,/g, "");
-       return amount = amount.toString().replace(/\./g, ",");
+      amount = amount.toString().replace(/,/g, '');
+       return amount = amount.toString().replace(/\./g, ',');
     } else {
       return amount;
       }
   } else {
-    return ""
+    return '';
     }
   }
 }
