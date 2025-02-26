@@ -69,16 +69,12 @@ export class EditChargeComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    * @param {Router} router Router for navigation.
    * @param {SettingsService} settingsService Settings Service
-   * @param decimalPipe
-   * @param {SystemService} systemService System Service
    */
   constructor(private productsService: ProductsService,
               private formBuilder: UntypedFormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private settingsService: SettingsService,
-              private decimalPipe: DecimalPipe,
-              private systemService: SystemService) {
+              private settingsService: SettingsService) {
     this.route.data.subscribe((data: { chargesTemplate: any }) => {
       this.chargeData = data.chargesTemplate;
       this.parentChargeDataList = this.chargeData['chargeDataList'];
@@ -159,10 +155,17 @@ export class EditChargeComponent implements OnInit {
    * Edit Charge form.
    */
   editChargeForm() {
+    this.initializeForm();
+    this.removeUnusedControls();
+    this.setupChargeSpecificControls();
+    this.setupTaxGroup();
+  }
+
+  private initializeForm() {
     this.showFeeOptions = (this.chargeData.feeInterval && this.chargeData.feeInterval > 0);
     const voluntaryInsuranceData = this.chargeData.chargeInsuranceDetailData;
     const incomeOrLiabilityAccount = this.chargeData.incomeOrLiabilityAccount;
-    const locale = this.settingsService.language.code;
+
     this.chargeForm = this.formBuilder.group({
       'name': [this.chargeData.name, Validators.required],
       'chargeAppliesTo': [{value: this.chargeData.chargeAppliesTo.id, disabled: true}, Validators.required],
@@ -171,124 +174,143 @@ export class EditChargeComponent implements OnInit {
       'active': [this.chargeData.active],
       'interestRateId': [this.chargeData.interestRate ? this.chargeData.interestRate.id : ''],
       'penalty': [this.chargeData.penalty],
-      'getPercentageAmountFromTable': [this.chargeData.getPercentageAmountFromTable],
       'minCap': [this.chargeData.minCap],
       'maxCap': [this.chargeData.maxCap],
       'chargeTimeType': [this.chargeData.chargeTimeType.id, Validators.required],
       'chargeCalculationType': [this.chargeData.chargeCalculationType.id, Validators.required],
-      'graceOnChargePeriodEnum': ['days', Validators.required],
-      'chargeCalculationTypeFilterFlat': [false],
-      'chargeCalculationTypeFilterDisbursal': [false],
-      'chargeCalculationTypeFilterAmount': [false],
-      'chargeCalculationTypeFilterInterest': [false],
-      'chargeCalculationTypeFilterOutstandingAmount': [false],
-      'chargeCalculationTypeFilterOutstandingInterest': [false],
-      'chargeCalculationTypeFilterInsurance': [false],
-      'chargeCalculationTypeFilterAval': [false],
-      'chargeCalculationTypeFilterHonorarios': [false],
-      'chargeCalculationTypeFilterTerm': [false],
-      'parentChargeId': [this.chargeData.parentChargeId, Validators.required],
-      'chargeCalculationTypeFilterInsuranceType': [false],
-      'graceOnChargePeriodAmount': ['0'],
-      'incomeAccountId': [incomeOrLiabilityAccount == null ? null : incomeOrLiabilityAccount.id],
-      'insuranceName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceName],
-      'insuranceChargedAs': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceChargedAs],
-      'insuranceCompany': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCompany],
-      'insurerName': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurerName],
-      'insuranceCode': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insuranceCode],
-      'insurancePlan': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.insurancePlan],
-      'baseValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.baseValue],
-      'vatValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.vatValue],
-      'totalValue': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.totalValue],
-      'deadline': [voluntaryInsuranceData == null ? null : voluntaryInsuranceData.deadline],
-      'daysInArrears': [voluntaryInsuranceData == null ? 0 : voluntaryInsuranceData.daysInArrears],
+      'incomeAccountId': [incomeOrLiabilityAccount?.id],
     });
 
-    this.chargeForm.removeControl('graceOnChargePeriodAmount');
-    this.chargeForm.removeControl('graceOnChargePeriodEnum');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterFlat');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterDisbursal');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterAmount');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterInterest');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingAmount');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterOutstandingInterest');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterInsurance');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterAval');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterHonorarios');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterTerm');
+    this.addInsuranceControls(voluntaryInsuranceData);
+  }
 
-    this.chargeForm.removeControl('parentChargeId');
-    this.chargeForm.removeControl('customChargeId');
-    this.chargeForm.removeControl('externalCalculationChargeId');
-    this.chargeForm.removeControl('chargeCalculationTypeFilterInsuranceType');
-    this.chargeForm.removeControl('getPercentageAmountFromTable');
+  private addInsuranceControls(voluntaryInsuranceData: any) {
+    if (voluntaryInsuranceData) {
+      const insuranceControls = {
+        'insuranceName': [voluntaryInsuranceData.insuranceName],
+        'insuranceChargedAs': [voluntaryInsuranceData.insuranceChargedAs],
+        'insuranceCompany': [voluntaryInsuranceData.insuranceCompany],
+        'insurerName': [voluntaryInsuranceData.insurerName],
+        'insuranceCode': [voluntaryInsuranceData.insuranceCode],
+        'insurancePlan': [voluntaryInsuranceData.insurancePlan],
+        'baseValue': [voluntaryInsuranceData.baseValue],
+        'vatValue': [voluntaryInsuranceData.vatValue],
+        'totalValue': [voluntaryInsuranceData.totalValue],
+        'deadline': [voluntaryInsuranceData.deadline],
+        'daysInArrears': [voluntaryInsuranceData.daysInArrears || 0],
+      };
 
-    switch (this.chargeData.chargeAppliesTo.value) {
-      case 'Loan': {
-        this.chargeTimeTypeOptions = this.chargeData.loanChargeTimeTypeOptions;
-        this.chargeCalculationTypeOptions = this.chargeData.loanChargeCalculationTypeOptions;
-        this.addFeeFrequency = true;
-        this.chargePaymentMode = true;
-        this.chargeForm.addControl('chargePaymentMode', this.formBuilder.control(this.chargeData.chargePaymentMode.id, Validators.required));
-
-        this.chargeForm.addControl('graceOnChargePeriodAmount', this.formBuilder.control(this.chargeData.graceOnChargePeriodAmount, [Validators.required, Validators.min(0)]));
-        this.chargeForm.addControl('chargeCalculationTypeFilterFlat', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterDisbursal', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterAmount', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterInterest', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingAmount', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterOutstandingInterest', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterInsurance', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterAval', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterHonorarios', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterTerm', new UntypedFormControl(false));
-
-
-        this.chargeForm.addControl('parentChargeId', new UntypedFormControl(false));
-        this.chargeForm.addControl('customChargeId', new UntypedFormControl(false));
-        this.chargeForm.addControl('externalCalculationChargeId', new UntypedFormControl(false));
-        this.chargeForm.addControl('chargeCalculationTypeFilterInsuranceType', new UntypedFormControl(false));
-        this.chargeForm.addControl('getPercentageAmountFromTable', this.formBuilder.control(this.chargeData.getPercentageAmountFromTable));
-
-        this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
-
-        this.chargeForm.get('parentChargeId').setValue(this.chargeData.parentChargeId);
-
-        if (this.showFeeOptions) {
-          this.getFeeFrequency(this.showFeeOptions);
-          this.chargeForm.patchValue({
-            'feeInterval': this.chargeData.feeInterval,
-            'feeFrequency': this.chargeData.feeFrequency.id
-          });
-        }
-        break;
-      }
-      case 'Savings': {
-        this.chargeTimeTypeOptions = this.chargeData.savingsChargeTimeTypeOptions;
-        this.chargeCalculationTypeOptions = this.chargeData.savingsChargeCalculationTypeOptions;
-        this.addFeeFrequency = false;
-        this.chargeForm.removeControl('getPercentageAmountFromTable');
-        break;
-      }
-      case 'Shares': {
-        this.chargeTimeTypeOptions = this.chargeData.shareChargeTimeTypeOptions;
-        this.chargeCalculationTypeOptions = this.chargeData.shareChargeCalculationTypeOptions;
-        this.addFeeFrequency = false;
-        this.showGLAccount = false;
-        this.showPenalty = false;
-        this.chargeForm.removeControl('getPercentageAmountFromTable');
-        break;
-      }
-      default: {
-        this.chargeCalculationTypeOptions = this.chargeData.clientChargeCalculationTypeOptions;
-        this.chargeTimeTypeOptions = this.chargeData.clientChargeTimeTypeOptions;
-        this.showGLAccount = true;
-        this.addFeeFrequency = false;
-        this.chargeForm.addControl('incomeAccountId', this.formBuilder.control(this.chargeData.incomeOrLiabilityAccount.id, Validators.required));
-        this.chargeForm.removeControl('getPercentageAmountFromTable');
-        break;
-      }
+      Object.entries(insuranceControls).forEach(([key, value]) => {
+        this.chargeForm.addControl(key, this.formBuilder.control(value[0]));
+      });
     }
+  }
+
+  private removeUnusedControls() {
+    const controlsToRemove = [
+      'graceOnChargePeriodAmount', 'graceOnChargePeriodEnum', 'chargeCalculationTypeFilterFlat',
+      'chargeCalculationTypeFilterDisbursal', 'chargeCalculationTypeFilterAmount',
+      'chargeCalculationTypeFilterInterest', 'chargeCalculationTypeFilterOutstandingAmount',
+      'chargeCalculationTypeFilterOutstandingInterest', 'chargeCalculationTypeFilterInsurance',
+      'chargeCalculationTypeFilterAval', 'chargeCalculationTypeFilterHonorarios',
+      'chargeCalculationTypeFilterTerm', 'parentChargeId', 'customChargeId',
+      'externalCalculationChargeId', 'chargeCalculationTypeFilterInsuranceType',
+      'getPercentageAmountFromTable'
+    ];
+
+    controlsToRemove.forEach(control => this.chargeForm.removeControl(control));
+  }
+  private addLoanSpecificControls() {
+    const controls = [
+      { name: 'chargePaymentMode', value: this.chargeData.chargePaymentMode.id, validators: [Validators.required] },
+      { name: 'graceOnChargePeriodAmount', value: this.chargeData.graceOnChargePeriodAmount, validators: [Validators.required, Validators.min(0)] },
+      { name: 'chargeCalculationTypeFilterFlat', value: false },
+      { name: 'chargeCalculationTypeFilterDisbursal', value: false },
+      { name: 'chargeCalculationTypeFilterAmount', value: false },
+      { name: 'chargeCalculationTypeFilterInterest', value: false },
+      { name: 'chargeCalculationTypeFilterOutstandingAmount', value: false },
+      { name: 'chargeCalculationTypeFilterOutstandingInterest', value: false },
+      { name: 'chargeCalculationTypeFilterInsurance', value: false },
+      { name: 'chargeCalculationTypeFilterAval', value: false },
+      { name: 'chargeCalculationTypeFilterHonorarios', value: false },
+      { name: 'chargeCalculationTypeFilterTerm', value: false },
+      { name: 'parentChargeId', value: this.chargeData.parentChargeId },
+      { name: 'customChargeId', value: false },
+      { name: 'externalCalculationChargeId', value: false },
+      { name: 'chargeCalculationTypeFilterInsuranceType', value: false },
+      { name: 'getPercentageAmountFromTable', value: this.chargeData.getPercentageAmountFromTable }
+    ];
+
+    controls.forEach(control => {
+      this.chargeForm.addControl(control.name, this.formBuilder.control(control.value, control.validators));
+    });
+
+    this.originalChargeCalculationTypeData = this.chargeData.loanChargeCalculationTypeOptions;
+  }
+
+  private setupChargeSpecificControls() {
+    const chargeAppliesTo = this.chargeData.chargeAppliesTo.value;
+
+    switch (chargeAppliesTo) {
+      case 'Loan':
+        this.setupLoanChargeControls();
+        break;
+      case 'Savings':
+        this.setupSavingsChargeControls();
+        break;
+      case 'Shares':
+        this.setupSharesChargeControls();
+        break;
+      default:
+        this.setupClientChargeControls();
+    }
+  }
+
+  private setupLoanChargeControls() {
+    this.chargeTimeTypeOptions = this.chargeData.loanChargeTimeTypeOptions;
+    this.chargeCalculationTypeOptions = this.chargeData.loanChargeCalculationTypeOptions;
+    this.addFeeFrequency = true;
+    this.chargePaymentMode = true;
+
+    this.addLoanSpecificControls();
+    this.setupFeeOptions();
+  }
+  private setupFeeOptions() {
+    if (this.showFeeOptions) {
+      this.getFeeFrequency(this.showFeeOptions);
+      this.chargeForm.patchValue({
+        'feeInterval': this.chargeData.feeInterval,
+        'feeFrequency': this.chargeData.feeFrequency.id
+      });
+    }
+  }
+
+  private setupSavingsChargeControls() {
+    this.chargeTimeTypeOptions = this.chargeData.savingsChargeTimeTypeOptions;
+    this.chargeCalculationTypeOptions = this.chargeData.savingsChargeCalculationTypeOptions;
+    this.addFeeFrequency = false;
+    this.chargeForm.removeControl('getPercentageAmountFromTable');
+  }
+
+  private setupSharesChargeControls() {
+    this.chargeTimeTypeOptions = this.chargeData.shareChargeTimeTypeOptions;
+    this.chargeCalculationTypeOptions = this.chargeData.shareChargeCalculationTypeOptions;
+    this.addFeeFrequency = false;
+    this.showGLAccount = false;
+    this.showPenalty = false;
+    this.chargeForm.removeControl('getPercentageAmountFromTable');
+  }
+
+  private setupClientChargeControls() {
+    this.chargeCalculationTypeOptions = this.chargeData.clientChargeCalculationTypeOptions;
+    this.chargeTimeTypeOptions = this.chargeData.clientChargeTimeTypeOptions;
+    this.showGLAccount = true;
+    this.addFeeFrequency = false;
+    this.chargeForm.addControl('incomeAccountId', this.formBuilder.control(this.chargeData.incomeOrLiabilityAccount.id, Validators.required));
+    this.chargeForm.removeControl('getPercentageAmountFromTable');
+  }
+
+  private setupTaxGroup() {
     if (this.chargeData.taxGroup) {
       this.chargeForm.addControl('taxGroupId', this.formBuilder.control({
         value: this.chargeData.taxGroup.id,
@@ -298,6 +320,8 @@ export class EditChargeComponent implements OnInit {
       this.chargeForm.addControl('taxGroupId', this.formBuilder.control({value: ''}));
     }
   }
+
+// ... (other helper methods)
 
   /**
    * Get Add Fee Frequency value.
@@ -452,12 +476,12 @@ export class EditChargeComponent implements OnInit {
   }
 
   lookForKeyOnCode(lookForWordsArray: any = []) {
-    let lookupCode = "";
+    let lookupCode = '';
     for (let i = 0; i < lookForWordsArray.length; i++) {
       if (i === 0) {
         lookupCode = lookForWordsArray[i];
       } else {
-          lookupCode = lookupCode + "." + lookForWordsArray[i];
+          lookupCode = lookupCode + '.' + lookForWordsArray[i];
       }
     }
     for (let index = 0; index <= this.originalChargeCalculationTypeData.length - 1; index++) {
@@ -510,7 +534,7 @@ export class EditChargeComponent implements OnInit {
   }
 
   sumVatAndTotalValues() {
-    if(!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
+    if (!this.chargeForm.get('penalty').value && this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       const baseValue = this.chargeForm.get('baseValue').value;
       const vatValue =   this.chargeForm.get('vatValue').value;
       let sum = parseFloat(vatValue) + parseFloat(baseValue);
@@ -519,7 +543,7 @@ export class EditChargeComponent implements OnInit {
       this.chargeForm.controls['amount'].setValidators([]);
       this.chargeForm.controls['amount'].setValidators(this.getAmountValidators());
       this.chargeForm.get('amount').updateValueAndValidity();
-      if (this.settingsService.language.code === "es") {
+      if (this.settingsService.language.code === 'es') {
         this.chargeForm.get('amount').setValue(this.replaceCharactersFromAmount(sum));
       } else {
         this.chargeForm.get('amount').setValue(sum);
@@ -531,13 +555,13 @@ export class EditChargeComponent implements OnInit {
   replaceCharactersFromAmount(amount: any): any {
     if (amount !== undefined && amount !== null) {
     if (this.settingsService.language.code === 'es') {
-      amount = amount.toString().replace(/,/g, "");
-       return amount = amount.toString().replace(/\./g, ",");
+      amount = amount.toString().replace(/,/g, '');
+       return amount = amount.toString().replace(/\./g, ',');
     } else {
       return amount;
       }
   } else {
-    return ""
+    return '';
     }
   }
 }
