@@ -387,6 +387,15 @@
               <input type="number" matInput formControlName="daysInArrears">
             </mat-form-field>
 
+            <mat-form-field *ngIf="shouldDisplayInsuranceFields('all')" fxFlex="48%">
+              <mat-label>{{"labels.inputs.Assets GL Account" | translate}} </mat-label>
+              <mat-select formControlName="incomeAccountId">
+                <mat-option *ngFor="let accnt of glAccountsList"
+                            [value]="accnt.id">
+                  {{ accnt.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
         </div>
