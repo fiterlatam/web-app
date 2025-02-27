@@ -177,7 +177,6 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
           this.isVehiculos = true;
         }
         if (this.loanId) {
-          console.log(this.loansAccountTemplate.charges);
           this.chargesDataSource = this.loansAccountTemplate.charges.map((charge: any) => ({
             ...charge,
             id: charge.chargeId,
