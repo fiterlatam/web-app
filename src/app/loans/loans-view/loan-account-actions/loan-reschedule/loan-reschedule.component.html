@@ -11,7 +11,7 @@
           <mat-form-field (click)="rescheduleDatePicker.open()">
             <mat-label>{{"labels.inputs.Reschedule from Installment On" | translate}}</mat-label>
             <input matInput [min]="minDate" [matDatepicker]="rescheduleDatePicker" required
-              formControlName="rescheduleFromDate">
+              formControlName="rescheduleFromDate" (dateChange)="onCheckboxChange($event)">
             <mat-datepicker-toggle matSuffix [for]="rescheduleDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #rescheduleDatePicker></mat-datepicker>
             <mat-error *ngIf="rescheduleLoanForm.controls.rescheduleFromDate.hasError('required')">
@@ -90,7 +90,7 @@
             </mat-form-field>
           </ng-container>
 
-          <mat-checkbox [formControl]="rediferirCuotas"> {{"labels.inputs.Rediferir" | translate}} </mat-checkbox>
+          <mat-checkbox [formControl]="rediferirCuotas" (change)="onCheckboxChange($event)"> {{"labels.inputs.Rediferir" | translate}} </mat-checkbox>
           <ng-container *ngIf="rediferirCuotas.value">
             <mat-form-field>
               <mat-label>{{"labels.inputs.Repayment Amount" | translate}} </mat-label>
