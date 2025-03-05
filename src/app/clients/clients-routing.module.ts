@@ -46,6 +46,7 @@ import { ClientChargeViewResolver } from './common-resolvers/client-charge-view.
 import { ClientTransactionPayResolver } from './common-resolvers/client-transaction-pay.resolver';
 import { ClientDataAndTemplateResolver } from './common-resolvers/client-and-template.resolver';
 import { ClientCollateralResolver } from './common-resolvers/client-collateral.resolver';
+import {ClientLoansRestructureResolver} from './common-resolvers/client-loans-restructure.resolver';
 
 const routes: Routes = [
   Route.withShell([{
@@ -197,7 +198,7 @@ const routes: Routes = [
             data: { title: 'Client Actions', routeParamBreadcrumb: 'name' },
             component: ClientActionsComponent,
             resolve: {
-              clientActionData: ClientActionsResolver
+              restructureTemplateData: ClientLoansRestructureResolver,
             }
           },
           {
@@ -275,6 +276,7 @@ const routes: Routes = [
   providers: [
     ClientViewResolver,
     ClientAccountsResolver,
+    ClientLoansRestructureResolver,
     ClientAddressResolver,
     ClientChargesResolver,
     ClientSummaryResolver,

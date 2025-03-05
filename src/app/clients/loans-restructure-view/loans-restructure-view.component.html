@@ -1,0 +1,120 @@
+<div class="container mat-elevation-z8">
+
+  <mat-card>
+
+    <mat-card appearance="outlined" style="margin-top: .5rem" class="alert">
+      <mat-card-content>
+        <span>{{'labels.inputs.Client Name'|translate }} <span class="pull-right">{{clientData.displayName}}</span> </span>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" style="margin-top: .5rem" class="alert">
+      <span>{{'labels.inputs.accountNumber'|translate }} <span class="pull-right">{{clientData.accountNo}}</span> </span>
+    </mat-card>
+
+    <div *ngIf="restructureRequest">
+      <h3>{{'labels.menus.Loans'|translate}}</h3>
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;" *ngFor="let loan of restructureRequest.loanMappingData">
+        <span>{{loan.loanProduct }} <span class="pull-right">{{loan.outstandingBalance|formatNumber}}</span> </span>
+      </mat-card>
+
+      <hr/>
+      <h3>{{'labels.heading.Restructure Details'|translate}}</h3>
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.inputs.Total Amount'| translate}} <span class="pull-right">{{restructureRequest.totalLoanAmount|formatNumber}}</span> </span>
+      </mat-card>
+
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.heading.Loan Product'| translate}} <span class="pull-right">{{restructureRequest.productName}}</span> </span>
+      </mat-card>
+
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.inputs.Expected disbursement on'| translate}} <span class="pull-right">{{restructureRequest.newDisbursementDate|dateFormat}}</span> </span>
+      </mat-card>
+
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.inputs.Status'| translate}} <span class="pull-right">{{restructureRequest.status.value}}</span> </span>
+      </mat-card>
+
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.inputs.Notes'| translate}} <span class="pull-right">{{restructureRequest.comments}}</span> </span>
+      </mat-card>
+      <mat-card appearance="outlined" style="margin-top: .5rem; background-color: #00abee;">
+        <span>{{'labels.inputs.Created By'| translate}} <span class="pull-right">{{restructureRequest.requestedByUser}}</span> </span>
+      </mat-card>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+        <button *mifosxHasPermission="'APPROVE_RESTRUCTURE_LOAN'" color="primary" (click)="approveRestructure('APPROVE')"
+                type="button" mat-raised-button>{{ "labels.buttons.Approve" | translate }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="approveRestructure('REJECT')"
+                *mifosxHasPermission="'REJECT_RESTRUCTURE_LOAN'">{{ "labels.buttons.Reject" | translate }}
+        </button>
+      </mat-card-actions>
+
+    </div>
+
+
+    <form [formGroup]="restructureLoanForm" (ngSubmit)="submit()" *ngIf="!restructureRequest">
+      <mat-card-content>
+
+        <h3>{{"labels.heading.Chose Loans" | translate}}</h3>
+        <mat-selection-list #selectLoans (selectionChange)="onLoanSelectionChange($event)">
+          <mat-list-option *ngFor="let loan of loanAccounts">
+            <span style="width: 70%">{{loan.accountNo}} - ({{loan.loanProductName}}) <span class="pull-right">{{'labels.inputs.Loan Balance'|translate}} - ({{loan.currency.code}}) {{loan.summary.totalOutstanding|number}}</span></span>
+          </mat-list-option>
+        </mat-selection-list>
+
+        <hr/>
+
+
+        <div fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="start stretch">
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{"labels.inputs.Product Name" | translate}}</mat-label>
+            <mat-select formControlName="productId" (selectionChange)="buildDependencies(this.restructureRequest.productId)" matTooltip="{{ 'tooltips.Name of the loan product' | translate}}" required>
+              <mat-option *ngFor="let product of productData" [value]="product.id">
+                {{ product.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{"labels.inputs.Product Name" | translate}} {{"labels.commons.is" | translate}} <strong>{{"labels.commons.required" | translate}}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%" (click)="disbursementDatePicker.open()">
+            <mat-label>{{ "labels.inputs.Expected disbursement on" | translate }}</mat-label>
+            <input matInput [min]="minDate" [matDatepicker]="disbursementDatePicker"
+                   formControlName="expectedDisbursementDate">
+            <mat-datepicker-toggle matSuffix [for]="disbursementDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #disbursementDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45%">
+            <mat-label>{{ "labels.inputs.Transaction Amount" | translate }}</mat-label>
+            <input matInput type="number" required formControlName="totalLoanAmount">
+            <mat-error *ngIf="restructureLoanForm.controls.totalLoanAmount.hasError('required')">
+              {{ "labels.inputs.Transaction Amount" | translate }} {{ "labels.commons.is" | translate }}
+              <strong>{{ "labels.commons.required" | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%">
+            <mat-label>{{ "labels.inputs.Note" | translate }}</mat-label>
+            <textarea matInput formControlName="note" cdkTextareaAutosize cdkAutosizeMinRows="2"></textarea>
+          </mat-form-field>
+
+        </div>
+
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+          <button type="button" mat-raised-button
+                  [routerLink]="['../../general']">{{ "labels.buttons.Cancel" | translate }}
+          </button>
+          <button mat-raised-button color="primary" [disabled]="!restructureLoanForm.valid"
+                  *mifosxHasPermission="'RESTRUCTURE_LOAN'">{{ "labels.buttons.Submit" | translate }}
+          </button>
+        </mat-card-actions>
+
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

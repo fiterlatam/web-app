@@ -202,4 +202,11 @@ export class GeneralTabComponent {
     }
   }
 
+  restructureLoans() {
+
+  }
+
+  doAction(action: string) {
+    this.router.navigate([`../actions/${action}`], { relativeTo: this.route });
+  }
 }
