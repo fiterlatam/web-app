@@ -20,6 +20,7 @@ describe('ClientDatatableStepComponent', () => {
   });
 
   it('should create', () => {
+    // @ts-ignore
     expect(component).toBeTruthy();
   });
 });
