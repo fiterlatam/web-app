@@ -23,7 +23,7 @@ export class ClientDatatableStepComponent implements OnInit {
   /** Input Fields Data */
   @Input() datatableData: any;
   /** Create Input Form */
-  datatableForm: UntypedFormGroup;
+  datatableForm: UntypedFormGroup = this.formBuilder.group({});
 
   datatableInputs: any = [];
   datatableInputsCopy: any[];
@@ -39,28 +39,33 @@ export class ClientDatatableStepComponent implements OnInit {
     private readonly datatableService: Datatables) {
   }
 
-
   ngOnInit(): void {
+    if (!this.datatableData) {
+      console.error('datatableData is required but not provided');
+      return;
+    }
 
     this.systemService.getConfigurationByName('client-creation-cupo-default-value').subscribe({
       next: (config: GlobalConfiguration) => {
         this.cupoDefaultValue = String(config.value);
-        this.ngPostInit();
+        this.initializeForm();
       },
       error: (err) => {
         console.error('Error whilst retrieving default value configuration:', err);
+        // Still initialize the form even if we can't get the default value
+        this.initializeForm();
       }
     });
-
   }
 
-
-  ngPostInit(): void {
-    this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
-    this.updateDecimalFieldTypes();
-    const inputItems = this.createFormControls();
-    this.datatableForm = this.formBuilder.group(inputItems);
-    this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+  private initializeForm(): void {
+    if (this.datatableData && this.datatableData.columnHeaderData) {
+      this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
+      this.updateDecimalFieldTypes();
+      const inputItems = this.createFormControls();
+      this.datatableForm = this.formBuilder.group(inputItems);
+      this.datatableInputsCopy = _.cloneDeep(this.datatableInputs);
+    }
   }
 
   private updateDecimalFieldTypes(): void {
@@ -71,11 +76,24 @@ export class ClientDatatableStepComponent implements OnInit {
     });
   }
 
+  private createFormControl(input: any): UntypedFormControl {
+    this.getInputName(input);
+    const initialValue = !input.isColumnNullable && this.isNumeric(input.columnDisplayType) ? 0 : '';
+    const control = new UntypedFormControl(initialValue);
+
+    if (!input.isColumnNullable) {
+      control.setValidators(Validators.required);
+    }
+
+    return control;
+  }
+
   private createFormControls(): { [key: string]: UntypedFormControl } {
     const inputItems: { [key: string]: UntypedFormControl } = {};
 
     this.datatableInputs.forEach((input: any) => {
-      const controlName = this.getInputName(input);
+      const controlName = input.controlName || this.getInputName(input);
+      input.controlName = controlName; // Ensure controlName is set
       const control = this.createFormControl(input);
 
       this.applyValidators(control, input);
@@ -85,11 +103,6 @@ export class ClientDatatableStepComponent implements OnInit {
     });
 
     return inputItems;
-  }
-
-  private createFormControl(input: any): UntypedFormControl {
-    const initialValue = !input.isColumnNullable && this.isNumeric(input.columnDisplayType) ? 0 : '';
-    return new UntypedFormControl(initialValue, input.isColumnNullable ? null : Validators.required);
   }
 
   private applyValidators(control: UntypedFormControl, input: any): void {
@@ -163,7 +176,7 @@ export class ClientDatatableStepComponent implements OnInit {
     const [integerDerivedPart, decimalPart] = value.split('.');
 
     // Add periods to the integer part (thousands separator)
-   const  integerPart = integerDerivedPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const integerPart = integerDerivedPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     // If there's a decimal part, return it along with the formatted integer part
     if (decimalPart !== undefined) {
@@ -262,24 +275,29 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   get payload(): any {
-    const dateFormat = this.settingsService.dateFormat;
-    const datatableDataValues = {...this.datatableForm.value};
+    const formData = this.datatableForm.value;
+    const data: any = {
+      registeredTableName: this.datatableData.registeredTableName,
+      data: {}
+    };
 
-    // Convert formatted numbers back to actual numbers for the payload
-    this.decimalFields.forEach(fieldName => {
-      if (datatableDataValues[fieldName]) {
-        datatableDataValues[fieldName] = this.parseFormattedNumber(datatableDataValues[fieldName]);
+    Object.keys(formData).forEach(key => {
+      let value = formData[key];
+
+      // Handle decimal fields
+      if (this.decimalFields.includes(key) && value) {
+        value = this.parseFormattedNumber(value);
       }
+
+      // Handle date fields
+      if (value instanceof Date) {
+        value = value.toISOString().slice(0, 10);
+      }
+
+      data.data[key] = value;
     });
 
-    const data = this.datatableService.buildPayload(this.datatableInputs, datatableDataValues, dateFormat,
-      {locale: this.settingsService.language.code});
-
-
-    return {
-      registeredTableName: this.datatableData.registeredTableName,
-      data: data
-    };
+    return data;
   }
 
   isCamposClienteEmpresas() {
@@ -287,31 +305,46 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   onSelectionChange(event: any) {
-    if (this.isCamposClienteEmpresas()) {
-      if (event.source.ngControl.name === 'Departamento') {
-        const departmentoId: number = this.datatableForm.value.Departamento;
-        for (const i in this.datatableInputsCopy) {
-          if ('Ciudad_cd_Ciudad' === this.datatableInputsCopy[i].columnName) {
-            const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
-            this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
-          }
-        }
-      }
-      if (event.source.ngControl.name === 'Negocio') {
-        const negocio = this.datatableForm.value.Negocio;
-        for (const i in this.datatableInputsCopy) {
-          if ('Negocio_cd_Negocio' === this.datatableInputs[i].columnName) {
-            const columOptions: any[] = this.datatableInputs[i].columnValues;
-            const columnValues = columOptions ? columOptions.filter(opt => opt.id === negocio && opt.value === 'CONFIRMING') : [];
-            if (columnValues && columnValues.length > 0) {
-              this.datatableForm.get('NIT confirming').setValidators([Validators.required]);
-            } else {
-              this.datatableForm.get('NIT confirming').clearValidators();
+    try {
+      if (this.isCamposClienteEmpresas()) {
+        if (event?.source?.ngControl?.name === 'Departamento') {
+          const departmentoId: number = this.datatableForm?.value?.Departamento;
+          if (departmentoId) {
+            for (const i in this.datatableInputsCopy) {
+              if ('Ciudad_cd_Ciudad' === this.datatableInputsCopy[i].columnName) {
+                const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
+                this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
+              }
             }
-            this.datatableForm.get('NIT confirming').updateValueAndValidity();
+          }
+        }
+        if (event?.source?.ngControl?.name === 'Negocio') {
+          const negocio = this.datatableForm?.value?.Negocio;
+          if (negocio) {
+            for (const i in this.datatableInputsCopy) {
+              if ('Negocio_cd_Negocio' === this.datatableInputs[i].columnName) {
+                const columOptions: any[] = this.datatableInputs[i].columnValues;
+                const columnValues = columOptions ? columOptions.filter(opt => opt.id === negocio && opt.value === 'CONFIRMING') : [];
+                const nitControl = this.getFormControl('NIT confirming');
+                if (nitControl) {
+                  if (columnValues && columnValues.length > 0) {
+                    nitControl.setValidators([Validators.required]);
+                  } else {
+                    nitControl.clearValidators();
+                  }
+                  nitControl.updateValueAndValidity();
+                }
+              }
+            }
           }
         }
       }
+    } catch (error) {
+      console.error('Error in onSelectionChange:', error);
     }
+  }
+
+  getFormControl(controlName: string): UntypedFormControl {
+    return this.datatableForm.get(controlName) as UntypedFormControl;
   }
 }
