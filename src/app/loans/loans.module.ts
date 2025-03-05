@@ -254,7 +254,7 @@ import {CurrencyPipe} from '@angular/common';
     ViewCreditNotesComponent,
     LoanCancelComponent,
     LoanTransactionGeneralTabComponent,
-    DatatableTransactionTabComponent
+    DatatableTransactionTabComponent,
   ],
   providers: [
     CurrencyPipe
