@@ -80,11 +80,11 @@ export class ClientDatatableStepComponent implements OnInit {
     const controlName = this.getInputName(input);
     const initialValue = !input.isColumnNullable && this.isNumeric(input.columnDisplayType) ? 0 : '';
     const control = new UntypedFormControl(initialValue);
-    
+
     if (!input.isColumnNullable) {
       control.setValidators(Validators.required);
     }
-    
+
     return control;
   }
 
@@ -176,7 +176,7 @@ export class ClientDatatableStepComponent implements OnInit {
     const [integerDerivedPart, decimalPart] = value.split('.');
 
     // Add periods to the integer part (thousands separator)
-   const  integerPart = integerDerivedPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const integerPart = integerDerivedPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     // If there's a decimal part, return it along with the formatted integer part
     if (decimalPart !== undefined) {
@@ -283,12 +283,12 @@ export class ClientDatatableStepComponent implements OnInit {
 
     Object.keys(formData).forEach(key => {
       let value = formData[key];
-      
+
       // Handle decimal fields
       if (this.decimalFields.includes(key) && value) {
         value = this.parseFormattedNumber(value);
       }
-      
+
       // Handle date fields
       if (value instanceof Date) {
         value = value.toISOString().slice(0, 10);
@@ -325,7 +325,7 @@ export class ClientDatatableStepComponent implements OnInit {
               if ('Negocio_cd_Negocio' === this.datatableInputs[i].columnName) {
                 const columOptions: any[] = this.datatableInputs[i].columnValues;
                 const columnValues = columOptions ? columOptions.filter(opt => opt.id === negocio && opt.value === 'CONFIRMING') : [];
-                const nitControl = this.datatableForm?.get('NIT confirming');
+                const nitControl = this.getFormControl('NIT confirming');
                 if (nitControl) {
                   if (columnValues && columnValues.length > 0) {
                     nitControl.setValidators([Validators.required]);
@@ -342,5 +342,9 @@ export class ClientDatatableStepComponent implements OnInit {
     } catch (error) {
       console.error('Error in onSelectionChange:', error);
     }
+  }
+
+  getFormControl(controlName: string): UntypedFormControl {
+    return this.datatableForm.get(controlName) as UntypedFormControl;
   }
 }
