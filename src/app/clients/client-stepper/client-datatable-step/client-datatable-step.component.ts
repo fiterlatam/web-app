@@ -77,7 +77,7 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   private createFormControl(input: any): UntypedFormControl {
-    const controlName = this.getInputName(input);
+    this.getInputName(input);
     const initialValue = !input.isColumnNullable && this.isNumeric(input.columnDisplayType) ? 0 : '';
     const control = new UntypedFormControl(initialValue);
 
