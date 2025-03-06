@@ -51,6 +51,7 @@ export class ClientDatatableStepComponent implements OnInit {
         this.initializeForm();
       },
       error: (err) => {
+        logger.error(err);
         // Still initialize the form even if we can't get the default value
         this.initializeForm();
       }
