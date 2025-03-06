@@ -13,6 +13,7 @@ import {SettingsService} from 'app/settings/settings.service';
 import * as _ from 'lodash';
 import {SystemService} from 'app/system/system.service';
 import {GlobalConfiguration} from 'app/system/configurations/global-configurations-tab/configuration.model';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-client-datatable-step',
@@ -41,7 +42,6 @@ export class ClientDatatableStepComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.datatableData) {
-      console.error('datatableData is required but not provided');
       return;
     }
 
@@ -51,7 +51,7 @@ export class ClientDatatableStepComponent implements OnInit {
         this.initializeForm();
       },
       error: (err) => {
-        console.error('Error whilst retrieving default value configuration:', err);
+        logger.error(err);
         // Still initialize the form even if we can't get the default value
         this.initializeForm();
       }
@@ -59,7 +59,7 @@ export class ClientDatatableStepComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    if (this.datatableData && this.datatableData.columnHeaderData) {
+    if (this.datatableData?.columnHeaderData) {
       this.datatableInputs = this.datatableService.filterSystemColumns(this.datatableData.columnHeaderData);
       this.updateDecimalFieldTypes();
       const inputItems = this.createFormControls();
@@ -306,42 +306,77 @@ export class ClientDatatableStepComponent implements OnInit {
 
   onSelectionChange(event: any) {
     try {
-      if (this.isCamposClienteEmpresas()) {
-        if (event?.source?.ngControl?.name === 'Departamento') {
-          const departmentoId: number = this.datatableForm?.value?.Departamento;
-          if (departmentoId) {
-            for (const i in this.datatableInputsCopy) {
-              if ('Ciudad_cd_Ciudad' === this.datatableInputsCopy[i].columnName) {
-                const columOptions: any[] = this.datatableInputsCopy[i].columnValues;
-                this.datatableInputs[i].columnValues = columOptions ? columOptions.filter(opt => opt.parentId === departmentoId) : [];
-              }
-            }
-          }
-        }
-        if (event?.source?.ngControl?.name === 'Negocio') {
-          const negocio = this.datatableForm?.value?.Negocio;
-          if (negocio) {
-            for (const i in this.datatableInputsCopy) {
-              if ('Negocio_cd_Negocio' === this.datatableInputs[i].columnName) {
-                const columOptions: any[] = this.datatableInputs[i].columnValues;
-                const columnValues = columOptions ? columOptions.filter(opt => opt.id === negocio && opt.value === 'CONFIRMING') : [];
-                const nitControl = this.getFormControl('NIT confirming');
-                if (nitControl) {
-                  if (columnValues && columnValues.length > 0) {
-                    nitControl.setValidators([Validators.required]);
-                  } else {
-                    nitControl.clearValidators();
-                  }
-                  nitControl.updateValueAndValidity();
-                }
-              }
-            }
-          }
-        }
+      if (!this.isCamposClienteEmpresas()) {
+        return;
+      }
+
+      const controlName = event?.source?.ngControl?.name;
+      if (controlName === 'Departamento') {
+        this.handleDepartmentChange();
+      } else if (controlName === 'Negocio') {
+        this.handleBusinessChange();
       }
     } catch (error) {
-      console.error('Error in onSelectionChange:', error);
+      logger.error('Error handling selection change', error);
     }
+  }
+
+  private handleDepartmentChange(): void {
+    const departmentId = this.datatableForm?.value?.Departamento;
+    if (!departmentId) {
+      return;
+    }
+
+    const cityInput = this.findInputByColumnName('Ciudad_cd_Ciudad');
+    if (!cityInput) {
+      return;
+    }
+
+    this.updateCityOptions(cityInput, departmentId);
+  }
+
+  private handleBusinessChange(): void {
+    const businessId = this.datatableForm?.value?.Negocio;
+    if (!businessId) {
+      return;
+    }
+
+    const businessInput = this.findInputByColumnName('Negocio_cd_Negocio');
+    if (!businessInput) {
+      return;
+    }
+
+    this.updateNitValidation(businessInput, businessId);
+  }
+
+  private findInputByColumnName(columnName: string): { index: number, input: any } | null {
+    const index = Object.keys(this.datatableInputsCopy).find(i =>
+      this.datatableInputsCopy[i].columnName === columnName
+    );
+
+    return index ? {index: parseInt(index, 10), input: this.datatableInputsCopy[index]} : null;
+  }
+
+  private updateCityOptions(cityInput: { index: number, input: any }, departmentId: number): void {
+    const options = cityInput.input.columnValues;
+    this.datatableInputs[cityInput.index].columnValues = options?.filter((opt: any) =>
+      opt.parentId === departmentId
+    ) || [];
+  }
+
+  private updateNitValidation(businessInput: { index: number, input: any }, businessId: number): void {
+    const options = businessInput.input.columnValues;
+    const hasConfirming = options?.some((opt: any) =>
+      opt.id === businessId && opt.value === 'CONFIRMING'
+    );
+
+    const nitControl = this.getFormControl('NIT confirming');
+    if (!nitControl) {
+      return;
+    }
+
+    nitControl.setValidators(hasConfirming ? [Validators.required] : []);
+    nitControl.updateValueAndValidity();
   }
 
   getFormControl(controlName: string): UntypedFormControl {
