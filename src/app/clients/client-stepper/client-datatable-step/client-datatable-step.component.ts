@@ -13,6 +13,7 @@ import {SettingsService} from 'app/settings/settings.service';
 import * as _ from 'lodash';
 import {SystemService} from 'app/system/system.service';
 import {GlobalConfiguration} from 'app/system/configurations/global-configurations-tab/configuration.model';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'mifosx-client-datatable-step',
@@ -41,7 +42,6 @@ export class ClientDatatableStepComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.datatableData) {
-      console.error('datatableData is required but not provided');
       return;
     }
 
@@ -51,7 +51,7 @@ export class ClientDatatableStepComponent implements OnInit {
         this.initializeForm();
       },
       error: (err) => {
-        console.error('Error whilst retrieving default value configuration:', err);
+        logger.error(err);
         // Still initialize the form even if we can't get the default value
         this.initializeForm();
       }
@@ -317,7 +317,7 @@ export class ClientDatatableStepComponent implements OnInit {
         this.handleBusinessChange();
       }
     } catch (error) {
-      console.error('Error in onSelectionChange:', error);
+      logger.error('Error handling selection change', error);
     }
   }
 
