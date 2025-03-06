@@ -35,9 +35,9 @@ export class LoansRestructureViewComponent implements OnInit {
   productData: any;
   formData: any = {};
   loansAccountProductTemplate: any;
-  loansAccountTemplate: any;
   clientData: any;
   restructureRequest: any;
+  restructureProduct: any;
   selectedLoanAccounts: any = [];
   // Selected loan accounts
   @ViewChild('selectLoans') selectLoans: MatSelectionList;
@@ -62,10 +62,6 @@ export class LoansRestructureViewComponent implements OnInit {
         this.buildDependencies(this.restructureRequest.productId);
       }
     });
-   this.loansService.getLoansAccountTemplateResource(this.clientId, false).subscribe(response =>{
-     this.loansAccountTemplate = response;
-     console.log('Loan Account Template', this.loansAccountTemplate);
-   });
   }
 
   ngOnInit(): void {
@@ -86,6 +82,7 @@ export class LoansRestructureViewComponent implements OnInit {
           this.formData.syncDisbursementWithMeeting = true;
         }
         const loanProduct = response.product;
+        this.restructureProduct = loanProduct;
         this.formData.productId = loanProduct.id;
         this.formData.fundId = response.fundId;
         this.formData.principal = response.principal;
@@ -186,7 +183,7 @@ export class LoansRestructureViewComponent implements OnInit {
       const dateFormat = this.settingsService.dateFormat;
       const transactionDate: any = this.dateUtils.formatDate(new Date(), dateFormat);
       if (response.confirm) {
-        if (this.restructureRequest.product.requirePoints) {
+        if (this.restructureProduct.requirePoints) {
           this.formData.interestRatePoints = 1;
         }
         const formData = {
