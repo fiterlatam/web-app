@@ -92,7 +92,7 @@ export class ClientDatatableStepComponent implements OnInit {
     const inputItems: { [key: string]: UntypedFormControl } = {};
 
     this.datatableInputs.forEach((input: any) => {
-      const controlName = input.controlName || this.getInputName(input);
+      const controlName = input.columnName || this.getInputName(input);
       input.controlName = controlName; // Ensure controlName is set
       const control = this.createFormControl(input);
 

@@ -142,7 +142,7 @@
     </div>
     <div fxLayout="column" fxFlex="50%">
       <div fxLayout="row" fxLayoutAlign="flex-end">
-        <button mat-raised-button class="f-right" style="margin-right: 1rem" color="accent" *ngIf="loanAccounts.length>0"
+        <button mat-raised-button class="f-right" style="margin-right: 1rem" color="accent" *ngIf="loanAccounts?.length>0"
           (click)="doAction('Restructure')">
           {{ 'labels.buttons.Restructure Loans' | translate }}
         </button>
