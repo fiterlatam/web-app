@@ -358,7 +358,8 @@
     "validation.msg.invalid.integer.format": "Invalid value [ {{params[0].value}} ] for integer parameter",
     "error.msg.insurance.incident.duplicate.type": "Insurance incident with given type already exists",
     "processing.loan.request": "Error processing Loan request",
-    "error.msg.codeValue.in.use": "Code value is in use"
+    "error.msg.codeValue.in.use": "Code value is in use",
+    "charge.not.found.for.credit.note": "Loan does not have {{params[0].value}} charge."
   },
   "labels": {
     "breadcrumbs": {
