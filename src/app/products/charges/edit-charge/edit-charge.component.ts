@@ -57,6 +57,7 @@ export class EditChargeComponent implements OnInit {
   chargeCalculationTypeFilterAval = false;
   chargeCalculationTypeFilterHonorarios = false;
   chargeCalculationTypeFilterTerm = false;
+  chargeCalculationTypeFilterLifeInsurance = false;
 
   showVoluntaryInsuranceError = false;
   voluntaryInsuranceErrorCode: string;
@@ -130,6 +131,10 @@ export class EditChargeComponent implements OnInit {
     if (selectedCalculationTypeCode.indexOf('segurovoluntarioasistencia') !== -1) {
       this.chargeForm.get('chargeCalculationTypeFilterInsuranceType').setValue(true);
     }
+
+    if (selectedCalculationTypeCode.indexOf('lifeinsurance') !== -1) {
+      this.chargeForm.get('chargeCalculationTypeFilterLifeInsurance').setValue(true);
+    }    
   }
 
   ngOnInit() {
@@ -234,6 +239,7 @@ export class EditChargeComponent implements OnInit {
       { name: 'chargeCalculationTypeFilterAval', value: false },
       { name: 'chargeCalculationTypeFilterHonorarios', value: false },
       { name: 'chargeCalculationTypeFilterTerm', value: false },
+      { name: 'chargeCalculationTypeFilterLifeInsurance', value: false },
       { name: 'parentChargeId', value: this.chargeData.parentChargeId },
       { name: 'customChargeId', value: false },
       { name: 'externalCalculationChargeId', value: false },
@@ -371,6 +377,7 @@ export class EditChargeComponent implements OnInit {
     delete charges.chargeCalculationTypeFilterHonorarios;
     delete charges.chargeCalculationTypeFilterTerm;
     delete charges.chargeCalculationTypeFilterInsuranceType;
+    delete charges.chargeCalculationTypeFilterLifeInsurance;
 
     delete charges.customChargeId;
     delete charges.externalCalculationChargeId;
@@ -439,6 +446,12 @@ export class EditChargeComponent implements OnInit {
     } else {
       this.showAnotherChargeCombobox = false;
     }
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterLifeInsurance) {
+      lookForWordsArray.push('lifeinsurance');
+      isFilterApplied = true;
+    }    
+
     if (this.chargeForm.value.chargeCalculationTypeFilterInsuranceType) {
       lookForWordsArray.push('segurovoluntarioasistencia');
       isFilterApplied = true;

@@ -52,6 +52,7 @@ export class CreateChargeComponent implements OnInit {
   chargeCalculationTypeFilterAval = false;
   chargeCalculationTypeFilterHonorarios = false;
   chargeCalculationTypeFilterTerm = false;
+  chargeCalculationTypeFilterLifeInsurance = false;
 
 
   /** Income and liability account data */
@@ -166,6 +167,7 @@ export class CreateChargeComponent implements OnInit {
       'chargeCalculationTypeFilterAval': [false],
       'chargeCalculationTypeFilterHonorarios': [false],
       'chargeCalculationTypeFilterTerm': [false],
+      'chargeCalculationTypeFilterLifeInsurance': [false],      
       'parentChargeId': ['', Validators.required],
       'interestRateId': [''],
     });
@@ -382,6 +384,7 @@ export class CreateChargeComponent implements OnInit {
     delete data.chargeCalculationTypeFilterAval;
     delete data.chargeCalculationTypeFilterHonorarios;
     delete data.chargeCalculationTypeFilterTerm;
+    delete data.chargeCalculationTypeFilterLifeInsurance;
 
     delete data.customChargeId;
     delete data.externalCalculationChargeId;
@@ -444,6 +447,11 @@ export class CreateChargeComponent implements OnInit {
       lookForWordsArray.push('honorarios');
       isFilterApplied = true;
     }
+
+    if (this.chargeForm.value.chargeCalculationTypeFilterLifeInsurance) {
+      lookForWordsArray.push('lifeinsurance');
+      isFilterApplied = true;
+    }    
 
     if (this.chargeForm.value.chargeCalculationTypeFilterTerm) {
       lookForWordsArray.push('percentofanothercharge');

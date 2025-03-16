@@ -103,6 +103,11 @@
             <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterTerm" class="entries" (change)="enableOrDisableCupoMaxSellField('term', $event.checked)">
               {{"labels.inputs.chargeCalculationType.term" | translate}}
             </mat-checkbox>
+
+            <mat-checkbox labelPosition="after" formControlName="chargeCalculationTypeFilterLifeInsurance" class="entries" (change)="enableOrDisableCupoMaxSellField('lifeinsurance', $event.checked)">
+              {{"labels.inputs.chargeCalculationType.LifeInsurance" | translate}}
+            </mat-checkbox>
+
             <mat-error *ngIf="chargeForm.controls.chargeCalculationType.hasError('required')">
               {{ "labels.inputs.Charge Calculation Type" | translate }} is <strong>required</strong>
             </mat-error>
