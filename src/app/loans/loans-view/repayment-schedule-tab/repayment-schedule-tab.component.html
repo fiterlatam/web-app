@@ -66,8 +66,8 @@
 
     <ng-container matColumnDef="mandatory.insurance">
       <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.chargeCalculationType.insurance.short" | translate}} </th>
-      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.mandatoryInsuranceDue | formatNumber:[decimalPlaces]}} </td>
-      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalMandatoryInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
+      <td mat-cell class="r-amount" *matCellDef="let ele" [ngClass]="installmentStyle(ele)"> {{ ele.mandatoryInsuranceDue  + ele.lifeInsuranceDue | formatNumber:[decimalPlaces]}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> {{ repaymentScheduleDetails.totalMandatoryInsuranceCharged + repaymentScheduleDetails.totalLifeInsuranceCharged | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
     <ng-container matColumnDef="aval">
