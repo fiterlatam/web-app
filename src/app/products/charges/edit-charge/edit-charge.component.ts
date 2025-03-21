@@ -192,17 +192,17 @@ export class EditChargeComponent implements OnInit {
   private addInsuranceControls(voluntaryInsuranceData: any) {
     if (voluntaryInsuranceData) {
       const insuranceControls = {
-        'insuranceName': [voluntaryInsuranceData.insuranceName],
-        'insuranceChargedAs': [voluntaryInsuranceData.insuranceChargedAs],
-        'insuranceCompany': [voluntaryInsuranceData.insuranceCompany],
-        'insurerName': [voluntaryInsuranceData.insurerName],
-        'insuranceCode': [voluntaryInsuranceData.insuranceCode],
-        'insurancePlan': [voluntaryInsuranceData.insurancePlan],
-        'baseValue': [voluntaryInsuranceData.baseValue],
-        'vatValue': [voluntaryInsuranceData.vatValue],
-        'totalValue': [voluntaryInsuranceData.totalValue],
-        'deadline': [voluntaryInsuranceData.deadline],
-        'daysInArrears': [voluntaryInsuranceData.daysInArrears || 0],
+        'insuranceName': [voluntaryInsuranceData?.insuranceName],
+        'insuranceChargedAs': [voluntaryInsuranceData?.insuranceChargedAs],
+        'insuranceCompany': [voluntaryInsuranceData?.insuranceCompany],
+        'insurerName': [voluntaryInsuranceData?.insurerName],
+        'insuranceCode': [voluntaryInsuranceData?.insuranceCode],
+        'insurancePlan': [voluntaryInsuranceData?.insurancePlan],
+        'baseValue': [voluntaryInsuranceData?.baseValue],
+        'vatValue': [voluntaryInsuranceData?.vatValue],
+        'totalValue': [voluntaryInsuranceData?.totalValue],
+        'deadline': [voluntaryInsuranceData?.deadline],
+        'daysInArrears': [voluntaryInsuranceData?.daysInArrears || 0],
       };
 
       Object.entries(insuranceControls).forEach(([key, value]) => {
