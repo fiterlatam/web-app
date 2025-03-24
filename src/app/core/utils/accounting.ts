@@ -13,7 +13,7 @@ import { OptionData } from 'app/shared/models/option-data.model';
     }
 
     public isNoneAccounting(accountingRule: OptionData): boolean {
-        return (accountingRule.id === 1);
+        return (accountingRule?.id === 1);
     }
 
     public isNoneAccountingRuleId(accountingRuleId: number): boolean {
@@ -21,7 +21,7 @@ import { OptionData } from 'app/shared/models/option-data.model';
     }
 
     public isCashOrAccrualAccounting(accountingRule: OptionData): boolean {
-        return ((accountingRule.id === 2) || (accountingRule.id === 3));
+        return ((accountingRule?.id === 2) || (accountingRule?.id === 3));
     }
 
     public isCashOrAccrualAccountingRuleId(accountingRuleId: number): boolean {
@@ -29,7 +29,7 @@ import { OptionData } from 'app/shared/models/option-data.model';
     }
 
     public isAccrualAccounting(accountingRule: OptionData): boolean {
-        return (accountingRule.id === 3);
+        return (accountingRule?.id === 3);
     }
 
     public isAccrualAccountingRuleId(accountingRuleId: number): boolean {
