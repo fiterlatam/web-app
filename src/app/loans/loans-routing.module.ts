@@ -97,10 +97,6 @@ const routes: Routes = [
             path: 'general',
             component: GeneralTabComponent,
             data: { title: 'General', breadcrumb: 'General', routeParamBreadcrumb: false },
-            resolve: {
-              loanDetailsData: LoanDetailsResolver,
-              loanDatatables: LoanDatatablesResolver
-            },
           },
           {
             path: 'credit-notes',
