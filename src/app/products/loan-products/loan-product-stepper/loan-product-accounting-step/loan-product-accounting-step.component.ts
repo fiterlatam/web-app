@@ -60,6 +60,15 @@ export class LoanProductAccountingStepComponent implements OnInit {
       score: charge.amount ? charge.amount.toString() : ''
     }));
 
+    // Transform penalty data to DatOption format
+    this.penaltyData = this.penaltyData.map((penalty: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
+      id: penalty.id,
+      value: penalty.name,
+      code: penalty.code || '',
+      description: penalty.description || '',
+      score: penalty.amount ? penalty.amount.toString() : ''
+    }));
+
     // Transform income account data to DatOption format
     this.incomeAccountData = this.incomeAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
       id: account.id,
