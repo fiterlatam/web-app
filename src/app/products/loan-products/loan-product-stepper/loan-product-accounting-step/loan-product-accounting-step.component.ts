@@ -51,6 +51,60 @@ export class LoanProductAccountingStepComponent implements OnInit {
     this.incomeAndLiabilityAccountData = this.incomeAccountData.concat(this.liabilityAccountData);
     this.assetAndLiabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.assetAndLiabilityAccountOptions || [];
 
+    // Transform charge data to DatOption format
+    this.chargeData = this.chargeData.map((charge: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
+      id: charge.id,
+      value: charge.name,
+      code: charge.code || '',
+      description: charge.description || '',
+      score: charge.amount ? charge.amount.toString() : ''
+    }));
+
+    // Transform penalty data to DatOption format
+    this.penaltyData = this.penaltyData.map((penalty: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
+      id: penalty.id,
+      value: penalty.name,
+      code: penalty.code || '',
+      description: penalty.description || '',
+      score: penalty.amount ? penalty.amount.toString() : ''
+    }));
+
+    // Transform payment type data to DatOption format
+    this.paymentTypeData = this.paymentTypeData.map((paymentType: { id: number; name: string; code?: string; description?: string }) => ({
+      id: paymentType.id,
+      value: paymentType.name,
+      code: paymentType.code || '',
+      description: paymentType.description || '',
+      score: paymentType.code || ''
+    }));
+
+    // Transform asset account data to DatOption format
+    this.assetAccountData = this.assetAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
+    // Transform income account data to DatOption format
+    this.incomeAccountData = this.incomeAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
+    // Transform income and liability account data to DatOption format
+    this.incomeAndLiabilityAccountData = this.incomeAndLiabilityAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
     this.loanProductAccountingForm.patchValue({
       'accountingRule': this.loanProductsTemplate.accountingRule.id
     });
@@ -85,7 +139,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
           'incomeFromGoodwillCreditInterestAccountId': accountingMappings.incomeFromGoodwillCreditInterestAccount ? accountingMappings.incomeFromGoodwillCreditInterestAccount.id : '',
           'incomeFromGoodwillCreditFeesAccountId': accountingMappings.incomeFromGoodwillCreditFeesAccount ? accountingMappings.incomeFromGoodwillCreditFeesAccount.id : '',
           'incomeFromGoodwillCreditPenaltyAccountId': accountingMappings.incomeFromGoodwillCreditPenaltyAccount ? accountingMappings.incomeFromGoodwillCreditPenaltyAccount.id : '',
-          'advancedAccountingRules': (this.loanProductsTemplate.paymentChannelToFundSourceMappings || this.loanProductsTemplate.feeToIncomeAccountMappings || this.loanProductsTemplate.penaltyToIncomeAccountMappings) ? true : false
+          'advancedAccountingRules': !!(this.loanProductsTemplate.paymentChannelToFundSourceMappings || this.loanProductsTemplate.feeToIncomeAccountMappings || this.loanProductsTemplate.penaltyToIncomeAccountMappings)
         });
 
         this.loanProductAccountingForm.setControl('paymentChannelToFundSourceMappings',
