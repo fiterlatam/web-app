@@ -232,16 +232,11 @@ bulkLoanClaim($event: Event): void {
         this.reportsService.getRunReportData(reportName, payload)
         .subscribe( (res: any) => {
           if (res.data.length > 0) {
-            this.alertService.alert({type: 'Report generation', message: `Report: ${reportName} data generated`});
-
             const displayedColumns: string[] = [];
             res.columnHeaders.forEach((header: any) => {
               displayedColumns.push(header.columnName);
             });
-
             this.exportToXLS(reportName, res.data, displayedColumns);
-          } else {
-            this.alertService.alert({type: 'Report generation', message: `Report: ${reportName} without data generated`});
           }
           this.isProcessing = false;
         });
