@@ -69,6 +69,24 @@ export class LoanProductAccountingStepComponent implements OnInit {
       score: penalty.amount ? penalty.amount.toString() : ''
     }));
 
+    // Transform payment type data to DatOption format
+    this.paymentTypeData = this.paymentTypeData.map((paymentType: { id: number; name: string; code?: string; description?: string }) => ({
+      id: paymentType.id,
+      value: paymentType.name,
+      code: paymentType.code || '',
+      description: paymentType.description || '',
+      score: paymentType.code || ''
+    }));
+
+    // Transform asset account data to DatOption format
+    this.assetAccountData = this.assetAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
     // Transform income account data to DatOption format
     this.incomeAccountData = this.incomeAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
       id: account.id,
