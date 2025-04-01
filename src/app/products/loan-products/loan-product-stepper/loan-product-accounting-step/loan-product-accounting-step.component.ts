@@ -51,6 +51,33 @@ export class LoanProductAccountingStepComponent implements OnInit {
     this.incomeAndLiabilityAccountData = this.incomeAccountData.concat(this.liabilityAccountData);
     this.assetAndLiabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.assetAndLiabilityAccountOptions || [];
 
+    // Transform charge data to DatOption format
+    this.chargeData = this.chargeData.map((charge: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
+      id: charge.id,
+      value: charge.name,
+      code: charge.code || '',
+      description: charge.description || '',
+      score: charge.amount ? charge.amount.toString() : ''
+    }));
+
+    // Transform income account data to DatOption format
+    this.incomeAccountData = this.incomeAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
+    // Transform income and liability account data to DatOption format
+    this.incomeAndLiabilityAccountData = this.incomeAndLiabilityAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+      id: account.id,
+      value: account.name,
+      code: account.glCode || '',
+      description: account.description || '',
+      score: account.glCode || ''
+    }));
+
     this.loanProductAccountingForm.patchValue({
       'accountingRule': this.loanProductsTemplate.accountingRule.id
     });
