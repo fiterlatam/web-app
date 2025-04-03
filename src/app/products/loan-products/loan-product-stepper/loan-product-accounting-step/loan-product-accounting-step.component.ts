@@ -250,16 +250,32 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'paymentTypeId',
         label: 'Payment Type',
-        value: values ? values.paymentTypeId : this.paymentTypeData[0].id,
-        options: { label: 'name', value: 'id', data: this.paymentTypeData },
+        value: values ? values.paymentTypeId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.paymentTypeData.map((type: any) => ({
+            id: type.id,
+            value: type.name,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 1
       }),
       new SelectBase({
         controlName: 'fundSourceAccountId',
         label: 'Fund Source',
-        value: values ? values.fundSourceAccountId : this.assetAccountData[0].id,
-        options: { label: 'name', value: 'id', data: this.assetAccountData },
+        value: values ? values.fundSourceAccountId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.assetAccountData.map((account: any) => ({
+            id: account.id,
+            value: `${account.name} (${account.glCode})`,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 2
       })
@@ -272,16 +288,32 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'chargeId',
         label: 'Fees',
-        value: values ? values.chargeId : this.chargeData[0].id,
-        options: { label: 'name', value: 'id', data: this.chargeData },
+        value: values ? values.chargeId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.chargeData.map((charge: any) => ({
+            id: charge.id,
+            value: charge.amount ? `${charge.name} (${charge.currency?.name || ''} ${charge.amount})` : charge.name,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 1
       }),
       new SelectBase({
         controlName: 'incomeAccountId',
         label: 'Income Account',
-        value: values ? values.incomeAccountId : this.incomeAndLiabilityAccountData[0].id,
-        options: { label: 'name', value: 'id', data: this.incomeAndLiabilityAccountData },
+        value: values ? values.incomeAccountId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.incomeAccountData.map((account: any) => ({
+            id: account.id,
+            value: `${account.name} (${account.glCode})`,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 2
       })
@@ -294,16 +326,32 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'chargeId',
         label: 'Penalty',
-        value: values ? values.chargeId : this.penaltyData[0].id,
-        options: { label: 'name', value: 'id', data: this.penaltyData },
+        value: values ? values.chargeId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.penaltyData.map((penalty: any) => ({
+            id: penalty.id,
+            value: penalty.amount ? `${penalty.name} (${penalty.currency?.name || ''} ${penalty.amount})` : penalty.name,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 1
       }),
       new SelectBase({
         controlName: 'incomeAccountId',
         label: 'Income Account',
-        value: values ? values.incomeAccountId : this.incomeAccountData[0].id,
-        options: { label: 'name', value: 'id', data: this.incomeAccountData },
+        value: values ? values.incomeAccountId : '',
+        options: { 
+          label: 'value', 
+          value: 'id', 
+          data: this.incomeAccountData.map((account: any) => ({
+            id: account.id,
+            value: `${account.name} (${account.glCode})`,
+            score: null as string | null
+          }))
+        },
         required: true,
         order: 2
       })
