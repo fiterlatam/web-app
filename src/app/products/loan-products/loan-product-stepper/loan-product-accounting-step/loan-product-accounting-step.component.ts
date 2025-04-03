@@ -48,109 +48,64 @@ export class LoanProductAccountingStepComponent implements OnInit {
     this.incomeAccountData = this.loanProductsTemplate.accountingMappingOptions.incomeAccountOptions || [];
     this.expenseAccountData = this.loanProductsTemplate.accountingMappingOptions.expenseAccountOptions || [];
     this.liabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.liabilityAccountOptions || [];
-    this.incomeAndLiabilityAccountData = this.incomeAccountData.concat(this.liabilityAccountData);
-    this.assetAndLiabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.assetAndLiabilityAccountOptions || [];
 
-    // Transform charge data to DatOption format
-    this.chargeData = this.chargeData.map((charge: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
-      id: charge.id,
-      value: charge.name,
-      code: charge.code || '',
-      description: charge.description || '',
-      score: charge.amount ? charge.amount.toString() : ''
-    }));
+    // First combine the arrays, then transform the data
+    this.incomeAndLiabilityAccountData = [...this.incomeAccountData, ...this.liabilityAccountData];
+    this.assetAndLiabilityAccountData = [...this.assetAccountData, ...this.liabilityAccountData];
 
-    // Transform penalty data to DatOption format
-    this.penaltyData = this.penaltyData.map((penalty: { id: number; name: string; code?: string; description?: string; amount?: number }) => ({
-      id: penalty.id,
-      value: penalty.name,
-      code: penalty.code || '',
-      description: penalty.description || '',
-      score: penalty.amount ? penalty.amount.toString() : ''
-    }));
-
-    // Transform payment type data to DatOption format
-    this.paymentTypeData = this.paymentTypeData.map((paymentType: { id: number; name: string; code?: string; description?: string }) => ({
-      id: paymentType.id,
-      value: paymentType.name,
-      code: paymentType.code || '',
-      description: paymentType.description || '',
-      score: paymentType.code || ''
-    }));
-
-    // Transform asset account data to DatOption format
-    this.assetAccountData = this.assetAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
+    // Transform account data to the correct format
+    const transformAccount = (account: any) => ({
       id: account.id,
-      value: account.name,
-      code: account.glCode || '',
-      description: account.description || '',
-      score: account.glCode || ''
-    }));
+      name: account.name,
+      glCode: account.glCode,
+      disabled: account.disabled,
+      manualEntriesAllowed: account.manualEntriesAllowed,
+      type: account.type,
+      usage: account.usage,
+      description: account.description
+    });
 
-    // Transform income account data to DatOption format
-    this.incomeAccountData = this.incomeAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
-      id: account.id,
-      value: account.name,
-      code: account.glCode || '',
-      description: account.description || '',
-      score: account.glCode || ''
-    }));
-
-    // Transform income and liability account data to DatOption format
-    this.incomeAndLiabilityAccountData = this.incomeAndLiabilityAccountData.map((account: { id: number; name: string; glCode?: string; description?: string }) => ({
-      id: account.id,
-      value: account.name,
-      code: account.glCode || '',
-      description: account.description || '',
-      score: account.glCode || ''
-    }));
+    this.assetAccountData = this.assetAccountData.map(transformAccount);
+    this.incomeAccountData = this.incomeAccountData.map(transformAccount);
+    this.expenseAccountData = this.expenseAccountData.map(transformAccount);
+    this.liabilityAccountData = this.liabilityAccountData.map(transformAccount);
+    this.assetAndLiabilityAccountData = this.assetAndLiabilityAccountData.map(transformAccount);
+    this.incomeAndLiabilityAccountData = this.incomeAndLiabilityAccountData.map(transformAccount);
 
     this.loanProductAccountingForm.patchValue({
       'accountingRule': this.loanProductsTemplate.accountingRule.id
     });
 
     const accountingMappings = this.loanProductsTemplate.accountingMappings;
-    switch (this.loanProductsTemplate.accountingRule.id) {
-      case 3:
-      case 4:
-        this.loanProductAccountingForm.patchValue({
-          'receivableInterestAccountId': accountingMappings.receivableInterestAccount.id,
-          'receivableFeeAccountId': accountingMappings.receivableFeeAccount.id,
-          'receivablePenaltyAccountId': accountingMappings.receivablePenaltyAccount.id,
-        });
-        /* falls through */
-      case 2:
-        this.loanProductAccountingForm.patchValue({
-          'fundSourceAccountId': accountingMappings.fundSourceAccount.id,
-          'loanPortfolioAccountId': accountingMappings.loanPortfolioAccount.id,
-          'transfersInSuspenseAccountId': accountingMappings.transfersInSuspenseAccount.id,
-          'interestOnLoanAccountId': accountingMappings.interestOnLoanAccount.id,
-          'incomeFromFeeAccountId': accountingMappings.incomeFromFeeAccount.id,
-          'incomeFromPenaltyAccountId': accountingMappings.incomeFromPenaltyAccount.id,
-          'incomeFromRecoveryAccountId': accountingMappings.incomeFromRecoveryAccount.id,
-          'writeOffAccountId': accountingMappings.writeOffAccount.id,
-          'goodwillCreditAccountId': accountingMappings.goodwillCreditAccount.id,
-          'overpaymentLiabilityAccountId': accountingMappings.overpaymentLiabilityAccount.id,
-          'chargeOffFraudExpenseAccountId': accountingMappings.chargeOffFraudExpenseAccount ? accountingMappings.chargeOffFraudExpenseAccount.id : '',
-          'chargeOffExpenseAccountId': accountingMappings.chargeOffExpenseAccount ? accountingMappings.chargeOffExpenseAccount.id : '',
-          'incomeFromChargeOffPenaltyAccountId': accountingMappings.incomeFromChargeOffPenaltyAccount ? accountingMappings.incomeFromChargeOffPenaltyAccount.id : '',
-          'incomeFromChargeOffFeesAccountId': accountingMappings.incomeFromChargeOffFeesAccount ? accountingMappings.incomeFromChargeOffFeesAccount.id : '',
-          'incomeFromChargeOffInterestAccountId': accountingMappings.incomeFromChargeOffInterestAccount ? accountingMappings.incomeFromChargeOffInterestAccount.id : '',
-          'incomeFromGoodwillCreditInterestAccountId': accountingMappings.incomeFromGoodwillCreditInterestAccount ? accountingMappings.incomeFromGoodwillCreditInterestAccount.id : '',
-          'incomeFromGoodwillCreditFeesAccountId': accountingMappings.incomeFromGoodwillCreditFeesAccount ? accountingMappings.incomeFromGoodwillCreditFeesAccount.id : '',
-          'incomeFromGoodwillCreditPenaltyAccountId': accountingMappings.incomeFromGoodwillCreditPenaltyAccount ? accountingMappings.incomeFromGoodwillCreditPenaltyAccount.id : '',
-          'advancedAccountingRules': !!(this.loanProductsTemplate.paymentChannelToFundSourceMappings || this.loanProductsTemplate.feeToIncomeAccountMappings || this.loanProductsTemplate.penaltyToIncomeAccountMappings)
-        });
-
-        this.loanProductAccountingForm.setControl('paymentChannelToFundSourceMappings',
-          this.formBuilder.array((this.loanProductsTemplate.paymentChannelToFundSourceMappings || []).map((paymentFundSource: any) =>
-          ({ paymentTypeId: paymentFundSource.paymentType.id, fundSourceAccountId: paymentFundSource.fundSourceAccount.id }))));
-        this.loanProductAccountingForm.setControl('feeToIncomeAccountMappings',
-          this.formBuilder.array((this.loanProductsTemplate.feeToIncomeAccountMappings || []).map((feesIncome: any) =>
-          ({ chargeId: feesIncome.charge.id, incomeAccountId: feesIncome.incomeAccount.id }))));
-        this.loanProductAccountingForm.setControl('penaltyToIncomeAccountMappings',
-          this.formBuilder.array((this.loanProductsTemplate.penaltyToIncomeAccountMappings || []).map((penaltyIncome: any) =>
-          ({ chargeId: penaltyIncome.charge.id, incomeAccountId: penaltyIncome.incomeAccount.id }))));
+    if (accountingMappings) {
+      switch (this.loanProductsTemplate.accountingRule.id) {
+        case 3:
+        case 4:
+          this.loanProductAccountingForm.patchValue({
+            'receivableInterestAccountId': accountingMappings.receivableInterestAccount?.id,
+            'receivableFeeAccountId': accountingMappings.receivableFeeAccount?.id,
+            'receivablePenaltyAccountId': accountingMappings.receivablePenaltyAccount?.id,
+          });
+          /* falls through */
+        case 2:
+          this.loanProductAccountingForm.patchValue({
+            'fundSourceAccountId': accountingMappings.fundSourceAccount?.id,
+            'loanPortfolioAccountId': accountingMappings.loanPortfolioAccount?.id,
+            'transfersInSuspenseAccountId': accountingMappings.transfersInSuspenseAccount?.id,
+            'interestOnLoanAccountId': accountingMappings.interestOnLoanAccount?.id,
+            'incomeFromFeeAccountId': accountingMappings.incomeFromFeeAccount?.id,
+            'incomeFromPenaltyAccountId': accountingMappings.incomeFromPenaltyAccount?.id,
+            'incomeFromRecoveryAccountId': accountingMappings.incomeFromRecoveryAccount?.id,
+            'writeOffAccountId': accountingMappings.writeOffAccount?.id,
+            'goodwillCreditAccountId': accountingMappings.goodwillCreditAccount?.id,
+            'overpaymentLiabilityAccountId': accountingMappings.overpaymentLiabilityAccount?.id,
+            'chargeOffFraudExpenseAccountId': accountingMappings.chargeOffFraudExpenseAccount?.id || '',
+            'chargeOffExpenseAccountId': accountingMappings.chargeOffExpenseAccount?.id || '',
+            'incomeFromChargeOffPenaltyAccountId': accountingMappings.incomeFromChargeOffPenaltyAccount?.id || '',
+            'incomeFromChargeOffFeesAccountId': accountingMappings.incomeFromChargeOffFeesAccount?.id || '',
+          });
+          break;
+      }
     }
   }
 
