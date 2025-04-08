@@ -85,6 +85,10 @@ export class LoanProductAccountingStepComponent implements OnInit {
             'receivableInterestAccountId': accountingMappings.receivableInterestAccount?.id,
             'receivableFeeAccountId': accountingMappings.receivableFeeAccount?.id,
             'receivablePenaltyAccountId': accountingMappings.receivablePenaltyAccount?.id,
+            'incomeFromGoodwillCreditPenaltyAccountId': accountingMappings.incomeFromGoodwillCreditPenaltyAccount?.id || '',
+            'incomeFromGoodwillCreditFeesAccountId': accountingMappings.incomeFromGoodwillCreditFeesAccount?.id || '',
+            'incomeFromGoodwillCreditInterestAccountId': accountingMappings.incomeFromGoodwillCreditInterestAccount?.id || '',
+            'incomeFromChargeOffInterestAccountId': accountingMappings.incomeFromChargeOffInterestAccount?.id || '',            
           });
           /* falls through */
         case 2:
