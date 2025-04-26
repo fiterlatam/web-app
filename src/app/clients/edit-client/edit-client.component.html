@@ -111,36 +111,6 @@
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" formGroupName="clientNonPersonDetails"
             *ngIf="editClientForm.contains('clientNonPersonDetails')">
 
-            <mat-form-field fxFlex="48%">
-              <mat-label>{{"labels.inputs.Constitution" | translate}}</mat-label>
-              <mat-select formControlName="constitutionId">
-                <mat-option *ngFor="let constitution of constitutionOptions" [value]="constitution.id">
-                  {{ constitution.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="48%">
-              <mat-label>{{"labels.inputs.Main Business Line" | translate}}</mat-label>
-              <mat-select formControlName="mainBusinessLineId">
-                <mat-option *ngFor="let business of businessLineOptions" [value]="business.id">
-                  {{ business.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="48%" (click)="incorpValidityTillDateDatePicker.open()">
-              <mat-label>{{"labels.inputs.Incorporation Validity Till Date" | translate}}</mat-label>
-              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="incorpValidityTillDateDatePicker" formControlName="incorpValidityTillDate">
-              <mat-datepicker-toggle matSuffix [for]="incorpValidityTillDateDatePicker"></mat-datepicker-toggle>
-              <mat-datepicker #incorpValidityTillDateDatePicker></mat-datepicker>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="48%">
-              <mat-label>{{"labels.inputs.Incorporation No" | translate}}</mat-label>
-              <input matInput formControlName="incorpNumber">
-            </mat-form-field>
-
             <mat-form-field fxFlex="98%">
               <mat-label>{{"labels.inputs.Remarks" | translate}}</mat-label>
               <textarea matInput formControlName="remarks" cdkTextareaAutosize cdkAutosizeMinRows="2"></textarea>
