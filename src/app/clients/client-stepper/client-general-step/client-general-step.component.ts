@@ -132,10 +132,6 @@ export class ClientGeneralStepComponent implements OnInit {
         this.createClientForm.removeControl('genderId');
         this.createClientForm.addControl('fullname', new UntypedFormControl('', [Validators.required, Validators.pattern('(^[A-z]).*')]));
         this.createClientForm.addControl('clientNonPersonDetails', this.formBuilder.group({
-          'constitutionId': [''],
-          'incorpValidityTillDate': [''],
-          'incorpNumber': [''],
-          'mainBusinessLineId': [''],
           'remarks': ['']
         }));
       }
@@ -184,10 +180,9 @@ export class ClientGeneralStepComponent implements OnInit {
       generalDetails.dateOfBirth = this.dateUtils.formatDate(generalDetails.dateOfBirth, dateFormat);
     }
 
-    if (generalDetails.clientNonPersonDetails && generalDetails.clientNonPersonDetails.incorpValidityTillDate) {
+    if (generalDetails.clientNonPersonDetails) {
       generalDetails.clientNonPersonDetails = {
         ...generalDetails.clientNonPersonDetails,
-        incorpValidityTillDate: generalDetails.dateOfBirth,
         dateFormat,
         locale
       };
