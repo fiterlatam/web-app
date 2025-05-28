@@ -12,7 +12,7 @@ import {FormfieldBase} from 'app/shared/form-dialog/formfield/model/formfield-ba
 import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
 import {SettingsService} from 'app/settings/settings.service';
 import {Dates} from 'app/core/utils/dates';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
 import {principalAmountChangeEvent} from '../loans-account-terms-step/loans-account-terms-step.component'; // Importe o EventEmitter do ComponentB
@@ -74,12 +74,26 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
    */
   constructor(public dialog: MatDialog,
               private dateUtils: Dates,
+              private router: Router,
               private route: ActivatedRoute,
               private settingsService: SettingsService, private translate: TranslateService) {
     this.loanId = this.route.snapshot.params['loanId'];
   }
 
   ngOnInit() {
+    if (this.loansAccountTemplate && this.loansAccountTemplate.charges && this.router.url.includes('edit-loans-account')) {
+      this.loansAccountTemplate.charges = this.loansAccountTemplate?.charges?.map((charge: any) => {
+        if (charge.chargeCalculationType?.code?.includes('percent.of.')) {
+          return {
+            ...charge,
+            amount: charge.percentage
+          };
+        } else {
+          return charge; 
+        }
+      });
+    }
+
     this.maxDate = this.settingsService.maxFutureDate;
     if (this.loansAccountTemplate && this.loansAccountTemplate.charges) {
       if (this.loansAccountProductTemplate?.product?.productType?.name === 'SU+ Vehiculos') {
@@ -137,7 +151,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
               chargeTimeType: this.chargeData[informationIndex].chargeTimeType,
               chargeCalculationType: this.chargeData[informationIndex].chargeCalculationType,
               currency: this.chargeData[informationIndex].currency,
-              amount: this.chargeData[informationIndex].amount,
+              amount: this.chargeData[informationIndex]?.amount,
               amountPaid: 0,
               amountWaived: 0,
               amountWrittenOff: 0,
