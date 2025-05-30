@@ -376,7 +376,9 @@
     "error.msg.codeValue.in.use": "El valor del código está en uso",
     "error.msg.loan.creditorotativo.first.repayment.date.mandatory": "Para el producto Credito Rotativo la fecha de Primer Pago es obligatoria",
     "error.msg.loan.creditorotativo.first.repayment.date.must.be.day.1.10.20": "Para el producto Credito Rotativo el día de la fecha de Primer Pago debe ser 1,10 o 20",
-    "error.msg.loan.repayment.exceeds.foreclosure.amount": "El monto del Pago excede el monto del Pre Pago"    
+    "error.msg.loan.repayment.exceeds.foreclosure.amount": "El monto del Pago excede el monto del Pre Pago",
+    "validation.msg.undo.disbursal.transaction.first": "Solo se permite utilizar esta opción cuando hay solamente uno desembolso activo. Utilice la opción \"Deshacer\" en la Tab \"Transacciones\" en su lugar.",
+    "validation.msg.cannot.undo.last.disbursal.transaction": "No se permite deshacer la transacción de desembolso para el primer desembolso. Utilice la opción \"Deshacer desembolso\" en el menú del préstamo en su lugar."
   },
   "labels": {
     "breadcrumbs": {
