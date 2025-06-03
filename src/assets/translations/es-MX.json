@@ -3896,5 +3896,12 @@
     "chargeOff": "Cargo",
     "downPayment": "Pago inicial",
     "creditNote": "Nota crédito"
+  },
+  "installment.status": {
+    "na": "NA",
+    "pending": "Pending",
+    "paid": "Paid",
+    "paid.partially": "PartialPaid",
+    "late": "Late"
   }
 }

@@ -3871,5 +3871,12 @@
     "chargeOff": "Charge Off",
     "downPayment": "Down Payment",
     "creditNote": "Credit Note"
+  },
+  "installment.status": {
+    "na": "NA",
+    "pending": "Pending",
+    "paid": "Paid",
+    "paid.partially": "PartialPaid",
+    "late": "Late"
   }
 }
