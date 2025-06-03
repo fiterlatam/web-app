@@ -74,6 +74,12 @@
       <td mat-footer-cell *matFooterCellDef> <b> {{ originalScheduleDetails.totalRepaymentExpected | formatNumber:[decimalPlaces] }} </b> </td>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Status" | translate}} </th>
+      <td mat-cell class="r-amount" *matCellDef="let ele"> {{ ele.status | translate}} </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef> <b> </b> </td>
+    </ng-container>    
+
     <!-- Header row first group -->
     <ng-container matColumnDef="header">
       <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"> </th>
