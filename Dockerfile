@@ -40,11 +40,10 @@ FROM $NGINX_IMAGE
 
 COPY --from=builder /dist /usr/share/nginx/html
 COPY --from=builder /usr/src/app/config/default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY --from=builder /usr/src/app/prod /etc/nginx/cert
 COPY --from=builder /usr/src/app/config/start.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/start.sh
 
-EXPOSE 443
+EXPOSE 80
 
 # When the container starts, replace the env.js with values from environment variables
 CMD ["nginx", "-g", "daemon off;"]
