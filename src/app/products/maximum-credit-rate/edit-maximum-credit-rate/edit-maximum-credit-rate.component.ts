@@ -23,6 +23,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
   maxDate: Date;
   maximumCreditRateForm: UntypedFormGroup;
   maximumCreditRateData: any;
+  productTypeData: any;
 
   /**
    * Retrieves the Maximum Credit Rate data from `resolve`.
@@ -43,6 +44,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
               private settingsService: SettingsService) {
     this.route.data.subscribe((data: { maximumCreditRate: any }) => {
       this.maximumCreditRateData = data.maximumCreditRate;
+      this.productTypeData = data.maximumCreditRate.productTypeOptions;
     });
   }
   /**
@@ -64,7 +66,8 @@ export class EditMaximumCreditRateComponent implements OnInit {
       'annualNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.annualNominalRate, '1.2-2', locale), disabled: true}],
       'monthlyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.monthlyNominalRate, '1.3-3', locale), disabled: true}],
       'dailyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.dailyNominalRate, '1.3-3', locale), disabled: true }],
-      'appliedOnDate': [{ value: this.maximumCreditRateData.appliedOnDate && new Date(this.maximumCreditRateData.appliedOnDate), disabled: false}]
+      'appliedOnDate': [{ value: this.maximumCreditRateData.appliedOnDate && new Date(this.maximumCreditRateData.appliedOnDate), disabled: false}],
+      'productTypeId': ['', Validators.required]
     });
   }
   onControlChange() {
@@ -98,6 +101,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
     maximumCreditRateFormData['annualNominalRate'] = this.maximumCreditRateForm.get('annualNominalRate').value;
     maximumCreditRateFormData['monthlyNominalRate'] = this.maximumCreditRateForm.get('monthlyNominalRate').value;
     maximumCreditRateFormData['dailyNominalRate'] = this.maximumCreditRateForm.get('dailyNominalRate').value;
+    maximumCreditRateFormData['productTypeId'] = this.maximumCreditRateForm.get('productTypeId').value;
     const locale = this.settingsService.language.code;
     const dateFormat = this.settingsService.dateFormat;
     const appliedOnDate: Date = this.maximumCreditRateForm.value.appliedOnDate;
