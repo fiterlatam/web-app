@@ -662,10 +662,14 @@ export class ProductsService {
     return this.http.get('/loanproducts/maximumCreditRate');
   }
 
-  //  get maximum credit rate history
-  getMaximumCreditRateHistory(): Observable<any> {
+  getMaximumCreditRateByProductType(productTypeId: number): Observable<any> {
+    return this.http.get(`/loanproducts/maximumCreditRate/${productTypeId}`);
+  }
 
-    return this.http.get('/loanproducts/maximumCreditRate/history');
+  //  get maximum credit rate history
+  getMaximumCreditRateHistory(productTypeId: number): Observable<any> {
+
+    return this.http.get(`/loanproducts/maximumCreditRate/history/${productTypeId}`);
   }
 
   getAdvanceQuotaConfiguration(): Observable<any> {

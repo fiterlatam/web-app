@@ -956,7 +956,15 @@ const routes: Routes = [
                 }
               },
               {
-                path: 'view-history',
+                path: 'edit/:productTypeId',
+                component: EditMaximumCreditRateComponent,
+                data: {title: 'Edit Maximum Credit Rate', breadcrumb: 'Edit', routeParamBreadcrumb: false},
+                resolve: {
+                  maximumCreditRate: MaximumCreditRateResolver
+                }
+              },
+              {
+                path: 'view-history/:productTypeId',
                 component: MaximumCreditRateHistoryComponent,
                 data: {title: 'View History', breadcrumb: 'View History', routeParamBreadcrumb: false},
                 resolve: {

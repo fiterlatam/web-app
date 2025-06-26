@@ -1,3 +1,9 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%" *ngIf="maximumCreditRateData?.id">
+  <button mat-raised-button color="primary" [routerLink]="['/products/maximum-credit-rates/view-history', maximumCreditRateData.productType.id]" *mifosxHasPermission="'READ_INTEREST_RATE'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.View History' | translate}}
+  </button>
+</div>
 <div class="container">
   <mat-card>
     <form [formGroup]="maximumCreditRateForm" (ngSubmit)="submit()">
@@ -6,8 +12,8 @@
         <div fxLayout="column">
           <mat-form-field>
             <mat-label> {{'labels.inputs.Product Type' | translate }}</mat-label>
-            <mat-select formControlName="productTypeId" required>
-              <mat-option *ngFor="let productType of productTypeData" [value]="productType.id">
+            <mat-select formControlName="productTypeId" required (selectionChange)="onProductTypeChange($event)">
+              <mat-option *ngFor="let productType of productTypeData" [value]="productType.id" >
                 {{ productType.name }}
               </mat-option>
             </mat-select>

@@ -15,6 +15,7 @@ export class MaximumCreditRateHistoryResolver implements Resolve<Object> {
 
   constructor(private productsService: ProductsService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Object> {
-    return this.productsService.getMaximumCreditRateHistory();
+    const productTypeId = route.paramMap.get('productTypeId');
+    return this.productsService.getMaximumCreditRateHistory(parseInt(productTypeId));
   }
 }

@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSelectChange } from '@angular/material/select';
 
 /** Custom Services */
 import { ProductsService } from '../../products.service';
@@ -22,8 +23,9 @@ export class EditMaximumCreditRateComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   maximumCreditRateForm: UntypedFormGroup;
-  maximumCreditRateData: any;
+  maximumCreditRateData: any = {};
   productTypeData: any;
+  selectedProductTypeId: number;
 
   /**
    * Retrieves the Maximum Credit Rate data from `resolve`.
@@ -43,7 +45,6 @@ export class EditMaximumCreditRateComponent implements OnInit {
               private decimalPipe: DecimalPipe,
               private settingsService: SettingsService) {
     this.route.data.subscribe((data: { maximumCreditRate: any }) => {
-      this.maximumCreditRateData = data.maximumCreditRate;
       this.productTypeData = data.maximumCreditRate.productTypeOptions;
     });
   }
@@ -54,6 +55,16 @@ export class EditMaximumCreditRateComponent implements OnInit {
     this.minDate = new Date();
     this.maxDate = this.settingsService.maxAllowedDate;
     this.editMaximumCreditRate();
+
+    this.route.paramMap.subscribe(params => {
+      let productTypeId = parseInt(params.get('productTypeId'));
+      if (productTypeId) {
+        this.productsService.getMaximumCreditRateByProductType(productTypeId).subscribe((data) => {
+          this.maximumCreditRateData = data;
+          this.editMaximumCreditRate();
+        })
+      }
+    });
   }
 
   /**
@@ -67,9 +78,19 @@ export class EditMaximumCreditRateComponent implements OnInit {
       'monthlyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.monthlyNominalRate, '1.3-3', locale), disabled: true}],
       'dailyNominalRate': [{ value: this.decimalPipe.transform(this.maximumCreditRateData.dailyNominalRate, '1.3-3', locale), disabled: true }],
       'appliedOnDate': [{ value: this.maximumCreditRateData.appliedOnDate && new Date(this.maximumCreditRateData.appliedOnDate), disabled: false}],
-      'productTypeId': ['', Validators.required]
+      'productTypeId': [this.maximumCreditRateData.productType?.id || this.selectedProductTypeId || null, Validators.required] 
     });
   }
+
+  onProductTypeChange(event: MatSelectChange): void {
+    this.selectedProductTypeId = event.value;
+    this.productsService.getMaximumCreditRateByProductType(this.selectedProductTypeId).subscribe((data) => {
+      this.maximumCreditRateData = data;
+      this.editMaximumCreditRate();
+    })
+
+  }
+
   onControlChange() {
     let eaRate = this.maximumCreditRateForm.get('eaRate').value;
     eaRate = eaRate.replace(/,/g, '.');
@@ -114,7 +135,7 @@ export class EditMaximumCreditRateComponent implements OnInit {
       locale
     };
     this.productsService.updateMaximumCreditRate(data).subscribe(() => {
-        this.router.navigate(['../'], {relativeTo: this.route}).then(r => logger.info('Maximum Credit Rate updated successfully'));
+        this.router.navigate(['/products/maximum-credit-rates'], {relativeTo: this.route}).then(r => logger.info('Maximum Credit Rate updated successfully'));
     });
   }
 
