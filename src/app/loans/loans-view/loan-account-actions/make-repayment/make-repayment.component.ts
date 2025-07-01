@@ -97,7 +97,7 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       'allyId' : '',
       'pointOfSalesCode' : '',
       'transactionProcessingStrategy' : '',
-      'reduceInstallmentAmount': [false],
+      'repaymentAdjustmentType': ['reduceInstallmentAmount'],
     });
   }
 
@@ -174,6 +174,16 @@ export class MakeRepaymentComponent implements OnInit, OnDestroy {
       repaymentLoanFormData.transactionDate = this.dateUtils.formatDate(prevTransactionDate, dateFormat);
     }
     delete(repaymentLoanFormData['allyId']);
+
+    // Map the radio value to the expected backend flags
+    if (repaymentLoanFormData.repaymentAdjustmentType === 'reduceInstallmentAmount') {
+      repaymentLoanFormData.reduceInstallmentAmount = true;
+      repaymentLoanFormData.reduceTerm = false;
+    } else if (repaymentLoanFormData.repaymentAdjustmentType === 'reduceTerm') {
+      repaymentLoanFormData.reduceInstallmentAmount = false;
+      repaymentLoanFormData.reduceTerm = true;
+    }
+    delete repaymentLoanFormData.repaymentAdjustmentType;
 
     const data = {
       ...repaymentLoanFormData,

@@ -174,9 +174,31 @@
             </mat-form-field>
           </ng-container>
 
-          <mat-checkbox *ngIf="loanScheduleType === 'PROGRESSIVE'" labelPosition="before" formControlName="reduceInstallmentAmount" fxFlex="26%">
-            <p>{{'labels.inputs.Reduce Installment Amount' | translate}}</p>
-          </mat-checkbox>
+          <!-- Premium Style Repayment Adjustment Options -->
+          <div class="premium-radio-group" *ngIf="loanScheduleType === 'PROGRESSIVE'">
+            <label class="premium-radio-item"
+                   [class.checked]="repaymentLoanForm.value.repaymentAdjustmentType === 'reduceInstallmentAmount'">
+              <input type="radio"
+                     formControlName="repaymentAdjustmentType"
+                     value="reduceInstallmentAmount" />
+              <div class="premium-radio-custom"></div>
+              <div class="premium-radio-content">
+                <div class="premium-radio-label">{{'labels.inputs.Reduce Installment Amount' | translate}}</div>
+                <div class="premium-radio-desc">{{'labels.inputs.Reduce Installment Amount Desc' | translate}}</div>
+              </div>
+            </label>
+            <label class="premium-radio-item"
+                   [class.checked]="repaymentLoanForm.value.repaymentAdjustmentType === 'reduceTerm'">
+              <input type="radio"
+                     formControlName="repaymentAdjustmentType"
+                     value="reduceTerm" />
+              <div class="premium-radio-custom"></div>
+              <div class="premium-radio-content">
+                <div class="premium-radio-label">{{'labels.inputs.Reduce Term' | translate}}</div>
+                <div class="premium-radio-desc">{{'labels.inputs.Reduce Term Desc' | translate}}</div>
+              </div>
+            </label>
+          </div>
 
           <mat-form-field>
             <mat-label> {{"labels.inputs.Note" | translate}}</mat-label>
