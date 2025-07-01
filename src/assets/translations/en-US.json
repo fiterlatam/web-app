@@ -372,7 +372,8 @@
     "error.msg.loan.creditorotativo.first.repayment.date.must.be.day.1.10.20": "Product Credito Rotativo requires First Repayment date´s day on 1,10 o 20",
     "error.msg.loan.repayment.exceeds.foreclosure.amount": "Repayment amount exceeds Foreclosure amount",
     "validation.msg.undo.other.disbursal.transaction": "Solo se permite utilizar esta opción cuando solo hay un desembolso activo. Utilice la opción \"Deshacer\" en la Tab \"Transacciones\".",
-    "validation.msg.cannot.undo.last.disbursal.transaction": "Undo disbursal is only allowed when there is only 1 active disbursal. Use Undo from Transactions Tab instead."
+    "validation.msg.cannot.undo.last.disbursal.transaction": "Undo disbursal is only allowed when there is only 1 active disbursal. Use Undo from Transactions Tab instead.",
+    "validation.msg.cannot.undo.disbursal.with.active.transaction": "No se permite deshacer desembolso para préstamos con transacciones existentes. Puede deshacer las transacciones primero."
   },
   "labels": {
     "breadcrumbs": {
