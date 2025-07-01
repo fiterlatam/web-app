@@ -294,6 +294,23 @@
 
     <mat-divider fxFlex="98%"></mat-divider>
 
+    <h3 fxFlex="23%" class="mat-h3">{{"labels.heading.Advanced Payments" | translate}}</h3>
+
+    <mat-checkbox fxFlex="73%" labelPosition="before" formControlName="isAdvancedPaymentsEnabled" class="margin-b">
+      {{"labels.inputs.Advanced Payments" | translate}}
+    </mat-checkbox>
+
+    <div *ngIf="loanProductSettingsForm.value['isAdvancedPaymentsEnabled']" fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
+
+      <mat-form-field fxFlex="48%">
+        <mat-label>{{ 'labels.inputs.products.loan.max percentage principal payment allowed' | translate }}</mat-label>
+        <input type="number" matInput matTooltip="{{ 'tooltips.max percentage principal payment allowed' | translate}}"
+               formControlName="maxPercentagePrincipalPaymentAllowed" [min]="0" [max]="100">
+      </mat-form-field>
+    </div>
+
+    <mat-divider fxFlex="98%"></mat-divider>
+
     <h3 fxFlex="23%" class="mat-h3">{{"labels.heading.Interest Recalculation" | translate}}</h3>
 
     <mat-checkbox fxFlex="73%" labelPosition="before" formControlName="isInterestRecalculationEnabled" class="margin-b">

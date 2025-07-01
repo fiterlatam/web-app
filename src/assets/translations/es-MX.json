@@ -1140,7 +1140,8 @@
       "Sale Of Insurance": "Venta de Seguros y/o Asistencias",
       "Claims-Writeoffs": "Reclamos / castigos",
       "Approve Restructure": "Aprobar Reestructuración",
-      "Reject Restructure": "Rechazar Reestructuración"
+      "Reject Restructure": "Rechazar Reestructuración",
+      "Advanced Payments": "Abonos a capital"
     },
     "inputs": {
       "Net Disbursal Amount": "Monto neto desembolsado",
@@ -2518,7 +2519,8 @@
             "Advanced payment allocation strategy": "Estrategia de asignación de pago anticipado"
           },
           "Months before being considered inactive": "Meses antes de considerarse inactivo",
-          "Amount for NPA": "Monto para ser considerado en mora"
+          "Amount for NPA": "Monto para ser considerado en mora",
+          "max percentage principal payment allowed": "Abono maximo a capital"
         }
       },
       "task-management component": "componente de gestión de tareas",
@@ -2669,7 +2671,8 @@
         "Excluded Loans": "Préstamos excluidos",
         "Action": "Acción"
       },
-      "Endorsed": "Endosado"
+      "Endorsed": "Endosado",
+      "Advanced Payments": "Permitir pagos adelantados"
     },
     "links": {
       "Community": "Comunidad",
