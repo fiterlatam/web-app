@@ -528,6 +528,22 @@
     <span  fxFlex="53%">{{ loanProduct.canUseForTopup | yesNo }}</span>
   </div>
 
+  <h3 class="mat-h3" fxFlexFill>{{'labels.heading.Advanced Payments'| translate }}</h3>
+
+  <mat-divider [inset]="true"></mat-divider>
+
+  <div fxFlexFill>
+    <span fxFlex="47%">{{'labels.inputs.Advanced Payments'| translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.isAdvancedPaymentEnabled | yesNo }}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="47%">{{'labels.inputs.products.loan.max percentage principal payment allowed'| translate }}:</span>
+    <span  fxFlex="53%">{{ loanProduct.maxPercentagePrincipalPaymentAllowed }}%</span>
+  </div>
+
+
+
   <h3 class="mat-h3" fxFlexFill>{{'labels.heading.Interest Recalculation'| translate }}</h3>
 
   <mat-divider [inset]="true"></mat-divider>

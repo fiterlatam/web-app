@@ -164,6 +164,8 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowRestructure': this.loanProductsTemplate.customAllowRestructure,
       'customAllowRestructureSms': this.loanProductsTemplate.customAllowRestructureSms,
       'subChannelLoanProductMapper': (this.apiData),
+      'isAdvancedPaymentsEnabled': this.loanProductsTemplate.isAdvancedPaymentEnabled,
+      'maxPercentagePrincipalPaymentAllowed': this.loanProductsTemplate.maxPercentagePrincipalPaymentAllowed
     });
 
     if (this.loanProductsTemplate.maxClientInactivityPeriod) {
@@ -346,7 +348,9 @@ export class LoanProductSettingsStepComponent implements OnInit {
       'customAllowRestructure': [false],
       'customAllowRestructureSms': [false],
       'customAllowReversalCancellation': [false],
-      'customAllowReversalCancellationSms': [false]
+      'customAllowReversalCancellationSms': [false],
+      'isAdvancedPaymentsEnabled': [false],
+      'maxPercentagePrincipalPaymentAllowed': 95
     });
   }
 

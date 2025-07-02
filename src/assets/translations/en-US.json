@@ -1127,7 +1127,8 @@
       "Sale Of Insurance": "Sale Of Insurance",
       "Claims-Writeoffs": "Claims / Writeoffs",
       "Approve Restructure": "Approve Restructure",
-      "Reject Restructure": "Reject Restructure"
+      "Reject Restructure": "Reject Restructure",
+      "Advanced Payments": "Principal repayments"
     },
     "inputs": {
       "Net Disbursal Amount": "Net Disbursal Amount",
@@ -2499,7 +2500,8 @@
             "Advanced payment allocation strategy": "Advanced payment allocation strategy"
           },
           "Months before being considered inactive": "Months before being considered inactive",
-          "Amount for NPA": "Amount to be considered in arrears"
+          "Amount for NPA": "Amount to be considered in arrears",
+          "max percentage principal payment allowed": "Max principal payment allowed"
         }
       },
       "task-management component": "task-management component",
@@ -2652,7 +2654,8 @@
         "Excluded Loans": "Excluded Loans",
         "Action": "Action"
       },
-      "Endorsed": "Endorsed"
+      "Endorsed": "Endorsed",
+      "Advanced Payments": "Allow advanced repayments"
     },
     "links": {
       "Community": "Community",
@@ -3674,7 +3677,8 @@
     "Leave this checkbox checked": "Leave this checkbox checked if the loan has Down Payment, A Down Payment is\n    a sum a buyer pays upfront when purchasing a good. It represents a percentage of the total purchase price, and the balance is usually financed.",
     "The percentage of disbursements amount for Down Payment": "The percentage of disbursements amount for Down Payment",
     "Enable or disable  the auto repayment": "Enable or disable  the auto repayment of down-payment.\n When 'auto repayment for the down-payments' is enabled,  the disbursements will trigger an auto down payment transaction for the down payment amount.",
-    "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications)."
+    "Use or not the Global Configurations values to the Repayment Event (notifications)": "Use or not the Global Configurations values to the Repayment Event (notifications).",
+    "max percentage principal payment allowed": "Max percentage of principal balance for advanced payment"
   },
   "appUserStatus": {
     "invalid": "Invalid",
