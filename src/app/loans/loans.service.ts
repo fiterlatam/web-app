@@ -3,9 +3,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {shareReplay, switchMap, filter, take} from 'rxjs/operators';
 import {Dates} from 'app/core/utils/dates';
 import {SettingsService} from 'app/settings/settings.service';
+import {LoanDetailsCacheService} from './services/loan-details-cache.service';
 
 /**
  * Loans service.
@@ -17,9 +19,12 @@ export class LoansService {
   private loanDataSubject = new BehaviorSubject<{ principal?: number, charges?: any[] } | null>(null);
   loanData$ = this.loanDataSubject.asObservable();
 
+
+
   constructor(private http: HttpClient,
               private settingsService: SettingsService,
-              private dateUtils: Dates) {
+              private dateUtils: Dates,
+              private loanDetailsCacheService: LoanDetailsCacheService) {
   }
 
   /**
@@ -83,6 +88,8 @@ export class LoansService {
   }
 
   deleteLoanAccount(loanId: any): Observable<any> {
+    // Clear cache before deleting
+    this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/loans/${loanId}`);
   }
 
@@ -168,18 +175,23 @@ export class LoansService {
    * @param loanId Loan ID
    */
   getLoanAccountAssociationDetails(loanId: string) {
-    const httpParams = new HttpParams()
-      .set('associations', 'all')
-      .set('exclude', 'guarantors,futureSchedule');
-    return this.http.get<{
-      principal?: number,
-      charges?: any[],
-      repaymentSchedule: any
-    }>(`/loans/${loanId}`, {params: httpParams});
+    // Use the caching service for better performance
+    // This method is kept for backward compatibility
+    return this.loanDetailsCacheService.getLoanDetails(loanId);
+  }
+
+  /**
+   * Clear the loan details cache for a specific loan or all loans
+   * @param loanId Optional loan ID to clear specific cache entry
+   */
+  clearLoanDetailsCache(loanId?: string): void {
+    this.loanDetailsCacheService.clearLoanCache(loanId);
   }
 
   updateLoanData(data: { principal?: number, charges?: any[] }) {
     this.loanDataSubject.next(data);
+    // Clear cache when loan data is updated to ensure fresh data
+    this.clearLoanDetailsCache();
   }
 
   getApproveAssociationsDetails(loanId: any) {
@@ -261,6 +273,8 @@ export class LoansService {
    */
   submitLoanActionButton(loanId: string, data: any, command: any) {
     const httpParams = new HttpParams().set('command', command);
+    // Clear cache before submitting action
+    this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});
   }
 
@@ -485,6 +499,8 @@ export class LoansService {
   }
 
   updateLoansAccount(loanId: any, loanData: any): Observable<any> {
+    // Clear cache before updating
+    this.clearLoanDetailsCache(loanId);
     return this.http.put(`/loans/${loanId}`, loanData);
   }
 

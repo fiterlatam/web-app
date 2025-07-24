@@ -6,25 +6,25 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /** Custom Services */
-import { LoansService } from '../loans.service';
+import { LoanDetailsCacheService } from '../services/loan-details-cache.service';
 
 /**
- * loan datatables resolver.
+ * Loan datatables resolver with intelligent caching.
  */
 @Injectable()
 export class LoanDatatablesResolver implements Resolve<Object> {
 
     /**
-     * @param {loansService} loansService loans service.
+     * @param {LoanDetailsCacheService} loanDetailsCacheService Loan details cache service.
      */
-    constructor(private loansService: LoansService) { }
+    constructor(private loanDetailsCacheService: LoanDetailsCacheService) { }
 
     /**
-     * Returns the loan datatables.
+     * Returns the loan datatables using cached service.
      * @returns {Observable<any>}
      */
     resolve(): Observable<any> {
-        return this.loansService.getLoanDataTables();
+        return this.loanDetailsCacheService.getDatatables('m_loan');
     }
 
 }
