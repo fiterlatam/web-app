@@ -8,7 +8,7 @@
       <span fxFlex="50%">{{ loanDetails.transactionProcessingStrategyName }}</span>
     </div>
 
-    <div fxFlexFill>
+    <div fxFlexFill *ngIf="loanDetails.mambuNumberOfRepayments == null || loanDetails.numberOfRepayments === loanDetails.mambuNumberOfRepayments">
       <span fxFlex="50%">{{ "labels.inputs.Repayments" | translate }}:</span>
       <span fxFlex="50%">{{ loanDetails.numberOfRepayments }}
         every {{ loanDetails.repaymentEvery }}&nbsp;{{ loanDetails.repaymentFrequencyType.value }}
@@ -18,6 +18,18 @@
             </span>
             </span>
     </div>
+
+    <div fxFlexFill *ngIf="loanDetails.mambuNumberOfRepayments != null && loanDetails.numberOfRepayments !== loanDetails.mambuNumberOfRepayments">
+      <span fxFlex="50%">{{ "labels.inputs.Repayments" | translate }}:</span>
+      <span fxFlex="50%">{{ loanDetails.numberOfRepayments }} (Mambu = {{ loanDetails.mambuNumberOfRepayments }})
+        every {{ loanDetails.repaymentEvery }}&nbsp;{{ loanDetails.repaymentFrequencyType.value }}
+        <span
+          *ngIf="loanDetails.repaymentFrequencyType?.id == 2 && loanDetails.repaymentFrequencyNthDayType?.id != 0 && loanDetails.repaymentFrequencyDayOfWeekType?.id != 0">
+              &nbsp;on&nbsp;{{ loanDetails.repaymentFrequencyNthDayType?.value }}&nbsp;{{ loanDetails.repaymentFrequencyDayOfWeekType?.value }}
+            </span>
+            </span>
+    </div>
+
 
     <div fxFlexFill>
       <span fxFlex="50%"> {{ "labels.inputs.Amortization" | translate }} </span>
