@@ -382,7 +382,8 @@
     "validation.msg.cannot.undo.disbursal.with.active.transaction": "Undo Disbursal is not allowed for loans with existing transactions. You may undo the transactions first.",
     "Reduce Installment Amount Desc": "Reduce el valor de la cuota, mantiene el plazo.",
     "Reduce Term Desc": "Paga tu préstamo más rápido, mantiene el valor de la cuota.",
-    "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No existe una cuenta de ahorros vinculada al credito para transferir balance sobrepagado"
+    "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No existe una cuenta de ahorros vinculada al credito para transferir balance sobrepagado",
+    "error.msg.loan.revolving.credit.overpayment.not.allowed": "No se permiten sobrepagos de Crédito Rotativo"
   },
   "labels": {
     "breadcrumbs": {
