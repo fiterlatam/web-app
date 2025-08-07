@@ -374,7 +374,8 @@
     "validation.msg.undo.other.disbursal.transaction": "Solo se permite utilizar esta opción cuando solo hay un desembolso activo. Utilice la opción \"Deshacer\" en la Tab \"Transacciones\".",
     "validation.msg.cannot.undo.last.disbursal.transaction": "Undo disbursal is only allowed when there is only 1 active disbursal. Use Undo from Transactions Tab instead.",
     "validation.msg.cannot.undo.disbursal.with.active.transaction": "No se permite deshacer desembolso para préstamos con transacciones existentes. Puede deshacer las transacciones primero.",
-    "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No linked savings account for overpaid balance transfer"
+    "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No linked savings account for overpaid balance transfer",
+    "error.msg.loan.revolving.credit.overpayment.not.allowed": "Overpayments are not allowed for Crédito Rotativo"
   },
   "labels": {
     "breadcrumbs": {
