@@ -52,7 +52,8 @@ export class LoanAccountActionsComponent {
     'Buy Back Loan': boolean,
     'Re-Ageing': boolean,
     'Unblock': boolean,
-    'AddCreditNote': boolean
+    'AddCreditNote': boolean,
+    'Block': boolean,
   } = {
     'Close': false,
     'Undo Approval': false,
@@ -92,7 +93,8 @@ export class LoanAccountActionsComponent {
     'Buy Back Loan': false,
     'Re-Ageing': false,
     'Unblock': false,
-    'AddCreditNote': false
+    'AddCreditNote': false,
+    'Block': false,
   };
 
   actionButtonData: any;

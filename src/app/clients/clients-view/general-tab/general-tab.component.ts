@@ -168,7 +168,7 @@ export class GeneralTabComponent {
    */
   routeToBlockLoanGuarantee(loanId: any) {
     const queryParams: any = {};
-    this.router.navigate(['../', 'loans-accounts', loanId, 'actions', 'Block Loan'], { relativeTo: this.route, queryParams: queryParams });
+    this.router.navigate(['../', 'loans-accounts/loan-account-block', loanId], { relativeTo: this.route, queryParams: queryParams });
   }
 
 

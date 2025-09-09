@@ -1145,6 +1145,7 @@
       "Advanced Payments": "Abonos a capital"
     },
     "inputs": {
+      "accelerate": "Acelerar",
       "Net Disbursal Amount": "Monto neto desembolsado",
       "Total Disbursement Fees": "Total de comisiones de desembolso",
       "Disbursement Fees": "Comisiones de desembolso",
@@ -1675,6 +1676,10 @@
       "Frequency Type": "Tipo de frecuencia",
       "Frequency for compounding": "Frecuencia de capitalización",
       "Frequency for recalculate Outstanding Principal": "Frecuencia para recalcular el capital pendiente",
+      "Freeze Current Interest": "Congelar interés corriente",
+      "Freeze Interest Arrears": "Congelar interés de mora",
+      "Freeze Life Insurance": "Congelar seguro de vida",
+      "Freeze Mi pyme": "Congelar Mi Pyme",
       "Friday": "Viernes",
       "From": "De",
       "From Account": "De la cuenta",

@@ -1,0 +1,88 @@
+<div class="container mat-elevation-z8">
+
+  <mat-card>
+
+    <form [formGroup]="blockLoanForm" (ngSubmit)="submit()">
+
+      <mat-card-content>
+
+        <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start stretch">
+
+          <mat-form-field fxFlex="100%" (click)="approvedDatePicker.open()">
+            <mat-label>{{ "labels.inputs.Approved On" | translate }}</mat-label>
+            <input matInput [min]="minDate" [matDatepicker]="approvedDatePicker" required
+              formControlName="applicationDate">
+            <mat-datepicker-toggle matSuffix [for]="approvedDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #approvedDatePicker></mat-datepicker>
+            <mat-error *ngIf="blockLoanForm.controls.applicationDate.hasError('required')">
+              {{ "labels.inputs.Approved Date" | translate }} {{ "labels.commons.is" | translate }}
+              <strong>{{ "labels.commons.required" | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <!-- SELECT BLOCKING REASON-->
+
+          <mat-form-field fxFlex="100%">
+            <mat-label>{{"labels.inputs.Blocking Reason" | translate}}</mat-label>
+            <mat-select formControlName="blockingReasonId">
+              <mat-option *ngFor="let reason of reasonOptions" [value]="reason.id">
+                {{ reason.nameOfReason }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <h1 class="mat-h3" fxFlexFill>{{"labels.inputs.actions" | translate}}</h1>
+
+
+          <!-- CHECKBOX -->
+
+          <div fxFlex="50%" ngClass.gt-md="entries-wrapper">
+            <mat-checkbox labelPosition="later" formControlName="accelerate" class="entries">
+              {{"labels.inputs.accelerate" | translate}}
+            </mat-checkbox>
+          </div>
+
+          <div fxFlex="50%" ngClass.gt-md="entries-wrapper">
+            <mat-checkbox labelPosition="later" formControlName="freezeCurrentInterest" class="entries">
+              {{"labels.inputs.Freeze Current Interest" | translate}}
+            </mat-checkbox>
+          </div>
+
+          <div fxFlex="50%" ngClass.gt-md="entries-wrapper">
+            <mat-checkbox labelPosition="later" formControlName="freezeInterestArrears" class="entries">
+              {{"labels.inputs.Freeze Interest Arrears" | translate}}
+            </mat-checkbox>
+          </div>
+
+          <div fxFlex="50%" ngClass.gt-md="entries-wrapper">
+            <mat-checkbox labelPosition="later" formControlName="freezeLifeInsurance" class="entries">
+              {{"labels.inputs.Freeze Life Insurance" | translate}}
+            </mat-checkbox>
+          </div>
+
+          <div fxFlex="50%" ngClass.gt-md="entries-wrapper">
+            <mat-checkbox labelPosition="later" formControlName="freezeMypime" class="entries">
+              {{"labels.inputs.Freeze Mi pyme" | translate}}
+            </mat-checkbox>
+          </div>
+
+
+        </div>
+
+        <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+          <button type="button" mat-raised-button [routerLink]="['../../../../general']">{{ "labels.buttons.Cancel" |
+            translate }}
+          </button>
+          <button mat-raised-button color="primary" [disabled]="!blockLoanForm.valid"
+            *mifosxHasPermission="'BLOCK_LOAN'">{{ "labels.buttons.Block" | translate }}
+          </button>
+        </mat-card-actions>
+
+      </mat-card-content>
+
+    </form>
+
+  </mat-card>
+
+</div>

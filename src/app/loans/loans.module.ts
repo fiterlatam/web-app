@@ -157,6 +157,7 @@ import {LoanCancelComponent} from './loans-view/loan-account-actions/loan-cancel
 import { LoanTransactionGeneralTabComponent } from './loans-view/transactions/view-transaction/loan-transaction-general-tab/loan-transaction-general-tab.component';
 import { DatatableTransactionTabComponent } from './loans-view/transactions/view-transaction/datatable-transaction-tab/datatable-transaction-tab.component';
 import {CurrencyPipe} from '@angular/common';
+import { LoansBlockAccountComponent } from './loans-view/loan-account-actions/loans-block-account/loans-block-account.component';
 
 /**
  * Loans Module
@@ -255,6 +256,7 @@ import {CurrencyPipe} from '@angular/common';
     LoanCancelComponent,
     LoanTransactionGeneralTabComponent,
     DatatableTransactionTabComponent,
+    LoansBlockAccountComponent
   ],
   providers: [
     CurrencyPipe
