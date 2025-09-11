@@ -234,7 +234,7 @@
         <span>
           <button class="account-action-button" mat-raised-button color="primary" matTooltip="{{ 'tooltips.Block' | translate}}"
             matTooltipPosition="above" *mifosxHasPermission="'BLOCK_LOAN'"
-            (click)="routeEdit($event); routeToBlockLoanGuarantee(element.id)">
+            (click)="routeEdit($event)" [routerLink]="['../','loans-accounts', element.id, 'actions', 'Block']">
             <i class="fa fa-lock"></i>
           </button>
           </span>

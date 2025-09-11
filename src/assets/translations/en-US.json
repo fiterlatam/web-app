@@ -1133,6 +1133,7 @@
       "Advanced Payments": "Principal repayments"
     },
     "inputs": {
+      "accelerate": "Accelerate",
       "Net Disbursal Amount": "Net Disbursal Amount",
       "Total Disbursement Fees": "Total Disbursement Fees",
       "Disbursement Fees": "Disbursement Fees",
@@ -1657,6 +1658,10 @@
       "Frequency Type": "Frequency Type",
       "Frequency for compounding": "Frequency for compounding",
       "Frequency for recalculate Outstanding Principal": "Frequency for recalculate Outstanding Principal",
+      "Freeze Current Interest": "Freeze Current Interest",
+      "Freeze Interest Arrears": "Freeze Interest Arrears",
+      "Freeze Life Insurance": "Freeze Life Insurance",
+      "Freeze Mi pyme": "Freeze Mi pyme",
       "Friday": "Friday",
       "From": "From",
       "From Account": "From Account",

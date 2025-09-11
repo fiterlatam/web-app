@@ -61,16 +61,13 @@ import { LoanCollateralsResolver } from './common-resolvers/loan-collaterals.res
 import { LoanDelinquencyDataResolver } from './common-resolvers/loan-delinquency-data.resolver';
 import { LoanDelinquencyActionsResolver } from './common-resolvers/loan-delinquency-actions.resolver';
 import { UndoTransactionsComponent } from './loans-view/transactions/undo-transactions/undo-transactions.component';
-import {ViewCreditNotesComponent} from './loans-view/view-credit-notes/view-credit-notes.component';
-import {LoanCreditNoteResolver} from './common-resolvers/loan-credit-note.resolver';
-import {
-  LoanTransactionGeneralTabComponent
-} from './loans-view/transactions/view-transaction/loan-transaction-general-tab/loan-transaction-general-tab.component';
-import {
-  DatatableTransactionTabComponent
-} from './loans-view/transactions/view-transaction/datatable-transaction-tab/datatable-transaction-tab.component';
-import {LoanTransactionDatatableResolver} from './common-resolvers/loan-transaction-datatable.resolver';
-import {LoanTransactionDatatablesResolver} from './common-resolvers/loan-transaction-datatables.resolver';
+import { ViewCreditNotesComponent } from './loans-view/view-credit-notes/view-credit-notes.component';
+import { LoanCreditNoteResolver } from './common-resolvers/loan-credit-note.resolver';
+import { LoanTransactionGeneralTabComponent } from './loans-view/transactions/view-transaction/loan-transaction-general-tab/loan-transaction-general-tab.component';
+import { DatatableTransactionTabComponent } from './loans-view/transactions/view-transaction/datatable-transaction-tab/datatable-transaction-tab.component';
+import { LoanTransactionDatatableResolver } from './common-resolvers/loan-transaction-datatable.resolver';
+import { LoanTransactionDatatablesResolver } from './common-resolvers/loan-transaction-datatables.resolver';
+
 
 /** Loans Route. */
 const routes: Routes = [
