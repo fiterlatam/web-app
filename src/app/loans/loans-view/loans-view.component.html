@@ -110,6 +110,12 @@
                     class="r-amount">{{ loanDetailsData.totalOverpaid | currency:currency.code:'symbol-narrow':format:locale }}
                   </td>
                 </tr>
+                <tr *ngIf="loanDetailsData.foreClosureAmount">
+                  <td>{{ "labels.inputs.Accelerate" | translate }}</td>
+                  <td
+                    class="r-amount">{{ loanDetailsData.foreClosureAmount | currency:currency.code:'symbol-narrow':format:locale }}
+                  </td>
+                </tr>                
                 </tbody>
               </table>
             </div>

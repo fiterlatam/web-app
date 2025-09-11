@@ -2657,7 +2657,8 @@
         "Action": "Action"
       },
       "Endorsed": "Endorsed",
-      "Advanced Payments": "Allow advanced repayments"
+      "Advanced Payments": "Allow advanced repayments",
+      "Accelerate": "Accelerate"
     },
     "links": {
       "Community": "Community",
