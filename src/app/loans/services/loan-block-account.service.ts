@@ -14,5 +14,12 @@ export class LoanBlockAccountService {
     return this.http.post('/blockaccount/'+ loanId, data);
   }
 
+  unblockAccount(data: any, loanId: any): Observable<any> {
+    return this.http.post('/blockaccount/'+ loanId + '/unblock', data);
+  }
+
+  getBlockActiveAccount(loanId: any): Observable<any> {
+    return this.http.get('/blockaccount/' + loanId);
+  }
 
 }

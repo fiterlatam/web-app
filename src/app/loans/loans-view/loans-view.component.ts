@@ -75,21 +75,21 @@ export class LoansViewComponent implements OnInit {
     }
     });
     this.loanId = this.route.snapshot.params['loanId'];
-    this.clientId = this.loanDetailsData.clientId;
+    this.clientId = this.loanDetailsData?.clientId;
   }
 
   ngOnInit() {
     this.locale = this.settingsService.language.code;
     this.decimalPlaces = this.settingsService.decimals;
-    if (this.currency.decimalPlaces != null) {
+    if (this.currency?.decimalPlaces != null) {
       this.decimalPlaces = this.currency.decimalPlaces.toString();
     }
     this.format = `1.${this.decimalPlaces}-${ this.decimalPlaces}`;
-    this.recalculateInterest = this.loanDetailsData.recalculateInterest || true;
-    this.status = this.loanDetailsData.status.value;
-    if (this.loanDetailsData.status.active && this.loanDetailsData.multiDisburseLoan) {
-      if (this.loanDetailsData && this.loanDetailsData.transactions) {
-        this.loanDetailsData.transactions.forEach((transaction: any) => {
+    this.recalculateInterest = this.loanDetailsData?.recalculateInterest || true;
+    this.status = this.loanDetailsData?.status.value;
+    if (this.loanDetailsData?.status.active && this.loanDetailsData?.multiDisburseLoan) {
+      if (this.loanDetailsData && this.loanDetailsData?.transactions) {
+        this.loanDetailsData?.transactions.forEach((transaction: any) => {
           if (transaction.type.disbursement) {
             this.disburseTransactionNo++;
           }
@@ -114,12 +114,12 @@ export class LoansViewComponent implements OnInit {
     if (this.status === 'Submitted and pending approval') {
 
       this.buttonConfig.addOption({
-        name: (this.loanDetailsData.loanOfficerName ? 'Change Loan Officer' : 'Assign Loan Officer'),
+        name: (this.loanDetailsData?.loanOfficerName ? 'Change Loan Officer' : 'Assign Loan Officer'),
         icon: 'user-tie',
         taskPermissionName: 'DISBURSE_LOAN'
       });
 
-      if (this.loanDetailsData.isVariableInstallmentsAllowed) {
+      if (this.loanDetailsData?.isVariableInstallmentsAllowed) {
         this.buttonConfig.addOption({
           name: 'Edit Repayment Schedule',
           icon: 'edit',
@@ -130,27 +130,27 @@ export class LoansViewComponent implements OnInit {
     } else if (this.status === 'Approved') {
 
       this.buttonConfig.addButton({
-        name: (this.loanDetailsData.loanOfficerName ? 'Change Loan Officer' : 'Assign Loan Officer'),
+        name: (this.loanDetailsData?.loanOfficerName ? 'Change Loan Officer' : 'Assign Loan Officer'),
         icon: 'user-tie',
         taskPermissionName: 'DISBURSE_LOAN'
       });
 
     } else if (this.status === 'Active') {
-      if (this.loanDetailsData.canDisburse || this.loanDetailsData.multiDisburseLoan) {
+      if (this.loanDetailsData?.canDisburse || this.loanDetailsData?.multiDisburseLoan) {
         this.buttonConfig.addButton({
           name: 'Disburse',
           icon: 'hand-holding-usd',
           taskPermissionName: 'DISBURSE_LOAN'
         });
       }
-      if (this.loanDetailsData.canDisburse) {
+      if (this.loanDetailsData?.canDisburse) {
         this.buttonConfig.addButton({
           name: 'Disburse to Savings',
           icon: 'piggy-bank',
           taskPermissionName: 'DISBURSETOSAVINGS_LOAN'
         });
       }
-      if (this.loanDetailsData.multiDisburseLoan && this.disburseTransactionNo > 1) {
+      if (this.loanDetailsData?.multiDisburseLoan && this.disburseTransactionNo > 1) {
         this.buttonConfig.addButton({
           name: 'Undo Last Disbursal',
           icon: 'undo',
@@ -159,7 +159,7 @@ export class LoansViewComponent implements OnInit {
       }
       // loan officer not assigned to loan, below logic
       // helps to display otherwise not
-      if (!this.loanDetailsData.loanOfficerName) {
+      if (!this.loanDetailsData?.loanOfficerName) {
         this.buttonConfig.addButton({
           name: 'Assign Loan Officer',
           icon: 'user-tie',
@@ -176,7 +176,7 @@ export class LoansViewComponent implements OnInit {
       // }
 
       // Allow ChargeOff only If there loan is not already ChargeOff
-      if (!this.loanDetailsData.chargedOff) {
+      if (!this.loanDetailsData?.chargedOff) {
         this.buttonConfig.addButton({
           name: 'Charge-Off',
           icon: 'coins',
@@ -234,7 +234,7 @@ export class LoansViewComponent implements OnInit {
 
   loanDelinquencyClassification(): void {
     this.loanDelinquencyClassificationStyle = '';
-    if (this.loanDetailsData.delinquent && this.loanDetailsData.delinquent.delinquencyPausePeriods) {
+    if (this.loanDetailsData?.delinquent && this.loanDetailsData.delinquent.delinquencyPausePeriods) {
       this.loanDetailsData.delinquent.delinquencyPausePeriods.some((period: DelinquencyPausePeriod) => {
         if (period.active) {
           this.loanDelinquencyClassificationStyle = 'fa fa-stop status-pending';

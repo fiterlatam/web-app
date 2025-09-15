@@ -166,11 +166,19 @@ export class GeneralTabComponent {
     /**
    * @param {any} loanId Loan Id
    */
-  routeToBlockLoanGuarantee(loanId: any) {
+  routeToBlockLoanView(loanId: any) {
     const queryParams: any = {};
-    this.router.navigate(['../', 'loans-accounts/loan-account-block', loanId], { relativeTo: this.route, queryParams: queryParams });
+      this.router.navigate(['loans-accounts', loanId, 'actions', 'Blocked'], { relativeTo: this.route.parent }
+  );
   }
 
+    /**
+   * @param {any} loanId Loan Id
+   */
+  routeToUnBlockAccount(loanId: any) {
+    const queryParams: any = {};
+    this.router.navigate(['../', 'loans-accounts/loan-account-block', loanId, '/unblock'], { relativeTo: this.route, queryParams: queryParams });
+  }
 
   viewAccountsLabel(closed: boolean): string {
     if (closed) {
