@@ -22,4 +22,7 @@ export class LoanBlockAccountService {
     return this.http.get('/blockaccount/' + loanId);
   }
 
+  getBlockAccountHistory(loanId: any): Observable<any> {
+    return this.http.get('/blockaccount/' + loanId + '/history');
+  }
 }

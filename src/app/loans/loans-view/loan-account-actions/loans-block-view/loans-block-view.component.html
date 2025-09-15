@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
-  <button mat-raised-button color="primary" [routerLink]="['../', 'edit']">
+  <button mat-raised-button color="primary" [routerLink]="['edit']">
     <fa-icon icon="edit" class="m-r-10"></fa-icon>
     {{"labels.buttons.Edit" | translate}}
   </button>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" [routerLink]="['../../', 'blockHistory']">
     {{"labels.buttons.View History" | translate}}
   </button>
 </div>

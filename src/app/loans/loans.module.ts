@@ -160,7 +160,7 @@ import {CurrencyPipe} from '@angular/common';
 import { LoansBlockAccountComponent } from './loans-view/loan-account-actions/loans-block-account/loans-block-account.component';
 import { LoanUnblockAccountComponent } from './loans-view/loan-account-actions/loan-unblock-account/loan-unblock-account.component';
 import { LoansBlockViewAccountComponent } from './loans-view/loan-account-actions/loans-block-view/loans-block-view.component';
-
+import { LoanHistoryBlockAccountComponent } from './loans-view/loan-account-actions/loan-history-block-account/loan-history-block-account.component';
 /**
  * Loans Module
  *
@@ -260,7 +260,9 @@ import { LoansBlockViewAccountComponent } from './loans-view/loan-account-action
     DatatableTransactionTabComponent,
     LoansBlockAccountComponent,
     LoanUnblockAccountComponent,
-    LoansBlockViewAccountComponent
+    LoansBlockViewAccountComponent,
+    LoanUnblockAccountComponent,
+    LoanHistoryBlockAccountComponent
   ],
   providers: [
     CurrencyPipe
