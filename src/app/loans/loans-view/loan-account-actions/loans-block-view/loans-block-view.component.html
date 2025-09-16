@@ -1,0 +1,77 @@
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+  <button mat-raised-button color="primary" [routerLink]="['../', 'edit']">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{"labels.buttons.Edit" | translate}}
+  </button>
+  <button mat-raised-button color="primary">
+    {{"labels.buttons.View History" | translate}}
+  </button>
+</div>
+
+<div class="container">
+
+  <mat-card>
+
+    <mat-card-content>
+
+      <div fxLayout="row wrap" fxLayout.lt-md="column">
+
+        <h2 class="mat-h2" fxFlexFill>{{ "labels.inputs.Summary" | translate}}</h2>
+
+        <mat-divider [inset]="true"></mat-divider>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.inputs.Application Date" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.applicationDate | dateFormat }}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.inputs.Type" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.blockingReasonName}}</span>
+        </div>
+
+        <hr>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.inputs.Frozen Interest" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.freezeCurrentInterest | yesNo }}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{ "labels.inputs.Frozen Interest on Arrears" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.freezeInterestArrears | yesNo }}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{ "labels.inputs.Frozen Life Insurance" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.freezeLifeInsurance | yesNo }}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.inputs.Frozen Mi Pyme" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.freezeMypime | yesNo }}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.heading.Accelerated" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.accelerate | yesNo}}</span>
+        </div>
+
+        <div fxFlexFill>
+          <span fxFlex="40%">{{"labels.inputs.Is Active" | translate}}:</span>
+          <span fxFlex="60%">{{ blockData?.active | yesNo}}</span>
+        </div>
+
+      </div>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+        <button type="button" mat-raised-button [routerLink]="['../../../../general']">{{ "labels.buttons.Back" |
+          translate }}
+        </button>
+      </mat-card-actions>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
