@@ -101,4 +101,12 @@ export class LoansBlockAccountComponent implements OnInit {
 
   }
 
+  /**
+   * @param {any} loanId Loan Id
+   */
+  routeToBlockHistoryAccount(loanId: any) {
+    const queryParams: any = {};
+    this.router.navigate(['../', 'loans-accounts/loan-account-block', loanId, '/history'], { relativeTo: this.route, queryParams: queryParams });
+  }
+
 }

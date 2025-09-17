@@ -1,0 +1,87 @@
+<div class="tab-container mat-typography">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <h3 fxFlex="90%">{{ 'labels.heading.Block history' | translate }}</h3>
+
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+      <button *ngIf="choice" mat-raised-button color="primary" [routerLink]="['../', 'actions', 'Blocked']">
+        {{"tooltips.View Block" | translate}}
+      </button>
+      <button *ngIf="!choice" mat-raised-button color="primary" [routerLink]="['../', 'actions', 'Block']">
+        {{"tooltips.Block" | translate}}
+      </button>
+    </div>
+  </div>
+
+  <table mat-table #blockHistoryTable [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Id' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Name' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.blockingReasonName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="applicationDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Application Date' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.applicationDate | dateFormat }}</td>
+    </ng-container>
+<!--
+    <ng-container matColumnDef="actionName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Action' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">
+        <ng-container [ngSwitch]="blockHistory.actionName">
+          <span *ngSwitchCase="'BLOCK'">{{ 'labels.menus.Block Account' | translate }}</span>
+          <span *ngSwitchCase="'UNBLOCK'">{{ 'labels.menus.Unblock Account' | translate }}</span>
+        </ng-container>
+      </td>
+    </ng-container>
+-->
+
+    <ng-container matColumnDef="accelerate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.accelerate' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.accelerate | yesNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="freezeCurrentInterest">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Frozen Interest' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.freezeCurrentInterest | yesNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="freezeInterestArrears">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Frozen Interest on Arrears' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.freezeInterestArrears | yesNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="freezeLifeInsurance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Frozen Life Insurance' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.freezeLifeInsurance | yesNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="freezeMypime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Frozen Mi Pyme' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.freezeMypime | yesNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Updated on' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.formattedLastModifiedDate | dateFormat }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdByName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Created By' | translate }}</th>
+      <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.createdByName }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    *ngIf="entityBlockHistory && entityBlockHistory.length > 10"
+    [pageSizeOptions]="[10, 25, 50]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
