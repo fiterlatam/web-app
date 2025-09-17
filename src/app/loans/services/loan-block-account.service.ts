@@ -25,4 +25,8 @@ export class LoanBlockAccountService {
   getBlockAccountHistory(loanId: any): Observable<any> {
     return this.http.get('/blockaccount/' + loanId + '/history');
   }
+
+  updateBlockAccount(blockAccount: any, blockAccountId: string): Observable<any> {
+    return this.http.put('/blockaccount/' + blockAccountId, blockAccount);
+  }
 }
