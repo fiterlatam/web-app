@@ -172,6 +172,13 @@ export class GeneralTabComponent {
   );
   }
 
+    /**
+   * @param {any} loanId Loan Id
+   */
+  routeToUnBlockAccount(loanId: any) {
+    const queryParams: any = {};
+    this.router.navigate(['../', 'loans-accounts/loan-account-block', loanId, '/unblock'], { relativeTo: this.route, queryParams: queryParams });
+  }
 
   viewAccountsLabel(closed: boolean): string {
     if (closed) {

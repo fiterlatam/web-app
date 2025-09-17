@@ -239,6 +239,13 @@
           </button>
         </span>
         <span *ngIf="element.block">
+          <button class="account-action-button" mat-raised-button color="primary" matTooltip="{{ 'tooltips.Unblock account' | translate}}"
+            matTooltipPosition="above" *mifosxHasPermission="'UNBLOCK_LOAN'"
+            (click)="routeEdit($event)" [routerLink]="['../','loans-accounts', element.id, 'actions', 'Unblock account']">
+            <i class="fa fa-unlock"></i>
+          </button>
+        </span>
+        <span *ngIf="element.block">
           <button class="account-action-button" mat-raised-button color="primary" matTooltip="{{ 'tooltips.View Block' | translate}}"
             matTooltipPosition="above" *mifosxHasPermission="'BLOCK_LOAN'"
             (click)="routeEdit($event)" [routerLink]="['../','loans-accounts', element.id, 'actions', 'Blocked']">
