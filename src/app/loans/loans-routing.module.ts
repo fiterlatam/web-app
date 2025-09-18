@@ -68,6 +68,7 @@ import { DatatableTransactionTabComponent } from './loans-view/transactions/view
 import { LoanTransactionDatatableResolver } from './common-resolvers/loan-transaction-datatable.resolver';
 import { LoanTransactionDatatablesResolver } from './common-resolvers/loan-transaction-datatables.resolver';
 import { LoanHistoryBlockAccountComponent } from './loans-view/loan-account-actions/loan-history-block-account/loan-history-block-account.component';
+import { LoansBlockAccountEditComponent } from './loans-view/loan-account-actions/loans-block-account-edit/loans-block-account-edit.component';
 
 
 /** Loans Route. */
@@ -348,6 +349,13 @@ const routes: Routes = [
             }
           }
         ]
+      },
+      {
+        path: ':loanId/blockEdit',
+        component: LoansBlockAccountEditComponent,
+        data: { title: 'Edit Block Account', breadcrumb: 'Blocks', routeParamBreadcrumb: false },
+        resolve: {
+        }
       },
       {
         path: ':loanId/blockHistory',

@@ -161,6 +161,7 @@ import { LoansBlockAccountComponent } from './loans-view/loan-account-actions/lo
 import { LoanUnblockAccountComponent } from './loans-view/loan-account-actions/loan-unblock-account/loan-unblock-account.component';
 import { LoansBlockViewAccountComponent } from './loans-view/loan-account-actions/loans-block-view/loans-block-view.component';
 import { LoanHistoryBlockAccountComponent } from './loans-view/loan-account-actions/loan-history-block-account/loan-history-block-account.component';
+import { LoansBlockAccountEditComponent } from './loans-view/loan-account-actions/loans-block-account-edit/loans-block-account-edit.component';
 /**
  * Loans Module
  *
@@ -262,7 +263,8 @@ import { LoanHistoryBlockAccountComponent } from './loans-view/loan-account-acti
     LoanUnblockAccountComponent,
     LoansBlockViewAccountComponent,
     LoanUnblockAccountComponent,
-    LoanHistoryBlockAccountComponent
+    LoanHistoryBlockAccountComponent,
+    LoansBlockAccountEditComponent
   ],
   providers: [
     CurrencyPipe
