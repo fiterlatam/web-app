@@ -10,7 +10,7 @@
 
           <mat-form-field fxFlex="100%" (click)="approvedDatePicker.open()">
             <mat-label>{{ "labels.inputs.Approved On" | translate }}</mat-label>
-            <input matInput [min]="minDate" [matDatepicker]="approvedDatePicker" required
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="approvedDatePicker" required
               formControlName="applicationDate">
             <mat-datepicker-toggle matSuffix [for]="approvedDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #approvedDatePicker></mat-datepicker>

@@ -21,7 +21,9 @@ export class LoanUnblockAccountComponent implements OnInit {
   /** Association Data */
   associationData: any;
   /** Minimum Date allowed. */
-  minDate = new Date(2000, 0, 1);
+  minDate = new Date();
+  /** Maximum Date allowed (hoy) */
+  maxDate = new Date();
   /** Loan Id */
   loanId: any;
   /** Reason Options */
@@ -44,10 +46,12 @@ export class LoanUnblockAccountComponent implements OnInit {
 
 
   setunblockLoanForm() {
+    const today = new Date();
+    
     this.unblockLoanForm = this.formBuilder.group({
-      'applicationDate': [this.settingsService.businessDate, Validators.required],
+      'applicationDate': [today, Validators.required],
       'loanId': [this.loanId],
-      'note': ['']
+      'note': ['', Validators.required]
 
     });
   }
