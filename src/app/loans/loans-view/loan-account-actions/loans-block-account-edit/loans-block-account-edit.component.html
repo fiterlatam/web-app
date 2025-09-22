@@ -7,7 +7,7 @@
 
   <mat-card>
 
-    <form [formGroup]="blockLoanForm" (ngSubmit)="submit()">
+    <form *ngIf="blockLoanForm" [formGroup]="blockLoanForm" (ngSubmit)="submit()">
 
       <mat-card-content>
 
