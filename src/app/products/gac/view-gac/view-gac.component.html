@@ -1,0 +1,69 @@
+<div class="container m-b-20" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="2%">
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_GAC'">
+    <fa-icon icon="edit" class="m-r-10"></fa-icon>
+    {{'labels.buttons.Edit' | translate}}
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteGac()" *mifosxHasPermission="'DELETE_GAC'">
+    <fa-icon icon="trash" class="m-r-10"></fa-icon>
+    {{ "labels.buttons.Delete" | translate }}
+  </button>
+</div>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row wrap" class="content">
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.ID' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.id }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Classification' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.classification }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Days From' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.minimumAgeDays }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Days Till' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.maximumAgeDays }}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Percentage' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.percentageValue }}%
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Blocking' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData.blockingReasonName}}
+        </div>
+
+        <div fxFlex="50%" class="mat-body-strong">
+          {{'labels.inputs.Created By' | translate }}
+        </div>
+        <div fxFlex="50%">
+          {{ gacData['createdByName'] }}
+        </div>
+      </div>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="2%" fxLayout.lt-md="column">
+      <button type="button" color="primary" mat-raised-button [routerLink]="['../']"> {{ 'labels.buttons.Back' | translate }}</button>
+    </div>
+  </mat-card>
+</div>

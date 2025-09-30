@@ -237,6 +237,13 @@ import { ViewCollectionHouseConfigResolver } from './collection-house-config/vie
 import { CreateClassificationConceptComponent } from './classification-concepts/create-classification-concept/create-classification-concept.component';
 import { ViewClassficationConceptComponent } from './classification-concepts/view-classification-concept/view-classification-concept.component';
 import { EditClassificationConceptComponent } from './classification-concepts/edit-classification-concept/edit-classification-concept.component';
+import { GacComponent } from './gac/gac.component';
+import { CreateGacComponent } from './gac/create-gac/create-gac.component';
+import { GacsResolver } from './gac/gacs.resolver';
+import { GacTemplateResolver } from './gac/gac-template.resolver';
+import { GacResolver } from './gac/gac.resolver';
+import { ViewGacComponent } from './gac/view-gac/view-gac.component';
+import { EditGacComponent } from './gac/edit-gac/edit-gac.component';
 
 
 /** Products Routes */
@@ -1122,6 +1129,51 @@ const routes: Routes = [
             ]
           },
           {
+            path: 'gac',
+            data: {title: 'Gac', breadcrumb: 'Gac'},
+            children: [
+              {
+                path: '',
+                component: GacComponent,
+                resolve: {
+                  gacs: GacsResolver
+                }
+              },
+              {
+                path: 'create',
+                component: CreateGacComponent,
+                data: {title: 'Create Gac', breadcrumb: 'Create'},
+                resolve: {
+                  gacTemplate: GacTemplateResolver
+                }
+              },
+              {
+                path: ':id',
+                data: {title: 'View Gac', routeParamBreadcrumb: 'id'},
+                resolve: {
+                  gac: GacResolver
+                },
+                children: [
+                  {
+                    path: '',
+                    component: ViewGacComponent,
+                    resolve: {
+                      gac: GacResolver
+                    },
+                  },
+                  {
+                    path: 'edit',
+                    component: EditGacComponent,
+                    data: {title: 'Edit Gac', breadcrumb: 'Edit', routeParamBreadcrumb: false},
+                    resolve: {
+                      gac: GacResolver
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
             path: 'charges',
             data: {title: 'Charges', breadcrumb: 'Charges'},
             children: [
@@ -1317,7 +1369,10 @@ const routes: Routes = [
     InterestRatesResolver,
     InterestRateResolver,
     InterestRateHistoryResolver,
-    InterestRateTemplateResolver
+    InterestRateTemplateResolver,
+    GacResolver,
+    GacsResolver,
+    GacTemplateResolver
   ]
 })
 export class ProductsRoutingModule {

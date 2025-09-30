@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+
+    .select-row:hover {
+        cursor: pointer;
+    }
+}
+
+.interest-rate-active {
+    color: #32cd32;
+}
+
+.interest-rate-inactive {
+    color: #f44366;
+}
