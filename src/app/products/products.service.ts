@@ -713,4 +713,29 @@ export class ProductsService {
     }
     return this.http.get(`/interestRates/${interestRateId}/history`, {params: httpParams});
   }
+
+  getGacs(): Observable<any> {
+    return this.http.get('/gac');
+  }
+
+   getGacTemplate(): Observable<any> {
+    return this.http.get('/gac/template');
+  }
+
+  getGac(gacId: string): Observable<any> {
+    const httpParams = new HttpParams().set('template', 'true');
+    return this.http.get(`/gac/${gacId}`, {params: httpParams});
+  }
+
+  createGac(gac: any): Observable<any> {
+    return this.http.post('/gac', gac);
+  }
+
+  updateGac(gacId: string, gac: any): Observable<any> {
+    return this.http.put(`/gac/${gacId}`, gac);
+  }
+
+  deleteGac(gacId: string): Observable<any> {
+    return this.http.delete(`/gac/${gacId}`);
+  }
 }

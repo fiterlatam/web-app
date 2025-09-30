@@ -150,6 +150,10 @@ import { CollectionHouseConfigComponent } from './collection-house-config/collec
 import { CreateCollectionHouseComponent } from './collection-house-config/create-collection-house-config/create-collection-house/create-collection-house.component';
 import { EditCollectionHouseConfigComponent } from './collection-house-config/edit-collection-house-config/edit-collection-house-config/edit-collection-house-config.component';
 import { ViewCollectionHouseConfigComponent } from './collection-house-config/view/view-collection-house-config/view-collection-house-config.component';
+import { GacComponent } from './gac/gac.component';
+import { CreateGacComponent } from './gac/create-gac/create-gac.component';
+import { EditGacComponent } from './gac/edit-gac/edit-gac.component';
+import { ViewGacComponent } from './gac/view-gac/view-gac.component';
 
 /**
  * Products Module
@@ -303,7 +307,11 @@ import { ViewCollectionHouseConfigComponent } from './collection-house-config/vi
         CollectionHouseConfigComponent,
         CreateCollectionHouseComponent,
         EditCollectionHouseConfigComponent,
-        ViewCollectionHouseConfigComponent
+        ViewCollectionHouseConfigComponent,
+        GacComponent,
+        CreateGacComponent,
+        EditGacComponent,
+        ViewGacComponent
     ]
 })
 export class ProductsModule { }

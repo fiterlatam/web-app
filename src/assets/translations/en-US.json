@@ -887,6 +887,7 @@
       "Frequent Postings": "Frequent Postings",
       "Fund Mapping": "Fund Mapping",
       "Fund Sources for Payment Channels": "Fund Sources for Payment Channels",
+      "Gac Management": "GAC Management",
       "GLIM Account Overview": "GLIM Account Overview",
       "GLIM Loans Account Overview": "GLIM Loans Account Overview",
       "GSIM Account Overview": "GSIM Account Overview",
@@ -2569,6 +2570,7 @@
       "Blocked On Date": "Blocked On Date",
       "Undo Blocked On Date": "Undo Blocked On Date",
       "Blocking Reason": "Blocking Reason",
+      "Blocking": "Blocking",
       "customChargeEntityid": "Cargo",
       "term": "Installment Nr.",
       "percentage": "Percentage",
@@ -2852,6 +2854,7 @@
     "text": {
       "Collection House": "Collection House",
       "Collection House Configuration": "Collection House Management",
+      "Gac Management": "GAC Management",
       "Loan Product Parameterization": "Loan Product Parameterization",
       "Classification Concepts": "Classification Concepts",
       "Masivian Service Configuration": "Masivian Service Configuration",

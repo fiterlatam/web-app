@@ -902,6 +902,7 @@
       "Frequent Postings": "Publicaciones frecuentes",
       "Fund Mapping": "Mapeo de fondos",
       "Fund Sources for Payment Channels": "Fuentes de fondos para canales de pago",
+      "Gac Management": "Gestión de GAC",
       "GLIM Account Overview": "Resumen cuenta GLIM",
       "GLIM Loans Account Overview": "Resumen cuenta de Créditos GLIM",
       "GSIM Account Overview": "Resumen cuenta GSIM",
@@ -2591,6 +2592,7 @@
       "Blocked On Date": "Bloqueado en fecha",
       "Undo Blocked On Date": "Deshacer bloqueado en la fecha",
       "Blocking Reason": "Razón del bloqueo",
+      "Blocking": "Bloqueo",
       "customChargeEntityid": "Cargo",
       "term": "Cuota",
       "percentage": "Porcentaje",
@@ -2872,6 +2874,7 @@
     "text": {
       "Collection House": "Administrar detalles del Proveedor de Servicios de Casa de cobro",
       "Collection House Configuration": "Gestión de Casas de Cobro",
+      "Gac Management": "Gestión de GAC",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Classification Concepts": "Clasificación Conceptos",
       "Masivian Service Configuration": "Configuración del servicio Masivian",
