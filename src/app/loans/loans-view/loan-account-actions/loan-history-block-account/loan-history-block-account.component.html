@@ -28,7 +28,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Application Date' | translate }}</th>
       <td mat-cell *matCellDef="let blockHistory">{{ blockHistory.applicationDate | dateFormat }}</td>
     </ng-container>
-<!--
+
     <ng-container matColumnDef="actionName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.Action' | translate }}</th>
       <td mat-cell *matCellDef="let blockHistory">
@@ -38,7 +38,6 @@
         </ng-container>
       </td>
     </ng-container>
--->
 
     <ng-container matColumnDef="accelerate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'labels.inputs.accelerate' | translate }}</th>

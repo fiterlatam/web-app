@@ -395,6 +395,7 @@
       "VIP & Commerce": "VIP y comercio",
       "Chargeback": "Devolución de cargo",
       "Add Rate": "Agregar tasa",
+      "Add Gac": "Crear Franja",
       "Accept Transfer": "Aceptar transferencia",
       "Actions": "Acciones",
       "Activate": "Activar",
@@ -2874,7 +2875,7 @@
     "text": {
       "Collection House": "Administrar detalles del Proveedor de Servicios de Casa de cobro",
       "Collection House Configuration": "Gestión de Casas de Cobro",
-      "Gac Management": "Gestión de GAC",
+      "Gac Management": "Gestión de gastos Administrativos de cobranza",
       "Loan Product Parameterization": "Parametrizar tipos de productos",
       "Classification Concepts": "Clasificación Conceptos",
       "Masivian Service Configuration": "Configuración del servicio Masivian",
