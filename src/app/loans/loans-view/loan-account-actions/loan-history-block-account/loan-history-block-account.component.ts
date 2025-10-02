@@ -36,8 +36,8 @@ export class LoanHistoryBlockAccountComponent implements OnInit {
     'freezeLifeInsurance',
     'freezeMypime',
     'updatedAt',
-    'createdByName'//,
-    //'actionName'
+    'createdByName',
+    'actionName'
   ];
   /** Data source for loan blockHistorys table. */
   dataSource: MatTableDataSource<any>;
