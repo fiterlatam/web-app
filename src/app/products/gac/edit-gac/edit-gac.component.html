@@ -32,16 +32,24 @@
             <mat-label>{{ "labels.inputs.Percentage" | translate }}</mat-label>
             <input matInput type="number" formControlName="percentageValue">
           </mat-form-field>
-
-          <mat-form-field>
-            <mat-label> {{'labels.inputs.Blocking' | translate }}</mat-label>
-            <mat-select formControlName="blockingReasonId">
-              <mat-option *ngFor="let blockingReasonOption of blockingReasonOptions" [value]="blockingReasonOption.id">
-                {{ blockingReasonOption.description | translate }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-form-field>
+              <mat-label> {{'labels.inputs.Blocking' | translate }}</mat-label>
+              <mat-select formControlName="blockingReasonId">
+                <mat-option *ngFor="let blockingReasonOption of blockingReasonOptions" [value]="blockingReasonOption.id">
+                  {{ blockingReasonOption.description | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button 
+                mat-icon-button 
+                matSuffix 
+                *ngIf="gacForm.get('blockingReasonId').value"
+                (click)="clearBlockingReason()"
+                type="button">
+                <mat-icon>close</mat-icon>
+              </button>
+          </div>
         </div>
 
       </mat-card-content>
