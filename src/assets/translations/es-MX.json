@@ -3499,6 +3499,7 @@
     },
     "allocations": {
       "types": {
+        "gac": "GAC",
         "penalty": "Interés de mora",
         "principal": "Capital",
         "interest": "Interés Corriente",

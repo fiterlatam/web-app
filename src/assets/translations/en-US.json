@@ -3476,6 +3476,7 @@
     },
     "allocations": {
       "types": {
+        "gac": "GAC",
         "penalty": "Penalty",
         "principal": "Principal",
         "interest": "Interest",
