@@ -42,7 +42,7 @@ export class EditGacComponent implements OnInit {
       'classification': [this.gacData.classification, [Validators.required]],
       'minimumAgeDays': [this.gacData.minimumAgeDays, [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(1000)]],
       'maximumAgeDays': [this.gacData.maximumAgeDays, [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(10000)]],
-      'percentageValue' : [this.gacData.percentageValue, [Validators.required, Validators.pattern('^(0*[0-9][0-9]*?)$'), Validators.max(10000)]],
+      'percentageValue' : [this.gacData.percentageValue, [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]+)?$'), Validators.max(10000)]],
       'blockingReasonId': [this.gacData.blockingReasonId],
     });
   }

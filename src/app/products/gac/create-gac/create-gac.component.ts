@@ -41,7 +41,7 @@ export class CreateGacComponent implements OnInit {
       'classification': ['', [Validators.required]],
       'minimumAgeDays': [0, [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(1000)]],
       'maximumAgeDays': ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*?)$'), Validators.max(10000)]],
-      'percentageValue' : [0, [Validators.required, Validators.pattern('^(0*[0-9][0-9]*?)$'), Validators.max(10000)]],
+      'percentageValue' : [0, [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]+)?$'), Validators.max(10000)]],
       'blockingReasonId': [''],
     });
   }
