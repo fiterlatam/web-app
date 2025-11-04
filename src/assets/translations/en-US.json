@@ -2562,7 +2562,7 @@
       "chargeCalculationType.insurance.short": "Insurance",
       "chargeCalculationType.voluntary.assistance": "Voluntary Insurance",
       "chargeCalculationType.voluntary.assistance.short": "Voluntary Insurance",
-      "chargeCalculationType.aval": "Aval",
+      "chargeCalculationType.aval": "GAC/Aval",
       "chargeCalculationType.fee": "Fees",
       "chargeCalculationType.term": "Term",
       "chargeCalculationType.LifeInsurance": "Life Insurance",
