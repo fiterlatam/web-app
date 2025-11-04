@@ -3,11 +3,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {shareReplay, switchMap, filter, take} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Dates} from 'app/core/utils/dates';
 import {SettingsService} from 'app/settings/settings.service';
-import {LoanDetailsCacheService} from './services/loan-details-cache.service';
 
 /**
  * Loans service.
@@ -23,8 +21,7 @@ export class LoansService {
 
   constructor(private http: HttpClient,
               private settingsService: SettingsService,
-              private dateUtils: Dates,
-              private loanDetailsCacheService: LoanDetailsCacheService) {
+              private dateUtils: Dates) {
   }
 
   /**
@@ -81,19 +78,19 @@ export class LoansService {
 
   createNewGuarantor(loanId: string, data: any): Observable<any> {
     // Clear cache before creating guarantor
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/guarantors`, data);
   }
 
   deleteGuarantor(loanId: any, guarantorId: any): Observable<any> {
     // Clear cache before deleting guarantor
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/loans/${loanId}/guarantors/${guarantorId}`);
   }
 
   deleteLoanAccount(loanId: any): Observable<any> {
     // Clear cache before deleting
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/loans/${loanId}`);
   }
 
@@ -136,7 +133,7 @@ export class LoansService {
    */
   createLoanCharge(loanId: string, resourceType: string, loanCharge: any): Observable<any> {
     // Clear cache before creating loan charge
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/${resourceType}`, loanCharge);
   }
 
@@ -174,7 +171,7 @@ export class LoansService {
    */
   createLoanCollateral(loanId: string, collateralData: any): Observable<any> {
     // Clear cache before creating collateral
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/collaterals`, collateralData);
   }
 
@@ -185,21 +182,30 @@ export class LoansService {
   getLoanAccountAssociationDetails(loanId: string) {
     // Use the caching service for better performance
     // This method is kept for backward compatibility
-    return this.loanDetailsCacheService.getLoanDetails(loanId);
+    const httpParams = new HttpParams()
+      .set('associations', 'all')
+      .set('exclude', 'guarantors,futureSchedule');
+    return this.http.get<{
+      principal?: number,
+      charges?: any[],
+      repaymentSchedule: any
+    }>(`/loans/${loanId}`, {params: httpParams});
   }
 
   /**
    * Clear the loan details cache for a specific loan or all loans
    * @param loanId Optional loan ID to clear specific cache entry
    */
+  /*
   clearLoanDetailsCache(loanId?: string): void {
     this.loanDetailsCacheService.clearLoanCache(loanId);
   }
+  */
 
   updateLoanData(data: { principal?: number, charges?: any[] }) {
     this.loanDataSubject.next(data);
     // Clear cache when loan data is updated to ensure fresh data
-    this.clearLoanDetailsCache();
+    // this.clearLoanDetailsCache();
   }
 
   getApproveAssociationsDetails(loanId: any) {
@@ -224,7 +230,7 @@ export class LoansService {
    */
   createLoanNote(loanId: string, noteData: any): Observable<any> {
     // Clear cache before creating note
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/notes`, noteData);
   }
 
@@ -236,7 +242,7 @@ export class LoansService {
    */
   editLoanNote(loanId: string, noteId: string, noteData: any) {
     // Clear cache before editing note
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.put(`/loans/${loanId}/notes/${noteId}`, noteData);
   }
 
@@ -247,7 +253,7 @@ export class LoansService {
    */
   deleteLoanNote(loanId: string, noteId: string) {
     // Clear cache before deleting note
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/loans/${loanId}/notes/${noteId}`);
   }
 
@@ -288,7 +294,7 @@ export class LoansService {
   submitLoanActionButton(loanId: string, data: any, command: any) {
     const httpParams = new HttpParams().set('command', command);
     // Clear cache before submitting action
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});
   }
 
@@ -325,7 +331,7 @@ export class LoansService {
   addLoanDatatableEntry(loanId: string, datatableName: string, data: any): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
     // Clear cache before adding datatable entry
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/datatables/${datatableName}/${loanId}`, data, {params: httpParams});
   }
 
@@ -338,7 +344,7 @@ export class LoansService {
   editLoanDatatableEntry(loanId: string, datatableName: string, data: any): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
     // Clear cache before editing datatable entry
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.put(`/datatables/${datatableName}/${loanId}`, data, {params: httpParams});
   }
 
@@ -350,7 +356,7 @@ export class LoansService {
   deleteDatatableContent(loanId: string, datatableName: string): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
     // Clear cache before deleting datatable content
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/datatables/${datatableName}/${loanId}`, {params: httpParams});
   }
 
@@ -363,7 +369,7 @@ export class LoansService {
   loanActionButtons(loanId: any, command: any, data?: any): Observable<any> {
     const httpParams = new HttpParams().set('command', command);
     // Clear cache before executing loan action
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}`, data, {params: httpParams});
   }
 
@@ -386,7 +392,7 @@ export class LoansService {
   cancelLoan(loanId: any, data: any) {
     const httpParams = new HttpParams().set('command', 'cancel-loan');
     // Clear cache before canceling loan
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/transactions`, data, {params: httpParams});
   }
 
@@ -493,13 +499,13 @@ export class LoansService {
 
   deleteLoanDocument(loanId: any, documentId: any): Observable<any> {
     // Clear cache before deleting document
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.delete(`/loans/${loanId}/documents/${documentId}`);
   }
 
   loadLoanDocument(loanId: any, data: any): Observable<any> {
     // Clear cache before loading document
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/documents`, data);
   }
 
@@ -528,7 +534,7 @@ export class LoansService {
 
   updateLoansAccount(loanId: any, loanData: any): Observable<any> {
     // Clear cache before updating
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.put(`/loans/${loanId}`, loanData);
   }
 
@@ -573,7 +579,7 @@ export class LoansService {
   executeLoansAccountChargesCommand(accountId: string, command: string, data: any, chargeId: any): Observable<any> {
     const httpParams = new HttpParams().set('command', command);
     // Clear cache before executing charge command
-    this.clearLoanDetailsCache(accountId);
+    // this.clearLoanDetailsCache(accountId);
     return this.http.post(`/loans/${accountId}/charges/${chargeId}`, data, {params: httpParams});
   }
 
@@ -585,7 +591,7 @@ export class LoansService {
    */
   editLoansAccountCharge(accountId: string, data: any, chargeId: any): Observable<any> {
     // Clear cache before editing charge
-    this.clearLoanDetailsCache(accountId);
+    // this.clearLoanDetailsCache(accountId);
     return this.http.put(`/loans/${accountId}/charges/${chargeId}`, data);
   }
 
@@ -606,7 +612,7 @@ export class LoansService {
    */
   applyCommandLoanScheduleVariations(loanId: string, command: string, payload: any): Observable<any> {
     // Clear cache before applying schedule variations
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/schedule?command=${command}`, payload);
   }
 
@@ -748,7 +754,7 @@ export class LoansService {
 
   unblockLoan(loanId: string, data: any): Observable<any> {
     // Clear cache before unblocking loan
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.put(`/loans/${loanId}/loanblockingreasons`, data);
   }
 
@@ -763,7 +769,7 @@ export class LoansService {
 
   blockLoanAccount(loanId: any, data: any): Observable<any> {
     // Clear cache before blocking loan
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/loanblockingreasons`, data);
 
   }
@@ -790,14 +796,14 @@ export class LoansService {
 
   excludeFromReclaim(loanId: any, data: any): Observable<any> {
     // Clear cache before excluding from reclaim
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/reclaim/exclude/${loanId}`, data);
   }
 
 
   createLoanCreditNote(loanId: any, data: any): Observable<any> {
     // Clear cache before creating credit note
-    this.clearLoanDetailsCache(loanId);
+    // this.clearLoanDetailsCache(loanId);
     return this.http.post(`/loans/${loanId}/credit-notes`, data);
   }
 
