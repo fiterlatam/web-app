@@ -2583,7 +2583,7 @@
       "chargeCalculationType.insurance.short": "Seguro",
       "chargeCalculationType.voluntary.assistance": "Seguro Voluntario",
       "chargeCalculationType.voluntary.assistance.short": "Seg Vol/Asist",
-      "chargeCalculationType.aval": "Aval",
+      "chargeCalculationType.aval": "GAC/Aval",
       "chargeCalculationType.fee": "Honorarios",
       "chargeCalculationType.term": "Otro Cargo",
       "chargeCalculationType.LifeInsurance": "Seguro Vida",
