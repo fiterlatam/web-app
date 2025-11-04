@@ -6,7 +6,7 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /** Custom Services */
-import { LoanDetailsCacheService } from '../services/loan-details-cache.service';
+import { LoansService } from '../loans.service';
 
 /**
  * Loan details resolver with intelligent caching.
@@ -15,9 +15,9 @@ import { LoanDetailsCacheService } from '../services/loan-details-cache.service'
 export class LoanDetailsResolver implements Resolve<Object> {
 
     /**
-     * @param {LoanDetailsCacheService} loanDetailsCacheService Loan details cache service.
+     * @param {LoansService} LoansService Loans service.
      */
-    constructor(private loanDetailsCacheService: LoanDetailsCacheService) { }
+    constructor(private loansService: LoansService) { }
 
     /**
      * Returns the Loans with Association data using cached service.
@@ -26,7 +26,7 @@ export class LoanDetailsResolver implements Resolve<Object> {
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
       const loanId = route.paramMap.get('loanId') || route.parent.paramMap.get('loanId');
       if (!isNaN(+loanId)) {
-        return this.loanDetailsCacheService.getLoanDetails(loanId);
+        return this.loansService.getLoanAccountAssociationDetails(loanId);
       }
     }
 
