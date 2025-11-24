@@ -241,7 +241,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'paymentTypeId',
         label: 'Payment Type',
-        value: values ? values.paymentTypeId : this.paymentTypeData[0].id,
+        value: values ? values.paymentTypeId : this.paymentTypeData[0]?.id,
         options: { label: 'name', value: 'id', data: this.paymentTypeData },
         required: true,
         order: 1
@@ -249,7 +249,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'fundSourceAccountId',
         label: 'Fund Source',
-        value: values ? values.fundSourceAccountId : this.assetAccountData[0].id,
+        value: values ? values.fundSourceAccountId : this.assetAccountData[0]?.id,
         options: { label: 'name', value: 'id', data: this.assetAccountData },
         required: true,
         order: 2
@@ -263,7 +263,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'chargeId',
         label: 'Fees',
-        value: values ? values.chargeId : this.chargeData[0].id,
+        value: values ? values.chargeId : this.chargeData[0]?.id,
         options: { label: 'name', value: 'id', data: this.chargeData },
         required: true,
         order: 1
@@ -271,7 +271,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'incomeAccountId',
         label: 'Income Account',
-        value: values ? values.incomeAccountId : this.incomeAndLiabilityAccountData[0].id,
+        value: values ? values.incomeAccountId : this.incomeAndLiabilityAccountData[0]?.id,
         options: { label: 'name', value: 'id', data: this.incomeAndLiabilityAccountData },
         required: true,
         order: 2
@@ -293,7 +293,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
       new SelectBase({
         controlName: 'incomeAccountId',
         label: 'Income Account',
-        value: values ? values.incomeAccountId : this.incomeAccountData[0].id,
+        value: values ? values.incomeAccountId : this.incomeAccountData[0]?.id,
         options: { label: 'name', value: 'id', data: this.incomeAccountData },
         required: true,
         order: 2
