@@ -6,7 +6,12 @@
         <ngx-mat-select-search [formControl]="filterFormCtrl"></ngx-mat-select-search>
       </mat-option>
       <mat-option *ngFor="let dataOpt of dataOption | async" [value]="dataOpt.id">
-        {{ dataOpt.value}} - {{dataOpt.score}}
+        <ng-container *ngIf="dataOpt.value != null">
+          {{dataOpt.value}} - {{dataOpt.score}}
+        </ng-container>
+        <ng-container *ngIf="dataOpt.value == null">
+          {{ (dataOpt.name == null ? dataOpt.value + ' - ' + dataOpt.score : (dataOpt.glCode != null ? '(' + dataOpt.glCode + ') ' : '') + dataOpt.name) }}
+        </ng-container>
       </mat-option>
     </mat-select>
     <mat-error *ngIf="inputFormControl.hasError('required')">
