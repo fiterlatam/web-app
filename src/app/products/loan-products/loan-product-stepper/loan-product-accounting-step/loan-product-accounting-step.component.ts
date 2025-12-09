@@ -103,7 +103,11 @@ export class LoanProductAccountingStepComponent implements OnInit {
             'chargeOffExpenseAccountId': accountingMappings.chargeOffExpenseAccount?.id || '',
             'incomeFromChargeOffPenaltyAccountId': accountingMappings.incomeFromChargeOffPenaltyAccount?.id || '',
             'incomeFromChargeOffFeesAccountId': accountingMappings.incomeFromChargeOffFeesAccount?.id || '',
-          });
+            'incomeFromGoodwillCreditInterestAccountId': accountingMappings.incomeFromGoodwillCreditInterestAccount?.id || '',
+            'incomeFromChargeOffInterestAccountId': accountingMappings.incomeFromChargeOffInterestAccount?.id || '',
+            'incomeFromGoodwillCreditFeesAccountId': accountingMappings.incomeFromGoodwillCreditFeesAccount?.id || '',
+            'incomeFromGoodwillCreditPenaltyAccountId': accountingMappings.incomeFromGoodwillCreditPenaltyAccount?.id || '',
+          }); 
           break;
       }
     }
