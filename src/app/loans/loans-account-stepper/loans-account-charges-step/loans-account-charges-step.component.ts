@@ -89,7 +89,7 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
             amount: charge.percentage
           };
         } else {
-          return charge; 
+          return charge;
         }
       });
     }
@@ -119,7 +119,8 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
 
 
       // Filter charges by amount and associate them out
-      if (this.loansAccountProductTemplate.loanProductName.toLowerCase().includes('microcredito')) {
+      if (this.loansAccountProductTemplate.loanProductName.toLowerCase().includes('microcredito')
+        && !this.loansAccountProductTemplate.loanProductName.toLowerCase().includes('pj')) {
 
         const amountLimit = 4 * this.loansAccountProductTemplate.smvl;
         let informationIndex = -1;
