@@ -218,9 +218,9 @@
         <table fxFlex="98%" class="mat-elevation-z1" mat-table [dataSource]="paymentChannelToFundSourceMappings.value" *ngIf="paymentChannelToFundSourceMappings.value.length !== 0">
 
           <ng-container matColumnDef="paymentTypeId">
-            <th mat-header-cell *matHeaderCellDef> Payment Type </th>
+            <th mat-header-cell *matHeaderCellDef> Payment Channel </th>
             <td mat-cell *matCellDef="let paymentFundSource">
-              {{ paymentFundSource.paymentTypeId | find:paymentTypeData:'id':'name' }}
+              {{ paymentFundSource.paymentTypeId | find:paymentChannelData:'id':'name' }}
             </td>
           </ng-container>
 

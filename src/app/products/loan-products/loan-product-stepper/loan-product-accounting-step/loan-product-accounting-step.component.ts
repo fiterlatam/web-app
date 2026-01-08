@@ -30,6 +30,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
   liabilityAccountData: any;
   incomeAndLiabilityAccountData: any;
   assetAndLiabilityAccountData: any;
+  paymentChannelData: any;
 
   paymentFundSourceDisplayedColumns: string[] = ['paymentTypeId', 'fundSourceAccountId', 'actions'];
   feesPenaltyIncomeDisplayedColumns: string[] = ['chargeId', 'incomeAccountId', 'actions'];
@@ -50,6 +51,7 @@ export class LoanProductAccountingStepComponent implements OnInit {
     this.liabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.liabilityAccountOptions || [];
     this.incomeAndLiabilityAccountData = this.incomeAccountData.concat(this.liabilityAccountData);
     this.assetAndLiabilityAccountData = this.loanProductsTemplate.accountingMappingOptions.assetAndLiabilityAccountOptions || [];
+    this.paymentChannelData = this.loanProductsTemplate.channelOptions || [];
 
     this.loanProductAccountingForm.patchValue({
       'accountingRule': this.loanProductsTemplate.accountingRule.id
@@ -240,9 +242,9 @@ export class LoanProductAccountingStepComponent implements OnInit {
     const formfields: FormfieldBase[] = [
       new SelectBase({
         controlName: 'paymentTypeId',
-        label: 'Payment Type',
-        value: values ? values.paymentTypeId : this.paymentTypeData[0]?.id,
-        options: { label: 'name', value: 'id', data: this.paymentTypeData },
+        label: 'Payment Channel',
+        value: values ? values.paymentTypeId : this.paymentChannelData[0]?.id,
+        options: { label: 'name', value: 'id', data: this.paymentChannelData },
         required: true,
         order: 1
       }),
