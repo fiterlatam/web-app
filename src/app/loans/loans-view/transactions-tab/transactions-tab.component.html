@@ -72,6 +72,12 @@
         [ngClass]="loanTransactionColor(transaction)"> {{ transaction.loanChargePaidBySummary.penalty | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
+    <ng-container matColumnDef="advpmtaction">
+      <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Advanced Payment Action" | translate}} </th>
+      <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
+        [ngClass]="loanTransactionColor(transaction)"> {{ (transaction.isAdvancePayment ? (transaction.isRecalculateEMI ? "labels.inputs.Reduce Principal" : "labels.inputs.Reduce Terms") : "") | translate }} </td>
+    </ng-container>
+
     <ng-container matColumnDef="loanBalance">
       <th mat-header-cell class="r-amount" *matHeaderCellDef> {{"labels.inputs.Loan Balance" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"

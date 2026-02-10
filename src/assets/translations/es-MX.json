@@ -2693,7 +2693,10 @@
       },
       "Endorsed": "Endosado",
       "Advanced Payments": "Permitir pagos adelantados",
-      "Accelerate": "Acelerar"
+      "Accelerate": "Acelerar",
+      "Advanced Payment Action": "Adelantado - Redución de",
+      "Reduce Principal": "Monto",
+      "Reduce Terms": "Plazo"
     },
     "links": {
       "Community": "Comunidad",
