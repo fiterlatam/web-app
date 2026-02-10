@@ -2673,7 +2673,10 @@
       },
       "Endorsed": "Endorsed",
       "Advanced Payments": "Allow advanced repayments",
-      "Accelerate": "Accelerate"
+      "Accelerate": "Accelerate",
+      "Advanced Payment Action": "Advanced - Reducing",
+      "Reduce Principal": "Principal",
+      "Reduce Terms": "Terms"
     },
     "links": {
       "Community": "Community",

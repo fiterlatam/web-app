@@ -24,7 +24,7 @@ export class ClientGeneralStepComponent implements OnInit {
   /** Maximum date allowed. */
   maxDate = new Date();
 
-  maximumNameLength = 60;
+  maximumNameLength = 100;
 
   /** Client Template */
   @Input() clientTemplate: any;
@@ -90,7 +90,7 @@ export class ClientGeneralStepComponent implements OnInit {
       'dateOfBirth': ['', Validators.required],
       'clientTypeId': [''],
       'clientClassificationId': [''],
-      'fullname': ['', [Validators.maxLength(40), Validators.minLength(3)]],
+      'fullname': ['', [Validators.maxLength(100), Validators.minLength(3)]],
       'submittedOnDate': [this.settingsService.businessDate, Validators.required]
     });
   }

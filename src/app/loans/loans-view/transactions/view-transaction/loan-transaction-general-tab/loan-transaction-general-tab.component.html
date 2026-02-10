@@ -76,6 +76,15 @@
           {{ transactionData.amount | currency:transactionData.currency.code:'symbol-narrow':format:locale }}
         </div>
 
+        <div fxFlex="50%" class="mat-body-strong" *ngIf="transactionData.isAdvancePayment">
+          {{ 'labels.inputs.Advanced Payment Action' | translate}}
+        </div>
+
+        <div fxFlex="50%" *ngIf="transactionData.isAdvancePayment">
+          {{ (transactionData.isAdvancePayment ? (transactionData.isRecalculateEMI ? "labels.inputs.Reduce Principal" : "labels.inputs.Reduce Terms") : "") | translate }}
+        </div>
+        
+
         <div fxFlex="50%" class="mat-body-strong" *ngIf="transactionData.type.disbursement">
           {{ 'labels.inputs.Disbursement Fees' | translate}}
         </div>
