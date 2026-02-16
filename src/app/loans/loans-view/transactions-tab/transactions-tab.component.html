@@ -75,7 +75,7 @@
     <ng-container matColumnDef="advpmtaction">
       <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Advanced Payment Action" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ (transaction.isAdvancePayment ? (transaction.isRecalculateEMI ? "labels.inputs.Reduce Principal" : "labels.inputs.Reduce Terms") : "") | translate }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ (transaction.isAdvancePayment ? (transaction.isRecalculateEMI ? "labels.inputs.Reduce Principal Short" : "labels.inputs.Reduce Terms Short") : "") | translate }} </td>
     </ng-container>
 
     <ng-container matColumnDef="loanBalance">

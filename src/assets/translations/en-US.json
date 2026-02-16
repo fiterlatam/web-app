@@ -2674,9 +2674,11 @@
       "Endorsed": "Endorsed",
       "Advanced Payments": "Allow advanced repayments",
       "Accelerate": "Accelerate",
-      "Advanced Payment Action": "Advanced - Reducing",
-      "Reduce Principal": "Principal",
-      "Reduce Terms": "Terms"
+      "Advanced Payment Action": "Advanced Payment",
+      "Reduce Principal Short": "Principal",
+      "Reduce Terms Short": "Terms",
+      "Reduce Principal": "Reduce Principal",
+      "Reduce Terms": "Reduce Terms"
     },
     "links": {
       "Community": "Community",
