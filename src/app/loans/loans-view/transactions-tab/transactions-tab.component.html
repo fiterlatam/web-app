@@ -27,7 +27,7 @@
     <ng-container matColumnDef="amount">
       <th mat-header-cell class="center" *matHeaderCellDef> {{"labels.inputs.Amount" | translate}} </th>
       <td mat-cell class="r-amount td-min-space" *matCellDef="let transaction"
-        [ngClass]="loanTransactionColor(transaction)"> {{ transaction.amount | formatNumber:[decimalPlaces] }} </td>
+        [ngClass]="loanTransactionColor(transaction)"> {{ (transaction.netDisbursalAmount && transaction.netDisbursalAmount > 0 ? transaction.netDisbursalAmount : transaction.amount) | formatNumber:[decimalPlaces] }} </td>
     </ng-container>
 
     <ng-container matColumnDef="principal">
