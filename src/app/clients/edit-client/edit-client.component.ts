@@ -45,7 +45,7 @@ export class EditClientComponent implements OnInit {
   /** Gender Options */
   genderOptions: any;
   legalFormId = 1;
-  maximumNameLength = 60;
+  maximumNameLength = 100;
 
   /**
    * Fetches client template data from `resolve`
@@ -116,7 +116,7 @@ export class EditClientComponent implements OnInit {
       'clientClassificationId': [''],
       'submittedOnDate': ['', Validators.required],
       'activationDate': [''],
-      'fullname': ['', [Validators.maxLength(40), Validators.minLength(3)]],
+      'fullname': ['', [Validators.maxLength(100), Validators.minLength(3)]],
     });
   }
 

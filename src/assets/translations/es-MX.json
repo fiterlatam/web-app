@@ -2694,9 +2694,11 @@
       "Endorsed": "Endosado",
       "Advanced Payments": "Permitir pagos adelantados",
       "Accelerate": "Acelerar",
-      "Advanced Payment Action": "Adelantado - Redución de",
-      "Reduce Principal": "Monto",
-      "Reduce Terms": "Plazo"
+      "Advanced Payment Action": "Recalculo Prepago",
+      "Reduce Principal Short": "Monto",
+      "Reduce Terms Short": "Plazo",
+      "Reduce Principal": "Diminucion de Monto",
+      "Reduce Terms": "Diminucion de Plazo"
     },
     "links": {
       "Community": "Comunidad",
