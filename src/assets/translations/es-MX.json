@@ -383,7 +383,10 @@
     "Reduce Installment Amount Desc": "Reduce el valor de la cuota, mantiene el plazo.",
     "Reduce Term Desc": "Paga tu préstamo más rápido, mantiene el valor de la cuota.",
     "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No existe una cuenta de ahorros vinculada al credito para transferir balance sobrepagado",
-    "error.msg.loan.revolving.credit.overpayment.not.allowed": "No se permiten sobrepagos de Crédito Rotativo"
+    "error.msg.loan.revolving.credit.overpayment.not.allowed": "No se permiten sobrepagos de Crédito Rotativo",
+    "error.msg.loan.Undo 1st disbursement should be done using loan´s MENU": "Deshacer el primer desembolso se realizará mediante el MENÚ del préstamo",
+    "error.msg.loan.undo.disbursement.using.tab": "Deshacer desembolso que no es el primer se realizará mediante a la TAB de transaciones",
+    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Deshacer desembolso que no es el primer se realizará mediante a la TAB de transaciones"
   },
   "labels": {
     "breadcrumbs": {
