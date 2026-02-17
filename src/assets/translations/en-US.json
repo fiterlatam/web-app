@@ -375,7 +375,10 @@
     "validation.msg.cannot.undo.last.disbursal.transaction": "Undo disbursal is only allowed when there is only 1 active disbursal. Use Undo from Transactions Tab instead.",
     "validation.msg.cannot.undo.disbursal.with.active.transaction": "No se permite deshacer desembolso para préstamos con transacciones existentes. Puede deshacer las transacciones primero.",
     "error.msg.loan.channel.repayment.overpaid.linked.savings.account.not.present": "No linked savings account for overpaid balance transfer",
-    "error.msg.loan.revolving.credit.overpayment.not.allowed": "Overpayments are not allowed for Crédito Rotativo"
+    "error.msg.loan.revolving.credit.overpayment.not.allowed": "Overpayments are not allowed for Crédito Rotativo",
+    "error.msg.loan.Undo 1st disbursement should be done using loan´s MENU": "Undo 1st disbursement should be done using loan´s MENU",
+    "error.msg.loan.undo.disbursement.using.tab": "Undo disbursal that is not the first one only allowed using Transactions tab",
+    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Undo disbursal that is not the first one only allowed using Transactions tab"
   },
   "labels": {
     "breadcrumbs": {
