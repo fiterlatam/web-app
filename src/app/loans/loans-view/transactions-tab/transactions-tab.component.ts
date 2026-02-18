@@ -29,6 +29,9 @@ export class TransactionsTabComponent implements OnInit {
   /** Columns to be displayed in original schedule table. */
   displayedColumns: string[] = ['date', 'transactionType', 'amount', 'principal', 'interest', 'mandatoryInsurance', 'voluntaryInsurance', 'aval', 'fee', 'penalties', 'advpmtaction', 'loanBalance', 'actions'];
 
+  /** Loan Repayment schedule to check if Disbursement contains FNG and show net amount */
+  repaymentScheduleDisbursementPeriod: any;
+
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -55,6 +58,7 @@ export class TransactionsTabComponent implements OnInit {
               private translateService: TranslateService,
               private settingsService: SettingsService) {
     this.route.parent.parent.data.subscribe((data: { loanDetailsData: any }) => {
+      this.repaymentScheduleDisbursementPeriod = data.loanDetailsData.repaymentSchedule.periods[0];
       this.transactions = data.loanDetailsData.transactions;
       this.tempTransaction = data.loanDetailsData.transactions;
       this.status = data.loanDetailsData.status.value;
@@ -70,8 +74,14 @@ export class TransactionsTabComponent implements OnInit {
 
   setLoanTransactions(transactions: any) {
     this.transactions = transactions;
-    this.transactions.forEach((element: any) => {
+    let containsFNGCharge = (this.repaymentScheduleDisbursementPeriod.totalDueForPeriod > 0 ? true : false);
+
+    this.transactions.forEach((element: any, index: number) => {
       element.date = this.dateUtils.parseDate(element.date);
+      element.rowNumber = index + 1; 
+      if(element.rowNumber == 1 && containsFNGCharge) {
+        element.containsFNGCharge = true;
+      }
     });
     this.dataSource = new MatTableDataSource(this.transactions);
     this.dataSource.paginator = this.paginator;
