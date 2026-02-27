@@ -386,7 +386,8 @@
     "error.msg.loan.revolving.credit.overpayment.not.allowed": "No se permiten sobrepagos de Crédito Rotativo",
     "error.msg.loan.Undo 1st disbursement should be done using loan´s MENU": "Deshacer el primer desembolso se realizará mediante el MENÚ del préstamo",
     "error.msg.loan.undo.disbursement.using.tab": "Deshacer desembolso que no es el primer se realizará mediante a la TAB de transaciones",
-    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Deshacer desembolso que no es el primer se realizará mediante a la TAB de transaciones"
+    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Deshacer desembolso que no es el primer se realizará mediante a la TAB de transaciones",
+    "error.msg.loan.transaction.update.not.allowed": "Sólo puedes revertir la transacción válida más reciente"
   },
   "labels": {
     "breadcrumbs": {

@@ -378,7 +378,8 @@
     "error.msg.loan.revolving.credit.overpayment.not.allowed": "Overpayments are not allowed for Crédito Rotativo",
     "error.msg.loan.Undo 1st disbursement should be done using loan´s MENU": "Undo 1st disbursement should be done using loan´s MENU",
     "error.msg.loan.undo.disbursement.using.tab": "Undo disbursal that is not the first one only allowed using Transactions tab",
-    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Undo disbursal that is not the first one only allowed using Transactions tab"
+    "error.msg.loan.Use transaction´s tab to undo disbursements after 1st disbursal.": "Undo disbursal that is not the first one only allowed using Transactions tab",
+    "error.msg.loan.transaction.update.not.allowed": "You can only reverse the most recent valid transaction"
   },
   "labels": {
     "breadcrumbs": {
